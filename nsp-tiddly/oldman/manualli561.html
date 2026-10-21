@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xset</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli562.html" >next</a>] [<a 
+href="manualli560.html" >prev</a>] [<a 
+href="manualli560.html#tailmanualli560.html" >prev-tail</a>] [<a 
+href="#tailmanualli561.html">tail</a>] [<a 
+href="manualli370.html#manualli561.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x562-3350000"></a>xset</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx562-3350001"></a><a 
+ id="xset"></a><span 
+class="cmtt-10x-x-109">xset </span>&#x2013;                                                                  set values of the graphics context<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x562-3351000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-689">
+&#x00A0;&#x00A0;xset(choice-name,x1,x2,x3,x4,x5)
+&#x00A0;<br />&#x00A0;&#x00A0;xset()
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x562-3352000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">choice-name</span>: string
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x1,...,x5</span>: depending on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">choice-name</span></span></span></li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x562-3353000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset</span></span></span> is used to set default values of the current window graphic context. When called no
+argument, a choice menu is created showing the current values and changes can be performed
+through toggle buttons. Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset()</span></span></span> to display or set the current color, mark and fonts
+used.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;alufunction&#x201D;,number)</span> </span>: Used to set the logical function for drawing. The logical
+     function used is set by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x1</span></span></span>. Usual values are: 3 for copying (default), 6 for animation and
+     0 for clearing. See alufunctions for more details.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;auto clear&#x201D;,&#x201D;on&#x201D;&#x2014;&#x201D;off&#x201D;)</span> </span>: Switch &#x201D;on&#x201D; or &#x201D;off&#x201D; the auto clear mode for graphics.
+     When the auto clear mode is &#x201D;on&#x201D;, successive plots are not superposed, ie an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xbasc()</span></span></span>
+     operation (the graphics window is cleared and the associated recorded graphics is erased)
+     is performed before each high level graphics function. Default value is &#x201D;off&#x201D;.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;background&#x201D;,color)</span> </span>: Set the background color of the current graphics window.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;clipping&#x201D;,x,y,w,h)</span> </span>: Set the clipping zone (the zone of the graphics window where
+     plots can be drawn) to the rectangle (x,y,w,h) (Upper-Left point Width Height). This
+     function uses the current coordinates of the plot.
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;color&#x201D;,value)</span> </span>: Set the default color for filling, line or text drawing functions. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span>
+     is an integer projected in the interval [0,whiteid]. 0 is used for black filling and whiteid
+     for white. The value of whiteid can be obtained with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xget(&#x0022;white&#x0022;)</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;colormap&#x201D;,cmap)</span> </span>: Set the colormap as a m x 3 matrix. m is the number of colors.
+     Color  number  i  is  given  as  a  3-uple  cmap(i,1),  cmap(i,2),  cmap(i,3)  corresponding
+     respectively to red, green and blue intensity between 0 and 1.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;dashes&#x201D;,i)</span> </span>: In black and white mode (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;use</span><span 
+class="cmtt-10x-x-109">&#x00A0;color&#x0022;,0)</span></span></span>), set the dash style
+     to style i (0 for solid line). In color mode (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;use</span><span 
+class="cmtt-10x-x-109">&#x00A0;color&#x0022;,1</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span></span></span>) this is used to set
+     line, mark and text color. This keyword is obsolete, please use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0027;color&#x0027;,i)</span></span></span> or
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0027;line</span><span 
+class="cmtt-10x-x-109">&#x00A0;style&#x0027;,i)</span></span></span> instead.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;default&#x201D;)</span> </span>: Reset the graphics context to default values.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;font&#x201D;,fontid,fontsize): Set the current font and its current</span> </span>size.   Note   that
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fontsize</span></span></span> applies to all fonts not only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fontid</span></span></span> .
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;font size&#x201D;,fontsize)</span> </span>: Set the fonts size.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;foreground&#x201D;,color)</span> </span>: Set the foreground color of the current graphics window.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;fpf&#x201D;,string)</span> </span>: Set the floating point format for number display in contour functions.
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string</span></span></span> is a string giving the format in C format syntax (for example <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;%.3f&#x0022;</span></span></span>).
+     Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;&#x0022;</span></span></span> to switch back to default format.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;hidden3d&#x201D;,colorid): Set the color number for backward facing faces in</span> </span>
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">colorid=0</span></span></span> zero suppress the drawing of backward facing faces of 3d objects.
+     This is technically called &apos;culling&apos; and speeds up the rendering of closed surfaces.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;line mode&#x201D;,type)</span> </span>: This function is used to set the line drawing mode. Absolute
+     mode is set with type=1 and relative mode with type=0. (Warning: the mode type=0
+     has bugs)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;line style&#x201D;,value)</span> </span>: Set the current line style (1: solid, <span 
+class="cmmi-10x-x-109">&#x003E;</span>1 for dashed lines).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;mark&#x201D;,markid,marksize)</span> </span>: Set the current mark and the current mark size. Use
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset()</span></span></span> to see the marks. Note that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">marksize</span></span></span> applies to all marks not only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">markid</span></span></span> .
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;mark size&#x201D;,marksize)</span> </span>: Set the marks size.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;pattern&#x201D;,value)</span> </span>: Set the current pattern for filling functions. value is an integer
+     projected in the interval [0,whiteid]. 0 is used for black filling and whiteid for white.
+     The value of whiteid can be obtained with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xget(&#x0022;white&#x0022;)</span></span></span>. &#x201D;pattern&#x201D; is equivalent to
+     &#x201D;color&#x201D;.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;pixmap&#x201D;,flag)</span> </span>If flag=0 the graphics are directly displayed on the screen. If flag=1
+     the graphics are done on a pixmap and are sent to the graphics window with the
+     command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;wshow&#x0022;)</span></span></span>. The pixmap is cleared with the command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;wwpc&#x0022;)</span></span></span>.
+     Note that the usual command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xbasc()</span></span></span> also clears the pixmap.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;thickness&#x201D;,value)</span> </span>: Set the thickness of lines in pixel (0 and 1 have the same meaning:
+     1 pixel thick).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;use color&#x201D;,flag)</span> </span>If flag=1 then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;pattern&#x0022;,.)</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;dashes&#x0022;,.)</span></span></span> will be
+     used so as to change the default color for drawing or for filling patterns. If flag=0 then
+     we switch back to the gray and dashes mode.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;viewport&#x201D;,x,y)</span> </span>: Set the position of the panner.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;wdim&#x201D;,width,height)</span> </span>: Set the width and the height of the current graphics window.
+     This option is not used by the postscript driver.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;wpdim&#x201D;,width,height)</span> </span>:  Sets  the  width  and  the  height  of  the  current  physical
+     graphic window (which can be different from the actual size in mode wresize 1). This
+     option is not used by the postscript driver.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;window&#x201D;,window-number)</span> </span>:    Set    the    current    window    to    the    window
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">window-number</span></span></span> and creates the window if it does not exist.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;wpos&#x201D;,x,y)</span> </span>: Set the position of the upper left point of the graphics window.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;wresize&#x201D;,flag)</span> </span>If flag=1 then the graphic is automatically resized to fill the graphics
+     window.
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-690">
+     &#x00A0;&#x00A0;xdel();xset(&#x0022;wresize&#x0022;,1);plot2d();xset(&#x0022;wdim&#x0022;,1000,500)
+</div>
+     <!--l. 94--><p class="nopar" >If flag=0 the scale of the graphic is left unchanged when the graphics window is resized. Top
+     left panner or keyboard arrows may be used to scroll over the graphic.
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-691">
+     &#x00A0;&#x00A0;xdel();plot2d();xset(&#x0022;wresize&#x0022;,0);xset(&#x0022;wdim&#x0022;,1000,500)
+</div>
+     <!--l. 100--><p class="nopar" >
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;wshow&#x201D;)</span> </span>: See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;pixmap&#x0022;,1)</span></span></span> above.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xset(&#x201D;wwpc&#x201D;)</span> </span>: See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;pixmap&#x0022;,1)</span></span></span> above.</ul>
+</p>
+<!--l. 106--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x562-3354000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli388.html#colormap">colormap</a>    <a 
+href="manualli537.html#xget">xget</a>    <a 
+href="manualli426.html#getcolor">getcolor</a>    <a 
+href="manualli430.html#getsymbol">getsymbol</a>
+</p>
+<!--l. 110--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x562-3355000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli562.html" >next</a>] [<a 
+href="manualli560.html" >prev</a>] [<a 
+href="manualli560.html#tailmanualli560.html" >prev-tail</a>] [<a 
+href="manualli561.html" >front</a>] [<a 
+href="manualli370.html#manualli561.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli561.html"></a>  </p> 
+</body></html> 

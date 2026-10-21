@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>uicontrol</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1314.html" >next</a>] [<a 
+href="manualli1312.html" >prev</a>] [<a 
+href="manualli1312.html#tailmanualli1312.html" >prev-tail</a>] [<a 
+href="#tailmanualli1313.html">tail</a>] [<a 
+href="manualli1296.html#manualli1313.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1314-7415000"></a>uicontrol</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1314-7415001"></a><a 
+ id="uicontrol"></a><span 
+class="cmtt-10x-x-109">uicontrol </span>&#x2013;                                                   create a Graphic User Interface object<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1314-7416000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1480">
+&#x00A0;&#x00A0;h=uicontrol([prop1,val1]&#x00A0;[,prop2,&#x00A0;val2]&#x00A0;...)
+&#x00A0;<br />&#x00A0;&#x00A0;h=uicontrol(f,[prop1,&#x00A0;val1]&#x00A0;[,prop2,&#x00A0;val2]&#x00A0;...)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1314-7417000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f</span>: integer handle of the figure which will contain the control
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">prop1, 2 ...</span>: character string name of a property to set
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">val1, 2 ...</span>: scilab object value to give to the corresponding property
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">h</span>: handle of the created object</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1314-7418000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > this routine creates an object in a figure. If the handle of the figure is given (as the first parameter),
+the uicontrol is created in this figure. If no handle is given, the uicontrol is created in the current
+figure ( which may be obtained with a call to gcf() ). If there is no current figure, then one is
+created before the creation of the uicontrol. Then when the control is created, the properties
+given as parameters are set with the coresponding values. It is equivalent to create the
+uicontrol, and then set its properties with the set() command. Nevertheless, it generally
+more efficient to set the properties in the call to uicontrol(). This is particularly true
+coincerning the &apos;style&apos; field. Indeed, the default value for this property is &apos;pushbutton&apos;. So if
+you do not set it at creation time, a button will be created, and will be transformed
+to another uicontrol when you call the get(h,&apos;style&apos;, ... ) instruction. Scilab and all the
+graphic objects communicate through the property mechanism. Thus, to create adapted
+uicontrol, one has to know the use of the property fields. Those are descibed under:
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1314-7419000"></a><span 
+class="cmbx-10x-x-109">Properties</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">BackgroundColor</div> [1,3] real vector or string Background color of the uicontrol. A color
+     is specified as Red, Green and Blue values. Those values are real in [ 0,1]. The color can
+     be given as a real vector, ie [R,G,B] or a string where each value is separated by a &#x2014;,
+     ie &#x201D;R&#x2014;G&#x2014;B&#x201D;
+     </li>
+     <li class="itemize"><div class="itemdesc">callback</div> string String evaluated by the scilab interpreter when an usicontrol is activated.
+     (for example when you click on a button).
+     </li>
+     <li class="itemize"><div class="itemdesc">fontangle</div> string: &apos;normal&apos; &#x2014; italic &#x2014; oblique For a control containing some text, this
+     property sets the slant of the font.
+     </li>
+     <li class="itemize"><div class="itemdesc">fontsize</div> real For a control containing some text, this property sets the size of the font
+     in FontUnits.
+     </li>
+     <li class="itemize"><div class="itemdesc">fontunits</div> string: points &#x2014; pixels &#x2014; normalized For a control containing some text, this
+     property sets the units with which the fontsize is specified.
+     </li>
+     <li class="itemize"><div class="itemdesc">fontweight</div> string: light &#x2014; normal &#x2014; demi &#x2014; bold For a control containing some text,
+     this property sets the weight of the used font
+     </li>
+     <li class="itemize"><div class="itemdesc">ForegroundColor</div> [1,3] real vector or string Foreground color of the uicontrol. A color is
+     specified as Red, Green and Blue values. Those values are real in [ 0,1]. The color can
+     be given as a real vector, ie [R,G,B] or a string where each value is separated by a &#x2014;,
+     ie &#x201D;R&#x2014;G&#x2014;B&#x201D;
+     </li>
+     <li class="itemize"><div class="itemdesc">Horizontalalignment</div> string: left &#x2014; center &#x2014; right. Set text horizontal alignment in the
+     uicontrol. This property can only be used with &apos;text&apos;, &apos;edit&apos; and &apos;checkbox&apos; styles.
+     </li>
+     <li class="itemize"><div class="itemdesc">ListboxTop</div> integer For a ListBox, this property tells which item of the list appears on
+     the first line of the visible area of the list.
+     </li>
+     <li class="itemize"><div class="itemdesc">Max</div> scalar Specifies the largest value the &apos;value&apos; property can be set to. It has however
+     differnet meaning on each uicontrol:
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> Check Boxes: Max is the value the &apos;value&apos; property take when control is checked
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> Silders : Maximinum value of the slider
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> List boxes: if (Max-Min)<span 
+class="cmmi-10x-x-109">&#x003E;</span>1 the list allows multiple selection, Otherwise not.
+     </li>
+     <li class="itemize"><div class="itemdesc">Min</div> scalar Specifies the lowest value the &apos;value&apos; property can be set to. It has however
+     different meaning on each uicontrol:
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> Check Boxes: Min is the value the &apos;value&apos; property take when control is unchecked
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> Silders : Mininum value of the slider
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> List boxes: if (Max-Min)<span 
+class="cmmi-10x-x-109">&#x003E;</span>1 the list allows multiple selection, Otherwise not.
+     </li>
+     <li class="itemize"><div class="itemdesc">Parent</div> integer Handle of the control parent. Changing this property allows to move a
+     control from a figure to another.
+     </li>
+     <li class="itemize"><div class="itemdesc">Path</div> This property is read-only. It allows to get the TK path of the control as a string.
+     (Useful when creating User Interfaces using uicontrols and TCL/TK scripts.)
+     </li>
+     <li class="itemize"><div class="itemdesc">Position</div> [1,4] real vector or string This property is used to set or get the geometrical
+     configuration of a control. It is a real; vector: x y w h where the letters stand for the x
+     location of the left bottom corner, the y location of the left bottom corner, the width
+     and the height of the uicontrol. The unit is determined by the &apos;Unit&apos; property. One
+     can also set this property by giving a string where the fields are separated by a &apos;&#x2014;&apos;, ie
+     &#x201D;x&#x2014;y&#x2014;w&#x2014;h&#x201D;.
+     </li>
+     <li class="itemize"><div class="itemdesc">SliderStep</div> [1,2] real vector or string small big This property represents the step a slider
+     is moved when the user click on the arrow (small step) or on the slide bar (big step).
+     </li>
+     <li class="itemize"><div class="itemdesc">String</div> string Generally, this property represents the text appearing in a uicontrol. Its
+     exact meaning sometimes depends on the uicontrol style:
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> List Boxes, Popup Menu the value can be a vector of string or a string where the
+     items are separated by a &apos;&#x2014;&apos;.
+     </li>
+     <li class="itemize"><div class="itemdesc">Style</div> string: pushbutton &#x2014; radiobutton &#x2014; checkbox &#x2014; edit &#x2014; text &#x2014; slider &#x2014; frame
+     &#x2014;listbox &#x2014; popupmenu Style of the uicontrol. Here is a short description of each one:
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> pushbutton A rectangular button generally used to run a callback.
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> radiobutton A button whith to states: on or off.
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> checkbox a small uicontrol that have to state: on or off
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> edit an editable string control
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> text a text control (generally static).
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> slider a scale control, that is a scrollbar use to set values between in range with the
+     mouse.
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> frame a control representing a zone used to group of related controls.
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> listbox a control representing a list of item that can be scrolled. The item can be
+     selected with the mouse.
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> popupmenu a button which make a menu appear when clicked.
+     </li>
+     <li class="itemize"><div class="itemdesc">Tag</div> string this property is generally used to identify the control. It allows to give it a
+     &#x201D;name&#x201D;. Mainly used in conjontion with findobj().
+     </li>
+     <li class="itemize"><div class="itemdesc">Units</div> string: points &#x2014; pixels &#x2014; normalized Set the units used to specify the &apos;position&apos;
+     property.
+     </li>
+     <li class="itemize"><div class="itemdesc">Userdata</div> scilab object this can be used to associate any scilab object to an uicontrol.
+     </li>
+     <li class="itemize"><div class="itemdesc">Value</div> Value of the uicontrol. The exact meaning depends on the style of the uicontrol.
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> Check boxes, Radio buttons value is set to Max (see above) when on and Min when
+     off.
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> List Boxes, Popu Menu value is a vector of indexes corresponding to the index of the
+     selected entry in the list. 1 is the first item of the list.
+     </li>
+     <li class="itemize"><div class="itemdesc">o</div> Sliders value indicated by the slider bar.
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">Verticalalignment</div> string: top &#x2014; middle &#x2014; bottom. Set text vertical alignment in the
+     uicontrol. This property can only be used with &apos;text&apos; and &apos;checkbox&apos; styles.</li></ul>
+<!--l. 101--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1314-7420000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb856"><a 
+ id="x1314-7420024r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=figure()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420026r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420028r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=uicontrol(f,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;style&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;listbox&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;position&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">150</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">160</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1314-7420030r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;listbox</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420032r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(h,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;string&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;item</span><span 
+class="cmtt-10x-x-109">&#x00A0;1|item</span><span 
+class="cmtt-10x-x-109">&#x00A0;2|item3&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420034r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;fill</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;list</span></span>
+<br class="fancyvrb" /><a 
+ id="x1314-7420036r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(h,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;value&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420038r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;select</span><span 
+class="cmitt-10x-x-109">&#x00A0;item</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;list</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420040r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;close()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420042r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;close</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span></span>
+<br class="fancyvrb" /><a 
+ id="x1314-7420044r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=figure()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420046r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420048r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=uicontrol(f,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;style&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;listbox&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;position&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">150</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">160</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1314-7420050r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;listbox</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420052r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(h,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;string&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;item</span><span 
+class="cmtt-10x-x-109">&#x00A0;1|item</span><span 
+class="cmtt-10x-x-109">&#x00A0;2|item3&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420054r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;fill</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;list</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420056r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(h,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;value&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1314-7420058r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;select</span><span 
+class="cmitt-10x-x-109">&#x00A0;(highlight)</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;item</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;list</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420060r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;close()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1314-7420062r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//close</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span></span></div>
+<!--l. 128--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1314-7421000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1298.html#figure">figure</a>    <a 
+href="manualli500.html#set">set</a>    <a 
+href="manualli431.html#get">get</a>    <a 
+href="manualli1315.html#uimenu">uimenu</a>
+</p>
+<!--l. 132--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1314-7422000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Bertrand Guiheneuf
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1314.html" >next</a>] [<a 
+href="manualli1312.html" >prev</a>] [<a 
+href="manualli1312.html#tailmanualli1312.html" >prev-tail</a>] [<a 
+href="manualli1313.html" >front</a>] [<a 
+href="manualli1296.html#manualli1313.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1313.html"></a>  </p> 
+</body></html> 

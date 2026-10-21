@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+deff(\nspstring{'y=FF(x)'},\nspstring{'y=a*(x-b)+c*x.*x'})
+X=[]\nspoperator{;}Y=[]\nspoperator{;}
+a=\nspnumber{34}\nspoperator{;}b=\nspnumber{12}\nspoperator{;}c=\nspnumber{14}\nspoperator{;}\nspkeyword{for} x=\nspnumber{0}\nspoperator{:}\nspnumber{.1}\nspoperator{:}\nspnumber{3} \nspkeyword{do} Y=[Y\nspoperator{,}FF(x)\nspoperator{+}\nspnumber{100}\nspoperator{*}(rand()\nspoperator{-}\nspnumber{.5})]\nspoperator{;}X=[X\nspoperator{,}x]\nspoperator{;}\nspkeyword{end}
+Z=[Y\nspoperator{;}X]\nspoperator{;}
+deff(\nspstring{'e=G(p,z)'},\nspstring{'a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),e=y-FF(x)'})
+[p,err]=fit_dat(G,[\nspnumber{3}\nspoperator{;}\nspnumber{5}\nspoperator{;}\nspnumber{10}],Z)
+xset(\nspstring{'window'},\nspnumber{0})
+xbasc()\nspoperator{;}
+plot2d(X\nspoperator{'},Y\nspoperator{'},\nspoperator{-}\nspnumber{1})
+plot2d(X\nspoperator{'},FF(X)\nspoperator{'},\nspnumber{5},\nspstring{'002'})
+a=p(\nspnumber{1})\nspoperator{,}b=p(\nspnumber{2})\nspoperator{,}c=p(\nspnumber{3})\nspoperator{;}plot2d(X\nspoperator{'},FF(X)\nspoperator{'},\nspnumber{12},\nspstring{'002'})
+a=\nspnumber{34}\nspoperator{;}b=\nspnumber{12}\nspoperator{;}c=\nspnumber{14}\nspoperator{;}
+deff(\nspstring{'s=DG(p,z)'},\nspstring{'y=z(1),x=z(2),s=-[x-p(2),-p(1),x*x]'})
+[p,err]=fit_dat(G,[\nspnumber{3}\nspoperator{;}\nspnumber{5}\nspoperator{;}\nspnumber{10}],Z,DG)
+xset(\nspstring{'window'},\nspnumber{1})
+xbasc()\nspoperator{;}
+plot2d(X\nspoperator{'},Y\nspoperator{'},\nspoperator{-}\nspnumber{1})
+plot2d(X\nspoperator{'},FF(X)\nspoperator{'},\nspnumber{5},\nspstring{'002'})
+a=p(\nspnumber{1})\nspoperator{,}b=p(\nspnumber{2})\nspoperator{,}c=p(\nspnumber{3})\nspoperator{;}plot2d(X\nspoperator{'},FF(X)\nspoperator{'},\nspnumber{12},\nspstring{'002'})
+\end{Verbatim}

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mfile2sci</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1322.html" >next</a>] [<a 
+href="manualli1320.html" >prev</a>] [<a 
+href="manualli1320.html#tailmanualli1320.html" >prev-tail</a>] [<a 
+href="#tailmanualli1321.html">tail</a>] [<a 
+href="manualli1316.html#manualli1321.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1322-7461000"></a>mfile2sci</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1322-7461001"></a><a 
+ id="mfile2sci"></a><span 
+class="cmtt-10x-x-109">mfile2sci </span>&#x2013;                                             Matlab M-file to Scilab conversion function<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1322-7462000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1488">
+&#x00A0;&#x00A0;mfile2sci([M-file-path&#x00A0;[,result-path&#x00A0;[,Recmode&#x00A0;[,only-double&#x00A0;[,verbose-mode&#x00A0;[,prettyprint]]]]]])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1322-7463000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">M-file-path</span>: a character string which gives the path of Matlab M-file to convert
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">result-path</span>: a character string which gives the directory where the result has to be
+     written. Default value is current directory.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Recmode</span>: Boolean flag, used by translatepaths function for recursive conversion. Must
+     be %F to convert a single mfile. Default value: %f
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">only-double</span>: Boolean flag, if %T mfile2sci considers that numerical function have been
+     used only with numerical data (no Scilab overloading function is needed). Default value:
+     %F
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">verbose-mode</span>: display information mode
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">0</span>: no information displayed
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">1</span>: information written as comment is resulting SCI-file
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">2</span>: information written as comment is resulting SCI-file and in logfile
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">3</span>: information written as comment is resulting SCI-file, in logfile and displayed in
+          Scilab window</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">prettyprint</span>: Boolean flag, if %T generated code is beautified. Default value: %F</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 44--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1322-7464000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 44--><p class="noindent" > M2SCI (and particularly mfile2sci) is Matlab M-file to Scilab function conversion tools. It tries
+whenever possible to replace call to Matlab functions by the equivalent Scilab primitives and
+functions. To convert a Matlab M-file just enter the Scilab instruction: mfile2sci(file) where file is a
+character string giving the path name of the M-file mfile2sci will generate three files in the same
+directory
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmbx-10x-x-109">function-name</span><span 
+class="cmmi-10x-x-109">&#x003E;</span><span 
+class="cmbx-10x-x-109">.sci</span> </span>: the Scilab equivalent of the M-file
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmbx-10x-x-109">function-name</span><span 
+class="cmmi-10x-x-109">&#x003E;</span><span 
+class="cmbx-10x-x-109">.cat</span> </span>: the Scilab help file associated to the function
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">sci</span><span 
+class="cmbx-10x-x-109">_</span><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmbx-10x-x-109">function-name</span><span 
+class="cmmi-10x-x-109">&#x003E;</span><span 
+class="cmbx-10x-x-109">.sci</span> </span>: the Scilab function required to convert the calls to this Matlab
+     M-file in other Matlab M-files. This function may be improved &#x201D;by hand&#x201D;. This function
+     is only useful for conversion not for use of translated functions.</ul>
+</p><!--l. 57--><p class="noindent" >Some functions like eye, ones, size, sum,... behave differently according to the dimension of their
+arguments. When mfile2sci cannot infer dimensions it replaces these function call by a call to an
+emulation function named mtlb_<span 
+class="cmmi-10x-x-109">&#x003C;</span>function_name<span 
+class="cmmi-10x-x-109">&#x003E;</span>. For efficiency these functions may be replaced
+by the proper scilab equivalent instructions. To get informations about replacement, enter: help
+mtlb_<span 
+class="cmmi-10x-x-109">&#x003C;</span>function_name<span 
+class="cmmi-10x-x-109">&#x003E; </span>in Scilab command window Some other functions like plot, has no
+straightforward &#x00C3;<span 
+class="cmsy-10x-x-109">&#x00A9;</span>quivalent in scilab. They are also replaced by an emulation function
+named mtlb_<span 
+class="cmmi-10x-x-109">&#x003C;</span>function_name<span 
+class="cmmi-10x-x-109">&#x003E;</span>. When translation may be incorrect or may be improved
+mfile2sci adds a comment which begins by &#x201D;//!&#x201D; (according to verbose-mode) When called
+without rhs, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci()</span></span></span> launches a GUI to help to select a file/directory and options.
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1322-7465000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb860"><a 
+ id="x1322-7465032r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;simple</span><span 
+class="cmitt-10x-x-109">&#x00A0;M-file</span></span><br class="fancyvrb" /><a 
+ id="x1322-7465034r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;write(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/rot90.m&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span>
+<br class="fancyvrb" /><a 
+ id="x1322-7465036r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;function</span><span 
+class="cmtt-10x-x-109">&#x00A0;B</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;rot90(A,k)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[m,n]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;size(A);&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;nargin</span><span 
+class="cmtt-10x-x-109">&#x00A0;==</span><span 
+class="cmtt-10x-x-109">&#x00A0;1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;1;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;else&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1322-7465038r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;rem(k,4);&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x0026;lt;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;0&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;4;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;end&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;end&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1322-7465040r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;==</span><span 
+class="cmtt-10x-x-109">&#x00A0;1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;A.&#x0027;&#x0027;;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;A(n:-1:1,:);&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;elseif</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;==</span><span 
+class="cmtt-10x-x-109">&#x00A0;2&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1322-7465042r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;A(m:-1:1,n:-1:1);&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;elseif</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;==</span><span 
+class="cmtt-10x-x-109">&#x00A0;3&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;A(m:-1:1,:);&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;B.&#x0027;&#x0027;;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1322-7465044r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;else&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;A;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;end&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1322-7465046r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Convert</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab</span></span><br class="fancyvrb" /><a 
+ id="x1322-7465048r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mfile2sci(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/rot90.m&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR)</span>
+<br class="fancyvrb" /><a 
+ id="x1322-7465050r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Show</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;new</span><span 
+class="cmitt-10x-x-109">&#x00A0;code</span></span><br class="fancyvrb" /><a 
+ id="x1322-7465052r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;write(%io(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),read(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/rot90.sci&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;(a)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x1322-7465054r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;into</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab</span></span><br class="fancyvrb" /><a 
+ id="x1322-7465056r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;getf(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/rot90.sci&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1322-7465058r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Execute</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span></span><br class="fancyvrb" /><a 
+ id="x1322-7465060r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;m=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">rot90(m,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 107--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1322-7466000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1325.html#translatepaths">translatepaths</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 111--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1322-7467000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 112--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1322-7468000"></a></span>
+   V. Couvert
+</p>
+<!--l. 113--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1322-7469000"></a></span>
+   S. Steer
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1322.html" >next</a>] [<a 
+href="manualli1320.html" >prev</a>] [<a 
+href="manualli1320.html#tailmanualli1320.html" >prev-tail</a>] [<a 
+href="manualli1321.html" >front</a>] [<a 
+href="manualli1316.html#manualli1321.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1321.html"></a>  </p> 
+</body></html> 

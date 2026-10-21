@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// Lyapunov equation solver (one unknown variable, one constraint)}
+deff(\nspstring{'Y=lyapunov(X,D)'},\nspstring{'[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q)'})
+A=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}Q=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}Q=Q\nspoperator{+}Q\nspoperator{'}\nspoperator{;}D=list(A,Q)\nspoperator{;}dimX=[\nspnumber{3}\nspoperator{,}\nspnumber{3}]\nspoperator{;}
+[Aly,bly]=aff2ab(lyapunov,dimX,D)\nspoperator{;}
+[Xl,kerA]=linsolve(Aly,bly)\nspoperator{;}Xv=vec2list(Xl,dimX)\nspoperator{;}lyapunov(Xv,D)
+Xm=Xv(\nspoperator{:})\nspoperator{;}A\nspoperator{'}\nspoperator{*}Xm\nspoperator{+}Xm\nspoperator{*}A\nspoperator{-}Q
+\nspcomment{// Lyapunov equation solver with redundant constraint X=X'}
+\nspcomment{// (one variable, two constraints) D is global variable}
+deff(\nspstring{'Y=ly2(X,D)'},\nspstring{'[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q,Xm''-Xm)'})
+A=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}Q=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}Q=Q\nspoperator{+}Q\nspoperator{'}\nspoperator{;}D=list(A,Q)\nspoperator{;}dimX=[\nspnumber{3}\nspoperator{,}\nspnumber{3}]\nspoperator{;}
+[Aly,bly]=aff2ab(ly2,dimX,D)\nspoperator{;}
+[Xl,kerA]=linsolve(Aly,bly)\nspoperator{;}Xv=vec2list(Xl,dimX)\nspoperator{;}ly2(Xv,D)
+\nspcomment{// Francis equations}
+\nspcomment{// Find matrices X1 and X2 such that:}
+\nspcomment{// A1*X1 - X1*A2 + B*X2 -A3 = 0}
+\nspcomment{// D1*X1 -D2 = 0}
+deff(\nspstring{'Y=bruce(X,D)'}, ...
+     \nspstring{'[A1,A2,A3,B,D1,D2]=D(:),    [X1,X2]=X(:);Y=list(A1*X1-X1*A2+B*X2-A3,D1*X1-D2)'})
+A1=[\nspoperator{-}\nspnumber{4}\nspoperator{,}\nspnumber{10}\nspoperator{;}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{2}]\nspoperator{;}A3=[\nspnumber{1}\nspoperator{;}\nspnumber{2}]\nspoperator{;}B=[\nspnumber{0}\nspoperator{;}\nspnumber{1}]\nspoperator{;}A2=\nspnumber{1}\nspoperator{;}D1=[\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}D2=\nspnumber{1}\nspoperator{;}
+D=list(A1,A2,A3,B,D1,D2)\nspoperator{;}
+[n1,m1]=size(A1)\nspoperator{;}[n2,m2]=size(A2)\nspoperator{;}[n3,m3]=size(B)\nspoperator{;}
+dimX=[[m1\nspoperator{,}n2]\nspoperator{;}[m3\nspoperator{,}m2]]\nspoperator{;}
+[Af,bf]=aff2ab(bruce,dimX,D)\nspoperator{;}
+[Xf,KerAf]=linsolve(Af,bf)\nspoperator{;}Xsol=vec2list(Xf,dimX)
+bruce(Xsol,D)
+\nspcomment{// Find all X which commute with A}
+deff(\nspstring{'y=f(X,D)'},\nspstring{'y=list(D(:)*X(:)-X(:)*D(:))'})
+A=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}dimX=[\nspnumber{3}\nspoperator{,}\nspnumber{3}]\nspoperator{;}[Af,bf]=aff2ab(f,dimX,list(A))\nspoperator{;}
+[Xf,KerAf]=linsolve(Af,bf)\nspoperator{;}[p,q]=size(KerAf)\nspoperator{;}
+Xsol=vec2list(Xf\nspoperator{+}KerAf\nspoperator{*}rand(q,\nspnumber{1}),dimX)\nspoperator{;}
+C=Xsol(\nspoperator{:})\nspoperator{;}A\nspoperator{*}C\nspoperator{-}C\nspoperator{*}A
+\end{Verbatim}

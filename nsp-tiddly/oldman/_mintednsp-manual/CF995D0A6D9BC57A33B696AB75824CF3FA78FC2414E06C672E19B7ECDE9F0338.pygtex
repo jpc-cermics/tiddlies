@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+file3=\nspstring{'test3.bin'}
+fd1=mopen(file3,\nspstring{'wb'})\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}\nspnumber{10} \nspkeyword{do} mput(i,\nspstring{'d'})\nspoperator{;}\nspkeyword{end}
+mseek(\nspnumber{0})\nspoperator{;}
+mput(\nspnumber{678},\nspstring{'d'})\nspoperator{;}
+mseek(\nspnumber{0},fd1,\nspstring{'end'})\nspoperator{;}
+mput(\nspnumber{932},\nspstring{'d'})\nspoperator{;}
+mclose(fd1)
+fd1=mopen(file3,\nspstring{'rb'})\nspoperator{;}
+res=mget(\nspnumber{11},\nspstring{'d'})
+res1=[\nspnumber{1}\nspoperator{:}\nspnumber{11}]\nspoperator{;}res1(\nspnumber{1})=\nspnumber{678}\nspoperator{;}res1($)=\nspnumber{932}\nspoperator{;}
+\nspkeyword{if} res1$\nspoperator{ < }$$\nspoperator{ > }$res \nspkeyword{then} write(%io(\nspnumber{2}),\nspstring{'Bug'})\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+mseek(\nspnumber{0},fd1,\nspstring{'set'})\nspoperator{;}
+\nspcomment{// trying to read more than stored data}
+res1=mget(\nspnumber{100},\nspstring{'d'},fd1)\nspoperator{;}
+\nspkeyword{if} res1$\nspoperator{ < }$$\nspoperator{ > }$res \nspkeyword{then} write(%io(\nspnumber{2}),\nspstring{'Bug'})\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+meof(fd1)
+mclearerr(fd1)
+mclose(fd1)\nspoperator{;}
+\end{Verbatim}

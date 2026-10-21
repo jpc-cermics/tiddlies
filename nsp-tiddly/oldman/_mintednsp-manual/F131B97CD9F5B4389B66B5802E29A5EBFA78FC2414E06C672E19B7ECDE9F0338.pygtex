@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+F=randpencil([],[\nspnumber{2}],[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}],[])\nspoperator{;}
+F=rand(\nspnumber{5},\nspnumber{5})\nspoperator{*}F\nspoperator{*}rand(\nspnumber{5},\nspnumber{5})\nspoperator{;}\nspcomment{// 5 x 5 regular pencil with 3 evals at 1,2,3}
+[Ws,F1]=rowshuff(F,\nspoperator{-}\nspnumber{1})\nspoperator{;}
+[E1,A1]=pen2ea(F1)\nspoperator{;}
+svd(E1)\nspoperator{,}\nspcomment{//E1 non singular}
+roots(det(Ws))
+clean(inv(F)\nspoperator{-}inv(F1)\nspoperator{*}Ws,\nspnumber{1.E-7})
+\end{Verbatim}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>arsimul</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli7.html" >next</a>] [<a 
+href="manualli5.html" >prev</a>] [<a 
+href="manualli5.html#tailmanualli5.html" >prev-tail</a>] [<a 
+href="#tailmanualli6.html">tail</a>] [<a 
+href="manualli1.html#manualli6.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x7-28000"></a>arsimul</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx7-28001"></a><a 
+ id="arsimul"></a><span 
+class="cmtt-10x-x-109">arsimul </span>&#x2013;                                                                                  armax simulation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x7-29000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-12">
+&#x00A0;&#x00A0;[z]=arsimul(a,b,d,sig,u,[up,yp,ep])
+&#x00A0;<br />&#x00A0;&#x00A0;[z]=arsimul(ar,u,[up,yp,ep])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x7-30000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ar</span>: an armax process. See armac.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">a</span>: is the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Id,a1,...,a_r]</span></span></span> of dimension (n,(r+1)*n)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">b</span>: is the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[b0,......,b_s]</span></span></span> of dimension (n,(s+1)*m)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">d</span>: is the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Id,d_1,......,d_t]</span></span></span> of dimension (n,(t+1)*n)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">u</span>: is a matrix (m,N), which gives the entry u(:,j)=u_j
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sig</span>: is a (n,n) matrix e_k is an n-dimensional Gaussian process with variance I
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">up, yp</span>: optional parameter which describe the past. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">up=[</span><span 
+class="cmtt-10x-x-109">&#x00A0;u_0,u_{-1},...,u_{s-1}]</span></span></span>;
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp=[</span><span 
+class="cmtt-10x-x-109">&#x00A0;y_0,y_{-1},...,y_{r-1}];</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ep=[</span><span 
+class="cmtt-10x-x-109">&#x00A0;e_0,e_{-1},...,e_{r-1}]</span></span></span>;    if    they    are
+     omitted, the past value are supposed to be zero
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">z</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z=[y(1),....,y(N)]</span></span></span></li></ul>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x7-31000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 43--><p class="noindent" > simulation of an n-dimensional armax process <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A(z^-1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;z(k)=</span><span 
+class="cmtt-10x-x-109">&#x00A0;B(z^-1)u(k)</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;D(z^-1)*sig*e(k)</span></span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-13">
+&#x00A0;&#x00A0;A(z)=&#x00A0;Id+a1*z+...+a_r*z^r;&#x00A0;&#x00A0;(&#x00A0;r=0&#x00A0;&#x00A0;=$&#x003E;$&#x00A0;A(z)=Id)
+&#x00A0;<br />&#x00A0;&#x00A0;B(z)=&#x00A0;b0+b1*z+...+b_s&#x00A0;z^s;&#x00A0;&#x00A0;(&#x00A0;s=-1&#x00A0;=$&#x003E;$&#x00A0;B(z)=[])
+&#x00A0;<br />&#x00A0;&#x00A0;D(z)=&#x00A0;Id+d1*z+...+d_t&#x00A0;z^t;&#x00A0;&#x00A0;(&#x00A0;t=0&#x00A0;&#x00A0;=$&#x003E;$&#x00A0;D(z)=Id)
+</div>
+<!--l. 50--><p class="nopar" >z et e are in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R^n</span></span></span> et u in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R^m</span></span></span>
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x7-32000"></a><span 
+class="cmbx-10x-x-109">Method</span></span>
+   a state-space representation is constructed and ode with the option &#x201D;discr&#x201D; is used to compute
+z
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x7-33000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J-Ph.C.
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli7.html" >next</a>] [<a 
+href="manualli5.html" >prev</a>] [<a 
+href="manualli5.html#tailmanualli5.html" >prev-tail</a>] [<a 
+href="manualli6.html" >front</a>] [<a 
+href="manualli1.html#manualli6.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli6.html"></a>   </p> 
+</body></html> 

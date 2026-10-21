@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>binomial</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli125.html" >next</a>] [<a 
+href="manualli123.html" >prev</a>] [<a 
+href="manualli123.html#tailmanualli123.html" >prev-tail</a>] [<a 
+href="#tailmanualli124.html">tail</a>] [<a 
+href="manualli104.html#manualli124.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x125-716000"></a>binomial</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx125-716001"></a><a 
+ id="binomial"></a><span 
+class="cmtt-10x-x-109">binomial </span>&#x2013;                                                          binomial distribution probabilities<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x125-717000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-209">
+&#x00A0;&#x00A0;pr=binomial(p,n)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x125-718000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">pr</span>: row vector with n+1 components
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">p</span>: real number in [0,1]
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: an integer <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 1</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x125-719000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr=binomial(p,n)</span></span></span> returns the binomial probability vector, i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr(k+1)</span></span></span> is the probability of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span>
+success in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> independent Bernouilli trials with probability of success <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span>. In other words:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr(k+1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;probability(X=k)</span></span></span> , with X a random variable following the B(n,p) distribution, and
+numerically:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-210">
+&#x00A0;&#x00A0;/&#x00A0;n&#x00A0;&#x005C;&#x00A0;&#x00A0;k&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;n-k&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;/&#x00A0;n&#x00A0;&#x005C;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;n!
+&#x00A0;<br />&#x00A0;&#x00A0;pr(k+1)&#x00A0;=&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;p&#x00A0;&#x00A0;(1-p)&#x00A0;&#x00A0;&#x00A0;&#x00A0;with&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;=&#x00A0;---------
+&#x00A0;<br />&#x00A0;&#x00A0;&#x005C;&#x00A0;k&#x00A0;/&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x005C;&#x00A0;k&#x00A0;/&#x00A0;&#x00A0;&#x00A0;&#x00A0;k!&#x00A0;(n-k)!
+</div>
+<!--l. 45--><p class="nopar" >
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x125-720000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb88"><a 
+ id="x125-720024r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span></span><br class="fancyvrb" /><a 
+ id="x125-720026r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">p=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d3(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n,binomial(p,n))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720028r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;second</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span></span>
+<br class="fancyvrb" /><a 
+ id="x125-720030r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">p=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720032r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mea=n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">sigma=sqrt(n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">p))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720034r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=((</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">mea)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">sigma</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720036r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span>
+<br class="fancyvrb" /><a 
+ id="x125-720038r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(x,sigma</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">binomial(p,n))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720040r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=Gauss(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=1/sqrt(2*%pi)*exp(-(x.^2)/2)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x125-720042r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(x,Gauss(x),style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720044r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;binomial</span><span 
+class="cmitt-10x-x-109">&#x00A0;formula</span><span 
+class="cmitt-10x-x-109">&#x00A0;(Caution</span><span 
+class="cmitt-10x-x-109">&#x00A0;if</span><span 
+class="cmitt-10x-x-109">&#x00A0;big</span><span 
+class="cmitt-10x-x-109">&#x00A0;n)</span></span>
+<br class="fancyvrb" /><a 
+ id="x125-720046r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;pr=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">binomial2</span></span><span 
+class="cmtt-10x-x-109">(p,n)</span><br class="fancyvrb" /><a 
+ id="x125-720048r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">pr=coeff((</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span 
+class="cmtt-10x-x-109">n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">horner(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n),p)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720050r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x125-720052r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720054r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;binomial(p,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">binomial2(p,n)</span><br class="fancyvrb" /><a 
+ id="x125-720056r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;Gamma</span><span 
+class="cmitt-10x-x-109">&#x00A0;function:</span><span 
+class="cmitt-10x-x-109">&#x00A0;gamma(n+1)=n!</span><span 
+class="cmitt-10x-x-109">&#x00A0;(Caution</span><span 
+class="cmitt-10x-x-109">&#x00A0;if</span><span 
+class="cmitt-10x-x-109">&#x00A0;big</span><span 
+class="cmitt-10x-x-109">&#x00A0;n)</span></span>
+<br class="fancyvrb" /><a 
+ id="x125-720058r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720060r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Cnks=gamma(n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;./</span></span><span 
+class="cmtt-10x-x-109">(gamma(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">gamma(n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720062r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x125-720064r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;pr=Cnks</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">horner(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.^</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span 
+class="cmtt-10x-x-109">(n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">),p)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x125-720066r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;pr</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">binomial(p,n)</span></div>
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x125-721000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli93.html#cdfbin">cdfbin</a>    <a 
+href="manualli103.html#grand">grand</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli125.html" >next</a>] [<a 
+href="manualli123.html" >prev</a>] [<a 
+href="manualli123.html#tailmanualli123.html" >prev-tail</a>] [<a 
+href="manualli124.html" >front</a>] [<a 
+href="manualli104.html#manualli124.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli124.html"></a>  </p> 
+</body></html> 

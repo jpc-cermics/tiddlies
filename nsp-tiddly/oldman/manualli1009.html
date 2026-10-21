@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>overloading</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1010.html" >next</a>] [<a 
+href="manualli1008.html" >prev</a>] [<a 
+href="manualli1008.html#tailmanualli1008.html" >prev-tail</a>] [<a 
+href="#tailmanualli1009.html">tail</a>] [<a 
+href="manualli931.html#manualli1009.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1010-5779000"></a>overloading</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1010-5779001"></a><a 
+ id="overloading"></a><span 
+class="cmtt-10x-x-109">overloading </span>&#x2013;                         display, functions and operators overloading capabilities<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1010-5780000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > In scilab, variable display, functions and operators may be defined for new objects using functions
+(scilab coded or primitives).
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Display</span> </span>: The display of new objects defined by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> structure may be overloaded (the
+     default display is similar to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list</span></span></span>&apos;s one). The overloading function must have no output
+     argument a single input argument. It&apos;s name is formed as follow <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%$&#x003C;$tlist_type$&#x003E;$_p</span></span></span>
+     where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%$&#x003C;$tlist_type$&#x003E;$</span></span></span> stands for the first entry of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> type component.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Operators</span> </span>: Each operator which is not defined for given operands type may be defined.
+     The overloading function must have a single output argument and one or two inputs
+     according to the number of operands. The function name is formed as follow:</ul>
+</p><!--l. 28--><p class="noindent" >for binary operators: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%$&#x003C;$first_operand_type$&#x003E;$_$&#x003C;$op_code$&#x003E;$_$&#x003C;$second_operand_type$&#x003E;$</span></span></span> for
+unary operators: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%$&#x003C;$operand_type$&#x003E;$_$&#x003C;$op_code$&#x003E;$</span></span></span> extraction and insertion operators which
+are n-nary operators are described below. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$operand_type$&#x003E;$</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$first_operand_type$&#x003E;$</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$second_operand_type$&#x003E;$</span></span></span> are sequence of characters associated with each data type as described in the
+following table: <!--tex4ht:inline--></p><div class="tabular"> <table id="TBL-48" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-48-1g"><col 
+id="TBL-48-1" /></colgroup><colgroup id="TBL-48-2g"><col 
+id="TBL-48-2" /></colgroup><colgroup id="TBL-48-3g"><col 
+id="TBL-48-3" /></colgroup><colgroup id="TBL-48-4g"><col 
+id="TBL-48-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-1-1"  
+class="td11">  data type    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-1-2"  
+class="td11">char code</td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-1-3"  
+class="td11">   data type     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-1-4"  
+class="td11"> char code  </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-2-1"  
+class="td11">   constant     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-2-2"  
+class="td11">    s      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-2-3"  
+class="td11">    boolean       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-2-4"  
+class="td11">    b       </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-3-1"  
+class="td11"> string </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-48-3-2"  
+class="td11"> c </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-48-3-3"  
+class="td11"> library </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-48-3-4"  
+class="td11"> f</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-4-1"  
+class="td11">function pointer</td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-4-2"  
+class="td11">  fptr    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-4-3"  
+class="td11">     handle       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-4-4"  
+class="td11">    h       </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-5-1"  
+class="td11">    integer      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-5-2"  
+class="td11">    i      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-5-3"  
+class="td11">      list          </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-5-4"  
+class="td11">     l       </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-6-1"  
+class="td11">   function     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-6-2"  
+class="td11">   m     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-6-3"  
+class="td11">compiled function</td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-6-4"  
+class="td11">    mc      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-7-1"  
+class="td11">  polynomial   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-7-2"  
+class="td11">   p     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-7-3"  
+class="td11">     sparse        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-7-4"  
+class="td11">    sp      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-8-1"  
+class="td11"> boolean sparse </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-8-2"  
+class="td11">   spb    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-8-3"  
+class="td11">      tlist         </td><td  style="white-space:nowrap; text-align:center;" id="TBL-48-8-4"  
+class="td11"><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist_type</span></span></span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-48-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-48-9-1"  
+class="td11">             </td> </tr></table>
+</div> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$op_code$&#x003E;$</span></span></span> is a single character associated with each operator as described in the following
+                                                                                    
+
+                                                                                    
+table: <!--tex4ht:inline--><div class="tabular"> <table id="TBL-49" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-49-1g"><col 
+id="TBL-49-1" /></colgroup><colgroup id="TBL-49-2g"><col 
+id="TBL-49-2" /></colgroup><colgroup id="TBL-49-3g"><col 
+id="TBL-49-3" /></colgroup><colgroup id="TBL-49-4g"><col 
+id="TBL-49-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-1-1"  
+class="td11">   op     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-1-2"  
+class="td11">char code</td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-1-3"  
+class="td11">    op       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-1-4"  
+class="td11">char code</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-2-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-2-2"  
+class="td11">    t      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-2-3"  
+class="td11">     +       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-2-4"  
+class="td11">   a      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-3-1"  
+class="td11">    -       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-3-2"  
+class="td11">    s      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-3-3"  
+class="td11">     *        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-3-4"  
+class="td11">   m     </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-4-1"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">/</span></span></span> </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-4-2"  
+class="td11"> r </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-4-3"  
+class="td11"> &#x00A0; </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-4-4"  
+class="td11"> l</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-5-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">^</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-5-2"  
+class="td11">   p     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-5-3"  
+class="td11">     .*       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-5-4"  
+class="td11">   x     </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-6-1"  
+class="td11">    ./      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-6-2"  
+class="td11">   d     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-6-3"  
+class="td11">     .&#x00A0;       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-6-4"  
+class="td11">   q     </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-7-1"  
+class="td11">    .*.      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-7-2"  
+class="td11">   k     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-7-3"  
+class="td11">    ./.       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-7-4"  
+class="td11">   y     </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-8-1"  
+class="td11">   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.&#x005C;.</span></span></span>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-8-2"  
+class="td11">    z      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-8-3"  
+class="td11">     :        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-8-4"  
+class="td11">   b     </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-9-1"  
+class="td11">    *.      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-9-2"  
+class="td11">   u     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-9-3"  
+class="td11">     /.       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-9-4"  
+class="td11">   v     </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-10-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x005C;.</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-10-2"  
+class="td11">   w     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-10-3"  
+class="td11">   [a,b]     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-10-4"  
+class="td11">    c      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-11-1"  
+class="td11">   [a;b]     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-11-2"  
+class="td11">    f      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-11-3"  
+class="td11">() extraction</td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-11-4"  
+class="td11">    e      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-12-1"  
+class="td11">() insertion</td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-12-2"  
+class="td11">    i      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-12-3"  
+class="td11">    ==      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-12-4"  
+class="td11">   o      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-13-1"  
+class="td11">   <span 
+class="cmmi-10x-x-109">&#x003C;&#x003E;    </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-13-2"  
+class="td11">   n     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-13-3"  
+class="td11">    &#x2014;       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-13-4"  
+class="td11">   g      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-14-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-14-1"  
+class="td11">  &#x0026;amp;   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-14-2"  
+class="td11">   h     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-14-3"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.^</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-14-4"  
+class="td11">    j      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-15-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-15-1"  
+class="td11">    &#x00A0;       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-15-2"  
+class="td11">   5      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-15-3"  
+class="td11">     .&apos;       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-15-4"  
+class="td11">   0      </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-16-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-16-1"  
+class="td11"> <span 
+class="cmmi-10x-x-109">&#x003C; </span></td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-16-2"  
+class="td11"> 1 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-16-3"  
+class="td11"> <span 
+class="cmmi-10x-x-109">&#x003E; </span></td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-16-4"  
+class="td11"> 2</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-17-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-17-1"  
+class="td11">   <span 
+class="cmmi-10x-x-109">&#x003C;</span>=     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-17-2"  
+class="td11">   3      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-17-3"  
+class="td11">    <span 
+class="cmmi-10x-x-109">&#x003E;</span>=      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-49-17-4"  
+class="td11">   4      </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-18-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-18-1"  
+class="td11"> </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-18-2"  
+class="td11"> </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-18-3"  
+class="td11"> iext </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-49-18-4"  
+class="td11"> 6</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-49-19-"><td  style="white-space:nowrap; text-align:center;" id="TBL-49-19-1"  
+class="td11">         </td> </tr></table>
+</div> The overloading function for extraction syntax <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">b=a(i1,...,in)</span></span></span> has the following calling sequence:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">b=%$&#x003C;$type_of_a$&#x003E;$_e_(i1,...,in,a)</span></span></span> and the syntax <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[x1,..,xm]=a(i1,...,in)</span></span></span> has the
+following calling sequence: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[x1,..,xm]=%$&#x003C;$type_of_a$&#x003E;$_e_(i1,...,in,a)</span></span></span> The overloading
+function associated to the insertion syntax <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a(i1,...,in)=b</span></span></span> has the following calling sequence:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a=%$&#x003C;$type_of_b$&#x003E;$_i_$&#x003C;$type_of_a$&#x003E;$(i1,...,in,b,a)</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">6</span></span></span> char code may be used for
+some complex insertion algorithm like <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x.b(2)=33</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">b</span></span></span> field is not defined in the structure <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. The
+insertion is automatically decomposed into <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">temp=x.b;</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">temp(2)=33;</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x.b=temp</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">6</span></span></span> char code is
+used for the first step of this algorithm. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">6</span></span></span> overloading function is very similar to the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e</span></span></span>&apos;s
+one.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Functions:</span> </span>Some  basic  primitive  function  may  also  be  overloaded  for  new  data  type.
+     When  such  a  function  is  undefined  for  a  particular  data  types  the  function
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%$&#x003C;$type_of_an_argument$&#x003E;$_$&#x003C;$function_name$&#x003E;$</span></span></span> is called. User may add in this
+     called function the definition associated with the input data types.</ul>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1010-5781000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb702"><a 
+ id="x1010-5781011r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//DISPLAY</span></span><br class="fancyvrb" /><a 
+ id="x1010-5781013r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[]=%tab_p(l)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;disp([[&#x0027;&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;&#x0027;;l(3)]</span><span 
+class="cmtt-10x-x-109">&#x00A0;[l(2);string(l(4))]])&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x1010-5781015r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tlist(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;tab&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">],rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x1010-5781017r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//OPERATOR</span></span><br class="fancyvrb" /><a 
+ id="x1010-5781019r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x=%c_a_s(a,b)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x=a+string(b)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x1010-5781021r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><br class="fancyvrb" /><a 
+ id="x1010-5781023r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//FUNCTION</span></span><br class="fancyvrb" /><a 
+ id="x1010-5781025r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x=%c_sin(a)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x=&#x0027;&#x0027;sin(&#x0027;&#x0027;+a+&#x0027;&#x0027;)&#x0027;&#x0027;&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1010-5781027r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;2*x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 107--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1010-5782000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1040.html#tlist">tlist</a>    <a 
+href="manualli278.html#disp">disp</a>    <a 
+href="manualli1035.html#symbols">symbols</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1010.html" >next</a>] [<a 
+href="manualli1008.html" >prev</a>] [<a 
+href="manualli1008.html#tailmanualli1008.html" >prev-tail</a>] [<a 
+href="manualli1009.html" >front</a>] [<a 
+href="manualli931.html#manualli1009.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1009.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xlfont</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli543.html" >next</a>] [<a 
+href="manualli541.html" >prev</a>] [<a 
+href="manualli541.html#tailmanualli541.html" >prev-tail</a>] [<a 
+href="#tailmanualli542.html">tail</a>] [<a 
+href="manualli370.html#manualli542.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x543-3233000"></a>xlfont</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx543-3233001"></a><a 
+ id="xlfont"></a><span 
+class="cmtt-10x-x-109">xlfont </span>&#x2013;                                  load a font in the graphic context or query loaded font<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x543-3234000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-669">
+&#x00A0;&#x00A0;xlfont(font-name,font-id)
+&#x00A0;<br />&#x00A0;&#x00A0;fonts=xlfont()
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x543-3235000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">font-name</span>: string, name of the font family.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">font-id</span>: integer between 0 and 10.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fonts</span>: a column vector of currently loaded font names.</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x543-3236000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Without any argument, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xlfont()</span></span></span> returns the list of currently loaded fonts. With arguments,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xlfont</span></span></span> is used to load a new font at different sizes in the graphics context. The font must be
+available with size 8, 10, 12, 14, 18 and 24. Default fonts are &#x201D;Courier Roman&#x201D; (0), &#x201D;Symbol&#x201D; (1),
+&#x201D;Times Roman&#x201D; (2), &#x201D;Times Italic&#x201D; (3), &#x201D;Times Bold&#x201D; (4), &#x201D;Times Bold Italic&#x201D; (5), &#x201D;Helvetica&#x201D;
+(6), &#x201D;Helvetica Oblique&#x201D; (7), &#x201D;Helvetica Bold&#x201D; (8), &#x201D;Helvetica Bold Oblique&#x201D; (9). These
+default fonts are automaticaly loaded when needed and so <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xlfont</span></span></span> is not really required
+for them. In fact <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xlfont</span></span></span> is essentially useful to load a new font. font-name can be of 2
+types:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>if             it             contains             the             character             &#x201D;%&#x201D;,             it
+     is supposed to be an X11 font name with %s in the size field of the name, for example
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;-b&#x005C;&#x0026;amp;h-lucidabright-demibold-r-normal--%s-*-75-75-p-*-iso8859-1&#x0022;</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>if it does not contain the character &#x201D;%&#x201D;, it is supposed to be an alias name and the fonts
+     aliased by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">font-name08,...,font-name24</span></span></span> are loaded.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">font-id</span> </span>: give the id <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">font-id</span></span></span> to the loaded font <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">font-name</span></span></span>.</ul>
+                                                                                    
+
+                                                                                    
+</p><!--l. 56--><p class="noindent" >Currently this load font feature works only for screen drivers and not for others (Postscript, Fig, Gif,
+PPM). If you export a graphical screen output in Postscript, Fig, Gif or PPM while you have
+previously loaded a new font, the behavior depends of the choice of the identifier <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">font-id</span></span></span> for the
+loaded font:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">font-id=10</span></span></span> then the strings (drawn with this font) will be drawn with the default font
+     (Times) at the same size;
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>else the strings will be drawn with the default font corresponding to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">font-id</span></span></span>.</ul>
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x543-3237000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb424"><a 
+ id="x543-3237014r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Caution:</span><span 
+class="cmitt-10x-x-109">&#x00A0;this</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;may</span><span 
+class="cmitt-10x-x-109">&#x00A0;not</span><span 
+class="cmitt-10x-x-109">&#x00A0;work</span><span 
+class="cmitt-10x-x-109">&#x00A0;if</span><span 
+class="cmitt-10x-x-109">&#x00A0;your</span><span 
+class="cmitt-10x-x-109">&#x00A0;system</span><span 
+class="cmitt-10x-x-109">&#x00A0;have</span><span 
+class="cmitt-10x-x-109">&#x00A0;not</span></span>
+<br class="fancyvrb" /><a 
+ id="x543-3237016r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;schoolbook</span><span 
+class="cmitt-10x-x-109">&#x00A0;bold</span><span 
+class="cmitt-10x-x-109">&#x00A0;font</span></span><br class="fancyvrb" /><a 
+ id="x543-3237018r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;MSDOS</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><br class="fancyvrb" /><a 
+ id="x543-3237020r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xlfont(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Century</span><span 
+class="cmtt-10x-x-109">&#x00A0;Schoolbook</span><span 
+class="cmtt-10x-x-109">&#x00A0;Bold&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x543-3237022r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">else</span></span><br class="fancyvrb" /><a 
+ id="x543-3237024r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xlfont(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;-adobe-new</span><span 
+class="cmtt-10x-x-109">&#x00A0;century</span><span 
+class="cmtt-10x-x-109">&#x00A0;schoolbook-bold-r-normal-*-%s-*-75-75-*-*-iso8859-1&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x543-3237026r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x543-3237028r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x543-3237030r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;font&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;use</span><span 
+class="cmitt-10x-x-109">&#x00A0;helvetica</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;12</span><span 
+class="cmitt-10x-x-109">&#x00A0;pts</span></span><br class="fancyvrb" /><a 
+ id="x543-3237032r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d()</span>
+<br class="fancyvrb" /><a 
+ id="x543-3237034r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;font&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;use</span><span 
+class="cmitt-10x-x-109">&#x00A0;Schoolbook</span><span 
+class="cmitt-10x-x-109">&#x00A0;bold</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;18</span><span 
+class="cmitt-10x-x-109">&#x00A0;pts</span></span><br class="fancyvrb" /><a 
+ id="x543-3237036r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;plot2d</span><span 
+class="cmtt-10x-x-109">&#x00A0;demo&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;x&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 85--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x543-3238000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli561.html#xset">xset</a>    <a 
+href="manualli427.html#getfont">getfont</a>
+</p>
+<!--l. 89--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x543-3239000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli543.html" >next</a>] [<a 
+href="manualli541.html" >prev</a>] [<a 
+href="manualli541.html#tailmanualli541.html" >prev-tail</a>] [<a 
+href="manualli542.html" >front</a>] [<a 
+href="manualli370.html#manualli542.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli542.html"></a>  </p> 
+</body></html> 

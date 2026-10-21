@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ldiv</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli917.html" >next</a>] [<a 
+href="manualli915.html" >prev</a>] [<a 
+href="manualli915.html#tailmanualli915.html" >prev-tail</a>] [<a 
+href="#tailmanualli916.html">tail</a>] [<a 
+href="manualli894.html#manualli916.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x917-5312000"></a>ldiv</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx917-5312001"></a><a 
+ id="ldiv"></a><span 
+class="cmtt-10x-x-109">ldiv </span>&#x2013;                                                                    polynomial matrix long division<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x917-5313000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1039">
+&#x00A0;&#x00A0;[x]=ldiv(n,d,k)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x917-5314000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n,d</span>: two real polynomial matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">k</span>: integer</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x917-5315000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x=ldiv(n,d,k)</span></span></span> gives the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> first coefficients of the long division of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d</span></span></span> i.e. the Taylor expansion
+of the rational matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[nij(z)/dij(z)]</span></span></span> near infinity. Coefficients of expansion of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nij/dij</span></span></span> are
+stored in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x((i-1)*n+k,j)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k=1:n</span></span></span>
+</p>
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x917-5316000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb643"><a 
+ id="x917-5316009r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;wss=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[a,b,c,d]=abcd(wss)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x917-5316011r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;wtf=ss2tf(wss)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x917-5316013r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x1=ldiv(numer(wtf),denom(wtf),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x917-5316015r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x2=[c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">b</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">b</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">b</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">b</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">b]</span><br class="fancyvrb" /><a 
+ id="x917-5316017r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;wssbis=markp2ss(x1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x917-5316019r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;wtfbis=clean(ss2tf(wssbis))</span><br class="fancyvrb" /><a 
+ id="x917-5316021r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x3=ldiv(numer(wtfbis),denom(wtfbis),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x917-5317000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli16.html#arl2">arl2</a>    <a 
+href="manualli56.html#markp2ss">markp2ss</a>    <a 
+href="manualli918.html#pdiv">pdiv</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli917.html" >next</a>] [<a 
+href="manualli915.html" >prev</a>] [<a 
+href="manualli915.html#tailmanualli915.html" >prev-tail</a>] [<a 
+href="manualli916.html" >front</a>] [<a 
+href="manualli894.html#manualli916.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli916.html"></a>  </p> 
+</body></html> 

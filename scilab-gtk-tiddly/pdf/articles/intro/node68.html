@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.4.5 Writting by Plotting</TITLE>
+<META NAME="description" CONTENT="5.4.5 Writting by Plotting">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node69.html">
+<LINK REL="previous" HREF="node65.html">
+<LINK REL="up" HREF="node61.html">
+<LINK REL="next" HREF="node69.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1143"
+ HREF="node69.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1139"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1133"
+ HREF="node67.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1141"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1142"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1144"
+ HREF="node69.html">5.4.6 Some Classical Graphics</A>
+<B> Up:</B> <A NAME="tex2html1140"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1134"
+ HREF="node67.html">5.4.4.2 Curves Plotting</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00645000000000000000">
+5.4.5  Writting by Plotting</A>
+</H2>
+<UL>
+<LI><code>xstring</code>	: draws a string or a matrix of strings
+<LI><code>xstringl</code>	: computes a rectangle which surrounds
+        a string
+<LI><code>xstringb</code>	: draws a string in a specified box
+<LI><code>xnumb</code>	: draws a set of numbers
+</UL>
+<P>
+We give now the sequence of the commands for obtaining the 
+figure&nbsp; <A HREF="node68.html#fgeom">5.8</A>.
+
+<P>
+<PRE>
+//	initialize default environment variables
+xset('default');
+xset("use color",0);
+plot([1:10]);
+xbasc()
+xrect(0,1,3,1)
+xfrect(3.1,1,3,1)
+xstring(0.5,0.5,"xrect(0,1,3,1)")
+xstring(4.,0.5,"xfrect(3.1,1,3,1)")
+xset("alufunction",6)
+xstring(4.,0.5,"xfrect(3.1,1,3,1)")
+xset("alufunction",3)
+xv=[0 1 2 3 4]
+yv=[2.5 1.5 1.8 1.3 2.5]
+xpoly(xv,yv,"lines",1)
+xstring(0.5,2.,"xpoly(xv,yv,""lines"",1)")
+xa=[5 6 6 7 7 8 8 9 9 5]
+ya=[2.5 1.5 1.5 1.8 1.8 1.3 1.3 2.5 2.5 2.5]
+xarrows(xa,ya)
+xstring(5.5,2.,"xarrows(xa,ya)")
+xarc(0.,5.,4.,2.,0.,64*300.)
+xstring(0.5,4,"xarc(0.,5.,4.,2.,0.,64*300.)")
+xfarc(5.,5.,4.,2.,0.,64*360.)
+//xset("alufunction",6)
+xclea(5.6,4.4,2.8,0.8);
+xstring(5.8,4.,"xfarc  and then  xclea")
+//xset("alufunction",3)
+xstring(0.,4.5,"WRITING-BY-XSTRING()",-22.5) 
+xnumb([5.5 6.2 6.9],[5.5 5.5 5.5],[3 14 15],1)
+isoview(0,12,0,12)
+xarc(-5.,12.,5.,5.,0.,64*360.)
+xstring(-4.5,9.25,"isoview + xarc",0.)
+xset("font",4,5)
+A=["  1" "       2" "  3";"  4" "       5" "  6";"68" "  17.2" "  9"];
+xstring(7.,10.,A);
+rect=xstringl(7,10,A);
+xrect(rect(1),rect(2),rect(3),rect(4));
+</PRE>
+<P>
+  
+  
+Figdirfigures/
+  
+<BR>
+<DIV ALIGN="CENTER"><A NAME="fgeom">&#160;</A><A NAME="3980">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.8:</STRONG>
+Geometric Graphics and Comments</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img19.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.0,212.0)
+\special{ps...
+...nouv7.epsf hscale=100.0 vscale=100.0}
+\end{picture}} \end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+e have seen that some parameters of the graphics are controlled by a 
+graphic context 
+( for example the line thickness) and others are controlled through
+graphics arguments . 
+<UL>
+<LI><TT>xset</TT>	: to set graphic context values.
+Some examples of the use of <TT>xset</TT> : 
+
+<P>
+(i)-<TT>xset("use color",flag)</TT> changes to color or gray plot according to 
+the values (1 or 0) of <TT>flag</TT>.
+
+<P>
+(ii)-<TT>xset("window",window-number)</TT> sets the current window to the window 
+<TT>window-number</TT> and creates the window if it doesn't exist.
+
+<P>
+(iii)-<TT>xset("wpos",x,y)</TT> fixes the position of the upper left point of 
+the graphic window.
+
+<P>
+The choice of the font, the width and height of the window, the driver...
+can be done by <TT>xset</TT>.
+
+<P>
+<LI><TT>xget</TT>	: to get informations about the current graphic context.
+All the values of the parameters fixed by <TT>xset</TT> can be obtained by 
+<TT>xget</TT>.
+
+<P>
+<LI><TT>xlfont</TT>	: to load a new family of fonts from the XWindow Manager
+</UL><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1143"
+ HREF="node69.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1139"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1133"
+ HREF="node67.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1141"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1142"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1144"
+ HREF="node69.html">5.4.6 Some Classical Graphics</A>
+<B> Up:</B> <A NAME="tex2html1140"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1134"
+ HREF="node67.html">5.4.4.2 Curves Plotting</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

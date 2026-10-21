@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pipe_network</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli740.html" >next</a>] [<a 
+href="manualli738.html" >prev</a>] [<a 
+href="manualli738.html#tailmanualli738.html" >prev-tail</a>] [<a 
+href="#tailmanualli739.html">tail</a>] [<a 
+href="manualli677.html#manualli739.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x740-4387000"></a>pipe_network</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx740-4387001"></a><a 
+ id="pipe_network"></a><span 
+class="cmtt-10x-x-109">pipe</span><span 
+class="cmtt-10x-x-109">_network </span>&#x2013;                                                      solves the pipe network problem<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x740-4388000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-899">
+&#x00A0;&#x00A0;[x,pi]&#x00A0;=&#x00A0;pipe_network(g)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x740-4389000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">g</span>: graph list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: row vector of the value of the flow on the arcs
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">pi</span>: row vector of the value of the potential on the nodes</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x740-4390000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pipe_network</span></span></span> returns the value of the flows and of the potentials for the pipe network problem:
+flow problem with two Kirchhoff laws. The graph must be directed. The problem must be feasible
+(the sum of the node demands must be equal to 0). The resistances on the arcs must be strictly
+positive and are given as the values of the element &apos;edge_weight&apos; of the graph list. The problem is
+solved by using sparse matrices LU factorization.
+</p>
+<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x740-4391000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb584"><a 
+ id="x740-4391015r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ta=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x740-4391017r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ta=[ta</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">13</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">14</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x740-4391019r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;he=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">13</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">14</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">13</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x740-4391021r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;he=[he</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x740-4391023r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x740-4391025r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g=make_graph(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,n,ta,he)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x740-4391027r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">42</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">615</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">231</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">505</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">145</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">312</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">403</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">233</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">506</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">34</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">312</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">142</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">614</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">260</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">257</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x740-4391029r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">143</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">145</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">154</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">154</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">147</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">152</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">157</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">270</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">273</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">279</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">269</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">273</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">273</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">274</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">376</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x740-4391031r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;show_graph(g)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x740-4391033r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_demand&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x740-4391035r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;w=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x740-4391037r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;edge_weight&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=[w</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x740-4391039r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[x,pi]=pipe_network(g)</span></div>
+<!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli740.html" >next</a>] [<a 
+href="manualli738.html" >prev</a>] [<a 
+href="manualli738.html#tailmanualli738.html" >prev-tail</a>] [<a 
+href="manualli739.html" >front</a>] [<a 
+href="manualli677.html#manualli739.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli739.html"></a>  </p> 
+</body></html> 

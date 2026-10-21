@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+h=syslin(\nspstring{'c'},(s\nspoperator{-}\nspnumber{1})\nspoperator{/}(s\nspoperator{^}\nspnumber{3}\nspoperator{+}\nspnumber{5}\nspoperator{*}s\nspoperator{+}\nspnumber{20}))
+frq=\nspnumber{0}\nspoperator{:}\nspnumber{0.05}\nspoperator{:}\nspnumber{3}\nspoperator{;}repf=repfreq(h,frq)\nspoperator{;}
+clean(frep2tf(frq,repf,\nspnumber{3}))
+Sys=ssrand(\nspnumber{1},\nspnumber{1},\nspnumber{10})\nspoperator{;}
+frq=logspace(\nspoperator{-}\nspnumber{3},\nspnumber{2},\nspnumber{200})\nspoperator{;}
+[frq,rep]=repfreq(Sys,frq)\nspoperator{;}\nspcomment{//Frequency response of Sys}
+[Sys2,err]=frep2tf(frq,rep,\nspnumber{10})\nspoperator{;}Sys2=clean(Sys2)\nspoperator{,}\nspcomment{//Sys2 obtained from freq. resp of Sys}
+[frq,rep2]=repfreq(Sys2,frq)\nspoperator{;}\nspcomment{//Frequency response of Sys2}
+xbasc()\nspoperator{;}bode(frq,[rep\nspoperator{;}rep2])\nspoperator{,}\nspcomment{//Responses of Sys and Sys2}
+[sort(spec(Sys(\nspstring{'A'})))\nspoperator{,}sort(roots(Sys2(\nspstring{'den'})))]\nspoperator{,}\nspcomment{//poles}
+dom=\nspnumber{1}\nspoperator{/}\nspnumber{1000}\nspoperator{;}\nspcomment{// Sampling time}
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+h=syslin(dom,(z\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.5})\nspoperator{/}(z\nspoperator{^}\nspnumber{3}\nspoperator{+}\nspnumber{0.1}\nspoperator{*}z\nspoperator{^}\nspnumber{2}\nspoperator{-}\nspnumber{0.5}\nspoperator{*}z\nspoperator{+}\nspnumber{0.08}))
+frq=(\nspnumber{0}\nspoperator{:}\nspnumber{0.01}\nspoperator{:}\nspnumber{0.5})\nspoperator{/}dom\nspoperator{;}repf=repfreq(h,frq)\nspoperator{;}
+[Sys2,err]=frep2tf(frq,repf,\nspnumber{3},dom)\nspoperator{;}
+[frq,rep2]=repfreq(Sys2,frq)\nspoperator{;}\nspcomment{//Frequency response of Sys2}
+xbasc()\nspoperator{;}plot2d1(\nspstring{"onn"},frq\nspoperator{'},abs([repf\nspoperator{;}rep2])\nspoperator{'})\nspoperator{;}
+\end{Verbatim}

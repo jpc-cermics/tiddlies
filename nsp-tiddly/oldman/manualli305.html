@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mopen</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli306.html" >next</a>] [<a 
+href="manualli304.html" >prev</a>] [<a 
+href="manualli304.html#tailmanualli304.html" >prev-tail</a>] [<a 
+href="#tailmanualli305.html">tail</a>] [<a 
+href="manualli274.html#manualli305.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x306-1815000"></a>mopen</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx306-1815001"></a><a 
+ id="mopen"></a><span 
+class="cmtt-10x-x-109">mopen </span>&#x2013;                                                                                              open a file<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x306-1816000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-441">
+&#x00A0;&#x00A0;[fd,err]=mopen(file&#x00A0;[,&#x00A0;mode,&#x00A0;&#x00A0;swap&#x00A0;])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x306-1817000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">file</span>: a character string. The pathname of the file to open.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span>: a character string that controls whether the file is opened for reading (r), writing
+     (w), or appending (a) and whether the file is opened for updating (+). The mode can
+     also include a b parameter to indicate a binary file.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">swap</span>: a scalar. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">swap</span></span></span> is present and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">swap=0</span></span></span> then automatic bytes swap is disabled.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">err</span>: a scalar. Error indicator
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fd</span>: scalar. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span> parameter returned by the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mopen</span></span></span> is used as a file descriptor
+     (it&apos;s a positive integer).</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x306-1818000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mopen</span></span></span> may be used to open a file in a way compatible with the C <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fopen</span></span></span> procedure. Without swap
+argument the file is supposed to be coded in &#x201D;little endian IEEE format&#x201D; and data are swaped if
+necessary to match the IEEE format of the processor. The mode parameter controls the access
+allowed to the stream. The parameter can have one of the following values. In this list of values, the
+b character indicates a binary file
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">r or rb</span> </span>: Opens the file for reading.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">w or wb</span> </span>: Creates a new file for writing, or opens and truncates a file to zero length.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">a or ab</span> </span>: Appends (opens a file for writing at the end of the file, or creates a file for writing).
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">r+ or r+b</span> </span>: Opens a file for update (reading and writing).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">w+ or w+b</span> </span>: Truncates to zero length or creates a file for update.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">a+ or a+b</span> </span>:Appends (opens a file for update, writing at the end of the file, or creates a file
+     for writing).</ul>
+</p><!--l. 53--><p class="noindent" >When you open a file for update, you can perform both input and output operations on the resulting
+stream. However, an output operation cannot be directly followed by an input operation without a
+file-positioning operation (mseek() function). Also, an input operation cannot be directly followed
+by an output operation without an intervening file positioning operation, unless the input
+operation encounters the end of the file. When you open a file for append (that is, when the
+mode parameter is a or a+), it is impossible to overwrite information already in the file.
+You can use the fseek() function to reposition the file pointer to any position in the file,
+but when output is written to the file, the current file pointer is ignored. All output
+is written at the end of the file and the file pointer is repositioned to the end of the
+output. To open files in a way compatible with Fortran like functions use function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">file</span></span></span>.
+</p>
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x306-1819000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli297.html#mclose">mclose</a>    <a 
+href="manualli299.html#meof">meof</a>    <a 
+href="manualli306.html#mfprintf">mfprintf</a>    <a 
+href="manualli282.html#fprintfMat">fprintfMat</a>    <a 
+href="manualli301.html#mfscanf">mfscanf</a>    <a 
+href="manualli284.html#fscanfMat">fscanfMat</a>    <a 
+href="manualli304.html#mget">mget</a>    <a 
+href="manualli303.html#mgetstr">mgetstr</a>    <a 
+href="#mopen">mopen</a>
+<a 
+href="manualli306.html#mprintf">mprintf</a>    <a 
+href="manualli309.html#mput">mput</a>    <a 
+href="manualli308.html#mputstr">mputstr</a>    <a 
+href="manualli301.html#mscanf">mscanf</a>    <a 
+href="manualli310.html#mseek">mseek</a>    <a 
+href="manualli311.html#mtell">mtell</a>    <a 
+href="manualli298.html#mdelete">mdelete</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli306.html" >next</a>] [<a 
+href="manualli304.html" >prev</a>] [<a 
+href="manualli304.html#tailmanualli304.html" >prev-tail</a>] [<a 
+href="manualli305.html" >front</a>] [<a 
+href="manualli274.html#manualli305.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli305.html"></a>  </p> 
+</body></html> 

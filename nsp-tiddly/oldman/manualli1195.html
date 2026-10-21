@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>wiener</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1196.html" >next</a>] [<a 
+href="manualli1194.html" >prev</a>] [<a 
+href="manualli1194.html#tailmanualli1194.html" >prev-tail</a>] [<a 
+href="#tailmanualli1195.html">tail</a>] [<a 
+href="manualli1135.html#manualli1195.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1196-6765000"></a>wiener</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1196-6765001"></a><a 
+ id="wiener"></a><span 
+class="cmtt-10x-x-109">wiener </span>&#x2013;                                                                                     Wiener estimate<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1196-6766000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1357">
+&#x00A0;&#x00A0;[xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1196-6767000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f, g, h</span>: system matrices in the interval <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[t0,tf]</span></span></span>
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">f </span>=<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[f0,f1,...,ff]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fk</span></span></span> is a nxn matrix
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">g </span>=<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[g0,g1,...,gf]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">gk</span></span></span> is a nxn matrix
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">h </span>=<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[h0,h1,...,hf]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hk</span></span></span> is a mxn matrix</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">q, r</span>: covariance matrices of dynamics and observation noise
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">q </span>=<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[q0,q1,...,qf]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">qk</span></span></span> is a nxn matrix
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">r </span>=<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[r0,r1,...,rf]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">gk</span></span></span> is a mxm matrix</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0, p0</span>: initial state estimate and error variance
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: observations in the interval <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[t0,tf]</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y=[y0,y1,...,yf]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yk</span></span></span> is a column
+     m-vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xs</span>: Smoothed state estimate <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xs=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xs0,xs1,...,xsf]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xsk</span></span></span> is a column n-vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ps</span>: Error covariance of smoothed estimate <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ps=[p0,p1,...,pf]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pk</span></span></span> is a nxn
+     matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xf</span>: Filtered state estimate <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xf=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xf0,xf1,...,xff]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xfk</span></span></span> is a column n-vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">pf</span>: Error covariance of filtered estimate <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pf=[p0,p1,...,pf]</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pk</span></span></span> is a nxn matrix</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1196-6768000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 49--><p class="noindent" > function which gives the Wiener estimate using the forward-backward Kalman filter formulation
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1196-6769000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   C. B.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1196.html" >next</a>] [<a 
+href="manualli1194.html" >prev</a>] [<a 
+href="manualli1194.html#tailmanualli1194.html" >prev-tail</a>] [<a 
+href="manualli1195.html" >front</a>] [<a 
+href="manualli1135.html#manualli1195.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1195.html"></a>  </p> 
+</body></html> 

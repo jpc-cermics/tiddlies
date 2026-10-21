@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.2.2 Example</TITLE>
+<META NAME="description" CONTENT="6.2.2 Example">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node90.html">
+<LINK REL="previous" HREF="node88.html">
+<LINK REL="up" HREF="node87.html">
+<LINK REL="next" HREF="node90.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1438"
+ HREF="node90.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1434"
+ HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1428"
+ HREF="node88.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1436"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1437"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1439"
+ HREF="node90.html">6.2.3 addinter command</A>
+<B> Up:</B> <A NAME="tex2html1435"
+ HREF="node87.html">6.2 Interface programs</A>
+<B> Previous:</B> <A NAME="tex2html1429"
+ HREF="node88.html">6.2.1 Building an interface</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00722000000000000000">
+6.2.2 Example</A>
+</H2>
+
+<P>
+The following interface is taken from the examples in the 
+<TT>examples/addinter-examples</TT> directory.
+The function to be interfaced has the following calling sequence:
+
+<P>
+<PRE>
+int foubare2c (char *ch, int *a, int *ia, float *b, int *ib, 
+               double *c, int *mc, int *nc, double *d, double *w, 
+               int *err));
+</PRE>The associated Scilab function is:
+<PRE>
+function [y1,y2,y3,y4,y5]=foobar(x1,x2,x3,x4)
+</PRE>where <TT>x1</TT> is a character string, and <TT>x2, x3, x4</TT> are
+matrices which, in the called C function, <TT>foubare2c</TT> are
+respectively integer, real and double arrays.
+
+<P>
+
+<P>
+<BR>
+The interface program is the following:<PRE>
+int intsfoubare(fname) 
+     char *fname;
+{
+  int i1, i2;
+  static int ierr;
+  static int l1, m1, n1, m2, n2, l2, m3, n3, l3, m4, n4, l4, l5, l6;
+  static int minlhs=1, minrhs=4, maxlhs=5, maxrhs=4;
+
+  Nbvars = 0;
+  
+  CheckRhs(minrhs,maxrhs) ;
+  CheckLhs(minlhs,maxlhs) ;
+
+  GetRhsVar(1, "c", &amp;m1, &amp;n1, &amp;l1);
+  GetRhsVar(2, "i", &amp;m2, &amp;n2, &amp;l2);
+  GetRhsVar(3, "r", &amp;m3, &amp;n3, &amp;l3);
+  GetRhsVar(4, "d", &amp;m4, &amp;n4, &amp;l4);
+  
+  CreateVar(5, "d", &amp;m4, &amp;n4, &amp;l5);
+  CreateVar(6, "d", &amp;m4, &amp;n4, &amp;l6);
+
+  i1 = n2 * m2;
+  i2 = n3 * m3;
+  
+  foubare2c(cstk(l1), istk(l2), &amp;i1, sstk(l3), &amp;i2, stk(l4), 
+	     &amp;m4, &amp;n4, stk(l5),stk(l6), &amp;ierr);
+  
+  if (ierr &gt; 0) 
+    {
+      sciprint("Internal Error");
+      Error(999);
+      return 0;
+    }
+  
+  LhsVar(1) = 5;
+  LhsVar(2) = 4;
+  LhsVar(3) = 3;
+  LhsVar(4) = 2;
+  LhsVar(5) = 1;
+  PutLhsVar();
+  return 0;
+}
+
+static TabF Tab[]={ 
+  {intsfoubare, "foobar"} 
+} ; 
+
+int C2F(foobar)()
+{
+  Rhs = Max(0, Rhs);
+  (*(Tab[Fin-1].f))(Tab[Fin-1].name);
+  return 0;
+}
+</PRE>
+<P>
+<FONT SIZE="-2">Note that the last part of the interface program should contain in the
+table <TT>TabF</TT> the pair = (name of the interface program, name of
+the associated Scilab function). If several functions are 
+interfaced in the interface a pair of names should be given for each function.
+The entrypoint <TT>foobar</TT>
+is used by the dynamic link command <TT>addinter</TT>.
+</FONT>
+<P><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1438"
+ HREF="node90.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1434"
+ HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1428"
+ HREF="node88.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1436"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1437"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1439"
+ HREF="node90.html">6.2.3 addinter command</A>
+<B> Up:</B> <A NAME="tex2html1435"
+ HREF="node87.html">6.2 Interface programs</A>
+<B> Previous:</B> <A NAME="tex2html1429"
+ HREF="node88.html">6.2.1 Building an interface</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

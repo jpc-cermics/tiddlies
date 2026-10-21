@@ -1,0 +1,61 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// define a mini triangulation (4 vertices, 2 triangles)}
+x=[\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1}]\nspoperator{;}
+y=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+T=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+z=[\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1}]\nspoperator{;}\nspcomment{// values of the func at each vertices}
+xbasc()
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{64}))
+subplot(\nspnumber{1},\nspnumber{2},\nspnumber{1})
+colorbar(\nspoperator{-}\nspnumber{1},\nspnumber{1})
+fec(x,y,T,z,strf = \nspstring{"040"},mesh = %t)
+xtitle(\nspstring{"fec example (with the mesh)"})
+subplot(\nspnumber{1},\nspnumber{2},\nspnumber{2})
+colorbar(\nspoperator{-}\nspnumber{1},\nspnumber{1})
+fec(x,y,T,z,strf = \nspstring{"040"})\nspoperator{,}\nspcomment{// rmq: mesh=\nsppc{}f by default}
+xtitle(\nspstring{"fec example (without the mesh)"})
+xselect()
+\nspcomment{// this example shows the effect of zminmax and uses the}
+\nspcomment{// previous example datas (you have to execute the it before)}
+xbasc()
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{64}))
+colorbar(\nspoperator{-}\nspnumber{0.5},\nspnumber{0.5})\nspoperator{,}\nspcomment{// be careful colorbar must be set by hands !}
+fec(x,y,T,z,strf = \nspstring{"040"},zminmax = [\nspoperator{-}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}],mesh = %t)
+xtitle(\nspstring{"fec example: using zminmax argument"})
+xselect()
+\nspcomment{// this example shows the effect of zminmax and colout. It uses}
+\nspcomment{// also the datas of the first example (you have to execute the it before)}
+xbasc()
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{64}))
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{1})
+colorbar(\nspoperator{-}\nspnumber{0.5},\nspnumber{0.5})
+fec(x,y,T,z,strf = \nspstring{"040"},zminmax = [\nspoperator{-}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}],colout = [\nspnumber{0}\nspoperator{,}\nspnumber{0}],mesh = %t)
+xtitle(\nspstring{"fec example: using zminmax and colout =[0 0]"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{2})
+colorbar(\nspoperator{-}\nspnumber{0.5},\nspnumber{0.5})
+fec(x,y,T,z,strf = \nspstring{"040"},zminmax = [\nspoperator{-}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}],colout = [\nspnumber{32}\nspoperator{,}\nspnumber{32}],mesh = %t)
+xtitle(\nspstring{"fec example: using zminmax and colout =[32 32]"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{3})
+colorbar(\nspoperator{-}\nspnumber{0.5},\nspnumber{0.5})
+fec(x,y,T,z,strf = \nspstring{"040"},zminmax = [\nspoperator{-}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}],colout = [\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{0}],mesh = %t)
+xtitle(\nspstring{"fec example: using zminmax and colout =[-1 0]"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{4})
+colorbar(\nspoperator{-}\nspnumber{0.5},\nspnumber{0.5})
+fec(x,y,T,z,strf = \nspstring{"040"},zminmax = [\nspoperator{-}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}],colout = [\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1}],mesh = %t)
+xtitle(\nspstring{"fec example: using zminmax and colout =[0 -1]"})
+xselect()
+\nspcomment{// this example shows a feature from colminmax:}
+\nspcomment{// playing with 2 colormaps for 2 subplots. It}
+\nspcomment{// uses also the data of the first example.}
+xbasc()
+xset(\nspstring{"colormap"},[hotcolormap(\nspnumber{64})\nspoperator{;}jetcolormap(\nspnumber{64})])
+subplot(\nspnumber{1},\nspnumber{2},\nspnumber{1})
+colorbar(\nspoperator{-}\nspnumber{1},\nspnumber{1},[\nspnumber{1}\nspoperator{,}\nspnumber{64}])
+fec(x,y,T,z,strf = \nspstring{"040"},colminmax = [\nspnumber{1}\nspoperator{,}\nspnumber{64}],mesh = %t)
+xtitle(\nspstring{"fec using the hot colormap"})
+subplot(\nspnumber{1},\nspnumber{2},\nspnumber{2})
+colorbar(\nspoperator{-}\nspnumber{1},\nspnumber{1},[\nspnumber{65}\nspoperator{,}\nspnumber{128}])
+fec(x,y,T,z,strf = \nspstring{"040"},colminmax = [\nspnumber{65}\nspoperator{,}\nspnumber{128}],mesh = %t)
+xtitle(\nspstring{"fec using the jet colormap"})
+xselect()
+\end{Verbatim}

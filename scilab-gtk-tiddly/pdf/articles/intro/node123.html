@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>8. System interconnexion</TITLE>
+<META NAME="description" CONTENT="8. System interconnexion">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node124.html">
+<LINK REL="previous" HREF="node122.html">
+<LINK REL="up" HREF="index.html">
+<LINK REL="next" HREF="node124.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1879"
+ HREF="node124.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1875"
+ HREF="index.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1869"
+ HREF="node122.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1877"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1878"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1880"
+ HREF="node124.html">9. Converting Scilab functions</A>
+<B> Up:</B> <A NAME="tex2html1876"
+ HREF="index.html">No Title</A>
+<B> Previous:</B> <A NAME="tex2html1870"
+ HREF="node122.html">7. Demo session</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00900000000000000000">
+8. System interconnexion</A>
+</H1>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">The purpose of this appendix is to illustrate some
+of the more sophisticated aspects of Scilab by the way of an example.
+The example shows how Scilab can be used to symbolically represent
+the inter-connection of multiple systems which in turn can 
+then be used to numerically evaluate the performance of the
+inter-connected systems.  The symbolic representation of the
+inter-connected systems is done with a function called <TT>bloc2exp</TT>
+<A NAME="6519">&#160;</A>
+and the evaluation of the resulting system is done with
+<TT>evstr</TT><A NAME="6520">&#160;</A>.
+</FONT></FONT>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">The example illustrates the symbolic inter-connection of the 
+systems shown in Figure&nbsp;<A HREF="node123.html#fa.1"
+ NAME="6421">B.1</A>.  
+</FONT></FONT>
+<BR>
+<DIV ALIGN="CENTER"><A NAME="fa.1">&#160;</A><A NAME="6458">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure B.1:</STRONG>
+Inter-Connected Systems</CAPTION>
+<TR><TD><IMG
+ WIDTH="600" HEIGHT="385"
+ SRC="img32.gif"
+ ALT="\begin{figure}\begin{center}
+\begin{picture}
+(360,204)
+\par\put(80,85){\framebox...
+...0){\circle*{2}}
+\put(295,100){\circle*{2}}
+\end{picture}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR><FONT SIZE="-2"><FONT SIZE="-1">Figure&nbsp;<A HREF="node123.html#fa.1">B.1</A> illustrates the classic regulator problem<A NAME="6462">&#160;</A>
+where the block labeled <TT>Proc</TT> is to be controlled
+using feedback from the <TT>Sensor</TT> block and <TT>Reg</TT> block.
+The <TT>Reg</TT> block compares the output from the <TT>Model</TT>
+block to the output from the <TT>Sensor</TT> block to decide how to
+regulate the <TT>Proc</TT> block.  There is also a feed-forward
+block which filters the input signal <TT>U</TT> to the <TT>Proc</TT>
+block.  The outputs of the system are <TT>Y</TT> and <TT>UP</TT>.
+</FONT></FONT>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">The system illustrated in Figure&nbsp;<A HREF="node123.html#fa.1">B.1</A> can
+be represented in Scilab by using the function <TT>bloc2exp</TT>.
+The use of <TT>bloc2exp</TT> is illustrated in the following Scilab
+session.
+There a two kinds of objects: ``transfer'' and ``links''. The example
+considered here admits 5 transfers and 7 links.
+First the transfer are defined in a symbolic manner. Then links
+are defined and an ``interconnected system'' is defined as
+a specific list. The function <TT>bloc2exp</TT> evaluates symbolically
+the global transfer and <TT>evstr</TT> evaluates numerically
+the global transfer function once the systems are given ``values'', i.e.
+are defined as Scilab linear systems.
+</FONT></FONT><PRE>
+ 
+--&gt;model=2;reg=3;proc=4;sensor=5;ff=6;somm=7;
+ 
+--&gt;tm=list('transfer','model');tr=list('transfer',['reg(:,1)','reg(:,2)']);
+ 
+--&gt;tp=list('transfer','proc');ts=list('transfer','s
+ensor');
+ 
+--&gt;tf=list('transfer','ff');tsum=list('transfer',['1','1']);
+ 
+--&gt;lum=list('link','input',[-1],[model,1],[ff,1]);
+ 
+--&gt;lmr=list('link','model output',[model,1],[reg,1]);
+ 
+--&gt;lrs=list('link','regulator output',[reg,1],[somm,1]);
+ 
+--&gt;lfs=list('link','feed-forward output',[ff,1],[somm,2]);
+ 
+--&gt;lsp=list('link','proc input',[somm,1],[proc,1],[-2]);
+ 
+--&gt;lpy=list('link','proc output',[proc,1],[sensor,1],[-1]);
+ 
+--&gt;lsup=list('link','sensor output',[sensor,1],[reg,2]);
+ 
+--&gt;syst=...
+ list('blocd',tm,tr,tp,ts,tf,tsum,lum,lmr,lrs,lfs,lsp,lpy,lsup);
+ 
+--&gt;[sysf,names]=bloc2exp(syst)
+ names     =
+ 
+ 
+       names&gt;1
+ 
+ input   
+ 
+       names&gt;2
+ 
+!proc output  !
+!             !
+!proc input   !
+ sysf      =
+ 
+!proc*((eye()-reg(:,2)*sensor*proc)\(-(-ff-reg(:,1)*model)))  !
+!                                                           !
+!(eye()-reg(:,2)*sensor*proc)\(-(-ff-reg(:,1)*model))         !
+</PRE><FONT SIZE="-2"><FONT SIZE="-1">Note that the argument to <TT>bloc2exp</TT> is a list of lists.  The 
+first element of the list <TT>syst</TT> is (actually) the character string
+<TT>'blocd'</TT> which indicates that the list represents a block-diagram
+inter-connection of systems.  Each list entry in the list <TT>syst</TT>
+represents a block or an inter-connection in Figure&nbsp;<A HREF="node123.html#fa.1">B.1</A>.
+The form of a list which represents a block begins with a character
+string <TT>'transfer'</TT> followed by a matrix of character strings
+which gives the symbolic name of the block.  If the block is multi-input
+multi-output the matrix of character strings must be represented as
+is illustrated by the block <TT>Reg</TT>.  
+</FONT></FONT>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">The inter-connections between blocks is also represented by lists.  
+The first element of the list is the character string <TT>'link'</TT>.
+The second element of the inter-connection is its symbolic name.
+The third element of the inter-connection is the input to the connection.
+The remaining elements are all the outputs of the connection.
+Each input and output to an inter-connection is a vector which
+contains as its first element the block number (for instance the <TT>model</TT>
+block is assigned the number </FONT></FONT>2<FONT SIZE="-2"><FONT SIZE="-1">).  The second element of the vector
+is the port number for the block (for the case of multi-input multi-output
+blocks).  If an inter-connection is not attached to anything the value
+of the block number is negative (as for example the inter-connection
+labeled <TT>'input'</TT> or is omitted.
+</FONT></FONT>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">The result of the <TT>bloc2exp</TT> function is a list of names
+which give the unassigned inputs and outputs of the system and
+the symbolic transfer function of the system given by <TT>sysf</TT>.
+The symbolic names in <TT>sysf</TT> can be associated to polynomials
+and evaluated using the function <TT>evstr</TT>.  This is illustrated in the
+following Scilab session.
+</FONT></FONT><PRE>
+ 
+--&gt;s=poly(0,'s');ff=1;sensor=1;model=1;proc=s/(s^2+3*s+2);
+ 
+--&gt;reg=[1/s 1/s];sys=evstr(sysf)
+ sys       =
+ 
+!     1 + s          !
+!   ----------       !
+!             2      !
+!   1 + 3s + s       !
+!                    !
+!              2   3 !
+!   2 + 5s + 4s + s  !
+!   ---------------- !
+!           2   3    !
+!     s + 3s + s     !
+</PRE><FONT SIZE="-2"><FONT SIZE="-1">The resulting polynomial transfer function links the input
+of the block system to the two outputs.  Note that the output
+of <TT>evstr</TT> is the rational polynomial matrix <TT>sys</TT>
+whereas the output of <TT>bloc2exp</TT> is a matrix of character strings.
+</FONT></FONT>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">The symbolic evaluation which is given here is not very efficient
+with large interconnected systems. The function <TT>bloc2ss</TT>
+performs the previous calculation in state-space format.
+Each system is given now in state-space 
+as a <TT>syslin</TT> list or simply as a gain (constant matrix). 
+Note <TT>bloc2ss</TT> performs the necessary conversions if this 
+is not done by the user. Each system must be given a value before
+bloc2ss is called. All the calculations are made in state-space
+representation even if the linear systems are given in transfer form.
+</FONT></FONT>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1879"
+ HREF="node124.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1875"
+ HREF="index.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1869"
+ HREF="node122.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1877"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1878"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1880"
+ HREF="node124.html">9. Converting Scilab functions</A>
+<B> Up:</B> <A NAME="tex2html1876"
+ HREF="index.html">No Title</A>
+<B> Previous:</B> <A NAME="tex2html1870"
+ HREF="node122.html">7. Demo session</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

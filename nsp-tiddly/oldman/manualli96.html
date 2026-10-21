@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>cdffnc</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli97.html" >next</a>] [<a 
+href="manualli95.html" >prev</a>] [<a 
+href="manualli95.html#tailmanualli95.html" >prev-tail</a>] [<a 
+href="#tailmanualli96.html">tail</a>] [<a 
+href="manualli91.html#manualli96.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x97-556000"></a>cdffnc</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx97-556001"></a><a 
+ id="cdffnc"></a><span 
+class="cmtt-10x-x-109">cdffnc </span>&#x2013;                              cumulative distribution function non-central f-distribution<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x97-557000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-176">
+&#x00A0;&#x00A0;[P,Q]=cdffnc(&#x0022;PQ&#x0022;,F,Dfn,Dfd,Pnonc)
+&#x00A0;<br />&#x00A0;&#x00A0;[F]=cdffnc(&#x0022;F&#x0022;,Dfn,Dfd,Pnonc,P,Q);
+&#x00A0;<br />&#x00A0;&#x00A0;[Dfn]=cdffnc(&#x0022;Dfn&#x0022;,Dfd,Pnonc,P,Q,F);
+&#x00A0;<br />&#x00A0;&#x00A0;[Dfd]=cdffnc(&#x0022;Dfd&#x0022;,Pnonc,P,Q,F,Dfn)
+&#x00A0;<br />&#x00A0;&#x00A0;[Pnonc]=cdffnc(&#x0022;Pnonc&#x0022;,P,Q,F,Dfn,Dfd);
+</div>
+<!--l. 29--><p class="nopar" >
+</p>
+<!--l. 32--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x97-558000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P,Q,F,Dfn,Dfd,Pnonc</span>: six real vectors of the same size.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P,Q (Q=1-P)  </span>The  integral  from  0  to  F  of  the  non-central  f-density.  Input  range:
+     [0,1-1E-16).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">F</span>: Upper limit of integration of the non-central f-density. Input range: [0, +infinity).
+     Search range: [0,1E300]
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Dfn</span>: Degrees of freedom of the numerator sum of squares. Input range: (0, +infinity).
+     Search range: [ 1E-300, 1E300]
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Dfd</span>: Degrees of freedom of the denominator sum of squares. Must be in range: (0,
+     +infinity). Input range: (0, +infinity). Search range: [ 1E-300, 1E300]
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Pnonc</span>: The non-centrality parameter Input range: [0,infinity) Search range: [0,1E4]</li></ul>
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x97-559000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 42--><p class="noindent" > Calculates any one parameter of the Non-central F distribution given values for the others. Formula
+26.6.20 of Abramowitz and Stegun, Handbook of Mathematical Functions (1966) is used to compute
+the cumulative distribution function. Computation of other parameters involve a seach for a value
+that produces the desired value of P. The search relies on the monotinicity of P with the
+other parameter. The computation time required for this routine is proportional to the
+noncentrality parameter (PNONC). Very large values of this parameter can consume immense
+                                                                                    
+
+                                                                                    
+computer resources. This is why the search range is bounded by 10,000. The value of the
+cumulative noncentral F distribution is not necessarily monotone in either degrees of freedom.
+There thus may be two values that provide a given CDF value. This routine assumes
+monotonicity and will find an arbitrary one of the two values. From DCDFLIB: Library of
+Fortran Routines for Cumulative Distribution Functions, Inverses, and Other Parameters
+(February, 1994) Barry W. Brown, James Lovato and Kathy Russell. The University of Texas.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli97.html" >next</a>] [<a 
+href="manualli95.html" >prev</a>] [<a 
+href="manualli95.html#tailmanualli95.html" >prev-tail</a>] [<a 
+href="manualli96.html" >front</a>] [<a 
+href="manualli91.html#manualli96.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli96.html"></a>  </p> 
+</body></html> 

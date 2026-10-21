@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>linmeq</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli50.html" >next</a>] [<a 
+href="manualli48.html" >prev</a>] [<a 
+href="manualli48.html#tailmanualli48.html" >prev-tail</a>] [<a 
+href="#tailmanualli49.html">tail</a>] [<a 
+href="manualli12.html#manualli49.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x50-273000"></a>linmeq</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx50-273001"></a><a 
+ id="linmeq"></a><span 
+class="cmtt-10x-x-109">linmeq </span>&#x2013;                                                     Sylvester and Lyapunov equations solver<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x50-274000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-78">
+&#x00A0;&#x00A0;[X(,sep)]&#x00A0;=&#x00A0;linmeq(task,A,(B,)C,flag,trans(,schur))
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x50-275000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">task</span>: integer option to determine the equation type:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=1</span>: solve the Sylvester equation (1a) or (1b);
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=2</span>: solve the Lyapunov equation (2a) or (2b);
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=3</span>: solve for the Cholesky factor op(X) the Lyapunov equation (3a) or (3b).</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">B</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">C</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: (optional) integer vector of length 3 or 2 containing options.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">task </span>= 1: flag has length 3
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(1) </span>= 0: solve the continuous-time equation (1a); otherwise, solve the
+              discrete-time equation (1b).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(2)  </span>= 1: A is (quasi) upper triangular;
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(2)  </span>= 2: A is upper Hessenberg;
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">otherwise </span>A is in general form.
+                                                                                    
+
+                                                                                    
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(3)  </span>= 1: B is (quasi) upper triangular;
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(3)  </span>= 2: B is upper Hessenberg;
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">otherwise,  </span>B is in general form.</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">task </span>= 2: flag has length 2
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(1)</span>:   if   0   solve   continuous-time   equation   (2a),   otherwise,   solve
+              discrete-time equation (2b).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(2)  </span>= 1: A is (quasi) upper triangular otherwise, A is in general form.</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">task </span>= 3: flag has length 2
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(1)   </span>=   0:   solve   continuous-time   equation   (3a);   otherwise,   solve
+              discrete-time equation (3b).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">flag(2)  </span>= 1: A is (quasi) upper triangular; otherwise, A is in general form.</li></ul>
+          </li></ul>
+     <!--l. 63--><p class="noindent" >Default: flag(1) = 0, flag(2) = 0 (, flag(3) = 0).
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">trans</span>: (optional) integer specifying a transposition option.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>0: solve the equations (1) - (3) with op(M) = M.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: solve the equations (1) - (3) with op(M) = M&apos;.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>2: solve the equations (1) with op(A) = A&apos;; op(B) = B;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>3: solve the equations (1) with op(A) = A; op(B) = B&apos;.</li></ul>
+     <!--l. 71--><p class="noindent" >Default: trans = 0.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">schur</span>: (optional) integer specifying whether the Hessenberg-Schur or Schur method should be
+     used. Available for task = 1.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">= 1: Hessenberg-Schur method (one matrix is reduced </span>to Schur form).
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">= 2: Schur method (two matrices are reduced to Schur </span>form).</li></ul>
+                                                                                    
+
+                                                                                    
+     <!--l. 77--><p class="noindent" >Default: schur = 1.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>:
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sep</span>: (optional) estimator of Sep(op(A),-op(A)&apos;) for (2.a) or Sepd(A,A&apos;) for (2.b).</li></ul>
+<!--l. 82--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x50-276000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 82--><p class="noindent" > linmeq function for solving Sylvester and Lyapunov equations using SLICOT routines SB04MD,
+SB04ND, SB04PD, SB04QD, SB04RD, SB03MD, and SB03OD.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-79">
+&#x00A0;&#x00A0;[X]&#x00A0;=&#x00A0;linmeq(1,A,B,C,flag,trans,schur)
+&#x00A0;<br />&#x00A0;&#x00A0;[X,sep]&#x00A0;=&#x00A0;linmeq(2,A,C,flag,trans)
+&#x00A0;<br />&#x00A0;&#x00A0;[X]&#x00A0;=&#x00A0;linmeq(2,A,C,flag,trans)
+&#x00A0;<br />&#x00A0;&#x00A0;[X]&#x00A0;=&#x00A0;linmeq(3,A,C,flag,trans)
+</div>
+<!--l. 91--><p class="nopar" >linmeq solves various Sylvester and Lyapunov matrix equations:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-80">
+&#x00A0;&#x00A0;op(A)*X&#x00A0;+&#x00A0;X*op(B)&#x00A0;=&#x00A0;C,&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(1a)
+&#x00A0;<br />&#x00A0;&#x00A0;op(A)*X*op(B)&#x00A0;+&#x00A0;X&#x00A0;=&#x00A0;C,&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(1b)
+&#x00A0;<br />&#x00A0;&#x00A0;op(A)&#x0027;*X&#x00A0;+&#x00A0;X*op(A)&#x00A0;=&#x00A0;C,&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(2a)
+&#x00A0;<br />&#x00A0;&#x00A0;op(A)&#x0027;*X*op(A)&#x00A0;-&#x00A0;X&#x00A0;=&#x00A0;C,&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(2b)
+&#x00A0;<br />&#x00A0;&#x00A0;op(A)&#x0027;*(op(X)&#x0027;*op(X))&#x00A0;+&#x00A0;(op(X)&#x0027;*op(X))*op(A)&#x00A0;=
+&#x00A0;<br />&#x00A0;&#x00A0;-&#x00A0;&#x00A0;op(C)&#x0027;*op(C),&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(3a)
+&#x00A0;<br />&#x00A0;&#x00A0;op(A)&#x0027;*(op(X)&#x0027;*op(X))*op(A)&#x00A0;-&#x00A0;op(X)&#x0027;*op(X)&#x00A0;=
+&#x00A0;<br />&#x00A0;&#x00A0;-&#x00A0;op(C)&#x0027;*op(C),&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(3b)
+</div>
+<!--l. 102--><p class="nopar" >where op(M) = M, or M&apos;.
+</p>
+<!--l. 106--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x50-277000"></a><span 
+class="cmbx-10x-x-109">Comments</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">1.</div> For equation (1a) or (1b), when schur = 1, the Hessenberg-Schur method is used,
+     reducing  one  matrix  to  Hessenberg  form  and  the  other  one  to  a  real  Schur  form.
+     Otherwise, both matrices are reduced to real Schur forms. If one or both matrices
+     are already reduced to Schur/Hessenberg forms, this could be specified by flag(2) and
+     flag(3). For general matrices, the Hessenberg-Schur method could be significantly more
+     efficient than the Schur method.
+     </li>
+     <li class="itemize"><div class="itemdesc">2.</div> For equation (2a) or (2b), matrix C is assumed symmetric.
+     </li>
+     <li class="itemize"><div class="itemdesc">3.</div> For equation (3a) or (3b), matrix A must be stable or convergent, respectively.
+     </li>
+     <li class="itemize"><div class="itemdesc">4.</div> For equation (3a) or (3b), the computed matrix X is the Cholesky factor of the
+     solution, i.e., the real solution is op(X)&apos;*op(X), where X is an upper triangular matrix.</li></ul>
+<!--l. 120--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x50-278000"></a><span 
+class="cmbx-10x-x-109">Revisions</span></span>
+   V. Sima, Katholieke Univ. Leuven, Belgium, May 1999, May, Sep. 2000. V. Sima, University of
+Bucharest, Romania, May 2000.
+</p>
+<!--l. 123--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x50-279000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="fancyvrb" id="fancyvrb37"><a 
+ id="x50-279034r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(1a)</span></span><br class="fancyvrb" /><a 
+ id="x50-279036r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">30</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279038r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(n,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=rand(n,m)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=rand(m,m)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279040r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=linmeq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x50-279042r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">C,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x50-279044r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(1b)</span></span><br class="fancyvrb" /><a 
+ id="x50-279046r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;flag=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x50-279048r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=linmeq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,flag)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279050r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">C,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x50-279052r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(2a)</span></span>
+<br class="fancyvrb" /><a 
+ id="x50-279054r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(n,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=rand(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279056r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=linmeq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,A,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279058r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">C,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x50-279060r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(2b)</span></span><br class="fancyvrb" /><a 
+ id="x50-279062r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=linmeq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,A,C,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x50-279064r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">C,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x50-279066r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(3a)</span></span><br class="fancyvrb" /><a 
+ id="x50-279068r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(n,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279070r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">(max(real(spec(A)))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">eye()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//shift</span><span 
+class="cmitt-10x-x-109">&#x00A0;eigenvalues</span></span>
+<br class="fancyvrb" /><a 
+ id="x50-279072r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=rand(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279074r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=linmeq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,A,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279076r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">C,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x50-279078r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(3b)</span></span>
+<br class="fancyvrb" /><a 
+ id="x50-279080r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.03</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.14</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.14</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x50-279082r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.05</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.03</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.04</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.04</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.03</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.06</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.08</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x50-279084r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.03</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.04</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.08</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.14</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.07</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.14</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.04</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.07</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.04</span></span><span 
+class="cmtt-10x-x-109">]</span>
+<br class="fancyvrb" /><a 
+ id="x50-279086r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=rand(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279088r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=linmeq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,A,C,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x50-279090r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">C,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 160--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x50-280000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli675.html#sylv">sylv</a>    <a 
+href="manualli645.html#lyap">lyap</a>
+</p>
+<!--l. 164--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x50-281000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   H. Xu, TU Chemnitz, FR Germany, Dec. 1998.
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli50.html" >next</a>] [<a 
+href="manualli48.html" >prev</a>] [<a 
+href="manualli48.html#tailmanualli48.html" >prev-tail</a>] [<a 
+href="manualli49.html" >front</a>] [<a 
+href="manualli12.html#manualli49.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli49.html"></a>  </p> 
+</body></html> 

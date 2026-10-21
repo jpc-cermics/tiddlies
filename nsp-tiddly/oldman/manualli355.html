@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>getf</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli356.html" >next</a>] [<a 
+href="manualli354.html" >prev</a>] [<a 
+href="manualli354.html#tailmanualli354.html" >prev-tail</a>] [<a 
+href="#tailmanualli355.html">tail</a>] [<a 
+href="manualli341.html#manualli355.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x356-2092000"></a>getf</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx356-2092001"></a><a 
+ id="getf"></a><span 
+class="cmtt-10x-x-109">getf </span>&#x2013;                                                                      defining a function from a file<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x356-2093000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-488">
+&#x00A0;&#x00A0;getf(file-name&#x00A0;[,opt])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x356-2094000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">filename</span>: Scilab string.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">opt</span>: optional character string
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;c&#x0022; </span>: loaded functions are &#x201D;compiled&#x201D; to be more efficient (default)
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;n&#x0022; </span>: loaded functions are not &#x201D;compiled&#x201D;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;p&#x0022; </span>: loaded functions are &#x201D;compiled&#x201D; and prepared for profiling (see profile)</li></ul>
+     </li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x356-2095000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > loads one or several functions (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">functions</span></span></span>) defined in the file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;file-name&#x0027;</span></span></span>. The string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">opt=&#x0027;n&#x0027;</span></span></span>
+means that the functions are not compiled (pre-interpreted) when loaded. This can be useful for
+some debugging purpose (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">comp</span></span></span>). By default, functions are compiled when loaded
+(i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">opt=&#x0027;c&#x0027;</span></span></span> is used). In the file a function must begin by a &#x201D;syntax definition&#x201D; line as
+follows:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-489">
+&#x00A0;&#x00A0;function&#x00A0;[y1,...,yn]=foo(x1,...,xm)
+</div>
+<!--l. 48--><p class="nopar" >followed by a sequence of scilab instructions. The &#x201D;syntax definition&#x201D; line gives the &#x201D;full&#x201D; calling
+syntax of this function. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yi</span></span></span> are output variables calculated as functions of input variables <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xi</span></span></span>
+and variables existing in Scilab when the function is executed. Shorter input or output argument list
+may be used. Many functions may be written in the same file. A function is terminated by an
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">endfunction</span></span></span> keyword. For compatibility with previous versions a function may also be terminated
+by the following <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">function</span></span></span> keyword or the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">EOF</span></span></span> mark.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">getf</span></span></span> is an old way for loading functions into
+scilab from a file, If functions in a file are terminated by an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">endfunction</span></span></span> keyword, the file maybe
+loaded using the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">exec</span></span></span> function instead of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">getf</span></span></span>. In this case default option <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">opt</span></span></span> is used.
+</p>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x356-2096000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb273"><a 
+ id="x356-2096004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;getf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/macros/xdess/plot.sci&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x356-2096006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;getf</span><span 
+class="cmitt-10x-x-109">&#x00A0;SCI/macros/xdess/plot.sci</span></span></div>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x356-2097000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli351.html#functions">functions</a>    <a 
+href="manualli352.html#function">function</a>    <a 
+href="manualli353.html#genlib">genlib</a>    <a 
+href="manualli354.html#getd">getd</a>    <a 
+href="manualli963.html#exec">exec</a>    <a 
+href="manualli349.html#edit">edit</a>    <a 
+href="manualli345.html#comp">comp</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli356.html" >next</a>] [<a 
+href="manualli354.html" >prev</a>] [<a 
+href="manualli354.html#tailmanualli354.html" >prev-tail</a>] [<a 
+href="manualli355.html" >front</a>] [<a 
+href="manualli341.html#manualli355.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli355.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// Hamming window}
+clf()
+N=\nspnumber{64}\nspoperator{;}
+w=window(\nspstring{'hm'},N)\nspoperator{;}
+subplot(\nspnumber{121})\nspoperator{;}plot2d(\nspnumber{1}\nspoperator{:}N,w,style = color(\nspstring{'blue'}))
+set(gca(),\nspstring{'grid'},[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{*}color(\nspstring{'gray'}))
+subplot(\nspnumber{122})
+n=\nspnumber{256}\nspoperator{;}[W,fr]=frmag(w,n)\nspoperator{;}
+plot2d(fr,\nspnumber{20}\nspoperator{*}log10(W),style = color(\nspstring{'blue'}))
+set(gca(),\nspstring{'grid'},[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{*}color(\nspstring{'gray'}))
+\nspcomment{//Kaiser window}
+clf()
+N=\nspnumber{64}\nspoperator{;}
+w=window(\nspstring{'kr'},N,\nspnumber{6})\nspoperator{;}
+subplot(\nspnumber{121})\nspoperator{;}plot2d(\nspnumber{1}\nspoperator{:}N,w,style = color(\nspstring{'blue'}))
+set(gca(),\nspstring{'grid'},[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{*}color(\nspstring{'gray'}))
+subplot(\nspnumber{122})
+n=\nspnumber{256}\nspoperator{;}[W,fr]=frmag(w,n)\nspoperator{;}
+plot2d(fr,\nspnumber{20}\nspoperator{*}log10(W),style = color(\nspstring{'blue'}))
+set(gca(),\nspstring{'grid'},[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{*}color(\nspstring{'gray'}))
+\nspcomment{//Chebyshev window}
+clf()
+N=\nspnumber{64}\nspoperator{;}
+[w,df]=window(\nspstring{'ch'},N,[\nspnumber{0.005}\nspoperator{,}\nspoperator{-}\nspnumber{1}])\nspoperator{;}
+subplot(\nspnumber{121})\nspoperator{;}plot2d(\nspnumber{1}\nspoperator{:}N,w,style = color(\nspstring{'blue'}))
+set(gca(),\nspstring{'grid'},[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{*}color(\nspstring{'gray'}))
+subplot(\nspnumber{122})
+n=\nspnumber{256}\nspoperator{;}[W,fr]=frmag(w,n)\nspoperator{;}
+plot2d(fr,\nspnumber{20}\nspoperator{*}log10(W),style = color(\nspstring{'blue'}))
+set(gca(),\nspstring{'grid'},[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{*}color(\nspstring{'gray'}))
+\end{Verbatim}

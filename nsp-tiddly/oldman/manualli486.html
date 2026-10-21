@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>printing</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli487.html" >next</a>] [<a 
+href="manualli485.html" >prev</a>] [<a 
+href="manualli485.html#tailmanualli485.html" >prev-tail</a>] [<a 
+href="#tailmanualli486.html">tail</a>] [<a 
+href="manualli370.html#manualli486.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x487-2893000"></a>printing</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx487-2893001"></a><a 
+ id="printing"></a><span 
+class="cmtt-10x-x-109">printing </span>&#x2013;                                                                         printing scilab graphics<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x487-2894000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-609">
+&#x00A0;&#x00A0;Blatexpr&#x00A0;xscale&#x00A0;yscale&#x00A0;filename.ps
+&#x00A0;<br />&#x00A0;&#x00A0;BEpsf&#x00A0;filename.ps
+&#x00A0;<br />&#x00A0;&#x00A0;Blpr&#x00A0;&#x0022;Title&#x0022;&#x00A0;filename1.ps&#x00A0;filename2.ps&#x00A0;...&#x00A0;filenamen.ps&#x00A0;|&#x00A0;lpr
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x487-2895000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 29--><p class="noindent" > The scilab graphics can be saved with the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xbasimp</span></span></span> command into unix files. The Scilab
+command:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-610">
+&#x00A0;&#x00A0;xbasimp(xx,&#x0027;des.ps&#x0027;,0)
+</div>
+<!--l. 34--><p class="nopar" >will save the graphics recorded in the graphic window xx in the file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">des.ps.xx</span></span></span>. This file can&apos;t be
+directly send to a Postscript printer and a set of programs ( in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bin</span></span></span> Scilab directory ) are given
+with Scilab to print it:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">BEpsf</span> </span>: The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">BEpsf</span></span></span> command will create an Epsf file from your <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">des.ps.xx</span></span></span> under the name
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">des.epsf</span></span></span>, this Epsf file can be printed on a Postscript printer or inserted into an other
+     Postscript document.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Blatexpr</span> </span>: The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Blatexpr</span></span></span> command will create an Epsf file from your <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">des.ps.xx</span></span></span>
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-611">
+     &#x00A0;&#x00A0;mv&#x00A0;des.ps.xx&#x00A0;des.ps
+     &#x00A0;<br />&#x00A0;&#x00A0;Blatexpr&#x00A0;1.0&#x00A0;1.0&#x00A0;des.ps
+</div>
+     <!--l. 46--><p class="nopar" >under the name <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">des.epsf</span></span></span> and a LaTeX file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">des.tex</span></span></span>. The file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">des.tex</span></span></span> can be inserted in a
+     LaTeX file in order to get the latex figure as follows ( the postscript file is inserted with the
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">special</span></span></span> command of LaTeX )
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-612">
+     &#x00A0;&#x00A0;&#x005C;input&#x00A0;des.tex
+     &#x00A0;<br />&#x00A0;&#x00A0;&#x005C;dessin{caption}{label}
+</div>
+     <!--l. 54--><p class="nopar" >
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Blpr</span> </span>: The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Blpr</span></span></span> command is used to print a set of graphics on a same sheet of paper. For example
+     to print two graphics on a unique page, one can use:
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-613">
+     &#x00A0;&#x00A0;Blpr&#x00A0;&#x0022;Two&#x00A0;graphics&#x0022;&#x00A0;file1.ps.0&#x00A0;file2.ps.1&#x00A0;|&#x00A0;lpr
+</div>
+     <!--l. 58--><p class="nopar" >
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Blatexprs</span> </span>: The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Blatexprs</span></span></span> command is used to insert in a single LaTeX figure a set of Scilab
+     Graphics
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-614">
+     &#x00A0;&#x00A0;Blatexprs&#x00A0;res&#x00A0;file1.ps.0&#x00A0;file2.ps.1
+</div>
+     <!--l. 62--><p class="nopar" >will create two files <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res.ps</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res.tex</span></span></span>. The file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res.tex</span></span></span> is used as in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Blatexpr</span></span></span>
+     command in order to get the figure.</ul>
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x487-2896000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli521.html#xbasimp">xbasimp</a>    <a 
+href="manualli552.html#xs2fig">xs2fig</a>    <a 
+href="manualli553.html#xs2gif">xs2gif</a>    <a 
+href="manualli554.html#xs2ppm">xs2ppm</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli487.html" >next</a>] [<a 
+href="manualli485.html" >prev</a>] [<a 
+href="manualli485.html#tailmanualli485.html" >prev-tail</a>] [<a 
+href="manualli486.html" >front</a>] [<a 
+href="manualli370.html#manualli486.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli486.html"></a>  </p> 
+</body></html> 

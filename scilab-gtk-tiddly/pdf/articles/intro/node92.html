@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.3.1 Using Intersci</TITLE>
+<META NAME="description" CONTENT="6.3.1 Using Intersci">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node91.html">
+<LINK REL="up" HREF="node91.html">
+<LINK REL="next" HREF="node93.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1487"
+ HREF="node93.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1483"
+ HREF="node91.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1479"
+ HREF="node91.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1485"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1486"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1488"
+ HREF="node93.html">6.3.1.0.1 Description of Scilab</A>
+<B> Up:</B> <A NAME="tex2html1484"
+ HREF="node91.html">6.3 Intersci</A>
+<B> Previous:</B> <A NAME="tex2html1480"
+ HREF="node91.html">6.3 Intersci</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00731000000000000000">
+6.3.1 Using Intersci</A>
+</H2><FONT SIZE="-2">
+In the following, we will only consider Fortran subroutine interfacing. The
+process is nearly the same for C functions (see <A HREF="node100.html#C">6.3.1</A>).
+</FONT>
+<P>
+<P></P>
+<P>
+<FONT SIZE="-2">To use Intersci execute the command:
+<BR>
+<TT>intersci </TT></FONT>&lt;<FONT SIZE="-2"><EM>interface name</EM></FONT>&gt;<FONT SIZE="-2">
+<BR>
+where </FONT>&lt;<FONT SIZE="-2"><EM>interface name</EM></FONT>&gt;<FONT SIZE="-2"><TT>.desc</TT> is the file describing the interface.
+</FONT>
+<P>
+<FONT SIZE="-2">The <TT>intersci</TT> script file is located in the directory SCIDIR/bin.
+</FONT>
+<P>
+<FONT SIZE="-2">Then the interface file </FONT>&lt;<FONT SIZE="-2"><EM>interface name</EM></FONT>&gt;<FONT SIZE="-2"><TT>.f</TT> is created. A Scilab
+script file <TT>.sce</TT> is also created. This file, with appropriate
+changes, can be used to link the interface with Scilab.
+</FONT>
+<P>
+<P></P>
+<P>
+<FONT SIZE="-2">The file </FONT>&lt;<FONT SIZE="-2"><EM>interface name</EM></FONT>&gt;<FONT SIZE="-2"><TT>.desc</TT> is a sequence of descriptions of 
+pairs formed by the Scilab function and the corresponding Fortran subroutine
+(see table <A HREF="node92.html#t-pair">6.1</A>).
+</FONT>
+<P>
+<BR>
+<DIV ALIGN="CENTER"><A NAME="4754">&#160;</A>
+<TABLE>
+<CAPTION><STRONG>Table 6.1:</STRONG>
+Description of a pair of Scilab function and Fortran subroutine</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1" ALIGN="CENTER">
+<TR><TD ALIGN="LEFT">&lt;<EM> Scilab function name</EM>&gt; &lt;<EM> function arguments</EM>&gt;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&lt;<EM> Scilab variable</EM>&gt; &lt;<EM> Scilab type</EM>&gt; &lt;<EM> possible arguments</EM>&gt;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&lt;<EM> Fortran subroutine name</EM>&gt; &lt;<EM> subroutine arguments</EM>&gt;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&lt;<EM> Fortran argument</EM>&gt; &lt;<EM> Fortran type</EM>&gt;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">out &lt;<EM> type</EM>&gt; &lt;<EM> formal output names</EM>&gt;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&lt;<EM> formal output name</EM>&gt; &lt;<EM> variable</EM>&gt;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG
+ WIDTH="31" HEIGHT="64" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\vdots$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">*******************************</TD>
+</TR>
+</TABLE></DIV>
+<A NAME="t-pair">&#160;</A></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<FONT SIZE="-2">Each description is made of three parts: 
+</FONT><UL>
+<LI>
+description of Scilab function and its arguments
+<LI>
+description of Fortran subroutine and its arguments
+<LI>
+description of the output of Scilab function.
+</UL>
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS">&#160;</A>
+<UL>
+<LI><A NAME="tex2html1489"
+ HREF="node93.html">6.3.1.0.1 Description of Scilab function</A>
+<LI><A NAME="tex2html1490"
+ HREF="node94.html">6.3.1.0.2 Optional input arguments</A>
+<LI><A NAME="tex2html1491"
+ HREF="node95.html">6.3.1.0.3 Description of Fortran subroutine</A>
+<LI><A NAME="tex2html1492"
+ HREF="node96.html">6.3.1.0.4 Description of the output of Scilab function</A>
+<LI><A NAME="tex2html1493"
+ HREF="node97.html">6.3.1.0.5 Dimensions of non scalar variables</A>
+<LI><A NAME="tex2html1494"
+ HREF="node98.html">6.3.1.0.6 Fortran variables with external type</A>
+<LI><A NAME="tex2html1495"
+ HREF="node99.html">6.3.1.0.7 Using lists as input Scilab variables</A>
+<LI><A NAME="tex2html1496"
+ HREF="node100.html">6.3.1.1 C functions interfacing</A>
+<LI><A NAME="tex2html1497"
+ HREF="node101.html">6.3.1.2 Writing compatible code</A>
+<UL>
+<LI><A NAME="tex2html1498"
+ HREF="node102.html">6.3.1.2.1  Messages and Error Messages</A>
+</UL>
+<LI><A NAME="tex2html1499"
+ HREF="node103.html">6.3.1.3 Examples</A>
+<UL>
+<LI><A NAME="tex2html1500"
+ HREF="node104.html">6.3.1.3.1 Example 1</A>
+<LI><A NAME="tex2html1501"
+ HREF="node105.html">6.3.1.3.2 Example 2</A>
+<LI><A NAME="tex2html1502"
+ HREF="node106.html">6.3.1.3.3 Example 3</A>
+<LI><A NAME="tex2html1503"
+ HREF="node107.html">6.3.1.3.4 Example 4</A>
+</UL>
+<LI><A NAME="tex2html1504"
+ HREF="node108.html">6.3.1.4 Adding a new primitive</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1487"
+ HREF="node93.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1483"
+ HREF="node91.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1479"
+ HREF="node91.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1485"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1486"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1488"
+ HREF="node93.html">6.3.1.0.1 Description of Scilab</A>
+<B> Up:</B> <A NAME="tex2html1484"
+ HREF="node91.html">6.3 Intersci</A>
+<B> Previous:</B> <A NAME="tex2html1480"
+ HREF="node91.html">6.3 Intersci</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

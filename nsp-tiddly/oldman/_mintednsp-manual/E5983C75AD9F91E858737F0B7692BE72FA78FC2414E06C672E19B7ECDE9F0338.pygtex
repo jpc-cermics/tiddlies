@@ -1,0 +1,106 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// x initialisation}
+x=[\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}
+\nspcomment{//simple plot}
+plot(sin(x))
+clf()
+plot(x,sin(x))
+\nspcomment{//multiple plot}
+clf()
+plot(x,[sin(x)\nspoperator{,}sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{,}sin(\nspnumber{3}\nspoperator{*}x)])
+clf()
+\nspcomment{// axis on the right}
+plot(x,sin(x))
+a=gca()\nspoperator{;}\nspcomment{// Handle on current axes entity}
+a.y_location=\nspstring{"right"}\nspoperator{;}
+clf()
+\nspcomment{// axis centered at (0,0)}
+plot(x\nspoperator{-}\nspnumber{4},sin(x),x\nspoperator{+}\nspnumber{2},cos(x))
+a=gca()\nspoperator{;}\nspcomment{// Handle on axes entity}
+a.x_location=\nspstring{"middle"}\nspoperator{;}
+a.y_location=\nspstring{"middle"}\nspoperator{;}
+\nspcomment{// Some operations on entities created by plot ...}
+a=gca()\nspoperator{;}
+a.isoview=\nspstring{'on'}\nspoperator{;}
+a.children\nspoperator{,}
+\nspcomment{// list the children of the axes: here it is an Agregation child composed of 2 entities}
+poly1=a.children.children(\nspnumber{2})\nspoperator{;}\nspcomment{//store polyline handle into poly1}
+poly1.foreground=\nspnumber{4}\nspoperator{;}\nspcomment{// another way to change the style...}
+poly1.thickness=\nspnumber{3}\nspoperator{;}\nspcomment{// ...and the tickness of a curve.}
+poly1.clip_state=\nspstring{'off'}\nspoperator{,}\nspcomment{// clipping control}
+leg=a.children.children(\nspnumber{1})\nspoperator{;}\nspcomment{// store legend handle into leg}
+leg.font_style=\nspnumber{9}\nspoperator{;}
+leg.foreground=\nspnumber{6}\nspoperator{;}
+a.isoview=\nspstring{'off'}\nspoperator{;}
+\nspcomment{//LineSpec and GlobalProperty examples:}
+clf()\nspoperator{;}
+t=\nspnumber{0}\nspoperator{:}%pi\nspoperator{/}\nspnumber{20}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi\nspoperator{;}
+plot(t,sin(t),\nspstring{'ro-.'},t,cos(t),\nspstring{'cya+'},t,abs(sin(t)),\nspstring{'--mo'})
+scf(\nspnumber{2})
+plot([t\nspoperator{;}t],[sin(t)\nspoperator{;}cos(t)],\nspstring{'xdat'},[\nspnumber{1}\nspoperator{:}\nspnumber{2}])
+scf(\nspnumber{3})
+axfig3=gca()\nspoperator{;}
+scf(\nspnumber{4})\nspoperator{,}\nspcomment{// should remain blank}
+plot(axfig3,[t\nspoperator{;}t],[sin(t)\nspoperator{;}cos(t)],\nspstring{'zdat'},[\nspnumber{1}\nspoperator{:}\nspnumber{2}],\nspstring{'marker'},\nspstring{'d'},\nspstring{'markerfac'},\nspstring{'green'}, ...
+     \nspstring{'markeredg'},\nspstring{'yel'})
+xdel(winsid())
+\nspcomment{//Data specification}
+t=\nspoperator{-}%pi\nspoperator{:}\nspnumber{0.1}\nspoperator{:}%pi\nspoperator{;}
+size(t)
+plot(t)\nspoperator{,}\nspcomment{// simply plots y versus t vector size}
+clf()\nspoperator{;}\nspcomment{// clear figure}
+plot(t,sin(t))\nspoperator{;}\nspcomment{// plots sin(t) versus t}
+clf()\nspoperator{;}
+t=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{;}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{;}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}]\nspoperator{;}
+plot(t)\nspoperator{,}\nspcomment{// plots each t column versus row size}
+clf()\nspoperator{;}
+subplot(\nspnumber{221})
+plot(t,sin(t))\nspoperator{;}\nspcomment{// plots sin(t) versus t column by column this time}
+xtitle(\nspstring{"sin(t) versus t"})
+subplot(\nspnumber{222})
+plot(t,sin(t)\nspoperator{'})
+xtitle(\nspstring{"sin(t)'' versus t"})
+subplot(\nspnumber{223})
+plot(t\nspoperator{'},sin(t))
+a=gca()\nspoperator{;}
+a.data_bounds=[\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{7}\nspoperator{,}\nspnumber{1}]\nspoperator{;}\nspcomment{// to see the vertical line hiddden by the y axis}
+xtitle(\nspstring{"sin(t) versus t''"})
+subplot(\nspnumber{224})
+plot(t\nspoperator{'},sin(t)\nspoperator{'})
+xtitle(\nspstring{"sin(t)'' versus t''"})
+clf()\nspoperator{;}
+\nspcomment{//Special case 1}
+\nspcomment{//x: vector ([5 6 7 8]) and y: matrix (t)}
+x=[\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{8}]
+plot(x,t)\nspoperator{;}
+plot(x\nspoperator{'},t)\nspoperator{;}\nspcomment{// idem, x is automatically transposed to match t (here the columns)}
+clf()
+\nspcomment{// Only one matching possibility case: how to make 4 identical plots in 4 manners...}
+\nspcomment{// x is 1x4 (vector) and y is 4x5 (non square matrix)}
+subplot(\nspnumber{221})\nspoperator{;}
+plot(x,[t\nspoperator{,}[\nspnumber{8}\nspoperator{;}\nspnumber{9}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{12}]]\nspoperator{'})\nspoperator{;}
+subplot(\nspnumber{222})\nspoperator{;}
+plot(x\nspoperator{'},[t\nspoperator{,}[\nspnumber{8}\nspoperator{;}\nspnumber{9}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{12}]]\nspoperator{'})\nspoperator{;}
+subplot(\nspnumber{223})\nspoperator{;}
+plot(x,[t\nspoperator{,}[\nspnumber{8}\nspoperator{;}\nspnumber{9}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{12}]]\nspoperator{'})\nspoperator{;}
+subplot(\nspnumber{224})\nspoperator{;}
+plot(x\nspoperator{'},[t\nspoperator{,}[\nspnumber{8}\nspoperator{;}\nspnumber{9}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{12}]]\nspoperator{'})\nspoperator{;}
+clf()
+\nspcomment{//Special case 2}
+\nspcomment{// Case where only x or y is a square matrix}
+\nspcomment{//x: matrix (t) and y : vector ([1 2 3 4])}
+plot(t,[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}])\nspoperator{,}\nspcomment{// equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])}
+plot(t,[\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{;}\nspnumber{3}\nspoperator{;}\nspnumber{4}])\nspoperator{,}\nspcomment{// the same plot}
+clf()\nspoperator{;}
+\nspcomment{// t is transposed: notice the priority given to the columns treatment}
+plot(t\nspoperator{'},[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}])\nspoperator{,}\nspcomment{// equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])}
+plot(t\nspoperator{'},[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}]\nspoperator{'})\nspoperator{,}\nspcomment{// the same plot}
+clf()\nspoperator{;}
+\nspcomment{// y is a function defined by..}
+\nspcomment{// ..a primitive}
+plot(\nspnumber{1}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{10},sin)\nspoperator{,}\nspcomment{// equivalent to plot(1:0.1:10,sin(1:0.1:10))}
+clf()\nspoperator{;}
+\nspcomment{// ..a macro:}
+deff(\nspstring{'[y]=toto(x)'},\nspstring{'y=x.*x'})
+plot(\nspnumber{1}\nspoperator{:}\nspnumber{10},toto)
+\end{Verbatim}

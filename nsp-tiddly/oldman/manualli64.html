@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pfss</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli65.html" >next</a>] [<a 
+href="manualli63.html" >prev</a>] [<a 
+href="manualli63.html#tailmanualli63.html" >prev-tail</a>] [<a 
+href="#tailmanualli64.html">tail</a>] [<a 
+href="manualli12.html#manualli64.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x65-370000"></a>pfss</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx65-370001"></a><a 
+ id="pfss"></a><span 
+class="cmtt-10x-x-109">pfss </span>&#x2013;                                                                      partial fraction decomposition<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x65-371000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-118">
+&#x00A0;&#x00A0;elts=pfss(Sl)
+&#x00A0;<br />&#x00A0;&#x00A0;elts=pfss(Sl,rmax)
+&#x00A0;<br />&#x00A0;&#x00A0;elts=pfss(Sl,&#x0027;cord&#x0027;)
+&#x00A0;<br />&#x00A0;&#x00A0;elts=pfss(Sl,rmax,&#x0027;cord&#x0027;)
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x65-372000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (state-space or transfer linear system) rmax: real number controlling the
+     conditioning of block diagoanalization cord: character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span></span>.</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x65-373000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > Partial fraction decomposition of the linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> (in state-space form, transfer matrices are
+automatically converted to state-space form by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tf2ss</span></span></span>):<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">elts</span></span></span> is the list of linear systems which add
+up to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">elts=list(S1,S2,S3,...,Sn)</span></span></span> with:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;S2</span><span 
+class="cmtt-10x-x-109">&#x00A0;+...</span><span 
+class="cmtt-10x-x-109">&#x00A0;+Sn</span></span></span>. Each <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Si</span></span></span> contains some
+poles of <span class="obeylines-h"><span class="verb"></span></span>S according to the block-diagonalization of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> matrix of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S</span></span></span>. For non proper systems the
+polynomial part of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> is put in the last entry of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">elts</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> is given in transfer form, it is first
+converted into state-space and each subsystem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Si</span></span></span> is then converted in transfer form. The A matrix
+is of the state-space is put into block diagonal form by function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bdiag</span></span></span>. The optional
+parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rmax</span></span></span> is sent to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bdiag</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rmax</span></span></span> should be set to a large number to enforce
+block-diagonalization. If the optional flag <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cord=&#x0027;c&#x0027;</span></span></span> is given the elements in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">elts</span></span></span> are sorted
+according to the real part (resp. magnitude if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cord=&#x0027;d&#x0027;</span></span></span>) of the eigenvalues of A matrices.
+</p>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x65-374000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb49"><a 
+ id="x65-374006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;W=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x65-374008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;elts=pfss(W)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x65-374010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;W1=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;k=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">size(elts)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;W1=W1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">ss2tf(elts(k))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span>
+<br class="fancyvrb" /><a 
+ id="x65-374012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(ss2tf(W)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">W1)</span></div>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x65-375000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli648.html#pbig">pbig</a>    <a 
+href="manualli610.html#bdiag">bdiag</a>    <a 
+href="manualli899.html#coffg">coffg</a>    <a 
+href="manualli1099.html#dtsi">dtsi</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x65-376000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.D.;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli65.html" >next</a>] [<a 
+href="manualli63.html" >prev</a>] [<a 
+href="manualli63.html#tailmanualli63.html" >prev-tail</a>] [<a 
+href="manualli64.html" >front</a>] [<a 
+href="manualli12.html#manualli64.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli64.html"></a>  </p> 
+</body></html> 

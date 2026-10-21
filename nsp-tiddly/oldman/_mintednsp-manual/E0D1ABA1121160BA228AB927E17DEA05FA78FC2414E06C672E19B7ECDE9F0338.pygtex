@@ -1,0 +1,40 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// --------------------}
+\nspcomment{// With the plot command:}
+\nspcomment{// --------------------}
+x=\nspnumber{1}\nspoperator{:}\nspnumber{10}\nspoperator{;}\nspcomment{// Init.}
+plot(x,sin(x),\nspstring{'colo'},\nspstring{'red'},\nspstring{'linest'},\nspstring{'-.'},\nspstring{'marker'},\nspstring{'$&gt;$'},\nspstring{'markeredg'},\nspstring{'cyan'},\nspstring{'markerFace'}, ...
+     \nspstring{'yellow'},\nspstring{'markersize'},\nspnumber{5})
+clf()\nspoperator{;}
+\nspcomment{// combinations' order in \nspob{}PropertyName,PropertyValue\nspcb{} does not matter}
+plot(x,sin(x),\nspstring{'marker'},\nspstring{'p'},\nspstring{'markerfac'},\nspstring{'cyan'},\nspstring{'markersiz'},\nspnumber{10})
+clf()\nspoperator{;}
+\nspcomment{// combination of LineSpec and GlobalProperty shows the GlobalProperty predominance}
+plot(x,x\nspoperator{ .*}x,\nspstring{'*cya--'},\nspstring{'color'},\nspstring{'gr'},\nspstring{'linestyle'},\nspstring{'-'},\nspstring{'marker'},\nspstring{'sq'},\nspstring{'markersize'},\nspnumber{6}, ...
+     \nspstring{'markforegroun'},\nspstring{'red'},\nspstring{'markbackgro'},[\nspnumber{0.2}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.6}])
+clf()\nspoperator{;}
+\nspcomment{//multiple plots with different LineSpecs and finally some global GlobalProperty}
+clf()\nspoperator{;}
+t=\nspnumber{0}\nspoperator{:}%pi\nspoperator{/}\nspnumber{20}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi\nspoperator{;}
+plot(t,sin(t),\nspstring{'ro-.'},t,cos(t),\nspstring{'cya+'},t,abs(sin(t)),\nspstring{'--mo'},\nspstring{'markstyl'},\nspstring{'diam'})
+\nspcomment{// --------------------}
+\nspcomment{// With the surf command:}
+\nspcomment{// --------------------}
+Z=[\nspnumber{0.0001}\nspoperator{,}\nspnumber{0.0013}\nspoperator{,}\nspnumber{0.0053}\nspoperator{,}\nspoperator{-}\nspnumber{0.0299}\nspoperator{,}\nspoperator{-}\nspnumber{0.1809}\nspoperator{,}\nspoperator{-}\nspnumber{0.2465}\nspoperator{,}\nspoperator{-}\nspnumber{0.1100}\nspoperator{,}\nspoperator{-}\nspnumber{0.0168}\nspoperator{,}\nspoperator{-}\nspnumber{0.0008}\nspoperator{,}\nspoperator{-}\nspnumber{0.0000}\nspoperator{;}
+   \nspnumber{0.0005}\nspoperator{,}\nspnumber{0.0089}\nspoperator{,}\nspnumber{0.0259}\nspoperator{,}\nspoperator{-}\nspnumber{0.3673}\nspoperator{,}\nspoperator{-}\nspnumber{1.8670}\nspoperator{,}\nspoperator{-}\nspnumber{2.4736}\nspoperator{,}\nspoperator{-}\nspnumber{1.0866}\nspoperator{,}\nspoperator{-}\nspnumber{0.1602}\nspoperator{,}\nspoperator{-}\nspnumber{0.0067}\nspoperator{,}\nspnumber{0.0000}\nspoperator{;}
+   \nspnumber{0.0004}\nspoperator{,}\nspnumber{0.0214}\nspoperator{,}\nspnumber{0.1739}\nspoperator{,}\nspoperator{-}\nspnumber{0.3147}\nspoperator{,}\nspoperator{-}\nspnumber{4.0919}\nspoperator{,}\nspoperator{-}\nspnumber{6.4101}\nspoperator{,}\nspoperator{-}\nspnumber{2.7589}\nspoperator{,}\nspoperator{-}\nspnumber{0.2779}\nspoperator{,}\nspnumber{0.0131}\nspoperator{,}\nspnumber{0.0020}\nspoperator{;}
+   \nspoperator{-}\nspnumber{0.0088}\nspoperator{,}\nspoperator{-}\nspnumber{0.0871}\nspoperator{,}\nspnumber{0.0364}\nspoperator{,}\nspnumber{1.8559}\nspoperator{,}\nspnumber{1.4995}\nspoperator{,}\nspoperator{-}\nspnumber{2.2171}\nspoperator{,}\nspoperator{-}\nspnumber{0.2729}\nspoperator{,}\nspnumber{0.8368}\nspoperator{,}\nspnumber{0.2016}\nspoperator{,}\nspnumber{0.0130}\nspoperator{;}
+   \nspoperator{-}\nspnumber{0.0308}\nspoperator{,}\nspoperator{-}\nspnumber{0.4313}\nspoperator{,}\nspoperator{-}\nspnumber{1.7334}\nspoperator{,}\nspoperator{-}\nspnumber{0.1148}\nspoperator{,}\nspnumber{3.0731}\nspoperator{,}\nspnumber{0.4444}\nspoperator{,}\nspnumber{2.6145}\nspoperator{,}\nspnumber{2.4410}\nspoperator{,}\nspnumber{0.4877}\nspoperator{,}\nspnumber{0.0301}\nspoperator{;}
+   \nspoperator{-}\nspnumber{0.0336}\nspoperator{,}\nspoperator{-}\nspnumber{0.4990}\nspoperator{,}\nspoperator{-}\nspnumber{2.3552}\nspoperator{,}\nspoperator{-}\nspnumber{2.1722}\nspoperator{,}\nspnumber{0.8856}\nspoperator{,}\nspoperator{-}\nspnumber{0.0531}\nspoperator{,}\nspnumber{2.6416}\nspoperator{,}\nspnumber{2.4064}\nspoperator{,}\nspnumber{0.4771}\nspoperator{,}\nspnumber{0.0294}\nspoperator{;}
+   \nspoperator{-}\nspnumber{0.0137}\nspoperator{,}\nspoperator{-}\nspnumber{0.1967}\nspoperator{,}\nspoperator{-}\nspnumber{0.8083}\nspoperator{,}\nspnumber{0.2289}\nspoperator{,}\nspnumber{3.3983}\nspoperator{,}\nspnumber{3.1955}\nspoperator{,}\nspnumber{2.4338}\nspoperator{,}\nspnumber{1.2129}\nspoperator{,}\nspnumber{0.2108}\nspoperator{,}\nspnumber{0.0125}\nspoperator{;}
+   \nspoperator{-}\nspnumber{0.0014}\nspoperator{,}\nspoperator{-}\nspnumber{0.0017}\nspoperator{,}\nspnumber{0.3189}\nspoperator{,}\nspnumber{2.7414}\nspoperator{,}\nspnumber{7.1622}\nspoperator{,}\nspnumber{7.1361}\nspoperator{,}\nspnumber{3.1242}\nspoperator{,}\nspnumber{0.6633}\nspoperator{,}\nspnumber{0.0674}\nspoperator{,}\nspnumber{0.0030}\nspoperator{;}
+   \nspnumber{0.0002}\nspoperator{,}\nspnumber{0.0104}\nspoperator{,}\nspnumber{0.1733}\nspoperator{,}\nspnumber{1.0852}\nspoperator{,}\nspnumber{2.6741}\nspoperator{,}\nspnumber{2.6725}\nspoperator{,}\nspnumber{1.1119}\nspoperator{,}\nspnumber{0.1973}\nspoperator{,}\nspnumber{0.0152}\nspoperator{,}\nspnumber{0.0005}\nspoperator{;}
+   \nspnumber{0.0000}\nspoperator{,}\nspnumber{0.0012}\nspoperator{,}\nspnumber{0.0183}\nspoperator{,}\nspnumber{0.1099}\nspoperator{,}\nspnumber{0.2684}\nspoperator{,}\nspnumber{0.2683}\nspoperator{,}\nspnumber{0.1107}\nspoperator{,}\nspnumber{0.0190}\nspoperator{,}\nspnumber{0.0014}\nspoperator{,}\nspnumber{0.0000}]\nspoperator{;}
+clf()\nspoperator{;}
+f=gcf()\nspoperator{;}
+f.figure_size=[\nspnumber{610}\nspoperator{,}\nspnumber{724}]\nspoperator{;}
+subplot(\nspnumber{211})
+surf(Z,\nspstring{'facecol'},\nspstring{'interp'},\nspstring{'ydat'},\nspnumber{101}\nspoperator{:}\nspnumber{110},\nspstring{'edgecol'},\nspstring{'mage'})
+subplot(\nspnumber{212})
+surf(Z,\nspstring{'edgeco'},\nspstring{'b'},\nspstring{'marker'},\nspstring{'d'},\nspstring{'markersiz'},\nspnumber{9},\nspstring{'markerfac'},\nspstring{'k'},\nspstring{'xdata'},\nspoperator{-}\nspnumber{50}\nspoperator{:}\nspoperator{-}\nspnumber{41})
+\end{Verbatim}

@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+deff(\nspstring{'df=dfsub(x,z)'},\nspstring{'df=[0,0,-6/x**2,-6/x]'})
+deff(\nspstring{'f=fsub(x,z)'},\nspstring{'f=(1 -6*x**2*z(4)-6*x*z(3))/x**3'})
+deff(\nspstring{'g=gsub(i,z)'},\nspstring{'g=[z(1),z(3),z(1),z(3)];g=g(i)'})
+deff(\nspstring{'dg=dgsub(i,z)'},[\nspstring{'dg=[1,0,0,0;0,0,1,0;1,0,0,0;0,0,1,0]'}\nspoperator{;}\nspstring{'dg=dg(i,:)'}])
+deff(\nspstring{'[z,mpar]=guess(x)'},\nspstring{'z=0;mpar=0'})\nspoperator{,}\nspcomment{// unused here}
+deff(\nspstring{'u=trusol(x)'}, ...
+     [\nspcomment{//for testing purposes}
+      \nspstring{'u=0*ones(4,1)'}\nspoperator{;}
+      \nspstring{'u(1) =  0.25*(10*log(2)-3)*(1-x) + 0.5 *( 1/x   + (3+x)*log(x) - x)'}\nspoperator{;}
+      \nspstring{'u(2) = -0.25*(10*log(2)-3)       + 0.5 *(-1/x^2 + (3+x)/x      + log(x) - 1)'}\nspoperator{;}
+      \nspstring{'u(3) = 0.5*( 2/x^3 + 1/x   - 3/x^2)'}\nspoperator{;}\nspstring{'u(4) = 0.5*(-6/x^4 - 1/x/x + 6/x^3)'}])
+fixpnt=\nspnumber{0}\nspoperator{;}m=\nspnumber{4}\nspoperator{;}
+ncomp=\nspnumber{1}\nspoperator{;}aleft=\nspnumber{1}\nspoperator{;}aright=\nspnumber{2}\nspoperator{;}
+zeta=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}]\nspoperator{;}
+ipar=zeros(\nspnumber{1},\nspnumber{11})\nspoperator{;}
+ipar(\nspnumber{3})=\nspnumber{1}\nspoperator{;}ipar(\nspnumber{4})=\nspnumber{2}\nspoperator{;}ipar(\nspnumber{5})=\nspnumber{2000}\nspoperator{;}ipar(\nspnumber{6})=\nspnumber{200}\nspoperator{;}ipar(\nspnumber{7})=\nspnumber{1}\nspoperator{;}
+ltol=[\nspnumber{1}\nspoperator{,}\nspnumber{3}]\nspoperator{;}tol=[\nspnumber{1.E-11}\nspoperator{,}\nspnumber{1.E-11}]\nspoperator{;}
+res=aleft\nspoperator{:}\nspnumber{0.1}\nspoperator{:}aright\nspoperator{;}
+z=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)
+z1=[]\nspoperator{;}\nspkeyword{for} x=res \nspkeyword{do} z1=[z1\nspoperator{,}trusol(x)]\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+z\nspoperator{-}z1
+\end{Verbatim}

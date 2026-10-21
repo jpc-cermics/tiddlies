@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+nu=\nspnumber{3}\nspoperator{;}ny=\nspnumber{4}\nspoperator{;}nx=\nspnumber{7}\nspoperator{;}
+nrt=\nspnumber{2}\nspoperator{;}ngt=\nspnumber{3}\nspoperator{;}ng0=\nspnumber{3}\nspoperator{;}nvt=\nspnumber{5}\nspoperator{;}rk=\nspnumber{2}\nspoperator{;}
+flag=list(\nspstring{'on'},nrt,ngt,ng0,nvt,rk)\nspoperator{;}
+Sys=ssrand(ny,nu,nx,flag)\nspoperator{;}alfa=\nspoperator{-}\nspnumber{1}\nspoperator{;}beta=\nspoperator{-}\nspnumber{2}\nspoperator{;}
+[X,dims,F,U,k,Z]=abinv(Sys,alfa,beta)\nspoperator{;}
+[A,B,C,D]=abcd(Sys)\nspoperator{;}dimV=dims(\nspnumber{3})\nspoperator{;}dimR=dims(\nspnumber{1})\nspoperator{;}
+V=X(\nspoperator{:},\nspnumber{1}\nspoperator{:}dimV)\nspoperator{;}X2=X(\nspoperator{:},dimV\nspoperator{+}\nspnumber{1}\nspoperator{:}nx)\nspoperator{;}
+X2\nspoperator{'}\nspoperator{*}(A\nspoperator{+}B\nspoperator{*}F)\nspoperator{*}V
+(C\nspoperator{+}D\nspoperator{*}F)\nspoperator{*}V
+X0=X(\nspoperator{:},dimR\nspoperator{+}\nspnumber{1}\nspoperator{:}dimV)\nspoperator{;}spec(X0\nspoperator{'}\nspoperator{*}(A\nspoperator{+}B\nspoperator{*}F)\nspoperator{*}X0)
+trzeros(Sys)
+spec(A\nspoperator{+}B\nspoperator{*}F)\nspoperator{,}\nspcomment{//nr=2 evals at -1 and noc-dimV=2 evals at -2.}
+clean(ss2tf(Sys\nspoperator{*}Z))
+\nspcomment{// 2nd Example}
+nx=\nspnumber{6}\nspoperator{;}ny=\nspnumber{3}\nspoperator{;}nu=\nspnumber{2}\nspoperator{;}
+A=diag(\nspnumber{1}\nspoperator{:}\nspnumber{6})\nspoperator{;}A(\nspnumber{2},\nspnumber{2})=\nspoperator{-}\nspnumber{7}\nspoperator{;}A(\nspnumber{5},\nspnumber{5})=\nspoperator{-}\nspnumber{9}\nspoperator{;}B=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{3}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{4}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{5}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+C=[zeros(ny,ny)\nspoperator{,}eye(ny,ny)]\nspoperator{;}D=[\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{3}]\nspoperator{;}
+sl=syslin(\nspstring{'c'},A,B,C,D)\nspoperator{;}\nspcomment{//sl=ss2ss(sl,rand(6,6))*rand(2,2);}
+[A,B,C,D]=abcd(sl)\nspoperator{;}\nspcomment{//The matrices of sl.}
+alfa=\nspoperator{-}\nspnumber{1}\nspoperator{;}beta=\nspoperator{-}\nspnumber{2}\nspoperator{;}
+[X,dims,F,U,k,Z]=abinv(sl,alfa,beta)\nspoperator{;}dimVg=dims(\nspnumber{2})\nspoperator{;}
+clean(X\nspoperator{'}\nspoperator{*}(A\nspoperator{+}B\nspoperator{*}F)\nspoperator{*}X)
+clean(X\nspoperator{'}\nspoperator{*}B\nspoperator{*}U)
+clean((C\nspoperator{+}D\nspoperator{*}F)\nspoperator{*}X)
+clean(D\nspoperator{*}U)
+G=(X(\nspoperator{:},dimVg\nspoperator{+}\nspnumber{1}\nspoperator{:}$))\nspoperator{'}\nspoperator{;}
+B2=G\nspoperator{*}B\nspoperator{;}nd=\nspnumber{3}\nspoperator{;}
+R=rand(nu,nd)\nspoperator{;}Q2T=\nspoperator{-}[B2\nspoperator{;}D]\nspoperator{*}R\nspoperator{;}
+p=size(G,\nspnumber{1})\nspoperator{;}Q2=Q2T(\nspnumber{1}\nspoperator{:}p,\nspoperator{:})\nspoperator{;}T=Q2T(p\nspoperator{+}\nspnumber{1}\nspoperator{:}$,\nspoperator{:})\nspoperator{;}
+Q=G\nspoperator{\nspbs{}}Q2\nspoperator{;}\nspcomment{//a valid [Q;T] since}
+[G\nspoperator{*}B\nspoperator{;}D]\nspoperator{*}R\nspoperator{+}[G\nspoperator{*}Q\nspoperator{;}T]\nspoperator{,}\nspcomment{// is zero}
+closed=syslin(\nspstring{'c'},A\nspoperator{+}B\nspoperator{*}F,Q\nspoperator{+}B\nspoperator{*}R,C\nspoperator{+}D\nspoperator{*}F,T\nspoperator{+}D\nspoperator{*}R)\nspoperator{;}\nspcomment{// closed loop: d--$>$y}
+ss2tf(closed)\nspoperator{,}\nspcomment{// Closed loop is zero}
+spec(closed(\nspstring{'A'}))\nspoperator{,}\nspcomment{//The plant is not stabilizable!}
+[ns,nc,W,sl1]=st_ility(sl)\nspoperator{;}
+[A,B,C,D]=abcd(sl1)\nspoperator{;}A=A(\nspnumber{1}\nspoperator{:}ns,\nspnumber{1}\nspoperator{:}ns)\nspoperator{;}B=B(\nspnumber{1}\nspoperator{:}ns,\nspoperator{:})\nspoperator{;}C=C(\nspoperator{:},\nspnumber{1}\nspoperator{:}ns)\nspoperator{;}
+slnew=syslin(\nspstring{'c'},A,B,C,D)\nspoperator{;}\nspcomment{//Now stabilizable}
+\nspcomment{//Fnew=stabil(slnew('A'),slnew('B'),-11);}
+\nspcomment{//slnew('A')=slnew('A')+slnew('B')*Fnew;}
+\nspcomment{//slnew('C')=slnew('C')+slnew('D')*Fnew;}
+[X,dims,F,U,k,Z]=abinv(slnew,alfa,beta)\nspoperator{;}dimVg=dims(\nspnumber{2})\nspoperator{;}
+[A,B,C,D]=abcd(slnew)\nspoperator{;}
+G=(X(\nspoperator{:},dimVg\nspoperator{+}\nspnumber{1}\nspoperator{:}$))\nspoperator{'}\nspoperator{;}
+B2=G\nspoperator{*}B\nspoperator{;}nd=\nspnumber{3}\nspoperator{;}
+R=rand(nu,nd)\nspoperator{;}Q2T=\nspoperator{-}[B2\nspoperator{;}D]\nspoperator{*}R\nspoperator{;}
+p=size(G,\nspnumber{1})\nspoperator{;}Q2=Q2T(\nspnumber{1}\nspoperator{:}p,\nspoperator{:})\nspoperator{;}T=Q2T(p\nspoperator{+}\nspnumber{1}\nspoperator{:}$,\nspoperator{:})\nspoperator{;}
+Q=G\nspoperator{\nspbs{}}Q2\nspoperator{;}\nspcomment{//a valid [Q;T] since}
+[G\nspoperator{*}B\nspoperator{;}D]\nspoperator{*}R\nspoperator{+}[G\nspoperator{*}Q\nspoperator{;}T]\nspoperator{,}\nspcomment{// is zero}
+closed=syslin(\nspstring{'c'},A\nspoperator{+}B\nspoperator{*}F,Q\nspoperator{+}B\nspoperator{*}R,C\nspoperator{+}D\nspoperator{*}F,T\nspoperator{+}D\nspoperator{*}R)\nspoperator{;}\nspcomment{// closed loop: d--$>$y}
+ss2tf(closed)\nspoperator{,}\nspcomment{// Closed loop is zero}
+spec(closed(\nspstring{'A'}))
+\end{Verbatim}

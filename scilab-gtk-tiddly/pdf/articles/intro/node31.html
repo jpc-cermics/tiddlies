@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.12.2 Indexing in lists</TITLE>
+<META NAME="description" CONTENT="2.12.2 Indexing in lists">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node30.html">
+<LINK REL="up" HREF="node29.html">
+<LINK REL="next" HREF="node32.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html642"
+ HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html638"
+ HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html634"
+ HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html640"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html641"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html643"
+ HREF="node32.html">3. Programming</A>
+<B> Up:</B> <A NAME="tex2html639"
+ HREF="node29.html">2.12 Indexing</A>
+<B> Previous:</B> <A NAME="tex2html635"
+ HREF="node30.html">2.12.1 Indexing in matrices</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION003122000000000000000">
+2.12.2 Indexing in lists</A>
+</H2>
+The following session illustrates how to create lists and
+insert/extract entries in <TT>lists</TT> and <TT>tlists</TT>.
+<PRE>
+ 
+--&gt;a=33;b=11;c=0;
+ 
+--&gt;l=list();l(0)=a
+ l  =
+ 
+ 
+       l(1)
+ 
+    33.  
+ 
+--&gt;l=list();l(1)=a
+ l  =
+ 
+ 
+       l(1)
+ 
+    33.  
+ 
+--&gt;l=list(a);l(2)=b
+ l  =
+ 
+ 
+       l(1)
+ 
+    33.  
+ 
+       l(2)
+ 
+    11.  
+ 
+--&gt;l=list(a);l(0)=b
+ l  =
+ 
+ 
+       l(1)
+ 
+    11.  
+ 
+       l(2)
+ 
+    33.  
+ 
+--&gt;l=list(a);l(1)=c
+ l  =
+ 
+ 
+       l(1)
+ 
+    0.  
+ 
+--&gt;l=list();l(0)=null()
+ l  =
+ 
+     ()
+ 
+--&gt;l=list();l(1)=null()
+ l  =
+ 
+     ()
+ 
+--&gt;//
+ 
+--&gt;i='i';
+ 
+--&gt;l=list(a,list(c,b),i);l(1)=null()
+ l  =
+ 
+ 
+       l(1)
+ 
+ 
+        l(1)(1)
+ 
+    0.  
+ 
+        l(1)(2)
+ 
+    11.  
+ 
+       l(2)
+ 
+ i   
+ 
+--&gt;l=list(a,list(c,list(a,c,b),b),'h');
+ 
+--&gt;l(2)(2)(3)=null()
+ l  =
+ 
+ 
+       l(1)
+ 
+    33.  
+ 
+       l(2)
+ 
+ 
+        l(2)(1)
+ 
+    0.  
+ 
+        l(2)(2)
+ 
+ 
+         l(2)(2)(1)
+ 
+    33.  
+ 
+         l(2)(2)(2)
+ 
+    0.  
+ 
+        l(2)(3)
+ 
+    11.  
+ 
+       l(3)
+ 
+ h   
+ 
+--&gt;//
+ 
+--&gt;dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+ 
+--&gt;dts(2)('a')
+ ans  =
+ 
+    10.  
+ 
+--&gt;dts(2)('b')(1,2)
+ ans  =
+ 
+    3.  
+ 
+--&gt;[a,b]=dts(2)(['a','b'])
+ b  =
+ 
+!   2.    3. !
+ a  =
+ 
+    10.  
+ 
+--&gt;//
+ 
+--&gt;l=list(1,'qwerw',%s)
+ l  =
+ 
+ 
+       l(1)
+ 
+    1.  
+ 
+       l(2)
+ 
+ qwerw   
+ 
+       l(3)
+ 
+    s   
+ 
+--&gt;l(1)='Changed'
+ l  =
+ 
+ 
+       l(1)
+ 
+ Changed   
+ 
+       l(2)
+ 
+ qwerw   
+ 
+       l(3)
+ 
+    s   
+ 
+--&gt;l(0)='Added'
+ l  =
+ 
+ 
+       l(1)
+ 
+ Added   
+ 
+       l(2)
+ 
+ Changed   
+ 
+       l(3)
+ 
+ qwerw   
+ 
+       l(4)
+ 
+    s   
+ 
+--&gt;l(6)=['one more';'added']
+ l  =
+ 
+ 
+       l(1)
+ 
+ Added   
+ 
+       l(2)
+ 
+ Changed   
+ 
+       l(3)
+ 
+ qwerw   
+ 
+       l(4)
+ 
+    s   
+ 
+       l(5)
+ 
+    Undefined
+ 
+       l(6)
+ 
+!one more  !
+!          !
+!added     !
+ 
+--&gt;//
+ 
+--&gt;dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+ 
+--&gt;dts(2)('a')=33
+ dts  =
+ 
+ 
+       dts(1)
+ 
+    1.  
+ 
+       dts(2)
+ 
+ 
+        dts(2)(1)
+ 
+!x  !
+!   !
+!a  !
+!   !
+!b  !
+ 
+        dts(2)(2)
+ 
+    33.  
+ 
+        dts(2)(3)
+ 
+!   2.    3. !
+ 
+--&gt;dts(2)('b')(1,2)=-100
+ dts  =
+ 
+ 
+       dts(1)
+ 
+    1.  
+ 
+       dts(2)
+ 
+ 
+        dts(2)(1)
+ 
+!x  !
+!   !
+!a  !
+!   !
+!b  !
+ 
+        dts(2)(2)
+ 
+    33.  
+ 
+        dts(2)(3)
+ 
+!   2.  - 100. !
+ 
+--&gt;//
+ 
+--&gt;l=list(1,'qwerw',%s)
+ l  =
+ 
+ 
+       l(1)
+ 
+    1.  
+ 
+       l(2)
+ 
+ qwerw   
+ 
+       l(3)
+ 
+    s   
+ 
+--&gt;l(1)
+ ans  =
+ 
+    1.  
+ 
+--&gt;[a,b]=l([3 2])
+ b  =
+ 
+ qwerw   
+ a  =
+ 
+    s   
+ 
+--&gt;l($)
+ ans  =
+ 
+    s   
+ 
+--&gt;//
+ 
+--&gt;L=list(33,list(l,33))
+ L  =
+ 
+ 
+       L(1)
+ 
+    33.  
+ 
+       L(2)
+ 
+ 
+        L(2)(1)
+ 
+ 
+         L(2)(1)(1)
+ 
+    1.  
+ 
+         L(2)(1)(2)
+ 
+ qwerw   
+ 
+         L(2)(1)(3)
+ 
+    s   
+ 
+        L(2)(2)
+ 
+    33.
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html642"
+ HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html638"
+ HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html634"
+ HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html640"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html641"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html643"
+ HREF="node32.html">3. Programming</A>
+<B> Up:</B> <A NAME="tex2html639"
+ HREF="node29.html">2.12 Indexing</A>
+<B> Previous:</B> <A NAME="tex2html635"
+ HREF="node30.html">2.12.1 Indexing in matrices</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>group</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1164.html" >next</a>] [<a 
+href="manualli1162.html" >prev</a>] [<a 
+href="manualli1162.html#tailmanualli1162.html" >prev-tail</a>] [<a 
+href="#tailmanualli1163.html">tail</a>] [<a 
+href="manualli1135.html#manualli1163.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1164-6588000"></a>group</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1164-6588001"></a><a 
+ id="group"></a><span 
+class="cmtt-10x-x-109">group </span>&#x2013;                                                                       group delay for digital filter<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1164-6589000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1317">
+&#x00A0;&#x00A0;[tg,fr]=group(npts,a1i,a2i,b1i,b2i)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1164-6590000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">npts</span>: integer: number of points desired in calculation of group delay
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">a1i</span>: in coefficient, polynomial, rational polynomial, or cascade polynomial form this
+     variable is the transfer function of the filter. In coefficient polynomial form this is a
+     vector of coefficients (see below).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">a2i</span>: in coeff poly form this is a vector of coeffs
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">b1i</span>: in coeff poly form this is a vector of coeffs
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">b2i</span>: in coeff poly form this is a vector of coeffs
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tg</span>: values of group delay evaluated on the grid fr
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fr</span>: grid of frequency values where group delay is evaluated</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1164-6591000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > Calculate the group delay of a digital filter with transfer function h(z). The filter specification can
+be in coefficient form, polynomial form, rational polynomial form, cascade polynomial form, or in
+coefficient polynomial form. In the coefficient polynomial form the transfer function is
+formulated by the following expression<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">h(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)</span></span></span>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1164-6592000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb779"><a 
+ id="x1164-6592006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1164-6592008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1164-6592010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[tg,fr]=group(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">,h)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1164-6592012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(fr,tg)</span></div>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1164-6593000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   C. B.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1164.html" >next</a>] [<a 
+href="manualli1162.html" >prev</a>] [<a 
+href="manualli1162.html#tailmanualli1162.html" >prev-tail</a>] [<a 
+href="manualli1163.html" >front</a>] [<a 
+href="manualli1135.html#manualli1163.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1163.html"></a>  </p> 
+</body></html> 

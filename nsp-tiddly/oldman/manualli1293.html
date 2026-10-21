@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>systems</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1294.html" >next</a>] [<a 
+href="manualli1292.html" >prev</a>] [<a 
+href="manualli1292.html#tailmanualli1292.html" >prev-tail</a>] [<a 
+href="#tailmanualli1293.html">tail</a>] [<a 
+href="manualli1280.html#manualli1293.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1294-7285000"></a>systems</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1294-7285001"></a><a 
+ id="systems"></a><span 
+class="cmtt-10x-x-109">systems </span>&#x2013;                                                              a collection of dynamical system<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7286000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1450">
+&#x00A0;&#x00A0;[]=systems()
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 27--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7287000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 27--><p class="noindent" > A call to this function will load into Scilab a set of macros which describes dynamical systems.
+Their parameters can be initiated by calling the routine tdinit().
+</p>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7288000"></a><span 
+class="cmbx-10x-x-109">Bioreact</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1451">
+&#x00A0;&#x00A0;[ydot]=biorecat(t,x)
+</div>
+<!--l. 36--><p class="nopar" >a bioreactor model, </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">x(1)</div> is the biomass concentration
+     </li>
+     <li class="itemize"><div class="itemdesc">x(2)</div> is the sugar concentration</li></ul>
+                                                                                    
+
+                                                                                    
+<div class="verbatim" id="verbatim-1452">
+&#x00A0;&#x00A0;xdot(1)=mu_td(x(2))*x(1)-&#x00A0;debit*x(1);
+&#x00A0;<br />&#x00A0;&#x00A0;xdot(2)=-k*mu_td(x(2))*x(1)-debit*x(2)+debit*x2in;
+</div>
+<!--l. 45--><p class="nopar" >where mu_td is given by
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1453">
+&#x00A0;&#x00A0;mu_td(x)=x/(1+x);
+</div>
+<!--l. 49--><p class="nopar" >
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7289000"></a><span 
+class="cmbx-10x-x-109">Compet</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1454">
+&#x00A0;&#x00A0;[xdot]=compet(t,x&#x00A0;[,u])
+</div>
+<!--l. 54--><p class="nopar" >a competition model. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(1),x(2)</span></span></span> stands for two populations which grows on a same resource. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1/u</span></span></span> is
+the level of that resource ( 1 is the default value).
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1455">
+&#x00A0;&#x00A0;xdot=0*ones(2,1);
+&#x00A0;<br />&#x00A0;&#x00A0;xdot(1)&#x00A0;=&#x00A0;ppr*x(1)*(1-x(1)/ppk)&#x00A0;-&#x00A0;u*ppa*x(1)*x(2)&#x00A0;,
+&#x00A0;<br />&#x00A0;&#x00A0;xdot(2)&#x00A0;=&#x00A0;pps*x(2)*(1-x(2)/ppl)&#x00A0;-&#x00A0;u*ppb*x(1)*x(2)&#x00A0;,
+</div>
+<!--l. 60--><p class="nopar" >&#x201D;The macro <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xe]=equilcom(ue)</span></span></span>&#x201D; computes an equilibrium point of the competition model and a
+fixed level of the resource ue ( default value is 1) &#x201D;The macro <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[f,g,h,linsy]=lincomp([ue])</span></span></span>&#x201D;
+gives the linearisation of the competition model ( with output y=x) around the equilibrium point
+xe=equilcom(ue). This macro returns [f,g,h] the three matrices of the linearised system. and linsy
+which is a Scilab macro [ydot]=linsy(t,x) which computes the dynamics of the linearised
+system
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7290000"></a><span 
+class="cmbx-10x-x-109">Cycllim</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1456">
+&#x00A0;&#x00A0;[xdot]=cycllim(t,x)
+</div>
+<!--l. 67--><p class="nopar" >a model with a limit cycle
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1457">
+&#x00A0;&#x00A0;xdot=a*x+qeps(1-||x||**2)x
+</div>
+<!--l. 71--><p class="nopar" >
+</p>
+<!--l. 73--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7291000"></a><span 
+class="cmbx-10x-x-109">Linear</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1458">
+&#x00A0;&#x00A0;[xdot]=linear(t,x)
+</div>
+<!--l. 76--><p class="nopar" >a linear system
+</p>
+<!--l. 79--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7292000"></a><span 
+class="cmbx-10x-x-109">Blinper</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1459">
+&#x00A0;&#x00A0;[xdot]=linper(t,x)
+</div>
+<!--l. 82--><p class="nopar" >a linear system with quadratic perturbations.
+</p>
+<!--l. 85--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7293000"></a><span 
+class="cmbx-10x-x-109">Pop</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1460">
+&#x00A0;&#x00A0;[xdot]=pop(t,x)
+</div>
+<!--l. 88--><p class="nopar" >a fish population model
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1461">
+&#x00A0;&#x00A0;xdot=&#x00A0;10*x*(1-x/K)-&#x00A0;peche(t)*x
+</div>
+<!--l. 92--><p class="nopar" >
+</p>
+<!--l. 94--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7294000"></a><span 
+class="cmbx-10x-x-109">Proie</span></span>
+   a Predator prey model with external insecticide.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1462">
+&#x00A0;&#x00A0;[xdot]=p_p(t,x,[u]
+</div>
+<!--l. 98--><p class="nopar" ></p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">x(1)</div> The prey ( that we want to kill )
+     </li>
+     <li class="itemize"><div class="itemdesc">x(2)</div> the predator ( that we want to preserve )
+     </li>
+     <li class="itemize"><div class="itemdesc">u</div> mortality rate due to insecticide which destroys both prey and predator ( default value
+     u=0)</li></ul>
+                                                                                    
+
+                                                                                    
+<div class="verbatim" id="verbatim-1463">
+&#x00A0;&#x00A0;xdot(1)&#x00A0;=&#x00A0;ppr*x(1)*(1-x(1)/ppk)&#x00A0;-&#x00A0;ppa*x(1)*x(2)&#x00A0;-&#x00A0;u*x(1);
+&#x00A0;<br />&#x00A0;&#x00A0;xdot(2)&#x00A0;=&#x00A0;-ppm*x(2)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;+&#x00A0;ppb*x(1)*x(2)&#x00A0;-&#x00A0;u*x(2);
+</div>
+<!--l. 107--><p class="nopar" >The macro <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xe]=equilpp([ue])</span></span></span> computes the equilibrium point of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p_p</span></span></span> system for the value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ue</span></span></span>
+of the command. The default value for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ue</span></span></span> is 0.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1464">
+&#x00A0;&#x00A0;xe(1)&#x00A0;=&#x00A0;&#x00A0;(ppm+ue)/ppb;
+&#x00A0;<br />&#x00A0;&#x00A0;xe(2)&#x00A0;=&#x00A0;&#x00A0;(ppr*(1-xe(1)/ppk)-ue)/ppa;
+</div>
+<!--l. 112--><p class="nopar" >
+</p>
+<!--l. 114--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7295000"></a><span 
+class="cmbx-10x-x-109">Lincom</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1465">
+&#x00A0;&#x00A0;[xdot]=lincom(t,x,k)
+</div>
+<!--l. 117--><p class="nopar" >linear system with a feedback
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1466">
+&#x00A0;&#x00A0;xdot=&#x00A0;a*x&#x00A0;+b*(-k*x)
+</div>
+<!--l. 121--><p class="nopar" >
+</p>
+<!--l. 123--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1294-7296000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1295.html#tdinit">tdinit</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1294.html" >next</a>] [<a 
+href="manualli1292.html" >prev</a>] [<a 
+href="manualli1292.html#tailmanualli1292.html" >prev-tail</a>] [<a 
+href="manualli1293.html" >front</a>] [<a 
+href="manualli1280.html#manualli1293.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1293.html"></a>  </p> 
+</body></html> 

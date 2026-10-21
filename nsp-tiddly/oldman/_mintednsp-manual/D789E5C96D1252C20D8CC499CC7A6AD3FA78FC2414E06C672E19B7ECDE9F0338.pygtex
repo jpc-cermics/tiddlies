@@ -1,0 +1,96 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// FIRST CASE}
+theta=\nspnumber{0.025}\nspoperator{*}[\nspnumber{1}\nspoperator{:}\nspnumber{40}]\nspoperator{*}\nspnumber{2}\nspoperator{ .*}%pi\nspoperator{;}
+x=\nspnumber{1}\nspoperator{+}cos(theta)\nspoperator{;}
+y=\nspnumber{1. }\nspoperator{+}sin(theta)\nspoperator{;}
+theta=\nspnumber{0.05}\nspoperator{*}[\nspnumber{1}\nspoperator{:}\nspnumber{20}]\nspoperator{*}\nspnumber{2}\nspoperator{ .*}%pi\nspoperator{;}
+x1=\nspnumber{1.3}\nspoperator{+}\nspnumber{0.4}\nspoperator{*}cos(theta)\nspoperator{;}
+y1=\nspnumber{1. }\nspoperator{+}\nspnumber{0.4}\nspoperator{*}sin(theta)\nspoperator{;}
+theta=\nspnumber{0.1}\nspoperator{*}[\nspnumber{1}\nspoperator{:}\nspnumber{10}]\nspoperator{*}\nspnumber{2}\nspoperator{ .*}%pi\nspoperator{;}
+x2=\nspnumber{0.5}\nspoperator{+}\nspnumber{0.2}\nspoperator{*}cos(theta)\nspoperator{;}
+y2=\nspnumber{1. }\nspoperator{+}\nspnumber{0.2}\nspoperator{*}sin(theta)\nspoperator{;}
+x=[x\nspoperator{,}x1\nspoperator{,}x2]\nspoperator{;}
+y=[y\nspoperator{,}y1\nspoperator{,}y2]\nspoperator{;}
+\nspcomment{//}
+nu=mesh2d(x,y)\nspoperator{;}
+nbt=size(nu,\nspnumber{2})\nspoperator{;}
+jj=[nu(\nspnumber{1},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{2},\nspoperator{:})\nspoperator{'}\nspoperator{;}nu(\nspnumber{2},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{3},\nspoperator{:})\nspoperator{'}\nspoperator{;}nu(\nspnumber{3},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{1},\nspoperator{:})\nspoperator{'}]\nspoperator{;}
+as=sparse(jj,ones(size(jj,\nspnumber{1}),\nspnumber{1}))\nspoperator{;}
+ast=tril(as\nspoperator{+}abs(as\nspoperator{'}\nspoperator{-}as))\nspoperator{;}
+[jj,v,mn]=spget(ast)\nspoperator{;}
+n=size(x,\nspnumber{2})\nspoperator{;}
+g=make_graph(\nspstring{'foo'},\nspnumber{0},n,jj(\nspoperator{:},\nspnumber{1})\nspoperator{'},jj(\nspoperator{:},\nspnumber{2})\nspoperator{'})\nspoperator{;}
+g(\nspstring{'node_x'})=\nspnumber{300}\nspoperator{*}x\nspoperator{;}
+g(\nspstring{'node_y'})=\nspnumber{300}\nspoperator{*}y\nspoperator{;}
+g(\nspstring{'default_node_diam'})=\nspnumber{10}\nspoperator{;}
+show_graph(g)
+\nspcomment{// SECOND CASE !!! NEEDS x,y FROM FIRST CASE}
+x3=\nspnumber{2}\nspoperator{ .*}rand(\nspnumber{1}\nspoperator{:}\nspnumber{200})\nspoperator{;}
+y3=\nspnumber{2}\nspoperator{ .*}rand(\nspnumber{1}\nspoperator{:}\nspnumber{200})\nspoperator{;}
+wai=((x3\nspoperator{-}\nspnumber{1})\nspoperator{ .*}(x3\nspoperator{-}\nspnumber{1})\nspoperator{+}(y3\nspoperator{-}\nspnumber{1})\nspoperator{ .*}(y3\nspoperator{-}\nspnumber{1}))\nspoperator{;}
+ii=find(wai\nspoperator{ >= }\nspnumber{.94})\nspoperator{;}
+x3(ii)=[]\nspoperator{;}y3(ii)=[]\nspoperator{;}
+wai=((x3\nspoperator{-}\nspnumber{0.5})\nspoperator{ .*}(x3\nspoperator{-}\nspnumber{0.5})\nspoperator{+}(y3\nspoperator{-}\nspnumber{1})\nspoperator{ .*}(y3\nspoperator{-}\nspnumber{1}))\nspoperator{;}
+ii=find(wai\nspoperator{ <= }\nspnumber{0.055})\nspoperator{;}
+x3(ii)=[]\nspoperator{;}y3(ii)=[]\nspoperator{;}
+wai=((x3\nspoperator{-}\nspnumber{1.3})\nspoperator{ .*}(x3\nspoperator{-}\nspnumber{1.3})\nspoperator{+}(y3\nspoperator{-}\nspnumber{1})\nspoperator{ .*}(y3\nspoperator{-}\nspnumber{1}))\nspoperator{;}
+ii=find(wai\nspoperator{ <= }\nspnumber{0.21})\nspoperator{;}
+x3(ii)=[]\nspoperator{;}y3(ii)=[]\nspoperator{;}
+xnew=[x\nspoperator{,}x3]\nspoperator{;}ynew=[y\nspoperator{,}y3]\nspoperator{;}
+fr1=[[\nspnumber{1}\nspoperator{:}\nspnumber{40}]\nspoperator{,}\nspnumber{1}]\nspoperator{;}fr2=[[\nspnumber{41}\nspoperator{:}\nspnumber{60}]\nspoperator{,}\nspnumber{41}]\nspoperator{;}fr2=fr2($\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1})\nspoperator{;}
+fr3=[[\nspnumber{61}\nspoperator{:}\nspnumber{70}]\nspoperator{,}\nspnumber{61}]\nspoperator{;}fr3=fr3($\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1})\nspoperator{;}
+front=[fr1\nspoperator{,}fr2\nspoperator{,}fr3]\nspoperator{;}
+\nspcomment{//}
+nu=mesh2d(xnew,ynew,front)\nspoperator{;}
+nbt=size(nu,\nspnumber{2})\nspoperator{;}
+jj=[nu(\nspnumber{1},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{2},\nspoperator{:})\nspoperator{'}\nspoperator{;}nu(\nspnumber{2},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{3},\nspoperator{:})\nspoperator{'}\nspoperator{;}nu(\nspnumber{3},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{1},\nspoperator{:})\nspoperator{'}]\nspoperator{;}
+as=sparse(jj,ones(size(jj,\nspnumber{1}),\nspnumber{1}))\nspoperator{;}
+ast=tril(as\nspoperator{+}abs(as\nspoperator{'}\nspoperator{-}as))\nspoperator{;}
+[jj,v,mn]=spget(ast)\nspoperator{;}
+n=size(xnew,\nspnumber{2})\nspoperator{;}
+g=make_graph(\nspstring{'foo'},\nspnumber{0},n,jj(\nspoperator{:},\nspnumber{1})\nspoperator{'},jj(\nspoperator{:},\nspnumber{2})\nspoperator{'})\nspoperator{;}
+g(\nspstring{'node_x'})=\nspnumber{300}\nspoperator{*}xnew\nspoperator{;}
+g(\nspstring{'node_y'})=\nspnumber{300}\nspoperator{*}ynew\nspoperator{;}
+g(\nspstring{'default_node_diam'})=\nspnumber{10}\nspoperator{;}
+show_graph(g)
+\nspcomment{// REGULAR CASE !!! NEEDS PREVIOUS CASES FOR x,y,front}
+xx=\nspnumber{0.1}\nspoperator{*}[\nspnumber{1}\nspoperator{:}\nspnumber{20}]\nspoperator{;}
+yy=xx\nspoperator{ .*.}ones(\nspnumber{1},\nspnumber{20})\nspoperator{;}
+zz=ones(\nspnumber{1},\nspnumber{20})\nspoperator{ .*.}xx\nspoperator{;}
+x3=yy\nspoperator{;}y3=zz\nspoperator{;}
+wai=((x3\nspoperator{-}\nspnumber{1})\nspoperator{ .*}(x3\nspoperator{-}\nspnumber{1})\nspoperator{+}(y3\nspoperator{-}\nspnumber{1})\nspoperator{ .*}(y3\nspoperator{-}\nspnumber{1}))\nspoperator{;}
+ii=find(wai\nspoperator{ >= }\nspnumber{.94})\nspoperator{;}
+x3(ii)=[]\nspoperator{;}y3(ii)=[]\nspoperator{;}
+wai=((x3\nspoperator{-}\nspnumber{0.5})\nspoperator{ .*}(x3\nspoperator{-}\nspnumber{0.5})\nspoperator{+}(y3\nspoperator{-}\nspnumber{1})\nspoperator{ .*}(y3\nspoperator{-}\nspnumber{1}))\nspoperator{;}
+ii=find(wai\nspoperator{ <= }\nspnumber{0.055})\nspoperator{;}
+x3(ii)=[]\nspoperator{;}y3(ii)=[]\nspoperator{;}
+wai=((x3\nspoperator{-}\nspnumber{1.3})\nspoperator{ .*}(x3\nspoperator{-}\nspnumber{1.3})\nspoperator{+}(y3\nspoperator{-}\nspnumber{1})\nspoperator{ .*}(y3\nspoperator{-}\nspnumber{1}))\nspoperator{;}
+ii=find(wai\nspoperator{ <= }\nspnumber{0.21})\nspoperator{;}
+x3(ii)=[]\nspoperator{;}y3(ii)=[]\nspoperator{;}
+xnew=[x\nspoperator{,}x3]\nspoperator{;}ynew=[y\nspoperator{,}y3]\nspoperator{;}
+nu=mesh2d(xnew,ynew,front)\nspoperator{;}
+nbt=size(nu,\nspnumber{2})\nspoperator{;}
+jj=[nu(\nspnumber{1},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{2},\nspoperator{:})\nspoperator{'}\nspoperator{;}nu(\nspnumber{2},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{3},\nspoperator{:})\nspoperator{'}\nspoperator{;}nu(\nspnumber{3},\nspoperator{:})\nspoperator{'}\nspoperator{,}nu(\nspnumber{1},\nspoperator{:})\nspoperator{'}]\nspoperator{;}
+as=sparse(jj,ones(size(jj,\nspnumber{1}),\nspnumber{1}))\nspoperator{;}
+ast=tril(as\nspoperator{+}abs(as\nspoperator{'}\nspoperator{-}as))\nspoperator{;}
+[jj,v,mn]=spget(ast)\nspoperator{;}
+n=size(xnew,\nspnumber{2})\nspoperator{;}
+g=make_graph(\nspstring{'foo'},\nspnumber{0},n,jj(\nspoperator{:},\nspnumber{1})\nspoperator{'},jj(\nspoperator{:},\nspnumber{2})\nspoperator{'})\nspoperator{;}
+g(\nspstring{'node_x'})=\nspnumber{300}\nspoperator{*}xnew\nspoperator{;}
+g(\nspstring{'node_y'})=\nspnumber{300}\nspoperator{*}ynew\nspoperator{;}
+g(\nspstring{'default_node_diam'})=\nspnumber{3}\nspoperator{;}
+show_graph(g)
+\nspcomment{//An example with a random set of points}
+\nspkeyword{function} \nspfunction{test}(X,Y)
+  Tr=mesh2d(X,Y)\nspoperator{;}
+  plot2d(X,Y,[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{3}])\nspoperator{;}
+  [m,n]=size(Tr)\nspoperator{;}
+  xpols=matrix(X(Tr),m,n)\nspoperator{;}
+  ypols=matrix(Y(Tr),m,n)\nspoperator{;}
+  xset(\nspstring{"colormap"},rand(\nspnumber{2}\nspoperator{*}n,\nspnumber{3}))\nspoperator{;}
+  xfpolys(xpols,ypols,[n\nspoperator{/}\nspnumber{4}\nspoperator{:}n\nspoperator{/}\nspnumber{4}\nspoperator{+}n\nspoperator{-}\nspnumber{1}])\nspoperator{;}
+\nspkeyword{endfunction}
+N=\nspnumber{1000}\nspoperator{;}xbasc()\nspoperator{;}X=rand(\nspnumber{1},N)\nspoperator{;}Y=rand(\nspnumber{1},N)\nspoperator{;}
+xset(\nspstring{"wdim"},\nspnumber{700},\nspnumber{700})\nspoperator{;}
+test(X,Y)\nspoperator{;}
+\end{Verbatim}

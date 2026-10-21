@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>eval3d</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli406.html" >next</a>] [<a 
+href="manualli404.html" >prev</a>] [<a 
+href="manualli404.html#tailmanualli404.html" >prev-tail</a>] [<a 
+href="#tailmanualli405.html">tail</a>] [<a 
+href="manualli370.html#manualli405.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x406-2371000"></a>eval3d</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx406-2371001"></a><a 
+ id="eval3d"></a><span 
+class="cmtt-10x-x-109">eval3d </span>&#x2013;                                                                    values of a function on a grid<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x406-2372000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-536">
+&#x00A0;&#x00A0;[z]=eval3d(fun,x,[y])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x406-2373000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fun</span>: function accepting vectors as arguments.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,y</span>: 2 vectors of size (1,n1) and (1,n2). (default value for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y=x</span></span></span>).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">z</span>: matrix of size (n1,n2).</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x406-2374000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > This function returns a matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(n1,n2)</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(i,j)=fun(x(i),y(j))</span></span></span>. If the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> doesn&apos;t
+accept arguments of type vector use the primitive <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">feval</span></span></span>.
+</p>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x406-2375000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb311"><a 
+ id="x406-2375010r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x406-2375012r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[z]=f(x,y)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z=</span><span 
+class="cmtt-10x-x-109">&#x00A0;x.*y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x406-2375014r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z=eval3d(f,x,y)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x406-2375016r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d(x,y,z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x406-2375018r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x406-2375020r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[z]=f(x,y)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z=</span><span 
+class="cmtt-10x-x-109">&#x00A0;x*y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x406-2375022r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z=feval(x,y,f)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x406-2375024r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d(x,y,z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x406-2376000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli968.html#feval">feval</a>
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x406-2377000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Steer S.; ; ;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli406.html" >next</a>] [<a 
+href="manualli404.html" >prev</a>] [<a 
+href="manualli404.html#tailmanualli404.html" >prev-tail</a>] [<a 
+href="manualli405.html" >front</a>] [<a 
+href="manualli370.html#manualli405.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli405.html"></a>  </p> 
+</body></html> 

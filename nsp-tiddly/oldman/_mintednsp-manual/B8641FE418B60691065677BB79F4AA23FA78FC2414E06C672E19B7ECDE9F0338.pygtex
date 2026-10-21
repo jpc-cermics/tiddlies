@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+y1=[\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{;}\nspnumber{3}]\nspoperator{;}deff(\nspstring{"yp=a_function(k,y)"},\nspstring{"yp=A*y+B*u(k)"})
+A=diag([\nspnumber{0.2}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.9}])\nspoperator{;}B=[\nspnumber{1}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}u=\nspnumber{1}\nspoperator{:}\nspnumber{10}\nspoperator{;}n=\nspnumber{5}\nspoperator{;}
+y=ode(\nspstring{"discrete"},y1,\nspnumber{1},\nspnumber{1}\nspoperator{:}n,a_function)\nspoperator{;}
+y(\nspoperator{:},\nspnumber{2})\nspoperator{-}(A\nspoperator{*}y1\nspoperator{+}B\nspoperator{*}u(\nspnumber{1}))
+\nspcomment{// Now y evaluates  at [y3,y5,y7,y9]}
+y=ode(\nspstring{"discrete"},y1,\nspnumber{1},\nspnumber{3}\nspoperator{:}\nspnumber{2}\nspoperator{:}\nspnumber{9},a_function)
+\end{Verbatim}

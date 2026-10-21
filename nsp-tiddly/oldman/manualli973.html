@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>funptr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli974.html" >next</a>] [<a 
+href="manualli972.html" >prev</a>] [<a 
+href="manualli972.html#tailmanualli972.html" >prev-tail</a>] [<a 
+href="#tailmanualli973.html">tail</a>] [<a 
+href="manualli931.html#manualli973.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x974-5586000"></a>funptr</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx974-5586001"></a><a 
+ id="funptr"></a><span 
+class="cmtt-10x-x-109">funptr </span>&#x2013;                                                           coding of primitives ( wizard stuff ) <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x974-5587000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1090">
+&#x00A0;&#x00A0;[numptr]&#x00A0;=&#x00A0;funptr(name)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x974-5588000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">name</span>: a string, the name of a primitive
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">numptr</span>: the internal routine number of the primitive</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x974-5589000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > Utility function (for experts only) to get the internal routine number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numptr</span></span></span> of the primitive
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;name&#x0027;</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numptr</span></span></span> is formed from the interface number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> and the routine number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fin</span></span></span> of
+the primitive in its interface by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numptr</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;100*fun</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;fin</span></span></span> (fin <span 
+class="cmmi-10x-x-109">&#x003C; </span>100). From <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numptr</span></span></span>
+you can get the interface number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;floor(numptr/100)</span></span></span> which may be useful to
+link a dynamical interface with arguments passed by reference (see example section).
+</p>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x974-5590000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb674"><a 
+ id="x974-5590018r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Suppose</span><span 
+class="cmitt-10x-x-109">&#x00A0;you</span><span 
+class="cmitt-10x-x-109">&#x00A0;want</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;load</span><span 
+class="cmitt-10x-x-109">&#x00A0;some</span><span 
+class="cmitt-10x-x-109">&#x00A0;codes</span><span 
+class="cmitt-10x-x-109">&#x00A0;via</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;dynamic</span></span>
+<br class="fancyvrb" /><a 
+ id="x974-5590020r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;loading</span><span 
+class="cmitt-10x-x-109">&#x00A0;facilities</span><span 
+class="cmitt-10x-x-109">&#x00A0;offers</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;addinter.</span><span 
+class="cmitt-10x-x-109">&#x00A0;By</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span></span>
+<br class="fancyvrb" /><a 
+ id="x974-5590022r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;arguments</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;passed</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span><span 
+class="cmitt-10x-x-109">&#x00A0;but</span><span 
+class="cmitt-10x-x-109">&#x00A0;if</span><span 
+class="cmitt-10x-x-109">&#x00A0;you</span><span 
+class="cmitt-10x-x-109">&#x00A0;want</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span></span><br class="fancyvrb" /><a 
+ id="x974-5590024r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;pass</span><span 
+class="cmitt-10x-x-109">&#x00A0;them</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;reference</span><span 
+class="cmitt-10x-x-109">&#x00A0;you</span><span 
+class="cmitt-10x-x-109">&#x00A0;can</span><span 
+class="cmitt-10x-x-109">&#x00A0;do</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;following</span></span>
+<br class="fancyvrb" /><a 
+ id="x974-5590026r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;(name</span><span 
+class="cmitt-10x-x-109">&#x00A0;being</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab</span><span 
+class="cmitt-10x-x-109">&#x00A0;name</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;one</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;interfaced</span></span><br class="fancyvrb" /><a 
+ id="x974-5590028r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;routines):</span></span><br class="fancyvrb" /><a 
+ id="x974-5590030r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span>
+<br class="fancyvrb" /><a 
+ id="x974-5590032r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;addinter(files,spnames,fcts)</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;//</span><span 
+class="cmitt-10x-x-109">&#x00A0;args</span><span 
+class="cmitt-10x-x-109">&#x00A0;passed</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span></span><br class="fancyvrb" /><a 
+ id="x974-5590034r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;num_interface</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;floor(funptr(name)/100)</span></span>
+<br class="fancyvrb" /><a 
+ id="x974-5590036r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;intppty(num_interface)</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;//</span><span 
+class="cmitt-10x-x-109">&#x00A0;args</span><span 
+class="cmitt-10x-x-109">&#x00A0;now</span><span 
+class="cmitt-10x-x-109">&#x00A0;passed</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;reference</span></span><br class="fancyvrb" /><a 
+ id="x974-5590038r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x974-5590040r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Note</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span><span 
+class="cmitt-10x-x-109">&#x00A0;if</span><span 
+class="cmitt-10x-x-109">&#x00A0;you</span><span 
+class="cmitt-10x-x-109">&#x00A0;enter</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;following</span></span>
+<br class="fancyvrb" /><a 
+ id="x974-5590042r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x974-5590044r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;intppty()</span></span><br class="fancyvrb" /><a 
+ id="x974-5590046r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x974-5590048r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;you</span><span 
+class="cmitt-10x-x-109">&#x00A0;will</span><span 
+class="cmitt-10x-x-109">&#x00A0;see</span><span 
+class="cmitt-10x-x-109">&#x00A0;all</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;interfaces</span><span 
+class="cmitt-10x-x-109">&#x00A0;working</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;reference</span></span></div>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x974-5591000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli344.html#clearfun">clearfun</a>    <a 
+href="manualli363.html#newfun">newfun</a>    <a 
+href="manualli990.html#intppty">intppty</a>    <a 
+href="manualli342.html#addinter">addinter</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli974.html" >next</a>] [<a 
+href="manualli972.html" >prev</a>] [<a 
+href="manualli972.html#tailmanualli972.html" >prev-tail</a>] [<a 
+href="manualli973.html" >front</a>] [<a 
+href="manualli931.html#manualli973.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli973.html"></a>  </p> 
+</body></html> 

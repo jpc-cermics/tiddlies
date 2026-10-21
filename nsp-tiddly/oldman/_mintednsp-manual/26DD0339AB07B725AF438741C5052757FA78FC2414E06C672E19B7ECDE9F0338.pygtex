@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure}
+a=get(\nspstring{"current_axes"})\nspoperator{,}\nspcomment{//get the handle of the newly created axes}
+a.data_bounds=[\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{;}\nspnumber{2}\nspoperator{,}\nspnumber{2}]\nspoperator{;}
+xpoly(sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}(\nspnumber{0}\nspoperator{:}\nspnumber{5})\nspoperator{/}\nspnumber{5}),cos(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}(\nspnumber{0}\nspoperator{:}\nspnumber{5})\nspoperator{/}\nspnumber{5}),\nspstring{"lines"},\nspnumber{0})
+p=get(\nspstring{"hdl"})\nspoperator{;}\nspcomment{//get handle on current entity (here the polyline entity)}
+p.foreground=\nspnumber{2}\nspoperator{;}
+p.thickness=\nspnumber{3}\nspoperator{;}
+p.mark_style=\nspnumber{9}\nspoperator{;}
+d=p.data\nspoperator{;}d(\nspnumber{1},\nspoperator{:})=[\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}p.data=d\nspoperator{;}
+a.rotation_angles=[\nspnumber{0}\nspoperator{,}\nspnumber{45}]\nspoperator{;}
+p.data=[(\nspoperator{-}\nspnumber{2}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2})\nspoperator{'}\nspoperator{,}sin((\nspoperator{-}\nspnumber{2}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2})\nspoperator{*}%pi)\nspoperator{'}]
+p.mark_mode=\nspstring{"off"}\nspoperator{;}
+p.polyline_style=\nspnumber{3}\nspoperator{;}
+p.line_style=\nspnumber{4}\nspoperator{;}
+\end{Verbatim}

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>feedback</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli39.html" >next</a>] [<a 
+href="manualli37.html" >prev</a>] [<a 
+href="manualli37.html#tailmanualli37.html" >prev-tail</a>] [<a 
+href="#tailmanualli38.html">tail</a>] [<a 
+href="manualli12.html#manualli38.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x39-208000"></a>feedback</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx39-208001"></a><a 
+ id="feedback"></a><span 
+class="cmtt-10x-x-109">feedback </span>&#x2013;                                                                              feedback operation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x39-209000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-60">
+&#x00A0;&#x00A0;Sl=Sl1/.Sl2
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x39-210000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl1,Sl2</span>: linear systems (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list) in state-space or transfer form, or ordinary gain
+     matrices.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl</span>: linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list) in state-space or transfer form</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x39-211000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > The feedback operation is denoted by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;/.</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> (slashdot). This command returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl=Sl1*(I+Sl2*Sl1)^-1</span></span></span>,
+i.e the (negative) feedback of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl2</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> is the transfer <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;v</span><span 
+class="cmtt-10x-x-109">&#x00A0;-$&#x003E;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;y</span></span></span> for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;y</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sl1</span><span 
+class="cmtt-10x-x-109">&#x00A0;u</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;v</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sl2</span><span 
+class="cmtt-10x-x-109">&#x00A0;y</span></span></span>. The result is the same as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl=LFT([0,I;I,-Sl2],Sl1)</span></span></span>. Caution: do not use with
+decimal point (e.g. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1/.1</span></span></span> is ambiguous!)
+</p>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x39-212000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb27"><a 
+ id="x39-212014r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">S2=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x39-212016r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;W=S1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/.</span></span><span 
+class="cmtt-10x-x-109">S2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x39-212018r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(S1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/.</span></span><span 
+class="cmtt-10x-x-109">S2)</span><br class="fancyvrb" /><a 
+ id="x39-212020r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Same</span><span 
+class="cmitt-10x-x-109">&#x00A0;operation</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;LFT:</span></span>
+<br class="fancyvrb" /><a 
+ id="x39-212022r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(lft([zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">eye(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">eye(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">S2],S1))</span><br class="fancyvrb" /><a 
+ id="x39-212024r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Other</span><span 
+class="cmitt-10x-x-109">&#x00A0;approach:</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;constant</span><span 
+class="cmitt-10x-x-109">&#x00A0;feedback</span></span>
+<br class="fancyvrb" /><a 
+ id="x39-212026r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;BigS=sysdiag(S1,S2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">F=[zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">eye(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">eye(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x39-212028r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Bigclosed=BigS</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/.</span></span><span 
+class="cmtt-10x-x-109">F</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x39-212030r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;W1=Bigclosed(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//W1=W</span><span 
+class="cmitt-10x-x-109">&#x00A0;(in</span><span 
+class="cmitt-10x-x-109">&#x00A0;state-space).</span></span><br class="fancyvrb" /><a 
+ id="x39-212032r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(W1)</span><br class="fancyvrb" /><a 
+ id="x39-212034r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Inverting</span></span><br class="fancyvrb" /><a 
+ id="x39-212036r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(S1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">inv(eye()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">S2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">S1))</span></div>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x39-213000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1116.html#lft">lft</a>    <a 
+href="manualli257.html#sysdiag">sysdiag</a>    <a 
+href="manualli1090.html#augment">augment</a>    <a 
+href="manualli59.html#obscont">obscont</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli39.html" >next</a>] [<a 
+href="manualli37.html" >prev</a>] [<a 
+href="manualli37.html#tailmanualli37.html" >prev-tail</a>] [<a 
+href="manualli38.html" >front</a>] [<a 
+href="manualli12.html#manualli38.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli38.html"></a>  </p> 
+</body></html> 

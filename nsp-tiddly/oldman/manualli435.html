@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>graphics_entities</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli436.html" >next</a>] [<a 
+href="manualli434.html" >prev</a>] [<a 
+href="manualli434.html#tailmanualli434.html" >prev-tail</a>] [<a 
+href="#tailmanualli435.html">tail</a>] [<a 
+href="manualli370.html#manualli435.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x436-2560000"></a>graphics_entities</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx436-2560001"></a><a 
+ id="graphics_entities"></a><span 
+class="cmtt-10x-x-109">graphics</span><span 
+class="cmtt-10x-x-109">_entities </span>&#x2013;                       description of the graphics entities data structures<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x436-2561000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Scilab graphics is based on two differents modes. In the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;old&#x0022;</span></span></span> mode, the graphics functions
+are stored to enable redisplay, zoom and rotations. In the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;new&#x0022;</span></span></span> mode, each graphics
+window and the drawing it contains are represented by hierchical entities. The hierachy
+top level is the Figure. Each Figure defines at least one child of type Axes. Each Axes
+entity contains a set of leaf entities which are the basic graphics objects like Polylines,
+Rectangles, Arcs, Segs,... It can also contain an Agregation type which are recursive sets of
+entities. The main interest of the new graphic mode is to make property change easier.
+This new graphics&apos;mode provides a set of high-level graphing routines (see <a 
+href="manualli500.html#set">set</a>    , <a 
+href="manualli431.html#get">get</a>
+) used to control objects&apos; properties such as data, coordinates and scaling, color and
+appearences without requiring to replay the initial graphics commands.Graphics entities are
+associated to Scilab variables of type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">handle</span></span></span>. The handle is a unique identifier which
+is associated to each instance of a created graphical entity. Using this handle, it will
+be possible to reach entities&apos; properties through &#x201D;set&#x201D; and &#x201D;get&#x201D; routines. The handles
+are also used to manipulate graphics objects, to move them, to make copies or delete
+them.To set the current graphics window mode we can use these following instructions:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">set(&#x0022;figure_style&#x0022;,&#x0022;new&#x0022;)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> to have a graphics window under the &#x201D;new&#x201D; mode or
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">set(&#x0022;figure_style&#x0022;,&#x0022;old</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;)</span></span></span> for the &#x201D;old&#x201D; mode.The instructions <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">set(&#x0022;old_style&#x0022;,&#x0022;off&#x0022;)</span></span></span> and
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">set(&#x0022;old_style&#x0022;,&#x0022;on&#x0022;)</span></span></span> are used to set the default mode to be used when a new graphics window
+is created.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Figure:</span>  </span>The figure entity is the top level of the graphics entities hierarchy. This entity defines the
+     parameters for the figure itself as well as the parameters&apos; default values for the children
+     creation. The figure children are the Axes entities.The handle on the current figure (the figure
+     used where the drawing are sent) may be got using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">get(&#x0022;current_figure&#x0022;)</span></span></span> and it may be
+     set using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">set(&#x0022;current_figure&#x0022;,h)</span></span></span>, where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">h</span></span></span> is either a handle on a figure or a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">figure_id</span></span></span> in
+     this last case if the figure does not already exists , it is createdSee <a 
+href="#figure-properties">figure_properties</a>    for
+     details.
+                                                                                    
+
+                                                                                    
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Axes:</span>  </span>The Axes entity is the second level of the graphics entities hierarchy. This entity defines the
+     parameters for the change of coordinates and the axes drawing as well as the parameters&apos;
+     default values for its children creation. See <a 
+href="#axes-properties">axes_properties</a>    for details. The handle on the
+     current Axes may be got using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">get(&#x0022;current_axes&#x0022;)</span></span></span>.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Agregation:</span>  </span>The agregation entity is just a vector of children and with a single property
+     (visibility property). It is used to glue a set of entities together.See <a 
+href="manualli433.html#glue">glue</a>    , <a 
+href="manualli513.html#unglue">unglue</a>    and
+     <a 
+href="#agregation-properties">agregation_properties</a>    functions.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Axis:</span>  </span>The Axis entity is a leaf of the graphics entities hierarchy. This entity defines the
+     parameters for axis scaling and appearance.See <a 
+href="#axis-properties">axis_properties</a>    for details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Polyline:</span>  </span>The polyline entity is a leaf of the graphics entities hierarchy. It defines 2D and 3D
+     polylines and polylines extensions drawing properties.See <a 
+href="#polyline-properties">polyline_properties</a>    for
+     details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Arc:</span>  </span>The Arc entity is a leaf of the graphics entities hierarchy. This entity defines the parameters
+     for ellipses and part of ellipses.See <a 
+href="#arc-properties">arc_properties</a>    for details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Rectangle:</span>  </span>The Rectangle entity is a leaf of the graphics entities hierarchy. This entity defines
+     the parameters for rectangles and filled rectangles.See <a 
+href="#rectangle-properties">rectangle_properties</a>    for
+     details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Surface:</span>  </span>The Surface entity is a leaf of the graphics entities hierarchy. It has sub types <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Fac3d</span></span></span> or
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Plot3d</span></span></span>. This entity defines the parameters for 3d surface plots.See <a 
+href="#surface-properties">surface_properties</a>    for
+     details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Fec:</span>  </span>The Fec entity is a leaf of the graphics entities hierarchy. It represents 2D finite elements
+     plots .See <a 
+href="#fec-properties">fec_properties</a>    for details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Grayplot:</span>  </span>The Grayplot entity is a leaf of the graphics entities hierarchy. It represents 2D plots of
+     surface using colors and images.See <a 
+href="#grayplot-properties">grayplot_properties</a>    for details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Segs:</span>  </span>The Segs entity is a leaf of the graphics entities hierarchy. This entity defines the
+     parameters for a set of colored segments or colored arrows.See <a 
+href="#segs-properties">segs_properties</a>    for
+     details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Champ:</span>  </span>The Champ entity is a leaf of the graphics entities hierarchy. This entity defines the
+     parameters for a 2D vector field.See <a 
+href="#champ-properties">champ_properties</a>    for details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Text:</span>  </span>The Text entity is a leaf of the graphics entities hierarchy. This entity defines the
+     parameters for string drawing.See <a 
+href="#text-properties">text_properties</a>    for details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Title:</span>  </span>The Title entity is a child of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Axes</span></span></span> graphics entity. This entity defines the parameters for
+     a title drawn on a graphics window.See <a 
+href="#title-properties">title_properties</a>    for details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Labels:</span>  </span>The Labels entity are children of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Axes</span></span></span> graphics entity. This entity defines the
+     parameters for the 3 x,y and z labels drawn on a graphics window.See <a 
+href="#label-properties">label_properties</a>    for
+     details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Legend:</span>  </span>The Legend entity is a leaf of the graphics entities hierarchy. This entity defines the
+     parameters for legends drawn below <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot2dx</span></span></span> graphs. This entity requires further
+     developments.See <a 
+href="#legend-properties">legend_properties</a>    for details.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     </ul>
+</p>
+<!--l. 151--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x436-2562000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb337"><a 
+ id="x436-2562024r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Play</span><span 
+class="cmitt-10x-x-109">&#x00A0;this</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;line</span><span 
+class="cmitt-10x-x-109">&#x00A0;per</span><span 
+class="cmitt-10x-x-109">&#x00A0;line</span></span><br class="fancyvrb" /><a 
+ id="x436-2562026r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;figure_style&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;new&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;entity</span><span 
+class="cmitt-10x-x-109">&#x00A0;mode</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562028r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Figure</span><span 
+class="cmitt-10x-x-109">&#x00A0;entity</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;display</span><span 
+class="cmitt-10x-x-109">&#x00A0;its</span><span 
+class="cmitt-10x-x-109">&#x00A0;properties</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562030r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=get(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;current_figure&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x436-2562032r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=f.children</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;child</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562034r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(x,[x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.5</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x436-2562036r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e=a.children</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Agregation</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;polylines</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562038r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p1=e.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;last</span><span 
+class="cmitt-10x-x-109">&#x00A0;drawn</span><span 
+class="cmitt-10x-x-109">&#x00A0;polyline</span><span 
+class="cmitt-10x-x-109">&#x00A0;properties</span></span><br class="fancyvrb" /><a 
+ id="x436-2562040r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p1.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;change</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;polyline</span><span 
+class="cmitt-10x-x-109">&#x00A0;color</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562042r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.children.thickness=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;change</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;thickness</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;two</span><span 
+class="cmitt-10x-x-109">&#x00A0;polylines</span></span><br class="fancyvrb" /><a 
+ id="x436-2562044r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;delete(e.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x436-2562046r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;move(e.children,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">30</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//translate</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;polyline</span></span><br class="fancyvrb" /><a 
+ id="x436-2562048r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.axes_bounds=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562050r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">222</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;new</span><span 
+class="cmitt-10x-x-109">&#x00A0;Axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;entity</span></span><br class="fancyvrb" /><a 
+ id="x436-2562052r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x436-2562054r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a1=f.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;its</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562056r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;copy(e.children,a1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//copy</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;polyline</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;new</span><span 
+class="cmitt-10x-x-109">&#x00A0;Axes</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562058r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a1.data_bounds=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//change</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;bounds</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562060r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;current_figure&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;new</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure_id=10</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562062r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;drawing</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;sent</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span><span 
+class="cmitt-10x-x-109">&#x00A0;10</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562064r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;current_figure&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,f)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//make</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;previous</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;current</span><span 
+class="cmitt-10x-x-109">&#x00A0;one</span></span>
+<br class="fancyvrb" /><a 
+ id="x436-2562066r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(x,x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;drawing</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;sent</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;initial</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span></span></div>
+<!--l. 178--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x436-2563000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli500.html#set">set</a>    <a 
+href="manualli431.html#get">get</a>    <a 
+href="manualli458.html#move">move</a>    <a 
+href="manualli400.html#draw">draw</a>    <a 
+href="manualli395.html#delete">delete</a>    <a 
+href="#object-editor">object_editor</a>    <a 
+href="manualli480.html#plot">plot</a>    <a 
+href="manualli508.html#surf">surf</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli436.html" >next</a>] [<a 
+href="manualli434.html" >prev</a>] [<a 
+href="manualli434.html#tailmanualli434.html" >prev-tail</a>] [<a 
+href="manualli435.html" >front</a>] [<a 
+href="manualli370.html#manualli435.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli435.html"></a>  </p> 
+</body></html> 

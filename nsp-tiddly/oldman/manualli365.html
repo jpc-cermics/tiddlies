@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>profile</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli366.html" >next</a>] [<a 
+href="manualli364.html" >prev</a>] [<a 
+href="manualli364.html#tailmanualli364.html" >prev-tail</a>] [<a 
+href="#tailmanualli365.html">tail</a>] [<a 
+href="manualli341.html#manualli365.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x366-2147000"></a>profile</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx366-2147001"></a><a 
+ id="profile"></a><span 
+class="cmtt-10x-x-109">profile </span>&#x2013;                                             extract execution profiles of a Scilab function<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x366-2148000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-499">
+&#x00A0;&#x00A0;c=profile(fun)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x366-2149000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fun</span>: a Scilab function
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">c</span>: a nx3 matrix containig the execution profiles</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x366-2150000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > To use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">profile</span></span></span> the Scilab function must have been prepared for profiling (see getf). For such
+function, When such a function is executed the systems counts how many time each line is executed
+and how may cpu time is spend for each line execution. These data are stored within the function
+data structure. The profile function allows to extract these data and return them in the two first
+columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">c</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">c</span></span></span> third column gives a measure of interpetor effort for one execution of
+corresponding line. Ith line of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">c</span></span></span> corresponds to Ith line of the function (included first) Note that,
+due to the precision of the processor clock (typically one micro second), some executed lignes may
+appear with 0 cpu time even if total cpu time really spend in their execution is large.
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x366-2151000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb280"><a 
+ id="x366-2151019r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//define</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;prepare</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;profiling</span></span><br class="fancyvrb" /><a 
+ id="x366-2151021r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x=foo(n)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span>
+<br class="fancyvrb" /><a 
+ id="x366-2151023r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;n==0</span><span 
+class="cmtt-10x-x-109">&#x00A0;then&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=[]&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;else&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=0&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;for</span><span 
+class="cmtt-10x-x-109">&#x00A0;k=1:n&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=svd(rand(n+10,n+10))&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x366-2151025r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=x+s(1)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;end&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;end&#x0027;</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;p&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x366-2151027r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//call</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span></span><br class="fancyvrb" /><a 
+ id="x366-2151029r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;foo(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x366-2151031r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;execution</span><span 
+class="cmitt-10x-x-109">&#x00A0;profiles</span></span>
+<br class="fancyvrb" /><a 
+ id="x366-2151033r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;profile(foo)</span><br class="fancyvrb" /><a 
+ id="x366-2151035r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//call</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span></span><br class="fancyvrb" /><a 
+ id="x366-2151037r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;foo(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x366-2151039r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;profile(foo)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//execution</span><span 
+class="cmitt-10x-x-109">&#x00A0;profiles</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;cumulated</span></span></div>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x366-2152000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli355.html#getf">getf</a>    <a 
+href="manualli346.html#deff">deff</a>    <a 
+href="manualli364.html#plotprofile">plotprofile</a>    <a 
+href="manualli367.html#showprofile">showprofile</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli366.html" >next</a>] [<a 
+href="manualli364.html" >prev</a>] [<a 
+href="manualli364.html#tailmanualli364.html" >prev-tail</a>] [<a 
+href="manualli365.html" >front</a>] [<a 
+href="manualli341.html#manualli365.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli365.html"></a>  </p> 
+</body></html> 

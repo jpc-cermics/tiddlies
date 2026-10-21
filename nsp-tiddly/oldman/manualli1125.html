@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ric_desc</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1126.html" >next</a>] [<a 
+href="manualli1124.html" >prev</a>] [<a 
+href="manualli1124.html#tailmanualli1124.html" >prev-tail</a>] [<a 
+href="#tailmanualli1125.html">tail</a>] [<a 
+href="manualli1089.html#manualli1125.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1126-6366000"></a>ric_desc</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1126-6366001"></a><a 
+ id="ric_desc"></a><span 
+class="cmtt-10x-x-109">ric</span><span 
+class="cmtt-10x-x-109">_desc </span>&#x2013;                                                                                  Riccati equation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1126-6367000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1265">
+&#x00A0;&#x00A0;X=ric_desc(H&#x00A0;[,E))
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;[X1,X2,zero]=ric_desc(H&#x00A0;[,E])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1126-6368000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">H,E</span>: real square matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X1,X2</span>: real square matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">zero</span>: real number</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1126-6369000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Riccati solver with hamiltonian matrices as inputs. In the continuous time case calling sequence is
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ric_descr(H)</span></span></span> (one input): Riccati equation is:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1266">
+&#x00A0;&#x00A0;(Ec)&#x00A0;&#x00A0;&#x00A0;A&#x0027;*X&#x00A0;+&#x00A0;X*A&#x00A0;+&#x00A0;X*R*X&#x00A0;-Q&#x00A0;=&#x00A0;0.
+</div>
+<!--l. 42--><p class="nopar" >Defining the hamiltonian matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H</span></span></span> by:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1267">
+&#x00A0;&#x00A0;H&#x00A0;=&#x00A0;[A&#x00A0;&#x00A0;R;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;Q&#x00A0;-A&#x0027;]
+</div>
+<!--l. 47--><p class="nopar" >with the calling sequence <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[X1,X2,zero]=ric_descr(H)</span></span></span>, the solution <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X=X1/X2</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zero</span></span></span> =
+L1 norm of rhs of (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ec</span></span></span>) The solution <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is also given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X=riccati(A,Q,R,&#x0027;c&#x0027;))</span></span></span> In the
+discrete-time case calling sequence is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ric_descr(H,E)</span></span></span> (two inputs): The Riccati equation
+is:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1268">
+&#x00A0;&#x00A0;(Ed)&#x00A0;&#x00A0;A&#x0027;*X*A-(A&#x0027;*X*B*(R+B&#x0027;*X*B)^-1)*(B&#x0027;*X*A)+C-X&#x00A0;=&#x00A0;0.
+</div>
+<!--l. 55--><p class="nopar" >Defining <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G=B/R*B&#x0027;</span></span></span> and the hamiltonian pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(E,H)</span></span></span> by:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1269">
+&#x00A0;&#x00A0;E=[eye(n,n),G;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;H=[A,&#x00A0;0*ones(n,n);
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;0*ones(n,n),A&#x0027;]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;-C,&#x00A0;eye(n,n)];
+</div>
+<!--l. 60--><p class="nopar" >with the calling sequence <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[X1,X2,err]=ric_descr(H,E)</span></span></span>, the solution <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X=X1/X2</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zero</span></span></span>=
+L1 norm of rhs of (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ed</span></span></span>) The solution <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is also given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X=riccati(A,G,C,&#x0027;d&#x0027;)</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G=B/R*B&#x0027;</span></span></span>
+</p>
+<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1126-6370000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1124.html#riccati">riccati</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1126.html" >next</a>] [<a 
+href="manualli1124.html" >prev</a>] [<a 
+href="manualli1124.html#tailmanualli1124.html" >prev-tail</a>] [<a 
+href="manualli1125.html" >front</a>] [<a 
+href="manualli1089.html#manualli1125.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1125.html"></a>  </p> 
+</body></html> 

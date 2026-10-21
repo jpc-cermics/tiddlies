@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ilib_for_link</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1363.html" >next</a>] [<a 
+href="manualli1361.html" >prev</a>] [<a 
+href="manualli1361.html#tailmanualli1361.html" >prev-tail</a>] [<a 
+href="#tailmanualli1362.html">tail</a>] [<a 
+href="manualli1327.html#manualli1362.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1363-7710000"></a>ilib_for_link</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1363-7710001"></a><a 
+ id="ilib_for_link"></a><span 
+class="cmtt-10x-x-109">ilib</span><span 
+class="cmtt-10x-x-109">_for</span><span 
+class="cmtt-10x-x-109">_link </span>&#x2013;                                 utility for shared library management with link<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1363-7711000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1533">
+&#x00A0;&#x00A0;libn=ilib_for_link(names,files,libs,flag,makename,loadername])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1363-7712000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">names</span>: a string matrix giving the entry names which are to be linked.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">files</span>: string matrix giving objects files needed for shared library creation
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">libs</span>: string matrix giving extra libraries needed for shred library creation
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: a string flag (&#x201D;c&#x201D; or &#x201D;f&#x201D;) for C or Fortran entry points.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">makename</span>: character string. The pathname of the Makefile file without extension (default
+     value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Makelib</span></span></span>).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">loadername</span>:  character  string.  The  pathname  of  the  loader  file  (default  value
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">loader.sce</span></span></span>).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">libn</span>: character string. The path of the really generated shared library file.</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1363-7713000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > This tool is used to create shared libraries and to generate a loader file which can be used to
+dynamically load the shared library into Scilab with the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span> function. New entry points given by
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">names</span></span></span> are then accessible through the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">call</span></span></span> function or with non linear tools <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span>,... The file
+to compile are supposed to be located given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">makename</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">makename</span></span></span> sets a path different to
+the current directory, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">loader</span></span></span> script must be located in the same directory using the
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">loadername</span></span></span> variable. Many examples are provided in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">examples/link-examples-so</span></span></span> directory.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1363-7714000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb888"><a 
+ id="x1363-7714018r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f1=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;ext1c(n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;a,</span><span 
+class="cmtt-10x-x-109">&#x00A0;b,</span><span 
+class="cmtt-10x-x-109">&#x00A0;c)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*n;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*a,</span><span 
+class="cmtt-10x-x-109">&#x00A0;*b,</span><span 
+class="cmtt-10x-x-109">&#x00A0;*c;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;{int</span><span 
+class="cmtt-10x-x-109">&#x00A0;k;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1363-7714020r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;for</span><span 
+class="cmtt-10x-x-109">&#x00A0;(k</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x0026;lt;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;*n;</span><span 
+class="cmtt-10x-x-109">&#x00A0;++k)</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;c[k]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;a[k]</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;b[k];&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;return(0);}&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1363-7714022r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(f1,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;fun1.c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1363-7714024r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//creating</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;shared</span><span 
+class="cmitt-10x-x-109">&#x00A0;library</span><span 
+class="cmitt-10x-x-109">&#x00A0;(a</span><span 
+class="cmitt-10x-x-109">&#x00A0;gateway,</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;Makefile</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;loader</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span></span>
+<br class="fancyvrb" /><a 
+ id="x1363-7714026r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//generated.</span></span><br class="fancyvrb" /><a 
+ id="x1363-7714028r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ilib_for_link(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ext1c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;fun1.o&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;c&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1363-7714030r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;load</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;shared</span><span 
+class="cmitt-10x-x-109">&#x00A0;library</span></span>
+<br class="fancyvrb" /><a 
+ id="x1363-7714032r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">exec</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;loader.sce</span><br class="fancyvrb" /><a 
+ id="x1363-7714034r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//using</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;new</span><span 
+class="cmitt-10x-x-109">&#x00A0;primitive</span></span><br class="fancyvrb" /><a 
+ id="x1363-7714036r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">b=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1363-7714038r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;c=call(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ext1c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,n,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;i&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,a,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,b,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;out&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1363-7714040r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">(a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">b))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">%eps</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">pause</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span></div>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1363-7715000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli342.html#addinter">addinter</a>    <a 
+href="manualli1368.html#link">link</a>    <a 
+href="#ilib-compile">ilib_compile</a>    <a 
+href="#ilib-gen-Make">ilib_gen_Make</a>    <a 
+href="#ilib-gen-gateway">ilib_gen_gateway</a>    <a 
+href="#ilib-gen-loader">ilib_gen_loader</a>
+<a 
+href="#ilib-for-link">ilib_for_link</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1363.html" >next</a>] [<a 
+href="manualli1361.html" >prev</a>] [<a 
+href="manualli1361.html#tailmanualli1361.html" >prev-tail</a>] [<a 
+href="manualli1362.html" >front</a>] [<a 
+href="manualli1327.html#manualli1362.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1362.html"></a>  </p> 
+</body></html> 

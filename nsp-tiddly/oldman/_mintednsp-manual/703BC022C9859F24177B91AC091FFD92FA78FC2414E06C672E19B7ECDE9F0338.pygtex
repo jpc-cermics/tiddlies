@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+S1=ssrand(\nspnumber{2},\nspnumber{2},\nspnumber{3})\nspoperator{;}S2=ssrand(\nspnumber{2},\nspnumber{2},\nspnumber{2})\nspoperator{;}
+W=S1\nspoperator{/.}S2\nspoperator{;}
+ss2tf(S1\nspoperator{/.}S2)
+\nspcomment{//Same operation by LFT:}
+ss2tf(lft([zeros(\nspnumber{2},\nspnumber{2})\nspoperator{,}eye(\nspnumber{2},\nspnumber{2})\nspoperator{;}eye(\nspnumber{2},\nspnumber{2})\nspoperator{,}\nspoperator{-}S2],S1))
+\nspcomment{//Other approach: with constant feedback}
+BigS=sysdiag(S1,S2)\nspoperator{;}F=[zeros(\nspnumber{2},\nspnumber{2})\nspoperator{,}eye(\nspnumber{2},\nspnumber{2})\nspoperator{;}\nspoperator{-}eye(\nspnumber{2},\nspnumber{2})\nspoperator{,}zeros(\nspnumber{2},\nspnumber{2})]\nspoperator{;}
+Bigclosed=BigS\nspoperator{/.}F\nspoperator{;}
+W1=Bigclosed(\nspnumber{1}\nspoperator{:}\nspnumber{2},\nspnumber{1}\nspoperator{:}\nspnumber{2})\nspoperator{;}\nspcomment{//W1=W (in state-space).}
+ss2tf(W1)
+\nspcomment{//Inverting}
+ss2tf(S1\nspoperator{*}inv(eye()\nspoperator{+}S2\nspoperator{*}S1))
+\end{Verbatim}

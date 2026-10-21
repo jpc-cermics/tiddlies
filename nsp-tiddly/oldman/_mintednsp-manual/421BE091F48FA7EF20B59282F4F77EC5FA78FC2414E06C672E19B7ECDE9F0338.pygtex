@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Standard formulas to compute Riccati solutions}
+A=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}B=rand(\nspnumber{3},\nspnumber{2})\nspoperator{;}C=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}C=C\nspoperator{*}C\nspoperator{'}\nspoperator{;}R=rand(\nspnumber{2},\nspnumber{2})\nspoperator{;}R=R\nspoperator{*}R\nspoperator{'}\nspoperator{+}eye()\nspoperator{;}
+B=B\nspoperator{*}inv(R)\nspoperator{*}B\nspoperator{'}\nspoperator{;}
+X=ricc(A,B,C,\nspstring{'cont'})\nspoperator{;}
+norm(A\nspoperator{'}\nspoperator{*}X\nspoperator{+}X\nspoperator{*}A\nspoperator{-}X\nspoperator{*}B\nspoperator{*}X\nspoperator{+}C,\nspnumber{1})
+H=[A\nspoperator{,}\nspoperator{-}B\nspoperator{;}\nspoperator{-}C\nspoperator{,}\nspoperator{-}A\nspoperator{'}]\nspoperator{;}
+[T,d]=schur(eye(H),H,\nspstring{'cont'})\nspoperator{;}T=T(\nspoperator{:},\nspnumber{1}\nspoperator{:}d)\nspoperator{;}
+X1=T(\nspnumber{4}\nspoperator{:}\nspnumber{6},\nspoperator{:})\nspoperator{/}T(\nspnumber{1}\nspoperator{:}\nspnumber{3},\nspoperator{:})\nspoperator{;}
+norm(X1\nspoperator{-}X,\nspnumber{1})
+[T,d]=schur(H,\nspstring{'cont'})\nspoperator{;}T=T(\nspoperator{:},\nspnumber{1}\nspoperator{:}d)\nspoperator{;}
+X2=T(\nspnumber{4}\nspoperator{:}\nspnumber{6},\nspoperator{:})\nspoperator{/}T(\nspnumber{1}\nspoperator{:}\nspnumber{3},\nspoperator{:})\nspoperator{;}
+norm(X2\nspoperator{-}X,\nspnumber{1})
+\nspcomment{//       Discrete time case}
+F=A\nspoperator{;}B=rand(\nspnumber{3},\nspnumber{2})\nspoperator{;}G1=B\nspoperator{;}G2=R\nspoperator{;}G=G1\nspoperator{/}G2\nspoperator{*}G1\nspoperator{'}\nspoperator{;}H=C\nspoperator{;}
+X=ricc(F,G,H,\nspstring{'disc'})\nspoperator{;}
+norm(F\nspoperator{'}\nspoperator{*}X\nspoperator{*}F\nspoperator{-}(F\nspoperator{'}\nspoperator{*}X\nspoperator{*}G1\nspoperator{/}(G2\nspoperator{+}G1\nspoperator{'}\nspoperator{*}X\nspoperator{*}G1))\nspoperator{*}(G1\nspoperator{'}\nspoperator{*}X\nspoperator{*}F)\nspoperator{+}H\nspoperator{-}X)
+H1=[eye(\nspnumber{3},\nspnumber{3})\nspoperator{,}G\nspoperator{;}zeros(\nspnumber{3},\nspnumber{3})\nspoperator{,}F\nspoperator{'}]\nspoperator{;}
+H2=[F\nspoperator{,}zeros(\nspnumber{3},\nspnumber{3})\nspoperator{;}\nspoperator{-}H\nspoperator{,}eye(\nspnumber{3},\nspnumber{3})]\nspoperator{;}
+[T,d]=schur(H2,H1,\nspstring{'disc'})\nspoperator{;}T=T(\nspoperator{:},\nspnumber{1}\nspoperator{:}d)\nspoperator{;}X1=T(\nspnumber{4}\nspoperator{:}\nspnumber{6},\nspoperator{:})\nspoperator{/}T(\nspnumber{1}\nspoperator{:}\nspnumber{3},\nspoperator{:})\nspoperator{;}
+norm(X1\nspoperator{-}X,\nspnumber{1})
+Fi=inv(F)\nspoperator{;}
+Hami=[Fi\nspoperator{,}Fi\nspoperator{*}G\nspoperator{;}H\nspoperator{*}Fi\nspoperator{,}F\nspoperator{'}\nspoperator{+}H\nspoperator{*}Fi\nspoperator{*}G]\nspoperator{;}
+[T,d]=schur(Hami,\nspstring{'d'})\nspoperator{;}T=T(\nspoperator{:},\nspnumber{1}\nspoperator{:}d)\nspoperator{;}
+Fit=inv(F\nspoperator{'})\nspoperator{;}
+Ham=[F\nspoperator{+}G\nspoperator{*}Fit\nspoperator{*}H\nspoperator{,}\nspoperator{-}G\nspoperator{*}Fit\nspoperator{;}\nspoperator{-}Fit\nspoperator{*}H\nspoperator{,}Fit]\nspoperator{;}
+[T,d]=schur(Ham,\nspstring{'d'})\nspoperator{;}T=T(\nspoperator{:},\nspnumber{1}\nspoperator{:}d)\nspoperator{;}X2=T(\nspnumber{4}\nspoperator{:}\nspnumber{6},\nspoperator{:})\nspoperator{/}T(\nspnumber{1}\nspoperator{:}\nspnumber{3},\nspoperator{:})\nspoperator{;}
+norm(X2\nspoperator{-}X,\nspnumber{1})
+\end{Verbatim}

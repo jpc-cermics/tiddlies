@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>list</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli999.html" >next</a>] [<a 
+href="manualli997.html" >prev</a>] [<a 
+href="manualli997.html#tailmanualli997.html" >prev-tail</a>] [<a 
+href="#tailmanualli998.html">tail</a>] [<a 
+href="manualli931.html#manualli998.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x999-5725000"></a>list</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx999-5725001"></a><a 
+ id="list"></a><span 
+class="cmtt-10x-x-109">list </span>&#x2013;                                                         Scilab object and list function definition<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x999-5726000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1115">
+&#x00A0;&#x00A0;list(a1,....an)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 27--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x999-5727000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 27--><p class="noindent" > Creates a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list</span></span></span> with elements <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ai</span></span></span>&apos;s which are arbitrary Scilab objects (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">matrix,</span><span 
+class="cmtt-10x-x-109">&#x00A0;list,...</span></span></span>). Type of
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list</span></span></span> objects is 15. <span 
+class="cmtt-10x-x-109">list() </span>creates the empty <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list</span></span></span> (0 element).
+</p>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x999-5728000"></a><span 
+class="cmbx-10x-x-109">Operations on lists</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">extraction</div>: <span 
+class="cmtt-10x-x-109">[x,y,z...]=L(v) </span>where <span 
+class="cmtt-10x-x-109">v </span>is a vector of indices; <span 
+class="cmtt-10x-x-109">[x,y,z]=L(:) </span>extracts all
+     the elements.
+     </li>
+     <li class="itemize"><div class="itemdesc">insertion at index i</div>: <span 
+class="cmtt-10x-x-109">L(i)=a </span>(note that it is not an error to use <span 
+class="cmtt-10x-x-109">L(i)=a </span>with <span 
+class="cmti-10x-x-109">i </span><span 
+class="cmmi-10x-x-109">&#x003E; </span><span 
+class="cmti-10x-x-109">1 +</span>
+     <span 
+class="cmti-10x-x-109">size(L) </span>but some list entries are then undefined and their extraction gives raise to an
+     error).
+     </li>
+     <li class="itemize"><div class="itemdesc">append an element in queue</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">L($</span></span></span>1)=e+.
+     </li>
+     <li class="itemize"><div class="itemdesc">append an element in head</div>: <span 
+class="cmtt-10x-x-109">L(0)=e</span>. (note that after this operation <span 
+class="cmtt-10x-x-109">e </span>is at index 1, the
+     initial elements being shifted on the right).
+     </li>
+     <li class="itemize"><div class="itemdesc">deletion</div>: <span 
+class="cmtt-10x-x-109">L(i)=null() </span>removes the i-th element of the list <span 
+class="cmtt-10x-x-109">L</span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">concatenation of two lists</div>: <span 
+class="cmtt-10x-x-109">L3 = lstcat(L1,L2)</span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">number  of  elements  of  a  list</div>:  you  can  use  either  <span 
+class="cmtt-10x-x-109">nb</span><span 
+class="cmtt-10x-x-109">_elm = size(L) </span>or  <span 
+class="cmtt-10x-x-109">nb</span><span 
+class="cmtt-10x-x-109">_elm =</span>
+     <span 
+class="cmtt-10x-x-109">length(L)</span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">iterations with a list</div>: it is possible to use a list <span 
+class="cmtt-10x-x-109">L </span>with a <a 
+href="manualli971.html#for">for</a>    loop: <span 
+class="cmtt-10x-x-109">for e=L,...,end</span>
+     is a loop with <span 
+class="cmtt-10x-x-109">length(L) </span>iterations, the loop variable <span 
+class="cmtt-10x-x-109">e </span>being equal to <span 
+class="cmtt-10x-x-109">L(i) </span>at the i th
+     iteration.</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x999-5729000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   Scilab provides also other kinds of list, the <a 
+href="manualli1040.html#tlist">tlist</a>    type (typed list) and the <a 
+href="manualli1004.html#mlist">mlist</a>    type which
+are useful to define a new data type with operator <a 
+href="manualli1009.html#overloading">overloading</a>    facilities (<a 
+href="manualli983.html#hypermatrices">hypermatrices</a>
+which are multi-dimensionnal arrays in scilab are in fact <span 
+class="cmti-10x-x-109">mlist</span>). Matlab <span 
+class="cmti-10x-x-109">struct </span>are also
+available.
+</p>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x999-5730000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb695"><a 
+ id="x999-5730011r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l=list(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;a&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;b&#x0022;</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x999-5730013r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;foo&#x0022;</span></span><br class="fancyvrb" /><a 
+ id="x999-5730015r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l($</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;bar&#x0022;</span></span><br class="fancyvrb" /><a 
+ id="x999-5730017r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;toto&#x0022;</span></span><br class="fancyvrb" /><a 
+ id="x999-5730019r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x999-5730021r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)=null()</span><br class="fancyvrb" /><a 
+ id="x999-5730023r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lbis=list(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;gewurtz&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;caipirina&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;debug&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x999-5730025r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lter=lstcat(l,lbis)</span>
+<br class="fancyvrb" /><a 
+ id="x999-5730027r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;size(lter)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">size(lbis)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">size(l)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;must</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;zero</span></span></div>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x999-5731000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1008.html#null">null</a>    <a 
+href="manualli1001.html#lstcat">lstcat</a>    <a 
+href="manualli1040.html#tlist">tlist</a>    <a 
+href="manualli988.html#insertion">insertion</a>    <a 
+href="manualli967.html#extraction">extraction</a>    <a 
+href="manualli233.html#size">size</a>    <a 
+href="manualli1271.html#length">length</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli999.html" >next</a>] [<a 
+href="manualli997.html" >prev</a>] [<a 
+href="manualli997.html#tailmanualli997.html" >prev-tail</a>] [<a 
+href="manualli998.html" >front</a>] [<a 
+href="manualli931.html#manualli998.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli998.html"></a>  </p> 
+</body></html> 

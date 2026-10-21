@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.3 Matrices of Character Strings</TITLE>
+<META NAME="description" CONTENT="2.3 Matrices of Character Strings">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node20.html">
+<LINK REL="previous" HREF="node15.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node20.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html501"
+ HREF="node20.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html497"
+ HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html491"
+ HREF="node18.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html499"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html500"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html502"
+ HREF="node20.html">2.4 Polynomials and Polynomial</A>
+<B> Up:</B> <A NAME="tex2html498"
+ HREF="node13.html">2. Data Types</A>
+<B> Previous:</B> <A NAME="tex2html492"
+ HREF="node18.html">2.2.0.0.3 Matrices</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00330000000000000000">&#160;</A>
+<A NAME="s2.3">&#160;</A><A NAME="1123">&#160;</A>
+<A NAME="1124">&#160;</A>
+<BR>
+2.3 Matrices of Character Strings
+</H1>
+
+<P>
+Character strings can be created by using single or double quotes.
+Concatenation of strings is performed by the <TT>+</TT> operation.
+Matrices of character strings are constructed as ordinary matrices,
+e.g. using brackets.  A very important feature of matrices of
+character strings is the capacity to manipulate and create functions.
+Furthermore, symbolic manipulation of mathematical objects can be
+implemented using matrices of character strings.  The following
+illustrates some of these features.
+<PRE>
+ 
+--&gt; A=['x' 'y';'z' 'w+v']
+ A         =
+ 
+!x  y    !
+!        !
+!z  w+v  !
+ 
+--&gt; At=trianfml(A)
+ At        =
+ 
+!z  w+v          !
+!                !
+!0  z*y-x*(w+v)  !
+ 
+--&gt; x=1;y=2;z=3;w=4;v=5;
+ 
+--&gt; evstr(At)
+ ans       =
+ 
+!   3.    9. !
+!   0.  - 3. !
+</PRE>Note that in the above Scilab session the function 
+<TT>trianfml</TT><A NAME="1149">&#160;</A><A NAME="1130">&#160;</A>
+performs the symbolic triangularization of the matrix <TT>A</TT>.
+The value of the resulting symbolic matrix can be obtained by
+using <TT>evstr</TT>.  
+
+<P>
+A very important aspect of character strings is that they
+can be used to automatically create new functions (for more on functions
+see Section&nbsp;<A HREF="node37.html#s4.2">3.2</A>).  An example of automatically creating a 
+function is illustrated in the following Scilab session where it is
+desired to study a polynomial of two variables <TT>s</TT> and <TT>t</TT>.
+Since polynomials in two independent variables are not directly 
+supported in Scilab, we can construct a new data structure using
+a list (see Section&nbsp;<A HREF="node23.html#s2.5">2.6</A>).
+The polynomial to be studied is 
+<!-- MATH: $(t^2+2t^3)-(t+t^2)s+ts^2+s^3$ -->
+(<I>t</I><SUP>2</SUP>+2<I>t</I><SUP>3</SUP>)-(<I>t</I>+<I>t</I><SUP>2</SUP>)<I>s</I>+<I>ts</I><SUP>2</SUP>+<I>s</I><SUP>3</SUP>.
+<PRE>
+--&gt;getf("macros/make_macro.sci");
+ 
+--&gt;s=poly(0,'s');t=poly(0,'t');
+ 
+--&gt;p=list(t^2+2*t^3,-t-t^2,t,1+0*t);
+ 
+--&gt;pst=makefunction(p)  //pst is a function t-&gt;p (number -&gt; polynomial)
+ pst       =
+ 
+[p]=pst(t)
+ 
+--&gt;pst(1)
+ ans       =
+ 
+              2   3  
+    3 - 2s + s + s
+</PRE>Here the polynomial is represented by the command which puts
+the coefficients of the variable <TT>s</TT> in the list <TT>p</TT>.
+The list <TT>p</TT> is then processed by the function <TT>makefunction</TT>
+which makes a new function <TT>pst</TT>.  The contents of the new function
+can be displayed and this function can be evaluated
+at values of <TT>t</TT>.  The creation of the new function <TT>pst</TT>
+is accomplished as follows
+
+<P>
+<PRE>
+function [newfunction]=makefunction(p)
+// Copyright INRIA
+num=mulf(makestr(p(1)),'1');
+for k=2:size(p);
+   new=mulf(makestr(p(k)),'s^'+string(k-1));
+   num=addf(num,new);
+end,
+text='p='+num;
+deff('[p]=newfunction(t)',text),
+
+
+function [str]=makestr(p)
+n=degree(p)+1;c=coeff(p);str=string(c(1));x=part(varn(p),1);
+xstar=x+'^',
+for k=2:n, 
+   if c(k)&lt;&gt;0 then,
+   str=addf(str,mulf(string(c(k)),(xstar+string(k-1))));
+   end;
+end
+</PRE>
+<P>
+Here the function <TT>makefunction</TT> takes the list <TT>p</TT> and creates the
+function <TT>pst</TT>.  Inside of <TT>makefunction</TT> there is a call to another 
+function <TT>makestr</TT> which makes the string which represents each 
+term of the new two variable polynomial.  The functions <TT>addf</TT> and
+<TT>mulf</TT> are used for adding and multiplying strings (i.e. 
+<TT>addf(x,y)</TT> yields the string <TT>x+y</TT>).  Finally, the 
+essential command for creating the new function 
+is the primitive <TT>deff</TT>.  The <TT>deff</TT> primitive 
+creates a function defined by two matrices
+of character strings.  Here the 
+function <TT>p</TT> is defined by the two character strings
+<TT>'[p]=newfunction(t)'</TT> and <TT>text</TT> where the string <TT>text</TT>
+evaluates to the polynomial in two variables.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html501"
+ HREF="node20.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html497"
+ HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html491"
+ HREF="node18.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html499"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html500"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html502"
+ HREF="node20.html">2.4 Polynomials and Polynomial</A>
+<B> Up:</B> <A NAME="tex2html498"
+ HREF="node13.html">2. Data Types</A>
+<B> Previous:</B> <A NAME="tex2html492"
+ HREF="node18.html">2.2.0.0.3 Matrices</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

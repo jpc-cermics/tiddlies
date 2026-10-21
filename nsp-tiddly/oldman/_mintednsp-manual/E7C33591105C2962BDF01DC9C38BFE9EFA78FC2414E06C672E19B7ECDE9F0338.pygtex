@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+a=rand(\nspnumber{4},\nspnumber{4})\nspoperator{;}
+[l,u]=lu(a)
+norm(l\nspoperator{*}u\nspoperator{-}a)
+[h,rk]=lufact(sparse(a))\nspoperator{,}\nspcomment{// lufact fonctionne avec des matrices creuses}
+[P,L,U,Q]=luget(h)\nspoperator{;}
+ludel(h)
+P=full(P)\nspoperator{;}L=full(L)\nspoperator{;}U=full(U)\nspoperator{;}Q=full(Q)\nspoperator{;}
+norm(P\nspoperator{*}L\nspoperator{*}U\nspoperator{*}Q\nspoperator{-}a)\nspoperator{,}\nspcomment{// P,Q sont des matrices de permutation}
+\end{Verbatim}

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.5.5 A Set of Figures</TITLE>
+<META NAME="description" CONTENT="5.5.5 A Set of Figures">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node75.html">
+<LINK REL="up" HREF="node71.html">
+<LINK REL="next" HREF="node77.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1240"
+ HREF="node77.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1236"
+ HREF="node71.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1232"
+ HREF="node75.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1238"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1239"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1241"
+ HREF="node77.html">5.6 Printing and Inserting L<SUP>A</SUP>TEX</A>
+<B> Up:</B> <A NAME="tex2html1237"
+ HREF="node71.html">5.5 3D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1233"
+ HREF="node75.html">5.5.4 Sub-windows</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00655000000000000000">
+5.5.5 A Set of Figures</A>
+</H2>
+
+<P>
+In this next example we give a brief summary of different plotting
+functions for 2D or 3D graphics. The figure&nbsp; <A HREF="node76.html#d7a11">5.13</A> is 
+obtained and inserted in this document with the help of the command 
+<code>Blatexprs</code>.
+ 
+<PRE>
+//some examples
+str_l=list();
+//
+str_l(1)=['plot3d1();';
+      'title=[''plot3d1 : z=sin(x)*cos(y)''];';
+      'xtitle(title,'' '','' '');'];
+//
+str_l(2)=['contour();';
+      'title=[''contour ''];';
+      'xtitle(title,'' '','' '');'];
+//
+str_l(3)=['champ();';
+      'title=[''champ ''];';
+      'xtitle(title,'' '','' '');'];
+//
+str_l(4)=['t=%pi*(-10:10)/10;';
+          'deff(''[z]=surf(x,y)'',''z=sin(x)*cos(y)'');';
+          'rect=[-%pi,%pi,-%pi,%pi,-5,1];';
+          'z=feval(t,t,surf);';
+          'contour(t,t,z,10,35,45,''X@Y@Z'',[1,1,0],rect,-5);';
+          'plot3d(t,t,z,35,45,''X@Y@Z'',[2,1,3],rect);';
+          'title=[''plot3d and contour ''];';
+          'xtitle(title,'' '','' '');'];
+//
+for i=1:4,xinit('d7a11.ps'+string(i)');
+          execstr(str_l(i)),xend();end
+</PRE>
+<P>
+<BR>
+<DIV ALIGN="CENTER"><A NAME="d7a11">&#160;</A><A NAME="4268">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.13:</STRONG>
+Group of figures</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img24.gif"
+ ALT="\begin{figure}\begin{center}
+\setlength{\unitlength}{1cm}
+\fbox{\begin{picture}...
+...11.ps}
+\special{psfile=figures/d7a11.ps}
+\end{picture}}\end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1240"
+ HREF="node77.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1236"
+ HREF="node71.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1232"
+ HREF="node75.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1238"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1239"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1241"
+ HREF="node77.html">5.6 Printing and Inserting L<SUP>A</SUP>TEX</A>
+<B> Up:</B> <A NAME="tex2html1237"
+ HREF="node71.html">5.5 3D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1233"
+ HREF="node75.html">5.5.4 Sub-windows</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lqg_ltr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1120.html" >next</a>] [<a 
+href="manualli1118.html" >prev</a>] [<a 
+href="manualli1118.html#tailmanualli1118.html" >prev-tail</a>] [<a 
+href="#tailmanualli1119.html">tail</a>] [<a 
+href="manualli1089.html#manualli1119.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1120-6337000"></a>lqg_ltr</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1120-6337001"></a><a 
+ id="lqg_ltr"></a><span 
+class="cmtt-10x-x-109">lqg</span><span 
+class="cmtt-10x-x-109">_ltr </span>&#x2013;                                                           LQG with loop transform recovery<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1120-6338000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1252">
+&#x00A0;&#x00A0;[kf,kc]=lqg_ltr(sl,mu,ro)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1120-6339000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sl</span>: linear system in state-space form (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mu,ro</span>: real positive numbers chosen &#x201C;small enough&#x201D;
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">kf,kc</span>: controller and observer Kalman gains.</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1120-6340000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > returns the Kalman gains for:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1253">
+&#x00A0;&#x00A0;x&#x00A0;=&#x00A0;a*x&#x00A0;+&#x00A0;b*u&#x00A0;+&#x00A0;l*w1
+&#x00A0;<br />&#x00A0;&#x00A0;(sl)
+&#x00A0;<br />&#x00A0;&#x00A0;y&#x00A0;=&#x00A0;c*x&#x00A0;+&#x00A0;mu*I*w2
+&#x00A0;<br />&#x00A0;&#x00A0;z&#x00A0;=&#x00A0;h*x
+</div>
+<!--l. 42--><p class="nopar" >Cost function:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1254">
+&#x00A0;&#x00A0;/+oo
+&#x00A0;<br />&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;J&#x00A0;&#x00A0;&#x00A0;&#x00A0;=&#x00A0;E(|&#x00A0;[z(t)&#x0027;*z(t)&#x00A0;+&#x00A0;ro^2*u(t)&#x0027;*u(t)]dt)
+&#x00A0;<br />&#x00A0;&#x00A0;lqg&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;/&#x00A0;0
+</div>
+<!--l. 50--><p class="nopar" >The lqg/ltr approach looks for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">L,mu,H,ro</span></span></span> such that: J(lqg) = J(freq) where
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1255">
+&#x00A0;&#x00A0;/+oo&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;*&#x00A0;&#x00A0;*&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;*
+&#x00A0;<br />&#x00A0;&#x00A0;J&#x00A0;&#x00A0;&#x00A0;&#x00A0;=&#x00A0;&#x00A0;|&#x00A0;tr[S&#x00A0;&#x00A0;W&#x00A0;&#x00A0;W&#x00A0;&#x00A0;S&#x00A0;]&#x00A0;+&#x00A0;tr[T&#x00A0;&#x00A0;T]dw
+&#x00A0;<br />&#x00A0;&#x00A0;freq&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;/0
+</div>
+<!--l. 58--><p class="nopar" >and
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1256">
+&#x00A0;&#x00A0;S&#x00A0;=&#x00A0;(I&#x00A0;+&#x00A0;G*K)^(-1)
+&#x00A0;<br />&#x00A0;&#x00A0;T&#x00A0;=&#x00A0;G*K*(I+G*K)^(-1)
+</div>
+<!--l. 63--><p class="nopar" >
+</p>
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1120-6341000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli258.html#syslin">syslin</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1120.html" >next</a>] [<a 
+href="manualli1118.html" >prev</a>] [<a 
+href="manualli1118.html#tailmanualli1118.html" >prev-tail</a>] [<a 
+href="manualli1119.html" >front</a>] [<a 
+href="manualli1089.html#manualli1119.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1119.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// graph with circuit}
+ta=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{5}]\nspoperator{;}
+he=[\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{4}]\nspoperator{;}
+g=make_graph(\nspstring{'foo'},\nspnumber{1},\nspnumber{8},ta,he)\nspoperator{;}
+g(\nspstring{'node_x'})=[\nspnumber{116}\nspoperator{,}\nspnumber{231}\nspoperator{,}\nspnumber{192}\nspoperator{,}\nspnumber{323}\nspoperator{,}\nspnumber{354}\nspoperator{,}\nspnumber{454}\nspoperator{,}\nspnumber{305}\nspoperator{,}\nspnumber{155}]\nspoperator{;}
+g(\nspstring{'node_y'})=[\nspnumber{118}\nspoperator{,}\nspnumber{116}\nspoperator{,}\nspnumber{212}\nspoperator{,}\nspnumber{219}\nspoperator{,}\nspnumber{117}\nspoperator{,}\nspnumber{185}\nspoperator{,}\nspnumber{334}\nspoperator{,}\nspnumber{316}]\nspoperator{;}
+show_graph(g)\nspoperator{;}
+p=circuit(g)
+show_arcs(p)
+\nspcomment{// graph without circuit}
+g=make_graph(\nspstring{'foo'},\nspnumber{1},\nspnumber{4},[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}],[\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])\nspoperator{;}
+[p,r]=circuit(g)
+\end{Verbatim}

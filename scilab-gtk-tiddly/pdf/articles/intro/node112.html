@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.6 Maple2scilab</TITLE>
+<META NAME="description" CONTENT="6.6 Maple2scilab">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node111.html">
+<LINK REL="up" HREF="node83.html">
+<LINK REL="next" HREF="node113.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1737"
+ HREF="node113.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1733"
+ HREF="node83.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1729"
+ HREF="node111.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1735"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1736"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1738"
+ HREF="node113.html">6.6.1 Simple Scalar Example</A>
+<B> Up:</B> <A NAME="tex2html1734"
+ HREF="node83.html">6. Interfacing C or</A>
+<B> Previous:</B> <A NAME="tex2html1730"
+ HREF="node111.html">6.5 Maple to Scilab</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00760000000000000000">
+6.6 Maple2scilab</A>
+</H1><FONT SIZE="-2">
+<A NAME="5101">&#160;</A>
+The procedure <code>maple2scilab</code> converts a Maple object, 
+either a scalar function or a matrix into a Fortran subroutine 
+and writes the associated Scilab function. The code of <code>maple2scilab</code>
+is in the directory <code>SCIDIR/maple</code>.
+</FONT>
+<P>
+<FONT SIZE="-2">The calling sequence of <code>maple2scilab</code> is as follows:
+<BR>
+<code>maple2scilab(function-name,object,args)</code>
+</FONT><UL>
+<LI>
+The first argument, <code>function-name</code> is a name indicating the 
+function-name in Scilab.
+<LI>
+The second argument <code>object</code> is the Maple name of the expression 
+to be transferred to Scilab.
+<LI>
+The third argument is a list of arguments containing the formal parameters of
+the Maple-object <code>object</code>.
+</UL><FONT SIZE="-2">When <code>maple2scilab</code> is invoked in Maple, two files are generated,
+one which contains the Fortran code and another which contains the 
+associated Scilab function. Aside their existence, the user has not to
+know about their contents.
+</FONT>
+<P>
+<FONT SIZE="-2">The Fortran routine which is generated has the following calling sequence:
+<BR>
+<TT>&lt;Scilab-name&gt;(x1,x2,...,xn,matrix)</TT> <BR>
+and this subroutine computes matrix(i,j) as a function of
+the arguments <TT>x1,x2,...,xn</TT>.
+Each argument can be a Maple scalar or array which should be
+in the argument list. 
+The Fortran subroutine is put into a file named <TT>&lt;Scilab-name&gt;.f</TT>, the
+Scilab-function into a file named <TT>&lt;Scilab-name&gt;.sci</TT>.
+For numerical evaluation in Scilab the user has to compile the Fortran 
+subroutine, to link it with Scilab (e.g. Menu-bar option '<code>link</code>')
+and to load the associated function (Menu-bar option '<code>getf</code>').
+Information about <code>link</code> operation is given in Scilab's manual: 
+Fortran routines can be incorporated into Scilab by dynamic
+link or through the <code>Ex-fort.f</code> file in the <code>default</code> directory.
+ Of course, this two-step procedure can be automatized using a shell-script 
+(or using <code>unix</code> in Scilab).
+Maple2scilab uses the ``Macrofort'' library which is in the share 
+library of Maple.
+</FONT>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS">&#160;</A>
+<UL>
+<LI><A NAME="tex2html1739"
+ HREF="node113.html">6.6.1 Simple Scalar Example</A>
+<UL>
+<LI><A NAME="tex2html1740"
+ HREF="node114.html">6.6.1.0.1 Maple-Session</A>
+<LI><A NAME="tex2html1741"
+ HREF="node115.html">6.6.1.0.2 Scilab Session</A>
+</UL>
+<LI><A NAME="tex2html1742"
+ HREF="node116.html">6.6.2 Matrix Example</A>
+<UL>
+<LI><A NAME="tex2html1743"
+ HREF="node117.html">6.6.2.0.1 Maple Session</A>
+<LI><A NAME="tex2html1744"
+ HREF="node118.html">6.6.2.0.2 Scilab Session</A>
+<LI><A NAME="tex2html1745"
+ HREF="node119.html">6.6.2.0.3 Generated code</A>
+<LI><A NAME="tex2html1746"
+ HREF="node120.html">6.6.2.0.4 Fortran routines</A>
+<LI><A NAME="tex2html1747"
+ HREF="node121.html">6.6.2.0.5 Scilab functions</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1737"
+ HREF="node113.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1733"
+ HREF="node83.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1729"
+ HREF="node111.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1735"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1736"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1738"
+ HREF="node113.html">6.6.1 Simple Scalar Example</A>
+<B> Up:</B> <A NAME="tex2html1734"
+ HREF="node83.html">6. Interfacing C or</A>
+<B> Previous:</B> <A NAME="tex2html1730"
+ HREF="node111.html">6.5 Maple to Scilab</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

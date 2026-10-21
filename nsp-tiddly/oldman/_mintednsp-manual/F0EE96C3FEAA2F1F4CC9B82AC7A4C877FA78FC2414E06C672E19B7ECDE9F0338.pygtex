@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example \nspsh{}1 (elementary stat for U(0,1))}
+m=\nspnumber{50000}\nspoperator{;}n=\nspnumber{10}\nspoperator{;}
+X=grand(m,\nspnumber{1},\nspstring{"def"})\nspoperator{;}
+val=linspace(\nspnumber{0},\nspnumber{1},n\nspoperator{+}\nspnumber{1})\nspoperator{'}\nspoperator{;}
+[ind,occ]=dsearch(X,val)\nspoperator{;}
+xbasc()\nspoperator{;}plot2d2(val,[occ\nspoperator{/}m\nspoperator{;}\nspnumber{0}])\nspoperator{,}\nspcomment{// no normalisation: y must be near 1/n}
+\nspcomment{// example \nspsh{}2 (elementary stat for B(N,p))}
+N=\nspnumber{8}\nspoperator{;}p=\nspnumber{0.5}\nspoperator{;}m=\nspnumber{50000}\nspoperator{;}
+X=grand(m,\nspnumber{1},\nspstring{"bin"},N,p)\nspoperator{;}val=(\nspnumber{0}\nspoperator{:}N)\nspoperator{'}\nspoperator{;}
+[ind,occ]=dsearch(X,val,\nspstring{"d"})\nspoperator{;}
+Pexp=occ\nspoperator{/}m\nspoperator{;}Pexa=binomial(p,N)\nspoperator{;}
+xbasc()\nspoperator{;}hm=\nspnumber{1.1}\nspoperator{*}max(max(Pexa),max(Pexp))\nspoperator{;}
+plot2d3([val\nspoperator{,}val\nspoperator{+}\nspnumber{0.1}],[Pexa\nspoperator{'}\nspoperator{,}Pexp],[\nspnumber{1}\nspoperator{,}\nspnumber{2}],\nspstring{"111"},\nspstring{"Pexact@Pexp"},[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}N\nspoperator{+}\nspnumber{1}\nspoperator{,}hm],[\nspnumber{0}\nspoperator{,}N\nspoperator{+}\nspnumber{2}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{6}])
+xtitle(\nspstring{"binomial distribution B("}\nspoperator{+}string(N)\nspoperator{+}\nspstring{","}\nspoperator{+}string(p)\nspoperator{+}\nspstring{"):"}\nspoperator{+} ...
+       \nspstring{" exact probability versus experimental ones"})
+\nspcomment{// example \nspsh{}3 (piecewise Hermite polynomial)}
+x=[\nspnumber{0}\nspoperator{;}\nspnumber{0.2}\nspoperator{;}\nspnumber{0.35}\nspoperator{;}\nspnumber{0.5}\nspoperator{;}\nspnumber{0.65}\nspoperator{;}\nspnumber{0.8}\nspoperator{;}\nspnumber{1}]\nspoperator{;}
+y=[\nspnumber{0}\nspoperator{;}\nspnumber{0.1}\nspoperator{;}\nspoperator{-}\nspnumber{0.1}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{0.4}\nspoperator{;}\nspoperator{-}\nspnumber{0.1}\nspoperator{;}\nspnumber{0}]\nspoperator{;}
+d=[\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspoperator{-}\nspnumber{1}]\nspoperator{;}
+X=linspace(\nspnumber{0},\nspnumber{1},\nspnumber{200})\nspoperator{'}\nspoperator{;}
+ind=dsearch(X,x)\nspoperator{;}
+\nspcomment{// define Hermite base functions}
+deff(\nspstring{"y=Ll(t,k,x)"},\nspstring{"y=(t-x(k+1))./(x(k)-x(k+1))"})\nspoperator{,}\nspcomment{// Lagrange left on Ik}
+deff(\nspstring{"y=Lr(t,k,x)"},\nspstring{"y=(t-x(k))./(x(k+1)-x(k))"})\nspoperator{,}\nspcomment{// Lagrange right on Ik}
+deff(\nspstring{"y=Hl(t,k,x)"},\nspstring{"y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2"})
+deff(\nspstring{"y=Hr(t,k,x)"},\nspstring{"y=(1-2*(t-x(k+1))./(x(k+1)-x(k))).*Lr(t,k,x).^2"})
+deff(\nspstring{"y=Kl(t,k,x)"},\nspstring{"y=(t-x(k)).*Ll(t,k,x).^2"})
+deff(\nspstring{"y=Kr(t,k,x)"},\nspstring{"y=(t-x(k+1)).*Lr(t,k,x).^2"})
+\nspcomment{// plot the curve}
+Y=y(ind)\nspoperator{ .*}Hl(X,ind)\nspoperator{+}y(ind\nspoperator{+}\nspnumber{1})\nspoperator{ .*}Hr(X,ind)\nspoperator{+}d(ind)\nspoperator{ .*}Kl(X,ind)\nspoperator{+}d(ind\nspoperator{+}\nspnumber{1})\nspoperator{ .*}Kr(X,ind)\nspoperator{;}
+xbasc()\nspoperator{;}plot2d(X,Y,\nspnumber{2})\nspoperator{;}plot2d(x,y,\nspoperator{-}\nspnumber{9},\nspstring{"000"})
+xtitle(\nspstring{"an Hermite piecewise polynomial"})
+\nspcomment{// NOTE: you can verify by adding these ones:}
+\nspcomment{// YY = interp(X,x,y,d); plot2d(X,YY,3,"000")}
+\end{Verbatim}

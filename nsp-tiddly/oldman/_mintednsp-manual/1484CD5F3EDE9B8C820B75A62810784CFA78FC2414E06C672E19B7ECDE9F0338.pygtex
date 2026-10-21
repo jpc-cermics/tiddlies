@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+rand(\nspstring{'normal'})\nspoperator{;}rand(\nspstring{'seed'},\nspnumber{0})\nspoperator{;}
+x=rand(\nspnumber{1}\nspoperator{:}\nspnumber{1024}\nspoperator{-}\nspnumber{33}\nspoperator{+}\nspnumber{1})\nspoperator{;}
+\nspcomment{//make low-pass filter with eqfir}
+nf=\nspnumber{33}\nspoperator{;}bedge=[\nspnumber{0}\nspoperator{,}\nspnumber{.1}\nspoperator{;}\nspnumber{.125}\nspoperator{,}\nspnumber{.5}]\nspoperator{;}des=[\nspnumber{1}\nspoperator{,}\nspnumber{0}]\nspoperator{;}wate=[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+h=eqfir(nf,bedge,des,wate)\nspoperator{;}
+\nspcomment{//filter white data to obtain colored data}
+h1=[h\nspoperator{,}\nspnumber{0}\nspoperator{*}ones(\nspnumber{1}\nspoperator{:}maxi(size(x))\nspoperator{-}\nspnumber{1})]\nspoperator{;}
+x1=[x\nspoperator{,}\nspnumber{0}\nspoperator{*}ones(\nspnumber{1}\nspoperator{:}maxi(size(h))\nspoperator{-}\nspnumber{1})]\nspoperator{;}
+hf=fft(h1,\nspoperator{-}\nspnumber{1})\nspoperator{;}xf=fft(x1,\nspoperator{-}\nspnumber{1})\nspoperator{;}yf=hf\nspoperator{ .*}xf\nspoperator{;}y=real(fft(yf,\nspnumber{1}))\nspoperator{;}
+sm=cspect(\nspnumber{100},\nspnumber{200},\nspstring{'tr'},y)\nspoperator{;}
+smsize=maxi(size(sm))\nspoperator{;}fr=(\nspnumber{1}\nspoperator{:}smsize)\nspoperator{/}smsize\nspoperator{;}
+plot(fr,log(sm))
+\end{Verbatim}

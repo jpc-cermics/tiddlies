@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//SCHUR FORM OF A MATRIX}
+\nspcomment{//----------------------}
+A=diag([\nspoperator{-}\nspnumber{0.9}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{0.9}])\nspoperator{;}X=rand(A)\nspoperator{;}A=inv(X)\nspoperator{*}A\nspoperator{*}X\nspoperator{;}
+[U,T]=schur(A)\nspoperator{;}T
+[U,dim,T]=schur(A,\nspstring{'c'})\nspoperator{;}
+T(\nspnumber{1}\nspoperator{:}dim,\nspnumber{1}\nspoperator{:}dim)\nspoperator{,}\nspcomment{//stable cont. eigenvalues}
+\nspkeyword{function} t=\nspfunction{mytest}(Ev) t=abs(Ev)\nspoperator{ < }\nspnumber{0.95}\nspoperator{,}\nspkeyword{endfunction}
+[U,dim,T]=schur(A,mytest)\nspoperator{;}
+T(\nspnumber{1}\nspoperator{:}dim,\nspnumber{1}\nspoperator{:}dim)
+\nspcomment{// The same function in C (a Compiler is required)}
+C=[\nspstring{'int mytest(double *EvR, double *EvI) \nspob{}'}\nspoperator{;}
+   \nspstring{'if (*EvR * *EvR + *EvI * *EvI &lt; 0.9025) return 1;'}\nspoperator{;}\nspstring{'else return 0; \nspcb{}'}\nspoperator{;}[]]
+mputl(C,TMPDIR\nspoperator{+}\nspstring{'/mytest.c'})
+\nspcomment{//build and link}
+lp=ilib_for_link(\nspstring{'mytest'},\nspstring{'mytest.o'},[],\nspstring{'c'},TMPDIR\nspoperator{+}\nspstring{'/Makefile'})\nspoperator{;}
+link(lp,\nspstring{'mytest'},\nspstring{'c'})\nspoperator{;}
+\nspcomment{//run it}
+[U,dim,T]=schur(A,\nspstring{'mytest'})\nspoperator{;}
+\nspcomment{//SCHUR FORM OF A PENCIL}
+\nspcomment{//----------------------}
+F=[\nspoperator{-}\nspnumber{1}\nspoperator{,}%s\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{5}\nspoperator{-}%s\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{2}\nspoperator{+}%s\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{+}%s]\nspoperator{;}
+A=coeff(F,\nspnumber{0})\nspoperator{;}E=coeff(F,\nspnumber{1})\nspoperator{;}
+[As,Es,Q,Z]=schur(A,E)\nspoperator{;}
+Q\nspoperator{'}\nspoperator{*}F\nspoperator{*}Z\nspoperator{,}\nspcomment{//It is As+\nsppc{}s*Es}
+[As,Es,Z,dim]=schur(A,E,\nspstring{'c'})
+\nspkeyword{function} t=\nspfunction{mytest}(Alpha,Beta) t=real(Alpha)\nspoperator{ < }\nspnumber{0}\nspoperator{,}\nspkeyword{endfunction}
+[As,Es,Z,dim]=schur(A,E,mytest)
+\nspcomment{//the same function in Fortran (a Compiler is required)}
+ftn=[\nspstring{'integer function mytestf(ar,ai,b)'}\nspoperator{;}\nspstring{'double precision ar,ai,b'}\nspoperator{;}\nspstring{'mytestf=0'}\nspoperator{;}
+     \nspstring{'if(ar.lt.0.0d0) mytestf=1'}\nspoperator{;}\nspstring{'end'}]
+mputl(\nspstring{'      '}\nspoperator{+}ftn,TMPDIR\nspoperator{+}\nspstring{'/mytestf.f'})
+\nspcomment{//build and link}
+lp=ilib_for_link(\nspstring{'mytestf'},\nspstring{'mytestf.o'},[],\nspstring{'F'},TMPDIR\nspoperator{+}\nspstring{'/Makefile'})\nspoperator{;}
+link(lp,\nspstring{'mytestf'},\nspstring{'f'})\nspoperator{;}
+\nspcomment{//run it}
+[As,Es,Z,dim]=schur(A,E,\nspstring{'mytestf'})
+\end{Verbatim}

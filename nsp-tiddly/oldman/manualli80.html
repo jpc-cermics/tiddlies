@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>stabil</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli81.html" >next</a>] [<a 
+href="manualli79.html" >prev</a>] [<a 
+href="manualli79.html#tailmanualli79.html" >prev-tail</a>] [<a 
+href="#tailmanualli80.html">tail</a>] [<a 
+href="manualli12.html#manualli80.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x81-471000"></a>stabil</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx81-471001"></a><a 
+ id="stabil"></a><span 
+class="cmtt-10x-x-109">stabil </span>&#x2013;                                                                                          stabilization<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x81-472000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-154">
+&#x00A0;&#x00A0;F=stabil(A,B,alfa)
+&#x00A0;<br />&#x00A0;&#x00A0;K=stabil(Sys,alfa,beta)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x81-473000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: square real matrix (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nx</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;nx</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">B</span>: real matrix (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nx</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;nu</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">alfa, beta</span>: real or complex vector (in conjugate pairs) or real number.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">F</span>: real matrix (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nx</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;nu</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sys</span>: linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list) (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> inputs, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> outputs).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">K</span>: linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> inputs, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> outputs)</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x81-474000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F=stabil(A,B,alfa)</span></span></span> returns a gain matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span> such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A+B*F</span></span></span> is stable if pair <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A,B)</span></span></span> is stabilizable.
+Assignable poles are set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa(1),alfa(2),...</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A,B)</span></span></span> is not stabilizable a warning is given
+and assignable poles are set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa(1),alfa(2),...</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa</span></span></span> is a number all eigenvalues
+are set to this <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa</span></span></span> (default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa=-1</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K=stabil(Sys,alfa,beta)</span></span></span> returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span>,
+a compensator for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span> such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A,B)</span></span></span>-controllable eigenvalues are set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa</span></span></span> and
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(C,A)</span></span></span>-observable eigenvalues are set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">beta</span></span></span>. All assignable closed loop poles (which are
+given by the eigenvalues of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Aclosed=h_cl(Sys,K)</span></span></span> are set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa(i)</span></span></span>&apos;s and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">beta(j)</span></span></span>&apos;s.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x81-475000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb62"><a 
+ id="x81-475014r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Gain:</span></span><br class="fancyvrb" /><a 
+ id="x81-475016r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sys=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,list(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;st&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x81-475018r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=Sys(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;A&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=Sys(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;B&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">F=stabil(A,B)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x81-475020r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//2</span><span 
+class="cmitt-10x-x-109">&#x00A0;controllable</span><span 
+class="cmitt-10x-x-109">&#x00A0;modes</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;unstable</span><span 
+class="cmitt-10x-x-109">&#x00A0;uncontrollable</span><span 
+class="cmitt-10x-x-109">&#x00A0;modes</span></span>
+<br class="fancyvrb" /><a 
+ id="x81-475022r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//and</span><span 
+class="cmitt-10x-x-109">&#x00A0;one</span><span 
+class="cmitt-10x-x-109">&#x00A0;stable</span><span 
+class="cmitt-10x-x-109">&#x00A0;uncontrollable</span><span 
+class="cmitt-10x-x-109">&#x00A0;mode</span></span><br class="fancyvrb" /><a 
+ id="x81-475024r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;two</span><span 
+class="cmitt-10x-x-109">&#x00A0;controllable</span><span 
+class="cmitt-10x-x-109">&#x00A0;modes</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;set</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;-1.</span></span>
+<br class="fancyvrb" /><a 
+ id="x81-475026r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Compensator:</span></span><br class="fancyvrb" /><a 
+ id="x81-475028r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sys=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,list(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;st&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//3</span><span 
+class="cmitt-10x-x-109">&#x00A0;outputs,</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;inputs,</span><span 
+class="cmitt-10x-x-109">&#x00A0;5</span><span 
+class="cmitt-10x-x-109">&#x00A0;states</span></span>
+<br class="fancyvrb" /><a 
+ id="x81-475030r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//2</span><span 
+class="cmitt-10x-x-109">&#x00A0;controllables</span><span 
+class="cmitt-10x-x-109">&#x00A0;modes,</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;controllable</span><span 
+class="cmitt-10x-x-109">&#x00A0;or</span><span 
+class="cmitt-10x-x-109">&#x00A0;stabilizable</span><span 
+class="cmitt-10x-x-109">&#x00A0;modes.</span></span>
+<br class="fancyvrb" /><a 
+ id="x81-475032r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;K=stabil(Sys,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Compensator</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;Sys.</span></span><br class="fancyvrb" /><a 
+ id="x81-475034r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(Sys(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;A&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x81-475036r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(h_cl(Sys,K))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//K</span><span 
+class="cmitt-10x-x-109">&#x00A0;Stabilizes</span><span 
+class="cmitt-10x-x-109">&#x00A0;what</span><span 
+class="cmitt-10x-x-109">&#x00A0;can</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;stabilized.</span></span></div>
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x81-476000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#st-ility">st_ility</a>    <a 
+href="manualli27.html#contr">contr</a>    <a 
+href="manualli67.html#ppol">ppol</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli81.html" >next</a>] [<a 
+href="manualli79.html" >prev</a>] [<a 
+href="manualli79.html#tailmanualli79.html" >prev-tail</a>] [<a 
+href="manualli80.html" >front</a>] [<a 
+href="manualli12.html#manualli80.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli80.html"></a>  </p> 
+</body></html> 

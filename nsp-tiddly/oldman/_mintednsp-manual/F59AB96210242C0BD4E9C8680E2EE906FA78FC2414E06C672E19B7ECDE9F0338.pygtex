@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//make a signal}
+t=\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{1000}\nspoperator{;}
+x=\nspnumber{3}\nspoperator{*}sin(t)\nspoperator{+}\nspnumber{8}\nspoperator{*}sin(\nspnumber{3}\nspoperator{*}t)\nspoperator{+}\nspnumber{0.5}\nspoperator{*}sin(\nspnumber{5}\nspoperator{*}t)\nspoperator{+}\nspnumber{3}\nspoperator{*}rand(t)\nspoperator{;}
+\nspcomment{//compute the fft}
+y=fft(x,\nspoperator{-}\nspnumber{1})\nspoperator{;}
+\nspcomment{//display}
+xbasc()\nspoperator{;}
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})\nspoperator{;}plot2d(abs(y))
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})\nspoperator{;}plot2d(fftshift(abs(y)))
+\nspcomment{//make a 2D image}
+t=\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{30}\nspoperator{;}
+x=\nspnumber{3}\nspoperator{*}sin(t\nspoperator{'})\nspoperator{*}cos(\nspnumber{2}\nspoperator{*}t)\nspoperator{+}\nspnumber{8}\nspoperator{*}sin(\nspnumber{3}\nspoperator{*}t\nspoperator{'})\nspoperator{*}sin(\nspnumber{5}\nspoperator{*}t)\nspoperator{+}\nspnumber{0.5}\nspoperator{*}sin(\nspnumber{5}\nspoperator{*}t\nspoperator{'})\nspoperator{*}sin(\nspnumber{5}\nspoperator{*}t)\nspoperator{+}\nspnumber{3}\nspoperator{*}rand(t\nspoperator{'})\nspoperator{*}rand(t)\nspoperator{;}
+\nspcomment{//compute the fft}
+y=fft(x,\nspoperator{-}\nspnumber{1})\nspoperator{;}
+\nspcomment{//display}
+xbasc()\nspoperator{;}
+xset(\nspstring{'colormap'},hotcolormap(\nspnumber{256}))
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})\nspoperator{;}Matplot(abs(y))
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})\nspoperator{;}Matplot(fftshift(abs(y)))
+\end{Verbatim}

@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>sident</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli606.html" >next</a>] [<a 
+href="manualli604.html" >prev</a>] [<a 
+href="manualli604.html#tailmanualli604.html" >prev-tail</a>] [<a 
+href="#tailmanualli605.html">tail</a>] [<a 
+href="manualli597.html#manualli605.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x606-3596000"></a>sident</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx606-3596001"></a><a 
+ id="sident"></a><span 
+class="cmtt-10x-x-109">sident </span>&#x2013;                                    discrete-time state-space realization and Kalman gain<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x606-3597000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-742">
+&#x00A0;&#x00A0;[(A,C)(,B(,D))(,K,Q,Ry,S)(,rcnd)]&#x00A0;=&#x00A0;sident(meth,job,s,n,l,R(,tol,t,Ai,
+&#x00A0;<br />&#x00A0;&#x00A0;Ci,printw))
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x606-3598000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">meth</span>: integer option to determine the method to use:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: MOESP method with past inputs and outputs;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>2: N4SID method;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>3: combined method: A and C via MOESP, B and D via N4SID.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">job</span>: integer option to determine the calculation to be performed:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: compute all system matrices, A, B, C, D;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>2: compute the matrices A and C only;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>3: compute the matrix B only;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>4: compute the matrices B and D only.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">s</span>: the number of block rows in the processed input and output block Hankel matrices. s <span 
+class="cmmi-10x-x-109">&#x003E;</span>
+     0.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: integer, the order of the system
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">l</span>: integer, the number of the system outputs
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">R</span>: the 2*(m+l)*s-by-2*(m+l)*s part of R contains the processed upper triangular factor R
+     from the QR factorization of the concatenated block-Hankel matrices, and further details
+     needed for computing system matrices.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol</span>: (optional) tolerance used for estimating the rank of matrices. If tol <span 
+class="cmmi-10x-x-109">&#x003E; </span>0, then the given
+     value of tol is used as a lower bound for the reciprocal condition number; an m-by-n matrix
+     whose estimated condition number is less than 1/tol is considered to be of full
+     rank. Default: m*n*epsilon_machine where epsilon_machine is the relative machine
+     precision.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">t</span>: (optional) the total number of samples used for calculating the covariance matrices. Either t
+     = 0, or t <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 2*(m+l)*s. This parameter is not needed if the covariance matrices and/or the
+     Kalman predictor gain matrix are not desired. If t = 0, then K, Q, Ry, and S are not
+     computed. Default: t = 0.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Ai</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Ci</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">printw</span>: (optional) switch for printing the warning messages.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: print warning messages;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>0: do not print warning messages.</li></ul>
+     <!--l. 57--><p class="noindent" >Default: printw = 0.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">C</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">B</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">D</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">K</span>: real matrix, kalman gain
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q</span>: (optional) the n-by-n positive semidefinite state covariance matrix used as state weighting
+     matrix when computing the Kalman gain.
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">RY</span>: (optional) the l-by-l positive (semi)definite output covariance matrix used as output
+     weighting matrix when computing the Kalman gain.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">S</span>: (optional) the n-by-l state-output cross-covariance matrix used as cross-weighting matrix
+     when computing the Kalman gain.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rcnd</span>: (optional) vector of length lr, containing estimates of the reciprocal condition numbers
+     of the matrices involved in rank decisions, least squares, or Riccati equation solutions, where lr
+     = 4, if Kalman gain matrix K is not required, and lr = 12, if Kalman gain matrix K is
+     required.</li></ul>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x606-3599000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 69--><p class="noindent" > SIDENT function for computing a discrete-time state-space realization (A,B,C,D) and Kalman
+gain K using SLICOT routine IB01BD.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-743">
+&#x00A0;&#x00A0;[A,C,B,D]&#x00A0;=&#x00A0;sident(meth,1,s,n,l,R)
+&#x00A0;<br />&#x00A0;&#x00A0;[A,C,B,D,K,Q,Ry,S,rcnd]&#x00A0;=&#x00A0;sident(meth,1,s,n,l,R,tol,t)
+&#x00A0;<br />&#x00A0;&#x00A0;[A,C]&#x00A0;=&#x00A0;sident(meth,2,s,n,l,R)
+&#x00A0;<br />&#x00A0;&#x00A0;B&#x00A0;=&#x00A0;sident(meth,3,s,n,l,R,tol,0,Ai,Ci)
+&#x00A0;<br />&#x00A0;&#x00A0;[B,K,Q,Ry,S,rcnd]&#x00A0;=&#x00A0;sident(meth,3,s,n,l,R,tol,t,Ai,Ci)
+&#x00A0;<br />&#x00A0;&#x00A0;[B,D]&#x00A0;=&#x00A0;sident(meth,4,s,n,l,R,tol,0,Ai,Ci)
+&#x00A0;<br />&#x00A0;&#x00A0;[B,D,K,Q,Ry,S,rcnd]&#x00A0;=&#x00A0;sident(meth,4,s,n,l,R,tol,t,Ai,Ci)
+</div>
+<!--l. 80--><p class="nopar" >SIDENT computes a state-space realization (A,B,C,D) and the Kalman predictor gain K of a
+discrete-time system, given the system order and the relevant part of the R factor of the
+concatenated block-Hankel matrices, using subspace identification techniques (MOESP, N4SID, or
+their combination). The model structure is:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-744">
+&#x00A0;&#x00A0;x(k+1)&#x00A0;=&#x00A0;Ax(k)&#x00A0;+&#x00A0;Bu(k)&#x00A0;+&#x00A0;Ke(k),&#x00A0;&#x00A0;&#x00A0;k&#x00A0;$&#x003E;$=&#x00A0;1,
+&#x00A0;<br />&#x00A0;&#x00A0;y(k)&#x00A0;&#x00A0;&#x00A0;=&#x00A0;Cx(k)&#x00A0;+&#x00A0;Du(k)&#x00A0;+&#x00A0;e(k),
+</div>
+<!--l. 90--><p class="nopar" >where x(k) is the n-dimensional state vector (at time k), u(k) is the m-dimensional input vector,
+y(k) is the l-dimensional output vector, e(k) is the l-dimensional disturbance vector, and A, B, C, D,
+and K are real matrices of appropriate dimensions.
+</p>
+<!--l. 99--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x606-3600000"></a><span 
+class="cmbx-10x-x-109">Comments</span></span>
+   1. The n-by-n system state matrix A, and the p-by-n system output matrix C are
+computed for job <span 
+class="cmmi-10x-x-109">&#x003C;</span>= 2. 2. The n-by-m system input matrix B is computed for job <span 
+class="cmmi-10x-x-109">&#x003C;&#x003E; </span>2.
+3. The l-by-m system matrix D is computed for job = 1 or 4. 4. The n-by-l Kalman
+predictor gain matrix K and the covariance matrices Q, Ry, and S are computed for t <span 
+class="cmmi-10x-x-109">&#x003E;</span>
+0.
+</p>
+<!--l. 105--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x606-3601000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb471"><a 
+ id="x606-3601031r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//generate</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span><span 
+class="cmitt-10x-x-109">&#x00A0;from</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span><span 
+class="cmitt-10x-x-109">&#x00A0;linear</span><span 
+class="cmitt-10x-x-109">&#x00A0;system</span></span>
+<br class="fancyvrb" /><a 
+ id="x606-3601033r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x606-3601035r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601037r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601039r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS=syslin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601041r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nsmp=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601043r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;U=prbs_a(nsmp,nsmp</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x606-3601045r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y=(flts(U,SYS)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,nsmp,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601047r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601049r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;N=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601051r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;METH=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601053r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[R,N1]=findR(S,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,METH)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x606-3601055r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,C,B,D,K]=sident(METH,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,S,N,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,R)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601057r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS1=syslin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601059r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS1.X0=inistate(SYS1,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x606-3601061r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y1=flts(U,SYS1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601063r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d((</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">nsmp)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Y1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x606-3601065r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;METH=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601067r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[R,N1,SVAL]=findR(S,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,METH)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x606-3601069r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tol=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601071r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=size(U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">S</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601073r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,C,B,D,K]=sident(METH,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,S,N,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,R,tol,t)</span><br class="fancyvrb" /><a 
+ id="x606-3601075r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS1=syslin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D)</span>
+<br class="fancyvrb" /><a 
+ id="x606-3601077r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS1.X0=inistate(SYS1,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601079r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y1=flts(U,SYS1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x606-3601081r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d((</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">nsmp)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Y1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+<!--l. 139--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x606-3602000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli601.html#findBD">findBD</a>    <a 
+href="manualli606.html#sorder">sorder</a>
+</p>
+<!--l. 143--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x606-3603000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   V. Sima, Research Institute for Informatics, Bucharest, Oct. 1999. Revisions: May 2000, July
+2000.
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli606.html" >next</a>] [<a 
+href="manualli604.html" >prev</a>] [<a 
+href="manualli604.html#tailmanualli604.html" >prev-tail</a>] [<a 
+href="manualli605.html" >front</a>] [<a 
+href="manualli597.html#manualli605.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli605.html"></a>  </p> 
+</body></html> 

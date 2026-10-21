@@ -1,0 +1,580 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Graphes et r&eacute;seaux avec Scilab, la bo&icirc;te &agrave; outils
+MetanetDeuxi&egrave;me partie</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<BR>
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<H1 ALIGN="center"><B>Graphes et r&eacute;seaux avec Scilab, la bo&icirc;te
+&agrave; outils Metanet<BR>
+</B> <FONT SIZE="4">Deuxi&egrave;me partie</FONT></H1>
+<H3 ALIGN="center">Claude Gomez &nbsp;&nbsp;Maurice Goursat<BR>
+<BR>
+</H3>
+<BR>
+<BR>
+<BR>
+<BR>
+Nous avons vu dans la premi&egrave;re partie comment manipuler les graphes, les
+visualiser et r&eacute;soudre les probl&egrave;mes standards de graphes. Nous
+avons dit que les graphes sont la structure sous-jacente de base pour les
+probl&egrave;mes de r&eacute;seaux et c'est &agrave; la r&eacute;solution de
+probl&egrave;mes de r&eacute;seaux que nous allons nous int&eacute;resser
+maintenant.<BR>
+<BR>
+Les r&eacute;seaux occupent une place consid&eacute;rable dans notre vie
+quotidienne ; ils sont indispensables par ce qu'ils nous apportent : il en est
+ainsi des r&eacute;seaux dits de service c'est-&agrave;-dire l'eau, le gaz,
+l'&eacute;lectricit&eacute;, le chauffage urbain et le t&eacute;l&eacute;phone.
+Nous utilisons aussi les r&eacute;seaux de transport : train, bus, m&eacute;tro
+et surtout le r&eacute;seau routier qui est &agrave; la fois indispensable et
+&agrave; l'origine de soucis quotidiens dans les grandes agglom&eacute;rations.
+Il y a &eacute;videmment aussi d'innombrables probl&egrave;mes de
+r&eacute;seaux dans des domaines techniques vari&eacute;s : ordinateurs,
+distribution et de plus en plus les t&eacute;l&eacute;communications sous
+diverses formes.<BR>
+<BR>
+Dans leur mod&eacute;lisation les probl&egrave;mes sur les r&eacute;seaux
+d&eacute;pendent du probl&egrave;me physique et de la nature du trafic. Il
+existe cependant des lois de base et quelques grandes classes de
+probl&egrave;mes types que nous allons illustrer ici.<BR>
+<BR>
+<H2>1&nbsp;&nbsp; Se mettre au courant (&eacute;lectrique)</H2>
+Notre premier exemple est une version tr&egrave;s simplifi&eacute;e du
+probl&egrave;me de production &eacute;lectrique. On consid&egrave;re le
+r&eacute;seau national de tr&egrave;s haute tension. Les noeuds du
+r&eacute;seau repr&eacute;sentent les r&eacute;gions qui sont des noeuds de
+consommation et les centrales (nucl&eacute;aires, thermiques, hydrauliques) qui
+sont les noeuds de production. On d&eacute;signe en g&eacute;n&eacute;ral les
+noeuds de consommation par noeuds sources, les noeuds de production par noeuds
+puits et les noeuds qui sont de simples jonction des lignes sans consommation
+ou production noeuds de transit.<BR>
+<BR>
+On va supposer pour simplifier que les co&ucirc;ts de production sont
+identiques sur tous les sites et que le co&ucirc;t de transport est le
+m&ecirc;me sur tous les arcs. Le probl&egrave;me est le suivant : calculer les
+quantit&eacute;s d'&eacute;lectricit&eacute; &agrave; produire dans les
+diff&eacute;rentes centrales en minimisant le co&ucirc;t de transport. De plus,
+on doit respecter deux contraintes : les capacit&eacute;s de transport des
+lignes du r&eacute;seau et les capacit&eacute;s de production des centrales
+sont limit&eacute;es. Bien &eacute;videmment une condition n&eacute;cessaire
+pour obtenir une solution est que la capacit&eacute; totale de production soit
+sup&eacute;rieure &agrave; la demande totale. Si ce n'est pas le cas (cela
+s'est d&eacute;j&agrave; produit lors d'hivers tr&egrave;s rigoureux) on
+r&eacute;sout le probl&egrave;me en r&eacute;alisant du d&eacute;lestage et en
+rajoutant un co&ucirc;t du d&eacute;lestage.<BR>
+<BR>
+Ce probl&egrave;me simplifi&eacute; (la r&eacute;alit&eacute; est beaucoup plus
+complexe) est r&eacute;solu quotidiennement pour de multiples raisons : les
+co&ucirc;ts de production varient en fonction du type de centrale, une centrale
+peut &ecirc;tre arr&ecirc;t&eacute;e pour maintenance, des lignes peuvent
+&ecirc;tre d&eacute;truites (ce fut le cas lors des derni&egrave;res
+temp&ecirc;tes) mais la raison permanente vient du fait que la demande est
+dynamique. Il y a en effet de tr&egrave;s fortes variations saisonni&egrave;res
+mais aussi de fortes variations horaires avec les pointes du matin et du
+soir.<BR>
+<BR>
+Dans notre cas on ne va prendre en compte que ce que l'on appelle la
+premi&egrave;re loi de Kirchhoff, dite loi des noeuds : la somme des
+entr&eacute;es dans un noeud est &eacute;gale &agrave; la somme des sorties du
+noeud.<BR>
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="gra1.jpg" ALT="un petit reseau electrique" WIDTH="603" HEIGHT="433"
+ BORDER="0"> <BR>
+Figure 1: Un petit r&eacute;seau &eacute;lectrique <BR>
+</CENTER>
+<BR>
+Par exemple si l'on prend le r&eacute;seau tr&egrave;s simple de la figure
+Figure 1, nous avons deux r&eacute;gions de consommation (noeuds 2 et 3) et
+deux r&eacute;gions qui sont &agrave; la fois de production et de consommation
+(noeuds 1 et 4). Si <I>q</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB> est le
+flot sur l'arc <I>i</I> et si <I>b</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB>
+est la consommation (l'inverse de la production) au noeud <I>i</I> la loi des
+noeuds s'&eacute;crit donc :<BR>
+<BR>
+<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">noeud 1 :</TD>
+<TD ALIGN="right" NOWRAP="NOWRAP">-<I>q</I><SUB><FONT SIZE="2">1</FONT></SUB> -
+<I>q</I><SUB><FONT SIZE="2">2</FONT></SUB> - <I>q</I><SUB><FONT
+SIZE="2">3</FONT></SUB>=<I>b</I><SUB><FONT SIZE="2">1</FONT></SUB></TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">noeud 2 :</TD>
+<TD ALIGN="right" NOWRAP="NOWRAP"><I>q</I><SUB><FONT SIZE="2">1</FONT></SUB> +
+<I>q</I><SUB><FONT SIZE="2">4</FONT></SUB> + <I>q</I><SUB><FONT
+SIZE="2">6</FONT></SUB>=<I>b</I><SUB><FONT SIZE="2">2</FONT></SUB></TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">noeud 3 :</TD>
+<TD ALIGN="right" NOWRAP="NOWRAP"><I>q</I><SUB><FONT SIZE="2">2</FONT></SUB> -
+<I>q</I><SUB><FONT SIZE="2">4</FONT></SUB> + <I>q</I><SUB><FONT
+SIZE="2">5</FONT></SUB>=<I>b</I><SUB><FONT SIZE="2">3</FONT></SUB></TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">noeud 4 :</TD>
+<TD ALIGN="right" NOWRAP="NOWRAP"><I>q</I><SUB><FONT SIZE="2">3</FONT></SUB> -
+<I>q</I><SUB><FONT SIZE="2">5</FONT></SUB> - <I>q</I><SUB><FONT
+SIZE="2">6</FONT></SUB>=<I>b</I><SUB><FONT SIZE="2">4</FONT></SUB></TD>
+</TR>
+</TABLE>
+<BR>
+On peut &eacute;crire ces &eacute;quations sous la forme matricielle :<BR>
+<CENTER>
+<IMG SRC="Image1.gif" ALT="matrice" WIDTH="276" HEIGHT="144" BORDER="0"> 
+</CENTER>
+<BR>
+On a donc : <DIV ALIGN="center">
+<A NAME="aqb"></A><I>Aq</I>=<I>b</I> &nbsp;&nbsp;&nbsp;&nbsp;(1) 
+</DIV>
+o&ugrave; <I>q</I> (flot d'&eacute;lectricit&eacute; sur les arcs) est le
+vecteur des <I>q</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB>, <I>b</I>
+(consommation ou demande, inverse de la production) est le vecteur des
+<I>b</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB> et <I>A</I> est la matrice
+d'incidence noeuds-arcs du graphe : la colonne <I>i</I> repr&eacute;sente l'arc
+<I>i</I> ; si cet arc va du noeud <I>k</I> au noeud <I>l</I> on trouve un -1
+sur la ligne <I>k</I> et 1 sur la ligne <I>l</I>. C'est ce syst&egrave;me
+d'&eacute;quations qui d&eacute;finit le flot d'&eacute;lectricit&eacute; dans
+le r&eacute;seau.<BR>
+<BR>
+<H3>1.1&nbsp;&nbsp; Quelle quantit&eacute; d'&eacute;lectricit&eacute; peut-on
+consommer ?</H3>
+Les lignes &eacute;lectriques ont des capacit&eacute;s maximales. Ceci
+s'exprime par : C_min <FONT FACE="symbol">&#163;</FONT>q <FONT
+FACE="symbol">&#163;</FONT>C_max o&ugrave; le vecteur <I>C</I><SUB><FONT
+SIZE="2"><I>max</I></FONT></SUB> repr&eacute;sente les capacit&eacute;s
+maximales des lignes et le vecteur <I>C</I><SUB><FONT
+SIZE="2"><I>min</I></FONT></SUB> repr&eacute;sente les capacit&eacute;s
+minimales des lignes. Dans notre cas tous les <I>C</I><SUB><FONT
+SIZE="2"><I>min</I></FONT></SUB> sont nuls.<BR>
+<BR>
+Les lignes ayant des capacit&eacute;s de transport maximales, la valeur
+maximale du flot &eacute;lectrique que l'on peut faire passer d'un noeud
+&agrave; un autre noeud est limit&eacute;e.<BR>
+<BR>
+On consid&egrave;re par exemple le r&eacute;seau de la figure Figure 2
+o&ugrave; les noeuds 3, 12 et 14 sont des noeuds de production
+d'&eacute;lectricit&eacute; (centrales) et tous les autres noeuds sont des
+noeuds de consommation (villes par exemple). On peut se demander par exemple
+quelle est la capacit&eacute; maximale du flot &eacute;lectrique que l'on peut
+faire arriver &agrave; un noeud de consommation donn&eacute;, par exemple le
+noeud 5. Pour cela, il faut calculer le flot maximal que l'on peut faire passer
+de chaque noeud de production vers le noeud 5.<BR>
+<BR>
+<CENTER>
+<HR SIZE="2">
+<BR>
+<IMG SRC="edf.jpg" ALT="Le réseau électrique avec affichage des numéros"
+ WIDTH="598" HEIGHT="437" BORDER="0"> <DIV ALIGN="center">
+Figure 2: Le r&eacute;seau &eacute;lectrique avec affichage des num&eacute;ros
+des noeuds et des arcs 
+</DIV>
+<HR SIZE="2">
+</CENTER>
+On charge d'abord dans Scilab le graphe consid&eacute;r&eacute; qui se trouve
+dans le fichier <B><TT>edf.graph</TT></B> : <PRE>
+g=load_graph(&quot;edf.graph&quot;);
+</PRE>
+Ce graphe a pu &ecirc;tre cr&eacute;&eacute; par exemple &agrave; partir de la
+fen&ecirc;tre graphique de Metanet ou &agrave; partir de Scilab (voir la
+premi&egrave;re partie).<BR>
+<BR>
+Ensuite, on d&eacute;finit les capacit&eacute;s minimales et maximales des arcs
+que l'on range dans les &eacute;l&eacute;ments de la liste <B><TT>g</TT></B>
+pr&eacute;vus pour &ccedil;a : 
+<PRE>
+Cmin=zeros(1,31); 
+g(&quot;edge_min_cap&quot;)=Cmin;
+Cmax=[13 27 29 27 25 28 22 22 17 13 15 27 18 10 25 19 13 15 28..
+      25 13 30 17 18 26 24 27 25 15 15 18];
+g(&quot;edge_max_cap&quot;)=Cmax;
+</PRE>
+Sur la figure Figure 4 on voit le r&eacute;seau avec les capacit&eacute;s
+maximales des arcs affich&eacute;es.<BR>
+<BR>
+
+<CENTER>
+<HR SIZE="2">
+<BR>
+<IMG SRC="edf2.jpg" ALT="Le réseau électrique avec affichage des arcs"
+ WIDTH="578" HEIGHT="417" BORDER="0"> <DIV ALIGN="center">
+Figure 3: Le r&eacute;seau &eacute;lectrique avec affichage des
+capacit&eacute;s maximales des arcs 
+</DIV>
+<HR SIZE="2">
+</CENTER>
+On va calculer le flot maximal des noeuds de production 3, 12 et 14 vers le
+noeud 5. On utilise pour cela la fonction <B><TT>max_flow</TT></B> &agrave;
+laquelle on donne le noeud de d&eacute;part, le noeud d'arriv&eacute;e et le
+graphe : <PRE>
+--&gt;q3=max_flow(3,5,g)
+ q3  = 
+    55.  
+ 
+--&gt;q12=max_flow(12,5,g)
+ q12  =
+    38.  
+ 
+--&gt;q14=max_flow(14,5,g)
+ q14  =
+    45.  
+</PRE>
+Mais cela ne nous donne pas la consommation maximale que l'on peut
+r&eacute;aliser au noeud 5. En effet, on ne peut pas simplement ajouter les
+valeurs que l'on a obtenues car les flots venant des trois noeuds de production
+sont partag&eacute;s sur les arcs. Pour calculer cette consommation maximale au
+noeud 5 il faut cr&eacute;er ce que l'on appelle un <EM>graphe
+aument&eacute;</EM> : on va rajouter un noeud ; ce noeud aura trois arcs
+sortant, chacun joignant un des noeuds de production (3, 12 et 14). Les
+capacit&eacute;s maximale de ces trois arcs seront prises infinies (par exemple
+1000) car ils ne jouent aucun r&ocirc;le sur la capacit&eacute;, ils ne sont
+l&agrave; que pour transformer les trois noeuds de production en un seul. Le
+r&eacute;seau obtenu est sur la figure Figure 4. <BR>
+<BR>
+
+<CENTER>
+<HR SIZE="2">
+<BR>
+<IMG
+ ALT="Le réseau électrique augmenté avec affichage des capacites maximales des arcs"
+ BORDER="0" SRC="edfaug.jpg" WIDTH="661" HEIGHT="557"> <DIV ALIGN="center">
+Figure 4: Le r&eacute;seau &eacute;lectrique augment&eacute; avec affichage des
+capacit&eacute;s maximales des arcs 
+</DIV>
+<HR SIZE="2">
+</CENTER>
+Il suffit de charger &agrave; nouveau ce graphe dans Scilab et de refaire le
+calcul du flot maximal du nouveau noeud 16 au noeud 5 : <PRE>
+--&gt;gaug=load_graph(&quot;edfaug.graph&quot;);
+ 
+--&gt;q=max_flow(16,5,gaug)
+ q  =
+    80.  
+</PRE>
+On voit donc que compte tenu des capacit&eacute;s des arcs, on ne pourra de
+toute fa&ccedil;on pas consommer plus de 80 au noeud 5. Ce r&eacute;sultat
+n'est a priori pas &eacute;vident &agrave; obtenir.<BR>
+<BR>
+Noter que la fonction <B><TT>max_flow</TT></B> peut donner aussi en retour la
+valeur du flot sur tous les arcs, mais nous n'en avons pas besoin ici.<BR>
+<BR>
+
+<H3>1.2&nbsp;&nbsp; Gagner des sous avec Metanet</H3>
+Une fois que l'on se donne la production et la consommation,
+c'est-&agrave;-dire le vecteur <I>b</I> de l'&eacute;quation il faut faire
+passer le flot &eacute;lectrique sur les arcs. Mais il n'y a pas un seul
+chemin. Comment choisir ? H&eacute; bien nous allons minimiser le co&ucirc;t du
+transport (pertes sur les lignes, co&ucirc;t d'entretien et d'amortissement des
+lignes). &Agrave; chaque arc <I>i</I> est associ&eacute; un co&ucirc;t
+<I>p</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB> et donc le co&ucirc;t total
+de transport peut s'&eacute;crire donc de fa&ccedil;on lin&eacute;aire : <BR>
+<CENTER>
+<IMG SRC="Image2.gif" WIDTH="100" HEIGHT="28" BORDER="0"> 
+</CENTER>
+<BR>
+D'autres types de co&ucirc;ts peuvent bien s&ucirc;r &ecirc;tre
+envisag&eacute;s, par exemple des co&ucirc;ts quadratiques ou m&ecirc;me plus
+compliqu&eacute;s.<BR>
+<BR>
+Nous reprenons toujours le m&ecirc;me r&eacute;seau et nous nous donnons
+maintenant la valeur des consommations (appel&eacute;es aussi demande)
+<I>b</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB> en chaque noeud et la valeur
+du co&ucirc;t <I>q</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB> en chaque arc :
+<PRE>
+b=[7 10 -35 11 9 11 8 12 9 5 7 -40 8 -30 8];
+g(&quot;node_demand&quot;)=b;
+p=ones(1,31);
+g(&quot;edge_cost&quot;)=p;
+</PRE>
+Pour simplifier nous avons pris un co&ucirc;t constant &eacute;gal &agrave; 1
+sur chaque arc. On remarque que les valeurs n&eacute;gative de <I>b</I>
+correspondent aux noeud de production 3, 12 et 14.<BR>
+<BR>
+Il ne reste plus qu'&agrave; utiliser la fonction ad hoc de Metanet pour
+r&eacute;aliser le calcul. C'est <B><TT>min_lcost_flow2</TT></B> : 
+<PRE>
+--&gt;[c,flo] = min_lcost_flow2(g)
+ flo  =
+         column  1 to 11
+ 
+!   0.    19.    0.    4.    6.    4.    0.    8.    0.    0.    0. !
+ 
+         column 12 to 22
+ 
+!   0.    0.    1.    0.    0.    5.    15.    1.    0.    0.    9. !
+ 
+         column 23 to 31
+ 
+!   0.    0.    8.    0.    13.    20.    14.    15.    8. !
+ c  =
+    150.  
+</PRE>
+qui nous donne le flot <B><TT>flo</TT></B> sur chaque arc ainsi que la valeur
+du co&ucirc;t minimal &eacute;gal ici &agrave; 150. On se rend compte dans cet
+exemple tr&egrave;s simple que certains arcs ne servent &agrave; rien, ce sont
+ceux pour lesquels le flot est nul. On peut les obtenir en faisant : 
+<PRE>
+--&gt;anul=find(flo==0)
+ anul  =
+         column  1 to 11
+ 
+!   1.    3.    7.    9.    10.    11.    12.    13.    15.    16.    20. !
+ 
+         column 12 to 15
+ 
+!   21.   23.    24.    26. !
+</PRE>
+Il pourrait alors &ecirc;tre &eacute;conomique de supprimer tous les arcs qui
+ont un flot nul. Pour cela on construit la matrice &agrave; deux colonnes <B> 
+<TT>ij</TT></B> dont chaque ligne correspond &agrave; un arc que l'on veut
+d&eacute;truire sous la forme [noeud de t&ecirc;te, noeud de queue]. Ensuite on
+n'a plus qu'&agrave; utiliser la fonction <B><TT>delete_arcs</TT></B> qui prend
+en argument cette matrice <B><TT>ij</TT></B> et donne le nouveau r&eacute;seau
+: 
+<PRE>
+i=0
+for a=anul
+  i=i+1; ij(i,1)=g(&quot;tail&quot;)(a); ij(i,2)=g(&quot;head&quot;)(a);
+end
+g2=delete_arcs(ij,g);
+</PRE>
+On peut voir ce nouveau r&eacute;seau sur la figure Figure 5.<BR>
+<BR>
+
+<CENTER>
+<HR SIZE="2">
+<IMG SRC="edfnul.jpg" ALT="Le réseau électrique avec les seuls arcs utiles"
+ WIDTH="598" HEIGHT="437" BORDER="0"> <BR>
+<DIV ALIGN="center">
+Figure 5: Le r&eacute;seau &eacute;lectrique avec les seuls arcs utiles 
+</DIV>
+<HR SIZE="2">
+</CENTER>
+<H4>Autre m&eacute;thode</H4>
+Mais Scilab est plein de ressources. Nous avons r&eacute;solu le
+probl&egrave;me pr&eacute;c&eacute;dent en le consid&eacute;rant comme un
+probl&egrave;me d'optimisation de co&ucirc;t dans un r&eacute;seau. On peut
+aussi le consid&eacute;rer comme un probl&egrave;me d'optimisation
+lin&eacute;aire standard. Pour cela on &eacute;crit le probl&egrave;me sous la
+forme matricielle : <DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"><A NAME="P1"></A></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD ALIGN="center"><FONT SIZE="2">&nbsp;</FONT></TD>
+</TR>
+<TR>
+<TD ALIGN="center">min</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><FONT SIZE="2"><I>q</I></FONT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"><I>p</I></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP"><FONT SIZE="2"><I>T</I></FONT></TD>
+</TR>
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"><I>q</I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>Aq</I>=<I>b</I></TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">0 <FONT FACE="symbol">&#163;</FONT> <I>q</I>
+<FONT FACE="symbol">&#163;</FONT> <I>C</I><SUB><FONT
+SIZE="2"><I>max</I></FONT></SUB></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> &nbsp;&nbsp;&nbsp;&nbsp;(2)</TD>
+</TR>
+</TABLE>
+</DIV>
+c'est-&agrave;-dire que l'on cherche <I>q</I> qui minimise <I>p</I><SUP><FONT
+SIZE="2"><I>T</I></FONT></SUP><I>q</I> sous les deux contraintes
+<I>Aq</I>=<I>b</I> et 0 <FONT FACE="symbol">&#163;</FONT> <I>q</I>
+<FONT FACE="symbol">&#163;</FONT> <I>C</I><SUB><FONT
+SIZE="2"><I>max</I></FONT></SUB>. Dans le jargon des optimiseurs, ceci
+s'appelle un probl&egrave;me de <EM>programmation lin&eacute;aire</EM> et il
+peut &ecirc;tre r&eacute;solu par la fonction <B><TT>linpro</TT></B> de Scilab.
+Pour cela il faut d'abord obtenir la matrice <I>A</I> &agrave; partir du graphe
+: <PRE>
+A=graph_2_mat(g,&quot;node-arc&quot;);
+A=full(A);
+</PRE>
+<B><TT>graph_2_mat</TT></B> qui permet d'obtenir le r&eacute;sultat retourne
+une matrice sous une forme sp&eacute;ciale appel&eacute;e <EM>creuse</EM> qui
+ne stocke que les &eacute;l&eacute;ments non nuls et <B><TT>full</TT></B>
+permet d'obtenir une matrice standard.<BR>
+<BR>
+Il n'y a plus qu'&agrave; utiliser <B><TT>linpro</TT></B> avec les arguments
+qu'il faut en faisant attention au signe et au fait qu'il ne faut ici que des
+vecteurs colonnes : 
+<PRE>
+[flo2,lagr,c2]=linpro(p',A,-b',Cmin',Cmax',15);
+--&gt;flo2',c2
+ ans  =
+         column  1 to 11
+ 
+!   0.    19.    0.    4.    6.    5.    0.    8.    0.    0.    0. !
+ 
+         column 12 to 22
+ 
+!   0.    0.    0.    0.    0.    5.    15.    1.    0.    0.    9. !
+ 
+         column 23 to 31
+ 
+!   1.    0.    8.    0.    12.    20.    14.    15.    8. !
+ c2  =
+    150.  
+</PRE>
+et le flot est obtenu dans <B><TT>flo2</TT></B> et le co&ucirc;t dans <B><TT>c2
+</TT></B>.<BR>
+<BR>
+On voit que le co&ucirc;t minimal <B><TT>c2</TT></B> vaut 150 comme avec la
+premi&egrave;re m&eacute;thode mais qu'en revanche le flot obtenu <B><TT>flo2 
+</TT></B> n'est pas le m&ecirc;me que le flot <B><TT>flo</TT></B>
+calcul&eacute; par la premi&egrave;re m&eacute;thode.<BR>
+<BR>
+Mais alors, quel est le r&eacute;sultat qui est juste ? H&eacute; bien les deux
+! En effet, il n'y a pas de solution unique pour un tel probl&egrave;me. On
+peut simplement voir que la premi&egrave;re m&eacute;thode est plus
+pr&eacute;cise en v&eacute;rifiant que la contrainte <I>Aq</I>=<I>b</I> est
+mieux respect&eacute;e : 
+<PRE>
+--&gt;norm(A*flo'+b')
+ ans  = 
+    0.  
+ 
+--&gt;norm(A*flo2+b')
+ ans  =
+    3.493E-14  
+</PRE>
+Il faut donc pr&eacute;f&eacute;rer la premi&egrave;re m&eacute;thode.<BR>
+<BR>
+
+<H2>2&nbsp;&nbsp; Autres probl&egrave;mes de r&eacute;seaux</H2>
+Nous avons vu qu'il &eacute;tait facile de r&eacute;soudre des probl&egrave;mes
+de r&eacute;seaux et de flots avec Scilab et Metanet. Bien s&ucirc;r nous ne
+vous avons montr&eacute; qu'un aper&ccedil;u des types de probl&egrave;mes que
+l'on peut rencontrer et encore sous une version simplifi&eacute;e.<BR>
+<BR>
+Il existe cependant toute une gamme de probl&egrave;mes tr&egrave;s
+int&eacute;ressants et pas faciles &agrave; r&eacute;soudre. En effet,
+consid&eacute;rons pour terminer le probl&egrave;me du transport dans une
+agglom&eacute;ration, probl&egrave;me crucial dans la r&eacute;gion parisienne
+avec ses bouchons quasi-permanents. Retenons simplement un r&eacute;seau
+partiel, celui des grands axes (celui que l'on voit sur le site Web Sytadin)
+avec les entr&eacute;es et sorties correspondantes. La demande ou consommation
+de ce r&eacute;seau est en fait fournie par une grande matrice appel&eacute;e
+matrice <EM>origines-destinations</EM> qui pour chaque entr&eacute;e ventile
+les entrants sur les sorties qu'ils vont prendre. Dans ce cas un flot est
+repr&eacute;sent&eacute; par les automobilistes qui vont d'une entr&eacute;e
+<I>i</I> &agrave; une sortie <I>j</I>. Il y a donc autant de flots que de
+couple (entr&eacute;e,sortie) certains de ces flots &eacute;tant nuls. La
+difficult&eacute; vient du fait que contrairement &agrave; l'eau et &agrave;
+l'&eacute;lectricit&eacute; ces flots ne se m&eacute;langent pas : nous avons
+un probl&egrave;me de <EM>multiflots</EM>.<BR>
+<BR>
+<CENTER>
+<HR SIZE="2">
+<IMG SRC="hway.jpg" ALT="Croisement autoroutier" WIDTH="578" HEIGHT="409"
+ BORDER="0"> <BR>
+<DIV ALIGN="center">
+Figure 6: Croisement autoroutier 
+</DIV>
+<HR SIZE="2">
+</CENTER>
+On peut illustrer cette difficult&eacute; en prenant le r&eacute;seau
+tr&egrave;s simple de la figure Figure 6 qui est cens&eacute;
+repr&eacute;senter un croisement de deux autoroutes avec des alternatives sur
+les points d'entr&eacute;e : <UL>
+<LI> les v&eacute;hicules arrivant du nord (noeud 1) vont aller &agrave; l'est
+(noeud 8) et au sud (noeuds 10) ; </LI>
+<LI>les v&eacute;hicules venant de l'ouest vont faire la m&ecirc;me chose mais
+il faut conna&icirc;tre les flots respectifs sur les parties communes pour
+r&eacute;soudre le probl&egrave;me ! </LI>
+</UL>
+L'automobiliste qui est pris dans un embouteillage, qui est arriv&eacute; dans
+cette situation en suivant les indications du syst&egrave;me de navigation de
+son v&eacute;hicule et qui utilise son t&eacute;l&eacute;phone portable est une
+bonne illustration du pire et du meilleur des r&eacute;seaux. Il est sur un
+r&eacute;seau qui a &eacute;t&eacute; sans doute bien calcul&eacute; : le
+r&eacute;seau routier. Il a un outil qui a un algorithme parfait pour lui
+trouver le chemin le plus court (en temps) dans le graphe o&ugrave; il se
+trouve : le syst&egrave;me de navigation. Et pourtant il est dans une situation
+insoluble et il utilise un autre formidable r&eacute;seau, celui des
+t&eacute;l&eacute;communications, pour continuer &agrave; travailler ou avertir
+d'autres personnes. Les probl&egrave;mes de r&eacute;seaux s'entrecroisent donc
+et ne font que commencer...<BR>
+<BR>
+<H2>Contacts</H2>
+Site Web de Scilab : <B><TT>http://www-rocq.inria.fr/scilab</TT></B><BR>
+<BR>
+Serveur ftp : <B><TT>ftp://ftp.inria.fr/INRIA/Scilab</TT></B><BR>
+<BR>
+Adresse email : <B><TT>Scilab@inria.fr</TT></B><BR>
+<BR>
+Newsgroup : <B><TT>comp.soft-sys.math.scilab</TT></B><BR>
+<BR>
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+scf(\nspnumber{0})
+plot2d()
+\nspcomment{// Postcript export}
+filename=\nspstring{'foo'}\nspoperator{;}\nspcomment{// ! no extension}
+xs2ps(\nspnumber{0},filename)
+\nspcomment{//add the Postscript file header and create $<$filename$>$.eps file}
+\nspkeyword{if} MSDOS \nspkeyword{then}
+  unix_s(pathconvert(\nspstring{'""'}\nspoperator{+}WSCI\nspoperator{+}\nspstring{'/bin/BEpsf'}\nspoperator{+}\nspstring{'""'},%f)\nspoperator{+}\nspstring{' -p '}\nspoperator{+}filename)
+\nspkeyword{else}
+  unix_s(pathconvert(\nspstring{'SCI/bin/BEpsf'},%f)\nspoperator{+}\nspstring{' -p '}\nspoperator{+}filename)
+\nspkeyword{end}
+\nspcomment{// Gif export}
+xs2gif(\nspnumber{0},\nspstring{'foo.gif'})
+\nspcomment{// ppm export}
+xs2ppm(\nspnumber{0},\nspstring{'foo.ppm'})
+\end{Verbatim}

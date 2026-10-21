@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>winqueryreg</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1407.html" >next</a>] [<a 
+href="manualli1405.html" >prev</a>] [<a 
+href="manualli1405.html#tailmanualli1405.html" >prev-tail</a>] [<a 
+href="#tailmanualli1406.html">tail</a>] [<a 
+href="manualli1327.html#manualli1406.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1407-7988000"></a>winqueryreg</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1407-7988001"></a><a 
+ id="winqueryreg"></a><span 
+class="cmtt-10x-x-109">winqueryreg </span>&#x2013;                                          Get item from Microsoft Windows registry<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1407-7989000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1615">
+&#x00A0;&#x00A0;value&#x00A0;=&#x00A0;winqueryreg(&#x0027;name&#x0027;,
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0027;rootkey&#x0027;,&#x0027;subkey&#x0027;)
+&#x00A0;<br />&#x00A0;&#x00A0;value&#x00A0;=&#x00A0;winqueryreg(&#x0027;rootkey&#x0027;,
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0027;subkey&#x0027;,&#x0027;valname&#x0027;)
+&#x00A0;<br />&#x00A0;&#x00A0;value&#x00A0;=
+&#x00A0;<br />&#x00A0;&#x00A0;winqueryreg(&#x0027;rootkey&#x0027;,&#x0027;subkey&#x0027;)
+</div>
+<!--l. 30--><p class="nopar" >
+</p>
+<!--l. 32--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1407-7990000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 32--><p class="noindent" > value = winqueryreg(&apos;name&apos;, &apos;rootkey&apos;, &apos;subkey&apos;) returns the key names in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rootkey&#x005C;subkey</span></span></span> in a
+matrix of strings. The first argument is the literal quoted string, &apos;name&apos;.If the value retrieved from
+the registry is a string, winqueryreg returns a string. If the value is a 32-bit integer, winqueryreg
+returns the value as an integer (int32).value = winqueryreg(&apos;rootkey&apos;, &apos;subkey&apos;, &apos;valname&apos;) returns
+the value for key valname in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rootkey&#x005C;subkey</span></span></span>.value = winqueryreg(&apos;rootkey&apos;, &apos;subkey&apos;) returns a
+value in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rootkey&#x005C;subkey</span></span></span> that has no value name property.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Note</span></span></span>: The literal name argument and
+the rootkey argument are case-sensitive. The subkey and valname arguments are not.
+</p>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1407-7991000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb915"><a 
+ id="x1407-7991014r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;MSDOS</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span>
+<br class="fancyvrb" /><a 
+ id="x1407-7991016r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;winqueryreg</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0027;HKEY_LOCAL_MACHINE&#x0027;</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0027;HARDWARE&#x005C;DESCRIPTION&#x005C;System&#x005C;CentralProcessor&#x005C;0&#x005C;&#x0027;</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0027;ProcessorNameString&#x0027;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1407-7991018r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lines(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1407-7991020r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mousechar=winqueryreg(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;name&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;HKEY_CURRENT_USER&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;control</span><span 
+class="cmtt-10x-x-109">&#x00A0;panel&#x005C;mouse&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1407-7991022r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;len=size(mousechar)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1407-7991024r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;k=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">len(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span>
+<br class="fancyvrb" /><a 
+ id="x1407-7991026r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;setting=winqueryreg(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;HKEY_CURRENT_USER&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;control</span><span 
+class="cmtt-10x-x-109">&#x00A0;panel&#x005C;mouse&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,mousechar(k))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1407-7991028r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;(mousechar(k)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">==</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;mousechar(k)=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;default&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span>
+<br class="fancyvrb" /><a 
+ id="x1407-7991030r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;str=sprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%s</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;%s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,mousechar(k),string(setting))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1407-7991032r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(str)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1407-7991034r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x1407-7991036r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span></div>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1407-7992000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1407-7993000"></a></span>
+   A.C
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1407.html" >next</a>] [<a 
+href="manualli1405.html" >prev</a>] [<a 
+href="manualli1405.html#tailmanualli1405.html" >prev-tail</a>] [<a 
+href="manualli1406.html" >front</a>] [<a 
+href="manualli1327.html#manualli1406.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1406.html"></a>  </p> 
+</body></html> 

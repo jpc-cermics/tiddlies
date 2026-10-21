@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//--- first example}
+\nspcomment{//  fix current scale}
+xsetech(frect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}])
+xrect(\nspnumber{0},\nspnumber{10},\nspnumber{10},\nspnumber{10})
+a=\nspnumber{5}\nspoperator{*}ones(\nspnumber{11},\nspnumber{11})\nspoperator{;}a(\nspnumber{2}\nspoperator{:}\nspnumber{10},\nspnumber{2}\nspoperator{:}\nspnumber{10})=\nspnumber{4}\nspoperator{;}a(\nspnumber{5}\nspoperator{:}\nspnumber{7},\nspnumber{5}\nspoperator{:}\nspnumber{7})=\nspnumber{2}\nspoperator{;}
+\nspcomment{// first matrix in rectangle [1,1,3,3]}
+Matplot1(a,[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{3}])
+a=ones(\nspnumber{10},\nspnumber{10})\nspoperator{;}a=\nspnumber{3}\nspoperator{*}tril(a)\nspoperator{+}\nspnumber{2}\nspoperator{*}a\nspoperator{;}
+\nspcomment{// second matrix in rectangle [5,6,7,8]}
+Matplot1(a,[\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{8}])
+xset(\nspstring{'default'})
+xbasc()
+\nspcomment{//--- second example}
+xsetech(frect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}])
+xrect(\nspnumber{0},\nspnumber{10},\nspnumber{10},\nspnumber{10})
+n=\nspnumber{100}\nspoperator{;}
+xset(\nspstring{'pixmap'},\nspnumber{1})
+driver(\nspstring{'X11'})\nspoperator{;}
+\nspkeyword{for} k=\nspoperator{-}n\nspoperator{:}n \nspkeyword{do}
+  a=ones(n,n)\nspoperator{;}
+  a=\nspnumber{3}\nspoperator{*}tril(a,k)\nspoperator{+}\nspnumber{2}\nspoperator{*}a\nspoperator{;}
+  a=a\nspoperator{+}a\nspoperator{'}\nspoperator{;}
+  k1=\nspnumber{3}\nspoperator{*}(k\nspoperator{+}\nspnumber{100})\nspoperator{/}\nspnumber{200}\nspoperator{;}
+  Matplot1(a,[k1\nspoperator{,}\nspnumber{2}\nspoperator{,}k1\nspoperator{+}\nspnumber{7}\nspoperator{,}\nspnumber{9}])
+  xset(\nspstring{'wshow'})
+  xset(\nspstring{'wwpc'})
+\nspkeyword{end}
+xset(\nspstring{'pixmap'},\nspnumber{0})
+xset(\nspstring{'default'})
+xbasc()
+\end{Verbatim}

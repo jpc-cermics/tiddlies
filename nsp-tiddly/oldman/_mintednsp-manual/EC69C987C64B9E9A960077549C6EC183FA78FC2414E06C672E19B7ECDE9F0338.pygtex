@@ -1,0 +1,65 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//  besselI functions}
+\nspcomment{// ==================}
+x=linspace(\nspnumber{0.01},\nspnumber{10},\nspnumber{5000})\nspoperator{'}\nspoperator{;}
+xbasc()
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})
+plot2d(x,besseli(\nspnumber{0}\nspoperator{:}\nspnumber{4},x),style = \nspnumber{2}\nspoperator{:}\nspnumber{6})
+legend(\nspstring{'I'}\nspoperator{+}string(\nspnumber{0}\nspoperator{:}\nspnumber{4}),\nspnumber{2})\nspoperator{;}
+xtitle(\nspstring{"Some modified Bessel functions of the first kind"})
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})
+plot2d(x,besseli(\nspnumber{0}\nspoperator{:}\nspnumber{4},x,\nspnumber{1}),style = \nspnumber{2}\nspoperator{:}\nspnumber{6})
+legend(\nspstring{'I'}\nspoperator{+}string(\nspnumber{0}\nspoperator{:}\nspnumber{4}),\nspnumber{1})\nspoperator{;}
+xtitle(\nspstring{"Some modified scaled Bessel functions of the first kind"})
+\nspcomment{// besselJ functions}
+\nspcomment{// =================}
+x=linspace(\nspnumber{0},\nspnumber{40},\nspnumber{5000})\nspoperator{'}\nspoperator{;}
+xbasc()
+plot2d(x,besselj(\nspnumber{0}\nspoperator{:}\nspnumber{4},x),style = \nspnumber{2}\nspoperator{:}\nspnumber{6},leg = \nspstring{"J0@J1@J2@J3@J4"})
+legend(\nspstring{'I'}\nspoperator{+}string(\nspnumber{0}\nspoperator{:}\nspnumber{4}),\nspnumber{1})\nspoperator{;}
+xtitle(\nspstring{"Some Bessel functions of the first kind"})
+\nspcomment{// use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)}
+\nspcomment{// to compare the algorithm of besselj(0.5,x) with a more direct formula}
+x=linspace(\nspnumber{0.1},\nspnumber{40},\nspnumber{5000})\nspoperator{'}\nspoperator{;}
+y1=besselj(\nspnumber{0.5},x)\nspoperator{;}
+y2=sqrt(\nspnumber{2}\nspoperator{ ./}(%pi\nspoperator{*}x))\nspoperator{ .*}sin(x)\nspoperator{;}
+er=abs((y1\nspoperator{-}y2)\nspoperator{ ./}y2)\nspoperator{;}
+ind=find(er\nspoperator{ > }\nspnumber{0}\nspoperator{ && }y2\nspoperator{ <> }\nspnumber{0})\nspoperator{;}
+xbasc()
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})
+plot2d(x,y1,style = \nspnumber{2})
+xtitle(\nspstring{"besselj(0.5,x)"})
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})
+plot2d(x(ind),er(ind),style = \nspnumber{2},logflag = \nspstring{"nl"})
+xtitle(\nspstring{"relative error between 2 formulae for besselj(0.5,x)"})
+\nspcomment{// besselK functions}
+\nspcomment{// =================}
+x=linspace(\nspnumber{0.01},\nspnumber{10},\nspnumber{5000})\nspoperator{'}\nspoperator{;}
+xbasc()
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})
+plot2d(x,besselk(\nspnumber{0}\nspoperator{:}\nspnumber{4},x),style = \nspnumber{2}\nspoperator{:}\nspnumber{6},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{10}])
+legend(\nspstring{'K'}\nspoperator{+}string(\nspnumber{0}\nspoperator{:}\nspnumber{4}),\nspnumber{1})\nspoperator{;}
+xtitle(\nspstring{"Some modified Bessel functions of the second kind"})
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})
+plot2d(x,besselk(\nspnumber{0}\nspoperator{:}\nspnumber{4},x,\nspnumber{1}),style = \nspnumber{2}\nspoperator{:}\nspnumber{6},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{10}])
+legend(\nspstring{'K'}\nspoperator{+}string(\nspnumber{0}\nspoperator{:}\nspnumber{4}),\nspnumber{1})\nspoperator{;}
+xtitle(\nspstring{"Some modified scaled Bessel functions of the second kind"})
+\nspcomment{// besselY functions}
+\nspcomment{// =================}
+x=linspace(\nspnumber{0.1},\nspnumber{40},\nspnumber{5000})\nspoperator{'}\nspoperator{;}\nspcomment{// Y Bessel functions are unbounded  for x -$>$ 0+}
+xbasc()
+plot2d(x,bessely(\nspnumber{0}\nspoperator{:}\nspnumber{4},x),style = \nspnumber{2}\nspoperator{:}\nspnumber{6},rect = [\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1.5}\nspoperator{,}\nspnumber{40}\nspoperator{,}\nspnumber{0.6}])
+legend(\nspstring{'Y'}\nspoperator{+}string(\nspnumber{0}\nspoperator{:}\nspnumber{4}),\nspnumber{4})\nspoperator{;}
+xtitle(\nspstring{"Some Bessel functions of the second kind"})
+\nspcomment{// besselH functions}
+\nspcomment{// =================}
+x=\nspoperator{-}\nspnumber{4}\nspoperator{:}\nspnumber{0.025}\nspoperator{:}\nspnumber{2}\nspoperator{;}y=\nspoperator{-}\nspnumber{1.5}\nspoperator{:}\nspnumber{0.025}\nspoperator{:}\nspnumber{1.5}\nspoperator{;}
+[X,Y]=ndgrid(x,y)\nspoperator{;}
+H=besselh(\nspnumber{0},\nspnumber{1},X\nspoperator{+}%i\nspoperator{*}Y)\nspoperator{;}
+clf()\nspoperator{;}f=gcf()\nspoperator{;}
+xset(\nspstring{"fpf"},\nspstring{" "})
+f.color_map=jetcolormap(\nspnumber{16})\nspoperator{;}
+contour2d(x,y,abs(H),\nspnumber{0.2}\nspoperator{:}\nspnumber{0.2}\nspoperator{:}\nspnumber{3.2},strf = \nspstring{"034"},rect = [\nspoperator{-}\nspnumber{4}\nspoperator{,}\nspoperator{-}\nspnumber{1.5}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{1.5}])
+legends(string(\nspnumber{0.2}\nspoperator{:}\nspnumber{0.2}\nspoperator{:}\nspnumber{3.2}),\nspnumber{1}\nspoperator{:}\nspnumber{16},\nspstring{"ur"})
+xtitle(\nspstring{"Level curves of |H1(0,z)|"})
+\end{Verbatim}

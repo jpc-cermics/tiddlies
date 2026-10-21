@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab : un logiciel libre pour le calcul scientifique7e Partie -
+Introduction &agrave; Scicos (1/2)</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 --><BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <H1 ALIGN="center">Scilab&nbsp;: un
+logiciel libre pour le calcul scientifique<BR>
+7<SUP><FONT SIZE="2"><I>e</I></FONT></SUP> Partie - Introduction &agrave;
+Scicos (1/2)</H1>
+<H3 ALIGN="center"> </H3>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+<EM>L'article du num&eacute;ro pr&eacute;c&eacute;dent nous a montr&eacute; les
+capacit&eacute;s de Scilab &agrave; simuler des syst&egrave;mes dynamiques.
+Mais pour cela il fallait repr&eacute;senter le mod&egrave;le du syst&egrave;me
+&agrave; simuler sous forme d'un programme Scilab, C ou&nbsp;fortran. Scicos
+est une bo&icirc;te &agrave; outils de Scilab contenant un &eacute;diteur de
+type sch&eacute;ma-blocs qui permet de construire ces mod&egrave;les par
+simples clics de souris.</EM><BR>
+<BR>
+Il est toujours possible de construire et de simuler des mod&egrave;les de
+syst&egrave;mes dynamiques dans Scilab en utilisant les fonctions de base comme
+<TT>ode</TT> (solveur de syst&egrave;mes d'&eacute;quations
+diff&eacute;rentielles). Mais cela n&eacute;cessite en g&eacute;n&eacute;ral
+beaucoup de programmation en langage Scilab ou C. Ces programmes, en
+particulier quand le syst&egrave;me &agrave; simuler contient des composants
+discrets, sont complexes, difficiles &agrave; d&eacute;boguer et trop
+particuliers pour conduire &agrave; du code r&eacute;-utilisable. <BR>
+<BR>
+L'&eacute;diteur graphique de la bo&icirc;te &agrave; outils Scicos permet
+&agrave; l'utilisateur de d&eacute;crire son syst&egrave;me dynamique de
+fa&ccedil;on compl&egrave;tement modulaire. Le mod&egrave;le ainsi obtenu peut
+alors &ecirc;tre compil&eacute;, et le r&eacute;sultat simul&eacute;, par le
+simulateur Scicos. Les syst&egrave;mes mod&eacute;lisables et simulables par
+Scicos sont de nature tr&egrave;s vari&eacute;e&nbsp;; ils peuvent comporter
+des composants &eacute;voluant en temps continu, en temps discret, et
+m&ecirc;me des composants &eacute;v&eacute;nementiels. On les appelle des
+syst&egrave;mes hybrides. Dans cet article, on pr&eacute;sente l'utilisation de
+Scicos &agrave; travers plusieurs exemples&nbsp;; pour cela on n'utilisera que
+des blocs pr&eacute;d&eacute;finis, fournis avec la bo&icirc;te &agrave;
+outils. Dans le prochain num&eacute;ro, on abordera le probl&egrave;me de
+construction de nouveaux blocs.<BR>
+<BR>
+<!--TOC paragraph Un exemple simple-->
+<H5> Un exemple simple</H5>
+Supposons qu'on veuille simuler le fonctionnement d'un simple
+int&eacute;grateur (un syst&egrave;me dont la sortie est l'int&eacute;grale de
+son entr&eacute;e). En plus de l'int&eacute;grateur, il faut une entr&eacute;e
+et un affichage graphique pour visualiser la sortie. On commence par lancer
+l'&eacute;diteur Scicos (dans Scilab) avec la commande&nbsp;:<BR>
+<BR>
+<PRE>
+--&gt; scicos();
+</PRE>
+Cela ouvre la fen&ecirc;tre principale de l'&eacute;diteur Scicos. La
+fen&ecirc;tre et le sch&eacute;ma correspondant sont intitul&eacute;s par
+d&eacute;faut <TT>Untitled</TT>. Le sch&eacute;ma est bien &eacute;videmment
+vide pour le moment. <BR>
+<BR>
+Toutes les fonctionnalit&eacute;s de Scicos sont disponibles &agrave; travers
+des menus d&eacute;roulants. On devine assez facilement la fonction de chaque
+bouton de chaque menu par son nom&nbsp;: <TT>Save</TT> pour enregistrer un
+sch&eacute;ma, <TT>Load</TT> pour le charger, <TT>Copy</TT> pour copier un
+bloc, <TT>Delete</TT> pour le supprimer, <TT>Color</TT> pour donner une couleur
+au bloc, etc...<BR>
+<BR>
+Il existe aussi un bouton <TT>Help</TT> qui se trouve dans le menu <TT>Misc 
+</TT> qui permet de consulter l'aide en ligne sur chaque menu. Pour cela, il
+suffit de cliquer sur <TT>Help</TT> puis sur le bouton ad hoc. Le bouton help
+permet aussi d'acc&eacute;der &agrave; l'aide sur les blocs&nbsp;; il suffit de
+cliquer sur le bloc apr&egrave;s avoir cliqu&eacute; sur <TT>Help</TT>.<BR>
+On commence par chercher les blocs dont on a besoin dans les
+&lt;&lt;palettes&gt;&gt; Scicos. Une palette est un sch&eacute;ma contenant des
+blocs que l'on peut utiliser pour construire d'autres sch&eacute;mas. Pour
+ouvrir une palette, il faut cliquer sur le bouton <TT>palette</TT> du menu 
+<TT>Edit</TT>. On voit alors une liste de palettes&nbsp;; choisissons la
+palette <TT>Linear</TT>. On voit alors s'ouvrir la fen&ecirc;tre graphique
+qu'on voit dans la figure&nbsp;<A HREF="#pal">1</A>. 
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="palette.jpg" ALT="{short description of image}" WIDTH="458"
+ HEIGHT="531" BORDER="0"> 
+</DIV>
+<A NAME="pal"></A> <BR>
+<DIV ALIGN="center">
+Figure 1: La palette <TT>Linear</TT>. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+L'icone du bloc int&eacute;grateur est <TT>1/s</TT>. Pour copier ce bloc dans
+le sch&eacute;ma <TT>Untitled</TT>, il suffit de placer la souris sur ce bloc
+et cliquer sur le bouton gauche de la souris, puis placer la souris dans la
+fen&ecirc;tre qui contient le sch&eacute;ma <TT>Untitled</TT>, &agrave;
+l'endroit o&ugrave; on veut placer le bloc, et recliquer. Une copie du bloc 
+<TT>1/s</TT> apparait alors dans <TT>Untitled</TT>.<BR>
+<BR>
+Il faut maintenant d&eacute;finir une entr&eacute;e pour
+l'int&eacute;grateur&nbsp;: par exemple un sinus. Pour cela, on va chercher
+dans la palette <TT>Inputs_Outputs</TT> le bloc <TT>sinusoid_generator</TT>.
+Pour connecter la sortie de <TT>sinusoid_generator</TT> &agrave;
+l'entr&eacute;e du bloc <TT>1/s</TT>, on clique d'abord pr&egrave;s du port de
+sortie de <TT>sinusoid_generator</TT> puis pr&egrave;s du port d'entr&eacute;e
+de <TT>1/s</TT> (voir Figure&nbsp;<A HREF="#fig2">2</A>). <BLOCKQUOTE> 
+<HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos2.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="531" BORDER="0"> 
+</DIV>
+<A NAME="fig2"></A> <BR>
+<DIV ALIGN="center">
+Figure 2: Sch&eacute;ma Scicos simulable. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Le sch&eacute;ma ainsi obtenu est simulable mais pas int&eacute;ressant
+&agrave; simuler car nous ne verrons rien, il faut rajouter de quoi afficher le
+r&eacute;sultat&nbsp;! On place donc le bloc <TT>MScope</TT> (oscilloscope
+&agrave; entr&eacute;es multiples) dans le sch&eacute;ma et on connecte la
+sortie de <TT>1/s</TT> &agrave; sa premi&egrave;re entr&eacute;e et la sortie
+de <TT>sinusoid_generator</TT> sur sa deuxi&egrave;me entr&eacute;e. Comme la
+sortie de <TT>sinusoid_generator</TT> est d&eacute;j&agrave; branch&eacute;e,
+il faut placer la souris quelque part sur le lien qui sort de 
+<TT>sinusoid_generator</TT> et cliquer&nbsp;; cela cr&eacute;e un branchement
+et d&eacute;bute un lien, puis cliquer sur l'entr&eacute;e de <TT>MScope</TT>.
+Pour obtenir un sch&eacute;ma plus lisible, il est pr&eacute;f&eacute;rable de
+ne pas cr&eacute;er dans ce dernier cas un lien direct qui passerait par dessus
+le bloc <TT>1/s</TT>, mais de le contourner. Pour cela, apr&egrave;s avoir
+d&eacute;but&eacute; le lien, on peut cliquer sur des points
+interm&eacute;diaires avant de cliquer sur l'entr&eacute;e de <TT>MScope 
+</TT>.<BR>
+<BR>
+Le bloc <TT>MScope</TT> est un bloc discret qui affiche les valeurs de ses
+entr&eacute;es quand il est activ&eacute;. Pour activer ce bloc, il faut
+envoyer un &eacute;v&eacute;nement sur son port d'entr&eacute;e
+&eacute;v&eacute;nement plac&eacute; en haut du bloc. Dans ce cas on veut
+envoyer une suite d'&eacute;v&eacute;nements espac&eacute;s de mani&egrave;re
+r&eacute;guli&egrave;re dans le temps. Pour cela on utilise le bloc horloge
+d'&eacute;v&eacute;nement (l'horloge rouge ayant une sortie en bas qui se
+trouve dans la palette <TT>Inputs_Outputs</TT> ). Une fois ce bloc plac&eacute;
+et branch&eacute;, le sch&eacute;ma complet doit ressembler a celui de la
+Figure&nbsp;<A HREF="#fig3">3</A>. <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos3.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="531" BORDER="0"> 
+</DIV>
+<A NAME="fig3"></A> <BR>
+<DIV ALIGN="center">
+Figure 3: Sch&eacute;ma complet. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Le sch&eacute;ma peut alors &ecirc;tre simul&eacute;. Cliquer sur le bouton 
+<TT>Run</TT> du menu <TT>Simulate</TT>. On observe alors l'ouverture d'une
+fen&ecirc;tre graphique fonctionnant comme une oscilloscope. Pour arr&ecirc;ter
+la simulation il suffit de cliquer sur <TT>stop</TT>. <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos4.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="481" BORDER="0"> 
+</DIV>
+<A NAME="fig4"></A> <BR>
+<DIV ALIGN="center">
+Figure 4: R&eacute;sultat de la simulation affich&eacute; par l'oscilloscope. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+On constate alors (voir Figure&nbsp;<A HREF="#fig4">4</A>) que les
+param&egrave;tres par d&eacute;faut de l'oscilloscope ne sont pas bien
+r&eacute;gl&eacute;s ici; il faut faire en sorte que la premi&egrave;re courbe
+reste dans la fen&ecirc;tre graphique. Pour changer les param&egrave;tres d'un
+bloc, il suffit de cliquer sur le bloc, ce qui ouvre un dialogue (voir
+Figure&nbsp;<A HREF="#fig5">5</A>). <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos5.jpg" ALT="{short description of image}" WIDTH="496"
+ HEIGHT="557" BORDER="0"> 
+</DIV>
+<A NAME="fig5"></A> <BR>
+<DIV ALIGN="center">
+Figure 5: Param&egrave;tres par d&eacute;faut de l'oscilloscope. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+On peut r&eacute;gler le probl&egrave;me ici en changeant les premi&egrave;res
+valeurs de <TT>Ymin_vector</TT> et <TT>Ymax_vector</TT>, par exemple on peut
+remplacer le premier (qui vaut -1) par 0 et le deuxi&egrave;me par 2. <BR>
+<BR>
+<!--TOC paragraph Les requins et les sardines-->
+<H5> Les requins et les sardines</H5>
+On est maintenant en mesure de construire des mod&egrave;les plus
+compliqu&eacute;s. Prenons par exemple le mod&egrave;le de la population des
+requins et des sardines pr&eacute;sent&eacute; dans l'article
+pr&eacute;c&eacute;dent&nbsp;: { <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left"
+ NOWRAP="NOWRAP"><I>x</I>'(<I>t</I>)=<I>a</I>&nbsp;<I>x</I>(<I>t</I>)-<I>b</I>&nbsp;<I>x</I>(<I>t</I>)<I>y</I>(<I>t</I>)
+&nbsp;&nbsp;&nbsp;&nbsp; <I>a</I>,<I>b</I> &gt; 0</TD>
+</TR>
+<TR>
+<TD ALIGN="left"
+ NOWRAP="NOWRAP"><I>y</I>'(<I>t</I>)=<I>c</I>&nbsp;<I>x</I>(<I>t</I>)<I>y</I>(<I>t</I>)-<I>d</I>&nbsp;<I>y</I>(<I>t</I>)
+&nbsp;&nbsp;&nbsp;&nbsp; <I>c</I>,<I>d</I> &gt; 0</TD>
+</TR>
+</TABLE>
+. o&ugrave; <I>x</I>(<I>t</I>) repr&eacute;sente le nombre de sardines et
+<I>y</I>(<I>t</I>) repr&eacute;sente le nombre de requins. Ce mod&egrave;le
+approch&eacute;, appel&eacute; aussi syst&egrave;me de Lotka-Volterra, signifie
+qu'en l'absence de requins les sardines prolif&egrave;rent
+<I>x</I>'(<I>t</I>)=<I>a</I>&nbsp;<I>x</I>(<I>t</I>), qu'en l'absence de
+sardines les requins disparaissent
+<I>y</I>'(<I>t</I>)=-<I>d</I>&nbsp;<I>y</I>(<I>t</I>) et le terme en
+<I>x</I>(<I>t</I>)<I>y</I>(<I>t</I>), qui repr&eacute;sente la rencontre des
+requins et des sardines, augmente le nombre de requins et diminue le nombre de
+sardines (car ces derni&egrave;res sont mang&eacute;es par les requins).<BR>
+<BR>
+Le sch&eacute;ma Scicos repr&eacute;sentant ce mod&egrave;le est donn&eacute;
+dans la Figure&nbsp;<A HREF="#fig6">6</A>. On retrouve les &eacute;tats
+<I>x</I> et <I>y</I> comme les sorties des deux int&eacute;grateurs (un
+int&eacute;grateur pour chaque &eacute;quation diff&eacute;retielle). Les
+entr&eacute;es de ses int&eacute;grateurs sont alors <I>x</I>' et
+<I>y</I>'&nbsp;. Pour r&eacute;aliser les &eacute;quations d&eacute;finissant
+<I>x</I>' et <I>y</I>' dans le sch&eacute;ma, on a utilis&eacute; des blocs
+sommateurs, multiplicateurs et gains (multiplication par constante). On a pris
+<I>a</I>=2, <I>b</I>=1, <I>c</I>=.3 et <I>d</I>=1. <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos6.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="531" BORDER="0"> 
+</DIV>
+<A NAME="fig6"></A> <BR>
+<DIV ALIGN="center">
+Figure 6: Le sch&eacute;ma Scicos correspondant au mod&egrave;le de la
+population des requins et des sardines. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Le r&eacute;sultat de la simulation pour <I>x</I>(0)=2 et <I>y</I>(0)=1 est
+donn&eacute; dans la Figure&nbsp;<A HREF="#fig7">7</A>. On retrouve alors le
+comportement p&eacute;riodique attendu. <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos7.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="481" BORDER="0"> 
+</DIV>
+<A NAME="fig7"></A> <BR>
+<DIV ALIGN="center">
+Figure 7: L'&eacute;volution de la population des requins (en haut) et des
+sardines (en bas). 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+On constate donc qu'il peut exister une forte variation de la population des
+sardines&nbsp;; cela d&eacute;pend des populations initiales des sardines et
+des requins (<I>x</I>(0) et <I>y</I>(0)). Si on commence pr&egrave;s des
+populations d'&eacute;quilibre, les variations sont moins fortes. Les
+populations d'&eacute;quilibre <I>x</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB> et <I>y</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB> correspondent &agrave; une condition initiale
+pour laquellle l'&eacute;tat reste constant. Elles v&eacute;rifient bien
+entendu le syst&egrave;me&nbsp;: { <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">0=<I>a</I>&nbsp;<I>x</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB>-<I>b</I>&nbsp;<I>x</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB><I>y</I><SUB><FONT SIZE="2"><I>e</I></FONT></SUB>
+</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">0=<I>c</I>&nbsp;<I>x</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB><I>y</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB>-<I>d</I>&nbsp;<I>y</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB></TD>
+</TR>
+</TABLE>
+. ce qui (&agrave; part la solution &eacute;vidente (0,0)) donne
+<I>x</I><SUB><FONT SIZE="2"><I>e</I></FONT></SUB>=<I>d</I>/<I>c</I> et
+<I>y</I><SUB><FONT SIZE="2"><I>e</I></FONT></SUB>=<I>a</I>/<I>b</I>. <BR>
+<BR>
+<!--TOC paragraph La régulation par la pêche-->
+<H5> La r&eacute;gulation par la p&ecirc;che</H5>
+On peut introduire l'influence de la p&ecirc;che de sardines dans le
+mod&egrave;le pr&eacute;c&eacute;dent en modifiant l'&eacute;quation de
+<I>x</I>'(<I>t</I>) comme suit&nbsp;: <DIV ALIGN="center">
+<I>x</I>'(<I>t</I>)=<I>a</I>&nbsp;<I>x</I>(<I>t</I>)-<I>b</I>&nbsp;<I>x</I>(<I>t</I>)<I>y</I>(<I>t</I>)+<I>f</I>&nbsp;<I>x</I>(<I>t</I>)
+&nbsp;&nbsp;&nbsp;&nbsp; <I>a</I>,<I>b</I> &gt; 0,&nbsp;&nbsp;<I>f</I>&lt;0, 
+</DIV>
+le coefficient <I>f</I> indique alors l'effort de p&ecirc;che. Noter que cette
+modification ne modifie pas le point d'&eacute;quilibre&nbsp;<I>x</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB>.<BR>
+<BR>
+Supposons maintenant que les autorit&eacute;s de p&ecirc;che veuillent
+r&eacute;guler la population des sardines. Pour cela ils autorisent la
+p&ecirc;che (<I>f</I>&lt;0) si la population des sardines d&eacute;passe un
+certain seuil (<I>x</I>&gt;<I>x</I><SUB><FONT SIZE="2"><I>max</I></FONT></SUB>)
+et ils interdisent la p&ecirc;che (<I>f</I>=0) quand cette population passe en
+dessous d'un autre seuil (<I>x</I>&lt;<I>x</I><SUB><FONT
+SIZE="2"><I>min</I></FONT></SUB>). Pour mod&eacute;liser ce
+&lt;&lt;r&eacute;gulateur&gt;&gt;, on note qu'il faut g&eacute;n&eacute;rer
+deux &eacute;v&eacute;nements&nbsp;: ces &eacute;v&eacute;nements sont alors
+utilis&eacute;s pour modifier la valeur de <I>f</I> (voir Figure&nbsp;<A
+HREF="#fig8">8</A>). <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos8.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="531" BORDER="0"> 
+</DIV>
+<A NAME="fig8"></A> <BR>
+<DIV ALIGN="center">
+Figure 8: Le mod&egrave;le de l'&eacute;volution de la population des sardines
+et des requins r&eacute;gul&eacute; par la p&ecirc;che. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Les blocs <TT>-to+</TT> et <TT>+to-</TT> g&eacute;n&eacute;rent des
+&eacute;v&eacute;nements quand leur entr&eacute;es traversent z&eacute;ro dans
+le sens n&eacute;gatif vers positif et positif vers n&eacute;gatif,
+respectivement. Le bloc <TT>Selector</TT> copie la valeur qui se trouve sur sa
+premi&egrave;re entr&eacute;e (ici 0) sur sa sortie quand il re&ccedil;oit un
+&eacute;v&eacute;nement sur son premier port d'entr&eacute;e
+&eacute;v&eacute;nement, et il copie la valeur sur sa deuxi&egrave;me
+entr&eacute;e (ici 1) quand il re&ccedil;oit un &eacute;v&eacute;nement sur
+l'autre port. Donc quand <I>x</I>-3.4 d&eacute;passe 0, <I>f</I> devient -1 et
+quand <I>x</I>-3.2 passe en dessous de 0, <I>f</I> devient 0. Ces valeurs sont
+choisies pour pousser <I>x</I> vers sa valeur d'&eacute;quilibre
+<I>x</I><SUB><FONT SIZE="2"><I>e</I></FONT></SUB>=<I>d</I>/<I>c</I>=3.33. Le
+bloc <TT>Mux</TT> permet de concat&eacute;ner les deux entr&eacute;es pour
+former un signal vectoriel. Ce signal est affich&eacute; par <TT>MScope</TT> en
+superposant les deux valeurs (voir Figure&nbsp;<A HREF="#fig9">9</A>). La
+courbe de dessous indique les p&eacute;riodes d'ouverture et de fermeture de la
+p&ecirc;che. On constate qu'apr&egrave;s une p&eacute;riode transitoire, le
+syst&egrave;me se stabilise au point d'&eacute;quilibre (<I>x</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB>,<I>y</I><SUB><FONT
+SIZE="2"><I>e</I></FONT></SUB>) o&ugrave; l'on autorise la p&ecirc;che&nbsp;;
+le r&eacute;gulateur n'est alors plus sollicit&eacute;. Dans la pratique,
+&agrave; cause des ph&eacute;nom&egrave;nes que nous n'avons pas pris en compte
+dans notre mod&egrave;le simpliste, on s'&eacute;carte
+r&eacute;guli&egrave;rement du point d'&eacute;quilibre et donc le
+r&eacute;gulateur doit rester en place. <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos9.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="481" BORDER="0"> 
+</DIV>
+<A NAME="fig9"></A> <BR>
+<DIV ALIGN="center">
+Figure 9: L'&eacute;volution des populations dans le cas r&eacute;gul&eacute;.
+En haut, en noir, on a la population des sardines et, en vert, la population
+des requins. En bas, on trouve les p&eacute;riodes d'ouverture de la
+p&ecirc;che (<I>f</I>=-1). 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Le syst&egrave;me r&eacute;gul&eacute; peut, bien &eacute;videmment, &ecirc;tre
+simul&eacute; directement dans Scilab en utilisant la fonction <TT>ode</TT>.
+Mais cela n&eacute;cessiterait beaucoup de programmation dans le langage
+Scilab. De plus, le r&eacute;sultat serait difficile &agrave;
+r&eacute;-utiliser. Dans l'environnement Scicos, il serait facile de modifier
+la structure du r&eacute;gulateur, rajouter d'autres populations animales en
+interaction avec les sardines et les requins, etc... Ce type de modifications,
+impliqueraient, tr&egrave;s souvent, une r&eacute;&eacute;criture
+compl&egrave;te du programme Scilab. <BR>
+<BR>
+<!--TOC paragraph Super Block-->
+<H5> Super Block</H5>
+Le Sch&eacute;ma&nbsp;<A HREF="#fig8">8</A> est assez charg&eacute;, on
+aimerait bien utiliser une description hi&eacute;rarchique pour le simplifier
+et le rendre plus lisible. Pour cela on peut utiliser un &lt;&lt;Super
+Block&gt;&gt;, qui ressemble &agrave; un bloc normal mais qui peut contenir
+tout un sous-sch&eacute;ma. Par exemple, pour mettre la partie
+r&eacute;gulateur dans un &lt;&lt;Super Block&gt;&gt;, on peut cliquer sur le
+bouton <TT>Region_to_SuperBlock</TT> du menu <TT>Diagram</TT>, puis
+s&eacute;lectionner la r&eacute;gion correspondant au r&eacute;gulateur. Cette
+r&eacute;gion disparait alors et elle est remplac&eacute;e par un seul bloc de
+type &lt;&lt;Super Block&gt;&gt; (Fig.&nbsp;<A HREF="#fig10">10</A>). Pour
+acc&eacute;der au sch&eacute;ma qui se trouve &agrave; l'int&eacute;rieur de ce
+bloc, il suffit de cliquer dessus, ce qui lance un nouvel &eacute;diteur
+Scicos. <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos10.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="531" BORDER="0"> 
+</DIV>
+<A NAME="fig10"></A> <BR>
+<DIV ALIGN="center">
+Figure 10: Mise en Super Block du r&eacute;gulateur. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+On peut manipuler un &lt;&lt;Super Block&gt;&gt; comme n'importe quel autre
+bloc, en particulier on peut le copier et l'utiliser plusieurs fois dans le
+m&ecirc;me sch&eacute;ma. De mani&egrave;re g&eacute;n&eacute;rale, on peut
+utiliser un nombre illimit&eacute; de &lt;&lt;Super Block&gt;&gt; par
+sch&eacute;ma et on peut m&ecirc;me placer des &lt;&lt;Super Block&gt;&gt; dans
+d'autres &lt;&lt;Super Block&gt;&gt;. <BR>
+<BR>
+<!--TOC paragraph Paramètres formels-->
+<H5> Param&egrave;tres formels</H5>
+Il est possible, et souvent souhaitable, de d&eacute;finir les
+param&egrave;tres des blocs Scicos de mani&egrave;re formelle. Par exemple,
+dans l'exemple pr&eacute;c&eacute;dent, au lieu de rentrer, dans les blocs, les
+valeurs num&eacute;riques des param&egrave;tres <I>a</I>, <I>b</I>, <I>c</I>,
+etc..., on peut les d&eacute;finir dans le &lt;&lt;Context&gt;&gt; du
+sch&eacute;ma comme variables Scilab puis utiliser leur noms comme
+param&egrave;tres de blocs. Le &lt;&lt;Context&gt;&gt; peut &ecirc;tre
+invoqu&eacute; en cliquant sur le bouton <TT>Context</TT> du menu <TT>Edit</TT>
+(voir Figure&nbsp;<A HREF="#fig12">11</A>). On peut mettre n'importe quelle
+instruction Scilab dans le &lt;&lt;Context&gt;&gt;, le contenu est
+ex&eacute;cut&eacute; comme un script. <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos12.jpg" ALT="{short description of image}" WIDTH="427"
+ HEIGHT="273" BORDER="0"> 
+</DIV>
+<A NAME="fig12"></A> <BR>
+<DIV ALIGN="center">
+Figure 11: Le Context du sch&eacute;ma Scicos. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Une fois ces variables d&eacute;finies, on peut les utiliser comme
+param&egrave;tres de blocs (voir Figure&nbsp;<A HREF="#fig13">12</A>). 
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="scicos13.jpg" ALT="{short description of image}" WIDTH="608"
+ HEIGHT="531" BORDER="0"> 
+</DIV>
+<A NAME="fig13"></A> <BR>
+<DIV ALIGN="center">
+Figure 12: Le mod&egrave;le r&eacute;gul&eacute; avec le Context d&eacute;fini
+dans la Figure&nbsp;<A HREF="#fig12">11</A> (&agrave; comparer &agrave; la
+Figure&nbsp;<A HREF="#fig8">8</A>). 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Le &lt;&lt;Context&gt;&gt; est sauv&eacute; automatiquement avec le
+sch&eacute;ma et il est &eacute;valu&eacute; &agrave; chaque chargement. <BR>
+<BR>
+<!--TOC paragraph Conclusion-->
+<H5> Conclusion</H5>
+Dans cet article on a montr&eacute; comment on peut construire et simuler un
+mod&egrave;le de syst&egrave;me dynamique comme un sch&eacute;ma Scicos en
+utilisant des blocs pr&eacute;d&eacute;finis. On peut ainsi construire beaucoup
+de mod&egrave;les mais souvent on a besoin de d&eacute;finir des blocs
+sp&eacute;cifiques. Cela est bien &eacute;videmment possible dans Scicos. Le
+prochain article sera consacr&eacute; &agrave; cela.<BR>
+<BR>
+Ramine Nikoukhah<BR>
+Scilab Group<BR>
+<A HREF="mailto:scilab@inria.fr">scilab@inria.fr</A><BR>
+<A
+ HREF="http://www-rocq.inria.fr/scilab/">http://www-rocq.inria.fr/scilab/</A><BR>
+<BR>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>projsl</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli69.html" >next</a>] [<a 
+href="manualli67.html" >prev</a>] [<a 
+href="manualli67.html#tailmanualli67.html" >prev-tail</a>] [<a 
+href="#tailmanualli68.html">tail</a>] [<a 
+href="manualli12.html#manualli68.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x69-396000"></a>projsl</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx69-396001"></a><a 
+ id="projsl"></a><span 
+class="cmtt-10x-x-109">projsl </span>&#x2013;                                                                           linear system projection<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x69-397000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-122">
+&#x00A0;&#x00A0;[slp]=projsl(sl,Q,M)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x69-398000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sl,slp</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> lists
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q,M</span>: matrices (projection factorization)</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x69-399000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">slp</span></span></span>= projected model of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q*M</span></span></span> is the full rank factorization of the projection. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A,B,C,D)</span></span></span>
+is the representation of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span>, the projected model is given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(M*A*Q,M*B,C*Q,D)</span></span></span>. Usually, the
+projection <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q*M</span></span></span> is obtained as the spectral projection of an appropriate auxiliary matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">W</span></span></span> e.g. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">W</span></span></span> =
+product of (weighted) gramians or product of Riccati equations.
+</p>
+<!--l. 44--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x69-400000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb53"><a 
+ id="x69-400017r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rand(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;seed&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">sl=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[A,B,C,D]=abcd(sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">poles=spec(A)</span>
+<br class="fancyvrb" /><a 
+ id="x69-400019r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Q,M]=pbig(A,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//keeping</span><span 
+class="cmitt-10x-x-109">&#x00A0;unstable</span><span 
+class="cmitt-10x-x-109">&#x00A0;poles</span></span><br class="fancyvrb" /><a 
+ id="x69-400021r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;slred=projsl(sl,Q,M)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">spec(slred(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;A&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x69-400023r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sl(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;D&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//making</span><span 
+class="cmitt-10x-x-109">&#x00A0;proper</span><span 
+class="cmitt-10x-x-109">&#x00A0;system</span></span><br class="fancyvrb" /><a 
+ id="x69-400025r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;trzeros(sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//zeros</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;sl</span></span><br class="fancyvrb" /><a 
+ id="x69-400027r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;wi=inv(sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//wi=inverse</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;state-space</span></span>
+<br class="fancyvrb" /><a 
+ id="x69-400029r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[q,m]=psmall(wi(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;A&#x0027;</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//keeping</span><span 
+class="cmitt-10x-x-109">&#x00A0;small</span><span 
+class="cmitt-10x-x-109">&#x00A0;zeros</span><span 
+class="cmitt-10x-x-109">&#x00A0;(poles</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;wi)</span><span 
+class="cmitt-10x-x-109">&#x00A0;i.e.</span><span 
+class="cmitt-10x-x-109">&#x00A0;abs(z)$&#x003C;$2</span></span><br class="fancyvrb" /><a 
+ id="x69-400031r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;slred2=projsl(sl,q,m)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x69-400033r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;trzeros(slred2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//zeros</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;slred2</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;small</span><span 
+class="cmitt-10x-x-109">&#x00A0;zeros</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;sl</span></span><br class="fancyvrb" /><a 
+ id="x69-400035r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;Example</span><span 
+class="cmitt-10x-x-109">&#x00A0;keeping</span><span 
+class="cmitt-10x-x-109">&#x00A0;second</span><span 
+class="cmitt-10x-x-109">&#x00A0;order</span><span 
+class="cmitt-10x-x-109">&#x00A0;modes</span></span>
+<br class="fancyvrb" /><a 
+ id="x69-400037r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=diag([</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x69-400039r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sl=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[nk2,W]=hankelsv(sl)</span>
+<br class="fancyvrb" /><a 
+ id="x69-400041r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Q,M]=pbig(W,nk2(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%eps,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//keeping</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;eigenvalues</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;W</span></span>
+<br class="fancyvrb" /><a 
+ id="x69-400043r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;slr=projsl(sl,Q,M)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//reduced</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span></span><br class="fancyvrb" /><a 
+ id="x69-400045r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;hankelsv(slr)</span></div>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x69-401000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli648.html#pbig">pbig</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x69-402000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F. D.;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli69.html" >next</a>] [<a 
+href="manualli67.html" >prev</a>] [<a 
+href="manualli67.html#tailmanualli67.html" >prev-tail</a>] [<a 
+href="manualli68.html" >front</a>] [<a 
+href="manualli12.html#manualli68.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli68.html"></a>  </p> 
+</body></html> 

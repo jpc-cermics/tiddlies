@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>flts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli40.html" >next</a>] [<a 
+href="manualli38.html" >prev</a>] [<a 
+href="manualli38.html#tailmanualli38.html" >prev-tail</a>] [<a 
+href="#tailmanualli39.html">tail</a>] [<a 
+href="manualli12.html#manualli39.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x40-214000"></a>flts</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx40-214001"></a><a 
+ id="flts"></a><span 
+class="cmtt-10x-x-109">flts </span>&#x2013;                                                time response (discrete time, sampled system) <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x40-215000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-61">
+&#x00A0;&#x00A0;[y&#x00A0;[,x]]=flts(u,sl&#x00A0;[,x0])
+&#x00A0;<br />&#x00A0;&#x00A0;[y]=flts(u,sl&#x00A0;[,past])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x40-216000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">u</span>: matrix (input vector)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sl</span>: list (linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: vector (initial state ; default value=<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">past</span>: matrix (of the past ; default value=<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,y</span>: matrices (state and output)</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x40-217000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > State-space form:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> is a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list containing the matrices of the following linear
+system<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl=syslin(&#x0027;d&#x0027;,A,B,C,D)</span></span></span> (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span>):
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-62">
+&#x00A0;&#x00A0;x[t+1]&#x00A0;=&#x00A0;A&#x00A0;x[t]&#x00A0;+&#x00A0;B&#x00A0;u[t]
+&#x00A0;<br />&#x00A0;&#x00A0;y[t]&#x00A0;=&#x00A0;C&#x00A0;x[t]&#x00A0;+&#x00A0;D&#x00A0;u[t]
+</div>
+<!--l. 44--><p class="nopar" >or, more generally, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> is a polynomial matrix (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;degree(D(z))</span></span></span>): Transfer
+form:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;y=flts(u,sl[,past])</span></span></span>. Here <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> is a linear system in transfer matrix representation
+i.e<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl=syslin(&#x0027;d&#x0027;,transfer_matrix)</span></span></span> (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span>). is the matrix of past values of u
+and y. nd is the maximum of degrees of lcm&apos;s of each row of the denominator matrix of
+sl.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-63">
+&#x00A0;&#x00A0;u=[u0&#x00A0;u1&#x00A0;...&#x00A0;un]&#x00A0;&#x00A0;(input)
+&#x00A0;<br />&#x00A0;&#x00A0;y=[y0&#x00A0;y1&#x00A0;...&#x00A0;yn]&#x00A0;&#x00A0;(output)
+</div>
+<!--l. 54--><p class="nopar" >p is the difference between maximum degree of numerator and maximum degree of denominator
+</p>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x40-218000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb28"><a 
+ id="x40-218049r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sl=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">u=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218051r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=flts(u,sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218053r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d2(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;onn&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">size(u,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x40-218055r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[y1,x1]=flts(u(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">),sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y2=flts(u(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">),sl,x1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218057r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">[y1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">y2]</span><br class="fancyvrb" /><a 
+ id="x40-218059r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//With</span><span 
+class="cmitt-10x-x-109">&#x00A0;polynomial</span><span 
+class="cmitt-10x-x-109">&#x00A0;D:</span></span><br class="fancyvrb" /><a 
+ id="x40-218061r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218063r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;D=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">p=degree(D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218065r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sl=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218067r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=flts(u,sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[y1,x1]=flts(u(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">),sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218069r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y2=flts(u(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">),sl,x1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;(update)</span></span><br class="fancyvrb" /><a 
+ id="x40-218071r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">[y1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">y2]</span><br class="fancyvrb" /><a 
+ id="x40-218073r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Delay</span><span 
+class="cmitt-10x-x-109">&#x00A0;(transfer</span><span 
+class="cmitt-10x-x-109">&#x00A0;form):</span><span 
+class="cmitt-10x-x-109">&#x00A0;flts(u,1/z)</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218075r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Usual</span><span 
+class="cmitt-10x-x-109">&#x00A0;responses</span></span><br class="fancyvrb" /><a 
+ id="x40-218077r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218079r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x40-218081r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">u(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218083r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;imprep=flts(u,tf2ss(h))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Impulse</span><span 
+class="cmitt-10x-x-109">&#x00A0;response</span></span><br class="fancyvrb" /><a 
+ id="x40-218085r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d2(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;onn&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">size(u,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,imprep</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x40-218087r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218089r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;stprep=flts(u,tf2ss(h))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Step</span><span 
+class="cmitt-10x-x-109">&#x00A0;response</span></span><br class="fancyvrb" /><a 
+ id="x40-218091r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d2(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;onn&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">size(u,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,stprep</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x40-218093r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x40-218095r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Other</span><span 
+class="cmitt-10x-x-109">&#x00A0;examples</span></span><br class="fancyvrb" /><a 
+ id="x40-218097r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=eye(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Sys=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218099r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H=ss2tf(Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">u=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218101r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x40-218103r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yh=flts(u,H)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ys=flts(u,Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218105r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(yh</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">ys,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x40-218107r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//hot</span><span 
+class="cmitt-10x-x-109">&#x00A0;restart</span></span><br class="fancyvrb" /><a 
+ id="x40-218109r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[ys1,x]=flts(u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">),Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ys2=flts(u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">),Sys,x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218111r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm([ys1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">ys2]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">ys,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x40-218113r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x40-218115r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yh1=flts(u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">),H)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yh2=flts(u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">),H,[u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yh(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218117r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm([yh1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yh2]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">yh,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x40-218119r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//with</span><span 
+class="cmitt-10x-x-109">&#x00A0;D$&#x003C;$$&#x003E;$0</span></span><br class="fancyvrb" /><a 
+ id="x40-218121r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;D=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.9</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218123r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sys=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218125r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H=ss2tf(Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">u=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218127r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rh=flts(u,H)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">rs=flts(u,Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218129r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(rh</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">rs,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x40-218131r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//hot</span><span 
+class="cmitt-10x-x-109">&#x00A0;restart</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218133r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[ys1,x]=flts(u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">),Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ys2=flts(u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">),Sys,x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218135r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm([ys1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">ys2]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">rs,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x40-218137r45"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//With</span><span 
+class="cmitt-10x-x-109">&#x00A0;H:</span></span>
+<br class="fancyvrb" /><a 
+ id="x40-218139r46"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yh1=flts(u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">),H)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yh2=flts(u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">),H,[u(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yh1(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x40-218141r47"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm([yh1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yh2]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">rh)</span></div>
+<!--l. 111--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x40-219000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli55.html#ltitr">ltitr</a>    <a 
+href="manualli34.html#dsimul">dsimul</a>    <a 
+href="manualli73.html#rtitr">rtitr</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli40.html" >next</a>] [<a 
+href="manualli38.html" >prev</a>] [<a 
+href="manualli38.html#tailmanualli38.html" >prev-tail</a>] [<a 
+href="manualli39.html" >front</a>] [<a 
+href="manualli12.html#manualli39.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli39.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// see the examples of splin and lsq_splin}
+\nspcomment{// an example showing C2 and C1 continuity of spline and subspline}
+a=\nspoperator{-}\nspnumber{8}\nspoperator{;}b=\nspnumber{8}\nspoperator{;}
+x=linspace(a,b,\nspnumber{20})\nspoperator{'}\nspoperator{;}
+y=sinc(x)\nspoperator{;}
+dk=splin(x,y)\nspoperator{;}\nspcomment{// not_a_knot}
+df=splin(x,y,\nspstring{"fast"})\nspoperator{;}
+xx=linspace(a,b,\nspnumber{800})\nspoperator{'}\nspoperator{;}
+[yyk,yy1k,yy2k]=interp(xx,x,y,dk)\nspoperator{;}
+[yyf,yy1f,yy2f]=interp(xx,x,y,df)\nspoperator{;}
+xbasc()
+subplot(\nspnumber{3},\nspnumber{1},\nspnumber{1})
+plot2d(xx,[yyk\nspoperator{,}yyf])
+plot2d(x,y,style = \nspoperator{-}\nspnumber{9})
+legends([\nspstring{"not_a_knot spline"}\nspoperator{,}\nspstring{"fast sub-spline"}\nspoperator{,}\nspstring{"interpolation points"}],[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{9}],\nspstring{"ur"},%f)
+xtitle(\nspstring{"spline interpolation"})
+subplot(\nspnumber{3},\nspnumber{1},\nspnumber{2})
+plot2d(xx,[yy1k\nspoperator{,}yy1f])
+legends([\nspstring{"not_a_knot spline"}\nspoperator{,}\nspstring{"fast sub-spline"}],[\nspnumber{1}\nspoperator{,}\nspnumber{2}],\nspstring{"ur"},%f)
+xtitle(\nspstring{"spline interpolation (derivatives)"})
+subplot(\nspnumber{3},\nspnumber{1},\nspnumber{3})
+plot2d(xx,[yy2k\nspoperator{,}yy2f])
+legends([\nspstring{"not_a_knot spline"}\nspoperator{,}\nspstring{"fast sub-spline"}],[\nspnumber{1}\nspoperator{,}\nspnumber{2}],\nspstring{"lr"},%f)
+xtitle(\nspstring{"spline interpolation (second derivatives)"})
+\nspcomment{// here is an example showing the different extrapolation possibilities}
+x=linspace(\nspnumber{0},\nspnumber{1},\nspnumber{11})\nspoperator{'}\nspoperator{;}
+y=cosh(x\nspoperator{-}\nspnumber{0.5})\nspoperator{;}
+d=splin(x,y)\nspoperator{;}
+xx=linspace(\nspoperator{-}\nspnumber{0.5},\nspnumber{1.5},\nspnumber{401})\nspoperator{'}\nspoperator{;}
+yy0=interp(xx,x,y,d,\nspstring{"C0"})\nspoperator{;}
+yy1=interp(xx,x,y,d,\nspstring{"linear"})\nspoperator{;}
+yy2=interp(xx,x,y,d,\nspstring{"natural"})\nspoperator{;}
+yy3=interp(xx,x,y,d,\nspstring{"periodic"})\nspoperator{;}
+xbasc()
+plot2d(xx,[yy0\nspoperator{,}yy1\nspoperator{,}yy2\nspoperator{,}yy3],style = \nspnumber{2}\nspoperator{:}\nspnumber{5},frameflag = \nspnumber{2},leg = \nspstring{"C0@linear@natural@periodic"})
+xtitle(\nspstring{" different way to evaluate a spline outside its domain"})
+\end{Verbatim}

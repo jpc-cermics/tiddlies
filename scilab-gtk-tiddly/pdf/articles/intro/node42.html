@@ -1,0 +1,315 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.3 Definition of Operations on New Data Types</TITLE>
+<META NAME="description" CONTENT="3.3 Definition of Operations on New Data Types">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node43.html">
+<LINK REL="previous" HREF="node37.html">
+<LINK REL="up" HREF="node32.html">
+<LINK REL="next" HREF="node43.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html788"
+ HREF="node43.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html784"
+ HREF="node32.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html778"
+ HREF="node41.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html786"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html787"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html789"
+ HREF="node43.html">3.4 Debbuging</A>
+<B> Up:</B> <A NAME="tex2html785"
+ HREF="node32.html">3. Programming</A>
+<B> Previous:</B> <A NAME="tex2html779"
+ HREF="node41.html">3.2.4 Special Function Commands</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00430000000000000000">&#160;</A>
+<A NAME="s4.3">&#160;</A><A NAME="2222">&#160;</A>
+<BR>
+3.3 Definition of Operations on New Data Types
+</H1>
+
+<P>
+It is possible to transparently define fundamental operations 
+for new data types in Scilab.
+That is, the user can give a sense to multiplication, division, addition, etc.
+on any two data types which exist in Scilab.  As an example, two linear
+systems (represented by lists)
+can be added together to represent their parallel inter-connection
+or can be multiplied together to represent their series inter-connection.
+Scilab performs these user defined operations by searching for functions
+(written by the user) which follow a special naming convention described
+below.
+
+<P>
+The naming convention Scilab uses to recognize operators 
+defined by the user is determined by the following conventions.  The name
+of the user defined function is composed of four (or possibly three)
+fields.  The first field is always the symbol <TT>%</TT>.  
+The third field is one of the characters in the following table
+which represents the type of operation to be performed between the
+two data types.
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Third field</TD>
+</TR>
+<TR><TD ALIGN="CENTER">SYMBOL</TD>
+<TD ALIGN="CENTER">OPERATION</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><code>a</code></TD>
+<TD ALIGN="CENTER"><code>+</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>b</code></TD>
+<TD ALIGN="CENTER"><code>;</code>  (row separator)</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>c</code></TD>
+<TD ALIGN="CENTER"><code>[ ]</code> (matrix definition)</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>d</code></TD>
+<TD ALIGN="CENTER"><code>./</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>e</code></TD>
+<TD ALIGN="CENTER"><code>()</code> extraction: <code>m=a(k)</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>i</code></TD>
+<TD ALIGN="CENTER"><code>()</code> insertion:  <code>a(k)=m</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>k</code></TD>
+<TD ALIGN="CENTER"><code>.*.</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>l</code></TD>
+<TD ALIGN="CENTER"><code>\</code>  left division</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>m</code></TD>
+<TD ALIGN="CENTER"><code>*</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>p</code></TD>
+<TD ALIGN="CENTER"><code>^</code>  exponent</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>q</code></TD>
+<TD ALIGN="CENTER"><code>.\</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>r</code></TD>
+<TD ALIGN="CENTER"><code>/</code>  right division</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>s</code></TD>
+<TD ALIGN="CENTER"><code>-</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>t</code></TD>
+<TD ALIGN="CENTER"><code>'</code>  (transpose)</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>u</code></TD>
+<TD ALIGN="CENTER"><code>*.</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>v</code></TD>
+<TD ALIGN="CENTER"><code>/.</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>w</code></TD>
+<TD ALIGN="CENTER"><code>\.</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>x</code></TD>
+<TD ALIGN="CENTER"><code>.*</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>y</code></TD>
+<TD ALIGN="CENTER"><code>./.</code></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>z</code></TD>
+<TD ALIGN="CENTER"><code>.\.</code></TD>
+</TR>
+</TABLE></DIV>
+<P>
+The second
+and fourth fields represent the type of the first and second data objects,
+respectively, 
+to be treated by the function and are represented by the symbols given
+in the following table.
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Second and Fourth fields</TD>
+</TR>
+<TR><TD ALIGN="CENTER">SYMBOL</TD>
+<TD ALIGN="CENTER">VARIABLE TYPE</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>s</code></TD>
+<TD ALIGN="CENTER">scalar</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>p</code></TD>
+<TD ALIGN="CENTER">polynomial</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>l</code></TD>
+<TD ALIGN="CENTER">list (untyped)</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>c</code></TD>
+<TD ALIGN="CENTER">character string</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>m</code></TD>
+<TD ALIGN="CENTER">function</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><P>
+<code>xxx</code></TD>
+<TD ALIGN="CENTER">list (typed)</TD>
+</TR>
+</TABLE></DIV>
+<P>
+A typed list is one in which the first
+entry of the list is a character string where the first
+characters of the string are represented by the 
+<TT>xxx</TT> in the above table.  For example a typed list
+representing a linear system has the form 
+<TT>tlist(['lss','A','B','C','D','X0','dt'],a,b,c,d,x0,'c')</TT> and, thus, the <TT>xxx</TT>
+above is <TT>lss</TT>.
+
+<P>
+An example of the function name which multiplies two
+linear systems together (to represent their series inter-connection)
+is <TT>%lss_m_lss</TT>.  Here the first field is %, the second field is 
+<TT>lss</TT> (linear state-space), the third field is <TT>m</TT> ``multiply''
+and the fourth one is <TT>lss</TT>. A possible user function which performs
+this multiplication is as follows
+<PRE>
+function [s]=%lss_m_lss(s1,s2)
+[A1,B1,C1,D1,x1,dom1]=s1(2:7),
+[A2,B2,C2,D2,x2]=s2(2:6),
+B1C2=B1*C2,
+s=lsslist([A1,B1C2;0*B1C2' ,A2],...
+       [B1*D2;B2],[C1,D1*C2],D1*D2,[x1;x2],dom1),
+</PRE>An example of the use of this function after having loaded it into
+Scilab (using for example <TT>getf</TT> or inserting it in a library) 
+is illustrated in the following Scilab session
+<PRE>
+ 
+--&gt;A1=[1 2;3 4];B1=[1;1];C1=[0 1;1 0];
+ 
+--&gt;A2=[1 -1;0 1];B2=[1 0;2 1];C2=[1 1];D2=[1,1];
+ 
+--&gt;s1=syslin('c',A1,B1,C1);
+ 
+--&gt;s2=syslin('c',A2,B2,C2,D2);
+ 
+--&gt;ssprint(s1)
+ 
+.   | 1  2 |    | 1 |    
+x = | 3  4 |x + | 1 |u   
+ 
+    | 0  1 |    
+y = | 1  0 |x   
+ 
+--&gt;ssprint(s2)
+ 
+.   | 1 -1 |    | 1  0 |    
+x = | 0  1 |x + | 2  1 |u   
+ 
+y = | 1  1 |x + | 1  1 |u   
+ 
+--&gt;s12=s1*s2;   //This is equivalent to s12=%lss_m_lss(s1,s2)
+ 
+--&gt;ssprint(s12)
+ 
+    | 1  2  1  1 |    | 1  1 |    
+.   | 3  4  1  1 |    | 1  1 |    
+x = | 0  0  1 -1 |x + | 1  0 |u   
+    | 0  0  0  1 |    | 2  1 |    
+ 
+    | 0  1  0  0 |    
+y = | 1  0  0  0 |x
+</PRE>Notice that the use of <TT>%lss_m_lss</TT> is totally transparent in
+that the multiplication of the two lists <TT>s1</TT> and <TT>s2</TT>
+is performed using the usual multiplication operator <TT>*</TT>.
+
+<P>
+The directory <TT>SCIDIR/macros/percent</TT> contains all the functions
+(a very large number...) which perform operations on linear systems
+and transfer matrices. Conversions are automatically performed.
+For example the code for the function <TT>%lss_m_lss</TT> is there (note
+that it is much more complicated that the code given here!).
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html788"
+ HREF="node43.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html784"
+ HREF="node32.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html778"
+ HREF="node41.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html786"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html787"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html789"
+ HREF="node43.html">3.4 Debbuging</A>
+<B> Up:</B> <A NAME="tex2html785"
+ HREF="node32.html">3. Programming</A>
+<B> Previous:</B> <A NAME="tex2html779"
+ HREF="node41.html">3.2.4 Special Function Commands</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

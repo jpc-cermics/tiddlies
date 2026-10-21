@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>colcomp</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli617.html" >next</a>] [<a 
+href="manualli615.html" >prev</a>] [<a 
+href="manualli615.html#tailmanualli615.html" >prev-tail</a>] [<a 
+href="#tailmanualli616.html">tail</a>] [<a 
+href="manualli607.html#manualli616.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x617-3661000"></a>colcomp</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx617-3661001"></a><a 
+ id="colcomp"></a><span 
+class="cmtt-10x-x-109">colcomp </span>&#x2013;                                                       column compression, kernel, nullspace<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x617-3662000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-759">
+&#x00A0;&#x00A0;[W,rk]=colcomp(A&#x00A0;[,flag]&#x00A0;[,tol])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x617-3663000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: real or complex matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: character string
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol</span>: real number
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">W</span>: square non-singular matrix (change of basis)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rk</span>: integer (rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>)</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x617-3664000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > Column compression of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ac</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;A*W</span></span></span> is column compressed i.e<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ac=[0,Af]</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Af</span></span></span> full column rank,
+rank(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Af</span></span></span>) = rank(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>) = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tol</span></span></span> are optional parameters: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;qr&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;svd&#x0027;</span></span></span> (default is
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;svd&#x0027;</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tol</span></span></span> = tolerance parameter (of order <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%eps</span></span></span> as default value). The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ma-rk</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">W</span></span></span>
+span the kernel of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(A)=(na,ma)</span></span></span>
+</p>
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x617-3665000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb479"><a 
+ id="x617-3665005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x617-3665007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,r]=colcomp(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x617-3665009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">r),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x617-3666000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli663.html#rowcomp">rowcomp</a>    <a 
+href="manualli626.html#fullrf">fullrf</a>    <a 
+href="manualli625.html#fullrfk">fullrfk</a>    <a 
+href="manualli636.html#kernel">kernel</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x617-3667000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.D.;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli617.html" >next</a>] [<a 
+href="manualli615.html" >prev</a>] [<a 
+href="manualli615.html#tailmanualli615.html" >prev-tail</a>] [<a 
+href="manualli616.html" >front</a>] [<a 
+href="manualli607.html#manualli616.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli616.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,790 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>1.5.5 Sample Session for Beginners</TITLE>
+<META NAME="description" CONTENT="1.5.5 Sample Session for Beginners">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node11.html">
+<LINK REL="up" HREF="node7.html">
+<LINK REL="next" HREF="node13.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html398"
+ HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html394"
+ HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html390"
+ HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html396"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html397"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html399"
+ HREF="node13.html">2. Data Types</A>
+<B> Up:</B> <A NAME="tex2html395"
+ HREF="node7.html">1.5 Scilab at a</A>
+<B> Previous:</B> <A NAME="tex2html391"
+ HREF="node11.html">1.5.4 Customizing your Scilab</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00255000000000000000">
+1.5.5 Sample Session for Beginners</A>
+</H2>
+
+<P>
+We present now some simple commands. At the carriage return all the 
+commands typed since the last prompt are interpreted. 
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;a=1;
+ 
+--&gt;A=2;
+ 
+--&gt;a+A
+ ans  =
+ 
+    3.  
+ 
+--&gt;//Two commands on the same line
+ 
+--&gt;c=[1 2];b=1.5
+ b  =
+ 
+    1.5  
+ 
+--&gt;//A command on several lines
+ 
+--&gt;u=1000000.000000*(a*sin(A))^2+...
+--&gt;     2000000.000000*a*b*sin(A)*cos(A)+...
+--&gt;     1000000.000000*(b*cos(A))^2
+ u  =
+ 
+    81268.994
+</PRE>
+<P>
+Give the values of 1 and 2 to the variables <TT>a</TT> and  <TT>A</TT> .  The 
+semi-colon at the end of the command suppresses the display of the result.
+Note that Scilab is case-sensitive.
+Then two commands are processed and the second result is displayed because
+it is not followed by a semi-colon. The last command shows how to write a
+command on several lines by using ``<TT>...</TT>''. This sign is only needed
+in the on-line typing for avoiding the effect of the carriage return.
+ The chain of characters which follow the <TT>//</TT> is not interpreted 
+(it is a comment line).
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;a=1;b=1.5;
+ 
+--&gt;2*a+b^2
+ ans  =
+ 
+    4.25  
+ 
+--&gt;//We have now created variables and can list them by typing:
+ 
+--&gt;who
+your variables are...
+ 
+ ans       b         a         bugmes    MSDOS     home      PWD       
+ TMPDIR    percentlib          fraclablib          soundlib  xdesslib  
+ utillib   tdcslib   siglib    s2flib    roblib    optlib    metalib   
+ elemlib   commlib   polylib   autolib   armalib   alglib    mtlblib   
+ SCI       %F        %T        %z        %s        %nan      %inf      
+ old       newstacksize        $         %t        %f        %eps      
+ %io       %i        %e        %pi                 
+ using       3975 elements  out of    1000000.
+          and         43 variables out of       1023
+</PRE>
+<P>
+We get the list of previously defined variables <TT>a b c A</TT>  together
+with the initial environment composed of the different libraries and
+some specific ``permanent'' variables.
+
+<P>
+Below is an example of an expression which mixes constants with existing
+variables.  The result is retained in the standard default variable 
+<TT>ans</TT><A NAME="601">&#160;</A>.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;I=1:3
+ I  =
+ 
+!   1.    2.    3. !
+ 
+--&gt;W=rand(2,4);
+ 
+--&gt;W(1,I)
+ ans  =
+ 
+!   0.2113249    0.0002211    0.6653811 !
+ 
+--&gt;W(:,I)
+ ans  =
+ 
+!   0.2113249    0.0002211    0.6653811 !
+!   0.7560439    0.3303271    0.6283918 !
+ 
+--&gt;W($,$-1)
+ ans  =
+ 
+    0.6283918
+</PRE>
+<P>
+Defining <TT>I</TT>, a vector of indices, <TT>W</TT> a random 2 x 4 matrix,
+and extracting submatrices from <TT>W</TT>. The <code>$</code> symbol stands
+for the last row or last column index of a matrix or vector. The colon
+symbol stands for ``all rows'' or ``all columns''.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;sqrt([4  -4])
+ ans  =
+ 
+!   2.    2.i !
+</PRE>
+<P>
+Calling a function (or primitive) with a vector argument.  The response
+is a complex vector.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;p=poly([1 2 3],'z','coeff')
+ p  =
+ 
+               2  
+    1 + 2z + 3z   
+ 
+--&gt;//p is the polynomial in z with coefficients 1,2,3.
+ 
+--&gt;//p can also be defined by :
+ 
+--&gt;s=poly(0,'s');p=1+2*s+s^2
+ p  =
+ 
+              2  
+    1 + 2s + s
+</PRE>
+<P>
+A  more complicated command which creates a polynomial. 
+
+<P>
+
+<P>
+<PRE>
+ 
+ 
+--&gt;M=[p, p-1; p+1 ,2]
+ M  =
+ 
+!             2          2 !
+!   1 + 2s + s     2s + s  !
+!                          !
+!             2            !
+!   2 + 2s + s     2       !
+ 
+--&gt;det(M)
+ ans  =
+ 
+          2    3   4  
+    2 - 4s - 4s - s
+</PRE>
+<P>
+Definition of a polynomial matrix. The syntax for polynomial matrices
+is the same as for constant matrices. Calculation of the
+determinant of the polynomial matrix by the <TT>det</TT> function. 
+
+<P>
+
+<P>
+<PRE>
+ 
+ 
+--&gt;F=[1/s    ,(s+1)/(1-s)
+--&gt;      s/p    ,   s^2  ]
+ F  =
+ 
+!   1              1 + s  !
+!   -              -----  !
+!   s              1 - s  !
+!                         !
+!                   2     !
+!       s          s      !
+!   ---------      -      !
+!             2           !
+!   1 + 2s + s     1      !
+ 
+--&gt;F('num')
+ ans  =
+ 
+!   1     1 + s  !
+!                !
+!          2     !
+!   s     s      !
+ 
+--&gt;F('den')
+ ans  =
+ 
+!   s              1 - s  !
+!                         !
+!             2           !
+!   1 + 2s + s     1      !
+ 
+--&gt;F('num')(1,2)
+ ans  =
+ 
+    1 + s
+</PRE>
+<P>
+Definition of a matrix of rational polynomials. (The internal representation
+of <TT>F</TT> is a typed list of the form <TT>tlist('the type',num,den)</TT>
+where <TT>num</TT> and <TT>den</TT> are two matrix polynomials). Retrieving
+the numerator and denominator matrices of <TT>F</TT> by extraction operations in a
+typed list. Last command is the direct extraction of entry <TT>1,2</TT> 
+of the numerator matrix <TT>F('num')</TT>.
+
+<P>
+
+<P>
+<PRE>
+ 
+ 
+--&gt;pause
+ 
+-1-&gt;pt=return(s*p)
+ 
+--&gt;pt
+ pt  =
+ 
+          2   3  
+    s + 2s + s
+</PRE>
+<P>
+Here we move into a new environment using the command 
+<TT>pause</TT><A NAME="698">&#160;</A>
+and we obtain the new prompt <TT>-1-&gt;</TT> which indicates the level
+of the new environment (level 1).  All variables that are available
+in the first environment are also available in the new environment.  Variables
+created in the new environment can be returned to the original environment
+by using <TT>return</TT><A NAME="699">&#160;</A>.  
+Use of <TT>return</TT> without an argument 
+destroys all the variables created in the new environment before returning
+to the old environment. The <TT>pause</TT> facility is very useful 
+for debugging purposes.
+
+<P>
+
+<P>
+<PRE>
+ 
+ 
+--&gt;F21=F(2,1);v=0:0.01:%pi;frequencies=exp(%i*v);
+ 
+--&gt;response=freq(F21('num'),F21('den'),frequencies);
+ 
+--&gt;plot2d(v',abs(response)',[-1],'011',' ',[0,0,3.5,0.7],[5,4,5,7]);
+ 
+--&gt;xtitle(' ','radians','magnitude');
+</PRE>
+<P>
+Definition of a rational polynomial by extraction of an entry
+of the matrix <TT>F</TT> defined above.  This is followed by the evaluation
+of the rational polynomial at the vector of complex frequency values defined
+by <TT>frequencies</TT>.  The evaluation of the rational polynomial is done by
+the primitive <TT>freq</TT>. <TT>F12('num')</TT> is the numerator
+polynomial and <TT>F12('den')</TT> is the denominator polynomial of the
+rational polynomial <TT>F12</TT>. Note that
+the polynomial <TT>F12('num')</TT> can be also obtained by extraction
+from the matrix <TT>F</TT> using the syntax <TT>F('num')(1,2)</TT>.
+The  visualization of the resulting evaluation
+is made by using the basic plot command <TT>plot2d</TT> (see Figure&nbsp;<A HREF="node12.html#f1.1">1.1</A>).
+
+<P>
+
+<P>
+<PRE>
+ 
+ 
+--&gt;w=(1-s)/(1+s);f=1/p
+ f  =
+ 
+        1        
+    ---------    
+              2  
+    1 + 2s + s   
+ 
+--&gt;horner(f,w)
+ ans  =
+ 
+              2  
+    1 + 2s + s   
+    ----------   
+        4
+</PRE>
+<P>
+The function <TT>horner</TT> performs a (possibly symbolic) change of 
+variables for a polynomial (for example, here, to
+perform the bilinear transformation f(w(s))).
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;A=[-1,0;1,2];B=[1,2;2,3];C=[1,0];
+ 
+--&gt;Sl=syslin('c',A,B,C);
+ 
+--&gt;ss2tf(Sl)
+ ans  =
+ 
+!     1         2    !
+!   -----     -----  !
+!   1 + s     1 + s  !
+</PRE>
+<P>
+Definition of a linear system in state-space representation.
+The function <TT>syslin</TT> defines here the continuous time (<TT>'c'</TT>) system
+<TT>Sl</TT> with state-space matrices (<TT>A,B,C</TT>). The function
+<TT>ss2tf</TT> transforms <TT>Sl</TT> into transfer matrix representation.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;s=poly(0,'s');
+ 
+--&gt;R=[1/s,s/(1+s),s^2]
+ R  =
+ 
+!                    2 !
+!   1       s       s  !
+!   -     -----     -  !
+!   s     1 + s     1  !
+ 
+--&gt;Sl=syslin('c',R);
+ 
+--&gt;tf2ss(Sl)
+ ans  =
+ 
+ 
+       ans(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       ans(2) = A matrix = 
+ 
+! - 0.5  - 0.5 !
+! - 0.5  - 0.5 !
+ 
+       ans(3) = B matrix = 
+ 
+! - 1.    1.    0. !
+!   1.    1.    0. !
+ 
+       ans(4) = C matrix = 
+ 
+! - 1.    0. !
+ 
+       ans(5) = D matrix = 
+ 
+!               2 !
+!   0    1     s  !
+ 
+       ans(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+ 
+       ans(7) = Time domain = 
+ 
+ c
+</PRE>
+<P>
+Definition of the rational matrix <TT>R</TT>. <TT>Sl</TT> is the
+continuous-time linear system with (improper) transfer matrix
+<TT>R</TT>. <TT>tf2ss</TT> puts <TT>Sl</TT> in state-space representation with a
+polynomial <TT>D</TT> matrix. Note that linear systems are represented
+by specific typed lists (with 7 entries).
+
+<P>
+
+<P>
+<PRE>
+ 
+ 
+ 
+--&gt;sl1=[Sl;2*Sl+eye()]
+ sl1  =
+ 
+!                        2  !
+!   1           s       s   !
+!   -         -----     -   !
+!   s         1 + s     1   !
+!                           !
+!                         2 !
+!   2 + s      2s       2s  !
+!   -----     ----     ---  !
+!     s       1 + s     1   !
+ 
+--&gt;size(sl1)
+ ans  =
+ 
+!   2.    3. !
+ 
+--&gt;size(tf2ss(sl1))
+ ans  =
+ 
+!   2.    3. !
+</PRE>
+<P>
+<TT>sl1</TT> is the linear system in transfer matrix representation
+obtained by the parallel inter-connection of <TT>Sl</TT> and <TT>2*Sl +eye()</TT>.
+The same syntax is valid with <TT>Sl</TT> in state-space representation.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;deff('[Cl]=compen(Sl,Kr,Ko)',[ '[A,B,C,D]=abcd(Sl);';
+--&gt;       'A1=[A-B*Kr ,B*Kr; 0*A ,A-Ko*C]; Id=eye(A);';
+--&gt;       'B1=[B; 0*B];';
+--&gt;       'C1=[C ,0*C];Cl=syslin(''c'',A1,B1,C1)' ])
+</PRE>
+<P>
+On-line definition of a function, called <TT>compen</TT> which calculates the 
+state space representation
+(<TT>Cl</TT>) of a linear system (<TT>Sl</TT>) controlled by an observer
+with gain <TT>Ko</TT>
+and a controller with gain <TT>Kr</TT>.  Note that matrices are constructed
+in block form using other matrices.
+
+<P>
+
+<P>
+<PRE>
+ 
+ 
+--&gt;A=[1,1 ;0,1];B=[0;1];C=[1,0];Sl=syslin('c',A,B,C);
+ 
+--&gt;Cl=compen(Sl,ppol(A,B,[-1,-1]),...
+--&gt;                     ppol(A',C',[-1+%i,-1-%i])');
+ 
+--&gt;Aclosed=Cl('A'),spec(Aclosed)
+ Aclosed  =
+ 
+!   1.    1.    0.    0. !
+! - 4.  - 3.    4.    4. !
+!   0.    0.  - 3.    1. !
+!   0.    0.  - 5.    1. !
+ ans  =
+ 
+! - 1.       !
+! - 1.       !
+! - 1. + i   !
+! - 1. - i   !
+</PRE>
+<P>
+Call to the function <TT>compen</TT> defined above where the gains were
+calculated by a call to the primitive <TT>ppol</TT> which performs pole
+placement.
+The resulting <TT>Aclosed</TT> matrix is displayed and the placement
+of its poles is checked using the primitive <TT>spec</TT> which calculates
+the eigenvalues of a matrix. (The function <TT>compen</TT> is defined here
+on-line by <TT>deff</TT> as an example of function which receive a linear system 
+(<TT>Sl</TT>) as input and returns a linear system (<TT>Cl</TT>) as output.
+In general Scilab functions are defined in files and loaded in Scilab
+by <TT>getf</TT>).
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;//Saving the environment in a file named : myfile
+ 
+--&gt;save('myfile')
+ 
+--&gt;//Request to the host system to perform a system command
+ 
+--&gt;unix_s('rm myfile')
+ 
+--&gt;//Request to the host system with output in this Scilab window
+ 
+--&gt;unix_w('date')
+Thu Nov 12 15:54:58 MET 1998
+</PRE>
+<P>
+Relation with the Unix environment.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;foo=['void foo(a,b,c)';
+--&gt;     'double *a,*b,*c;'
+--&gt;      '{ *c = *a + *b;}']
+ foo  =
+ 
+!void foo(a,b,c)   !
+!                  !
+!double *a,*b,*c;  !
+!                  !
+!{ *c = *a + *b;}  !
+ 
+--&gt;write('foo.c',foo);
+ 
+--&gt;unix_s('make foo.o')
+ 
+--&gt;link('foo.o','foo','C');
+ 
+--&gt;deff('[c]=myplus(a,b)',...
+--&gt;   'c=fort(''foo'',a,1,''d'',b,2,''d'',''out'',[1,1],3,''d'')')
+ 
+--&gt;myplus(5,7)
+ ans  =
+ 
+    12.
+</PRE>
+<P>
+Definition of a column vector of character strings used for defining a C
+function file. The routine is compiled (needs a compiler), dynamically 
+linked to Scilab by the <TT>link</TT> command, and interactively called
+by the function <TT>myplus</TT>.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;deff('[ydot]=f(t,y)','ydot=[a-y(2)*y(2) -1;1 0]*y')
+ 
+--&gt;a=1;y0=[1;0];t0=0;instants=0:0.02:20;
+ 
+--&gt;y=ode(y0,t0,instants,f);
+ 
+--&gt;plot2d(y(1,:)',y(2,:)',[-1],'011',' ',[-3,-3,3,3],[10,2,10,2])
+ 
+--&gt;xtitle('Van der Pol')
+</PRE>
+<P>
+Definition of a function which calculates a first order vector differential
+<TT>f(t,y)</TT>.  This is followed by the definition of the constant <TT>a</TT>
+used in the function.  The primitive <TT>ode</TT>
+then integrates the differential equation defined by the Scilab
+function <TT>f(t,y)</TT>
+for <TT>y0=[1;0]</TT> at <TT>t=0</TT> and where the solution is given
+at the time values 
+<!-- MATH: $t=0,.02,.04,\ldots,20$ -->
+<IMG
+ WIDTH="181" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.gif"
+ ALT="$t=0,.02,.04,\ldots,20$">.
+(Function <TT>f</TT> can
+be defined as a C or Fortran program). The result is plotted in
+Figure&nbsp;<A HREF="node12.html#f1.2">1.2</A> where the first element of the integrated vector is 
+plotted against the second element of this vector.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;m=['a' 'cos(b)';'sin(a)' 'c']
+ m  =
+ 
+!a       cos(b)  !
+!                !
+!sin(a)  c       !
+ 
+--&gt;//m*m'   --&gt; error message : not implemented in scilab
+ 
+--&gt;deff('[x]=%c_m_c(a,b)',['[l,m]=size(a);[m,n]=size(b);x=[];';
+--&gt;  'for j=1:n,y=[];';
+--&gt;  'for i=1:l,t='' '';';
+--&gt;  'for k=1:m;';
+--&gt;  'if k&gt;1 then t=t+''+(''+a(i,k)+'')*''+''(''+b(k,j)+'')'';';
+--&gt;  'else t=''('' + a(i,k) + '')*'' + ''('' + b(k,j) + '')'';';
+--&gt;  'end,end;';
+--&gt;  'y=[y;t],end;';
+--&gt;  'x=[x y],end,'])
+ 
+--&gt;m*m'
+ ans  =
+ 
+!(a)*(a)+(cos(b))*(cos(b))  (a)*(sin(a))+(cos(b))*(c)  !
+!                                                      !
+!(sin(a))*(a)+(c)*(cos(b))  (sin(a))*(sin(a))+(c)*(c)  !
+</PRE>
+<P>
+Definition of a matrix containing character strings. By default, the 
+operation of symbolic multiplication of two matrices of character
+strings is not defined in Scilab.  However, the (on-line)
+function definition for <TT>%cmc</TT> defines the multiplication of 
+matrices of character strings (note that the double quote is necessary
+because the body of the <TT>deff</TT> contains quotes inside of quotes).
+The <TT>%</TT> which begins the function definition for <TT>%cmc</TT>
+allows the definition of an operation which did not previously 
+exist in Scilab, and the name <TT>cmc</TT> means ``chain multiply chain''.
+This example is not very useful: it is simply given to show
+how <EM>operations</EM> such as <code>*</code> can be defined on complex data 
+structures by mean of scpecific Scilab functions.
+
+<P>
+
+<P>
+<PRE>
+ 
+--&gt;deff('[y]=calcul(x,method)','z=method(x),y=poly(z,''x'')')
+ 
+--&gt;deff('[z]=meth1(x)','z=x')
+ 
+--&gt;deff('[z]=meth2(x)','z=2*x')
+ 
+--&gt;calcul([1,2,3],meth1)
+ ans  =
+ 
+                2   3  
+  - 6 + 11x - 6x + x   
+ 
+--&gt;calcul([1,2,3],meth2)
+ ans  =
+ 
+                  2   3  
+  - 48 + 44x - 12x + x
+</PRE>
+<P>
+A simple example which illustrates the passing of a function as an argument
+to another function. Scilab functions are objects which may be defined, loaded,
+or manipulated as other objects such as matrices or lists.
+
+<P>
+
+<P>
+<PRE>
+--&gt;quit
+</PRE>
+<P>
+Exit from Scilab.
+
+<P>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER"><A NAME="f1.1">&#160;</A><A NAME="1006">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 1.1:</STRONG>
+A Simple Response</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img4.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.00,212.00)
+% if you wan...
+...es/d1-7.eps hscale=100.00 vscale=100.00}
+\end{picture}}\end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<BR>
+<DIV ALIGN="CENTER"><A NAME="f1.2">&#160;</A><A NAME="1023">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 1.2:</STRONG>
+Phase Plot</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img5.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.00,212.00)
+% if you wan...
+...s/d1-14.eps hscale=100.00 vscale=100.00}
+\end{picture}}\end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html398"
+ HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html394"
+ HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html390"
+ HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html396"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html397"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html399"
+ HREF="node13.html">2. Data Types</A>
+<B> Up:</B> <A NAME="tex2html395"
+ HREF="node7.html">1.5 Scilab at a</A>
+<B> Previous:</B> <A NAME="tex2html391"
+ HREF="node11.html">1.5.4 Customizing your Scilab</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

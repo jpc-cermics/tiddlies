@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mps2linpro</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli204.html" >next</a>] [<a 
+href="manualli202.html" >prev</a>] [<a 
+href="manualli202.html#tailmanualli202.html" >prev-tail</a>] [<a 
+href="#tailmanualli203.html">tail</a>] [<a 
+href="manualli104.html#manualli203.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x204-1207000"></a>mps2linpro</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx204-1207001"></a><a 
+ id="mps2linpro"></a><span 
+class="cmtt-10x-x-109">mps2linpro </span>&#x2013;                         convert lp problem given in MPS format to linpro format<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x204-1208000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-325">
+&#x00A0;&#x00A0;lp&#x00A0;=&#x00A0;mps2linpro(mps)
+&#x00A0;<br />&#x00A0;&#x00A0;[p,C,b,ci,cs,mi]&#x00A0;=&#x00A0;mps2linpro(mps)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x204-1209000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mps</span>: either a character string, path of the MPS file, or an mps data structure returned
+     by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">readmps</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">lp</span>: a linpro data tlist with following fields:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">p</span>: real (column) vector (dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span>)
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">C</span>: real matrix (dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;(mi</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;md)</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span>) (If no constraints are given, you can
+          set <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">C</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[]</span></span></span>)
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">b</span>: RHS vector (dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;(mi</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;md)</span></span></span>)
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ci</span>: (column) vector of lower-bounds (dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span>). If there are no lower bound
+          constraints, put <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ci</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[]</span></span></span>. If some components of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> are bounded from below, set
+          the  other  (unconstrained)  values  of  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ci</span></span></span> to  a  very  large  negative  number  (e.g.
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ci(j)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;-(%</span><span 
+class="cmtt-10x-x-109">&#x00A0;eps)^(-1)</span></span></span>.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">cs</span>: (column) vector of upper-bounds. (Same remarks as above).
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">mi</span>: number of equality constraints (i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">C(1:mi,:)*x</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;b(1:mi)</span></span></span>)</li></ul>
+     </li></ul>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x204-1210000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 43--><p class="noindent" > mps2linpro forms Linear programing data compatible with linpro out of MPS data format.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x204-1211000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli879.html#linpro">linpro</a>    <a 
+href="manualli321.html#readmps">readmps</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli204.html" >next</a>] [<a 
+href="manualli202.html" >prev</a>] [<a 
+href="manualli202.html#tailmanualli202.html" >prev-tail</a>] [<a 
+href="manualli203.html" >front</a>] [<a 
+href="manualli104.html#manualli203.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli203.html"></a>  </p> 
+</body></html> 

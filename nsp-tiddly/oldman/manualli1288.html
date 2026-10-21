@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mine</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1289.html" >next</a>] [<a 
+href="manualli1287.html" >prev</a>] [<a 
+href="manualli1287.html#tailmanualli1287.html" >prev-tail</a>] [<a 
+href="#tailmanualli1288.html">tail</a>] [<a 
+href="manualli1280.html#manualli1288.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1289-7263000"></a>mine</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1289-7263001"></a><a 
+ id="mine"></a><span 
+class="cmtt-10x-x-109">mine </span>&#x2013;                                                                                      a mining problem<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1289-7264000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1438">
+&#x00A0;&#x00A0;[cout,feed]=mine(n1,n2,uvect)
+&#x00A0;<br />&#x00A0;&#x00A0;[]=showcost(n1,n2,teta,alpha)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1289-7265000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n1</span>: Number of discrete point for the state.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n2</span>: Number of time step
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">uvect</span>: a row vector which gives the possible control value ( integer values ). for example
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u=[-1,0,1]</span></span></span> means that at each step we come down one step or stay at the same level
+     or rise one step ).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">cout(n1,n2) </span>: The Bellman values.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">feed(n1,n2) </span>: The feedback Law.</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1289-7266000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > Dynamic programming applied to an optimal extraction of ore in an opencast mine. The extraction
+is done as follows: the steam shovel move forward for (k=1,2,...,n2) at each step it takes the
+ore, then move up or down (or stay at the same level) according to the control value to
+reach another level at next step. The extraction process must maximise the following
+cost:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1439">
+&#x00A0;&#x00A0;--&#x00A0;n2-1
+&#x00A0;<br />&#x00A0;&#x00A0;&#x005C;
+&#x00A0;<br />&#x00A0;&#x00A0;/&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;f(x(k),k)&#x00A0;+&#x00A0;V_F(x,n2)
+&#x00A0;<br />&#x00A0;&#x00A0;--&#x00A0;k=1
+</div>
+<!--l. 49--><p class="nopar" >with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(k+1)=x(k)</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;u</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(k)</span></span></span> is the trajectory depth at step <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x=1</span></span></span> is the ground level). The
+instantaneous cost <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f(i,k)</span></span></span> stands for the benefit of digging at depth <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> at position <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span>. It must be
+given as a Scilab macro <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ff_o</span></span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1440">
+&#x00A0;&#x00A0;[y]=ff_o(x,k)
+</div>
+<!--l. 57--><p class="nopar" >and for efficiency <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ff_o</span></span></span> must accept and return column vectors for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">V_F(i,n2)</span></span></span> is a final cost
+which is set so as to impose the steam shovel to be at ground level at position <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n2</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">showcost</span></span></span> Shows a
+3D representation of the instantaneous cost.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1289.html" >next</a>] [<a 
+href="manualli1287.html" >prev</a>] [<a 
+href="manualli1287.html#tailmanualli1287.html" >prev-tail</a>] [<a 
+href="manualli1288.html" >front</a>] [<a 
+href="manualli1280.html#manualli1288.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1288.html"></a>  </p> 
+</body></html> 

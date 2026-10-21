@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>repfreq</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli70.html" >next</a>] [<a 
+href="manualli68.html" >prev</a>] [<a 
+href="manualli68.html#tailmanualli68.html" >prev-tail</a>] [<a 
+href="#tailmanualli69.html">tail</a>] [<a 
+href="manualli12.html#manualli69.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x70-403000"></a>repfreq</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx70-403001"></a><a 
+ id="repfreq"></a><span 
+class="cmtt-10x-x-109">repfreq </span>&#x2013;                                                                                frequency response<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x70-404000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-123">
+&#x00A0;&#x00A0;[&#x00A0;[frq,]&#x00A0;repf]=repfreq(sys,fmin,fmax&#x00A0;[,step])
+&#x00A0;<br />&#x00A0;&#x00A0;[&#x00A0;[frq,]&#x00A0;repf]=repfreq(sys&#x00A0;[,frq])
+&#x00A0;<br />&#x00A0;&#x00A0;[&#x00A0;frq,repf,splitf]=repfreq(sys,fmin,fmax&#x00A0;[,step])
+&#x00A0;<br />&#x00A0;&#x00A0;[&#x00A0;frq,repf,splitf]=repfreq(sys&#x00A0;[,frq])
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x70-405000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sys</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list: SIMO linear system
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fmin,fmax</span>: two real numbers (lower and upper frequency bounds)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">frq</span>: real vector of frequencies (Hz)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">step</span>: logarithmic discretization step
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">splitf</span>: vector of indexes of critical frequencies.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">repf</span>: vector of the complex frequency response</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x70-406000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">repfreq</span></span></span> returns the frequency response calculation of a linear system. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sys(s)</span></span></span> is the transfer
+function of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">repf(k)</span></span></span> equals <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sys(s)</span></span></span> evaluated at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s=</span><span 
+class="cmtt-10x-x-109">&#x00A0;%i*frq(k)*2*%pi</span></span></span> for continuous time
+systems and at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">exp(2*%i*%pi*dt*frq(k))</span></span></span> for discrete time systems (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dt</span></span></span> is the sampling
+period).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">db(k)</span></span></span> is the magnitude of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">repf(k)</span></span></span> expressed in dB i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">db(k)=20*log10(abs(repf(k)))</span></span></span>
+and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phi(k)</span></span></span> is the phase of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">repf(k)</span></span></span> expressed in degrees. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fmin,fmax,step</span></span></span> are input
+parameters, the response is calculated for the vector of frequencies <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq</span></span></span> given by:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq=[10.^((log10(fmin)):step:(log10(fmax)))</span><span 
+class="cmtt-10x-x-109">&#x00A0;fmax];</span></span></span> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">step</span></span></span> is not given, the output
+parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq</span></span></span> is calculated by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq=calfrq(sys,fmin,fmax)</span></span></span>. Vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq</span></span></span> is splitted into regular
+parts with the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">split</span></span></span> vector. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq(splitf(k):splitf(k+1)-1)</span></span></span> has no critical frequency. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sys</span></span></span>
+has a pole in the range <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[frq(splitf(k)),frq(splitf(k)+1)]</span></span></span> and no poles outside.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x70-407000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb54"><a 
+ id="x70-407016r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=diag([</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x70-407018r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sys=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x70-407020r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;frq=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">w=frq</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//frq=frequencies</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;Hz</span><span 
+class="cmitt-10x-x-109">&#x00A0;;w=frequencies</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;rad/sec;</span></span>
+<br class="fancyvrb" /><a 
+ id="x70-407022r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[frq1,rep]=repfreq(Sys,frq)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x70-407024r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[db,phi]=dbphi(rep)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x70-407026r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Systf=ss2tf(Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Transfer</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;Sys</span></span>
+<br class="fancyvrb" /><a 
+ id="x70-407028r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=horner(Systf,w(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sqrt(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;Systf(s)</span><span 
+class="cmitt-10x-x-109">&#x00A0;evaluated</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;s</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;i</span><span 
+class="cmitt-10x-x-109">&#x00A0;w(2)</span></span>
+<br class="fancyvrb" /><a 
+ id="x70-407030r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rep=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">log(abs(x))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">log(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//magnitude</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;dB</span></span><br class="fancyvrb" /><a 
+ id="x70-407032r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;db(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span><span 
+class="cmitt-10x-x-109">&#x00A0;as</span><span 
+class="cmitt-10x-x-109">&#x00A0;rep</span></span>
+<br class="fancyvrb" /><a 
+ id="x70-407034r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ang=atan(imag(x),real(x))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//in</span><span 
+class="cmitt-10x-x-109">&#x00A0;rad.</span></span><br class="fancyvrb" /><a 
+ id="x70-407036r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ang=ang</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">180</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//in</span><span 
+class="cmitt-10x-x-109">&#x00A0;degrees</span></span><br class="fancyvrb" /><a 
+ id="x70-407038r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;phi(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x70-407040r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;repf=repfreq(Sys,frq)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x70-407042r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;repf(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">x</span></div>
+<!--l. 77--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x70-408000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli379.html#bode">bode</a>    <a 
+href="manualli41.html#freq">freq</a>    <a 
+href="manualli20.html#calfrq">calfrq</a>    <a 
+href="manualli910.html#horner">horner</a>    <a 
+href="manualli461.html#nyquist">nyquist</a>    <a 
+href="manualli30.html#dbphi">dbphi</a>
+</p>
+<!--l. 81--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x70-409000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   S. S.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli70.html" >next</a>] [<a 
+href="manualli68.html" >prev</a>] [<a 
+href="manualli68.html#tailmanualli68.html" >prev-tail</a>] [<a 
+href="manualli69.html" >front</a>] [<a 
+href="manualli12.html#manualli69.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli69.html"></a>  </p> 
+</body></html> 

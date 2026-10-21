@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Continuous time}
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}G=[s\nspoperator{,}s\nspoperator{^}\nspnumber{3}\nspoperator{;}\nspnumber{2}\nspoperator{+}s\nspoperator{^}\nspnumber{3}\nspoperator{,}s\nspoperator{^}\nspnumber{2}\nspoperator{-}\nspnumber{5}]
+Gt=gtild(G,\nspstring{'c'})
+Gt\nspoperator{-}horner(G,\nspoperator{-}s)\nspoperator{'}\nspoperator{,}\nspcomment{//continuous-time interpretation}
+Gt=gtild(G,\nspstring{'d'})\nspoperator{;}
+Gt\nspoperator{-}horner(G,\nspnumber{1}\nspoperator{/}s)\nspoperator{'}\nspoperator{*}s\nspoperator{^}\nspnumber{3}\nspoperator{,}\nspcomment{//discrete-time interpretation}
+G=ssrand(\nspnumber{2},\nspnumber{2},\nspnumber{3})\nspoperator{;}Gt=gtild(G)\nspoperator{;}\nspcomment{//State-space (G is cont. time by default)}
+clean((horner(ss2tf(G),\nspoperator{-}s))\nspoperator{'}\nspoperator{-}ss2tf(Gt))\nspoperator{,}\nspcomment{//Check}
+\nspcomment{// Discrete-time}
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+Gss=ssrand(\nspnumber{2},\nspnumber{2},\nspnumber{3})\nspoperator{;}Gss(\nspstring{'dt'})=\nspstring{'d'}\nspoperator{;}\nspcomment{//discrete-time}
+Gss(\nspnumber{5})=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}\nspcomment{//With a constant D matrix}
+G=ss2tf(Gss)\nspoperator{;}Gt1=horner(G,\nspnumber{1}\nspoperator{/}z)\nspoperator{'}\nspoperator{;}
+Gt=gtild(Gss)\nspoperator{;}
+Gt2=clean(ss2tf(Gt))\nspoperator{;}clean(Gt1\nspoperator{-}Gt2)\nspoperator{,}\nspcomment{//Check}
+\nspcomment{//Improper systems}
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+Gss=ssrand(\nspnumber{2},\nspnumber{2},\nspnumber{3})\nspoperator{;}Gss(\nspnumber{7})=\nspstring{'d'}\nspoperator{;}\nspcomment{//discrete-time}
+Gss(\nspnumber{5})=[z\nspoperator{,}z\nspoperator{^}\nspnumber{2}\nspoperator{;}\nspnumber{1}\nspoperator{+}z\nspoperator{,}\nspnumber{3}]\nspoperator{;}\nspcomment{//D(z) is polynomial}
+G=ss2tf(Gss)\nspoperator{;}Gt1=horner(G,\nspnumber{1}\nspoperator{/}z)\nspoperator{'}\nspoperator{;}\nspcomment{//Calculation in transfer form}
+Gt=gtild(Gss)\nspoperator{;}\nspcomment{//..in state-space}
+Gt2=clean(ss2tf(Gt))\nspoperator{;}clean(Gt1\nspoperator{-}Gt2)\nspoperator{,}\nspcomment{//Check}
+\end{Verbatim}

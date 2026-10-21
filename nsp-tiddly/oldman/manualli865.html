@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>dasrt</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli866.html" >next</a>] [<a 
+href="manualli864.html" >prev</a>] [<a 
+href="manualli864.html#tailmanualli864.html" >prev-tail</a>] [<a 
+href="#tailmanualli865.html">tail</a>] [<a 
+href="manualli863.html#manualli865.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x866-5004000"></a>dasrt</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx866-5004001"></a><a 
+ id="dasrt"></a><span 
+class="cmtt-10x-x-109">dasrt </span>&#x2013;                                                                    DAE solver with zero crossing<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x866-5005000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-941">
+&#x00A0;&#x00A0;[r,nn,[,hd]]=dasrt(x0,t0,t&#x00A0;[,atol,[rtol]],res&#x00A0;[,jac],ng,&#x00A0;surf&#x00A0;[,info]&#x00A0;[,hd])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x866-5006000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: is either <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y0</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ydot0</span></span></span> is estimated by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dassl</span></span></span> with zero as first estimate) or the matrix
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[y0</span><span 
+class="cmtt-10x-x-109">&#x00A0;ydot0]</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g(t,y0,ydot0)</span></span></span> must be equal to zero. If you only know an estimate of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ydot0</span></span></span> set
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(7)=1</span></span></span>
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">y0</span>: real column vector of initial conditions.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ydot0</span>: real column vector of the time derivative of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t0</span></span></span> (may be an estimate).</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">t0</span>: real number is the initial instant.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">t</span>: real scalar or vector. Gives instants for which you want the solution. Note that you can get
+     solution at each dassl&apos;s step point by setting <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(2)=1</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nn</span>: a vector with two entries <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[times</span><span 
+class="cmtt-10x-x-109">&#x00A0;num]</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">times</span></span></span> is the value of the time at which the surface
+     is crossed, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">num</span></span></span> is the number of the crossed surface
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">atol,rtol</span>: real scalars or column vectors of same size as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">atol,rtol</span></span></span> give respectively
+     absolute and relative error tolerances of solution. If vectors the tolerances are specified for
+     each component of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">res</span>: external (function or list or string). Computes the value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g(t,y,ydot)</span></span></span>.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">function </span>: Its calling sequence must be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[r,ires]=res(t,y,ydot)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res</span></span></span> must
+          return the residue <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r=g(t,y,ydot)</span></span></span> and error flag <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ires</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ires</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res</span></span></span> succeeds to
+          compute <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">=-1</span></span></span> if residue is locally not defined for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(t,y,ydot)</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">=-2</span></span></span> if parameters
+          are out of admissible range.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">list</span>: it must be as follows:
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-942">
+          &#x00A0;&#x00A0;list(res,x1,x2,...)
+</div>
+          <!--l. 62--><p class="nopar" >where the calling sequence of the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res</span></span></span> is now
+                                                                                    
+
+                                                                                    
+</p>
+          <div class="verbatim" id="verbatim-943">
+          &#x00A0;&#x00A0;r=res(t,y,ydot,x1,x2,...)
+</div>
+          <!--l. 66--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res</span></span></span> still returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r=g(t,y,ydot)</span></span></span> as a function of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(t,y,ydot,x1,x2,...)</span></span></span>.
+          </p></li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">string</span>: it must refer to the name of a fortran subroutine (see source code of
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fresd.f</span></span></span>).</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">jac</span>: external (function or list or string). Computes the value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dg/dy+cj*dg/dydot</span></span></span> for a
+     given value of parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cj</span></span></span>
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">function</span>: Its calling sequence must be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r=jac(t,y,ydot,cj)</span></span></span> and the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> function
+          must  return  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</span></span></span> where  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cj</span></span></span> is  a  real
+          scalar
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">list</span>: it must be as follows
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-944">
+          &#x00A0;&#x00A0;list(jac,x1,x2,...)
+</div>
+          <!--l. 76--><p class="nopar" >where the calling sequence of the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> is now
+                                                                                    
+
+                                                                                    
+</p>
+          <div class="verbatim" id="verbatim-945">
+          &#x00A0;&#x00A0;r=jac(t,y,ydot,x1,x2,...)
+</div>
+          <!--l. 80--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> still returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dg/dy+cj*dg/dydot</span></span></span> as a function of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(t,y,ydot,cj,x1,x2,...)</span></span></span>.
+          </p></li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">character string</span>: it must refer to the name of a fortran subroutine (see source code of
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jacdd.f</span></span></span>).</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">surf</span>: external (function or list or string). Computes the value of the column vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">surf(t,y)</span></span></span>
+     with ng components. Each component defines a surface.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">function</span>: Its calling sequence must be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">surf(t,y)</span></span></span>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">list</span>: it must be as follows
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-946">
+          &#x00A0;&#x00A0;list(surf,x1,x2,...)
+</div>
+          <!--l. 90--><p class="nopar" >where the calling sequence of the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">surf</span></span></span> is now
+                                                                                    
+
+                                                                                    
+</p>
+          <div class="verbatim" id="verbatim-947">
+          &#x00A0;&#x00A0;r=surf(t,y,x1,x2,...)
+</div>
+          <!--l. 94--><p class="nopar" >
+          </p></li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">character string</span>: it must refer to the name of a fortran subroutine (see source code of
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fsurfd.f</span></span></span>) in directory <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SCDIR/default</span></span></span></li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info</span>: list which contains <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">7</span></span></span> elements, default value is list([],0,[],[],[],0,0)
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">info(1) </span>: real scalar which gives the maximum time for which <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> is allowed to be
+          evaluated or an empty matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[]</span></span></span> if no limits imposed for time.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">info(2) </span>: flag which indicates if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dassl</span></span></span> returns its intermediate computed values
+          (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=1</span></span></span>) or only the user specified time point values (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=0</span></span></span>).
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">info(3) </span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2</span></span></span> components vector which give the definition <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[ml,mu]</span></span></span> of band matrix
+          computed                                                                                           by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span>; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r(i</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;j</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;ml</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;mu</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;1,j)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;dg(i)/dy(j)+cj*dg(i)/dydot(j)&#x0022;</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span>
+          returns a full matrix set <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(3)=[]</span></span></span>.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">info(4) </span>: real scalar which gives the maximum step size. Set <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(4)=[]</span></span></span> if no
+          limitation.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">info(5) </span>:  real  scalar  which  gives  the  initial  step  size.  Set  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(4)=[]</span></span></span> if  not
+          specified.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">info(6) </span>: set <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(6)=1</span></span></span> if the solution is known to be non negative, else set
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(6)=0</span></span></span>.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">info(7) </span>:   set   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(7)=1</span></span></span>  if   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ydot0</span></span></span>  is   just   an   estimation,   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info(7)=0</span></span></span>  if
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g(t0,y0,ydot0)=0</span></span></span>.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">hd</span>: real vector which allows to store the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dassl</span></span></span> context and to resume integration
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r</span>: real matrix . Each column is the vector [t;x(t);xdot(t)] where t is time index for which the
+     solution had been computed</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 111--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x866-5007000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 111--><p class="noindent" > Solution of the implicit differential equation
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-948">
+&#x00A0;&#x00A0;g(t,y,ydot)=0
+&#x00A0;<br />&#x00A0;&#x00A0;y(t0)=y0&#x00A0;&#x00A0;and&#x00A0;&#x00A0;&#x00A0;ydot(t0)=ydot0
+</div>
+<!--l. 116--><p class="nopar" >Returns the surface crossing instants and the number of the surface reached in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nn</span></span></span>. Detailed
+examples can be found in SCIDIR/tests/dassldasrt.tst
+</p>
+<!--l. 122--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x866-5008000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb603"><a 
+ id="x866-5008011r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//dy/dt</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;((2*log(y)+8)/t</span><span 
+class="cmitt-10x-x-109">&#x00A0;-5)*y,</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;y(1)</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;1,</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;1$&#x003C;$=t$&#x003C;$=6</span></span><br class="fancyvrb" /><a 
+ id="x866-5008013r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//g1</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;((2*log(y)+8)/t</span><span 
+class="cmitt-10x-x-109">&#x00A0;-</span><span 
+class="cmitt-10x-x-109">&#x00A0;5)*y</span></span>
+<br class="fancyvrb" /><a 
+ id="x866-5008015r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//g2</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;log(y)</span><span 
+class="cmitt-10x-x-109">&#x00A0;-</span><span 
+class="cmitt-10x-x-109">&#x00A0;2.2491</span></span><br class="fancyvrb" /><a 
+ id="x866-5008017r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y0=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">t=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">t0=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y0d=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x866-5008019r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atol=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.E-6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">rtol=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ng=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x866-5008021r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[delta,ires]=res1(t,y,ydot)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ires=0;delta=ydot-((2*log(y)+8)/t-5)*y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x866-5008023r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[rts]=gr1(t,y)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x866-5008025r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[yy,nn]=dasrt([y0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">y0d],t0,t,atol,rtol,res1,ng,gr1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x866-5008027r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(Should</span><span 
+class="cmitt-10x-x-109">&#x00A0;return</span><span 
+class="cmitt-10x-x-109">&#x00A0;nn=[2.4698972</span><span 
+class="cmitt-10x-x-109">&#x00A0;2])</span></span></div>
+<!--l. 136--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x866-5009000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli890.html#ode">ode</a>    <a 
+href="manualli866.html#dassl">dassl</a>    <a 
+href="manualli871.html#impl">impl</a>    <a 
+href="manualli972.html#fort">fort</a>    <a 
+href="manualli1368.html#link">link</a>    <a 
+href="manualli966.html#external">external</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli866.html" >next</a>] [<a 
+href="manualli864.html" >prev</a>] [<a 
+href="manualli864.html#tailmanualli864.html" >prev-tail</a>] [<a 
+href="manualli865.html" >front</a>] [<a 
+href="manualli863.html#manualli865.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli865.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.4.1 Basic 2D Plotting</TITLE>
+<META NAME="description" CONTENT="5.4.1 Basic 2D Plotting">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node63.html">
+<LINK REL="previous" HREF="node61.html">
+<LINK REL="up" HREF="node61.html">
+<LINK REL="next" HREF="node63.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1071"
+ HREF="node63.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1067"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1061"
+ HREF="node61.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1069"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1070"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1072"
+ HREF="node63.html">5.4.2 Captions and Presentation</A>
+<B> Up:</B> <A NAME="tex2html1068"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1062"
+ HREF="node61.html">5.4 2D Plotting</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00641000000000000000">
+5.4.1 Basic 2D Plotting</A>
+</H2>
+
+<P>
+The simplest 2D plot is <TT>plot(x,y)</TT> or <TT>plot(y)</TT>: this is the plot of 
+<TT>y</TT> as function of <TT>x</TT> where <TT>x</TT> and <TT>y</TT> are 2 vectors; if 
+<TT>x</TT> is missing, it is replaced by the vector <TT>(1,...,size(y))</TT>.
+If <TT>y</TT> is a matrix, its rows are plotted. There are optional arguments.
+
+<P>
+A first example is given by the following commands and one of the results is
+represented on figure <A HREF="node62.html#d7-1">5.1</A>:
+
+<P>
+<PRE>
+t=(0:0.05:1)';
+ct=cos(2*%pi*t);
+// plot the cosine
+plot(t,ct);
+// xset() opens the toggle panel and 
+// some parameters can be changed with mouse clicks
+// given by commands for the demo here 
+xset("font",5,4);xset("thickness",3);
+// plot with captions for the axis and a title for the plot
+// if a caption is empty the argument ' ' is needed
+plot(t,ct,'Time','Cosine','Simple Plot');
+// click on a color of the xset toggle panel and do the previous plot again
+// to get the title in the chosen color
+</PRE>
+<P>
+<BR>
+<DIV ALIGN="CENTER"><A NAME="d7-1">&#160;</A><A NAME="3431">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.1:</STRONG>
+First example of plotting</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img12.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.00,212.00)
+% if you wan...
+...es/d7-1.eps hscale=100.00 vscale=100.00}
+\end{picture}}\end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+The generic 2D multiple plot is 
+
+<P>
+<TT>plot2di(str,x,y,[style,strf,leg,rect,nax])</TT>
+ 
+<UL>
+<P>
+<LI>index of <code>plot2d</code>	: <TT>i=missing,1,2,3,4</TT>.
+
+<P>
+For the different values of <TT>i</TT> we have:
+
+<P>
+<TT>i=missing</TT>	: piecewise linear plotting
+
+<P>
+<TT>i=1</TT>	: as previous with possible logarithmic scales
+
+<P>
+<TT>i=2</TT>	: piecewise constant drawing style
+
+<P>
+<TT>i=3</TT>	: vertical bars
+
+<P>
+<TT>i=4</TT>	: arrows style (e.g. ode in a phase space)
+
+<P>
+</UL>
+<P>
+<PRE>
+t=(1:0.1:8)';xset("font",2,3);
+xsetech([0.,0.,0.5,0.5],[-1,1,-1,1]);
+plot2d([t t],[1.5+0.2*sin(t) 2+cos(t)]);
+xtitle('Plot2d');
+titlepage('Piecewise linear');
+//
+xsetech([0.5,0.,0.5,0.5],[-1,1,-1,1]);
+plot2d1('oll',t,[1.5+0.2*sin(t) 2+cos(t)]);
+xtitle('Plot2d1');
+titlepage('Logarithmic scale(s)');
+//
+xsetech([0.,0.5,0.5,0.5],[-1,1,-1,1]);
+plot2d2('onn',t,[1.5+0.2*sin(t) 2+cos(t)]);
+xtitle('Plot2d2');
+titlepage('Piecewise constant');
+//
+xsetech([0.5,0.5,0.5,0.5],[-1,1,-1,1]);
+plot2d3('onn',t,[1.5+0.2*sin(t) 2+cos(t)]);
+xtitle('Plot2d3')
+titlepage('Vertical bar plot')
+xset('default')
+</PRE>
+<P>
+Figdirfigures/
+  
+<BR>
+<DIV ALIGN="CENTER"><A NAME="nouv1">&#160;</A><A NAME="3522">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.2:</STRONG>
+Different 2D plotting</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img13.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.0,212.0)
+\special{ps...
+...nouv1.epsf hscale=100.0 vscale=100.0}
+\end{picture}} \end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<UL>
+<P>
+<LI>Parameter <TT>str</TT>  	: it is the string <TT>"abc"</TT> :
+ 
+	<TT>str</TT> is empty if <TT>i</TT> is missing.
+
+<P>
+<TT>a=e</TT> : means empty; the values of <TT>x</TT> are not used;
+	   (The user must give a dummy value to <TT>x</TT>).
+
+<P>
+<TT>a=o</TT> : means one; the x-values are the same for all the curves
+
+<P>
+<TT>a=g</TT> : means general. 
+
+<P>
+<TT>b=l</TT> : a logarithmic scale is used on the X-axis
+
+<P>
+<TT>c=l</TT> : a logarithmic scale is used on the Y-axis
+
+<P>
+-Parameters <TT>x,y</TT> : two matrices of the same size <TT>[nl,nc]</TT> (<TT>nc</TT> 
+is the number of curves and <TT>nl</TT> is the number of points of each
+curve).
+
+<P>
+For a single curve the vector can be row or column : 
+<TT>plot2d(t',cos(t)')  plot2d(t,cos(t))</TT> are equivalent.
+
+<P>
+<LI>Parameter <TT>style</TT>  	:it is a real vector of size <TT>(1,nc)</TT>; the style 
+to use for curve j is defined by <TT>size(j)</TT> (when only one curve is drawn 
+<TT>style</TT> can specify the style and a position to use for the
+caption).
+
+<P>
+<PRE>
+x=0:0.1:2*%pi;
+u=[-0.8+sin(x);-0.6+sin(x);-0.4+sin(x);-0.2+sin(x);sin(x)];
+u=[u;0.2+sin(x);0.4+sin(x);0.6+sin(x);0.8+sin(x)]';   
+//start trying the color with the 2 following lines
+//sty=[-9,-8,-7,-6,-5,-4,-3,-2,-1,0];
+//plot2d1('onn',x',u,sty,"111"," ",[0,-2,2*%pi,3],[2,10,2,10]);
+plot2d1('onn',x',u,...
+  [9,8,7,6,5,4,3,2,1,0],"011"," ",[0,-2,2*%pi,3],[2,10,2,10]);
+x=0:0.2:2*%pi; 
+v=[1.4+sin(x);1.8+sin(x)]'; 
+xset("mark",1,5);
+plot2d1('onn',x',v,[7,8],"011"," ",[0,-2,2*%pi,3],[2,10,2,10]);
+xset('default');
+</PRE>
+<P>
+  
+  
+Figdirfigures/
+  
+<BR>
+<DIV ALIGN="CENTER"><A NAME="nouv2">&#160;</A><A NAME="3639">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.3:</STRONG>
+Black and white plotting styles</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img14.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.0,212.0)
+\special{ps...
+...nouv2.epsf hscale=100.0 vscale=100.0}
+\end{picture}} \end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<LI>Parameter <TT>strf</TT>  	: it is a string of length 3 <TT>"xyz"</TT> corresponding to :
+
+<P>
+<TT>x=1</TT> : captions  displayed 
+
+<P>
+<TT>y=1</TT> : the argument <TT>rect</TT> is used to specify the 
+		boundaries of the plot.
+<BR>  
+		<TT>rect=[xmin,ymin,xmax,ymax]</TT>
+
+<P>
+<TT>y=2</TT>	: the boundaries of the	plot are computed 
+
+<P>
+<TT>y=0</TT>	: the current boundaries 
+
+<P>
+<TT>z=1</TT>	: an axis is drawn and  the number of tics can be specified by the <TT>nax</TT> argument
+
+<P>
+<TT>z=2</TT>	: the plot is only surrounded by a box
+
+<P>
+<LI>Parameter <TT>leg </TT> 	 : it is the string of the captions for the different 
+plotted curves . This string is composed of fields separated by the <TT>@</TT> 
+symbol: for example  <TT>``module@phase''</TT> (see example below). These 
+strings are
+displayed under the plot with  small segments recalling the styles of the 
+corresponding curves.
+
+<P>
+<LI>Parameter <TT>rect </TT> 	: it is a vector of 4 values specifying the boundaries 
+of the plot <TT>rect=[xmin,ymin,xmax,ymax]</TT>.
+
+<P>
+<LI>Parameter <TT>nax </TT>  	: it is a vector [nx,Nx,ny,Ny] where nx (ny) is 
+the number of subgrads on the x (y) axis and Nx (Ny) is the number of 
+graduations  on the x (y) axis.
+
+<P>
+</UL>
+<P>
+<PRE>
+//captions for identifying the curves
+//controlling the boundaries of the plot and the tics on axes
+x=-%pi:0.3:%pi;
+y1=sin(x);y2=cos(x);y3=x;
+X=[x;x;x]; Y=[y1;y2;y3];
+plot2d1("gnn",X',Y',[1 2 3]',"111","caption1@caption2@caption3",...
+[-3,-3,3,2],[2,20,5,5]);
+</PRE>
+<P>
+  
+  
+Figdirfigures/
+  
+<BR>
+<DIV ALIGN="CENTER"><A NAME="nouv3">&#160;</A><A NAME="3737">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.4:</STRONG>
+Box, captions and tics</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img15.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.0,212.0)
+\special{ps...
+...nouv3.epsf hscale=100.0 vscale=100.0}
+\end{picture}} \end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+For different plots the simple commands without any argument show a demo 
+(e.g <TT>plot2d3()</TT> ).
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1071"
+ HREF="node63.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1067"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1061"
+ HREF="node61.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1069"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1070"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1072"
+ HREF="node63.html">5.4.2 Captions and Presentation</A>
+<B> Up:</B> <A NAME="tex2html1068"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1062"
+ HREF="node61.html">5.4 2D Plotting</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lqg</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli54.html" >next</a>] [<a 
+href="manualli52.html" >prev</a>] [<a 
+href="manualli52.html#tailmanualli52.html" >prev-tail</a>] [<a 
+href="#tailmanualli53.html">tail</a>] [<a 
+href="manualli12.html#manualli53.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x54-302000"></a>lqg</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx54-302001"></a><a 
+ id="lqg"></a><span 
+class="cmtt-10x-x-109">lqg </span>&#x2013;                                                                                       LQG compensator<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x54-303000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-94">
+&#x00A0;&#x00A0;[K]=lqg(P,r)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x54-304000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (augmented plant) in state-space form
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r</span>: 1x2 row vector = (number of measurements, number of inputs) (dimension of the 2,2
+     part of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">K</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (controller)</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x54-305000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lqg</span></span></span> computes the linear optimal LQG (H2) controller for the &#x201D;augmented&#x201D; plant
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P=syslin(&#x0027;c&#x0027;,A,B,C,D)</span></span></span> (continuous time) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P=syslin(&#x0027;d&#x0027;,A,B,C,D)</span></span></span> (discrete time). The
+function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lqg2stan</span></span></span> returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r</span></span></span> given the nominal plant, weighting terms and variances of
+noises.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span> is given by the following ABCD matrices: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A+B*Kc+Kf*C+Kf*D*Kc,-Kf,Kc,0]</span></span></span> where
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Kc=lqr(P12)</span></span></span> is the controller gain and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Kf=lqe(P21)</span></span></span> is the filter gain. See example in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lqg2stan</span></span></span>.
+</p>
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x54-306000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli52.html#lqg2stan">lqg2stan</a>    <a 
+href="manualli54.html#lqr">lqr</a>    <a 
+href="manualli51.html#lqe">lqe</a>    <a 
+href="#h-inf">h_inf</a>    <a 
+href="manualli59.html#obscont">obscont</a>
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x54-307000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.D.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli54.html" >next</a>] [<a 
+href="manualli52.html" >prev</a>] [<a 
+href="manualli52.html#tailmanualli52.html" >prev-tail</a>] [<a 
+href="manualli53.html" >front</a>] [<a 
+href="manualli12.html#manualli53.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli53.html"></a>  </p> 
+</body></html> 

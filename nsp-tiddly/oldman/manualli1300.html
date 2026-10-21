@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ScilabEval</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1301.html" >next</a>] [<a 
+href="manualli1299.html" >prev</a>] [<a 
+href="manualli1299.html#tailmanualli1299.html" >prev-tail</a>] [<a 
+href="#tailmanualli1300.html">tail</a>] [<a 
+href="manualli1296.html#manualli1300.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1301-7324000"></a>ScilabEval</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1301-7324001"></a><a 
+ id="ScilabEval"></a><span 
+class="cmtt-10x-x-109">ScilabEval </span>&#x2013;                           tcl instruction: Evaluate a string with scilab interpreter<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1301-7325000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1469">
+&#x00A0;&#x00A0;ScilabEval&#x00A0;instruction
+&#x00A0;<br />&#x00A0;&#x00A0;ScilabEval&#x00A0;instruction
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0022;seq&#x0022;
+&#x00A0;<br />&#x00A0;&#x00A0;ScilabEval&#x00A0;instruction
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0022;sync&#x0022;
+&#x00A0;<br />&#x00A0;&#x00A0;ScilabEval&#x00A0;instruction&#x00A0;&#x0022;sync&#x0022;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0022;seq&#x0022;
+&#x00A0;<br />&#x00A0;&#x00A0;ScilabEval&#x00A0;&#x0022;flush&#x0022;
+</div>
+<!--l. 32--><p class="nopar" >
+</p>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1301-7326000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">instruction</span>: tcl string character contains a Scilab instruction to evaluate with the
+     current Scilab interpreter.</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1301-7327000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > This function must be called in a tcl/tk script executed from Scilab. It allows to associate Scilab
+actions to tcl/tk widgets (graphic objects) or to use Scilab to perform some computations within a
+tcl script. </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">ScilabEval   instruction</div>   If   the   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;instruction</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>  syntax   is   used,   the
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instruction</span></span></span> is first stored in a FIFO queue, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ScilabEval</span></span></span> returns immediately. Scilab
+     executes the queued <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instructions</span></span></span> when possible (it should be at the prompt but also
+     at the end of each instructions of the currently running function) in the order they
+     were submitted. This syntax can be used to associate Scilab actions to tcl/tk widgets
+     but not into a tcl script executed by <a 
+href="#TK-EvalFile">TK_EvalFile</a>    or <a 
+href="#TK-EvalStr">TK_EvalStr</a>    because in this
+     situation the Scilab interpreter is blocked up to the end of the script. Note that with the
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;instruction</span></span></span> syntax, if there are many <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ScilabEval</span></span></span> commands stored in
+     the queue the execution of the second one can be started in the middle of the execution
+     of the first one (in particular if the first one contains more than a simple expression).If
+     the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;seq&#x0022;</span></span></span> option is added, the associated instruction evaluation should be finished (or
+     paused) before the next queued instruction evaluation can be started. The next callback
+     stored in the command queue will only be taken into account when the current one will
+     be finished or paused.
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">ScilabEval instruction &#x201D;sync&#x201D;</div> If the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;instruction</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;sync&#x0022;</span></span></span> syntax is used,
+     the instruction is executed immediately (not queued) and the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ScilabEval</span></span></span>returns when
+     the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instruction</span></span></span> evaluation is finished. The scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instruction</span></span></span> evaluation may be
+     interrupted by new or queued commands.If the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;seq&#x0022;</span></span></span> option is added, the associated
+     instruction evaluation should be finished (or paused) before any queued instruction
+     evaluation can be started. The scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instruction</span></span></span> evaluation may not be interrupted
+     by new or queued commands (except if it is paused).
+     </li>
+     <li class="itemize"><div class="itemdesc">ScilabEval &#x201D;flush&#x201D;</div> If the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;flush&#x0022;</span></span></span> syntax is used, all the previously queued
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instructions</span></span></span> are executed immediately and the ScilabEval returns when the execution
+     is finished. Each <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instruction</span></span></span> is executed with the option used at the time of queuing
+     up (i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">seq</span></span></span> or no option).</li></ul>
+<!--l. 80--><p class="noindent" >The evaluation context of all these cases is the current Scilab context when the<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instruction</span></span></span> evaluation
+starts.
+</p>
+<!--l. 84--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1301-7328000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb843"><a 
+ id="x1301-7328041r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Callbacks</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0022;seq&#x0022;</span><span 
+class="cmitt-10x-x-109">&#x00A0;option</span><span 
+class="cmitt-10x-x-109">&#x00A0;usage</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328043r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//create</span><span 
+class="cmitt-10x-x-109">&#x00A0;tcl</span><span 
+class="cmitt-10x-x-109">&#x00A0;instructions</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328045r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tcl_script=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;toplevel</span><span 
+class="cmtt-10x-x-109">&#x00A0;.w1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328047r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;button</span><span 
+class="cmtt-10x-x-109">&#x00A0;.w1.b</span><span 
+class="cmtt-10x-x-109">&#x00A0;-text</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;Click</span><span 
+class="cmtt-10x-x-109">&#x00A0;here</span><span 
+class="cmtt-10x-x-109">&#x00A0;to</span><span 
+class="cmtt-10x-x-109">&#x00A0;execute</span><span 
+class="cmtt-10x-x-109">&#x00A0;without</span><span 
+class="cmtt-10x-x-109">&#x00A0;seq</span><span 
+class="cmtt-10x-x-109">&#x00A0;option&#x0022;&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;-command</span><span 
+class="cmtt-10x-x-109">&#x00A0;WithoutSeq&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328049r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;button</span><span 
+class="cmtt-10x-x-109">&#x00A0;.w1.b1</span><span 
+class="cmtt-10x-x-109">&#x00A0;-text</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;Click</span><span 
+class="cmtt-10x-x-109">&#x00A0;here</span><span 
+class="cmtt-10x-x-109">&#x00A0;to</span><span 
+class="cmtt-10x-x-109">&#x00A0;execute</span><span 
+class="cmtt-10x-x-109">&#x00A0;with</span><span 
+class="cmtt-10x-x-109">&#x00A0;seq</span><span 
+class="cmtt-10x-x-109">&#x00A0;option&#x0022;&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;-command</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;WithSeq&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328051r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;pack</span><span 
+class="cmtt-10x-x-109">&#x00A0;.w1.b</span><span 
+class="cmtt-10x-x-109">&#x00A0;.w1.b1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;proc</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;WithoutSeq</span><span 
+class="cmtt-10x-x-109">&#x00A0;{}</span><span 
+class="cmtt-10x-x-109">&#x00A0;{&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328053r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;cont=%f;;cont=%t;&#x0022;&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328055r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;cont</span><span 
+class="cmtt-10x-x-109">&#x00A0;then</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(&#x0027;&#x0027;ok&#x0027;&#x0027;),else</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(&#x0027;&#x0027;wrong&#x0027;&#x0027;);end;cont=%f;&#x0022;&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;}&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328057r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;proc</span><span 
+class="cmtt-10x-x-109">&#x00A0;WithSeq</span><span 
+class="cmtt-10x-x-109">&#x00A0;{}</span><span 
+class="cmtt-10x-x-109">&#x00A0;{&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;cont=%f;;cont=%t;&#x0022;&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;seq&#x0022;&#x0022;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328059r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;cont</span><span 
+class="cmtt-10x-x-109">&#x00A0;then</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(&#x0027;&#x0027;ok&#x0027;&#x0027;),else</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(&#x0027;&#x0027;wrong&#x0027;&#x0027;);end;cont=%f;&#x0022;&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;}&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328061r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(tcl_script,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/test.tcl&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//write</span><span 
+class="cmitt-10x-x-109">&#x00A0;them</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328063r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Execute</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;tcl</span><span 
+class="cmitt-10x-x-109">&#x00A0;script</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328065r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;cont=%f</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328067r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TK_EvalFile(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/test.tcl&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328069r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//scripts</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0022;sync&#x0022;</span><span 
+class="cmitt-10x-x-109">&#x00A0;option</span><span 
+class="cmitt-10x-x-109">&#x00A0;usage</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328071r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//----------------without</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0022;sync&#x0022;----------------</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328073r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tcl_script=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set</span><span 
+class="cmtt-10x-x-109">&#x00A0;t</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;0&#x0022;&#x0022;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;while</span><span 
+class="cmtt-10x-x-109">&#x00A0;{$t</span><span 
+class="cmtt-10x-x-109">&#x00A0;!=</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;10&#x0022;&#x0022;}</span><span 
+class="cmtt-10x-x-109">&#x00A0;{&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328075r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;a=$t;mprintf(&#x0027;&#x0027;%d</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;&#x0027;,a);&#x0022;&#x0022;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;incr</span><span 
+class="cmtt-10x-x-109">&#x00A0;t&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;}&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328077r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(tcl_script,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/test.tcl&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//write</span><span 
+class="cmitt-10x-x-109">&#x00A0;them</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328079r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Execute</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;tcl</span><span 
+class="cmitt-10x-x-109">&#x00A0;script</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328081r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TK_EvalFile(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/test.tcl&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">mprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;TK_EvalFile</span><span 
+class="cmtt-10x-x-109">&#x00A0;finished&#x005C;n&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328083r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;The</span><span 
+class="cmitt-10x-x-109">&#x00A0;ScilabEval</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;executed</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;after</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;TK_EvalFile</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328085r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//----------------with</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0022;sync&#x0022;----------------</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328087r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tcl_script=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set</span><span 
+class="cmtt-10x-x-109">&#x00A0;t</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;0&#x0022;&#x0022;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;while</span><span 
+class="cmtt-10x-x-109">&#x00A0;{$t</span><span 
+class="cmtt-10x-x-109">&#x00A0;!=</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;10&#x0022;&#x0022;}</span><span 
+class="cmtt-10x-x-109">&#x00A0;{&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328089r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ScilabEval</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;a=$t;mprintf(&#x0027;&#x0027;%d</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;&#x0027;,a);&#x0022;&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;&#x0022;sync&#x0022;&#x0022;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;incr</span><span 
+class="cmtt-10x-x-109">&#x00A0;t&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;}&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328091r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(tcl_script,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/test.tcl&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//write</span><span 
+class="cmitt-10x-x-109">&#x00A0;them</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span></span><br class="fancyvrb" /><a 
+ id="x1301-7328093r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Execute</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;tcl</span><span 
+class="cmitt-10x-x-109">&#x00A0;script</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328095r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TK_EvalFile(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/test.tcl&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">mprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;TK_EvalFile</span><span 
+class="cmtt-10x-x-109">&#x00A0;finished&#x005C;n&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1301-7328097r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;The</span><span 
+class="cmitt-10x-x-109">&#x00A0;ScilabEval</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;executed</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;synchronously</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;TK_EvalFile</span></span></div>
+<!--l. 128--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1301-7329000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#TK-EvalFile">TK_EvalFile</a>    <a 
+href="#TK-EvalStr">TK_EvalStr</a>    <a 
+href="#TK-GetVar">TK_GetVar</a>    <a 
+href="#TK-SetVar">TK_SetVar</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 132--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1301-7330000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Bertrand Guiheneuf
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1301.html" >next</a>] [<a 
+href="manualli1299.html" >prev</a>] [<a 
+href="manualli1299.html#tailmanualli1299.html" >prev-tail</a>] [<a 
+href="manualli1300.html" >front</a>] [<a 
+href="manualli1296.html#manualli1300.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1300.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lmisolver</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli881.html" >next</a>] [<a 
+href="manualli879.html" >prev</a>] [<a 
+href="manualli879.html#tailmanualli879.html" >prev-tail</a>] [<a 
+href="#tailmanualli880.html">tail</a>] [<a 
+href="manualli863.html#manualli880.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x881-5106000"></a>lmisolver</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx881-5106001"></a><a 
+ id="lmisolver"></a><span 
+class="cmtt-10x-x-109">lmisolver </span>&#x2013;                                                             linear matrix inequation solver<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x881-5107000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-987">
+&#x00A0;&#x00A0;[XLISTF[,OPT]]&#x00A0;=&#x00A0;lmisolver(XLIST0,evalfunc&#x00A0;[,options])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x881-5108000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">XLIST0</span>: a list of containing initial guess (e.g. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">XLIST0=list(X1,X2,..,Xn)</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">evalfunc</span>: a Scilab function (&#x201D;external&#x201D; function with specific syntax) The syntax the
+     function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">evalfunc</span></span></span> must be as follows: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[LME,LMI,OBJ]=evalfunct(X)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is a list
+     of matrices, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LME,</span><span 
+class="cmtt-10x-x-109">&#x00A0;LMI</span></span></span> are lists and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">OBJ</span></span></span> a real scalar.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">XLISTF</span>: a list of matrices (e.g. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">XLIST0=list(X1,X2,..,Xn)</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">options</span>: optional parameter. If given, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">options</span></span></span> is a real row vector with 5 components
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Mbound,abstol,nu,maxiters,reltol]</span></span></span></li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x881-5109000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lmisolver</span></span></span> solves the following problem: minimize <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f(X1,X2,...,Xn)</span></span></span> a linear function of Xi&apos;s under
+the linear constraints: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Gi(X1,X2,...,Xn)=0</span></span></span> for i=1,...,p and LMI (linear matrix inequalities)
+constraints:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Hj(X1,X2,...,Xn)</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003E;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span></span></span> for j=1,...,q The functions f, G, H are coded in the Scilab
+function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">evalfunc</span></span></span> and the set of matrices Xi&apos;s in the list X (i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X=list(X1,...,Xn)</span></span></span>).
+The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">evalfun</span></span></span> must return in the list <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LME</span></span></span> the matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G1(X),...,Gp(X)</span></span></span> (i.e.
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LME(i)=Gi(X1,...,Xn),</span></span></span> i=1,...,p). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">evalfun</span></span></span> must return in the list <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LMI</span></span></span> the matrices
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H1(X0),...,Hq(X)</span></span></span> (i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LMI(j)=Hj(X1,...,Xn)</span></span></span>, j=1,...,q). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">evalfun</span></span></span> must return in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">OBJ</span></span></span> the value of
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f(X)</span></span></span> (i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">OBJ=f(X1,...,Xn)</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lmisolver</span></span></span> returns in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">XLISTF</span></span></span>, a list of real matrices, i. e.
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">XLIST=list(X1,X2,..,Xn)</span></span></span> where the Xi&apos;s solve the LMI problem: Defining <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y,Z</span></span></span> and
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cost</span></span></span> by:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Y,Z,cost]=evalfunc(XLIST)</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is a list of zero matrices, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=list(Y1,...,Yp)</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y1=0,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y2=0,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Yp=0</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Z</span></span></span> is a list of square symmetric matrices, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Z=list(Z1,...,Zq)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>,
+which are semi positive definite <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Z1$&#x003E;$0,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Z2$&#x003E;$0,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Zq$&#x003E;$0</span></span></span> (i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">spec(Z(j))</span></span></span> <span 
+class="cmmi-10x-x-109">&#x003E;</span>
+0),<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cost</span></span></span> is minimized.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lmisolver</span></span></span> can also solve LMI problems in which the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Xi&#x0027;s</span></span></span> are not
+matrices but lists of matrices. More details are given in the documentation of LMITOOL.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x881-5110000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb616"><a 
+ id="x881-5110011r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Find</span><span 
+class="cmitt-10x-x-109">&#x00A0;diagonal</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix</span><span 
+class="cmitt-10x-x-109">&#x00A0;X</span><span 
+class="cmitt-10x-x-109">&#x00A0;(i.e.</span><span 
+class="cmitt-10x-x-109">&#x00A0;X=diag(diag(X),</span><span 
+class="cmitt-10x-x-109">&#x00A0;p=1)</span><span 
+class="cmitt-10x-x-109">&#x00A0;such</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span></span>
+<br class="fancyvrb" /><a 
+ id="x881-5110013r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//A1&#x0027;*X+X*A1+Q1</span><span 
+class="cmitt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmitt-10x-x-109">&#x00A0;0,</span><span 
+class="cmitt-10x-x-109">&#x00A0;A2&#x0027;*X+X*A2+Q2</span><span 
+class="cmitt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmitt-10x-x-109">&#x00A0;0</span><span 
+class="cmitt-10x-x-109">&#x00A0;(q=2)</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;trace(X)</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;maximized</span></span>
+<br class="fancyvrb" /><a 
+ id="x881-5110015r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A1=rand(n,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A2=rand(n,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x881-5110017r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Xs=diag(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q1=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">(A1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Xs</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Xs</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">eye())</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x881-5110019r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q2=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">(A2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Xs</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Xs</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">eye())</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x881-5110021r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[LME,LMI,OBJ]=evalf(Xlist)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span>
+<br class="fancyvrb" /><a 
+ id="x881-5110023r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;X=Xlist(1),LME=X-diag(diag(X));</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;LMI=list(-(A1&#x0027;&#x0027;*X+X*A1+Q1),-(A2&#x0027;&#x0027;*X+X*A2+Q2)),OBJ=</span><span 
+class="cmtt-10x-x-109">&#x00A0;-sum(diag(X))</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x881-5110025r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=lmisolver(list(zeros(A1)),evalf)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">X=X(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x881-5110027r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Y,Z,c]=evalf(X)</span></div>
+<!--l. 78--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x881-5111000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli881.html#lmitool">lmitool</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli881.html" >next</a>] [<a 
+href="manualli879.html" >prev</a>] [<a 
+href="manualli879.html#tailmanualli879.html" >prev-tail</a>] [<a 
+href="manualli880.html" >front</a>] [<a 
+href="manualli863.html#manualli880.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli880.html"></a>  </p> 
+</body></html> 

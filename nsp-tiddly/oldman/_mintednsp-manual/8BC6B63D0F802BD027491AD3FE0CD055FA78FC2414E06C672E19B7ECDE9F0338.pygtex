@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+W=ssrand(\nspnumber{2},\nspnumber{3},\nspnumber{4})\nspoperator{;}\nspcomment{//random system with 2 outputs and 3 inputs}
+[a,b,c,d]=abcd(W)\nspoperator{;}
+markpar=[c\nspoperator{*}b\nspoperator{,}c\nspoperator{*}a\nspoperator{*}b\nspoperator{,}c\nspoperator{*}a\nspoperator{^}\nspnumber{2}\nspoperator{*}b\nspoperator{,}c\nspoperator{*}a\nspoperator{^}\nspnumber{3}\nspoperator{*}b\nspoperator{,}c\nspoperator{*}a\nspoperator{^}\nspnumber{4}\nspoperator{*}b]\nspoperator{;}
+S=markp2ss(markpar,\nspnumber{5},\nspnumber{2},\nspnumber{3})\nspoperator{;}
+[A,B,C,D]=abcd(S)\nspoperator{;}
+Markpar=[C\nspoperator{*}B\nspoperator{,}C\nspoperator{*}A\nspoperator{*}B\nspoperator{,}C\nspoperator{*}A\nspoperator{^}\nspnumber{2}\nspoperator{*}B\nspoperator{,}C\nspoperator{*}A\nspoperator{^}\nspnumber{3}\nspoperator{*}B\nspoperator{,}C\nspoperator{*}A\nspoperator{^}\nspnumber{4}\nspoperator{*}B]\nspoperator{;}
+norm(markpar\nspoperator{-}Markpar,\nspnumber{1})
+\nspcomment{//Caution... c*a^5*b is not C*A^5*B !}
+\end{Verbatim}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_addhosts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1058.html" >next</a>] [<a 
+href="manualli1056.html" >prev</a>] [<a 
+href="manualli1056.html#tailmanualli1056.html" >prev-tail</a>] [<a 
+href="#tailmanualli1057.html">tail</a>] [<a 
+href="manualli1054.html#manualli1057.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1058-5993000"></a>pvm_addhosts</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1058-5993001"></a><a 
+ id="pvm_addhosts"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_addhosts </span>&#x2013;                                                    add hosts to the virtual machine. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1058-5994000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1158">
+&#x00A0;&#x00A0;[infos]&#x00A0;=&#x00A0;pvm_addhosts(hosts)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1058-5995000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">hosts</span>: row of strings, naming the hosts to be added.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">infos</span>: row of integer, corresponding to the status for each host.</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1058-5996000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_addhosts</span></span></span> adds the computers named in the row matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hosts</span></span></span> to the configuration of
+computers making up the virtual machine. The names should have the same syntax as lines of a
+pvmd hostfile: i.e a hostname followed by options of the form xx=y (see man page for pvmd3). The
+row matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info</span></span></span> will contain for each added host its status. Values less than zero indicate an error,
+while positive values are TIDs of the new hosts. The status of hosts can be requested by the
+application using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_config</span></span></span>. If a host fails it will be automatically deleted from the configuration.
+Using pvm_addhosts a replacement host can be added by the application, however it is the
+responsibility of the application developer to make his application tolerant of host failure. Another
+use of this feature would be to add more hosts as they become available, for example on a weekend,
+or if the application dynamically determines it could use more computational power.
+</p>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1058-5997000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb723"><a 
+ id="x1058-5997003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;info=pvm_addhosts([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;isostar&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;loop&#x0022;</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1058-5998000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-delhosts">pvm_delhosts</a>    <a 
+href="#pvm-config">pvm_config</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1058.html" >next</a>] [<a 
+href="manualli1056.html" >prev</a>] [<a 
+href="manualli1056.html#tailmanualli1056.html" >prev-tail</a>] [<a 
+href="manualli1057.html" >front</a>] [<a 
+href="manualli1054.html#manualli1057.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1057.html"></a>  </p> 
+</body></html> 

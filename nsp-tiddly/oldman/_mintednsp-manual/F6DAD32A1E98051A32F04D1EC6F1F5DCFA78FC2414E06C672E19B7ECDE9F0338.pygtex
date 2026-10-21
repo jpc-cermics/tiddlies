@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//first: calling environnment and a function share a variable}
+\nspkeyword{global} a
+a=\nspnumber{1}
+deff(\nspstring{'y=f1(x)'},\nspstring{'global a,a=x^2,y=a^2'})
+f1(\nspnumber{2})
+a
+\nspcomment{//second: three functions share variables}
+deff(\nspstring{'initdata()'},\nspstring{'global A C ;A=10,C=30'})
+deff(\nspstring{'letsgo()'},\nspstring{'global A C ;disp(A) ;C=70'})
+deff(\nspstring{'letsgo1()'},\nspstring{'global C ;disp(C)'})
+initdata()
+letsgo()
+letsgo1()
+\end{Verbatim}

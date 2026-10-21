@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>im_inv</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli635.html" >next</a>] [<a 
+href="manualli633.html" >prev</a>] [<a 
+href="manualli633.html#tailmanualli633.html" >prev-tail</a>] [<a 
+href="#tailmanualli634.html">tail</a>] [<a 
+href="manualli607.html#manualli634.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x635-3773000"></a>im_inv</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx635-3773001"></a><a 
+ id="im_inv"></a><span 
+class="cmtt-10x-x-109">im</span><span 
+class="cmtt-10x-x-109">_inv </span>&#x2013;                                                                                         inverse image<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x635-3774000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-782">
+&#x00A0;&#x00A0;[X,dim]=im_inv(A,B&#x00A0;[,tol])
+&#x00A0;<br />&#x00A0;&#x00A0;[X,dim,Y]=im_inv(A,B,&#x00A0;[,tol])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x635-3775000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A,B</span>: two real or complex matrices with equal number of columns
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: orthogonal or unitary square matrix of order equal to the number of columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dim</span>: integer (dimension of subspace)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Y</span>: orthogonal matrix of order equal to the number of rows of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span>.</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x635-3776000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[X,dim]=im_inv(A,B)</span></span></span> computes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A^-1)(B)</span></span></span> i.e vectors whose image through <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> are in range(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span>) The
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> span <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A^-1)(B)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tol</span></span></span> is a threshold used to test if subspace inclusion; default
+value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tol</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;100*%eps</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is returned, then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Y*A*X,Y*B]</span></span></span> is partitioned as follows:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A11,A12;0,A22]</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[B1;0]</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B1</span></span></span> has full row rank (equals <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rank(B)</span></span></span>) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A22</span></span></span> has full column
+rank and has <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> columns.
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x635-3777000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb493"><a 
+ id="x635-3777007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)]]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=[[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x635-3777009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;W=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A=W</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=W</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x635-3777011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,dim]=im_inv(A,B)</span><br class="fancyvrb" /><a 
+ id="x635-3777013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;svd([A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">dim)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">B])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//vectors</span><span 
+class="cmitt-10x-x-109">&#x00A0;A*X(:,1:dim)</span><span 
+class="cmitt-10x-x-109">&#x00A0;belong</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;range(B)</span></span>
+<br class="fancyvrb" /><a 
+ id="x635-3777015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,dim,Y]=im_inv(A,B)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B]</span></div>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x635-3778000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli663.html#rowcomp">rowcomp</a>    <a 
+href="manualli667.html#spaninter">spaninter</a>    <a 
+href="manualli668.html#spanplus">spanplus</a>    <a 
+href="manualli638.html#linsolve">linsolve</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x635-3779000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F. Delebecque INRIA
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli635.html" >next</a>] [<a 
+href="manualli633.html" >prev</a>] [<a 
+href="manualli633.html#tailmanualli633.html" >prev-tail</a>] [<a 
+href="manualli634.html" >front</a>] [<a 
+href="manualli607.html#manualli634.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli634.html"></a>  </p> 
+</body></html> 

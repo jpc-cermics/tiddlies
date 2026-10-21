@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+sl=syslin(\nspstring{'c'},(s\nspoperator{+}\nspnumber{1})\nspoperator{/}(s\nspoperator{^}\nspnumber{2}\nspoperator{-}\nspnumber{5}\nspoperator{*}s\nspoperator{+}\nspnumber{2}))\nspoperator{;}\nspcomment{//Continuous-time system in transfer form}
+slss=tf2ss(sl)\nspoperator{;}\nspcomment{//Now in state-space form}
+sl1=cls2dls(slss,\nspnumber{0.2})\nspoperator{;}\nspcomment{//sl1= output of cls2dls}
+sl1t=ss2tf(sl1)\nspoperator{,}\nspcomment{// Converts in transfer form}
+sl2=horner(sl,(\nspnumber{2}\nspoperator{/}\nspnumber{0.2})\nspoperator{*}(z\nspoperator{-}\nspnumber{1})\nspoperator{/}(z\nspoperator{+}\nspnumber{1}))\nspoperator{,}\nspcomment{//Compare sl2 and sl1}
+\end{Verbatim}

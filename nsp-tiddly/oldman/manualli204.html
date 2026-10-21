@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_sparse</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli205.html" >next</a>] [<a 
+href="manualli203.html" >prev</a>] [<a 
+href="manualli203.html#tailmanualli203.html" >prev-tail</a>] [<a 
+href="#tailmanualli204.html">tail</a>] [<a 
+href="manualli104.html#manualli204.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x205-1212000"></a>mtlb_sparse</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx205-1212001"></a><a 
+ id="mtlb_sparse"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_sparse </span>&#x2013;                                                                      convert sparse matrix<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x205-1213000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-326">
+&#x00A0;&#x00A0;Y=mtlb_sparse(X)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x205-1214000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: sparse matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Y</span>: sparse matrix in Matlab format</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x205-1215000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=mtlb_sparse(X)</span></span></span> is used to convert <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>, a Scilab sparse matrix, to Matlab format. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is the a
+variable with type 7, i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type(Y)</span></span></span> is equal to 7. This function should be used in mexfiles (a Matlab
+mexfile containing sparse matrices can be used only if the Scilab sparse matrices are converted to
+that format). The functions <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">full</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">spget</span></span></span> work with this format. Other operations and functions
+using this format can be overloaded with Scilab functions using the prefix &#x201D;%msp&#x201D;. For instance the
+function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%msp_p(x)</span></span></span> (see SCIDIR/macros/percent directory) is used to display such &#x201D;type 7&#x201D;
+objects.
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x205-1216000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb160"><a 
+ id="x205-1216004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=sparse(rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Y=mtlb_sparse(X)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x205-1216006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">full(Y)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">[ij,v,mn]=spget(Y)</span></div>
+<!--l. 56--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x205-1217000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli158.html#full">full</a>    <a 
+href="manualli241.html#spget">spget</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli205.html" >next</a>] [<a 
+href="manualli203.html" >prev</a>] [<a 
+href="manualli203.html#tailmanualli203.html" >prev-tail</a>] [<a 
+href="manualli204.html" >front</a>] [<a 
+href="manualli104.html#manualli204.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli204.html"></a>  </p> 
+</body></html> 

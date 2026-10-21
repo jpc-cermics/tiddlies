@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>impl</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli872.html" >next</a>] [<a 
+href="manualli870.html" >prev</a>] [<a 
+href="manualli870.html#tailmanualli870.html" >prev-tail</a>] [<a 
+href="#tailmanualli871.html">tail</a>] [<a 
+href="manualli863.html#manualli871.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x872-5042000"></a>impl</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx872-5042001"></a><a 
+ id="impl"></a><span 
+class="cmtt-10x-x-109">impl </span>&#x2013;                                                                       differential algebraic equation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x872-5043000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-967">
+&#x00A0;&#x00A0;y=impl([type],y0,ydot0,t0,t&#x00A0;[,atol,&#x00A0;[rtol]],res,adda&#x00A0;[,jac])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x872-5044000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y0,ydot0</span>: real vectors or matrix (initial conditions).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">t0</span>: real scalar (initial time).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">t</span>: real vector (times at which the solution is computed).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">res,adda</span>: externals (function or character string or list).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">type</span>: string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;adams&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;stiff&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">atol,rtol</span>: real scalar or real vector of the same size as as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">jac</span>: external (function or character string or list).</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x872-5045000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > Solution of the linear implicit differential equation A(t,y) dy/dt=g(t,y), y(t0)=y0<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t0</span></span></span> is the initial
+instant, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y0</span></span></span> is the vector of initial conditions Vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ydot0</span></span></span> of the time derivative of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t0</span></span></span> must also
+be given. r The input <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res</span></span></span> is an external i.e. a function with specified syntax, or the name a Fortran
+subroutine or a C function (character string) with specified calling sequence or a list. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res</span></span></span> is a
+function, its syntax must be as follows:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-968">
+&#x00A0;&#x00A0;r&#x00A0;=&#x00A0;res(t,y,ydot)
+</div>
+<!--l. 51--><p class="nopar" >where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t</span></span></span> is a real scalar (time) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ydot</span></span></span> are real vector (state and derivative of the state).
+This function must return <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r=g(t,y)-A(t,y)*ydot</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res</span></span></span> is a character string, it refers to the name
+of a Fortran subroutine or a C function. See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SCIDIR/routines/default/Ex-impl.f</span></span></span> for an example
+to do that.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">res</span></span></span> can also be a list: see the help of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span>. The input <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">adda</span></span></span> is also an external. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">adda</span></span></span> is a
+function, its syntax must be as follows:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-969">
+&#x00A0;&#x00A0;r&#x00A0;=&#x00A0;adda(t,y,p)
+</div>
+<!--l. 62--><p class="nopar" >and it must return <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r=A(t,y)+p</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> is a matrix to be added to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A(t,y)</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">adda</span></span></span> is
+a character string, it refers to the name of a Fortran subroutine or a C function. See
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SCIDIR/routines/default/Ex-impl.f</span></span></span> for an example to do that.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">adda</span></span></span> can also be a list: see the
+help of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span>. The input <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> is also an external. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> is a function, its syntax must be as
+follows:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-970">
+&#x00A0;&#x00A0;j&#x00A0;=&#x00A0;jac(t,y,ydot)
+</div>
+<!--l. 72--><p class="nopar" >and it must return the Jacobian of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r=g(t,y)-A(t,y)*ydot</span></span></span> with respect to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> is
+a character string, it refers to the name of a Fortran subroutine or a C function. See
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SCIDIR/routines/default/Ex-impl.f</span></span></span> for an example to do that.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> can also be a list: see the
+help of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span>.
+</p>
+<!--l. 80--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x872-5046000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb609"><a 
+ id="x872-5046008r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=impl([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.04</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.04</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;resid&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;aplusp&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x872-5046010r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Using</span><span 
+class="cmitt-10x-x-109">&#x00A0;hot</span><span 
+class="cmitt-10x-x-109">&#x00A0;restart</span></span>
+<br class="fancyvrb" /><a 
+ id="x872-5046012r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,&#x0027;resid&#x0027;,&#x0027;aplusp&#x0027;);</span></span><br class="fancyvrb" /><a 
+ id="x872-5046014r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;hot</span><span 
+class="cmitt-10x-x-109">&#x00A0;start</span><span 
+class="cmitt-10x-x-109">&#x00A0;from</span><span 
+class="cmitt-10x-x-109">&#x00A0;previous</span><span 
+class="cmitt-10x-x-109">&#x00A0;call</span></span>
+<br class="fancyvrb" /><a 
+ id="x872-5046016r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,&#x0027;resid&#x0027;,&#x0027;aplusp&#x0027;,w,iw);</span></span><br class="fancyvrb" /><a 
+ id="x872-5046018r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//maxi(abs(x1-x))</span></span></div>
+<!--l. 91--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x872-5047000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli866.html#dassl">dassl</a>    <a 
+href="manualli890.html#ode">ode</a>    <a 
+href="manualli966.html#external">external</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli872.html" >next</a>] [<a 
+href="manualli870.html" >prev</a>] [<a 
+href="manualli870.html#tailmanualli870.html" >prev-tail</a>] [<a 
+href="manualli871.html" >front</a>] [<a 
+href="manualli863.html#manualli871.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli871.html"></a>  </p> 
+</body></html> 

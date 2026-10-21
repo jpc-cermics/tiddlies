@@ -1,0 +1,44 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+nx=\nspnumber{5}\nspoperator{;}nu=\nspnumber{1}\nspoperator{;}ny=\nspnumber{1}\nspoperator{;}un=\nspnumber{3}\nspoperator{;}us=\nspnumber{2}\nspoperator{;}Sys=ssrand(ny,nu,nx,list(\nspstring{'dt'},us,us,un))\nspoperator{;}
+\nspcomment{//nx=5 states, nu=1 input, ny=1 output,}
+\nspcomment{//un=3 unobservable states, us=2 of them unstable.}
+[Obs,U,m]=observer(Sys)\nspoperator{;}\nspcomment{//Stable observer (default)}
+W=U\nspoperator{'}\nspoperator{;}H=W(m\nspoperator{+}\nspnumber{1}\nspoperator{:}nx,\nspoperator{:})\nspoperator{;}[A,B,C,D]=abcd(Sys)\nspoperator{;}\nspcomment{//H*U=[0,eye(no,no)];}
+Sys2=ss2tf(syslin(\nspstring{'c'},A,B,H))\nspoperator{,}\nspcomment{//Transfer u--$>$z}
+Idu=eye(nu,nu)\nspoperator{;}Sys3=ss2tf(H\nspoperator{*}U(\nspoperator{:},m\nspoperator{+}\nspnumber{1}\nspoperator{:}$)\nspoperator{*}Obs\nspoperator{*}[Idu\nspoperator{;}Sys])
+\nspcomment{//Transfer u--$>$[u;y=Sys*u]--$>$Obs--$>$xhat--$>$HUxhat=zhat  i.e. u--$>$output of Obs}
+\nspcomment{//this transfer must equal Sys2, the u--$>$z transfer  (H2=eye).}
+\nspcomment{//Assume a Kalman model}
+\nspcomment{//dotx = A x + B u + G w}
+\nspcomment{// y   = C x + D u + H w + v}
+\nspcomment{//with Eww' = QN, Evv' = RN, Ewv' = NN}
+\nspcomment{//To build a Kalman observer:}
+\nspcomment{//1-Form BigR = [G*QN*G'         G*QN*H'+G*NN;}
+\nspcomment{//               H*QN*G'+NN*G'   H*QN*H'+RN];}
+\nspcomment{//the covariance matrix of the noise vector [Gw;Hw+v]}
+\nspcomment{//2-Build the plant P21: dotx = A x + B1 e ; y = C2 x + D21 e}
+\nspcomment{//with e a unit white noise.}
+\nspcomment{// [W,Wt]=fullrf(BigR);}
+\nspcomment{//B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);}
+\nspcomment{//C2=C;}
+\nspcomment{//P21=syslin('c',A,B1,C2,D21);}
+\nspcomment{//3-Compute the Kalman gain}
+\nspcomment{//L = lqe(P21);}
+\nspcomment{//4- Build an observer for the plant [A,B,C,D];}
+\nspcomment{//Plant = syslin('c',A,B,C,D);}
+\nspcomment{//Obs = observer(Plant,L);}
+\nspcomment{//Test example:}
+A=\nspoperator{-}diag(\nspnumber{1}\nspoperator{:}\nspnumber{4})\nspoperator{;}
+B=ones(\nspnumber{4},\nspnumber{1})\nspoperator{;}
+C=B\nspoperator{'}\nspoperator{;}D=\nspnumber{0}\nspoperator{;}G=\nspnumber{2}\nspoperator{*}B\nspoperator{;}H=\nspoperator{-}\nspnumber{3}\nspoperator{;}QN=\nspnumber{2}\nspoperator{;}
+RN=\nspnumber{5}\nspoperator{;}NN=\nspnumber{0}\nspoperator{;}
+BigR=[G\nspoperator{*}QN\nspoperator{*}G\nspoperator{'}\nspoperator{,}G\nspoperator{*}QN\nspoperator{*}H\nspoperator{'}\nspoperator{+}G\nspoperator{*}NN\nspoperator{;}H\nspoperator{*}QN\nspoperator{*}G\nspoperator{'}\nspoperator{+}NN\nspoperator{*}G\nspoperator{'}\nspoperator{,}H\nspoperator{*}QN\nspoperator{*}H\nspoperator{'}\nspoperator{+}RN]\nspoperator{;}
+[W,Wt]=fullrf(BigR)\nspoperator{;}
+B1=W(\nspnumber{1}\nspoperator{:}size(G,\nspnumber{1}),\nspoperator{:})\nspoperator{;}D21=W(($\nspoperator{+}\nspnumber{1}\nspoperator{-}size(C,\nspnumber{1}))\nspoperator{:}$,\nspoperator{:})\nspoperator{;}
+C2=C\nspoperator{;}
+P21=syslin(\nspstring{'c'},A,B1,C2,D21)\nspoperator{;}
+L=lqe(P21)\nspoperator{;}
+Plant=syslin(\nspstring{'c'},A,B,C,D)\nspoperator{;}
+Obs=observer(Plant,L)\nspoperator{;}
+spec(Obs.A)
+\end{Verbatim}

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>contour</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli394.html" >next</a>] [<a 
+href="manualli392.html" >prev</a>] [<a 
+href="manualli392.html#tailmanualli392.html" >prev-tail</a>] [<a 
+href="#tailmanualli393.html">tail</a>] [<a 
+href="manualli370.html#manualli393.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x394-2295000"></a>contour</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx394-2295001"></a><a 
+ id="contour"></a><span 
+class="cmtt-10x-x-109">contour </span>&#x2013;                                                                    level curves on a 3D surface<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x394-2296000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-521">
+&#x00A0;&#x00A0;contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
+&#x00A0;<br />&#x00A0;&#x00A0;contour(x,y,z,nz,$&#x003C;$opt_args$&#x003E;$)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x394-2297000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,y</span>: two real row vectors of size n1 and n2.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">z</span>: real matrix of size (n1,n2), the values of the function.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nz</span>: the level values or the number of levels.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz</span></span></span> is an integer, its value gives the number of level curves equally spaced from zmin
+          to zmax as follows:
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-522">
+          &#x00A0;&#x00A0;z=&#x00A0;zmin&#x00A0;+&#x00A0;(1:nz)*(zmax-zmin)/(nz+1)
+</div>
+          <!--l. 39--><p class="nopar" >Note that the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zmin</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zmax</span></span></span> levels are not drawn (generically they are reduced to
+          points) but they can be added with
+                                                                                    
+
+                                                                                    
+</p>
+          <div class="verbatim" id="verbatim-523">
+          &#x00A0;&#x00A0;[im,jm]&#x00A0;=&#x00A0;find(z&#x00A0;==&#x00A0;zmin);&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;//&#x00A0;or&#x00A0;zmax
+          &#x00A0;<br />&#x00A0;&#x00A0;plot2d(x(im)&#x0027;,y(jm)&#x0027;,-9,&#x0022;000&#x0022;)
+</div>
+          <!--l. 47--><p class="nopar" >
+          </p></li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz</span></span></span> is a vector, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz(i)</span></span></span> gives the value of the ith level curve. Note that it can be
+          useful in order to see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zmin</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zmax</span></span></span> level curves to add an epsilon tolerance:
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz=[zmin+%eps,..,zmax-%eps]</span></span></span>.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">opt</span><span 
+class="cmtt-10x-x-109">_args</span><span 
+class="cmmi-10x-x-109">&#x003E; </span>: a sequence of statements <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1=value1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;key2=value2</span></span></span>, ... where keys may be
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">theta</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alpha</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">leg</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zlev</span></span></span> (see below). In this case, the order has no special
+     meaning.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">theta, alpha</span>: real values giving in degree the spherical coordinates of the observation
+     point.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">leg</span>: string defining the captions for each axis with @ as a field separator, for example
+     &#x201D;X@Y@Z&#x201D;.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: a real vector of size three <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=[mode,type,box]</span></span></span>.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span>: string (treatment of hidden parts).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span><span 
+class="cmmi-10x-x-109">&#x003E;</span><span 
+class="cmtt-10x-x-109">0 </span>the hidden parts of the surface are removed and the surface is painted
+              with color <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mode</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode=0 </span>the hidden parts of the surface are drawn.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">0 </span>only the shadow of the surface is painted with color or pattern id
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-mode</span></span></span>. Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset()</span></span></span> to see the meaning of the ids.</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">type</span>: an integer (scaling).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=0 </span>the plot is made using the current 3D scaling (set by a previous call
+              to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">param3d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d1</span></span></span>).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=1 </span>rescales  automatically  3d  boxes  with  extreme  aspect  ratios,  the
+              boundaries are specified by the value of the optional argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>.
+                                                                                    
+
+                                                                                    
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=2 </span>rescales  automatically  3d  boxes  with  extreme  aspect  ratios,  the
+              boundaries are computed using the given data.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=3 </span>3d isometric with box bounds given by optional <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>, similarily to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=1</span></span></span>
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=4 </span>3d isometric bounds derived from the data, to similarily<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=2</span></span></span>
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=5 </span>3d expanded isometric bounds with box bounds given by optional
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>, similarily to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=1</span></span></span>
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=6 </span>3d expanded isometric bounds derived from the data, similarily to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=2</span></span></span></li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">box</span>: an integer (frame around the plot).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=0 </span>nothing is drawn around the plot.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=1 </span>unimplemented (like box=0).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=2 </span>only the axes behind the surface are drawn.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=3 </span>a box surrounding the surface is drawn and captions are added.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=4 </span>a box surrounding the surface is drawn, captions and axes are added.</li></ul>
+          </li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ebox</span>: used when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is 1. It specifies the boundaries of the plot as the vector
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xmin,xmax,ymin,ymax,zmin,zmax]</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">zlev</span>: real number.</li></ul>
+<!--l. 94--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x394-2298000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 94--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour</span></span></span> draws level curves of a surface z=f(x,y). The level curves are drawn on a 3D surface. The
+optional arguments are the same as for the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d</span></span></span> (except <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zlev</span></span></span>) and their meanings are
+the same. They control the drawing of level curves on a 3D plot. Only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag(1)=mode</span></span></span> has a special
+meaning.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">mode=0</span> </span>: the level curves are drawn on the surface defined by (x,y,z).
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">mode=1</span> </span>: the level curves are drawn on a 3D plot and on the plan defined by the equation
+     z=zlev.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">mode=2</span> </span>: the level curves are drawn on a 2D plot.</ul>
+</p><!--l. 105--><p class="noindent" >You can change the format of the floating point number printed on the levels by using
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;fpf&#x0022;,string)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string</span></span></span> gives the format in C format syntax (for example
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;%.3f&#x0022;</span></span></span>). Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;&#x0022;</span></span></span> to switch back to default format and Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span></span> to suppress
+printing. Usually we use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour2d</span></span></span> to draw levels curves on a 2D plot. Enter the command
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour()</span></span></span> to see a demo.
+</p>
+<!--l. 114--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x394-2299000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb302"><a 
+ id="x394-2299010r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x394-2299012r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;[z]=surf(x,y)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z=sin(x)*cos(y)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">z=feval(t,t,surf)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x394-2299014r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rect=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x394-2299016r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;contour(t,t,z,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">35</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">45</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">],rect)</span>
+<br class="fancyvrb" /><a 
+ id="x394-2299018r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;changing</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;format</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;printing</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;levels</span></span><br class="fancyvrb" /><a 
+ id="x394-2299020r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;fpf&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;%.2f&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x394-2299022r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span>
+<br class="fancyvrb" /><a 
+ id="x394-2299024r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;contour(t,t,z,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,flag</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">],ebox</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;rect)</span></div>
+<!--l. 127--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x394-2300000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli391.html#contour2d">contour2d</a>    <a 
+href="manualli410.html#fcontour">fcontour</a>    <a 
+href="manualli409.html#fcontour2d">fcontour2d</a>    <a 
+href="manualli478.html#plot3d">plot3d</a>    <a 
+href="manualli561.html#xset">xset</a>
+</p>
+<!--l. 131--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x394-2301000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli394.html" >next</a>] [<a 
+href="manualli392.html" >prev</a>] [<a 
+href="manualli392.html#tailmanualli392.html" >prev-tail</a>] [<a 
+href="manualli393.html" >front</a>] [<a 
+href="manualli370.html#manualli393.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli393.html"></a>  </p> 
+</body></html> 

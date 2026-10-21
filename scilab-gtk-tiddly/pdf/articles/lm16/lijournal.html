@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <DIV ALIGN="center">
+<FONT SIZE="4"><B>Scilab&nbsp;: un logiciel libre pour le calcul
+scientifique<BR>
+cinqui&egrave;me partie&nbsp;:<BR>
+<BR>
+<BR>
+mise au point de programmes et debug en Scilab </B></FONT> 
+</DIV>
+<BR>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+Avec les articles pr&eacute;c&eacute;dents sur Scilab, nous savons maintenant
+&eacute;crire des fonctions en langage Scilab et interfacer du code (C ou
+Fortran) compil&eacute;. Tout programmeur sait bien que l'&eacute;critue de
+code s'accompagne in&eacute;vitablement de bugs qui commencent avec l'erreur de
+syntaxe pour aller &agrave; un r&eacute;sultat faux sans qu'il soit toujours
+&eacute;vident de trier entre une erreur de programmation (le programme
+&quot;ne fait pas ce que je crois&quot;) et une erreur d'algorithme (ce que
+j'ai &eacute;crit est correct, fais bien ce que je souhaitais mais ne
+r&eacute;sout pas le probl&egrave;me que je souhaitais r&eacute;soudre). Enfin
+il y a parfois &agrave; comprendre plus pr&eacute;cis&egrave;ment ce que fait
+une fonction de Scilab et m&ecirc;me (sait-on jamais ?!) &agrave;
+d&eacute;couvrir un bug de Scilab. <BR>
+<BR>
+Il y a dans Scilab un certain nombre de fonctions qui permettent de suivre
+l'ex&eacute;cution de programmes et de localiser les erreurs. On va prendre un
+exemple tr&egrave;s simple de fonction :<BR>
+<BR>
+<PRE>
+
+function [y]=bisq(x,a,b,c)
+xx=x.*x;
+y=a*xx**2+b*xx+c;
+return
+
+
+--&gt;  a=1;b=2;c=-4; 
+ 
+--&gt;xres=fsolve(100,bisq)
+ xres  =
+ 
+    1.1117859 
+ 
+</PRE>
+La premi&egrave;re fonctionalit&eacute; consiste &agrave; interrompre
+l'ex&eacute;cution d'une fonction &eacute;crite en langage Scilab. Il y a pour
+cela 3 possibilit&eacute;s : une commande clavier et deux commandes
+programm&eacute;es. La commande clavier est <TT>Ctrl-c</TT> et les commandes
+programm&eacute;es sont <TT>setbpt</TT> et <TT>pause</TT>. La commande 
+<TT>pause</TT> doit &ecirc;tre ins&eacute;r&eacute;e dans le code de la
+fonction (ce qui n&eacute;cessite un nouveau chargement de la fonction)
+&agrave; l'endroit souhait&eacute; alors que la commande <TT>setbpt</TT> (place
+un point d'arr&ecirc;t ou breakpoint) est une commande ext&eacute;rieure
+&agrave; la fonction qui ne modifie pas son code source. 
+<PRE>
+
+a=1;b=2;c=-4;x=10;
+--&gt;bisq(x,a,b,c)
+ ans  =
+ 
+    10196.  
+--&gt;setbpt('bisq',2)
+
+--&gt;bisq(x,a,b,c)
+Stop after row     2 in function bisq :
+ 
+ 
+
+-1-&gt;
+
+</PRE>
+Le prompt <TT> -1-</TT><TT>&gt;</TT><TT> </TT> signifie que nous sommes
+maintenant au niveau 1 d'interruption (on peut donc avoir plusieurs niveaux). A
+ce niveau on se trouve dans la situation de d&eacute;part d'une nouvelle
+session de Scilab. On peut faire toutes les manipulations souhait&eacute;es
+sans affecter le niveau inf&eacute;rieur. Ce qui est essentiel c'est que l'on a
+acc&egrave;s ``en lecture'' &agrave; toutes les variables du niveau
+inf&eacute;rieur. La commande <TT>setbpt('bisq',2)</TT> a eu le m&ecirc;me
+effet que l'insertion de la commande <TT>pause</TT> apr&egrave;s la
+deuxi&egrave;me ligne de la fonction <TT>bisq</TT>.<BR>
+<BR>
+Les variables du niveau inf&eacute;rieur doivent &ecirc;tre
+&quot;remont&eacute;es&quot; au niveau d'interruption : la mani&egrave;re la
+plus simple consiste &agrave; taper leur nom suivi de <TT>;</TT> pour
+&eacute;viter l'affichage :<BR>
+<BR>
+
+<PRE>
+
+-1-&gt;a;
+
+</PRE>
+On redescend au niveau inf&eacute;rieur et on reprend l'ex&eacute;cution
+interrompue par la commande <TT>resume</TT> (ou <TT>return</TT> ) : <BR>
+<BR>
+
+<PRE>
+ 
+-1-&gt;resume
+ ans  =
+ 
+    10196.
+  
+</PRE>
+Mais on peut modifier des variables du niveau inf&eacute;rieur &agrave; partir
+du niveau d'interruption par la commande <TT>resume</TT> en lui donnant comme
+param&egrave;tre les noms des variables modifi&eacute;es; dans le cas
+pr&eacute;c&eacute;dent on peu faire :<BR>
+<BR>
+
+<PRE>
+
+--&gt;y=bisq(x,a,b,c)
+Stop after row     2 in function bisq :
+ 
+ 
+-1-&gt;a=5;b=0.;
+ 
+-1-&gt;[a,b]=resume(a,b)
+ y  =
+ 
+    49996.  
+
+</PRE>
+On peut revenir directement au niveau 0 par la commande <TT>abort</TT>.<BR>
+<BR>
+Les points d'arr&ecirc;t sont list&eacute;s par la commande <TT>dispbpt</TT> et
+lib&eacute;r&eacute;s par la commande <TT>delbpt</TT> :<BR>
+<BR>
+
+<PRE>
+ 
+--&gt;dispbpt()
+ breakpoints of  function :bisq                    
+ 
+         2
+ 
+--&gt;delbpt('bisq',2)  
+ 
+</PRE>
+Lorsqu'on utilise <TT>Ctrl-c</TT> pour interrompre l'ex&eacute;cution de longs
+programmes il est utile de localiser l'endroit o&ugrave; l'interruption s'est
+produite par la commande <TT>whereami</TT> :<BR>
+<BR>
+
+<PRE>
+
+-1-&gt;whereami()
+whereami called under pause
+pause    called at line 3 of macro bisq
+
+</PRE>
+ou la commande <TT>where</TT> :<BR>
+<BR>
+
+<PRE>
+
+-1-&gt;[linenum,mac]=where()
+ mac  =
+ 
+!pause  !
+!       !
+!bisq   !
+ linenum  =
+ 
+!   0. !
+!   3. !
+</PRE>
+Si la fonction est une fonction des librairies Scilab on peut localiser cette
+fonction par :<BR>
+<BR>
+
+<PRE>
+ 
+--&gt;whereis('median')
+ ans  =
+ 
+ elemlib 
+  
+</PRE>
+On peut alors conna&icirc;tre le chemin d'acc&egrave;s &agrave; cette librairie
+ainsi que la liste de toutes les fonctions de la librairie en tapant simplement
+le nom de la librairie :<BR>
+<BR>
+
+<PRE>
+
+--&gt;elemlib 
+ elemlib  =
+ 
+ Functions files location :SCI/macros/elem/
+ 
+ and       atanm     atanhm    atanh     asinhm    asinh     asinm     
+ asin      acoshm    acosh     acosm     acos      cosm      cothm     
+ coth      cotg      coshm     cosh      erfcx     erfc      erf       
+ fix       GLoad     intersect           isnan     isinf     inttrap   
+ intsplin  integrate           intc      intl      interpln  lex_sort  
+ logm      log10     mean      median    modulo    null      or        
+ pertrans  setdiff   st_deviation        spones    sprand    spzeros   
+ speye     squarewave          smooth    sqrtm     sinm      signm     
+ sinhm     sinh      toeplitz  tanhm     tanh      tanm      tan       
+ union     unique
+    
+</PRE>
+Il y a, bien s&ucirc;r, quelques commandes qui donnent des renseignements sur
+les variables utilis&eacute;es :<BR>
+<BR>
+
+<PRE>
+
+--&gt;who
+your variables are...
+ 
+ typeof    whos      y         x         xres      c         b         
+ a         bisq      startup   ierr      MODE_X    scicos_pal          
+ %helps    MSDOS     home      PWD       TMPDIR    percentlib          
+ fraclablib          soundlib  xdesslib  utillib   tdcslib   siglib    
+ s2flib    roblib    optlib    metalib   elemlib   commlib   polylib   
+ autolib   armalib   alglib    intlib    mtlblib   SCI       %F        
+ %T        %z        %s        %nan      %inf      old       
+ newstacksize        $         %t        %f        %eps      %io       
+ %i        %e        
+
+
+ using       6196 elements  out of    1000000.
+          and         54 variables out of       1071
+
+</PRE>
+La commande <TT>who</TT> fournit la liste des variables et librairies
+utilis&eacute;es ainsi que la place m&eacute;moire utilis&eacute;e dans la pile
+(avec la taille de cette derni&egrave;re qui peut &ecirc;tre &eacute;galement
+obtenue par <TT>stacksize()</TT> ). <BR>
+<BR>
+La commande <TT>whos</TT> est plus pr&eacute;cise : elle donne en plus le type
+des variables, fonctions et librairies utilis&eacute;es avec leur taille et la
+place m&eacute;moire occup&eacute;e.<BR>
+<BR>
+
+<PRE>
+
+--&gt;whos()
+Name                     Type                Size                Bytes        
+
+ 
+typeof                   compiled function                       3088         
+whos                     compiled function                       5736         
+y                        constant matrix     1 by 1              24           
+x                        constant matrix     1 by 1              24           
+xres                     constant matrix     1 by 1              24      
+.................................
+TMPDIR                   string              1 by 1              80           
+percentlib               library                                 8920         
+fraclablib               library                                 1504         
+soundlib                 library                                 272     
+.................................
+
+</PRE>
+Lors de l'&eacute;criture de programmes multiples il peut &ecirc;tre
+int&eacute;ressant de savoir si un nom de variable est d&eacute;ja
+utilis&eacute; ou quel est le type d'une variable :<BR>
+<BR>
+
+<PRE>
+
+--&gt;exists('x')
+
+ ans  =
+ 
+    1.  
+ 
+--&gt;type(x)
+ ans  =
+ 
+    1.  
+ 
+--&gt;typeof(x)
+ ans  =
+ 
+ constant
+   
+</PRE>
+On peut &eacute;galement lib&eacute;rer la place m&eacute;moire occup&eacute;e
+par un variable en la d&eacute;truisant par la commande <TT>clear</TT>.<BR>
+<BR>
+Certaines erreurs d&eacute;pendent de l'environnement, c'est &agrave; dire
+qu'elles ne se produisent que pour certaines valeurs des param&egrave;tres. Or,
+pour corriger une erreur il faut pouvoir la reproduire : pour cette
+op&eacute;ration il est commode d'utiliser les fonctions <TT>save</TT> et 
+<TT>load</TT>. En utilisation courante ces fonctions permettent d'&eacute;crire
+et de recharger des r&eacute;sultats de mani&egrave;re efficace (en format
+binaire). L'appel le plus simple <TT>save('nom de fichier')</TT> permet de
+sauver toutes les variables utilis&eacute;es pour recharger ensuite cet
+environnement et reproduire une erreur &eacute;ventuelle.<BR>
+<BR>
+Il y a &eacute;galement la manipulation des erreurs. La commande <TT>errcatch 
+</TT> est un handler d'erreur : elle permet donc de d&eacute;finir une action
+ex&eacute;cut&eacute;e si une erreur de type donn&eacute; se produit.
+L'existence de l'erreur en question peut &ecirc;tre v&eacute;rifi&eacute;e par
+la commande <TT>iserror</TT> et l'action d&eacute;finie par <TT>errcatch</TT>
+peut &ecirc;tre annul&eacute;e par <TT>errclear</TT>. L'insertion de messages
+d'erreur dans ses propres fonctions se fait par la commande <TT>error</TT> en
+sp&eacute;cifiant le message que l'on veut passer &agrave; l'utilisateur.
+Signalons &eacute;galement la commande <TT>execstr</TT> qui permet
+d'ex&eacute;cuter des instructions par &eacute;valuation de strings et de
+g&eacute;rer les erreurs en utilisant le flag <TT>'errcatch'</TT> dans son
+appel.<BR>
+<BR>
+Une fonction Scilab utilise des variables locales; elle peut lire n'importe
+quelle variable de la base globale. Il est parfois utile de pouvoir utiliser
+une variable unique connue de toutes les fonctions : ceci est une variable
+globale d&eacute;finie par la commande <TT>global</TT> que l'on peut tester par
+<TT>isglobal</TT> et supprimer par <TT>clearglobal</TT>. Ces variables sont
+stock&eacute;es dans une partie sp&eacute;cifique de la pile que l'on peut
+interroger et modifier par la commande <TT>gstacksize</TT>.<BR>
+<BR>
+Apr&egrave;s un usage un peu consistant on obtient un ensemble de fonctions
+dans un r&eacute;pertoire et des fichiers de donn&eacute;es &agrave; manipuler.
+On peut alors utiliser <TT>getd</TT> qui permet de charger simultan&egrave;ment
+toutes les fonctions d'un r&eacute;pertoire et <TT>meof</TT> est parfois utile
+pour savoir si toutes les donn&eacute;es d'un fichier ont &eacute;t&eacute;
+lues.<BR>
+<BR>
+Pour les probl&egrave;mes vraiment r&eacute;calcitrants il reste encore les
+manipulations du sorcier. La commande <TT>clearfun</TT> permet de supprimer une
+primitive et de la remplacer par son propre programme pour localiser une erreur
+&eacute;ventuelle. Enfin il y a l'invocation &agrave; 4 niveaux du chef des
+sorciers : <TT>debug </TT>.<BR>
+<BR>
+Quand le r&eacute;pertoire est bien rempli par des fonctions
+d&eacute;bogu&eacute;es, efficaces, comment&eacute;es... il reste &agrave;
+utiliser <TT>genlib </TT> pour en faire une librairie. La suite consiste
+&agrave; &eacute;crire les ``man'', la documentation pour pouvoir recevoir
+enfin la reconnaissance du monde entier.<BR>
+<BR>
+``Tout s'&eacute;coule et se meut'' disait Protagoras; c'est pourquoi il faut
+souvent jouer avec les syst&egrave;mes dynamiques pour comprendre ce qui nous
+entoure. On peut le faire avec Scilab mais c'est une autre histoire... <BR>
+<BR>
+Scilab Group <BR>
+<TT><A HREF="mailto:Scilab@inria.fr">Scilab@inria.fr</A></TT> <BR>
+<TT><A
+HREF="http://www-rocq.inria.fr/scilab/">http://www-rocq.inria.fr/scilab/</A> 
+</TT><BR>
+<BR>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

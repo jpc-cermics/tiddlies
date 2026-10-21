@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mget</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli305.html" >next</a>] [<a 
+href="manualli303.html" >prev</a>] [<a 
+href="manualli303.html#tailmanualli303.html" >prev-tail</a>] [<a 
+href="#tailmanualli304.html">tail</a>] [<a 
+href="manualli274.html#manualli304.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x305-1809000"></a>mget</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx305-1809001"></a><a 
+ id="mget"></a><span 
+class="cmtt-10x-x-109">mget </span>&#x2013;                      reads byte or word in a given binary format and convert to double<br />
+<a 
+ id="dx305-1809002"></a>
+<a 
+ id="mgeti"></a><span 
+class="cmtt-10x-x-109">mgeti </span>&#x2013;                            reads byte or word in a given binary format return an int type<br />
+</div></p></div>
+<!--l. 23--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x305-1810000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-440">
+&#x00A0;&#x00A0;x=mget([n,type,fd])
+&#x00A0;<br />&#x00A0;&#x00A0;x=mgeti([n,type,fd])
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x305-1811000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>:a positive scalar: The number of items to be read.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fd</span>: scalar. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span> parameter returned by the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mopen</span></span></span>. -1 stands for last opened
+     file. Default value is -1.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">type</span>: a string. Give the binary format used to write all the entries of x.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: a vector of floating point or integer type numbers</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x305-1812000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mget</span></span></span> function reads data in the input specified by the stream parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span> and returns a
+vector of floating point data. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mgeti</span></span></span> function reads data in the input specified by the stream
+parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span> and returns a vector of integer data. Data is read at the position at which the file
+pointer is currently pointing and advances the indicator appropriately. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type</span></span></span> parameter is a
+conversion specifier which may be set to any of the following flag characters (with default value
+&#x201D;l&#x201D;):
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;l&#x201D;,&#x201D;i&#x201D;,&#x201D;s&#x201D;,&#x201D;ul&#x201D;,&#x201D;ui&#x201D;,&#x201D;us&#x201D;,&#x201D;d&#x201D;,&#x201D;f&#x201D;,&#x201D;c&#x201D;,&#x201D;uc&#x201D;</span> </span>: for reading respectively a long, an int, a
+     short, an unsigned long, an unsigned int, an unsigned short, a double, a float, a char
+     and an unsigned char. The bytes which are read are automatically swapped if necessary
+     (by checking little-endian status). This default swapping mode can be suppressed by
+     adding a flag in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mopen</span></span></span> function. Format &#x201D;l&#x201D;, &#x201D;d&#x201D; and &#x201D;f&#x201D; are valid only with the
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mget</span></span></span> function.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;..l&#x201D; or &#x201D;..b&#x201D;</span> </span>: It is also possible to read in little-endian or big-endian mode by adding a &apos;l&apos;
+     or &apos;b&apos; character at the end of a type specification. For example &#x201D;db&#x201D; will read a double
+     in big-endian mode.</ul>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x305-1813000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb245"><a 
+ id="x305-1813016r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;file1=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;test1.bin&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813018r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;file2=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;test2.bin&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813020r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fd1=mopen(file1,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;wb&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813022r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fd2=mopen(file2,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;wb&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x305-1813024r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mput(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1996</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ull&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,fd1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813026r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mput(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1996</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ull&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,fd2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813028r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813030r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813032r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fd1=mopen(file1,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rb&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x305-1813034r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1996</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">mget(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ull&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,fd1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;write(%io(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Bug&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813036r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fd2=mopen(file2,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rb&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x305-1813038r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1996</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">mget(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ull&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,fd2)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;write(%io(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Bug&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813040r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x305-1813042r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x305-1814000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli297.html#mclose">mclose</a>    <a 
+href="manualli299.html#meof">meof</a>    <a 
+href="manualli306.html#mfprintf">mfprintf</a>    <a 
+href="manualli282.html#fprintfMat">fprintfMat</a>    <a 
+href="manualli301.html#mfscanf">mfscanf</a>    <a 
+href="manualli284.html#fscanfMat">fscanfMat</a>    <a 
+href="#mget">mget</a>    <a 
+href="manualli303.html#mgetstr">mgetstr</a>    <a 
+href="manualli305.html#mopen">mopen</a>
+<a 
+href="manualli306.html#mprintf">mprintf</a>    <a 
+href="manualli309.html#mput">mput</a>    <a 
+href="manualli308.html#mputstr">mputstr</a>    <a 
+href="manualli301.html#mscanf">mscanf</a>    <a 
+href="manualli310.html#mseek">mseek</a>    <a 
+href="manualli311.html#mtell">mtell</a>    <a 
+href="manualli298.html#mdelete">mdelete</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli305.html" >next</a>] [<a 
+href="manualli303.html" >prev</a>] [<a 
+href="manualli303.html#tailmanualli303.html" >prev-tail</a>] [<a 
+href="manualli304.html" >front</a>] [<a 
+href="manualli274.html#manualli304.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli304.html"></a>  </p> 
+</body></html> 

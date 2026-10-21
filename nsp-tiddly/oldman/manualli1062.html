@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvmd3</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1063.html" >next</a>] [<a 
+href="manualli1061.html" >prev</a>] [<a 
+href="manualli1061.html#tailmanualli1061.html" >prev-tail</a>] [<a 
+href="#tailmanualli1062.html">tail</a>] [<a 
+href="manualli1054.html#manualli1062.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1063-6022000"></a>pvmd3</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1063-6022001"></a><a 
+ id="pvmd3"></a><span 
+class="cmtt-10x-x-109">pvmd3 </span>&#x2013;                                                                                          PVM daemon<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1063-6023000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > pvmd3 is a daemon process which coordinates hosts in a virtual machine. One pvmd must run on
+each host in the group. They provide the communication and process control functions needed by
+the user&apos;s PVM processes. The daemon can be started manually with a host file argument that will
+automatically start the remote pvmds. The local and remote pvmds can also be started from the
+PVM console program pvm. The name of the daemon executable is pvmd3. It is usually started by a
+shell script, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$PVM_ROOT/lib/pvmd</span></span></span>. Local daemon may also be started by the scilab instruction
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_start()</span></span></span> and remote daemons may also be started by the scilab function pvm_addhosts
+</p>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1063-6024000"></a><span 
+class="cmbx-10x-x-109">Options</span></span>
+   The following options may be specified on the command line when starting the master pvmd or
+PVM console: </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">-</div> dmask Set pvmd debug mask. Used to debug the pvmd or libpvm (not intended to be
+     used to debug application programs). Mask is a hexadecimal number which is the sum
+     of the following bits: Bit Information
+     </li>
+     <li class="itemize"><div class="itemdesc">1</div> Packet routing
+     </li>
+     <li class="itemize"><div class="itemdesc">2</div> Message routing and entry points
+     </li>
+     <li class="itemize"><div class="itemdesc">4</div> Task management
+     </li>
+     <li class="itemize"><div class="itemdesc">8</div> Slave pvmd startup
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">10</div> Host table updates
+     </li>
+     <li class="itemize"><div class="itemdesc">20</div> Select loop (below packet layer)
+     </li>
+     <li class="itemize"><div class="itemdesc">40</div> IP network
+     </li>
+     <li class="itemize"><div class="itemdesc">80</div> Multiprocessor port debugging
+     </li>
+     <li class="itemize"><div class="itemdesc">100</div> Resource manager interface
+     </li>
+     <li class="itemize"><div class="itemdesc">200</div> Application (messages with no destination, etc.)
+     </li>
+     <li class="itemize"><div class="itemdesc">-nname</div>  Specify  an  alternate  hostname  for  the  master  pvmd  to  use.  Useful  when
+     gethostname() returns a name not assigned to any network interface.</li></ul>
+<!--l. 51--><p class="noindent" >The following options are used by the master pvmd when starting slaves and are only of interest to
+someone writing a hoster. Don&apos;t just go using them, now. </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">-s</div> Start pvmd in slave mode. Hostfile cannot be used, five additional parameters must
+     be supplied: master pvmd index, master IP, master MTU, slave pvmd index, and slave
+     IP.
+     </li>
+     <li class="itemize"><div class="itemdesc">-S</div> Same as -s, but slave pvmd doesn&apos;t wait for its stdin to be closed after printing its
+     parameters. Used for manual startup.
+     </li>
+     <li class="itemize"><div class="itemdesc">-f</div>  Slave  doesn&apos;t  fork  after  configuration  (useful  if  the  slave  is  to  be  controlled  or
+     monitored by some process).</li></ul>
+<!--l. 57--><p class="noindent" >Lines beginning with a splat ( <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> ), optionally preceded by whitespace, are ignored. A simple host file
+might look like:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1163">
+&#x00A0;&#x00A0;#&#x00A0;my&#x00A0;first&#x00A0;host&#x00A0;file
+&#x00A0;<br />&#x00A0;&#x00A0;thud
+&#x00A0;<br />&#x00A0;&#x00A0;fred
+&#x00A0;<br />&#x00A0;&#x00A0;wilma
+&#x00A0;<br />&#x00A0;&#x00A0;barney
+&#x00A0;<br />&#x00A0;&#x00A0;betty
+</div>
+<!--l. 66--><p class="nopar" >This specifies the names of five hosts to be configured in the virtual machine. The master pvmd for
+a group is started by hand on the localhost, and it starts slaves on each of the remaining hosts using
+the rsh or rexec command. The master host may appear on any line of the hostfile, but must have
+an entry. The simple format above works fine if you have the same login name on all five machines
+and the name of the master host in your .rhosts files on the other four. There are several host file
+options available: </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">lo=NAME</div> Specifies an alternate login name (NAME) to use.
+     </li>
+     <li class="itemize"><div class="itemdesc">so=pw</div> This is necessary when the remote host cannot trust the master. Causes the
+     master pvmd to prompt for a password for the remote host in the tty of the pvmd (note
+     you can&apos;t start the master using the console or background it when using this option)
+     you will see: Password (honk.cs.utk.edu:manchek): you should type your password for
+     the remote host. The startup will then continue as normal.
+     </li>
+     <li class="itemize"><div class="itemdesc">dx=FILE</div> Specifies the path of the pvmd executable. FILE may be a simple filename,
+     an absolute pathname, or a path relative to the user&apos;s home directory on the remote
+     host. This is mainly useful to aid in debugging new versions of PVM, but may have
+     other uses.
+     </li>
+     <li class="itemize"><div class="itemdesc">ep=PATH</div> Specifies a path for the pvmd to search for executable program components
+     when spawning a new process. The path may have multiple elements, separated by
+     colons (: ).
+     </li>
+     <li class="itemize"><div class="itemdesc">wd=PATH Specifies a working directory in which all spawned tasks on</div> this host will
+     execute.
+     </li>
+     <li class="itemize"><div class="itemdesc">sp=VALUE</div> Specifies the relative computational speed of this host compared to other
+     hosts in the configuration. VALUE is an integer in the range [1 - 1000000]
+     </li>
+     <li class="itemize"><div class="itemdesc">bx=PATH</div>  Specifies  the  debugger  program  path.  Note:  the  environment  variable
+     PVM_DEBUGGER can also be set.
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">so=ms</div> Rarely used. Causes the master pvmd to request user to manually perform the
+     startup of a pvmd on a slave host when rsh and rexec network services are disabled but
+     IP connectivity exists. See section &#x201D;MANUAL STARTUP&#x201D;.</li></ul>
+<!--l. 78--><p class="noindent" >A dollar sign ( <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$</span></span></span> ) in an option introduces a variable name, for example <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$PVM_ARCH</span></span></span>. Names are
+expanded from environment variables by each pvmd. Each of the flags above has a default value.
+These are: </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">lo</div> The loginname on the master host.
+     </li>
+     <li class="itemize"><div class="itemdesc">so</div> Nothing
+     </li>
+     <li class="itemize"><div class="itemdesc">dx</div> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$PVM_ROOT/lib/pvmd</span></span></span> (or environment variable PVM_DPATH)
+     </li>
+     <li class="itemize"><div class="itemdesc">ep</div> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH</span></span></span>
+     </li>
+     <li class="itemize"><div class="itemdesc">wd</div> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$HOME</span></span></span>
+     </li>
+     <li class="itemize"><div class="itemdesc">sp</div> 1000
+     </li>
+     <li class="itemize"><div class="itemdesc">bx</div> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$PVM_ROOT/lib/debugger</span></span></span></li></ul>
+<!--l. 88--><p class="noindent" >You can change these by adding a line with a star ( * ) in the first field followed by the options, for
+example: </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">* lo=afriend so=pw</div> This sets new default values for &#x2018;lo&apos; and &#x2018;so&apos; for the remainder of
+     the host file, or until the next &#x2018;*&apos; line. Options set on the last &#x2018;*&apos; line also apply to hosts
+     added dynamically using pvm_addhosts().</li></ul>
+<!--l. 92--><p class="noindent" >Host options can be set without starting the hosts automatically. Information on host file lines
+beginning with &#x2018;&#x0026;amp;&apos; is stored, but the hosts are not started until added using pvm_addhosts().
+Example hostfile:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1164">
+&#x00A0;&#x00A0;#&#x00A0;hostfile&#x00A0;for&#x00A0;testing&#x00A0;on&#x00A0;various&#x00A0;platforms&#x00A0;fonebone&#x00A0;refuge
+&#x00A0;<br />&#x00A0;&#x00A0;#&#x00A0;installed&#x00A0;in&#x00A0;/usr/local/here
+&#x00A0;<br />&#x00A0;&#x00A0;sigi.cs
+&#x00A0;<br />&#x00A0;&#x00A0;dx=/usr/local/pvm3/lib/pvmd&#x00A0;#&#x00A0;borrowed&#x00A0;accts,&#x00A0;&#x0022;guest&#x0022;,&#x00A0;don&#x0027;t&#x00A0;trust&#x00A0;fonebone
+&#x00A0;<br />&#x00A0;&#x00A0;label=&#x0022;*&#x00A0;lo=guest&#x00A0;so=pw&#x00A0;sn666.jrandom.com&#x00A0;cubie.misc.edu&#x00A0;#&#x00A0;really&#x00A0;painful&#x00A0;one,&#x00A0;must&#x00A0;start&#x00A0;it&#x00A0;by&#x00A0;hand&#x00A0;and&#x00A0;share&#x00A0;a&#x00A0;homedir
+&#x00A0;<br />&#x00A0;&#x00A0;igor.firewall.com&#x00A0;lo=guest2&#x00A0;so=ms&#x00A0;&#x00A0;ep=bob/pvm3/bin/$PVM_ARCH
+</div>
+<!--l. 101--><p class="nopar" >
+</p>
+<!--l. 103--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1063-6025000"></a><span 
+class="cmbx-10x-x-109">Manual STARTUP</span></span>
+   When adding a host with this option set you will see on the tty of the pvmd:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1165">
+&#x00A0;&#x00A0;***&#x00A0;Manual&#x00A0;startup&#x00A0;***
+</div>
+<!--l. 107--><p class="nopar" >Login to &#x201D;honk&#x201D; and type:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1166">
+&#x00A0;&#x00A0;$PVM_ROOT/lib/pvmd&#x00A0;-S&#x00A0;-d0&#x00A0;-nhonk&#x00A0;1&#x00A0;80a9ca95:0cb6&#x00A0;4096&#x00A0;2&#x00A0;80a95c43:0000&#x00A0;Type&#x00A0;response:
+</div>
+<!--l. 111--><p class="nopar" >after typing the given command on host honk, you should see a line like:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1167">
+&#x00A0;&#x00A0;ddpro$&#x003C;$2312$&#x003E;$&#x00A0;arch$&#x003C;$ALPHA$&#x003E;$&#x00A0;ip$&#x003C;$80a95c43:0a8e$&#x003E;$&#x00A0;mtu$&#x003C;$4096$&#x003E;$
+</div>
+<!--l. 115--><p class="nopar" >type this line on the tty of the master pvmd. You should then see:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1168">
+&#x00A0;&#x00A0;Thanks
+</div>
+<!--l. 119--><p class="nopar" >and the two pvmds should be able to communicate. Note you can&apos;t start the master using the
+console or background it when using this option.
+</p>
+<!--l. 122--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1063-6026000"></a><span 
+class="cmbx-10x-x-109">Stopping PVMD3</span></span>
+   The preferred method of stopping all the pvmds is to give the halt command in the PVM
+console. This kills all pvm tasks, all the remote daemons, the local daemon, and finally the console
+itself. If the master pvmd is killed manually it should be sent a SIGTERM signal to allow it to kill
+the remote pvmds and clean up various files. The pvmd can be killed in a manner that leaves the file
+/tmp/pvmd.uid behind on one or more hosts. Uid is the numeric user ID (from /etc/passwd) of the
+user. This will prevent PVM from restarting on that host. Deletion of this file will fix this
+problem:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1169">
+&#x00A0;&#x00A0;rm&#x00A0;&#x0060;(&#x00A0;grep&#x00A0;$user&#x00A0;/etc/passwd&#x00A0;||&#x00A0;ypmatch&#x00A0;$user&#x00A0;passwd&#x00A0;)&#x00A0;|&#x00A0;&#x005C;
+&#x00A0;<br />&#x00A0;&#x00A0;awk&#x00A0;-F:&#x00A0;&#x0060;{print&#x00A0;&#x0022;/tmp/pvmd.&#x0022;$3;&#x00A0;exit}&#x0027;&#x0060;
+</div>
+<!--l. 127--><p class="nopar" >
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1063.html" >next</a>] [<a 
+href="manualli1061.html" >prev</a>] [<a 
+href="manualli1061.html#tailmanualli1061.html" >prev-tail</a>] [<a 
+href="manualli1062.html" >front</a>] [<a 
+href="manualli1054.html#manualli1062.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1062.html"></a>  </p> 
+</body></html> 

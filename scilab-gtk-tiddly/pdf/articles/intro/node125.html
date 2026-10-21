@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>9.1 Converting Scilab Functions to Fortran Routines</TITLE>
+<META NAME="description" CONTENT="9.1 Converting Scilab Functions to Fortran Routines">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node124.html">
+<LINK REL="up" HREF="node124.html">
+<LINK REL="next" HREF="node126.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1902"
+ HREF="node126.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1898"
+ HREF="node124.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1894"
+ HREF="node124.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1900"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1901"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1903"
+ HREF="node126.html">List of Figures</A>
+<B> Up:</B> <A NAME="tex2html1899"
+ HREF="node124.html">9. Converting Scilab functions</A>
+<B> Previous:</B> <A NAME="tex2html1895"
+ HREF="node124.html">9. Converting Scilab functions</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001010000000000000000">
+9.1 Converting Scilab Functions to Fortran Routines</A>
+</H1>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">Scilab provides a compiler (under development) to transform some Scilab 
+functions
+into Fortran subroutines. The routines which are thus obtained
+make use of the routines which are in the Fortran libraries.
+All the basic matrix operations are available.
+</FONT></FONT>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">Let us consider the following Scilab function:
+</FONT></FONT><PRE>
+function [x]=macr(a,b,n)
+z=n+m+n,
+c(1,1)=z,
+c(2,1)=z+1,
+c(1,2)=2,
+c(2,2)=0,
+if n=1 then,
+ x=a+b+a,
+else,
+x=a+b-a'+b,
+end,
+y=a(3,z+1)-x(z,5),
+x=2*x*x*2.21,
+sel=1:5,
+t=a*b,
+for k=1:n,
+ z1=z*a(k+1,k)+3,
+end,
+t(sel,5)=a(2:4,7),
+x=[a b;-b' a']
+</PRE>
+<P>
+<FONT SIZE="-2"><FONT SIZE="-1">which can be translated into Fortran by using the function <TT>mac2for</TT>.
+Each input parameter of the subroutine is described by a list
+which contains its type and its dimensions. Here, we have three
+input variables <TT>a,b,c</TT> which are, say, <TT>double precision, double precision, integer</TT> with dimensions
+<TT>(m,m), (m,m), (1,1)</TT>. This information is gathered
+in the following list:
+</FONT></FONT><PRE>
+l=list();
+l(1)=list('1','m','m');
+l(2)=list('1','m','m');
+l(3)=list('0','1','1');
+</PRE><FONT SIZE="-2"><FONT SIZE="-1">The call to <TT>mac2for</TT> is made as follows:
+</FONT></FONT><PRE>
+comp(macr);
+mac2for(macr2lst(macr),l)
+</PRE><FONT SIZE="-2"><FONT SIZE="-1">The output of this command is a string containing a stand-alone Fortran 
+subroutine.
+</FONT></FONT><PRE>
+       subroutine macr(a,b,n,x,m,work,iwork)
+c!
+c  automatic translation
+.
+.
+.
+       double precision a(m,m),b(m,m),x(m+m,m+m),y,z1,24(m,m),work(*)
+       integer n,m,z,c(2,2),sel(5),k,iwork(*)
+.
+.
+.      
+       call dmcopy(b,m,x(1,m+1),m+m,m,m)
+       call dmcopy(work(iw1),m,x(m+1,1),m+m,m,m)
+       call dmcopy(work(iw1),m,x(m+1,m+1),m+m,m,m)
+       return
+c
+       end
+</PRE><FONT SIZE="-2"><FONT SIZE="-1">This routine can be linked to Scilab and interactively called.
+</FONT></FONT>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1902"
+ HREF="node126.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1898"
+ HREF="node124.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1894"
+ HREF="node124.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1900"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1901"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1903"
+ HREF="node126.html">List of Figures</A>
+<B> Up:</B> <A NAME="tex2html1899"
+ HREF="node124.html">9. Converting Scilab functions</A>
+<B> Previous:</B> <A NAME="tex2html1895"
+ HREF="node124.html">9. Converting Scilab functions</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

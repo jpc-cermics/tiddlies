@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+W1=ssrand(\nspnumber{2},\nspnumber{2},\nspnumber{5})\nspoperator{;}trzeros(W1)\nspoperator{,}\nspcomment{//call trzeros}
+roots(det(systmat(W1)))\nspoperator{,}\nspcomment{//roots of det(system matrix)}
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}W=[\nspnumber{1}\nspoperator{/}(s\nspoperator{+}\nspnumber{1})\nspoperator{;}\nspnumber{1}\nspoperator{/}(s\nspoperator{-}\nspnumber{2})]\nspoperator{;}W2=(s\nspoperator{-}\nspnumber{3})\nspoperator{*}W\nspoperator{*}W\nspoperator{'}\nspoperator{;}[nt,dt,rk]=trzeros(W2)\nspoperator{;}
+St=systmat(tf2ss(W2))\nspoperator{;}[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(St)\nspoperator{;}
+St1=Q\nspoperator{*}St\nspoperator{*}Z\nspoperator{;}rowf=(Qd(\nspnumber{1})\nspoperator{+}Qd(\nspnumber{2})\nspoperator{+}\nspnumber{1})\nspoperator{:}(Qd(\nspnumber{1})\nspoperator{+}Qd(\nspnumber{2})\nspoperator{+}Qd(\nspnumber{3}))\nspoperator{;}
+colf=(Zd(\nspnumber{1})\nspoperator{+}Zd(\nspnumber{2})\nspoperator{+}\nspnumber{1})\nspoperator{:}(Zd(\nspnumber{1})\nspoperator{+}Zd(\nspnumber{2})\nspoperator{+}Zd(\nspnumber{3}))\nspoperator{;}
+roots(St1(rowf,colf))\nspoperator{,}nt\nspoperator{ ./}dt\nspoperator{,}\nspcomment{//By Kronecker form}
+\end{Verbatim}

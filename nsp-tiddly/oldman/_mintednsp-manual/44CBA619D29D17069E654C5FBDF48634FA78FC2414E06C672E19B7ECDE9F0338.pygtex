@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example \nspsh{}1: display some I Bessel functions}
+x=linspace(\nspnumber{0.01},\nspnumber{10},\nspnumber{5000})\nspoperator{'}\nspoperator{;}
+y=oldbesseli(\nspnumber{0}\nspoperator{:}\nspnumber{4},x)\nspoperator{;}
+ys=oldbesseli(\nspnumber{0}\nspoperator{:}\nspnumber{4},x,\nspnumber{2})\nspoperator{;}
+xbasc()
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})
+plot2d(x,y,style = \nspnumber{2}\nspoperator{:}\nspnumber{6},leg = \nspstring{"I0@I1@I2@I3@I4"},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{10}])
+xtitle(\nspstring{"Some modified Bessel functions of the first kind"})
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})
+plot2d(x,ys,style = \nspnumber{2}\nspoperator{:}\nspnumber{6},leg = \nspstring{"I0s@I1s@I2s@I3s@I4s"},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{1}])
+xtitle(\nspstring{"Some modified scaled Bessel functions of the first kind"})
+\nspcomment{// example \nspsh{}2: display some J Bessel functions}
+x=linspace(\nspnumber{0},\nspnumber{40},\nspnumber{5000})\nspoperator{'}\nspoperator{;}
+y=besselj(\nspnumber{0}\nspoperator{:}\nspnumber{4},x)\nspoperator{;}
+xbasc()
+plot2d(x,y,style = \nspnumber{2}\nspoperator{:}\nspnumber{6},leg = \nspstring{"J0@J1@J2@J3@J4"})
+xtitle(\nspstring{"Some Bessel functions of the first kind"})
+\nspcomment{// example \nspsh{}3: use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)}
+\nspcomment{//              to compare the algorithm of besselj(0.5,x) with}
+\nspcomment{//              a more direct formula}
+x=linspace(\nspnumber{0.1},\nspnumber{40},\nspnumber{5000})\nspoperator{'}\nspoperator{;}
+y1=besselj(\nspnumber{0.5},x)\nspoperator{;}
+y2=sqrt(\nspnumber{2}\nspoperator{ ./}(%pi\nspoperator{*}x))\nspoperator{ .*}sin(x)\nspoperator{;}
+er=abs((y1\nspoperator{-}y2)\nspoperator{ ./}y2)\nspoperator{;}
+ind=find(er\nspoperator{ > }\nspnumber{0}\nspoperator{ & }y2\nspoperator{ <> }\nspnumber{0})\nspoperator{;}
+xbasc()
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})
+plot2d(x,y1,style = \nspnumber{2})
+xtitle(\nspstring{"besselj(0.5,x)"})
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})
+plot2d(x(ind),er(ind),style = \nspnumber{2},logflag = \nspstring{"nl"})
+xtitle(\nspstring{"relative error between 2 formulae for besselj(0.5,x)"})
+\nspcomment{// example \nspsh{}4: display some K Bessel functions}
+x=linspace(\nspnumber{0.01},\nspnumber{10},\nspnumber{5000})\nspoperator{'}\nspoperator{;}
+y=besselk(\nspnumber{0}\nspoperator{:}\nspnumber{4},x)\nspoperator{;}
+ys=besselk(\nspnumber{0}\nspoperator{:}\nspnumber{4},x,\nspnumber{2})\nspoperator{;}
+xbasc()
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})
+plot2d(x,y,style = \nspnumber{2}\nspoperator{:}\nspnumber{6},leg = \nspstring{"K0@K1@K2@K3@K4"},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{10}])
+xtitle(\nspstring{"Some modified Bessel functions of the second kind"})
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})
+plot2d(x,ys,style = \nspnumber{2}\nspoperator{:}\nspnumber{6},leg = \nspstring{"K0s@K1s@K2s@K3s@K4s"},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{10}])
+xtitle(\nspstring{"Some modified scaled Bessel functions of the second kind"})
+\nspcomment{// example \nspsh{}5: plot severals Y Bessel functions}
+x=linspace(\nspnumber{0.1},\nspnumber{40},\nspnumber{5000})\nspoperator{'}\nspoperator{;}\nspcomment{// Y Bessel functions are unbounded  for x -> 0+}
+y=bessely(\nspnumber{0}\nspoperator{:}\nspnumber{4},x)\nspoperator{;}
+xbasc()
+plot2d(x,y,style = \nspnumber{2}\nspoperator{:}\nspnumber{6},leg = \nspstring{"Y0@Y1@Y2@Y3@Y4"},rect = [\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1.5}\nspoperator{,}\nspnumber{40}\nspoperator{,}\nspnumber{0.6}])
+xtitle(\nspstring{"Some Bessel functions of the second kind"})
+\end{Verbatim}

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+deff(\nspstring{'[alpha,beta]=alpha_beta(n,m,m1)'}, ...
+     \nspstring{'if 2*int(n/2)=n then, beta=K1; else, beta=0;end;    alpha=\nsppc{}k(1-m1)/\nsppc{}k(1-m);'})
+epsilon=\nspnumber{0.1}\nspoperator{;}A=\nspnumber{10}\nspoperator{;}\nspcomment{//ripple parameters}
+m1=(epsilon\nspoperator{*}epsilon)\nspoperator{/}(A\nspoperator{*}A\nspoperator{-}\nspnumber{1})\nspoperator{;}n=\nspnumber{5}\nspoperator{;}omegac=\nspnumber{6}\nspoperator{;}
+m=find_freq(epsilon,A,n)\nspoperator{;}omegar=omegac\nspoperator{/}sqrt(m)
+%k(\nspnumber{1}\nspoperator{-}m1)\nspoperator{*}%k(m)\nspoperator{/}(%k(m1)\nspoperator{*}%k(\nspnumber{1}\nspoperator{-}m))\nspoperator{-}n\nspoperator{,}\nspcomment{//Check...}
+[alpha,beta]=alpha_beta(n,m,m1)
+alpha\nspoperator{*}%asn(\nspnumber{1},m)\nspoperator{-}n\nspoperator{*}%k(m1)\nspoperator{,}\nspcomment{//Check}
+sample=\nspnumber{0}\nspoperator{:}\nspnumber{0.01}\nspoperator{:}\nspnumber{20}\nspoperator{;}
+\nspcomment{//Now we map the positive real axis into the contour...}
+z=alpha\nspoperator{*}%asn(sample\nspoperator{/}omegac,m)\nspoperator{+}beta\nspoperator{*}ones(sample)\nspoperator{;}
+plot(sample,ell1mag(epsilon,m1,z))
+\end{Verbatim}

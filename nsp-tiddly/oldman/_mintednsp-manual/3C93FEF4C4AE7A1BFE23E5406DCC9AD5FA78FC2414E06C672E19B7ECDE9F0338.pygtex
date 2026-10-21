@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+h=(\nspnumber{1}\nspoperator{-}\nspnumber{2}\nspoperator{*}z)\nspoperator{/}(z\nspoperator{^}\nspnumber{2}\nspoperator{-}\nspnumber{0.5}\nspoperator{*}z\nspoperator{+}\nspnumber{5})
+rep=[\nspnumber{0}\nspoperator{;}ldiv(h(\nspstring{'num'}),h(\nspstring{'den'}),\nspnumber{20})]\nspoperator{;}\nspcomment{//impulse response}
+H=time_id(\nspnumber{2},\nspstring{'impuls'},rep)
+\nspcomment{//  Same example with flts and u}
+u=zeros(\nspnumber{1},\nspnumber{20})\nspoperator{;}u(\nspnumber{1})=\nspnumber{1}\nspoperator{;}
+rep=flts(u,tf2ss(h))\nspoperator{;}\nspcomment{//impulse response}
+H=time_id(\nspnumber{2},u,rep)
+\nspcomment{//  step response}
+u=ones(\nspnumber{1},\nspnumber{20})\nspoperator{;}
+rep=flts(u,tf2ss(h))\nspoperator{;}\nspcomment{//step response.}
+H=time_id(\nspnumber{2},\nspstring{'step'},rep)
+H=time_id(\nspnumber{3},u,rep)\nspoperator{,}\nspcomment{//with u as input and too high order required}
+\end{Verbatim}

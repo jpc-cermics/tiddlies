@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_box</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli775.html" >next</a>] [<a 
+href="manualli773.html" >prev</a>] [<a 
+href="manualli773.html#tailmanualli773.html" >prev-tail</a>] [<a 
+href="#tailmanualli774.html">tail</a>] [<a 
+href="manualli756.html#manualli774.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x775-4588000"></a>mtlb_box</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx775-4588001"></a><a 
+ id="mtlb_box"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_box </span>&#x2013;                                                              Matlab box emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x775-4589000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > There is no Scilab equivalent function for Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">box</span></span></span> but it can be easyly replaced. The function
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_box([axes_handle[,val]])</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">box([axes_handle[,va]]l)</span></span></span>
+when it was not possible to know what were the inputs while porting Matlab code to Scilab. This
+function will determine the correct semantic at run time. If you want to have a more efficient code it
+is possible to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_box</span></span></span> calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div>  When  called  without  input  parameters,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_box()</span></span></span> may  be  replaced  by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a=gca();if</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.box==&#x0022;on&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;then</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.box=&#x0022;off&#x0022;;else</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.box=&#x0022;on&#x0022;;end;</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">axes_handle</span></span></span> is a character string, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_box(axes_handle)</span></span></span> may be replaced
+          by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a=gca();a.box=convstr(axes_handle,&#x0022;l&#x0022;);</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">axes_handle</span></span></span> is a graphic handle <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_box(axes_handle)</span></span></span> may be replaced by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">if</span><span 
+class="cmtt-10x-x-109">&#x00A0;axes_handle.box==&#x0022;on&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;then</span><span 
+class="cmtt-10x-x-109">&#x00A0;axes_handle.box=&#x0022;off&#x0022;;else</span><span 
+class="cmtt-10x-x-109">&#x00A0;axes_handle.box=&#x0022;on&#x0022;;end;</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>                  If                             <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">axes_handle</span></span></span>                  is
+          a graphic handle and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">val</span></span></span> is a character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_box(axes_handle,val)</span></span></span> may
+          be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">axes_handle.box=convstr(val,&#x0022;l&#x0022;);</span></span></span></li></ul>
+     </ul>
+<!--l. 46--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_box</span></span></span> has not to be used for hand coded functions.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x775-4590000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#axes-properties">axes_properties</a>
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x775-4591000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x775-4592000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli775.html" >next</a>] [<a 
+href="manualli773.html" >prev</a>] [<a 
+href="manualli773.html#tailmanualli773.html" >prev-tail</a>] [<a 
+href="manualli774.html" >front</a>] [<a 
+href="manualli756.html#manualli774.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli774.html"></a>  </p> 
+</body></html> 

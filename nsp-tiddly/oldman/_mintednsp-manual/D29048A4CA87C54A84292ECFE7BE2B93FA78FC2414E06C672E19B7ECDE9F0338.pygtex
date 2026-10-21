@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+deff(\nspstring{'[r,ires]=chemres(t,y,yd)'}, ...
+     [\nspstring{'r(1)=-0.04*y(1)+1d4*y(2)*y(3)-yd(1);'}\nspoperator{;}
+      \nspstring{'r(2)=0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2);'}\nspoperator{;}\nspstring{'r(3)=y(1)+y(2)+y(3)-1;'}\nspoperator{;}
+      \nspstring{'ires=0'}])\nspoperator{;}
+deff(\nspstring{'[pd]=chemjac(x,y,yd,cj)'}, ...
+     [\nspstring{'pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);'}\nspoperator{;}
+      \nspstring{'0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);'}\nspoperator{;}
+      \nspstring{'1       , 1                      , 1       ]'}])
+y0=[\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{0}]\nspoperator{;}
+yd0=[\nspoperator{-}\nspnumber{0.04}\nspoperator{;}\nspnumber{0.04}\nspoperator{;}\nspnumber{0}]\nspoperator{;}
+t=[\nspnumber{1.E-5}\nspoperator{:}\nspnumber{0.02}\nspoperator{:}\nspnumber{.4}\nspoperator{,}\nspnumber{0.41}\nspoperator{:}\nspnumber{.1}\nspoperator{:}\nspnumber{4}\nspoperator{,}\nspnumber{40}\nspoperator{,}\nspnumber{400}\nspoperator{,}\nspnumber{4000}\nspoperator{,}\nspnumber{40000}\nspoperator{,}\nspnumber{4E5}\nspoperator{,}\nspnumber{4E6}\nspoperator{,}\nspnumber{4E7}\nspoperator{,}\nspnumber{4E8}\nspoperator{,}\nspnumber{4E9}\nspoperator{,}\nspnumber{4E10}]\nspoperator{;}
+y=dassl([y0\nspoperator{,}yd0],\nspnumber{0},t,chemres)\nspoperator{;}
+info=list([],\nspnumber{0},[],[],[],\nspnumber{0},\nspnumber{0})\nspoperator{;}
+info(\nspnumber{2})=\nspnumber{1}\nspoperator{;}
+y=dassl([y0\nspoperator{,}yd0],\nspnumber{0},\nspnumber{4E10},chemres,info)\nspoperator{;}
+y=dassl([y0\nspoperator{,}yd0],\nspnumber{0},\nspnumber{4E10},chemres,chemjac,info)\nspoperator{;}
+\end{Verbatim}

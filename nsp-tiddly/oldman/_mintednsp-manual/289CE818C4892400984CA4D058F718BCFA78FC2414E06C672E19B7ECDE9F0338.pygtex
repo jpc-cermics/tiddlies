@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+TK_EvalStr(\nspstring{'toplevel .tst1'})\nspoperator{;}
+\nspcomment{// creates a toplevel TK window.}
+TK_EvalStr(\nspstring{'entry .tst1.e -textvariable tvar'})\nspoperator{;}
+\nspcomment{// create an editable entry}
+TK_EvalStr(\nspstring{'set tvar foobar'})\nspoperator{;}
+\nspcomment{// set the entry value}
+TK_EvalStr(\nspstring{'pack .tst1.e'})\nspoperator{;}
+\nspcomment{// pack the entry widget. It appears on the screen.}
+text=TK_GetVar(\nspstring{'tvar'})
+\nspcomment{// retrieve the variable value}
+\nspcomment{// change the entry text and repeat the last command ...}
+\nspcomment{//delete the toplevel TK window.}
+TK_EvalStr(\nspstring{'destroy .tst1'})
+\end{Verbatim}

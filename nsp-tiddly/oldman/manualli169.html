@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>interp3d</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli170.html" >next</a>] [<a 
+href="manualli168.html" >prev</a>] [<a 
+href="manualli168.html#tailmanualli168.html" >prev-tail</a>] [<a 
+href="#tailmanualli169.html">tail</a>] [<a 
+href="manualli104.html#manualli169.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x170-998000"></a>interp3d</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx170-998001"></a><a 
+ id="interp3d"></a><span 
+class="cmtt-10x-x-109">interp3d </span>&#x2013;                                                                 3d spline evaluation function<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x170-999000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-274">
+&#x00A0;&#x00A0;[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x170-1000000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xp, yp, zp</span>: real vectors or matrices of same size
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tl</span>: tlist of type &#x201D;splin3d&#x201D;, defining a 3d tensor spline (called <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> in the following)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">out</span><span 
+class="cmtt-10x-x-109">_mode</span>:   (optional)   string   defining   the   evaluation   of   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span>  outside   the   grid
+     ([xmin,xmax]x[ymin,ymax]x[zmin,zmax])
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fp</span>: vector or matrix of same format than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zp</span></span></span>, elementwise evaluation of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> on
+     these points.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dfpdx, dfpdy, dfpdz</span>:  vectors  (or  matrices)  of  same  format  than  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span>,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp</span></span></span> and  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zp</span></span></span>,
+     elementwise evaluation of the first derivatives of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> on these points.</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x170-1001000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > Given a tlist <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tl</span></span></span> defining a 3d spline function (see <a 
+href="manualli243.html#splin3d">splin3d</a>    ) this function evaluates <span 
+class="cmti-10x-x-109">s </span>(and <span 
+class="cmti-10x-x-109">ds/dx,</span>
+<span 
+class="cmti-10x-x-109">ds/dy, ds/dz </span>if needed) at <span 
+class="cmti-10x-x-109">(xp(i),yp(i),zp(i))</span>:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-275">
+&#x00A0;&#x00A0;zp(i)&#x00A0;=&#x00A0;s(xp(i),yp(i))
+&#x00A0;<br />&#x00A0;&#x00A0;dzpdx(i)&#x00A0;=&#x00A0;ds/dx(xp(i),yp(i),zp(i))
+&#x00A0;<br />&#x00A0;&#x00A0;dzpdy(i)&#x00A0;=&#x00A0;ds/dy(xp(i),yp(i),zp(i))
+&#x00A0;<br />&#x00A0;&#x00A0;dzpdz(i)&#x00A0;=&#x00A0;ds/dz(xp(i),yp(i),zp(i))
+</div>
+<!--l. 49--><p class="nopar" >The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">out_mode</span></span></span> parameter defines the evaluation rule for extrapolation, i.e. for <span 
+class="cmti-10x-x-109">(xp(i),yp(i),zp(i)) not</span>
+<span 
+class="cmti-10x-x-109">in [xmin,xmax]x[ymin,ymax]x[zmin,zmax]</span>: </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">&#x201D;by_zero&#x201D;</div>: an extrapolation by zero is done
+     </li>
+     <li class="itemize"><div class="itemdesc">&#x201D;by_nan&#x201D;</div>: extrapolation by Nan
+     </li>
+     <li class="itemize"><div class="itemdesc">&#x201D;C0&#x201D;</div>: the extrapolation is defined as follows:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-276">
+     &#x00A0;&#x00A0;s(x,y)&#x00A0;=&#x00A0;s(proj(x,y))&#x00A0;where&#x00A0;proj(x,y)&#x00A0;is&#x00A0;nearest&#x00A0;point
+     &#x00A0;<br />&#x00A0;&#x00A0;of&#x00A0;[x(1),x(nx)]x[y(1),y(ny)]&#x00A0;from&#x00A0;(x,y)
+</div>
+     <!--l. 59--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;periodic&#x201D;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> is extended by periodicity.</li></ul>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x170-1002000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb127"><a 
+ id="x170-1002003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;see</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;examples</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;splin3d</span><span 
+class="cmitt-10x-x-109">&#x00A0;help</span><span 
+class="cmitt-10x-x-109">&#x00A0;page</span></span></div>
+<!--l. 70--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x170-1003000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli243.html#splin3d">splin3d</a>    <a 
+href="manualli127.html#bsplin3val">bsplin3val</a>
+</p>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x170-1004000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x170-1005000"></a></span>
+   R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)
+</p>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x170-1006000"></a></span>
+   B. Pincon (scilab interface)
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli170.html" >next</a>] [<a 
+href="manualli168.html" >prev</a>] [<a 
+href="manualli168.html#tailmanualli168.html" >prev-tail</a>] [<a 
+href="manualli169.html" >front</a>] [<a 
+href="manualli104.html#manualli169.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli169.html"></a>  </p> 
+</body></html> 

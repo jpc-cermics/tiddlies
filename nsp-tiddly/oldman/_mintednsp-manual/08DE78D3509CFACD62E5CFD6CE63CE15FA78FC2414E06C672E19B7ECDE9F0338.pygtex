@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ny=\nspnumber{2}\nspoperator{;}nu=\nspnumber{3}\nspoperator{;}nx=\nspnumber{4}\nspoperator{;}P=ssrand(ny,nu,nx)\nspoperator{;}[A,B,C,D]=abcd(P)\nspoperator{;}
+Kc=\nspoperator{-}ppol(A,B,[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}])\nspoperator{;}\nspcomment{//Controller gain}
+Kf=\nspoperator{-}ppol(A\nspoperator{'},C\nspoperator{'},[\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{2}])\nspoperator{;}Kf=Kf\nspoperator{'}\nspoperator{;}\nspcomment{//Observer gain}
+cl=P\nspoperator{/.}(\nspoperator{-}obscont(P,Kc,Kf))\nspoperator{;}spec(cl(\nspstring{'A'}))\nspoperator{,}\nspcomment{//closed loop system}
+[J,r]=obscont(P,Kc,Kf)\nspoperator{;}
+Q=ssrand(nu,ny,\nspnumber{3})\nspoperator{;}Q(\nspstring{'A'})=Q(\nspstring{'A'})\nspoperator{-}(maxi(real(spec(Q(\nspstring{'A'}))))\nspoperator{+}\nspnumber{0.5})\nspoperator{*}eye(Q(\nspstring{'A'}))
+\nspcomment{//Q is a stable parameter}
+K=lft(J,r,Q)\nspoperator{;}
+spec(h_cl(P,K))\nspoperator{,}\nspcomment{// closed-loop A matrix (should be stable);}
+\end{Verbatim}

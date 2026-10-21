@@ -1,0 +1,708 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab: Appel depuis C, Fortran, Java, ...</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+<META NAME="GENERATOR" CONTENT="hevea 1.05"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HEVEA command line is: hevea art.tex -->
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<H1 ALIGN="center"><B>Scilab: Appel depuis C, Fortran, Java, ...</B></H1>
+<H3 ALIGN="center">Jean-Philippe Chancelier<BR>
+Cermics-Enpc<BR>
+Scilab Group</H3>
+<H3 ALIGN="center">25 Janvier 2001</H3>
+
+<!--TOC section Introduction-->
+<H2>1&nbsp;&nbsp; Introduction</H2>
+<!--SEC END -->
+Nous allons voir dans cet article comment utiliser les fonctionalit&eacute;s de
+Scilab &agrave; partir d'une application externe. On voit donc Scilab comme une
+librairie que l'on va lier &agrave; notre application externe. Il est bien sur
+toujours possible d'oublier l'interpr&egrave;te Scilab et de voir Scilab comme
+une collection de fonctions C ou Fortran que l'on utilise directement. Ce ne
+sera pas notre point de vue ici. On suppose en effet que l'on ne conna&icirc;t
+les fonctionnalit&eacute;s de Scilab qu'a travers le manuel en ligne et on ne
+veut pas &lt;&lt;fouiller&gt;&gt; dans le code Scilab pour trouver par exemple
+que la fonction rand de Scilab utilise de fa&ccedil;on interne une routine
+Fortran urand. La fonction de base que l'on va utiliser sera en
+cons&eacute;quence la fonction interne scifun qui permet de faire
+ex&eacute;cuter &agrave; Scilab des instructions d&eacute;crites par une
+cha&icirc;ne de caract&egrave;res. Pour cr&eacute;er un vecteur
+al&eacute;atoire de taille 2 on pourra donc utiliser les instructions
+suivantes&nbsp;: <PRE> 
+        strcpy(buf,&quot;x=rand(1,2);&quot;);
+        C2F(scifun)(buf,strlen(buf));
+</PRE>
+On verra dans la suite que l'on encapsulera l'appel de scifun pour pouvoir
+g&eacute;rer les erreurs qui peuvent se produire en Scilab. On utilisera aussi
+des fonctions internes Scilab nous permettant d'acc&eacute;der &agrave; des
+matrices ou des cha&icirc;nes de caract&egrave;res Scilab &agrave; partir de
+leurs noms. Par exemple la macro (d&eacute;finie dans
+<CODE>routines/stack-c.h</CODE>)&nbsp;: 
+<PRE> 
+        GetMatrixptr(&quot;X&quot;, &amp;m, &amp;n, &amp;lp);
+</PRE>
+permet d'obtenir un pointeur vers les donn&eacute;es associ&eacute;es &agrave;
+la matrice nomm&eacute;e <CODE>X</CODE> dans Scilab sous la forme
+<CODE>stk(lp)</CODE> et la taille de la matrice est obtenue dans
+<CODE>(m,n)</CODE>. En cas d'echec GetMatrixptr effectue un return 0;. On
+pourra se reporter au CD du magazine pour obtenir le source complet des
+exemples que nous allons commenter. Le code se trouvera aussi dans le
+r&eacute;pertoire <CODE>examples/callsci</CODE> de la prochaine version de
+Scilab. 
+
+<!--TOC section Quelques exemples-->
+
+<H2>2&nbsp;&nbsp; Quelques exemples</H2>
+<!--SEC END -->
+Dans notre premier exemple, on cherche &agrave; r&eacute;soudre un
+syst&egrave;me lin&eacute;aire &agrave; savoir trouver <CODE>x</CODE> solution
+de <CODE>Ax=b</CODE>. La matrice <CODE>A</CODE> et le vecteur <CODE>b</CODE>
+sont cod&eacute;s en C au moyen de tableaux unidimensionnels. Les
+&eacute;l&eacute;ments <I>A</I><SUB><FONT
+SIZE="2"><I>i</I>,<I>j</I></FONT></SUB> de la matrice sont stock&eacute;s dans
+un tableau C au position <CODE>A[i</CODE>n*j]+ ce qui correspond au stockage
+couramment utilis&eacute; dans les librairies num&eacute;riques (et donc aussi
+dans Scilab). On envoie les deux matrices dans Scilab au moyen de la macro
+<CODE>WriteMatrix</CODE> (noter que cela implique une copie des objets), on
+effectue ensuite le calcul au moyen de send_scilab_job (dont nous verrons le
+code plus loin) et on r&eacute;cup&egrave;re le r&eacute;sultat au moyen de
+GetMatrixptr ce qui se fait cette fois sans copie. Voila le code complet de cet
+exemple&nbsp;: <PRE> 
+static int premier_exemple()
+{
+  static double A[]={1,2,3,4};  int mA=2,nA=2;
+  static double b[]={4,5};  int mb=2,nb=1;
+  int m,n,lp,i;
+  WriteMatrix(&quot;A&quot;, &amp;mA, &amp;nA, A); 
+  WriteMatrix(&quot;b&quot;, &amp;mb, &amp;nb, b);
+        
+  fprintf(stdout,&quot;premier exemple\n&quot;);
+  if ( send_scilab_job(&quot;A,b,x=A\\b;&quot;) != 0) 
+    fprintf(stderr,&quot;Erreur dans Scilab\n&quot;);
+  else 
+    {
+      GetMatrixptr(&quot;x&quot;, &amp;m, &amp;n, &amp;lp);
+      for ( i=0 ; i &lt; m*n ; i++) 
+        fprintf(stdout,&quot;x[%d] = %5.2f\n&quot;,i,*stk(i+lp));
+    }
+  return 1;
+} 
+</PRE>
+L'&eacute;xecution de la routine pr&eacute;c&eacute;dente donnera l'affichage
+suivant&nbsp;: 
+<PRE> 
+ x[0] = -0.50
+ x[1] =  1.50
+</PRE>
+et on v&eacute;rifie bien (avec Scilab ou &agrave; la main !) que&nbsp;: 
+<PRE> 
+--&gt;norm([1,3;2,4]*[-0.5;1.5]-[4;5])
+ ans  =
+ 
+    0.  
+</PRE>
+Dans un deuxi&egrave;me exemple on veut tracer une courbe &agrave; partir de la
+donn&eacute;e de deux vecteurs <CODE>(x,y)</CODE>. Plut&ocirc;t que d'allouer
+les deux vecteurs dans le programme C on les &lt;&lt;alloue&gt;&gt; dans Scilab
+et on r&eacute;cup&egrave;re des pointeurs vers les donn&eacute;es. Cela nous
+&eacute;vite d'avoir &agrave; effectuer des copies (<CODE>WriteMatrix</CODE>)
+pour transf&eacute;rer les donn&eacute;es vers Scilab. Les tableaux sont
+ensuite remplis par notre programme C et la visualisation s'obtient gr&acirc;ce
+&agrave; la commande&nbsp;: 
+<PRE> 
+  send_scilab_job(&quot;plot(x,y);xclick();quit&quot;);
+</PRE>
+Dans cette commande on utilise <CODE>xclick()</CODE>. Ainsi le programme va
+attendre un &lt;&lt;click&gt;&gt; de l'utilisateur pour continuer son
+ex&eacute;cution. Pendant cette phase d'attente le gestionnaire
+d'&eacute;v&eacute;nements de Scilab va &ecirc;tre actif et les menus de la
+fen&ecirc;tre graphique seront utilisables. Voila maintenant le code de ce
+deuxi&egrave;me exemple&nbsp;: 
+<PRE> 
+static int deuxieme_exemple() 
+{
+  int m,n,lx,ly,i;
+  /* j'utilise scilab pour creer les abscisses 
+   * et reserver de la place pour les ordonnees 
+   */ 
+  send_scilab_job(&quot;x=1:0.1:10;y=x;&quot;);
+  GetMatrixptr(&quot;x&quot;, &amp;m, &amp;n, &amp;lx);  
+  GetMatrixptr(&quot;y&quot;, &amp;m, &amp;n, &amp;ly);  
+  for ( i=0; i &lt; m*n ; i++) 
+    { 
+      double xi = *stk(lx+i);
+      *stk(ly+i) = xi*sin(xi);
+    }
+  /* plot(x,y);  */
+  send_scilab_job(&quot;plot(x,y);xclick();quit&quot;);
+  return 1;
+}
+</PRE>
+Dans ce dernier exemple on appelle l'int&eacute;grateur d'&eacute;quations
+diff&eacute;rentielles de Scilab (un article &agrave; d&eacute;j&agrave;
+&eacute;t&eacute; consacr&eacute; a ce sujet). L'&eacute;quation
+diff&eacute;rentielle est d&eacute;crite en C et il faut donc en plus la
+charger dans l'environnement Scilab. Le code est sans surprise, on transmet
+&agrave; Scilab les conditions initiales et les temps pour lesquels on
+d&eacute;sire la solution au moyen de la macro WriteMatrix. On charge
+l'&eacute;quation diff&eacute;rentielle dans Scilab en utilisant la commande
+<CODE>link</CODE> de Scilab &agrave; travers un <CODE>send_scilab_job</CODE> et
+enfin on appelle l'int&eacute;grateur <CODE>ode</CODE> &agrave; nouveau au
+travers de la fonction <CODE>send_scilab_job</CODE>. 
+<PRE> 
+int troisieme_exemple() 
+{
+  double x[]={1,0,0} ; int mx=3,nx=1;
+  double time[]={0.4,4}; int mt=1,nt=2;
+  /* chargement du code de l'&eacute;quation diff&eacute;rentielle */
+  send_scilab_job(&quot;link(''./mon_ode.o'',''mon_ode'',''c'');&quot;);
+  /* transmission des arguments */
+  WriteMatrix(&quot;x&quot;, &amp;mx, &amp;nx, x);
+  WriteMatrix(&quot;time&quot;, &amp;mt, &amp;nt,time);
+  /* appel de ode */
+  send_scilab_job(&quot;y=ode(x,0,time,''mon_ode''),&quot;);
+}
+</PRE>
+Le code de l'&eacute;quation diff&eacute;rentielle donn&eacute; dans le fichier
+<CODE>mon_ode.c</CODE> est le suivant&nbsp;: 
+<PRE> 
+static double param[] ={0.04,10000,3.0e+7};
+
+int mon_ode(neq, t, y, ydot)
+     int *neq;
+     double *t, *y, *ydot;
+{
+  ydot[0] = - param[0]*y[0] + param[1] * y[1] * y[2];
+  ydot[2] =  param[2] * y[1] * y[1];
+  ydot[1] = -ydot[0] - ydot[2];
+  return 0;
+}
+</PRE>
+
+<!--TOC section Les ingrédients laissés en suspens-->
+
+<H2>3&nbsp;&nbsp; Les ingr&eacute;dients laiss&eacute;s en suspens</H2>
+<!--SEC END -->
+La fonction <CODE>send_scilab_job(char *name)</CODE> comme nous l'avons
+&eacute;voqu&eacute; plus haut ne fait qu'encapsuler la fonction de base et son
+code est le suivant&nbsp;: <PRE> 
+static int send_scilab_job(char *job) 
+{
+  static char buf[1024],
+    format[]=&quot;Err=execstr('%s','errcatch','n');quit;&quot;;
+  int m,n,lp;
+  sprintf(buf,format,job);
+  C2F(scirun)(buf,strlen(buf));
+  GetMatrixptr(&quot;Err&quot;, &amp;m, &amp;n, &amp;lp);
+  return (int) *stk(lp);
+}
+</PRE>
+Il n'y a donc rien de myst&eacute;rieux la dedans, la fonction Scilab 
+<PRE>
+Err=execstr(str,'errcatch','n')
+</PRE>
+permet de faire ex&eacute;cuter une instruction Scilab donn&eacute;e par une
+cha&icirc;ne de caract&egrave;res tout en bloquant le mode de gestion des
+erreurs par d&eacute;faut. En cas d'erreur aucun message n'est imprim&eacute;
+et la fonction execstr renvoie le code de l'erreur dans son argument de retour
+sinon la valeur retourn&eacute;e est z&eacute;ro. L'instruction
+GetMatrixptr(&quot;Err&quot;,m,n,lp) nous permet de r&eacute;cup&eacute;rer ce
+code d'erreur au niveau C. On notera que si les cha&icirc;nes de
+caract&egrave;res transmises &agrave; <CODE>send_scilab_job</CODE> contiennent
+le caract&egrave;re &lt;&lt;<CODE>'</CODE>&gt;&gt; il faudra le doubler dans le
+code source, par exemple&nbsp;: 
+<PRE> 
+   send_scilab_job(&quot;exists(''x'')&quot;);
+</PRE>
+(on &eacute;vitera d'utiliser le caract&egrave;re
+&lt;&lt;<CODE>&quot;</CODE>&gt;&gt; car il faudrait alors le doubler pour
+Scilab et le prot&eacute;ger pour le C !). Il nous reste &agrave; &eacute;crire
+le programme principal qui va appeler les exemples pr&eacute;c&eacute;dents. Ce
+programme principal doit initialiser Scilab et avant de terminer il doit
+appeler la routine de sortie de Scilab <CODE>sciquit</CODE>. Comme certaines
+fonctions de Scilab sont en Fortran (Eh oui ! mais comme on dit &lt;&lt;old
+wine, old bottle&gt;&gt;) et qu'on les appelle &agrave; partir de C, on utilise
+une macro d&eacute;finie dans Scilab qui permet de g&eacute;rer les
+diff&eacute;rences de nommage entre C et Fortran. Ainsi <CODE>sciquit</CODE>
+sera appel&eacute;e sous la forme <CODE>C2F(sciquit)()</CODE> dans du code C.
+L'initialisation de Scilab est r&eacute;sum&eacute;e dans la fonction
+<CODE>Initialize</CODE>. On initialise Scilab et on fait ex&eacute;cuter le
+fichier de startup de Scilab. Le param&egrave;tre <CODE>stacksize</CODE> donne
+la taille de la pile Scilab que l'on demande en au d&eacute;part. Dans notre
+version d'<CODE>Initialize</CODE> on fixe une valeur de la variable
+d'environnement <CODE>SCI</CODE> (Il y a une valeur par d&eacute;faut
+<CODE>../../</CODE> qu'une option de compilation
+<CODE>-DSCI=\&quot;pathname\&quot;</CODE> peut &eacute;craser) pour pouvoir
+appeler notre ex&eacute;cutable directement sans avoir &agrave; fixer la
+variable <CODE>SCI</CODE>. 
+<PRE> 
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt; 
+#include &quot;machine.h&quot;
+#include &quot;stack-c.h&quot;
+
+#ifndef SCI 
+#define SCI &quot;../..&quot;   /* Une valeur par defaut */
+#endif 
+
+static void Initialize() 
+{
+  static char initstr[]=&quot;exec(\&quot;SCI/scilab.star\&quot;,-1);quit;&quot;;
+  static iflag=-1, stacksize = 1000000, ierr=0;
+  setenv(&quot;SCI&quot;,SCI,1);
+  C2F(inisci)(&amp;iflag,&amp;stacksize,&amp;ierr);
+  if ( ierr &gt; 0 ) 
+    {
+      fprintf(stderr,&quot;Scilab initialization failed !\n&quot;);
+      exit(1);
+    }
+  C2F(settmpdir)();
+  C2F(scirun)(initstr,strlen(initstr));
+}
+</PRE>
+Si on ne veut pas voir s'afficher la banni&egrave;re de Scilab lors de
+l'initialisation, il suffit de red&eacute;finir la fonction
+<CODE>banier</CODE>. Par exemple, de la fa&ccedil;on suivante&nbsp;: 
+<PRE> 
+void C2F(banier)(int *x) 
+{
+  fprintf(stdout,&quot;Ma banniere a moi\n&quot;);
+  C2F(storeversion)(&quot;scilab-2.5.1&quot;,12L);
+}
+</PRE>
+Reste le programme principal. On se rappelle &agrave; nouveau que Scilab
+contient une bonne part de code num&eacute;rique Fortran et que lors de sa
+compilation il est plus simple d'obtenir l'ex&eacute;cutable final en appelant
+le compilateur Fortran (<CODE>g77</CODE>). Il se trouve que le runtime du
+Fortran fournit un programme <CODE>main</CODE> et que ce programme
+<CODE>main</CODE> attend de la part de l'utilisateur un point d'entr&eacute;e
+nomm&eacute; <CODE>MAIN__</CODE> (disons que c'est au moins vrai pour
+<CODE>g77</CODE>). On &eacute;crit donc dans notre programme une fonction
+<CODE>MAIN__</CODE>&nbsp;: 
+<PRE> 
+int MAIN__(void) 
+{
+  Initialize();
+  premier_exemple();
+  deuxieme_exemple();
+  troisieme_exemple();
+  C2F(sciquit)();
+}
+</PRE>
+
+<!--TOC section Compilation-->
+
+<H2>4&nbsp;&nbsp; Compilation</H2>
+<!--SEC END -->
+Une fois le code &eacute;crit Il faut le compiler et le linker avec les
+librairies. Pour ce faire, nous nous sommes inspir&eacute;s des fichiers du
+r&eacute;pertoire Scilab <CODE>examples/callsci</CODE> que nous avons
+organis&eacute; de fa&ccedil;on l&eacute;g&egrave;rement diff&eacute;rente.
+Pour adapter le code propos&eacute;, il suffit d'&eacute;diter le fichier
+Makefile et de renseigner les champs <CODE>SCIDIR</CODE>, <CODE>PROG</CODE> et
+<CODE>OBJS</CODE>. Puis un <CODE>make distclean</CODE> suivit de <CODE>make
+all</CODE> devrait effectuer la compilation et la cr&eacute;ation de
+l'ex&eacute;cutable <CODE>PROG</CODE>. <PRE> 
+
+SCIDIR=/usr/local/lib/scilab-2.5.1
+
+PROG=myprog 
+OBJS=myprog.o 
+
+#--------------------------------------------------------
+# do not modify below 
+#--------------------------------------------------------
+
+
+all     : .init 
+        make -f config/Makefile.all \
+           PROG=$(PROG) OBJS=&quot;$(OBJS)&quot; SCIDIR=$(SCIDIR)
+
+.init   : Makefile 
+        config/Init $(PROG) $(SCIDIR) 
+        touch .init 
+
+clean   : 
+        rm -f $(PROG) $(OBJS)
+
+distclean : 
+        rm -f $(PROG) $(OBJS) $(PROG).sh .init config/Makefile 
+        rm -f config/Makefile.Top
+</PRE>
+Le <CODE>Makefile</CODE> pr&eacute;c&eacute;dent commence par lancer un script
+<CODE>Init</CODE> dont le r&ocirc;le est d'aller copier dans les
+r&eacute;pertoires Scilab les <CODE>Makefile</CODE> dont on a besoin pour
+linker les librairies Scilab &agrave; notre application. L'un des fichiers
+cr&eacute;&eacute; par <CODE>Init</CODE> est <CODE>config/Makefile.incl</CODE>.
+C'est une copie du fichier correspondant de Scilab et on pourra avoir besoin de
+l'&eacute;diter par exemple si on veut changer les options de compilation.
+Noter que les fichiers cr&eacute;es par <CODE>Init</CODE> ne sont
+recr&eacute;&eacute;s qu'apr&egrave;s un <CODE>make distclean</CODE>. La
+compilation s'effectue en utilisant la commande <CODE>make</CODE> qui
+ex&eacute;cute <CODE>Init</CODE> que nous venons de voir puis qui lance un
+nouveau <CODE>make</CODE> du fichier <CODE>config/Makefile.all</CODE>. Le
+fichier <CODE>config/Makefile.all</CODE> qui pr&eacute;existe dans le
+r&eacute;pertoire <CODE>config</CODE> utilise les information des fichiers
+cr&eacute;&eacute;s et les variables <CODE>PROG</CODE> et <CODE>OBJS</CODE>
+pour effectuer la compilation. Pour conclure l'utilisateur n'a besoin de donner
+que la liste des fichiers &agrave; compiler et il n'a pas en principe &agrave;
+se pr&eacute;occuper d'options particuli&egrave;res de compilation. Par exemple
+le fichier d'include de Scilab <CODE>&quot;machine.h&quot;</CODE> sera
+trouv&eacute;. Si l'utilisateur a besoin d'une option de compilation
+particuli&egrave;re (par exemple pour d&eacute;buger) il peut aller la rajouter
+dans le fichier <CODE>config/Makefile.all</CODE> (ou comme on l'a
+d&eacute;j&agrave; vu dans le fichier g&eacute;n&eacute;r&eacute;
+<CODE>config/Makefile.incl</CODE>). 
+<PRE>
+SHELL = /bin/sh
+
+include config/Makefile.incl
+
+CFLAGS = $(CC_OPTIONS) -I$(SCIDIR)/routines -DSCI=\&quot;$(SCIDIR)\&quot;
+FFLAGS = $(FC_OPTIONS) 
+CPPFLAGS= $(CC_OPTIONS) -I$(SCIDIR)/routines -DSCI=\&quot;$(SCIDIR)\&quot;
+
+all:: $(PROG) 
+
+world:: $(PROG) 
+
+include config/Makefile.Top
+include config/Makefile 
+
+distclean::
+        $(RM) $(PROG)
+        $(RM) -f -r  config ./configs 
+</PRE>
+
+<!--TOC section Soyons plus moderne-->
+
+<H2>5&nbsp;&nbsp; Soyons plus moderne</H2>
+<!--SEC END -->
+Peut-&ecirc;tre que certains lecteurs, &agrave; la lecture du mot Fortran, ont
+eu un sourire narquois &lt;&lt;c'est quoi cette revue moderne qui parle de
+langages pr&eacute;historiques&gt;&gt;. Pour leur redonner confiance dans leur
+revue pr&eacute;f&eacute;r&eacute;e on va terminer sur une note plus joyeuse
+mais aussi plus difficile &agrave; &eacute;crire&nbsp;: on va utiliser JNI pour
+appeler Scilab &agrave; partir de classes Java. Commen&ccedil;ons par la partie
+Java. Dans le code qui suit on &eacute;crit une classe Java nomm&eacute;e
+<CODE>JavaSciMatrix</CODE> dont les objets sont des matrices
+impl&eacute;ment&eacute;es au moyen de tableaux de double unidimensionnels (
+ceci pour avoir une impl&eacute;mentation voisine de celle de Scilab).
+L'interaction avec Scilab se fait au moyen de la m&eacute;thode
+<CODE>scilabJob</CODE> qui a un unique argument &agrave; savoir une
+cha&icirc;ne de caract&egrave;res Java (un objet de la classe
+<CODE>String</CODE>). La m&eacute;thode <CODE>scilabJob</CODE> doit
+&lt;&lt;envoyer&gt;&gt; la matrice de type <CODE>JavaSciMatrix</CODE> &agrave;
+Scilab, faire ex&eacute;cuter le job Scilab d&eacute;crit par la cha&icirc;ne
+<CODE>scilabJob</CODE> et retransferer les donn&eacute;es en sens inverse de
+Scilab vers l'instance de <CODE>JavaSciMatrix</CODE> qui a appel&eacute;e la
+m&eacute;thode <CODE>scilabJob</CODE>. Pour que l'appel &agrave; la
+m&eacute;thode <CODE>scilabJob</CODE> ait une chance de changer les
+donn&eacute;es de l'objet qui l'invoque il faut bien s&ucirc;r que le
+&lt;&lt;job&gt;&gt; Scilab contienne des r&eacute;f&eacute;rences au nom de la
+matrice. Le lien entre la matrice <CODE>JavaSciMatrix</CODE> et sa
+correspondance en Scilab se faisant au travers de leur nom (champ
+<CODE>name</CODE>). Par exemple si on veut remplir une matrice avec des valeurs
+al&eacute;atoires calcul&eacute;es par Scilab on pourra utiliser&nbsp;: <PRE> 
+    JavaSciMatrix p = new JavaSciMatrix(&quot;A&quot;,4,4);
+    p.scilabJob(p.name + &quot;= rand(&quot; + p.m +&quot;,&quot; + p.n +&quot;);&quot;);
+</PRE>
+Ainsi Scilab ex&eacute;cutera l'instruction &quot;A=rand(4,4)&quot;; Comme la
+construction de la cha&icirc;ne est un peu laborieuse on pourra construire des
+m&eacute;thodes enveloppantes pour rendre les choses plus lisibles. C'est ce
+que nous faisons dans le code qui suit pour les m&eacute;thodes
+<CODE>rand</CODE>, <CODE>show</CODE> et <CODE>inv</CODE>. Par exemple la
+m&eacute;thode <CODE>rand</CODE> &nbsp;: 
+<PRE> 
+  public void rand() { 
+    scilabJob(  name + &quot;=rand(&quot; + m +&quot;,&quot; + n +&quot;);&quot;);
+  }
+</PRE>
+permet de simplifier l'appel pr&eacute;c&eacute;dent en <CODE>p.rand();</CODE>.
+On notera que dans le code propos&eacute;, l'utilisateur doit respecter dans
+<CODE>scilabJob</CODE> les dimensions des matrices qui sont transmises. Nous ne
+v&eacute;rifions pas cette coh&eacute;rence. D'autre part notre code pourrait
+&ecirc;tre optimis&eacute;&nbsp;: ici les transferts entre Java et Scilab sont
+effectu&eacute;s dans les deux sens et &agrave; chaque invocation de
+<CODE>ScilabJob</CODE> ce qui n'est pas forc&eacute;ment optimal. Voil&agrave;
+maintenant l'exemple complet cot&eacute; Java&nbsp;: 
+<PRE> 
+class  JavaSciMatrix {
+  private double [] x ; // Tableau pour les donn&eacute;es 
+  private int m,n;      // taille de la matrice mxn 
+  String name;          // nom donn&eacute; a la matrice 
+
+  // constructeurs 
+  JavaSciMatrix(String name,int m,int n) 
+  {
+    x = new double[m*n];
+    this.m = m ;  this.n = n;
+    this.name = name;
+  }
+
+  JavaSciMatrix(String name,int m,int n,double []x ) 
+  {
+    this.x = x ;  this.m = m ;  this.n = n;
+    this.name = name;
+  }
+
+  // m&eacute;thode &lt;&lt;native&gt;&gt; que nous impl&eacute;menterons en C 
+  public native void scilabJob(String job) ;
+
+  // m&eacute;thodes enveloppantes pour se faciliter la vie 
+  public void inv() { scilabJob( name + &quot;=inv(&quot; + name +&quot;);&quot;);}
+  public void show() {
+    System.out.println(&quot;Matrix &quot;+ name +&quot;=&quot;);
+    scilabJob( &quot;disp(&quot; + name +&quot;);&quot;);
+  }
+
+  public void rand() { 
+    scilabJob(  name + &quot;=rand(&quot; + m +&quot;,&quot; + n +&quot;);&quot;);
+  }
+
+  // A l'initialisation de la classe il faut charger le code externe 
+  static 
+  {
+    System.loadLibrary(&quot;javasci&quot;);
+  }
+
+  // Un test de tout cela 
+
+  public static void main(String[] args) {
+    JavaSciMatrix m = new JavaSciMatrix(&quot;A&quot;,4,4);
+    m.rand();  // on remplit m de nombres al&eacute;atoires (loi uniforme)
+    m.show();  // un display fait par Scilab 
+    JavaSciMatrix n = new JavaSciMatrix(&quot;B&quot;,2,2, new double [] {1,2,3,4} );
+    n.show();  
+    n.inv();   // Une inversion de matrice faite par Scilab 
+    n.show();
+  }
+}
+</PRE>
+Le plus dur reste &agrave; faire. Impl&eacute;menter la m&eacute;thode
+&lt;&lt;native&gt;&gt; <CODE>scilabJob</CODE>. Comme le but de l'article n'est
+pas d'apprendre <CODE>JNI</CODE> on ne rentrera pas dans les d&eacute;tails. Un
+appel &agrave; <CODE>javac</CODE> pour compiler le code
+pr&eacute;c&eacute;dent, suivi d'un appel &agrave; <CODE>javah</CODE> permet
+d'obtenir un fichier d'ent&ecirc;te <CODE>JavaSciMatrix.h</CODE>. On
+conna&icirc;t ainsi le nom de la fonction C &agrave; impl&eacute;menter. On
+&eacute;crit alors <CODE>JavaSciMatrix.c</CODE>&nbsp;: 
+<PRE>
+#include &quot;JavaSciMatrix.h&quot;
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt; 
+#include &quot;machine.h&quot;
+#include &quot;stack-c.h&quot;
+
+static int send_scilab_job(char *job) ;
+static void Initialize() ;
+void C2F(banier)(int *x) ;
+
+JNIEXPORT void JNICALL Java_JavaSciMatrix_scilabJob
+  (JNIEnv *env , jobject obj_this, jstring job)
+{
+  static int init = 0;
+  int i,cm,cn,lp;
+  const char *cname,*cjob;
+  /* get the class */
+  jclass class_Mine = (*env)-&gt;GetObjectClass(env, obj_this);
+  /* get the fields i.e x,m,n,name  */
+  jfieldID id_x = (*env)-&gt;GetFieldID(env, class_Mine, &quot;x&quot;, &quot;[D&quot;);
+  jfieldID id_name =  (*env)-&gt;GetFieldID(env, class_Mine, &quot;name&quot;, 
+                                         &quot;Ljava/lang/String;&quot;);
+  jfieldID id_m = (*env)-&gt;GetFieldID(env, class_Mine, &quot;m&quot;, &quot;I&quot;);
+  jfieldID id_n = (*env)-&gt;GetFieldID(env, class_Mine, &quot;n&quot;, &quot;I&quot;);
+  /* get the field value */
+  jdoubleArray jx = (*env)-&gt;GetObjectField(env, obj_this, id_x);
+  jstring jname = (jstring) (*env)-&gt;GetObjectField(env, obj_this, id_name);
+
+  jint jm = (*env)-&gt;GetIntField(env, obj_this, id_m);
+  jint jn = (*env)-&gt;GetIntField(env, obj_this, id_n);
+  double *cx = (*env)-&gt;GetDoubleArrayElements(env,jx,NULL);
+  cname = (*env)-&gt;GetStringUTFChars(env, jname, NULL);
+  cjob = (*env)-&gt;GetStringUTFChars(env, job, NULL);
+
+  if ( init == 0) { init++; Initialize();} 
+  cm=jm;cn=jn;
+  if (!  C2F(cwritemat)((char *)cname,&amp;cm,&amp;cn,cx,strlen(cname))) 
+    fprintf(stderr,&quot;erreur lors de l'envoi a scilab \n&quot;);
+  else { 
+    if ( send_scilab_job((char *)cjob) != 0) 
+      {
+        fprintf(stderr,&quot;Bug in scilab \n&quot;);
+      }
+    else 
+      {
+        if ( ! C2F(cmatptr)((char *)cname, &amp;cm, &amp;cn, &amp;lp,strlen(cname))) 
+          fprintf(stderr,&quot;erreur lors de la reception \n&quot;);
+        else 
+          for (i=0 ; i &lt; cm*cn ; i++) cx[i] = *stk(lp+i);
+      }
+  }
+  (*env)-&gt;ReleaseStringUTFChars(env, jname , cname);
+  (*env)-&gt;ReleaseStringUTFChars(env, job , cjob);
+  (*env)-&gt;ReleaseDoubleArrayElements(env,jx,cx,0);
+}
+
+</PRE>
+On reconna&icirc;t dans le code pr&eacute;c&eacute;dent la fonction
+<CODE>send_scilab_job</CODE> que l'on a d&eacute;j&agrave; utilis&eacute;e et
+on trouve aussi <CODE>C2F(cwritemat)</CODE> et <CODE>C2F(cmatptr)</CODE> qui
+ont les m&ecirc;mes fonctions que les macros <CODE>WriteMatrix</CODE> et
+<CODE>GetMatrixptr</CODE> d&eacute;j&agrave; vues. Les seules
+difficult&eacute;s nouvelles sont donc de r&eacute;cup&eacute;rer des pointeurs
+de cha&icirc;ne C <CODE>cname</CODE> et <CODE>cjob</CODE> (nom de la matrice et
+job Scilab) des entiers <CODE>jm</CODE> et <CODE>jn</CODE> qui sont des champs
+de l'objet qui a invoqu&eacute; la m&eacute;thode et enfin un pointeur de
+double <CODE>cx</CODE> qui permettra d'acc&eacute;der au vecteur des
+donn&eacute;es. On acc&egrave;de aux champs d'un objet avec la fonction
+<CODE>GetFieldID</CODE> qui demande de conna&icirc;tre le nom du champ, la
+classe de l'objet (que l'on a obtenu avec <CODE>GetObjectClass</CODE>) et la
+signature du champ qui est une cha&icirc;ne qui code le type du champ. La
+signature peut s'obtenir avec la commande <CODE>javap -s JavaSciMatrix</CODE>
+et on obtient par exemple la signature d'un tableau de double
+<CODE>&quot;[D&quot;</CODE>. Une fois obtenu les champs de l'objet et
+connaissant les arguments (ici <CODE>jstring job</CODE>) il faut convertir ces
+arguments dans un format compris par C. Pour les cha&icirc;nes de
+caract&egrave;res la conversion est fa&icirc;te au moyen de
+<CODE>GetStringUTFChars</CODE>&nbsp;: 
+<PRE> 
+ cname = (*env)-&gt;GetStringUTFChars(env, jname, NULL);
+</PRE>
+et il ne faut pas oublier de &lt;&lt;lib&eacute;rer&gt;&gt; la zone
+utilis&eacute;e au moyen de <CODE>ReleaseStringUTFChars</CODE>. Pour le tableau
+de double <CODE>GetDoubleArrayElements</CODE> et
+<CODE>ReleaseDoubleArrayElements</CODE> jouent un r&ocirc;le &eacute;quivalent.
+Noter qu'en cas d'erreur Scilab on imprime juste un message d'erreur. Pour
+&ecirc;tre plus propre, il faudrait renvoyer une Exception Java.
+<CODE>JNI</CODE> rend cela possible et nous renvoyons le lecteur &agrave; la
+doc 
+<PRE>
+   http://java.sun.com/j2se/1.3/docs/guide/jni/index.html
+</PRE>
+Le code complet de <CODE>JavaSciMatrix.c</CODE> que l'on trouvera sur le CD
+contient aussi le code des fonctions d&eacute;j&agrave; vues
+<CODE>Initialize</CODE> <CODE>send_scilab_job</CODE> et
+<CODE>C2F(banier)</CODE> et le code de la fonction <CODE>MAIN__</CODE> que l'on
+r&eacute;duit a sa plus simple expression. 
+<PRE> 
+int MAIN__() {};
+</PRE>
+Il nous faut maintenant compiler le code C. Cette fois, on ne veut pas
+cr&eacute;er une application mais plut&ocirc;t une librairie partag&eacute;e
+qui sera ensuite charg&eacute;e par Java. On reprend le fichier
+<CODE>Makefile</CODE> pr&eacute;c&eacute;dent et cette fois on
+&eacute;crit&nbsp;: 
+<PRE> 
+SCIDIR=/usr/local/lib/scilab-2.5.1
+PROG= libjavasci.so 
+OBJS= JavaSciMatrix.o
+
+#--------------------------------------------------------
+# do not modify below 
+#--------------------------------------------------------
+
+all     :: .init 
+        make -f config/Makefile.all FC=&quot;g77 -Wl,-shared&quot; \
+        PROG=$(PROG) OBJS=&quot;$(OBJS)&quot; SCIDIR=$(SCIDIR)
+
+..........
+
+</PRE>
+On a &eacute;crit dans <CODE>PROG</CODE> le nom de la librairie
+partag&eacute;e. Noter que c'est le nom que l'on avait &eacute;crit dans
+<CODE>System.loadLibrary(&quot;javasci&quot;);</CODE>
+pr&eacute;c&eacute;d&eacute; de <CODE>lib</CODE> et suffix&eacute; par
+<CODE>.so</CODE>. On rajoute &eacute;galement <CODE>FC=&quot;g77
+-Wl,-shared&quot;</CODE> (oui, c'est dans la partie <CODE>do not modify
+below</CODE>!) pour que le linker fasse une librairie partag&eacute;e et pas un
+ex&eacute;cutable. Et maintenant c'est facile, on tape&nbsp;: 
+<PRE> 
+        make distclean 
+        javac JavaSciMatrix.java 
+        make all 
+
+        setenv LD_LIBRARY_PATH `pwd`
+        java JavaciMatrix 
+</PRE>
+et on obtient&nbsp;: 
+<PRE> 
+ekdahl% java JavaSciMatrix
+Et Hop ....
+ 
+Startup execution:
+  loading initial environment
+Fin de Init
+Matrix A=
+ 
+!   0.2113249    0.6653811    0.8782165    0.7263507 !
+!   0.7560439    0.6283918    0.0683740    0.1985144 !
+!   0.0002211    0.8497452    0.5608486    0.5442573 !
+!   0.3303271    0.6857310    0.6623569    0.2320748 !
+Matrix B=
+ 
+!   1.    3. !
+!   2.    4. !
+Matrix B=
+ 
+! - 2.    1.5 !
+!   1.  - 0.5 !
+</PRE>
+Comme on est d'un naturel m&eacute;fiant on v&eacute;rifie le
+r&eacute;sultat&nbsp;: 
+<PRE> 
+--&gt;B=[1,3;2,4] ; Binv=[-2,1.5;1,-0.5];
+--&gt;norm(B*Binv-eye(B)) 
+ ans  =
+ 
+    0.  
+</PRE>
+ Et on conclut: pas si mal finalement l'inversion de matrices en Fortran !
+
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://pauillac.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

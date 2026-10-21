@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xsetech</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli560.html" >next</a>] [<a 
+href="manualli558.html" >prev</a>] [<a 
+href="manualli558.html#tailmanualli558.html" >prev-tail</a>] [<a 
+href="#tailmanualli559.html">tail</a>] [<a 
+href="manualli370.html#manualli559.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x560-3338000"></a>xsetech</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx560-3338001"></a><a 
+ id="xsetech"></a><span 
+class="cmtt-10x-x-109">xsetech </span>&#x2013;                                   set the sub-window of a graphics window for plotting<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x560-3339000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-687">
+&#x00A0;&#x00A0;xsetech(wrect,[frect,logflag])
+&#x00A0;<br />&#x00A0;&#x00A0;xsetech(wrect=[...],frect=[..],logflag=&#x0022;..&#x0022;,&#x00A0;arect=[...])
+&#x00A0;<br />&#x00A0;&#x00A0;xsetech()
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x560-3340000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">wrect</span>: vector of size 4, defining the sub-window to use.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">frect</span>: vector of size 4.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">logflag</span>: string of size 2 &#x201D;xy&#x201D;, where x and y can be &#x201D;n&#x201D; or &#x201D;l&#x201D;. &#x201D;n&#x201D; stands for normal
+     and &#x201D;l&#x201D; stands for logscale. x stands for the x-axis and y stands for the y-axis.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">arect</span>: vector of size 4.</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x560-3341000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xsetech</span></span></span> is mainly used to set the sub-window of the graphics window which will be used for
+plotting. The sub-window is specified with the parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect=[x,y,w,h]</span></span></span> (upper-left point,
+width, height). The values in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect</span></span></span> are specified using proportion of the width or height of the
+current graphic window. For instance <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect=[0,0,1,1]</span></span></span> means that the whole graphics window will
+be used, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect=[0.5,0,0.5,1]</span></span></span> means that the graphics region will be the right half of the
+graphics window.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xsetech</span></span></span> also set the current graphics scales for 2D plotting and can be used in
+conjunction with graphics routines which request the current graphics scale (for instance
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">strf=&#x0022;x0z&#x0022;</span></span></span> or<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frameflag=0</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot2d</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frect=[xmin,ymin,xmax,ymax]</span></span></span> is used to set the graphics
+scale and is just like the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rect</span></span></span> argument of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot2d</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frect</span></span></span> is not given the current
+value of the graphic scale remains unchanged. the default value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rect</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[0,0,1,1]</span></span></span> (at
+window creation, when switching back to default value with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0027;default&#x0027;)</span></span></span> or when
+clearing graphic recorded events <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xbasc()</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">arect=[x_left,</span><span 
+class="cmtt-10x-x-109">&#x00A0;x_right,y_up,y_down]</span></span></span>
+is used to set the graphic frame inside the subwindow. The graphic frame is specified
+(like <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect</span></span></span>) using proportion of the width or height of the current graphic subwindow.
+Default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1/8*[1,1,1,1]</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">arect</span></span></span> is not given, current value remains unchanged.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x560-3342000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb438"><a 
+ id="x560-3342035r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;To</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphical</span><span 
+class="cmitt-10x-x-109">&#x00A0;explanation</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;xsetech</span><span 
+class="cmitt-10x-x-109">&#x00A0;parameters</span><span 
+class="cmitt-10x-x-109">&#x00A0;enter:</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342037r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;exec(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/demos/graphics/xsetechfig.sce&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x560-3342039r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Here</span><span 
+class="cmitt-10x-x-109">&#x00A0;xsetech</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;used</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;split</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphics</span><span 
+class="cmitt-10x-x-109">&#x00A0;window</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;two</span><span 
+class="cmitt-10x-x-109">&#x00A0;parts</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342041r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;xsetech</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;used</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;set</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;sub-window</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342043r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphics</span><span 
+class="cmitt-10x-x-109">&#x00A0;scale</span></span><br class="fancyvrb" /><a 
+ id="x560-3342045r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x560-3342047r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;call</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot2d</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0022;001&#x0022;</span><span 
+class="cmitt-10x-x-109">&#x00A0;option</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;use</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphics</span><span 
+class="cmitt-10x-x-109">&#x00A0;scale</span></span><br class="fancyvrb" /><a 
+ id="x560-3342049r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;set</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;xsetech</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342051r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;001&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x560-3342053r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;then</span><span 
+class="cmitt-10x-x-109">&#x00A0;xsetech</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;used</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;set</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;second</span><span 
+class="cmitt-10x-x-109">&#x00A0;sub-window</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342055r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x560-3342057r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphics</span><span 
+class="cmitt-10x-x-109">&#x00A0;scale</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;set</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;xsetech</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;[0,0,1,1]</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342059r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;change</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;use</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;rect</span><span 
+class="cmitt-10x-x-109">&#x00A0;argument</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot2d</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342061r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;011&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x560-3342063r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Four</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;single</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphics</span><span 
+class="cmitt-10x-x-109">&#x00A0;window</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342065r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x560-3342067r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;font&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x560-3342069r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot3d()</span><br class="fancyvrb" /><a 
+ id="x560-3342071r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d()</span>
+<br class="fancyvrb" /><a 
+ id="x560-3342073r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">grayplot()</span><br class="fancyvrb" /><a 
+ id="x560-3342075r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">histplot()</span>
+<br class="fancyvrb" /><a 
+ id="x560-3342077r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;back</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;sub-window</span></span><br class="fancyvrb" /><a 
+ id="x560-3342079r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x560-3342081r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;One</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;changed</span><span 
+class="cmitt-10x-x-109">&#x00A0;arect</span></span>
+<br class="fancyvrb" /><a 
+ id="x560-3342083r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x560-3342085r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;default&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x560-3342087r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech(arect</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x560-3342089r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x560-3342091r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span>
+<br class="fancyvrb" /><a 
+ id="x560-3342093r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech(arect</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x560-3342095r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x560-3342097r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x560-3342099r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;default&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 100--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x560-3343000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli535.html#xgetech">xgetech</a>    <a 
+href="manualli506.html#subplot">subplot</a>    <a 
+href="manualli445.html#isoview">isoview</a>    <a 
+href="manualli505.html#square">square</a>
+</p>
+<!--l. 104--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x560-3344000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli560.html" >next</a>] [<a 
+href="manualli558.html" >prev</a>] [<a 
+href="manualli558.html#tailmanualli558.html" >prev-tail</a>] [<a 
+href="manualli559.html" >front</a>] [<a 
+href="manualli370.html#manualli559.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli559.html"></a>  </p> 
+</body></html> 

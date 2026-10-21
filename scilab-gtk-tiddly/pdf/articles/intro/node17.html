@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.2.0.0.2 Vectors</TITLE>
+<META NAME="description" CONTENT="2.2.0.0.2 Vectors">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node18.html">
+<LINK REL="previous" HREF="node16.html">
+<LINK REL="up" HREF="node15.html">
+<LINK REL="next" HREF="node18.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html479"
+ HREF="node18.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html475"
+ HREF="node15.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html469"
+ HREF="node16.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html477"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html478"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html480"
+ HREF="node18.html">2.2.0.0.3 Matrices</A>
+<B> Up:</B> <A NAME="tex2html476"
+ HREF="node15.html">2.2 Constant Matrices</A>
+<B> Previous:</B> <A NAME="tex2html470"
+ HREF="node16.html">2.2.0.0.1 Scalars</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H4><A NAME="SECTION00320020000000000000">&#160;</A><A NAME="1077">&#160;</A>
+<BR>
+2.2.0.0.2 Vectors
+</H4>
+The usual way of creating vectors is as follows, using 
+commas (or blanks) and semi-columns:
+<PRE>
+ 
+--&gt; v=[2,-3+%i,7]
+ v         =
+ 
+!   2.  - 3. + i      7. !
+ 
+--&gt; v'
+ ans       =
+ 
+!   2.       !
+! - 3. - i   !
+!   7.       !
+ 
+--&gt; w=[-3;-3-%i;2]
+ w         =
+ 
+! - 3.       !
+! - 3. - i   !
+!   2.       !
+ 
+--&gt; v'+w
+ ans       =
+ 
+! - 1.       !
+! - 6. - 2.i !
+!   9.       !
+ 
+--&gt; v*w
+ ans       =
+ 
+    18.  
+ 
+--&gt; w'.*v
+ ans       =
+ 
+! - 6.    8. - 6.i    14. !
+</PRE>Notice that vector elements that are separated by commas (or by blanks)
+yield row vectors and those separated by semi-colons give column
+vectors. The empty matrix is <code>[]</code> ; it has zero rows and zero columns.
+Note also that a single quote is used for transposing a 
+vector<A NAME="1080">&#160;</A> 
+(one obtains the complex conjugate for complex entries).  Vectors of same
+dimension can be added and subtracted.  The scalar product of a row and
+column vector is demonstrated above.  Element-wise
+multiplication (<TT>.*</TT>) and division (<TT>./</TT>) is also possible 
+as was demonstrated.
+
+<P>
+Note with the following example the role of the position of the blank:
+<PRE>
+--&gt;v=[1 +3]
+ v  =
+ 
+!   1.    3. !
+ 
+--&gt;w=[1 + 3]
+ w  =
+ 
+!   1.    3. !
+ 
+--&gt;w=[1+ 3] 
+ w  =
+ 
+    4. 
+ 
+--&gt;u=[1, + 8- 7]
+ u  =
+ 
+!   1.    1. !
+</PRE>
+<P>
+Vectors<A NAME="1085">&#160;</A> of elements which increase
+or decrease incrementely are constructed as follows 
+<PRE>
+ 
+--&gt; v=5:-.5:3
+ v         =
+ 
+!   5.    4.5    4.    3.5    3. !
+</PRE>The resulting vector begins with the first value and ends
+with the third value stepping in increments of the second value.
+When not specified the default increment is one.  A constant vector
+can be created using the <TT>ones</TT><A NAME="1146">&#160;</A><A NAME="1090">&#160;</A> and <TT>zeros</TT> facility 
+<PRE>
+ 
+--&gt; v=[1 5 6]
+ v         =
+ 
+!   1.    5.    6. !
+ 
+--&gt; ones(v)
+ ans       =
+ 
+!   1.    1.    1. !
+ 
+--&gt; ones(v')
+ ans       =
+ 
+!   1. !
+!   1. !
+!   1. !
+ 
+--&gt; ones(1:4)
+ ans       =
+ 
+!   1.    1.    1.    1. !
+ 
+--&gt; 3*ones(1:4)
+ ans       =
+ 
+!   3.    3.    3.    3. !
+
+--&gt;zeros(v)
+ ans  =
+ 
+!   0.    0.    0. !
+ 
+--&gt;zeros(1:5)
+ ans  =
+ 
+!   0.    0.    0.    0.    0. !
+</PRE>Notice that <TT>ones</TT> or <TT>zeros</TT> replace its vector argument by a vector 
+of equivalent dimensions filled with ones or zeros.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html479"
+ HREF="node18.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html475"
+ HREF="node15.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html469"
+ HREF="node16.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html477"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html478"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html480"
+ HREF="node18.html">2.2.0.0.3 Matrices</A>
+<B> Up:</B> <A NAME="tex2html476"
+ HREF="node15.html">2.2 Constant Matrices</A>
+<B> Previous:</B> <A NAME="tex2html470"
+ HREF="node16.html">2.2.0.0.1 Scalars</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

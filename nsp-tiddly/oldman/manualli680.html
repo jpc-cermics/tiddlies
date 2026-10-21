@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>adj_lists</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli681.html" >next</a>] [<a 
+href="manualli679.html" >prev</a>] [<a 
+href="manualli679.html#tailmanualli679.html" >prev-tail</a>] [<a 
+href="#tailmanualli680.html">tail</a>] [<a 
+href="manualli677.html#manualli680.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x681-4063000"></a>adj_lists</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx681-4063001"></a><a 
+ id="adj_lists"></a><span 
+class="cmtt-10x-x-109">adj</span><span 
+class="cmtt-10x-x-109">_lists </span>&#x2013;                                                                     computes adjacency lists<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x681-4064000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-837">
+&#x00A0;&#x00A0;[lp,la,ls]&#x00A0;=&#x00A0;adj_lists(g)
+&#x00A0;<br />&#x00A0;&#x00A0;[lp,la,ls]&#x00A0;=&#x00A0;adj_lists(directed,n,tail,head)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x681-4065000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">g</span>: graph list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">directed</span>: integer, 0 (undirected graph) or 1 (directed graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: integer, the number of nodes of the graph
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tail</span>: the row vector of the numbers of the tail nodes of the graph (its size is the number
+     of edges of the graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">head</span>: the row vector of the numbers of the head nodes of the graph (its size is the
+     number of edges of the graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">lp</span>: row vector, pointer array of the adjacency lists description of the graph (its size is
+     the number of nodes of the graph + 1)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">la</span>: row vector, arc array of the adjacency lists description of the graph (its size is the
+     number of edges of the graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ls</span>: row vector, node array of the adjacency lists description of the graph (its size is the
+     number of edges of the graph)</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x681-4066000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">adj_lists</span></span></span> computes the row vectors of the adjacency lists description of the graph <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>. It is also
+possible to give <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">adj_lists</span></span></span> the description of the graph given by the number of nodes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> and the row
+vectors <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tail</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">head</span></span></span>.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x681-4067000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb535"><a 
+ id="x681-4067010r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ta=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x681-4067012r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;he=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x681-4067014r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g=make_graph(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">,ta,he)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x681-4067016r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">129</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">200</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">283</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">281</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">128</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">366</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">122</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">333</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x681-4067018r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">61</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">125</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">129</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">189</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">173</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">135</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">236</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">249</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x681-4067020r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;show_graph(g)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x681-4067022r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[lp,la,lls]=adj_lists(g)</span><br class="fancyvrb" /><a 
+ id="x681-4067024r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[lp,la,lls]=adj_lists(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_number&#x0027;</span></span><span 
+class="cmtt-10x-x-109">),ta,he)</span></div>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x681-4068000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#chain-struct">chain_struct</a>    <a 
+href="#graph-2-mat">graph_2_mat</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli681.html" >next</a>] [<a 
+href="manualli679.html" >prev</a>] [<a 
+href="manualli679.html#tailmanualli679.html" >prev-tail</a>] [<a 
+href="manualli680.html" >front</a>] [<a 
+href="manualli677.html#manualli680.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli680.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli352.html" >next</a>] [<a 
+href="manualli350.html" >prev</a>] [<a 
+href="manualli350.html#tailmanualli350.html" >prev-tail</a>] [<a 
+href="#tailmanualli351.html">tail</a>] [<a 
+href="manualli341.html#manualli351.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x352-2069000"></a>functions</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx352-2069001"></a><a 
+ id="functions"></a><span 
+class="cmtt-10x-x-109">functions </span>&#x2013;                                                      Scilab procedures and Scilab objects<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x352-2070000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Functions are Scilab procedures (&#x201D;macro&#x201D;, &#x201D;function&#x201D; and &#x201D;procedure&#x201D; have the save meaning).
+</p>
+<!--l. 26--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x352-2071000"></a><span 
+class="cmbx-10x-x-109">Function definition</span></span>
+   Usually, they are defined in files with an editor and loaded into Scilab by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">getf</span></span></span> or through a
+library (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lib</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">genlib</span></span></span>). But They can also be defined on-line (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">deff</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">function</span></span></span> o. A
+function is defined by two components: </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">-</div> a &#x201D;syntax definition&#x201D; part as follows:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-484">
+     &#x00A0;&#x00A0;function&#x00A0;[y1,...,yn]=foo(x1,...,xm)
+     &#x00A0;<br />&#x00A0;&#x00A0;function&#x00A0;[y1,...,yn,varargout]=foo(x1,...,xm,varargin)
+</div>
+     <!--l. 37--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">-</div> a sequence of scilab instructions.</li></ul>
+<!--l. 40--><p class="noindent" >The &#x201D;syntax definition&#x201D; line gives the &#x201D;full&#x201D; calling syntax of this function. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yi</span></span></span> are output variables
+calculated as functions of input variables <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xi</span></span></span> and variables existing in Scilab when the function is
+executed.
+</p>
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x352-2072000"></a><span 
+class="cmbx-10x-x-109">Calling function</span></span>
+   Usually function calling syntax is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[y1,...,yn]=foo(x1,...,xm)</span></span></span>. Shorter input or output
+argument list than definition ones may be used. In such cases, only the first variables from the left
+are used of set. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">argn</span></span></span> function may be used to get the actual number of calling arguments. It is
+also possible to use &#x201D;named argument&#x201D; to specify input arguments: suppose function
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun1</span></span></span> defined as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">function</span><span 
+class="cmtt-10x-x-109">&#x00A0;y1=fun1(x1,x2,x3)</span></span></span> then it call be called with a syntax like
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y=fun1(x1=33,x3=[1</span><span 
+class="cmtt-10x-x-109">&#x00A0;2</span><span 
+class="cmtt-10x-x-109">&#x00A0;3])</span></span></span> within <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun1</span></span></span> x2 will be undefined. It is possible to check for defined
+variables with the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">exists</span></span></span> function When a function has no left hand side argument and
+is called only with character string arguments, the callling syntax may be simplified
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun(&#x0027;a&#x0027;,&#x0027;toto&#x0027;,&#x0027;a</span><span 
+class="cmtt-10x-x-109">&#x00A0;string&#x0027;)</span></span></span> can be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span><span 
+class="cmtt-10x-x-109">&#x00A0;toto</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;a</span><span 
+class="cmtt-10x-x-109">&#x00A0;string&#x0027;</span></span></span>
+</p>
+<!--l. 47--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x352-2073000"></a><span 
+class="cmbx-10x-x-109">Miscellaneous</span></span>
+   Functions are Scilab objects (with type numbers 13 or 11). They and can be manipulated (built,
+saved, loaded, passed as arguments,..) as other variable types. Collections of functions can be
+collected in libraries. Functions which begin with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%</span></span></span> sign (e.g. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%foo</span></span></span>) are often used to overload (see
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">overloading</span></span></span>) operations or functions for new data type.
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x352-2074000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb270"><a 
+ id="x352-2074015r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//inline</span><span 
+class="cmitt-10x-x-109">&#x00A0;definition</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;function)</span></span><br class="fancyvrb" /><a 
+ id="x352-2074017r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;[x,y]=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">myfct</span></span><span 
+class="cmtt-10x-x-109">(a,b)</span><br class="fancyvrb" /><a 
+ id="x352-2074019r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">b</span><br class="fancyvrb" /><a 
+ id="x352-2074021r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">b</span><br class="fancyvrb" /><a 
+ id="x352-2074023r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x352-2074025r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[x,y]=myfct(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x352-2074027r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//inline</span><span 
+class="cmitt-10x-x-109">&#x00A0;definition</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;deff)</span></span><br class="fancyvrb" /><a 
+ id="x352-2074029r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[x,y]=myfct(a,b)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x=a+b&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=a-b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x352-2074031r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;definition</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;ascii</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;exec)</span></span><br class="fancyvrb" /><a 
+ id="x352-2074033r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">exec</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;SCI/macros/elem/asinh.sci</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x352-2074035r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;definition</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;ascii</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;getf)</span></span><br class="fancyvrb" /><a 
+ id="x352-2074037r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;getf</span><span 
+class="cmitt-10x-x-109">&#x00A0;SCI/macros/elem/asinh.sci;</span></span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x352-2075000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli352.html#function">function</a>    <a 
+href="manualli346.html#deff">deff</a>    <a 
+href="manualli355.html#getf">getf</a>    <a 
+href="manualli345.html#comp">comp</a>    <a 
+href="manualli358.html#lib">lib</a>    <a 
+href="manualli354.html#getd">getd</a>    <a 
+href="manualli353.html#genlib">genlib</a>    <a 
+href="manualli964.html#exists">exists</a>    <a 
+href="manualli368.html#varargin">varargin</a>    <a 
+href="manualli369.html#varargout">varargout</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli352.html" >next</a>] [<a 
+href="manualli350.html" >prev</a>] [<a 
+href="manualli350.html#tailmanualli350.html" >prev-tail</a>] [<a 
+href="manualli351.html" >front</a>] [<a 
+href="manualli341.html#manualli351.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli351.html"></a>  </p> 
+</body></html> 

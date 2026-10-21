@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>abinv</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli15.html" >next</a>] [<a 
+href="manualli13.html" >prev</a>] [<a 
+href="manualli13.html#tailmanualli13.html" >prev-tail</a>] [<a 
+href="#tailmanualli14.html">tail</a>] [<a 
+href="manualli12.html#manualli14.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x15-60000"></a>abinv</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx15-60001"></a><a 
+ id="abinv"></a><span 
+class="cmtt-10x-x-109">abinv </span>&#x2013;                                                                              AB invariant subspace<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x15-61000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-21">
+&#x00A0;&#x00A0;[X,dims,F,U,k,Z]=abinv(Sys,alfa,beta,flag)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x15-62000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sys</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list containing the matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A,B,C,D]</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">alfa</span>: (optional) real number or vector (possibly complex, location of closed loop poles)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">beta</span>: (optional) real number or vector (possibly complex, location of closed loop poles)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: (optional) character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ge&#x0027;</span></span></span> (default) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;st&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;pp&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: orthogonal matrix of size nx (dim of state space).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dims</span>:                            integer                            row                            vector
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims=[dimR,dimVg,dimV,noc,nos]</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimR$&#x003C;$=dimVg$&#x003C;$=dimV$&#x003C;$=noc$&#x003C;$=nos</span></span></span>. If
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;st&#x0027;</span></span></span>, (resp. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;pp&#x0027;</span></span></span>), <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims</span></span></span> has 4 (resp. 3) components.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">F</span>: real matrix (state feedback)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">k</span>: integer (normal rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Z</span>: non-singular linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list)</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x15-63000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > Output nulling subspace (maximal unobservable subspace) for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span> = linear system defined by a
+syslin list containing the matrices [A,B,C,D] of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span>. The vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims=[dimR,dimVg,dimV,noc,nos]</span></span></span>
+gives the dimensions of subspaces defined as columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> according to partition given
+below. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimV</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> i.e <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">V=X(:,1:dimV)</span></span></span>, span the AB-invariant subspace
+                                                                                    
+
+                                                                                    
+of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span> i.e the unobservable subspace of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A+B*F,C+D*F)</span></span></span>. (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimV=nx</span></span></span> iff <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">C^(-1)(D)=X</span></span></span>).
+The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimR</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R=X(:,1:dimR)</span></span></span> spans the controllable part of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">V</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(dimR$&#x003C;$=dimV)</span></span></span>. (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimR=0</span></span></span> for a left invertible system). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> is the maximal controllability
+subspace of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">kernel(C)</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimVg</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> spans <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Vg</span></span></span>=maximal
+AB-stabilizable subspace of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(dimR$&#x003C;$=dimVg$&#x003C;$=dimV)</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span> is a decoupling feedback: for
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X=[V,X2]</span><span 
+class="cmtt-10x-x-109">&#x00A0;(X2=X(:,dimV+1:nx))</span></span></span> one has <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X2&#x0027;*(A+B*F)*V=0</span><span 
+class="cmtt-10x-x-109">&#x00A0;and</span><span 
+class="cmtt-10x-x-109">&#x00A0;(C+D*F)*V=0</span></span></span>. The
+zeros od <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span> are given by: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X0=X(:,dimR+1:dimV);</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(X0&#x0027;*(A+B*F)*X0)</span></span></span> i.e. there are
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimV-dimR</span></span></span> closed-loop fixed modes. If the optional parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa</span></span></span> is given as input, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimR</span></span></span>
+controllable modes of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A+BF)</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">V</span></span></span> are set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa</span></span></span> (or to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[alfa(1),</span><span 
+class="cmtt-10x-x-109">&#x00A0;alfa(2),</span><span 
+class="cmtt-10x-x-109">&#x00A0;...]</span></span></span>. (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa</span></span></span> can
+be a vector (real or complex pairs) or a (real) number). Default value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa=-1</span></span></span>. If the
+optional real parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">beta</span></span></span> is given as input, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">noc-dimV</span></span></span> controllable modes of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A+BF)</span></span></span>
+&#x201D;outside&#x201D; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">V</span></span></span> are set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">beta</span></span></span> (or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[beta(1),beta(2),...]</span></span></span>). Default value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">beta=-1</span></span></span>. In
+the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X,U</span></span></span> bases, the matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[X&#x0027;*(A+B*F)*X,X&#x0027;*B*U;(C+D*F)*X,D*U]</span></span></span> are displayed as
+follows:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-22">
+&#x00A0;&#x00A0;[A11,*,*,*,*,*]&#x00A0;&#x00A0;[B11&#x00A0;*&#x00A0;]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,A22,*,*,*,*]&#x00A0;&#x00A0;[0&#x00A0;&#x00A0;&#x00A0;*&#x00A0;]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,A33,*,*,*]&#x00A0;&#x00A0;[0&#x00A0;&#x00A0;&#x00A0;*&#x00A0;]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,0,A44,*,*]&#x00A0;&#x00A0;[0&#x00A0;&#x00A0;B42]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,0,0,A55,*]&#x00A0;&#x00A0;[0&#x00A0;&#x00A0;&#x00A0;0&#x00A0;]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,0,0,0,A66]&#x00A0;&#x00A0;[0&#x00A0;&#x00A0;&#x00A0;0&#x00A0;]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,0,*,*,*]&#x00A0;&#x00A0;&#x00A0;&#x00A0;[0&#x00A0;&#x00A0;D2]
+</div>
+<!--l. 79--><p class="nopar" >where the X-partitioning is defined by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims</span></span></span> and the U-partitioning is defined by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A11</span></span></span> is
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(dimR</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;dimR)</span></span></span> and has its eigenvalues set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa(i)&#x0027;s</span></span></span>. The pair <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A11,B11)</span></span></span> is controllable and
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B11</span></span></span> has <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nu-k</span></span></span> columns. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A22</span></span></span> is a stable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(dimVg-dimR</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;dimVg-dimR)</span></span></span> matrix. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A33</span></span></span> is an unstable
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(dimV-dimVg</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;dimV-dimVg)</span></span></span> matrix (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">st_ility</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A44</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(noc-dimV</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;noc-dimV)</span></span></span> and has
+its eigenvalues set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">beta(i)&#x0027;s</span></span></span>. The pair <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A44,B42)</span></span></span> is controllable. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A55</span></span></span> is a stable
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(nos-noc</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;nos-noc)</span></span></span> matrix. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A66</span></span></span> is an unstable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(nx-nos</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;nx-nos)</span></span></span> matrix (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">st_ility</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Z</span></span></span> is a
+column compression of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> is the normal rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys</span></span></span> i.e <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys*Z</span></span></span> is a column-compressed linear
+system. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> is the column dimensions of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B42,B52,B62</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D2</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[B42;B52;B62;D2]</span></span></span> is full column rank
+and has rank <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;st&#x0027;</span></span></span> is given, a five blocks partition of the matrices is returned and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims</span></span></span>
+has four components. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;pp&#x0027;</span></span></span> is given a four blocks partition is returned. In case <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;ge&#x0027;</span></span></span>
+one has <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims=[dimR,dimVg,dimV,dimV+nc2,dimV+ns2]</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nc2</span></span></span> (resp. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ns2</span></span></span>) is the dimension of
+the controllable (resp. stabilizable) pair <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A44,B42)</span></span></span> (resp. (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A44,*;0,A55],[B42;0])</span></span></span>). In case
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;st&#x0027;</span></span></span> one has <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims=[dimR,dimVg,dimVg+nc,dimVg+ns]</span></span></span> and in case <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;pp&#x0027;</span></span></span> one has
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims=[dimR,dimR+nc,dimR+ns]</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nc</span></span></span> (resp. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ns</span></span></span>) is here the dimension of the controllable (resp.
+stabilizable) subspace of the blocks 3 to 6 (resp. 2 to 6). This function can be used for the (exact)
+disturbance decoupling problem.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-23">
+&#x00A0;&#x00A0;DDPS:
+&#x00A0;<br />&#x00A0;&#x00A0;Find&#x00A0;u=Fx+Rd=[F,R]*[x;d]&#x00A0;which&#x00A0;rejects&#x00A0;Q*d&#x00A0;and&#x00A0;stabilizes&#x00A0;the&#x00A0;plant:
+&#x00A0;<br />&#x00A0;&#x00A0;xdot&#x00A0;=&#x00A0;Ax+Bu+Qd
+&#x00A0;<br />&#x00A0;&#x00A0;y&#x00A0;=&#x00A0;Cx+Du+Td
+&#x00A0;<br />&#x00A0;&#x00A0;DDPS&#x00A0;has&#x00A0;a&#x00A0;solution&#x00A0;if&#x00A0;Im(Q)&#x00A0;is&#x00A0;included&#x00A0;in&#x00A0;Vg&#x00A0;+&#x00A0;Im(B)&#x00A0;and&#x00A0;stabilizability
+&#x00A0;<br />&#x00A0;&#x00A0;assumption&#x00A0;is&#x00A0;satisfied.
+&#x00A0;<br />&#x00A0;&#x00A0;Let&#x00A0;G=(X(:,dimVg+1:$))&#x0027;=&#x00A0;left&#x00A0;annihilator&#x00A0;of&#x00A0;Vg&#x00A0;i.e.&#x00A0;G*Vg=0;
+&#x00A0;<br />&#x00A0;&#x00A0;B2=G*B;&#x00A0;Q2=G*Q;&#x00A0;DDPS&#x00A0;solvable&#x00A0;iff&#x00A0;[B2;D]*R&#x00A0;+&#x00A0;[Q2;T]&#x00A0;=0&#x00A0;has&#x00A0;a&#x00A0;solution.
+&#x00A0;<br />&#x00A0;&#x00A0;The&#x00A0;pair&#x00A0;F,R&#x00A0;&#x00A0;is&#x00A0;the&#x00A0;solution&#x00A0;&#x00A0;(with&#x00A0;F=output&#x00A0;of&#x00A0;abinv).
+&#x00A0;<br />&#x00A0;&#x00A0;Im(Q2)&#x00A0;is&#x00A0;in&#x00A0;Im(B2)&#x00A0;means&#x00A0;row-compression&#x00A0;of&#x00A0;B2=$&#x003E;$row-compression&#x00A0;of&#x00A0;Q2
+&#x00A0;<br />&#x00A0;&#x00A0;Then&#x00A0;C*[(sI-A-B*F)^(-1)+D]*(Q+B*R)&#x00A0;=0&#x00A0;&#x00A0;&#x00A0;($&#x003C;$=$&#x003E;$G*(Q+B*R)=0)
+</div>
+<!--l. 114--><p class="nopar" >
+</p>
+<!--l. 117--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x15-64000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb7"><a 
+ id="x15-64053r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nu=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ny=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nx=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64055r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nrt=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ngt=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ng0=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nvt=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">rk=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64057r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;flag=list(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;on&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,nrt,ngt,ng0,nvt,rk)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64059r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sys=ssrand(ny,nu,nx,flag)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">alfa=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">beta=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64061r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,dims,F,U,k,Z]=abinv(Sys,alfa,beta)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64063r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,B,C,D]=abcd(Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">dimV=dims(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">dimR=dims(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64065r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;V=X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">dimV)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">X2=X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,dimV</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">nx)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64067r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">V</span><br class="fancyvrb" /><a 
+ id="x15-64069r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;(C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">D</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">V</span><br class="fancyvrb" /><a 
+ id="x15-64071r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X0=X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,dimR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">dimV)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">spec(X0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X0)</span><br class="fancyvrb" /><a 
+ id="x15-64073r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;trzeros(Sys)</span>
+<br class="fancyvrb" /><a 
+ id="x15-64075r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//nr=2</span><span 
+class="cmitt-10x-x-109">&#x00A0;evals</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;-1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;noc-dimV=2</span><span 
+class="cmitt-10x-x-109">&#x00A0;evals</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;-2.</span></span><br class="fancyvrb" /><a 
+ id="x15-64077r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(ss2tf(Sys</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Z))</span>
+<br class="fancyvrb" /><a 
+ id="x15-64079r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;2nd</span><span 
+class="cmitt-10x-x-109">&#x00A0;Example</span></span><br class="fancyvrb" /><a 
+ id="x15-64081r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nx=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ny=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nu=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64083r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=diag(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64085r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=[zeros(ny,ny)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">eye(ny,ny)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64087r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sl=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//sl=ss2ss(sl,rand(6,6))*rand(2,2);</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64089r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,B,C,D]=abcd(sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//The</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrices</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;sl.</span></span><br class="fancyvrb" /><a 
+ id="x15-64091r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;alfa=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">beta=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64093r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,dims,F,U,k,Z]=abinv(sl,alfa,beta)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">dimVg=dims(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64095r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X)</span><br class="fancyvrb" /><a 
+ id="x15-64097r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">U)</span>
+<br class="fancyvrb" /><a 
+ id="x15-64099r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean((C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">D</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X)</span><br class="fancyvrb" /><a 
+ id="x15-64101r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(D</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">U)</span><br class="fancyvrb" /><a 
+ id="x15-64103r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;G=(X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,dimVg</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">$))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64105r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B2=G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nd=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64107r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;R=rand(nu,nd)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q2T=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">[B2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">R</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64109r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=size(G,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q2=Q2T(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">p,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">T=Q2T(p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">$,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64111r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q=G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x005C;</span></span><span 
+class="cmtt-10x-x-109">Q2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//a</span><span 
+class="cmitt-10x-x-109">&#x00A0;valid</span><span 
+class="cmitt-10x-x-109">&#x00A0;[Q;T]</span><span 
+class="cmitt-10x-x-109">&#x00A0;since</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64113r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">R</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">[G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">T]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;zero</span></span><br class="fancyvrb" /><a 
+ id="x15-64115r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;closed=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F,Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">R,C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">D</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F,T</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">D</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">R)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;closed</span><span 
+class="cmitt-10x-x-109">&#x00A0;loop:</span><span 
+class="cmitt-10x-x-109">&#x00A0;d--$&#x003E;$y</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64117r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(closed)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Closed</span><span 
+class="cmitt-10x-x-109">&#x00A0;loop</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;zero</span></span><br class="fancyvrb" /><a 
+ id="x15-64119r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(closed(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;A&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//The</span><span 
+class="cmitt-10x-x-109">&#x00A0;plant</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;not</span><span 
+class="cmitt-10x-x-109">&#x00A0;stabilizable!</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64121r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[ns,nc,W,sl1]=st_ility(sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64123r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,B,C,D]=abcd(sl1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A=A(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">ns,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">ns)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=B(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">ns,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=C(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">ns)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64125r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;slnew=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Now</span><span 
+class="cmitt-10x-x-109">&#x00A0;stabilizable</span></span><br class="fancyvrb" /><a 
+ id="x15-64127r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Fnew=stabil(slnew(&#x0027;A&#x0027;),slnew(&#x0027;B&#x0027;),-11);</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64129r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//slnew(&#x0027;A&#x0027;)=slnew(&#x0027;A&#x0027;)+slnew(&#x0027;B&#x0027;)*Fnew;</span></span><br class="fancyvrb" /><a 
+ id="x15-64131r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//slnew(&#x0027;C&#x0027;)=slnew(&#x0027;C&#x0027;)+slnew(&#x0027;D&#x0027;)*Fnew;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64133r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,dims,F,U,k,Z]=abinv(slnew,alfa,beta)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">dimVg=dims(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64135r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,B,C,D]=abcd(slnew)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64137r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;G=(X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,dimVg</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">$))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64139r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B2=G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nd=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64141r45"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;R=rand(nu,nd)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q2T=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">[B2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">R</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64143r46"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=size(G,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q2=Q2T(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">p,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">T=Q2T(p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">$,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x15-64145r47"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q=G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x005C;</span></span><span 
+class="cmtt-10x-x-109">Q2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//a</span><span 
+class="cmitt-10x-x-109">&#x00A0;valid</span><span 
+class="cmitt-10x-x-109">&#x00A0;[Q;T]</span><span 
+class="cmitt-10x-x-109">&#x00A0;since</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64147r48"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">R</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">[G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">T]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;zero</span></span><br class="fancyvrb" /><a 
+ id="x15-64149r49"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;closed=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F,Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">R,C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">D</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F,T</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">D</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">R)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;closed</span><span 
+class="cmitt-10x-x-109">&#x00A0;loop:</span><span 
+class="cmitt-10x-x-109">&#x00A0;d--$&#x003E;$y</span></span>
+<br class="fancyvrb" /><a 
+ id="x15-64151r50"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(closed)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Closed</span><span 
+class="cmitt-10x-x-109">&#x00A0;loop</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;zero</span></span><br class="fancyvrb" /><a 
+ id="x15-64153r51"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(closed(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;A&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 173--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x15-65000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli19.html#cainv">cainv</a>    <a 
+href="#st-ility">st_ility</a>    <a 
+href="manualli252.html#ssrand">ssrand</a>    <a 
+href="manualli78.html#ss2ss">ss2ss</a>    <a 
+href="manualli31.html#ddp">ddp</a>
+</p>
+<!--l. 177--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x15-66000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.D.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli15.html" >next</a>] [<a 
+href="manualli13.html" >prev</a>] [<a 
+href="manualli13.html#tailmanualli13.html" >prev-tail</a>] [<a 
+href="manualli14.html" >front</a>] [<a 
+href="manualli12.html#manualli14.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli14.html"></a>  </p> 
+</body></html> 

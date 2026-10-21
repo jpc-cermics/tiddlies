@@ -1,0 +1,19 @@
+
+<style>
+
+abbr{
+  display: inline-block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #B509AC;
+}
+
+.badge {
+    color: #ffffff;
+    zzbackground-color: #B509AC;
+}
+
+</style>
+{% if link.AC %}<abbr class="badge" style="background-color: #00008B;" markdown="1">Journal {{ ij }}</abbr>{% assign ij = ij | minus:1 %}{% elsif link.PROC %}<abbr class="badge" style="background-color: #008B00;" markdown="1">Proceedings {{ iw }}</abbr>{% assign iw = iw | minus:1 %}{% else %}<abbr class="badge" markdown="1">Preprint {{ ip }}</abbr>{% assign ip = ip | minus:1 %}{% endif %}
+**{{ link.AU }}**, *{{ link.TI }}*, {% if link.preprint %}{{ link.preprint }}  {% else %}  {% endif %}
+{% if link.AC %}**Accepted in** {{ link.AC }}{% endif %}{% if link.PROC %}**in Proceedings** {{ link.PROC }}{% endif %}

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_sci2f77</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1081.html" >next</a>] [<a 
+href="manualli1079.html" >prev</a>] [<a 
+href="manualli1079.html#tailmanualli1079.html" >prev-tail</a>] [<a 
+href="#tailmanualli1080.html">tail</a>] [<a 
+href="manualli1054.html#manualli1080.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1081-6126000"></a>pvm_sci2f77</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1081-6126001"></a><a 
+ id="pvm_sci2f77"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_sci2f77 </span>&#x2013;                                                        Convert complex scalar into F77<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1081-6127000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1189">
+&#x00A0;&#x00A0;[res]&#x00A0;=&#x00A0;pvm_sci2f77(var)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1081-6128000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">var: local scilab variable. On return, the variable will be    </span>overwritten
+     with the result of conversion operation.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">res</span>: if the parameter var is not a variable, the result of the conversion is returned in
+     res.</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1081-6129000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_sci2f77</span></span></span> converts all the complex of a scilab variable (array, list...) in the F77 representation.
+MAy be useful if an application is sendind data to a non scilab application (direcvtly to a C or F77
+program for example). Note that the parameter is passed by adress. It means that if the parameter
+is a variable, this variable will be overwritten with the result of conversion operation.
+On the other case, if the parameter is not a variable, the result will be returned in res.
+</p>
+<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1081-6130000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb742"><a 
+ id="x1081-6130005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1081-6130007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;pvm_sci2f77(a)</span><br class="fancyvrb" /><a 
+ id="x1081-6130009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3.</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%eps</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">pause</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span></div>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1081-6131000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-f772sci">pvm_f772sci</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1081.html" >next</a>] [<a 
+href="manualli1079.html" >prev</a>] [<a 
+href="manualli1079.html#tailmanualli1079.html" >prev-tail</a>] [<a 
+href="manualli1080.html" >front</a>] [<a 
+href="manualli1054.html#manualli1080.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1080.html"></a>  </p> 
+</body></html> 

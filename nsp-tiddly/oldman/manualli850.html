@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_tril</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli851.html" >next</a>] [<a 
+href="manualli849.html" >prev</a>] [<a 
+href="manualli849.html#tailmanualli849.html" >prev-tail</a>] [<a 
+href="#tailmanualli850.html">tail</a>] [<a 
+href="manualli756.html#manualli850.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x851-4930000"></a>mtlb_tril</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx851-4930001"></a><a 
+ id="mtlb_tril"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_tril </span>&#x2013;                                                              Matlab tril emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x851-4931000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Matlab and Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tril</span></span></span> behave differently in some particular cases:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> With complex input: Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tril</span></span></span> can be used with complex data but not Scilab
+          one.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> With character strings inputs: due to the fact the Matlab and Scilab do not
+          consider character strings in the same way, Scilab and Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tril</span></span></span> do not give
+          the same results for this type of input.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> With boolean inputs: Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tril</span></span></span> can be used with boobean data but not Scilab
+          one.</li></ul>
+     </ul>
+<!--l. 36--><p class="noindent" >The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_tril(x,k)</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tril(x,k)</span></span></span> when it was not possible to
+know what were the inputs while porting Matlab code to Scilab. This function will determine the
+correct semantic at run time. If you want to have a more efficient code it is possible to replace
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_tril</span></span></span> calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> contains real double values <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_tril(x,k)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tril(x,k)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>  If   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>  contains   boolean   values   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_tril(x,k)</span></span></span>  may   be   replaced   by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tril(bool2s(x),k)</span></span></span></li></ul>
+                                                                                    
+
+                                                                                    
+     </ul>
+<!--l. 52--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_tril</span></span></span> has not to be used for hand coded functions.
+</p>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x851-4932000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#Matlab-Scilab-character-strings">Matlab-Scilab_character_strings</a>
+</p>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x851-4933000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x851-4934000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli851.html" >next</a>] [<a 
+href="manualli849.html" >prev</a>] [<a 
+href="manualli849.html#tailmanualli849.html" >prev-tail</a>] [<a 
+href="manualli850.html" >front</a>] [<a 
+href="manualli756.html#manualli850.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli850.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>sysfact</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli84.html" >next</a>] [<a 
+href="manualli82.html" >prev</a>] [<a 
+href="manualli82.html#tailmanualli82.html" >prev-tail</a>] [<a 
+href="#tailmanualli83.html">tail</a>] [<a 
+href="manualli12.html#manualli83.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x84-490000"></a>sysfact</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx84-490001"></a><a 
+ id="sysfact"></a><span 
+class="cmtt-10x-x-109">sysfact </span>&#x2013;                                                                              system factorization<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x84-491000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-162">
+&#x00A0;&#x00A0;[S,Series]=sysfact(Sys,Gain,flag)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x84-492000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sys</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list containing the matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A,B,C,D]</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Gain</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;post&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;pre&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">S</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Series</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x84-493000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> equals <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;post&#x0027;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sysfact</span></span></span> returns in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S</span></span></span> the linear system with ABCD matrices
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A+B*Gain,</span><span 
+class="cmtt-10x-x-109">&#x00A0;B</span><span 
+class="cmtt-10x-x-109">&#x00A0;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Gain,</span><span 
+class="cmtt-10x-x-109">&#x00A0;I)</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Series</span></span></span>, a minimal realization of the series system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sys*S</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span>
+equals <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;pre&#x0027;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sysfact</span></span></span> returns the linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A+Gain*C,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Gain</span><span 
+class="cmtt-10x-x-109">&#x00A0;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;C,</span><span 
+class="cmtt-10x-x-109">&#x00A0;I)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Series</span></span></span>, a minimal
+realization of the series system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S*Sys</span></span></span>.
+</p>
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x84-494000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb65"><a 
+ id="x84-494012r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Kalman</span><span 
+class="cmitt-10x-x-109">&#x00A0;filter</span></span><br class="fancyvrb" /><a 
+ id="x84-494014r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sys=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Sys(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;D&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x84-494016r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S=sysfact(Sys,lqr(Sys),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;post&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x84-494018r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ww=minss(Sys</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">S)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x84-494020r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(gtild(ww)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ww)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Sys(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;D&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Sys(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;D&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x84-494022r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Kernel</span></span><br class="fancyvrb" /><a 
+ id="x84-494024r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sys=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x84-494026r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,d,F,U,k,Z]=abinv(Sys)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x84-494028r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(Sys</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Z)</span><br class="fancyvrb" /><a 
+ id="x84-494030r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(Sys</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sysfact(Sys,F,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;post&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">U)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x84-495000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli54.html#lqr">lqr</a>    <a 
+href="manualli51.html#lqe">lqe</a>
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x84-496000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.D.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli84.html" >next</a>] [<a 
+href="manualli82.html" >prev</a>] [<a 
+href="manualli82.html#tailmanualli82.html" >prev-tail</a>] [<a 
+href="manualli83.html" >front</a>] [<a 
+href="manualli12.html#manualli83.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli83.html"></a>  </p> 
+</body></html> 

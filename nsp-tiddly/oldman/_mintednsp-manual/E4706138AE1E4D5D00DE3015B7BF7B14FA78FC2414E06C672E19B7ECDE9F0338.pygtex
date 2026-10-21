@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+M=mlist([\nspstring{'V'}\nspoperator{,}\nspstring{'name'}\nspoperator{,}\nspstring{'value'}],[\nspstring{'a'}\nspoperator{,}\nspstring{'b'}\nspoperator{,}\nspstring{'c'}],[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}])\nspoperator{;}
+\nspcomment{//define display}
+deff(\nspstring{'\nsppc{}V_p(M)'},\nspstring{'disp(M.name+'':''+string(M.value))'})
+\nspcomment{//define extraction operation}
+deff(\nspstring{'r=\nsppc{}V_e(i,M)'},\nspstring{'r=mlist([''V'',''name'',''value''],M.name(i),M.value(i))'})
+M(\nspnumber{2})\nspoperator{,}\nspcomment{// the second entry of the vector M}
+M.value
+\nspcomment{//define M as a tlist}
+M=tlist([\nspstring{'V'}\nspoperator{,}\nspstring{'name'}\nspoperator{,}\nspstring{'value'}],[\nspstring{'a'}\nspoperator{,}\nspstring{'b'}\nspoperator{,}\nspstring{'c'}],[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}])\nspoperator{;}
+M(\nspnumber{2})
+M(\nspstring{'name'})
+\nspcomment{//with two  indices}
+M=mlist([\nspstring{'V'}\nspoperator{,}\nspstring{'name'}\nspoperator{,}\nspstring{'value'}],[\nspstring{'a'}\nspoperator{,}\nspstring{'b'}\nspoperator{;}\nspstring{'c'}\nspoperator{,}\nspstring{'d'}],[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{3}\nspoperator{,}\nspnumber{4}])\nspoperator{;}
+deff(\nspstring{'r=\nsppc{}V_e(varargin)'}, ...
+     [\nspstring{'M=varargin($)'}\nspoperator{;}\nspstring{'H=[''V'',''name'',''value'']'}\nspoperator{;}
+      \nspstring{'r=mlist(H,M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))'}])
+M(\nspoperator{:},\nspnumber{2})
+\nspcomment{// multidimensionnal array}
+str=[\nspstring{'a'}\nspoperator{,}\nspstring{'b'}\nspoperator{,}\nspstring{'c'}\nspoperator{,}\nspstring{'d'}\nspoperator{,}\nspstring{'e'}\nspoperator{,}\nspstring{'f'}\nspoperator{,}\nspstring{'g'}\nspoperator{,}\nspstring{'h'}]\nspoperator{;}
+n=hypermat([\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}],str)\nspoperator{;}
+v=hypermat([\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}],\nspnumber{1}\nspoperator{:}\nspnumber{8})\nspoperator{;}
+M=mlist([\nspstring{'V'}\nspoperator{,}\nspstring{'name'}\nspoperator{,}\nspstring{'value'}],n,v)\nspoperator{;}
+M(\nspnumber{1},\nspnumber{1}\nspoperator{:}\nspnumber{2},\nspnumber{2})
+\end{Verbatim}

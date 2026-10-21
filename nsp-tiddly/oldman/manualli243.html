@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>splin3d</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli244.html" >next</a>] [<a 
+href="manualli242.html" >prev</a>] [<a 
+href="manualli242.html#tailmanualli242.html" >prev-tail</a>] [<a 
+href="#tailmanualli243.html">tail</a>] [<a 
+href="manualli104.html#manualli243.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x244-1442000"></a>splin3d</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx244-1442001"></a><a 
+ id="splin3d"></a><span 
+class="cmtt-10x-x-109">splin3d </span>&#x2013;                                                                spline gridded 3d interpolation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1443000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-370">
+&#x00A0;&#x00A0;tl&#x00A0;=&#x00A0;splin3d(x,&#x00A0;y,&#x00A0;z,&#x00A0;v,&#x00A0;[order])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1444000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,y,z</span>: strictly increasing row vectors (each with at least 3 components) defining the 3d
+     interpolation grid
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">v</span>: nx x ny x nz hypermatrix (nx, ny, nz being the length of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">order</span>: (optional) a 1x3 vector [kx,ky,kz] given the order of the tensor spline in each
+     direction (default [4,4,4], i.e. tricubic spline)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tl</span>: a tlist of type splin3d defining the spline</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1445000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > This function computes a 3d tensor spline <span 
+class="cmti-10x-x-109">s </span>which interpolates the <span 
+class="cmti-10x-x-109">(xi,yj,zk,vijk) </span>points, ie, we have
+<span 
+class="cmti-10x-x-109">s(xi,yj,zk)=vijk </span>for all <span 
+class="cmti-10x-x-109">i=1,..,nx</span>, <span 
+class="cmti-10x-x-109">j=1,..,ny </span>and <span 
+class="cmti-10x-x-109">k=1,..,nz</span>. The resulting spline <span 
+class="cmti-10x-x-109">s </span>is defined by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tl</span></span></span>
+which consists in a B-spline-tensor representation of <span 
+class="cmti-10x-x-109">s</span>. The evaluation of <span 
+class="cmti-10x-x-109">s </span>at some points must
+be done by the <a 
+href="manualli169.html#interp3d">interp3d</a>    function (to compute <span 
+class="cmti-10x-x-109">s </span>and its first derivatives) or by the
+<a 
+href="manualli127.html#bsplin3val">bsplin3val</a>    function (to compute an arbitrary derivative of <span 
+class="cmti-10x-x-109">s</span>) . Several kind of splines may
+be computed by selecting the order of the spline in each direction <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">order=[kx,ky,kz]</span></span></span>.
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1446000"></a><span 
+class="cmbx-10x-x-109">Remark</span></span>
+   This function works under the conditions:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-371">
+&#x00A0;&#x00A0;nx,&#x00A0;ny,&#x00A0;nz&#x00A0;$&#x003E;$=&#x00A0;3
+&#x00A0;<br />&#x00A0;&#x00A0;2&#x00A0;$&#x003C;$=&#x00A0;kx&#x00A0;$&#x003C;$&#x00A0;nx
+&#x00A0;<br />&#x00A0;&#x00A0;2&#x00A0;$&#x003C;$=&#x00A0;ky&#x00A0;$&#x003C;$&#x00A0;ny
+&#x00A0;<br />&#x00A0;&#x00A0;2&#x00A0;$&#x003C;$=&#x00A0;kz&#x00A0;$&#x003C;$&#x00A0;nz
+</div>
+<!--l. 58--><p class="nopar" >an error being issued when they are not respected.
+</p>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1447000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb198"><a 
+ id="x244-1447051r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span></span><br class="fancyvrb" /><a 
+ id="x244-1447053r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;func=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447055r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=f(x,y,z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,func)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447057r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;n</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;n</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;n</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;points</span></span><br class="fancyvrb" /><a 
+ id="x244-1447059r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">z=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;grid</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447061r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,Y,Z]=ndgrid(x,y,z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447063r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;V=f(X,Y,Z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447065r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tl=splin3d(x,y,z,V,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447067r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10000</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447069r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;compute</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;approximated</span><span 
+class="cmitt-10x-x-109">&#x00A0;error</span></span><br class="fancyvrb" /><a 
+ id="x244-1447071r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xp=grand(m,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;def&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yp=grand(m,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;def&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">zp=grand(m,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;def&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447073r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;vp_exact=f(xp,yp,zp)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447075r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;vp_interp=interp3d(xp,yp,zp,tl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447077r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;er=max(abs(vp_exact</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">vp_interp))</span>
+<br class="fancyvrb" /><a 
+ id="x244-1447079r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;now</span><span 
+class="cmitt-10x-x-109">&#x00A0;retry</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;n=20</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;see</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;error</span></span><br class="fancyvrb" /><a 
+ id="x244-1447081r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;linear_interpn</span><span 
+class="cmitt-10x-x-109">&#x00A0;help</span><span 
+class="cmitt-10x-x-109">&#x00A0;page</span><span 
+class="cmitt-10x-x-109">&#x00A0;which</span><span 
+class="cmitt-10x-x-109">&#x00A0;have</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447083r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;trilinear</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation)</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447085r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;getf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;SCI/demos/interp/interp_demo.sci&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x244-1447087r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;func=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=(x-0.5).^2</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;(y-0.5).^3</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;(z-0.5).^2&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447089r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=f(x,y,z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,func)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447091r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447093r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">z=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447095r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,Y,Z]=ndgrid(x,y,z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447097r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;V=f(X,Y,Z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447099r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tl=splin3d(x,y,z,V)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447101r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;compute</span><span 
+class="cmitt-10x-x-109">&#x00A0;(and</span><span 
+class="cmitt-10x-x-109">&#x00A0;display)</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;3d</span><span 
+class="cmitt-10x-x-109">&#x00A0;spline</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolant</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;some</span><span 
+class="cmitt-10x-x-109">&#x00A0;slices</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447103r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">41</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447105r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;dir=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z=&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z=&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z=&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;x=&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y=&#x0022;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447107r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;val=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447109r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ebox=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447111r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;XF=[]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">YF=[]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ZF=[]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">VF=[]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447113r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;i=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">length(val)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447115r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Xm,Xp,Ym,Yp,Zm,Zp]=slice_parallelepiped(dir(i),val(i),ebox,m,m,m)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447117r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Vm=interp3d(Xm,Ym,Zm,tl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447119r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xf,yf,zf,vf]=nf3dq(Xm,Ym,Zm,Vm,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447121r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;XF=[XF</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">xf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">YF=[YF</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ZF=[ZF</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">zf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">VF=[VF</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">vf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447123r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Vp=interp3d(Xp,Yp,Zp,tl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447125r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xf,yf,zf,vf]=nf3dq(Xp,Yp,Zp,Vp,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447127r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;XF=[XF</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">xf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">YF=[YF</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ZF=[ZF</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">zf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">VF=[VF</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">vf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447129r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x244-1447131r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nb_col=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">128</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447133r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;vmin=min(VF)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">vmax=max(VF)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447135r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;color=dsearch(VF,linspace(vmin,vmax,nb_col</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447137r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;colormap&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,jetcolormap(nb_col))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x244-1447139r45"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;hidden3d&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,xget(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;background&#x0022;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x244-1447141r46"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;colorbar(vmin,vmax)</span>
+<br class="fancyvrb" /><a 
+ id="x244-1447143r47"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d(XF,YF,list(ZF,color),flag</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x244-1447145r48"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;3d</span><span 
+class="cmtt-10x-x-109">&#x00A0;spline</span><span 
+class="cmtt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmtt-10x-x-109">&#x00A0;of</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">func)</span><br class="fancyvrb" /><a 
+ id="x244-1447147r49"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xselect()</span></div>
+<!--l. 115--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1448000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#linear-interpn">linear_interpn</a>    <a 
+href="manualli169.html#interp3d">interp3d</a>    <a 
+href="manualli127.html#bsplin3val">bsplin3val</a>
+</p>
+<!--l. 119--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1449000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 120--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1450000"></a></span>
+   R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 121--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x244-1451000"></a></span>
+   B. Pincon (scilab interface)
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli244.html" >next</a>] [<a 
+href="manualli242.html" >prev</a>] [<a 
+href="manualli242.html#tailmanualli242.html" >prev-tail</a>] [<a 
+href="manualli243.html" >front</a>] [<a 
+href="manualli104.html#manualli243.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli243.html"></a>  </p> 
+</body></html> 

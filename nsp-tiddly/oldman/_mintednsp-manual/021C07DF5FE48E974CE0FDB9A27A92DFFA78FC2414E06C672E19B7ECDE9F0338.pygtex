@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// create a script file}
+mputl(\nspstring{'a=1;b=2'},TMPDIR\nspoperator{+}\nspstring{'/myscript'})
+\nspcomment{// execute it}
+exec(TMPDIR\nspoperator{+}\nspstring{'/myscript'})
+\nspkeyword{who} 
+\nspcomment{// create a function}
+deff(\nspstring{'y=foo(x)'},\nspstring{'a=x+1;y=a^2'})
+\nspkeyword{clear} a,b
+\nspcomment{// call the function}
+foo(\nspnumber{1})
+\nspcomment{// a is a variable created in the environment of the function foo}
+\nspcomment{//    it is destroyed when foo returns}
+\nspkeyword{who} 
+x=\nspnumber{1}\nspoperator{,}\nspcomment{//create x to make it known by the script foo}
+exec(foo)
+\nspcomment{// a and y are created in the current environment}
+\nspkeyword{who} 
+\end{Verbatim}

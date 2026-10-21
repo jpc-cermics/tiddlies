@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+h=(\nspnumber{1}\nspoperator{-}\nspnumber{2}\nspoperator{*}z)\nspoperator{/}(z\nspoperator{^}\nspnumber{2}\nspoperator{-}\nspnumber{0.2}\nspoperator{*}z\nspoperator{+}\nspnumber{1})\nspoperator{;}
+sl=tf2ss(h)\nspoperator{;}
+u=zeros(\nspnumber{1},\nspnumber{20})\nspoperator{;}u(\nspnumber{1})=\nspnumber{1}\nspoperator{;}
+x1=dsimul(sl,u)\nspoperator{,}\nspcomment{//Impulse response}
+u=ones(\nspnumber{1},\nspnumber{20})\nspoperator{;}
+x2=dsimul(sl,u)\nspoperator{;}\nspcomment{//Step response}
+\end{Verbatim}

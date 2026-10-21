@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>yulewalk</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1199.html" >next</a>] [<a 
+href="manualli1197.html" >prev</a>] [<a 
+href="manualli1197.html#tailmanualli1197.html" >prev-tail</a>] [<a 
+href="#tailmanualli1198.html">tail</a>] [<a 
+href="manualli1135.html#manualli1198.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1199-6782000"></a>yulewalk</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1199-6782001"></a><a 
+ id="yulewalk"></a><span 
+class="cmtt-10x-x-109">yulewalk </span>&#x2013;                                                                       least-square filter design<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1199-6783000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1360">
+&#x00A0;&#x00A0;Hz&#x00A0;=&#x00A0;yulewalk(N,frq,mag)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1199-6784000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">N</span>: integer (order of desired filter)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">frq</span>: real row vector (non-decreasing order), frequencies.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mag</span>: non negative real row vector (same size as frq), desired magnitudes.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Hz</span>: filter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B(z)/A(z)</span></span></span></li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1199-6785000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Hz = yulewalk(N,frq,mag) finds the N-th order iir filter
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1361">
+&#x00A0;&#x00A0;n-1&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;n-2
+&#x00A0;<br />&#x00A0;&#x00A0;B(z)&#x00A0;&#x00A0;&#x00A0;b(1)z&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;+&#x00A0;b(2)z&#x00A0;&#x00A0;&#x00A0;&#x00A0;+&#x00A0;....&#x00A0;+&#x00A0;b(n)
+&#x00A0;<br />&#x00A0;&#x00A0;H(z)=&#x00A0;----&#x00A0;=&#x00A0;---------------------------------
+&#x00A0;<br />&#x00A0;&#x00A0;n-1&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;n-2
+&#x00A0;<br />&#x00A0;&#x00A0;A(z)&#x00A0;&#x00A0;&#x00A0;&#x00A0;z&#x00A0;&#x00A0;&#x00A0;+&#x00A0;a(2)z&#x00A0;&#x00A0;&#x00A0;&#x00A0;+&#x00A0;....&#x00A0;+&#x00A0;a(n)
+</div>
+<!--l. 44--><p class="nopar" >which matches the magnitude frequency response given by vectors frq and mag. Vectors frq and
+mag specify the frequency and magnitude of the desired frequency response. The frequencies in frq
+must be between 0.0 and 1.0, with 1.0 corresponding to half the sample rate. They must be in
+increasing order and start with 0.0 and end with 1.0.
+</p>
+<!--l. 52--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1199-6786000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb792"><a 
+ id="x1199-6786009r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">H=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Hz=yulewalk(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">,f,H)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1199-6786011r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fs=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1000</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">fhz=f</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">fs</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1199-6786013r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;window&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(fhz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,H</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1199-6786015r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Desired</span><span 
+class="cmtt-10x-x-109">&#x00A0;Frequency</span><span 
+class="cmtt-10x-x-109">&#x00A0;Response</span><span 
+class="cmtt-10x-x-109">&#x00A0;(Magnitude)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x1199-6786017r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[frq,repf]=repfreq(Hz,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.001</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1199-6786019r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;window&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(fs</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">frq</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,abs(repf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1199-6786021r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Obtained</span><span 
+class="cmtt-10x-x-109">&#x00A0;Frequency</span><span 
+class="cmtt-10x-x-109">&#x00A0;Response</span><span 
+class="cmtt-10x-x-109">&#x00A0;(Magnitude)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1199.html" >next</a>] [<a 
+href="manualli1197.html" >prev</a>] [<a 
+href="manualli1197.html#tailmanualli1197.html" >prev-tail</a>] [<a 
+href="manualli1198.html" >front</a>] [<a 
+href="manualli1135.html#manualli1198.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1198.html"></a>  </p> 
+</body></html> 

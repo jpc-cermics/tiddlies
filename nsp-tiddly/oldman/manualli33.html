@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>dscr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli34.html" >next</a>] [<a 
+href="manualli32.html" >prev</a>] [<a 
+href="manualli32.html#tailmanualli32.html" >prev-tail</a>] [<a 
+href="#tailmanualli33.html">tail</a>] [<a 
+href="manualli12.html#manualli33.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x34-177000"></a>dscr</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx34-177001"></a><a 
+ id="dscr"></a><span 
+class="cmtt-10x-x-109">dscr </span>&#x2013;                                                                      discretization of linear system<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x34-178000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-54">
+&#x00A0;&#x00A0;[sld&#x00A0;[,r]]=dscr(sl,dt&#x00A0;[,m])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x34-179000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sl</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list containing <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A,B,C,D]</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dt</span>: real number, sampling period
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">m</span>: covariance of the input noise (continuous time)(default value=0)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r</span>: covariance of the output noise (discrete time) given if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is given as input
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sld</span>: sampled (discrete-time) linear system, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x34-180000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > Discretization of linear system. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> is a continuous-time system:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dx/dt=A*x+B*u</span><span 
+class="cmtt-10x-x-109">&#x00A0;(+</span><span 
+class="cmtt-10x-x-109">&#x00A0;noise)</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sld</span></span></span> is
+the discrete-time system obtained by sampling <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> with the sampling period <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dt</span></span></span>.
+</p>
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x34-181000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb22"><a 
+ id="x34-181005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x34-181007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sys=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s])</span><br class="fancyvrb" /><a 
+ id="x34-181009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(dscr(tf2ss(Sys),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span 
+class="cmtt-10x-x-109">))</span></div>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x34-182000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli258.html#syslin">syslin</a>    <a 
+href="manualli39.html#flts">flts</a>    <a 
+href="manualli34.html#dsimul">dsimul</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli34.html" >next</a>] [<a 
+href="manualli32.html" >prev</a>] [<a 
+href="manualli32.html#tailmanualli32.html" >prev-tail</a>] [<a 
+href="manualli33.html" >front</a>] [<a 
+href="manualli12.html#manualli33.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli33.html"></a>  </p> 
+</body></html> 

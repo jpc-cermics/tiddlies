@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>object_editor</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli463.html" >next</a>] [<a 
+href="manualli461.html" >prev</a>] [<a 
+href="manualli461.html#tailmanualli461.html" >prev-tail</a>] [<a 
+href="#tailmanualli462.html">tail</a>] [<a 
+href="manualli370.html#manualli462.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x463-2733000"></a>object_editor</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx463-2733001"></a><a 
+ id="object_editor"></a><span 
+class="cmtt-10x-x-109">object</span><span 
+class="cmtt-10x-x-109">_editor </span>&#x2013;                              description of the graphic object editor capacities<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x463-2734000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > As explained in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">graphics_entities</span></span></span> help file, Scilab graphics is now based on a brent
+new graphics mode. This mode allows the user to have more interaction with graphics
+before and after having them drawn. In the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;new&#x0022;</span></span></span> mode, each graphics window and the
+drawing it contains are represented by hierchical entities. The hierachy top level is the
+Figure. Each Figure defines at least one child of type Axes. Each Axes entity contains a
+set of leaf entities which are the basic graphics objects like Polylines, Rectangles, Arcs,
+Segs,... It can also contain an Agregation type which are recursive sets of entities.The
+main interest of the new graphic mode is to make property change easier. This new
+graphics&apos;mode provides a set of high-level graphing routines (see <a 
+href="manualli500.html#set">set</a>    , <a 
+href="manualli431.html#get">get</a>    ) used to control
+objects&apos; properties such as data, coordinates and scaling, color and appearences without
+requiring to replay the initial graphics commands.Graphics entities are associated to
+Scilab variables of type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">handle</span></span></span>. The handle is a unique identifier which is associated
+to each instance of a created graphical entity. Using this handle, it will be possible to
+reach entities&apos; properties through &#x201D;set&#x201D; and &#x201D;get&#x201D; routines. The handles are also used to
+manipulate graphics objects, to move them, to make copies or delete them.To complete
+and use the graphics handle capacity at its maximum, a graphic object editor has been
+created too. It is a set of Tcl/Tk interfaces available for each kind of graphics objects (see
+<a 
+href="#graphics-entities">graphics_entities</a>    for more details) that can be enabled for each graphic window. To make it
+work, select the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Edit</span></span></span> menu in the graphic window. Seven graphics editing operations are
+available:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Select:</span>  </span>Make the figure be the current one.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Redraw:</span>  </span>Redraw the content of the graphics window (only useful for old_style mode).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Erase:</span>  </span>Erase the content of the graphics window. Its action corresponds to a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xbasc</span></span></span> (old
+     graphic style) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">clf</span></span></span> (new graphic style) command.The last four items are specially
+     dedicated to the graphic editor :
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Figure Properties:</span>  </span>Launch the Tcl/Tk interface for the Figure object applied to the figure
+     handle of the graphics window.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Current Axes Properties:</span>  </span>Launch the Tcl/Tk interface for the Axes object applied to
+     the current axes handle of the graphics window.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Start Entity Picker:</span>  </span>Start an event handler on the graphics window to catch the mouse
+     clicks on graphics objects and launch the corresponding Tcl/Tk interface.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Stop Entity Picker:</span>  </span>Stop the action of the Entity Picker by terminating the event handler
+     on the graphics window.</ul>
+</p><!--l. 63--><p class="noindent" >Once the graphic interface is enabled, two main areas appear:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">A combobox entity selector:</span>  </span>Placed  in  the  right-top  corner  of  the  Tk  interface,  a
+     combobox selector specifies which object is currently edited. It can be used to switch
+     from a graphic object to another provided that they are in the same graphic window.</ul>
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">A notebook:</span>  </span>The second area represents a notebook composed with different properties
+     pages (like <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Style</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Data</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Clipping</span></span></span>...) depending on the selected graphic object. Using
+     this editor, man can edit more easily the whole properties set of each graphic object
+     (like through the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;set&#x0022;</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;get&#x0022;</span></span></span> commands).</ul>
+</p>
+<!--l. 80--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x463-2735000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb359"><a 
+ id="x463-2735004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Below</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;appearance</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;such</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;interface</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;objects</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;type</span><span 
+class="cmitt-10x-x-109">&#x00A0;Axes.</span></span>
+<br class="fancyvrb" /><a 
+ id="x463-2735006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;No</span><span 
+class="cmitt-10x-x-109">&#x00A0;images</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;now</span></span></div>
+<!--l. 87--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x463-2736000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#graphics-entities">graphics_entities</a>    <a 
+href="manualli500.html#set">set</a>    <a 
+href="manualli431.html#get">get</a>    <a 
+href="manualli385.html#clf">clf</a>
+</p>
+<!--l. 91--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x463-2737000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.Leray INRIA
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli463.html" >next</a>] [<a 
+href="manualli461.html" >prev</a>] [<a 
+href="manualli461.html#tailmanualli461.html" >prev-tail</a>] [<a 
+href="manualli462.html" >front</a>] [<a 
+href="manualli370.html#manualli462.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli462.html"></a>  </p> 
+</body></html> 

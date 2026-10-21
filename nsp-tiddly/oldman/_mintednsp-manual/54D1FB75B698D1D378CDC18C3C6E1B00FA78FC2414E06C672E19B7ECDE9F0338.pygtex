@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+filen=\nspstring{'test.bin'}\nspoperator{;}
+mopen(filen,\nspstring{'wb'})\nspoperator{;}
+mput(\nspnumber{1996},\nspstring{'l'})\nspoperator{;}mput(\nspnumber{1996},\nspstring{'i'})\nspoperator{;}mput(\nspnumber{1996},\nspstring{'s'})\nspoperator{;}mput(\nspnumber{98},\nspstring{'c'})\nspoperator{;}
+\nspcomment{// force little-endian}
+mput(\nspnumber{1996},\nspstring{'ll'})\nspoperator{;}mput(\nspnumber{1996},\nspstring{'il'})\nspoperator{;}mput(\nspnumber{1996},\nspstring{'sl'})\nspoperator{;}mput(\nspnumber{98},\nspstring{'cl'})\nspoperator{;}
+\nspcomment{// force big-endian}
+mput(\nspnumber{1996},\nspstring{'lb'})\nspoperator{;}mput(\nspnumber{1996},\nspstring{'ib'})\nspoperator{;}mput(\nspnumber{1996},\nspstring{'sb'})\nspoperator{;}mput(\nspnumber{98},\nspstring{'cb'})\nspoperator{;}
+\nspcomment{//}
+mclose()\nspoperator{;}
+mopen(filen,\nspstring{'rb'})\nspoperator{;}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'l'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'i'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'s'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{98}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'c'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspcomment{// force little-endian}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'ll'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'il'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'sl'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{98}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'cl'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspcomment{// force big-endian}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'lb'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'ib'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'sb'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspkeyword{if} \nspnumber{98}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'cb'}) \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\nspcomment{//}
+mclose()\nspoperator{;}
+\end{Verbatim}

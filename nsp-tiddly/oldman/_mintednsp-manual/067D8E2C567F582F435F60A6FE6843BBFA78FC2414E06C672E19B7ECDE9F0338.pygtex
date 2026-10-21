@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspkeyword{function} y=\nspfunction{F}(x)
+  y=[sin(x(\nspnumber{1})\nspoperator{*}x(\nspnumber{2}))\nspoperator{+}exp(x(\nspnumber{2})\nspoperator{*}x(\nspnumber{3})\nspoperator{+}x(\nspnumber{1}))\nspoperator{;}sum(x\nspoperator{ .^}\nspnumber{3})]\nspoperator{;}
+\nspkeyword{endfunction}
+\nspkeyword{function} y=\nspfunction{G}(x,p)
+  y=[sin(x(\nspnumber{1})\nspoperator{*}x(\nspnumber{2})\nspoperator{*}p)\nspoperator{+}exp(x(\nspnumber{2})\nspoperator{*}x(\nspnumber{3})\nspoperator{+}x(\nspnumber{1}))\nspoperator{;}sum(x\nspoperator{ .^}\nspnumber{3})]\nspoperator{;}
+\nspkeyword{endfunction}
+x=[\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{;}\nspnumber{3}]\nspoperator{;}[J,H]=derivative(F,x,H_form = \nspstring{'blockmat'})\nspoperator{;}
+disp(J)
+disp(H)
+n=\nspnumber{3}\nspoperator{;}
+\nspcomment{// form an orthogonal matrix:}
+nu=\nspnumber{0}\nspoperator{;}\nspkeyword{while} nu$\nspoperator{ < }$n \nspkeyword{do} [Q,nu]=colcomp(rand(n,n))\nspoperator{;}\nspkeyword{end}
+\nspkeyword{for} i=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}] \nspkeyword{do}
+  [J,H]=derivative(F,x,order = i,H_form = \nspstring{'blockmat'},Q = Q)\nspoperator{;}
+  mprintf(\nspstring{"order= \nsppc{}d \nspbs{}n"},i)\nspoperator{;}
+  disp(H)\nspoperator{;}
+\nspkeyword{end}
+p=\nspnumber{1}\nspoperator{;}h=\nspnumber{1E-3}\nspoperator{;}
+[J,H]=derivative(list(G,p),x,h,\nspnumber{2},H_form = \nspstring{'hypermat'})\nspoperator{;}
+disp(H)\nspoperator{;}
+[J,H]=derivative(list(G,p),x,h,\nspnumber{4},Q = Q)\nspoperator{;}
+disp(H)
+\nspcomment{// Taylor series example:}
+dx=\nspnumber{1E-3}\nspoperator{*}[\nspnumber{1}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{1}]\nspoperator{;}
+[J,H]=derivative(F,x)\nspoperator{;}
+F(x\nspoperator{+}dx)
+F(x\nspoperator{+}dx)\nspoperator{-}F(x)
+F(x\nspoperator{+}dx)\nspoperator{-}F(x)\nspoperator{-}J\nspoperator{*}dx
+F(x\nspoperator{+}dx)\nspoperator{-}F(x)\nspoperator{-}J\nspoperator{*}dx\nspoperator{-}\nspnumber{1}\nspoperator{/}\nspnumber{2}\nspoperator{*}H\nspoperator{*}(dx\nspoperator{ .*.}dx)
+\nspcomment{// A trivial example}
+\nspkeyword{function} y=\nspfunction{f}(x,A,p,w) y=x\nspoperator{'}\nspoperator{*}A\nspoperator{*}x\nspoperator{+}p\nspoperator{'}\nspoperator{*}x\nspoperator{+}w\nspoperator{;}\nspkeyword{endfunction}
+\nspcomment{// with Jacobian and Hessean given by J(x)=x'*(A+A')+p', and H(x)=A+A'.}
+A=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}p=rand(\nspnumber{3},\nspnumber{1})\nspoperator{;}w=\nspnumber{1}\nspoperator{;}
+x=rand(\nspnumber{3},\nspnumber{1})\nspoperator{;}
+[J,H]=derivative(list(f,A,p,w),x,h = \nspnumber{1},H_form = \nspstring{'blockmat'})
+\nspcomment{// Since f(x) is quadratic in x, approximate derivatives of order=2 or 4 by finite}
+\nspcomment{// differences should be exact for all h\nspti{}=0. The apparent errors are caused by}
+\nspcomment{// cancellation in the floating point operations, so a "big" h is choosen.}
+\nspcomment{// Comparison with the exact matrices:}
+Je=x\nspoperator{'}\nspoperator{*}(A\nspoperator{+}A\nspoperator{'})\nspoperator{+}p\nspoperator{'}
+He=A\nspoperator{+}A\nspoperator{'}
+clean(Je\nspoperator{-}J)
+clean(He\nspoperator{-}H)
+\end{Verbatim}

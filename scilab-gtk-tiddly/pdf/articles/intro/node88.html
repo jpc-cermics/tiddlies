@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.2.1 Building an interface program</TITLE>
+<META NAME="description" CONTENT="6.2.1 Building an interface program">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node89.html">
+<LINK REL="previous" HREF="node87.html">
+<LINK REL="up" HREF="node87.html">
+<LINK REL="next" HREF="node89.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1426"
+ HREF="node89.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1422"
+ HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1416"
+ HREF="node87.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1424"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1425"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1427"
+ HREF="node89.html">6.2.2 Example</A>
+<B> Up:</B> <A NAME="tex2html1423"
+ HREF="node87.html">6.2 Interface programs</A>
+<B> Previous:</B> <A NAME="tex2html1417"
+ HREF="node87.html">6.2 Interface programs</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00721000000000000000">
+6.2.1 Building an interface program</A>
+</H2>
+Examples of interface programs are given in the directory 
+<TT>examples/addinter-examples</TT>. 
+
+<P>
+The two files <TT>template.c</TT> and <TT>template.f</TT> are skeletons of 
+interface programs.
+<UL>
+<LI>The file <TT>Examplc.c</TT> is a C interface for the function <TT>foubare2c</TT> 
+which is defined in the file <TT>src/foubare2c.c</TT>. This interface can
+be tested with the Scilab script <TT>Examplc.sce</TT>.
+<LI>The file <TT>Examplf.f</TT> is a Fortran interface for the function
+<TT>foubare2f</TT> which is defined in the file <TT>src/foubare2f.f</TT>. 
+This interface can be tested with the Scilab script <TT>Examplc.sce</TT>.
+</UL>The interface programs use a set of C or 
+Fortran routines which should be used to build the interface program.
+The simplest way to learn how to build an interface program is to
+customize the previous skeletons files and to look at the examples
+provided in this
+directory. An interface program defines a set of Scilab functions
+and the calls to the corresponding numerical programs.
+Note that a unique interface program can be used to interface an 
+arbitrary (but less that 99) number of functions.
+
+<P>
+The functions used to build an interface are Fortran subroutines when 
+the interface is written in Fortran and are coded as C macros 
+(defined in <TT>stack-c.h</TT> ) 
+when the interface is coded in C. The main functions are as follows:
+
+<P>
+<UL>
+<LI>
+<PRE>
+CheckRhs(minrhs, maxrhs)
+CheckLhs(minlhs, maxlhs)
+</PRE>Function <code>CheckRhs</code> is used to check that the Scilab function is called
+with <BR>
+<code> minrhs &lt;= Rhs &lt;= maxrhs</code>. 
+Function <code>CheckLhs</code> is used to check that the expected return
+values are in the range 
+<code> minlhs &lt;= Lhs &lt;= maxlhs</code>. (Usually one has <TT>minlhs=1</TT>
+since a Scilab function can be always be called with less lhs
+arguments than expected).
+
+<LI>
+<PRE>
+GetRhsVar(k,ct,mk,nk,lk)
+</PRE>Note that <code>k</code> (integer) and <code>ct</code> (string) are inputs and 
+<code>mk,nk</code> and <code>lk</code> (integers) are outputs of <code>GetRhsVar</code>.
+This function defines the type (<code>ct</code>) of input variable numbered
+<code>k</code>, i.e. the <code>k</code>th input variable in the calling sequence of the 
+Scilab function. The pair <code>mk,nk</code> gives the dimensions (number of rows
+and columns)  of variable numbered <code>k</code> if it is a matrix. 
+If it is a chain <code>mk*nk</code> is its length. <code>lk</code> is the adress
+of variable numbered <code>k</code> in Scilab internal stack.
+The type of variable number <code>k</code>, <code>ct</code>, should be set 
+to <TT>'d', 'r', 'i'</TT> or <TT>'c'</TT> which stands for double, float
+(real), integer
+or character respectively. The interface should call function
+<code>GetRhsVar</code> for each of the rhs variables of the Scilab function
+with <TT>k=1, k=2,..., k=Rhs</TT>.
+Note that if the Scilab argument doesn't match the requested type then 
+Scilab enters an error function and returns from the interface function.
+
+<LI>
+<PRE>
+CreateVar(k,ct,mk,nk,lk)
+</PRE>Here <code>k,ct,mk,nk</code> are inputs of <code>CreateVar</code> and <code>lk</code> is an
+output of <code>CreateVar</code>. The parameters are as above. Variable numbered
+<code>k</code> is created in Scilab internal satck at adress <TT>lk</TT>. When
+calling <TT>CreateVar</TT>, <TT>k</TT> must be greater than <TT>Rhs</TT> i.e.
+<TT>k=Rhs+1, k=Rhs+2, ...</TT>.
+If due to memory lack, the argument can't be created, then a Scilab error 
+function is called and the interface function returns.
+
+<LI>
+<PRE>
+CreateVarFromPtr(k,ct,mk,nk,lk)
+</PRE>Here <code>k,ct,mk,nk,lk</code> are all inputs of <code>CreateVarFromPtr</code> and
+<code>lk</code> is pointer created by a call to a C function. This function is used 
+when a C object was created inside the interfaced function and a Scilab 
+object is to be created using a pointer to this C object 
+(see function <TT>intfce2c</TT> 
+in file  <TT>examples/addinter-examples/Testc.c</TT>). The function <TT>FreePtr</TT> should be used to free the pointer.
+
+</UL>
+<P>
+Once the  variables have been processed by <TT>GetRhsVar</TT> or created
+by <TT>CreateVar</TT>, they are given values by calling one or several 
+numerical routine. The call to the numerical routine is done
+in such a way that each argument of the routine points to the
+corresponding Scilab variable (see example below). 
+Character, integer, real, double type variables are 
+in the <TT>cstk</TT> (resp. <TT>istk, sstk, stk</TT>) Scilab internal stack
+at the adresses <TT>lk</TT>'s returned by <TT>GetRhsVar</TT> or <TT>CreateVar</TT>. 
+
+<P>
+Then they are returned to Scilab as lhs variables
+(this is done by function <TT>PutLhsVar</TT>).
+The interface should define how the lhs (output) variables are
+numbered. This is done by the global variable <TT>LhsVar</TT>.
+For instance
+<PRE>
+  LhsVar(1) = 5;
+  LhsVar(2) = 3;
+  LhsVar(3) = 1;
+  LhsVar(4) = 2;
+  PutLhsVar();
+</PRE>means that the Scilab function has at most 4 output parameters
+which are variables numbered <code>k= 5, k=3, k=1, k=2</code> respectively.
+
+<P>
+The functions <code>sciprint(amessage)</code> and <code>Error(k)</code> are used
+for managing messages and errors.
+
+<P>
+Other useful functions which can be used are the following.
+<UL>
+<LI>
+<PRE>
+ReadMatrix(aname,m,n,w)
+</PRE>This function reads a matrix in Scilab internal stack. <code>aname</code> is
+a character string, name of a Scilab matrix. Outputs are integers
+<code>m,n</code> and <code>w</code>, the entries of the matrix ordered <EM>columnwise</EM>.
+<TT>w</TT> is a copy of the Scilab variable called <TT>aname</TT>.
+<LI>
+<PRE>
+ReadString(aname,n,w)
+</PRE>This function reads a string in Scilab internal stack. <code>n</code> is the
+length of the string.
+
+<LI>
+<PRE>
+GetMatrixptr(aname,m,n,l)
+</PRE>This function returns the dimensions <code>m, n</code> and the address
+<code>l</code> of Scilab variable <code>aname</code>.
+
+</UL>
+<P>
+The Fortran functions have the same syntax and return logical values.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1426"
+ HREF="node89.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1422"
+ HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1416"
+ HREF="node87.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1424"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1425"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1427"
+ HREF="node89.html">6.2.2 Example</A>
+<B> Up:</B> <A NAME="tex2html1423"
+ HREF="node87.html">6.2 Interface programs</A>
+<B> Previous:</B> <A NAME="tex2html1417"
+ HREF="node87.html">6.2 Interface programs</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>trimmean</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1263.html" >next</a>] [<a 
+href="manualli1261.html" >prev</a>] [<a 
+href="manualli1261.html#tailmanualli1261.html" >prev-tail</a>] [<a 
+href="#tailmanualli1262.html">tail</a>] [<a 
+href="manualli1220.html#manualli1262.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1263-7168000"></a>trimmean</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1263-7168001"></a><a 
+ id="trimmean"></a><span 
+class="cmtt-10x-x-109">trimmean </span>&#x2013;                                                     trimmed mean of a vector or a matrix<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1263-7169000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1423">
+&#x00A0;&#x00A0;m=trimmean(x)
+&#x00A0;<br />&#x00A0;&#x00A0;m=trimmean(x,discard,&#x0027;r&#x0027;)&#x00A0;or&#x00A0;m=trimmean(x,discard,1)
+&#x00A0;<br />&#x00A0;&#x00A0;m=trimmean(x,discard,&#x0027;c&#x0027;)&#x00A0;or&#x00A0;m=trimmean(x,discard,2)
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1263-7170000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x </span>real or complex vector or matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">discard </span>number: The discarding percentage</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1263-7171000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > A trimmed mean is calculated by discarding a certain percentage of the lowest and the highest
+scores and then computing the mean of the remaining scores. For example, a mean trimmed 50% is
+computed by discarding the lower and higher 25% of the scores and taking the mean of the
+remaining scores. The median is the mean trimmed 100% and the arithmetic mean is the mean
+trimmed 0%. A trimmed mean is obviously less susceptible to the effects of extreme scores than is
+the arithmetic mean. It is therefore less susceptible to sampling fluctuation than the mean for
+extremely skewed distributions. It is less efficient (The efficiency of a statistic is the
+degree to which the statistic is stable from sample to sample. That is, the less subject to
+sampling fluctuation a statistic is, the more efficient it is. The efficiency of statistics is
+measured relative to the efficiency of other statistics and is therefore often called the relative
+efficiency. If statistic A has a smaller standard error than statistic B, then statistic A is
+more efficient than statistic B. The relative efficiency of two statistics may depend on
+the distribution involved. For instance, the mean is more efficient than the median for
+normal distributions but not for some extremely skewed distributions. The efficiency of
+a statistic can also be thought of as the precision of the estimate: The more efficient
+the statistic, the more precise the statistic is as an estimator of the parameter.[from
+http://davidmlane.com/hyperstat/A12977.html]) than the mean for normal distributions. Trimmed
+means are often used in Olympic scoring to minimize the effects of extreme ratings possibly caused
+by biased judges. [from http://davidmlane.com/hyperstat/A11971.html] For a vector or matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t=trimmean(x,discard)</span></span></span> returns in scalar <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t</span></span></span> the mean of all the entries of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, after discarding
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">discard/2</span></span></span> highest values and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">discard/2</span></span></span> lowest values.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t=trimmean(x,discard,&#x0027;r&#x0027;)</span></span></span>
+(or, equivalently, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t=trimmean(x,discard,1)</span></span></span>) returns in each entry of the row vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t</span></span></span>
+                                                                                    
+
+                                                                                    
+the trimmed mean of each column of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t=trimmean(x,discard,&#x0027;c&#x0027;)</span></span></span> (or, equivalently,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t=trimmean(x,discard,2)</span></span></span>) returns in each entry of the column vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t</span></span></span> the trimmed mean of each
+row of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. This function computes the trimmed mean of a vector or matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;x</span></span></span>. For a vector or
+matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;x</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;m=trimmean(x)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> returns in scalar <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;m</span></span></span> the trimmedmean of all the entries of
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;x</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;m=trimmean(x,&#x0027;r&#x0027;)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> (or, equivalently, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;m=trimmean(x,1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>) returns in each entry of the
+row vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;m</span></span></span> the trimmed mean of each column of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;x</span></span></span>. q<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;m=trimmean(x,&#x0027;c&#x0027;)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> (or,
+equivalently, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;m=trimmean(x,2)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>) returns in each entry of the column vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;m</span></span></span> the trimmed
+mean of each row of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;x</span></span></span>.
+</p>
+<!--l. 96--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1263-7172000"></a><span 
+class="cmbx-10x-x-109">References</span></span>
+   Luis Angel Garcia-Escudero and Alfonso Gordaliza, Robustness Properties of Means and
+Trimmed Means, JASA, Volume 94, Number 447, Sept 1999, pp956-969
+</p>
+<!--l. 99--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1263-7173000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Carlos Klimann
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1263.html" >next</a>] [<a 
+href="manualli1261.html" >prev</a>] [<a 
+href="manualli1261.html#tailmanualli1261.html" >prev-tail</a>] [<a 
+href="manualli1262.html" >front</a>] [<a 
+href="manualli1220.html#manualli1262.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1262.html"></a>  </p> 
+</body></html> 

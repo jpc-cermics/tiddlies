@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ccontrg</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1093.html" >next</a>] [<a 
+href="manualli1091.html" >prev</a>] [<a 
+href="manualli1091.html#tailmanualli1091.html" >prev-tail</a>] [<a 
+href="#tailmanualli1092.html">tail</a>] [<a 
+href="manualli1089.html#manualli1092.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1093-6189000"></a>ccontrg</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1093-6189001"></a><a 
+ id="ccontrg"></a><span 
+class="cmtt-10x-x-109">ccontrg </span>&#x2013;                                                                     central H-infinity controller<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1093-6190000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1206">
+&#x00A0;&#x00A0;[K]=ccontrg(P,r,gamma);
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1093-6191000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (linear system in state-space representation)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r</span>: 1x2 row vector, dimension of the 2,2 part of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">gamma</span>: real number</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1093-6192000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > returns a realization <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span> of the central controller for the general standard problem in state-space
+form. Note that gamma must be <span 
+class="cmmi-10x-x-109">&#x003E; </span>gopt (ouput of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">gamitg</span></span></span>) P contains the parameters of plant
+realization <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A,B,C,D)</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list) with
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1207">
+&#x00A0;&#x00A0;B&#x00A0;=&#x00A0;(&#x00A0;B1&#x00A0;,&#x00A0;B2&#x00A0;)&#x00A0;,&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;C=&#x00A0;(&#x00A0;C1&#x00A0;)&#x00A0;,&#x00A0;&#x00A0;&#x00A0;&#x00A0;D&#x00A0;=&#x00A0;(&#x00A0;D11&#x00A0;&#x00A0;D12)
+&#x00A0;<br />&#x00A0;&#x00A0;(&#x00A0;C2&#x00A0;)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(&#x00A0;D21&#x00A0;&#x00A0;D22)
+</div>
+<!--l. 44--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r(1)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r(2)</span></span></span> are the dimensions of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D22</span></span></span> (rows x columns)
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1093-6193000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1103.html#gamitg">gamitg</a>    <a 
+href="#h-inf">h_inf</a>
+</p>
+<!--l. 52--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1093-6194000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   P. Gahinet (INRIA);
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1093.html" >next</a>] [<a 
+href="manualli1091.html" >prev</a>] [<a 
+href="manualli1091.html#tailmanualli1091.html" >prev-tail</a>] [<a 
+href="manualli1092.html" >front</a>] [<a 
+href="manualli1089.html#manualli1092.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1092.html"></a>  </p> 
+</body></html> 

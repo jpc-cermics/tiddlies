@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// for graphics entities}
+clf()
+get(\nspstring{"old_style"})\nspoperator{,}\nspcomment{// check the state of the graphics' style}
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure}
+get(\nspstring{"figure_style"})\nspoperator{,}\nspcomment{// check the style of the graphics' figure}
+\nspcomment{// simple graphics objects}
+subplot(\nspnumber{121})\nspoperator{;}
+x=[\nspoperator{-}\nspnumber{.2}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}
+plot2d(x\nspoperator{-}\nspnumber{2},x\nspoperator{ .^}\nspnumber{2})\nspoperator{;}
+subplot(\nspnumber{122})\nspoperator{;}
+xrect(\nspnumber{.2},\nspnumber{.7},\nspnumber{.5},\nspnumber{.2})\nspoperator{;}
+xrect(\nspnumber{.3},\nspnumber{.8},\nspnumber{.3},\nspnumber{.2})\nspoperator{;}
+xfarc(\nspnumber{.25},\nspnumber{.55},\nspnumber{.1},\nspnumber{.15},\nspnumber{0},\nspnumber{64}\nspoperator{*}\nspnumber{360})\nspoperator{;}
+xfarc(\nspnumber{.55},\nspnumber{.55},\nspnumber{.1},\nspnumber{.15},\nspnumber{0},\nspnumber{64}\nspoperator{*}\nspnumber{360})\nspoperator{;}
+xstring(\nspnumber{0.2},\nspnumber{.9},\nspstring{"Example $&lt;$$&lt;$A CAR$&gt;$$&gt;$"})\nspoperator{;}
+h=get(\nspstring{"hdl"})\nspoperator{,}\nspcomment{//get the object newly created}
+h.font_size=\nspnumber{3}\nspoperator{;}
+f=get(\nspstring{"current_figure"})\nspoperator{,}\nspcomment{//get the current figure}
+f.figure_size
+f.figure_size=[\nspnumber{700}\nspoperator{,}\nspnumber{500}]\nspoperator{;}
+f.children
+f.children(\nspnumber{2}).type
+f.children(\nspnumber{2}).children
+f.children(\nspnumber{2}).children.children.thickness=\nspnumber{4}\nspoperator{;}
+a=get(\nspstring{"current_axes"})\nspoperator{,}\nspcomment{//get the current axes}
+a.children.type
+a.children.foreground\nspoperator{,}\nspcomment{//get the foreground color of a set of graphics objects}
+a.children.foreground=\nspnumber{9}\nspoperator{;}
+\nspcomment{// for  User Interface objects}
+h=uicontrol(\nspstring{'string'},\nspstring{'Button'})\nspoperator{;}\nspcomment{// Opens a window with a  button.}
+p=get(h,\nspstring{'position'})\nspoperator{;}\nspcomment{// get the geometric aspect of the button}
+disp(\nspstring{'Button width: '}\nspoperator{+}string(p(\nspnumber{3})))\nspoperator{;}\nspcomment{// print the width of the button}
+close()\nspoperator{;}\nspcomment{// close figure}
+\end{Verbatim}

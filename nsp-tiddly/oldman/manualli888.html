@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>odeoptions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli889.html" >next</a>] [<a 
+href="manualli887.html" >prev</a>] [<a 
+href="manualli887.html#tailmanualli887.html" >prev-tail</a>] [<a 
+href="#tailmanualli888.html">tail</a>] [<a 
+href="manualli863.html#manualli888.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x889-5149000"></a>odeoptions</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx889-5149001"></a><a 
+ id="odeoptions"></a><span 
+class="cmtt-10x-x-109">odeoptions </span>&#x2013;                                                                  set options for ode solvers<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x889-5150000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-999">
+&#x00A0;&#x00A0;odeoptions()
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 27--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x889-5151000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 27--><p class="noindent" > This function interactively displays a command which should be executed to set various options of
+ode solvers. The global variable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%ODEOPTIONS</span></span></span> sets the options. CAUTION: the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span> function checks
+if this variable exists and in this case it uses it. For using default values you should clear this
+variable. Note that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">odeoptions</span></span></span> does not create this variable. To create it you must execute the
+command line displayed by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">odeoptions</span></span></span>. The variable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%ODEOPTIONS</span></span></span> is a vector with the following
+elements:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1000">
+&#x00A0;&#x00A0;[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,ml,mu]
+</div>
+<!--l. 39--><p class="nopar" >The default value is:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1001">
+&#x00A0;&#x00A0;[1,0,0,%inf,0,2,500,12,5,0,-1,-1]
+</div>
+<!--l. 43--><p class="nopar" >The meaning of the elements is described below.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">itask</span></span></span> 1: normal computation at specified times 2:
+computation at mesh points (given in first row of output of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span>) 3: one step at one internal mesh
+point and return 4: normal computation without overshooting <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tcrit</span></span></span> 5: one step, without
+passing <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tcrit</span></span></span>, and return<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tcrit</span></span></span> assumes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">itask</span></span></span> equals 4 or 5, described above<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">h0</span></span></span> first step
+tried<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hmax</span></span></span> max step size<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hmin</span></span></span> min step size<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jactype</span></span></span> 0: functional iterations, no jacobian
+used (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;adams&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;stiff&#x0022;</span></span></span> only) 1: user-supplied full jacobian 2: internally generated
+full jacobian 3: internally generated diagonal jacobian (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;adams&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;stiff&#x0022;</span></span></span> only) 4:
+user-supplied banded jacobian (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ml</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mu</span></span></span> below) 5: internally generated banded jacobian
+(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">see</span></span></span> ml and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mu</span></span></span> below)<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">maxordn</span></span></span> maximum non-stiff order allowed, at most 12<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">maxords</span></span></span>
+maximum stiff order allowed, at most 5<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ixpr</span></span></span> print level, 0 or 1<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ml</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mu</span></span></span> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jactype</span></span></span> equals 4
+or 5, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ml</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mu</span></span></span> are the lower and upper half-bandwidths of the banded jacobian: the
+band is the i,j&apos;s with i-ml <span 
+class="cmmi-10x-x-109">&#x003C;</span>= j <span 
+class="cmmi-10x-x-109">&#x003C;</span>= ny-1. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jactype</span></span></span> equals 4 the jacobian function must
+return a matrix J which is ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y)) such that
+column 1 of J is made of mu zeros followed by df1/dy1, df2/dy1, df3/dy1, ... (1+ml
+possibly non-zero entries) column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2, etc
+</p>
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x889-5152000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli890.html#ode">ode</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli889.html" >next</a>] [<a 
+href="manualli887.html" >prev</a>] [<a 
+href="manualli887.html#tailmanualli887.html" >prev-tail</a>] [<a 
+href="manualli888.html" >front</a>] [<a 
+href="manualli863.html#manualli888.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli888.html"></a>  </p> 
+</body></html> 

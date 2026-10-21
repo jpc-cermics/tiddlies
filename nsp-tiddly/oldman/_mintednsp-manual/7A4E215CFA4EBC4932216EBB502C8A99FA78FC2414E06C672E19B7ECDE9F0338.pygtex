@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspkeyword{function} \nspfunction{my_eventhandler}(win,x,y,ibut)
+  \nspkeyword{if} ibut\nspoperator{==}\nspoperator{-}\nspnumber{1000} \nspkeyword{then} \nspkeyword{return}\nspoperator{,}\nspkeyword{end}
+  [x,y]=xchange(x,y,\nspstring{'i2f'})
+  xinfo(msprintf(\nspstring{'Event code \nsppc{}d at mouse position is (\nsppc{}f,\nsppc{}f)'},ibut,x,y))
+\nspkeyword{endfunction}
+plot2d()
+seteventhandler(\nspstring{'my_eventhandler'})
+\nspcomment{//now:}
+\nspcomment{//   -  move the mouse over the graphic window}
+\nspcomment{//   -  press and release keys shifted or not with Ctrl pressed or not}
+\nspcomment{//   -  press button, wait a little release}
+\nspcomment{//   -  press and release button}
+\nspcomment{//   -  double-click button}
+seteventhandler(\nspstring{''})\nspoperator{,}\nspcomment{//suppress the event handler}
+\end{Verbatim}

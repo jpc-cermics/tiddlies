@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>insertion</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli990.html" >next</a>] [<a 
+href="manualli988.html" >prev</a>] [<a 
+href="manualli988.html#tailmanualli988.html" >prev-tail</a>] [<a 
+href="#tailmanualli989.html">tail</a>] [<a 
+href="manualli931.html#manualli989.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x990-5676000"></a>insertion</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx990-5676001"></a><a 
+ id="insertion"></a><span 
+class="cmtt-10x-x-109">insertion </span>&#x2013;                                             partial variable assignation or modification<br />
+<a 
+ id="dx990-5676002"></a>
+<a 
+ id="assignation"></a><span 
+class="cmtt-10x-x-109">assignation </span>&#x2013;                                                                 partial variable assignation<br />
+</div></p></div>
+<!--l. 23--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x990-5677000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1105">
+&#x00A0;&#x00A0;x(i,j)=a
+&#x00A0;<br />&#x00A0;&#x00A0;x(i)=a
+&#x00A0;<br />&#x00A0;&#x00A0;l(i)=a
+&#x00A0;<br />&#x00A0;&#x00A0;l(k1)...(kn)(i)=a&#x00A0;or&#x00A0;l(list(k1,...,kn,i))=a
+&#x00A0;<br />&#x00A0;&#x00A0;l(k1)...(kn)(i,j)=a&#x00A0;&#x00A0;&#x00A0;or&#x00A0;l(list(k1,...,kn,list(i,j))=a
+</div>
+<!--l. 30--><p class="nopar" >
+</p>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x990-5678000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: matrix of any kind (constant, sparse, polynomial,...)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">l</span>: list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">i,j</span>: indices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">k1,...kn</span>: indices with integer value
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">a</span>: new entry value</li></ul>
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x990-5679000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 42--><p class="noindent" >
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">MATRIX CASE</span> </span>if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is a matrix the indices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span>, may be:
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">Real scalars or vectors or matrices</span> </span>In this case the values given as indices should be
+          positive and it is only their integer part which taken into account.
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+           </span>if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> is a matrix with dimensions <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(size(i,&#x0027;*&#x0027;),size(j,&#x0027;*&#x0027;))</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i,j)=a</span></span></span> returns
+              a new <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> matrix such as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(int(i(l)),int(j(k)))=a(l,k)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l</span></span></span> from 1 to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(i,&#x0027;*&#x0027;)</span></span></span> and  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> from  1  to  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(j,&#x0027;*&#x0027;)</span></span></span>,  other  initial  entries  of  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> are
+              unchanged.
+                                                                                    
+
+                                                                                    
+              <li class="nbitemize"><span class="bitem">
+           </span>if    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span>   is    a    scalar    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i,j)=a</span></span></span>   returns    a    new    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>   matrix    such
+              as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(int(i(l)),int(j(k)))=a</span></span></span> for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l</span></span></span> from 1 to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(i,&#x0027;*&#x0027;)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> from 1 to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(j,&#x0027;*&#x0027;)</span></span></span>, other initial entries of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> are unchanged.
+              <li class="nbitemize"><span class="bitem">
+           </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span> maximum value exceed corresponding <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> matrix dimension, array <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is
+              previously extended to the required dimensions with zeros entries for standard
+              matrices, 0 length character string for string matrices and false values for
+              boolean matrices.
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i,j)=[]</span></span></span> kills rows specified by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span> matches all columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> or kills columns
+              specified by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> matches all rows of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. In other cases <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i,j)=[]</span></span></span> produce an
+              error.
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i)=a</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> a vector returns a new <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> matrix such as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(int(i(l)))=a(l)</span></span></span> for
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l</span></span></span> from 1 to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(i,&#x0027;*&#x0027;)</span></span></span> , other initial entries of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> are unchanged.
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i)=a</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> a scalar returns a new <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> matrix such as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(int(i(l)))=a</span></span></span> for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l</span></span></span> from 1 to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(i,&#x0027;*&#x0027;)</span></span></span> , other initial entries of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> are unchanged. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> maximum value exceed
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(x,1)</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is previously extended to the required dimension with zeros entries for
+              standard matrices, 0 length character string for string matrices and false values for
+              boolean matrices.
+                 <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+              <span 
+class="cmbx-10x-x-109">if</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is a 1x1 matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> may be a row (respectively a column) vector with
+                 dimension  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(i,&#x0027;*&#x0027;)</span></span></span>.  Resulting  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> matrix  is  a  row  (respectively  a
+                 column) vector
+                 <li class="nbitemize"><span class="bitem">
+              <span 
+class="cmbx-10x-x-109">if</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is a row vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> must be a row vector with dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(i,&#x0027;*&#x0027;)</span></span></span>
+                 <li class="nbitemize"><span class="bitem">
+              <span 
+class="cmbx-10x-x-109">if</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is a column vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> must be a column vector with dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(i,&#x0027;*&#x0027;)</span></span></span>
+                 <li class="nbitemize"><span class="bitem">
+              <span 
+class="cmbx-10x-x-109">if</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is a general matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> must be a row or column vector with dimension
+                 <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(i,&#x0027;*&#x0027;)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> maximum value cannot exceed <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(x,&#x0027;*&#x0027;)</span></span></span>,</ul>
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i)=[]</span></span></span> kills entries specified by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>.</ul>
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">The: symbol</span> </span>the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">:</span></span></span> symbol stands for &#x201D;all elements&#x201D;.
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i,:)=a</span></span></span> is interpreted as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i,1:size(x,2))=a</span></span></span>
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(:,j)=a</span></span></span> is interpreted as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(1:size(x,1),j)=a</span></span></span>
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(:)=a</span></span></span> returns  in  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> the  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> matrix  reshaped  according  to  x  dimensions.
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(x,&#x0027;*&#x0027;)</span></span></span> must be equal to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">size(a,&#x0027;*&#x0027;)</span></span></span></ul>
+                                                                                    
+
+                                                                                    
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">Vectors of boolean</span> </span>If an index (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span> )is a vector of booleans it is interpreted as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">find(i)</span></span></span>
+          or respectively <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">find(j)</span></span></span>
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">Polynomials</span> </span>If an index (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span> )is a vector of polynomials or implicit polynomial vector it is
+          interpreted as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">horner(i,m)</span></span></span> or respectively <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">horner(j,n)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> are associated <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>
+          dimensions. Even if this feature works for all polynomials, it is recommended to use
+          polynomials in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$</span></span></span> for readability.</ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">LIST OR TLIST CASE</span> </span>
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span>If they are present the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ki</span></span></span> give the path to a sub-list entry of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l</span></span></span> data structure. They
+          allow a recursive insertion without intermediate copies. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(k1)...(kn)(i)=a</span></span></span>
+          and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(list(k1,...,kn,i)=a)</span></span></span> instructions are interpreted as:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lk1</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(k1)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lkn</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;lkn-1(kn)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;lkn(i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lkn-1(kn)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;lkn</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(k1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;lk1</span></span></span>
+          And the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(k1)...(kn)(i,j)=a</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(list(k1,...,kn,list(i,j))=a</span></span></span> instructions
+          are interpreted as:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lk1</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(k1)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lkn</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;lkn-1(kn)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lkn(i,j)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lkn-1(kn)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;lkn</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(k1)=</span><span 
+class="cmtt-10x-x-109">&#x00A0;lk1</span></span></span>
+          <li class="nbitemize"><span class="bitem">
+      </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> may be:
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+           </span>a real non negative scalar. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(0)=a</span></span></span> adds an entry on the &#x201D;left&#x201D; of the list <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(i)=a</span></span></span>
+              sets the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> entry of the list <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l</span></span></span> to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span>. if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i$&#x003E;$size(l)</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l</span></span></span> is previously extended
+              with zero length entries (undefined). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l(i)=null()</span></span></span> suppress the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>th list entry.
+              <li class="nbitemize"><span class="bitem">
+           </span>a  polynomial.  If  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> is  a  polynomial  it  is  interpreted  as  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">horner(i,m)</span></span></span> where
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m=size(l)</span></span></span>. Even if this feature works for all polynomials, it is recommended
+              to use polynomials in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$</span></span></span> for readability.</ul>
+          <li class="nbitemize"><span class="bitem">
+      </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k1,..kn</span></span></span> may be:
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+           </span>real positive scalar.
+              <li class="nbitemize"><span class="bitem">
+           </span>a polynomial,interpreted as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">horner(ki,m)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is the corresponding sub-list
+              size.
+              <li class="nbitemize"><span class="bitem">
+           </span>a character string associated with a sub-list entry name.</ul>
+          </ul>
+     </ul>
+</p>
+<!--l. 178--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x990-5680000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   For soft coded matrix types such as rational functions and state space linear systems, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i)</span></span></span>
+syntax may not be used for vector entry insertion due to confusion with list entry insertion. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(1,j)</span></span></span>
+or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i,1)</span></span></span> syntax must be used.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 181--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x990-5681000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb689"><a 
+ id="x990-5681033r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;MATRIX</span><span 
+class="cmitt-10x-x-109">&#x00A0;CASE</span></span><br class="fancyvrb" /><a 
+ id="x990-5681035r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x990-5681037r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><br class="fancyvrb" /><a 
+ id="x990-5681039r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x990-5681041r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">]</span>
+<br class="fancyvrb" /><a 
+ id="x990-5681043r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">77</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">44</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">99</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x990-5681045r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=%s</span><br class="fancyvrb" /><a 
+ id="x990-5681047r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)=%s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><br class="fancyvrb" /><a 
+ id="x990-5681049r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><br class="fancyvrb" /><a 
+ id="x990-5681051r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a([%t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%f],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">33</span></span><br class="fancyvrb" /><a 
+ id="x990-5681053r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span>
+<br class="fancyvrb" /><a 
+ id="x990-5681055r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a($</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x990-5681057r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a($)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">123</span></span><br class="fancyvrb" /><a 
+ id="x990-5681059r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x990-5681061r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;test&#x0027;</span></span><br class="fancyvrb" /><a 
+ id="x990-5681063r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">])=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;4&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;5&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x990-5681065r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x990-5681067r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">%s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">(%s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(%s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)]</span>
+<br class="fancyvrb" /><a 
+ id="x990-5681069r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><br class="fancyvrb" /><a 
+ id="x990-5681071r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,$)=b(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,$)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><br class="fancyvrb" /><a 
+ id="x990-5681073r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;numerator</span></span><br class="fancyvrb" /><a 
+ id="x990-5681075r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;LIST</span><span 
+class="cmitt-10x-x-109">&#x00A0;OR</span><span 
+class="cmitt-10x-x-109">&#x00A0;TLIST</span><span 
+class="cmitt-10x-x-109">&#x00A0;CASE</span></span>
+<br class="fancyvrb" /><a 
+ id="x990-5681077r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l=list(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;qwerw&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,%s)</span><br class="fancyvrb" /><a 
+ id="x990-5681079r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Changed&#x0027;</span></span><br class="fancyvrb" /><a 
+ id="x990-5681081r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Added&#x0027;</span></span><br class="fancyvrb" /><a 
+ id="x990-5681083r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;one</span><span 
+class="cmtt-10x-x-109">&#x00A0;more&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;added&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x990-5681085r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span>
+<br class="fancyvrb" /><a 
+ id="x990-5681087r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x990-5681089r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;dts=list(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,tlist([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x990-5681091r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;dts(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">).a=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">33</span></span><br class="fancyvrb" /><a 
+ id="x990-5681093r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;dts(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span></div>
+<!--l. 217--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x990-5682000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli969.html#find">find</a>    <a 
+href="manualli910.html#horner">horner</a>    <a 
+href="manualli1010.html#parents">parents</a>    <a 
+href="manualli967.html#extraction">extraction</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli990.html" >next</a>] [<a 
+href="manualli988.html" >prev</a>] [<a 
+href="manualli988.html#tailmanualli988.html" >prev-tail</a>] [<a 
+href="manualli989.html" >front</a>] [<a 
+href="manualli931.html#manualli989.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli989.html"></a>  </p> 
+</body></html> 

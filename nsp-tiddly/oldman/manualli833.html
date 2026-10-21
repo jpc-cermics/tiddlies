@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_prod</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli834.html" >next</a>] [<a 
+href="manualli832.html" >prev</a>] [<a 
+href="manualli832.html#tailmanualli832.html" >prev-tail</a>] [<a 
+href="#tailmanualli833.html">tail</a>] [<a 
+href="manualli756.html#manualli833.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x834-4855000"></a>mtlb_prod</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx834-4855001"></a><a 
+ id="mtlb_prod"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_prod </span>&#x2013;                                                           Matlab prod emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x834-4856000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Matlab and Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod</span></span></span> behave differently in some particular cases:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div>  When  called  with  one  input:  Matlab  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod</span></span></span> threts  the  values  along  the  first
+          non-singleton dimension of input while Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod</span></span></span> threats all values of input.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with two inputs: Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod</span></span></span> can be used with second input giving
+          a non-existing dimension of first input while Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod</span></span></span> returns an error message.</li></ul>
+     </ul>
+<!--l. 34--><p class="noindent" >The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_prod(A[,dim])</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod(A[,dim])</span></span></span> when it was not
+possible to know what were the inputs while porting Matlab code to Scilab. This function will
+determine the correct semantic at run time. If you want to have a more efficient code it is possible
+to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_prod</span></span></span> calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div>  When  called  with  one  input,  if  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is  an  empty  matrix,  a  scalar  or  a  vector,
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_prod(A)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod(A)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with one input, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is a not-empty matrix, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_prod(A)</span></span></span> may be
+          replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod(A,1)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with one input, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is a multidimensional array, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_prod(A)</span></span></span> may
+          be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod(A,firstnonsingleton(A))</span></span></span>
+                                                                                    
+
+                                                                                    
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with two inputs, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> is lesser than the number of dimensions of
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_prod(A,dim)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prod(A,dim)</span></span></span></li></ul>
+     </ul>
+<!--l. 55--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_prod</span></span></span> has not to be used for hand coded functions.
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x834-4857000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli762.html#firstnonsingleton">firstnonsingleton</a>
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x834-4858000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x834-4859000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli834.html" >next</a>] [<a 
+href="manualli832.html" >prev</a>] [<a 
+href="manualli832.html#tailmanualli832.html" >prev-tail</a>] [<a 
+href="manualli833.html" >front</a>] [<a 
+href="manualli756.html#manualli833.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli833.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+Plant=ssrand(\nspnumber{1},\nspnumber{3},\nspnumber{5})\nspoperator{;}
+[F,G,H,J]=abcd(Plant)\nspoperator{;}
+nw=\nspnumber{4}\nspoperator{;}nuu=\nspnumber{2}\nspoperator{;}A=rand(nw,nw)\nspoperator{;}
+st=maxi(real(spec(A)))\nspoperator{;}A=A\nspoperator{-}st\nspoperator{*}eye(A)\nspoperator{;}
+B=rand(nw,nuu)\nspoperator{;}C=\nspnumber{2}\nspoperator{*}rand(\nspnumber{1},nw)\nspoperator{;}D=\nspnumber{0}\nspoperator{*}rand(C\nspoperator{*}B)\nspoperator{;}
+Model=syslin(\nspstring{'c'},A,B,C,D)\nspoperator{;}
+[L,M,T]=gfrancis(Plant,Model)\nspoperator{;}
+norm(F\nspoperator{*}T\nspoperator{+}G\nspoperator{*}L\nspoperator{-}T\nspoperator{*}A,\nspnumber{1})
+norm(H\nspoperator{*}T\nspoperator{+}J\nspoperator{*}L\nspoperator{-}C,\nspnumber{1})
+norm(G\nspoperator{*}M\nspoperator{-}T\nspoperator{*}B,\nspnumber{1})
+norm(J\nspoperator{*}M\nspoperator{-}D,\nspnumber{1})
+\end{Verbatim}

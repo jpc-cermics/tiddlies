@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>splin</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli245.html" >next</a>] [<a 
+href="manualli243.html" >prev</a>] [<a 
+href="manualli243.html#tailmanualli243.html" >prev-tail</a>] [<a 
+href="#tailmanualli244.html">tail</a>] [<a 
+href="manualli104.html#manualli244.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x245-1452000"></a>splin</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx245-1452001"></a><a 
+ id="splin"></a><span 
+class="cmtt-10x-x-109">splin </span>&#x2013;                                                                           cubic spline interpolation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1453000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-372">
+&#x00A0;&#x00A0;d&#x00A0;=&#x00A0;splin(x,&#x00A0;y&#x00A0;[,spline_type&#x00A0;[,&#x00A0;der]])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1454000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x </span>: a strictly increasing (row or column) vector (x must have at least 2 components)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y </span>: a vector of same format than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">spline</span><span 
+class="cmtt-10x-x-109">_type </span>: (optional) a string selecting the kind of spline to compute
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">der </span>: (optional) a vector with 2 components, with the end points derivatives (to provide
+     when spline_type=&#x201D;clamped&#x201D;)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">d </span>: vector of the same format than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">di</span></span></span> is the derivative of the spline at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xi</span></span></span>)</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1455000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > This function computes a cubic spline or sub-spline <span 
+class="cmti-10x-x-109">s </span>which interpolates the <span 
+class="cmti-10x-x-109">(xi,yi) </span>points, ie, we
+have <span 
+class="cmti-10x-x-109">s(xi)=yi </span>for all <span 
+class="cmti-10x-x-109">i=1,..,n</span>. The resulting spline <span 
+class="cmti-10x-x-109">s </span>is completly defined by the triplet <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(x,y,d)</span></span></span>
+where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d</span></span></span> is the vector with the derivatives at the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xi</span></span></span>: <span 
+class="cmti-10x-x-109">s&apos;(xi)=di </span>(this is called the <span 
+class="cmti-10x-x-109">Hermite </span>form). The
+evaluation of the spline at some points must be done by the <a 
+href="manualli171.html#interp">interp</a>    function. Several
+kind of splines may be computed by selecting the appropriate <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">spline_type</span></span></span> parameter:
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">&#x201D;not_a_knot&#x201D;</div>: this is the default case, the cubic spline is computed by using the following
+     conditions (considering n points x1,...,xn):
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-373">
+     &#x00A0;&#x00A0;s&#x0027;&#x0027;&#x0027;(x2-)&#x00A0;=&#x00A0;s&#x0027;&#x0027;&#x0027;(x2+)
+     &#x00A0;<br />&#x00A0;&#x00A0;s&#x0027;&#x0027;&#x0027;(x{n-1}-)&#x00A0;=&#x00A0;s&#x0027;&#x0027;&#x0027;(x{n-1}+)
+</div>
+     <!--l. 54--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;clamped&#x201D;</div>: in this case the cubic spline is computed by using the end points derivatives which
+     must be provided as the last argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">der</span></span></span>:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-374">
+     &#x00A0;&#x00A0;s&#x0027;(x1)&#x00A0;=&#x00A0;der(1)
+     &#x00A0;<br />&#x00A0;&#x00A0;s&#x0027;(xn)&#x00A0;=&#x00A0;der(2)
+</div>
+     <!--l. 60--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;natural&#x201D;</div>: the cubic spline is computed by using the conditions:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-375">
+     &#x00A0;&#x00A0;s&#x0027;&#x0027;(x1)&#x00A0;=&#x00A0;0
+     &#x00A0;<br />&#x00A0;&#x00A0;s&#x0027;&#x0027;(xn)&#x00A0;=&#x00A0;0
+</div>
+     <!--l. 65--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;periodic&#x201D;</div>: a periodic cubic spline is computed (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> must verify <span 
+class="cmti-10x-x-109">y1=yn</span>) by using the
+     conditions:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-376">
+     &#x00A0;&#x00A0;s&#x0027;(x1)&#x00A0;=&#x00A0;s&#x0027;(xn)
+     &#x00A0;<br />&#x00A0;&#x00A0;s&#x0027;&#x0027;(x1)&#x00A0;=&#x00A0;s&#x0027;&#x0027;(xn)
+</div>
+     <!--l. 71--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;monotone&#x201D;</div>: in this case a sub-spline (<span 
+class="cmti-10x-x-109">s </span>is only one continuously differentiable)
+     is computed by using a local scheme for the <span 
+class="cmti-10x-x-109">di </span>such that <span 
+class="cmti-10x-x-109">s </span>is monotone on each
+     interval:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-377">
+     &#x00A0;&#x00A0;if&#x00A0;y(i)&#x00A0;$&#x003C;$=&#x00A0;y(i+1)&#x00A0;&#x00A0;s&#x00A0;is&#x00A0;increasing&#x00A0;on&#x00A0;[x(i),&#x00A0;x(i+1)]
+     &#x00A0;<br />&#x00A0;&#x00A0;if&#x00A0;y(i)&#x00A0;$&#x003E;$=&#x00A0;y(i+1)&#x00A0;&#x00A0;s&#x00A0;is&#x00A0;decreasing&#x00A0;on&#x00A0;[x(i),&#x00A0;x(i+1)]
+</div>
+     <!--l. 78--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;fast&#x201D;</div>: in this case a sub-spline is also computed by using a simple local scheme for the
+     <span 
+class="cmti-10x-x-109">di</span>: d(i) is the derivative at x(i) of the interpolation polynomial of (x(i-1),y(i-1)),
+     (x(i),y(i)),(x(i+1),y(i+1)), except for the end points (d1 being computed from the 3 left most
+     points and dn from the 3 right most points).
+     </li>
+     <li class="itemize"><div class="itemdesc">&#x201D;fast_periodic&#x201D;</div>: same as before but use also a centered formula for <span 
+class="cmti-10x-x-109">d1 = s&apos;(x1) =</span>
+     <span 
+class="cmti-10x-x-109">dn = s&apos;(xn) </span>by using the periodicity of the underlying function (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> must verify
+     <span 
+class="cmti-10x-x-109">y1=yn</span>).</li></ul>
+<!--l. 89--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1456000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   From an accuracy point of view use essentially the type if you know the end point derivatives,
+else use . But if the underlying approximated function is periodic use the type. Under the good
+assumptions these kind of splines got an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">O(h^4)</span></span></span> asymptotic behavior of the error. Don&apos;t use the
+type unless the underlying function have zero second end points derivatives. The , (or ) type
+may be useful in some cases, for instance to limit oscillations (these kind of sub-splines
+have an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">O(h^3)</span></span></span> asymptotic behavior of the error). If <span 
+class="cmti-10x-x-109">n=2 </span>(and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">spline_type</span></span></span> is not )
+linear interpolation is used. If <span 
+class="cmti-10x-x-109">n=3 </span>and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">spline_type</span></span></span> is , then a sub-spline type is in fact
+computed.
+</p>
+<!--l. 103--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1457000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb199"><a 
+ id="x245-1457031r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span></span><br class="fancyvrb" /><a 
+ id="x245-1457033r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y=runge(x)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y=1</span><span 
+class="cmtt-10x-x-109">&#x00A0;./(1</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;x.^2)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x245-1457035r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">b=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x245-1457037r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(a,b,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x245-1457039r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=runge(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x245-1457041r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;d=splin(x,y)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x245-1457043r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xx=linspace(a,b,m)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x245-1457045r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yyi=interp(xx,x,y,d)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x245-1457047r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yye=runge(xx)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x245-1457049r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x245-1457051r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(xx,[yyi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yye],style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">],leg</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;interpolation</span><span 
+class="cmtt-10x-x-109">&#x00A0;spline@exact</span><span 
+class="cmtt-10x-x-109">&#x00A0;function&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x245-1457053r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(x,y,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x245-1457055r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;interpolation</span><span 
+class="cmtt-10x-x-109">&#x00A0;of</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;Runge</span><span 
+class="cmtt-10x-x-109">&#x00A0;function&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x245-1457057r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;2:</span><span 
+class="cmitt-10x-x-109">&#x00A0;show</span><span 
+class="cmitt-10x-x-109">&#x00A0;behavior</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;different</span><span 
+class="cmitt-10x-x-109">&#x00A0;splines</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;datas</span></span><br class="fancyvrb" /><a 
+ id="x245-1457059r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">b=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;interval</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span></span>
+<br class="fancyvrb" /><a 
+ id="x245-1457061r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;nb</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;points</span></span><br class="fancyvrb" /><a 
+ id="x245-1457063r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">800</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;discretisation</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;evaluation</span></span>
+<br class="fancyvrb" /><a 
+ id="x245-1457065r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(a,b,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;abscissae</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;points</span></span><br class="fancyvrb" /><a 
+ id="x245-1457067r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=rand(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;ordinates</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;points</span></span>
+<br class="fancyvrb" /><a 
+ id="x245-1457069r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xx=linspace(a,b,m)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x245-1457071r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yk=interp(xx,x,y,splin(x,y,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;not_a_knot&#x0022;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x245-1457073r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yf=interp(xx,x,y,splin(x,y,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;fast&#x0022;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x245-1457075r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ym=interp(xx,x,y,splin(x,y,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;monotone&#x0022;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x245-1457077r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span>
+<br class="fancyvrb" /><a 
+ id="x245-1457079r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(xx,[yf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">ym</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yk],style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">],strf</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;121&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,leg</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;fast@monotone@not</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span><span 
+class="cmtt-10x-x-109">&#x00A0;knot</span><span 
+class="cmtt-10x-x-109">&#x00A0;spline&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x245-1457081r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(x,y,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span 
+class="cmtt-10x-x-109">,strf</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;000&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;show</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;points</span></span>
+<br class="fancyvrb" /><a 
+ id="x245-1457083r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Various</span><span 
+class="cmtt-10x-x-109">&#x00A0;spline</span><span 
+class="cmtt-10x-x-109">&#x00A0;and</span><span 
+class="cmtt-10x-x-109">&#x00A0;sub-splines</span><span 
+class="cmtt-10x-x-109">&#x00A0;on</span><span 
+class="cmtt-10x-x-109">&#x00A0;random</span><span 
+class="cmtt-10x-x-109">&#x00A0;datas&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x245-1457085r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xselect()</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 137--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1458000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli171.html#interp">interp</a>    <a 
+href="#lsq-splin">lsq_splin</a>
+</p>
+<!--l. 141--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1459000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 142--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1460000"></a></span>
+   B. Pincon
+</p>
+<!--l. 143--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x245-1461000"></a></span>
+   F. N. Fritsch (pchim.f Slatec routine is used for monotone interpolation)
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli245.html" >next</a>] [<a 
+href="manualli243.html" >prev</a>] [<a 
+href="manualli243.html#tailmanualli243.html" >prev-tail</a>] [<a 
+href="manualli244.html" >front</a>] [<a 
+href="manualli104.html#manualli244.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli244.html"></a>  </p> 
+</body></html> 

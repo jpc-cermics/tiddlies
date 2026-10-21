@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>portrait</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1292.html" >next</a>] [<a 
+href="manualli1290.html" >prev</a>] [<a 
+href="manualli1290.html#tailmanualli1290.html" >prev-tail</a>] [<a 
+href="#tailmanualli1291.html">tail</a>] [<a 
+href="manualli1280.html#manualli1291.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1292-7276000"></a>portrait</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1292-7276001"></a><a 
+ id="portrait"></a><span 
+class="cmtt-10x-x-109">portrait </span>&#x2013;                                                                2 dimensional phase portrait. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1292-7277000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1445">
+&#x00A0;&#x00A0;[]=portrait(f,[odem,xdim,npts,pinit])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1292-7278000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f</span>: a Scilab external which gives the field of the dynamical system. Hence it can be
+     a macro name which computes the field at time t and point x [y]=f(t,x,[u]) or a list
+     list(f1,u1) where f1 is a macro of type [y]=f1(t,x,u) or a character string. The macro
+     can be used to simulate a continuous or discrete system and in case of discrete system
+     the second parameter must be set to &apos;discrete&apos;
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">options</span>: The other parameters are optional. If omitted they will be asked interactively
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">odem</span>:  gives  the  integration  method  to  use.  The  value  &#x201D;default&#x201D;  can  be  used,
+          otherwise see ode for a complete set of possibilities
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">npts</span>: a vector of size (2,10) [number-of-points,step] gives the step for integration
+          and the number of requested points. The solution will be calculated and drawn for
+          time=0:step:(step*[number-of-points])
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">xdim</span>: [xmin,xmax,ymin,ymax,zmin,zmax] the boundaries of the graphic frame.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">pinit</span>: initial values for integration. A set of initial points can be given in a
+          matrix
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-1446">
+          &#x00A0;&#x00A0;pinit&#x00A0;=&#x00A0;[x0(1),&#x00A0;x1(1),....,&#x00A0;xn(1)
+          &#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;x0(2),&#x00A0;x1(2),....,&#x00A0;xn(2)
+          &#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;x0(3),&#x00A0;x1(3),....,&#x00A0;xn(3)].
+</div>
+          <!--l. 44--><p class="nopar" ></p></li></ul>
+     </li></ul>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1292-7279000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 48--><p class="noindent" > Interactive integration and display of a 2 dimensional phase portrait of a dynamical system
+dx/dt=f(t,x,[u]) (where u is an optional parameter )
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1292-7280000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb839"><a 
+ id="x1292-7280005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1292-7280007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[ydot]=l_s(t,y)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ydot=a*y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1292-7280009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;portrait(l_s)</span></div>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1292-7281000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli890.html#ode">ode</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1292.html" >next</a>] [<a 
+href="manualli1290.html" >prev</a>] [<a 
+href="manualli1290.html#tailmanualli1290.html" >prev-tail</a>] [<a 
+href="manualli1291.html" >front</a>] [<a 
+href="manualli1280.html#manualli1291.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1291.html"></a>  </p> 
+</body></html> 

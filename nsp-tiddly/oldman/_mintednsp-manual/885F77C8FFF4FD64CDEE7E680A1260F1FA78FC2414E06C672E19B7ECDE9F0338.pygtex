@@ -1,0 +1,49 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sl=syslin(\nspstring{'d'},\nspnumber{1},\nspnumber{1},\nspnumber{1})\nspoperator{;}u=\nspnumber{1}\nspoperator{:}\nspnumber{10}\nspoperator{;}
+y=flts(u,sl)\nspoperator{;}
+plot2d2(\nspstring{"onn"},(\nspnumber{1}\nspoperator{:}size(u,\nspstring{'c'}))\nspoperator{'},y\nspoperator{'})
+[y1,x1]=flts(u(\nspnumber{1}\nspoperator{:}\nspnumber{5}),sl)\nspoperator{;}y2=flts(u(\nspnumber{6}\nspoperator{:}\nspnumber{10}),sl,x1)\nspoperator{;}
+y\nspoperator{-}[y1\nspoperator{,}y2]
+\nspcomment{//With polynomial D:}
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+D=\nspnumber{1}\nspoperator{+}z\nspoperator{+}z\nspoperator{^}\nspnumber{2}\nspoperator{;}p=degree(D)\nspoperator{;}
+sl=syslin(\nspstring{'d'},\nspnumber{1},\nspnumber{1},\nspnumber{1},D)\nspoperator{;}
+y=flts(u,sl)\nspoperator{;}[y1,x1]=flts(u(\nspnumber{1}\nspoperator{:}\nspnumber{5}),sl)\nspoperator{;}
+y2=flts(u(\nspnumber{5}\nspoperator{-}p\nspoperator{+}\nspnumber{1}\nspoperator{:}\nspnumber{10}),sl,x1)\nspoperator{;}\nspcomment{// (update)}
+y\nspoperator{-}[y1\nspoperator{,}y2]
+\nspcomment{//Delay (transfer form): flts(u,1/z)}
+\nspcomment{// Usual responses}
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+h=(\nspnumber{1}\nspoperator{-}\nspnumber{2}\nspoperator{*}z)\nspoperator{/}(z\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.3}\nspoperator{*}z\nspoperator{+}\nspnumber{1})
+u=zeros(\nspnumber{1},\nspnumber{20})\nspoperator{;}u(\nspnumber{1})=\nspnumber{1}\nspoperator{;}
+imprep=flts(u,tf2ss(h))\nspoperator{;}\nspcomment{//Impulse response}
+plot2d2(\nspstring{"onn"},(\nspnumber{1}\nspoperator{:}size(u,\nspstring{'c'}))\nspoperator{'},imprep\nspoperator{'})
+u=ones(\nspnumber{1},\nspnumber{20})\nspoperator{;}
+stprep=flts(u,tf2ss(h))\nspoperator{;}\nspcomment{//Step response}
+plot2d2(\nspstring{"onn"},(\nspnumber{1}\nspoperator{:}size(u,\nspstring{'c'}))\nspoperator{'},stprep\nspoperator{'})
+\nspcomment{//}
+\nspcomment{// Other examples}
+A=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}B=[\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}C=eye(\nspnumber{3},\nspnumber{3})\nspoperator{;}Sys=syslin(\nspstring{'d'},A,B,C)\nspoperator{;}
+H=ss2tf(Sys)\nspoperator{;}u=[\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{1}]\nspoperator{*}(\nspnumber{1}\nspoperator{:}\nspnumber{10})\nspoperator{;}
+\nspcomment{//}
+yh=flts(u,H)\nspoperator{;}ys=flts(u,Sys)\nspoperator{;}
+norm(yh\nspoperator{-}ys,\nspnumber{1})
+\nspcomment{//hot restart}
+[ys1,x]=flts(u(\nspoperator{:},\nspnumber{1}\nspoperator{:}\nspnumber{4}),Sys)\nspoperator{;}ys2=flts(u(\nspoperator{:},\nspnumber{5}\nspoperator{:}\nspnumber{10}),Sys,x)\nspoperator{;}
+norm([ys1\nspoperator{,}ys2]\nspoperator{-}ys,\nspnumber{1})
+\nspcomment{//}
+yh1=flts(u(\nspoperator{:},\nspnumber{1}\nspoperator{:}\nspnumber{4}),H)\nspoperator{;}yh2=flts(u(\nspoperator{:},\nspnumber{5}\nspoperator{:}\nspnumber{10}),H,[u(\nspoperator{:},\nspnumber{2}\nspoperator{:}\nspnumber{4})\nspoperator{;}yh(\nspoperator{:},\nspnumber{2}\nspoperator{:}\nspnumber{4})])\nspoperator{;}
+norm([yh1\nspoperator{,}yh2]\nspoperator{-}yh,\nspnumber{1})
+\nspcomment{//with D$<$$>$0}
+D=[\nspoperator{-}\nspnumber{3}\nspoperator{,}\nspnumber{8}\nspoperator{;}\nspnumber{4}\nspoperator{,}\nspoperator{-}\nspnumber{0.5}\nspoperator{;}\nspnumber{2.2}\nspoperator{,}\nspnumber{0.9}]\nspoperator{;}
+Sys=syslin(\nspstring{'d'},A,B,C,D)\nspoperator{;}
+H=ss2tf(Sys)\nspoperator{;}u=[\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{1}]\nspoperator{*}(\nspnumber{1}\nspoperator{:}\nspnumber{10})\nspoperator{;}
+rh=flts(u,H)\nspoperator{;}rs=flts(u,Sys)\nspoperator{;}
+norm(rh\nspoperator{-}rs,\nspnumber{1})
+\nspcomment{//hot restart}
+[ys1,x]=flts(u(\nspoperator{:},\nspnumber{1}\nspoperator{:}\nspnumber{4}),Sys)\nspoperator{;}ys2=flts(u(\nspoperator{:},\nspnumber{5}\nspoperator{:}\nspnumber{10}),Sys,x)\nspoperator{;}
+norm([ys1\nspoperator{,}ys2]\nspoperator{-}rs,\nspnumber{1})
+\nspcomment{//With H:}
+yh1=flts(u(\nspoperator{:},\nspnumber{1}\nspoperator{:}\nspnumber{4}),H)\nspoperator{;}yh2=flts(u(\nspoperator{:},\nspnumber{5}\nspoperator{:}\nspnumber{10}),H,[u(\nspoperator{:},\nspnumber{2}\nspoperator{:}\nspnumber{4})\nspoperator{;}yh1(\nspoperator{:},\nspnumber{2}\nspoperator{:}\nspnumber{4})])\nspoperator{;}
+norm([yh1\nspoperator{,}yh2]\nspoperator{-}rh)
+\end{Verbatim}

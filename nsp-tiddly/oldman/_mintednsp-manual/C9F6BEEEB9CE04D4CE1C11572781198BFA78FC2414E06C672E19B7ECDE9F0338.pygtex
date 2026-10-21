@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+w=ssrand(\nspnumber{1},\nspnumber{1},\nspnumber{3})\nspoperator{;}
+wtf=ss2tf(w)\nspoperator{;}v=[\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{4}]\nspoperator{;}a=v(\nspnumber{1})\nspoperator{;}b=v(\nspnumber{2})\nspoperator{;}c=v(\nspnumber{3})\nspoperator{;}d=v(\nspnumber{4})\nspoperator{;}
+[horner(wtf,(a\nspoperator{*}z\nspoperator{+}b)\nspoperator{/}(c\nspoperator{*}z\nspoperator{+}d))\nspoperator{,}ss2tf(bilin(w,[a\nspoperator{,}b\nspoperator{,}c\nspoperator{,}d]))]
+clean(ss2tf(bilin(bilin(w,[a\nspoperator{,}b\nspoperator{,}c\nspoperator{,}d]),[d\nspoperator{,}\nspoperator{-}b\nspoperator{,}\nspoperator{-}c\nspoperator{,}a]))\nspoperator{-}wtf)
+\end{Verbatim}

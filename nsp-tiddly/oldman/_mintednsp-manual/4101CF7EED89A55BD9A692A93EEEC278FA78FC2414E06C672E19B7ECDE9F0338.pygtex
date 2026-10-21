@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+a=\nspnumber{.7}\nspoperator{*}exp(%i\nspoperator{*}%pi\nspoperator{/}\nspnumber{6})\nspoperator{;}
+[ffr,bds]=xgetech()\nspoperator{;}\nspcomment{//preserve current context}
+rect=[\nspoperator{-}\nspnumber{1.2}\nspoperator{,}\nspoperator{-}\nspnumber{1.2}\nspoperator{*}sqrt(\nspnumber{2})\nspoperator{,}\nspnumber{1.2}\nspoperator{,}\nspnumber{1.2}\nspoperator{*}sqrt(\nspnumber{2})]\nspoperator{;}
+t=\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}(\nspnumber{0}\nspoperator{:}\nspnumber{179})\nspoperator{/}\nspnumber{179}\nspoperator{;}xsetech([\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{1}])\nspoperator{;}
+plot2d(sin(t)\nspoperator{'},cos(t)\nspoperator{'},[\nspnumber{2}],\nspstring{"012"},\nspstring{' '},rect)
+plot2d([\nspnumber{0}\nspoperator{,}real(a)]\nspoperator{'},[\nspnumber{0}\nspoperator{,}imag(a)]\nspoperator{'},[\nspnumber{3}],\nspstring{"000"})
+xsegs([\nspoperator{-}\nspnumber{1.0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{1.0}\nspoperator{,}\nspnumber{0}],[\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1.0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1.0}])
+w0=\nspnumber{.93}\nspoperator{*}exp(\nspoperator{-}%i\nspoperator{*}%pi\nspoperator{/}\nspnumber{15})\nspoperator{;}w=exp(\nspoperator{-}(\nspnumber{0}\nspoperator{:}\nspnumber{9})\nspoperator{*}log(w0))\nspoperator{;}z=a\nspoperator{*}w\nspoperator{;}
+zr=real(z)\nspoperator{;}zi=imag(z)\nspoperator{;}
+plot2d(zr\nspoperator{'},zi\nspoperator{'},[\nspnumber{5}],\nspstring{"000"})
+xsetech([\nspnumber{0.5}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{1}])\nspoperator{;}
+plot2d(sin(t)\nspoperator{'},cos(t)\nspoperator{'},[\nspnumber{2}],\nspstring{"012"},\nspstring{' '},rect)
+plot2d([\nspnumber{0}\nspoperator{,}real(a)]\nspoperator{'},[\nspnumber{0}\nspoperator{,}imag(a)]\nspoperator{'},[\nspoperator{-}\nspnumber{1}],\nspstring{"000"})
+xsegs([\nspoperator{-}\nspnumber{1.0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{1.0}\nspoperator{,}\nspnumber{0}],[\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1.0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1.0}])
+w0=w0\nspoperator{/}(\nspnumber{.93}\nspoperator{*}\nspnumber{.93})\nspoperator{;}w=exp(\nspoperator{-}(\nspnumber{0}\nspoperator{:}\nspnumber{9})\nspoperator{*}log(w0))\nspoperator{;}z=a\nspoperator{*}w\nspoperator{;}
+zr=real(z)\nspoperator{;}zi=imag(z)\nspoperator{;}
+plot2d(zr\nspoperator{'},zi\nspoperator{'},[\nspnumber{5}],\nspstring{"000"})
+xsetech(ffr,bds)\nspoperator{;}\nspcomment{//restore context}
+\end{Verbatim}

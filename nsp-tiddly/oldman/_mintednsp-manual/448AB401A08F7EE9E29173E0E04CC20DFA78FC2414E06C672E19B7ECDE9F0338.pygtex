@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+v=(\nspnumber{1}\nspoperator{:}\nspnumber{8})\nspoperator{^}\nspnumber{3}\nspoperator{;}
+diff(v)
+diff(v,\nspnumber{3})
+A=[(\nspnumber{1}\nspoperator{:}\nspnumber{8})\nspoperator{^}\nspnumber{2}\nspoperator{;}(\nspnumber{1}\nspoperator{:}\nspnumber{8})\nspoperator{^}\nspnumber{3}\nspoperator{;}(\nspnumber{1}\nspoperator{:}\nspnumber{8})\nspoperator{^}\nspnumber{4}]\nspoperator{;}
+diff(A,\nspnumber{3},\nspnumber{2})
+\nspcomment{//approximate differentiation}
+step=\nspnumber{0.001}
+t=\nspnumber{0}\nspoperator{:}step\nspoperator{:}\nspnumber{10}\nspoperator{;}
+y=sin(t)\nspoperator{;}
+dy=diff(sin(t))\nspoperator{/}step\nspoperator{;}\nspcomment{//approximate differentiation of sine function}
+norm(dy\nspoperator{-}cos(t(\nspnumber{1}\nspoperator{:}$\nspoperator{-}\nspnumber{1})),%inf)
+\end{Verbatim}

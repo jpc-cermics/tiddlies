@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.6 Lists</TITLE>
+<META NAME="description" CONTENT="2.6 Lists">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node24.html">
+<LINK REL="previous" HREF="node22.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node24.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html548"
+ HREF="node24.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html544"
+ HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html538"
+ HREF="node22.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html546"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html547"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html549"
+ HREF="node24.html">2.7 Linear system representation</A>
+<B> Up:</B> <A NAME="tex2html545"
+ HREF="node13.html">2. Data Types</A>
+<B> Previous:</B> <A NAME="tex2html539"
+ HREF="node22.html">2.5 Boolean Matrices</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00360000000000000000">&#160;</A>
+<A NAME="s2.5">&#160;</A><A NAME="1393">&#160;</A>
+<A NAME="1394">&#160;</A>
+<BR>
+2.6 Lists
+</H1>
+
+<P>
+Scilab has a list data type.  The list is a collection of data
+objects not necessarily of the same type.  A list can contain any of
+the already discussed data types (including functions) as well as
+other lists.  Lists are useful for defining structured data objects.
+
+<P>
+There are two kinds of lists, ordinary lists and typed-lists.
+A list is defined by the <TT>list</TT> function. Here is a simple
+example:
+
+<P>
+<PRE>
+--&gt;L=list(1,'w',ones(2,2))  //L is a list made of 3 entries
+ L  =
+ 
+ 
+       L(1)
+ 
+    1.  
+ 
+       L(2)
+ 
+ w   
+ 
+       L(3)
+ 
+!   1.    1. !
+!   1.    1. !
+
+--&gt;L(3)   //extracting entry 3 of list L
+ ans  =
+ 
+!   1.    1. !
+!   1.    1. !
+
+--&gt;L(3)(2,2)  //entry 2,2 of matrix L(3)
+ ans  =
+ 
+    1.  
+
+--&gt;L(2)=list('w',rand(2,2)) //nested list: L(2) is now a list
+ L  =
+ 
+ 
+       L(1)
+ 
+    1.  
+ 
+       L(2)
+ 
+ 
+        L(2)(1)
+ 
+ w   
+ 
+        L(2)(2)
+ 
+!   0.6653811    0.8497452 !
+!   0.6283918    0.6857310 !
+ 
+       L(3)
+ 
+!   1.    1. !
+!   1.    1. !
+
+--&gt;L(2)(2)(1,2)  //extracting entry 1,2 of entry 2 of L(2)
+ ans  =
+ 
+    0.8497452  
+
+--&gt;L(2)(2)(1,2)=5; //assigning a new value to this entry.
+</PRE>
+<P>
+Typed lists have a specific first entry. This first entry must be a 
+character string (the type) or a vector of character string (the first
+component is then the type, and the following elements the names given
+to the entries of the list). Typed lists entries can be manipulated
+by using character strings (the names) as shown below.
+
+<P>
+<PRE>
+--&gt;L=tlist(['Car';'Name';'Dimensions'],'Nevada',[2,3])
+ L  =
+ 
+ 
+       L(1)
+ 
+!Car         !
+!            !
+!Name        !
+!            !
+!Dimensions  !
+ 
+       L(2)
+ 
+ Nevada   
+ 
+       L(3)
+ 
+!   2.    3. !
+
+--&gt;L('Name')    //same as L(2)
+ ans  =
+ 
+ Nevada   
+ 
+--&gt;L('Dimensions')(1,2)=2.3
+
+ L  =
+ 
+ 
+       L(1)
+ 
+!Car         !
+!            !
+!Name        !
+!            !
+!Dimensions  !
+ 
+       L(2)
+ 
+ Nevada   
+ 
+       L(3)
+ 
+!   2.    2.3 !
+ 
+
+--&gt;L(3)(1,2)
+ ans  =
+ 
+    2.3  
+
+--&gt;L(1)(1)
+ ans  =
+ 
+ Car
+</PRE>An important feature of typed-lists is that it is possible to define
+operators acting on them (overloading), i.e., it is possible
+to define e.g. the multiplication <code>L1*L2</code> of the two typed lists 
+<code>L1</code> and <code>L2</code>. An example of use is given below, where
+linear systems manipulations (concatenation, addition,
+multiplication,...) are done by such operations.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html548"
+ HREF="node24.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html544"
+ HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html538"
+ HREF="node22.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html546"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html547"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html549"
+ HREF="node24.html">2.7 Linear system representation</A>
+<B> Up:</B> <A NAME="tex2html545"
+ HREF="node13.html">2. Data Types</A>
+<B> Previous:</B> <A NAME="tex2html539"
+ HREF="node22.html">2.5 Boolean Matrices</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

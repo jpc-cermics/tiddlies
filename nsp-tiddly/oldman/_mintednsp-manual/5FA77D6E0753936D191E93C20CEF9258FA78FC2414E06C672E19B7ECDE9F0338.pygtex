@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+deff(\nspstring{"[z]=surf(x,y)"},\nspstring{"z=sin(x)*cos(y)"})
+t=%pi\nspoperator{*}(\nspoperator{-}\nspnumber{10}\nspoperator{:}\nspnumber{10})\nspoperator{/}\nspnumber{10}\nspoperator{;}
+\nspcomment{// 3D plot of the surface}
+fplot3d(t,t,surf,\nspnumber{35},\nspnumber{45},\nspstring{"X@Y@Z"})
+\nspcomment{// now (t,t,sin(t).*cos(t)) is a curve on the surface}
+\nspcomment{// which can be drawn using geom3d and xpoly}
+[x,y]=geom3d(t,t,sin(t)\nspoperator{ .*}cos(t))\nspoperator{;}
+xpoly(x,y,\nspstring{"lines"})
+\nspcomment{// adding a comment}
+[x,y]=geom3d([\nspnumber{0}\nspoperator{,}\nspnumber{0}],[\nspnumber{0}\nspoperator{,}\nspnumber{0}],[\nspnumber{5}\nspoperator{,}\nspnumber{0}])\nspoperator{;}
+xsegs(x,y)
+xstring(x(\nspnumber{1}),y(\nspnumber{1}),\nspstring{"point (0,0,0)"})
+\end{Verbatim}

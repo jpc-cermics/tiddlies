@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)}
+\nspcomment{//dim_cont_subs$<$=dim_stab_subs$<$=dim_stab0}
+\nspcomment{//pair (A,B) U-similar to:}
+\nspcomment{//    [*,*,*,*;     [*;}
+\nspcomment{//    [0,s,*,*;     [0;}
+\nspcomment{//A=  [0,0,i,*;   B=[0;}
+\nspcomment{//    [0,0,0,u]     [0]}
+\nspcomment{//}
+\nspcomment{// (A11,B1) controllable  s=stable matrix i=neutral matrix u=unstable matrix}
+[Sl,U]=ssrand(\nspnumber{2},\nspnumber{3},\nspnumber{8},list(\nspstring{'st'},\nspnumber{2},\nspnumber{5},\nspnumber{5}))\nspoperator{;}
+w=ss2ss(Sl,inv(U))\nspoperator{;}\nspcomment{//undo the random change of basis =$>$ form as above}
+[n,nc,u,sl]=st_ility(Sl)\nspoperator{;}n\nspoperator{,}nc
+\end{Verbatim}

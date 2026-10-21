@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lufact</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli642.html" >next</a>] [<a 
+href="manualli640.html" >prev</a>] [<a 
+href="manualli640.html#tailmanualli640.html" >prev-tail</a>] [<a 
+href="#tailmanualli641.html">tail</a>] [<a 
+href="manualli607.html#manualli641.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x642-3818000"></a>lufact</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx642-3818001"></a><a 
+ id="lufact"></a><span 
+class="cmtt-10x-x-109">lufact </span>&#x2013;                                                                             sparse lu factorization<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x642-3819000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-790">
+&#x00A0;&#x00A0;[hand,rk]=lufact(A,prec)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x642-3820000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: square sparse matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">hand</span>: handle to sparse lu factors
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rk</span>: integer (rank of A)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">prec</span>: a vector of size two <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">prec=[eps,reps]</span></span></span> giving the absolute and relative thresolds.</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x642-3821000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[hand,rk]=lufact(A)</span></span></span> performs the lu factorization of sparse matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hand</span></span></span> (no display) is used
+by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lusolve</span></span></span> (for solving linear system) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">luget</span></span></span> (for retrieving the factors). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hand</span></span></span> should be
+cleared by the command: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ludel(hand)</span></span></span>; The A matrix needs not be full rank but must
+be square (since A is assumed sparse one may add zeros if necessary to squaring down
+A).
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">eps:</span> </span>The absolute magnitude an element must have to be considered as a pivot candidate,
+     except as a last resort. This number should be set significantly smaller than the smallest
+     diagonal element that is is expected to be placed in the matrix. the default value is
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%eps</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">reps:</span> </span>This number determines what the pivot relative threshold will be. It should be between
+     zero and one. If it is one then the pivoting method becomes complete pivoting, which is
+     very slow and tends to fill up the matrix. If it is set close to zero the pivoting method
+     becomes strict Markowitz with no threshold. The pivot threshold is used to eliminate
+     pivot candidates that would cause excessive element growth if they were used. Element
+     growth is the cause of roundoff error. Element growth occurs even in well-conditioned
+     matrices. Setting the reps large will reduce element growth and roundoff error, but
+                                                                                    
+
+                                                                                    
+     setting it too large will cause execution time to be excessive and will result in a large
+     number of fill-ins. If this occurs, accuracy can actually be degraded because of the large
+     number of operations required on the matrix due to the large number of fill-ins. A good
+     value seems to be 0.001 which is the default value. The default is chosen by giving a
+     value larger than one or less than or equal to zero. This value should be increased and
+     the matrix resolved if growth is found to be excessive. Changing the pivot threshold
+     does not improve performance on matrices where growth is low, as is often the case
+     with ill-conditioned matrices. reps was choosen for use with nearly diagonally dominant
+     matrices such as node- and modified-node admittance matrices. For these matrices it
+     is usually best to use diagonal pivoting. For matrices without a strong diagonal, it is
+     usually best to use a larger threshold, such as 0.01 or 0.1.</ul>
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x642-3822000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb499"><a 
+ id="x642-3822006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">b=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A=sparse(a)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x642-3822008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[h,rk]=lufact(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x642-3822010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=lusolve(h,b)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">b</span><br class="fancyvrb" /><a 
+ id="x642-3822012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ludel(h)</span></div>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x642-3823000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli238.html#sparse">sparse</a>    <a 
+href="manualli643.html#lusolve">lusolve</a>    <a 
+href="manualli642.html#luget">luget</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli642.html" >next</a>] [<a 
+href="manualli640.html" >prev</a>] [<a 
+href="manualli640.html#tailmanualli640.html" >prev-tail</a>] [<a 
+href="manualli641.html" >front</a>] [<a 
+href="manualli607.html#manualli641.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli641.html"></a>  </p> 
+</body></html> 

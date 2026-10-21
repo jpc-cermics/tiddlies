@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>fscanfMat</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli285.html" >next</a>] [<a 
+href="manualli283.html" >prev</a>] [<a 
+href="manualli283.html#tailmanualli283.html" >prev-tail</a>] [<a 
+href="#tailmanualli284.html">tail</a>] [<a 
+href="manualli274.html#manualli284.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x285-1689000"></a>fscanfMat</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx285-1689001"></a><a 
+ id="fscanfMat"></a><span 
+class="cmtt-10x-x-109">fscanfMat </span>&#x2013;                                                           Reads a Matrix from a text file. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x285-1690000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-420">
+&#x00A0;&#x00A0;M=fscanfMat(filename);
+&#x00A0;<br />&#x00A0;&#x00A0;[M,text]=fscanfMat(filename);
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x285-1691000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">filename</span>: a character string giving the name of the file to be scanned.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">M</span>: Output variable. A matrix of real numbers.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">text</span>: Output variable. A string matrix.</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x285-1692000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fscanfMat</span></span></span> function is used to read a scalar matrix from a text file. The first non-numeric lines
+of the file are returned in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">text</span></span></span> if requested and all the remaining lines must have the same number
+of columns (column separator are assumed to be white spaces or tab characters). The number of
+columns of the matrix will follow the number of columns found in the file and the number of lines is
+fetched by detecting eof in the input file. This function can be used to read back numerical data
+saved with the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fprintfMat</span></span></span>.
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x285-1693000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb236"><a 
+ id="x285-1693012r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fd=mopen(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/Mat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;w&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x285-1693014r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mfprintf(fd,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Some</span><span 
+class="cmtt-10x-x-109">&#x00A0;text.....&#x005C;n&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x285-1693016r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mfprintf(fd,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Some</span><span 
+class="cmtt-10x-x-109">&#x00A0;text</span><span 
+class="cmtt-10x-x-109">&#x00A0;again&#x005C;n&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x285-1693018r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x285-1693020r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;i=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span><br class="fancyvrb" /><a 
+ id="x285-1693022r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;j=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;mfprintf(fd,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%5.2f</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,a(i,j))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x285-1693024r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mfprintf(fd,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;&#x005C;n&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x285-1693026r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x285-1693028r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x285-1693030r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a1=fscanfMat(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/Mat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x285-1694000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli297.html#mclose">mclose</a>    <a 
+href="manualli299.html#meof">meof</a>    <a 
+href="manualli306.html#mfprintf">mfprintf</a>    <a 
+href="manualli282.html#fprintfMat">fprintfMat</a>    <a 
+href="manualli301.html#mfscanf">mfscanf</a>    <a 
+href="#fscanfMat">fscanfMat</a>    <a 
+href="manualli304.html#mget">mget</a>    <a 
+href="manualli303.html#mgetstr">mgetstr</a>    <a 
+href="manualli305.html#mopen">mopen</a>
+<a 
+href="manualli306.html#mprintf">mprintf</a>    <a 
+href="manualli309.html#mput">mput</a>    <a 
+href="manualli308.html#mputstr">mputstr</a>    <a 
+href="manualli301.html#mscanf">mscanf</a>    <a 
+href="manualli310.html#mseek">mseek</a>    <a 
+href="manualli311.html#mtell">mtell</a>    <a 
+href="manualli298.html#mdelete">mdelete</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli285.html" >next</a>] [<a 
+href="manualli283.html" >prev</a>] [<a 
+href="manualli283.html#tailmanualli283.html" >prev-tail</a>] [<a 
+href="manualli284.html" >front</a>] [<a 
+href="manualli274.html#manualli284.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli284.html"></a>  </p> 
+</body></html> 

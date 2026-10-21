@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>auread</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1206.html" >next</a>] [<a 
+href="manualli1204.html" >prev</a>] [<a 
+href="manualli1204.html#tailmanualli1204.html" >prev-tail</a>] [<a 
+href="#tailmanualli1205.html">tail</a>] [<a 
+href="manualli1203.html#manualli1205.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1206-6813000"></a>auread</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1206-6813001"></a><a 
+ id="auread"></a><span 
+class="cmtt-10x-x-109">auread </span>&#x2013;                                                                                  load .au sound file<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1206-6814000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1368">
+&#x00A0;&#x00A0;y=auread(aufile)
+&#x00A0;<br />&#x00A0;&#x00A0;y=auread(aufile,ext)
+&#x00A0;<br />&#x00A0;&#x00A0;[y,Fs,bits]=auread(aufile)
+&#x00A0;<br />&#x00A0;&#x00A0;[y,Fs,bits]=auread(aufile,ext)
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1206-6815000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">aufile</span>: string (The .au extension is appended if no extension is given)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Fs </span>...
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">[]</span>: integer, frequency sampling in Hz.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ext</span>: string (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;size&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;snd&#x0027;</span></span></span>) or integer (to read n samples) or 1 x 2 integer vector
+     [n1,n2] (to read from n1 to n2).</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1206-6816000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > Utility function to read <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.au</span></span></span> sound file. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auread(aufile)</span></span></span> loads a sound file specified by the string
+aufile, returning the sampled data in y. Amplitude values are in the range [-1,+1]. Supports
+multi-channel data in the following formats: 8-bit mu-law, 8-, 16-, and 32-bit linear, and floating
+point.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[y,Fs,bits]=auread(aufile)</span></span></span> returns the sample rate (Fs) in Hertz and the number of bits
+per sample used to encode the data in the file.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auread(aufile,n)</span></span></span> returns the first n samples from
+each channel.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auread(aufile,[n1,n2])</span></span></span> returns samples n1 to n2.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auread(aufile,&#x0027;size&#x0027;)</span></span></span> returns
+the size of the audio data contained in the file in place of the actual audio data, returning the vector
+as [samples channels].<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auread(aufile,&#x0027;snd&#x0027;)</span></span></span> returns information about the sample and data as a
+tlist.
+</p>
+<!--l. 52--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1206-6817000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1213.html#savewave">savewave</a>    <a 
+href="manualli1204.html#analyze">analyze</a>    <a 
+href="manualli1210.html#mapsound">mapsound</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1206.html" >next</a>] [<a 
+href="manualli1204.html" >prev</a>] [<a 
+href="manualli1204.html#tailmanualli1204.html" >prev-tail</a>] [<a 
+href="manualli1205.html" >front</a>] [<a 
+href="manualli1203.html#manualli1205.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1205.html"></a>  </p> 
+</body></html> 

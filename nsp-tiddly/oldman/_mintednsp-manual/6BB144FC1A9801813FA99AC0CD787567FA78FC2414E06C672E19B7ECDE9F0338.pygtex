@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// set figure_style new}
+f=gcf()\nspoperator{;}f.pixmap=\nspstring{'on'}\nspoperator{;}\nspcomment{//set the pixmap mode}
+a=gca()\nspoperator{;}a.data_bounds=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{10}\nspoperator{,}\nspnumber{10}]\nspoperator{;}
+\nspcomment{//construct two rectangles}
+xrects([\nspnumber{0}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{1}],\nspnumber{5})\nspoperator{;}r1=gce()\nspoperator{;}r1=r1.children\nspoperator{;}
+xrects([\nspnumber{0}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{1}],\nspnumber{13})\nspoperator{;}r2=gce()\nspoperator{;}r2=r2.children\nspoperator{;}
+\nspcomment{//animation loop}
+\nspkeyword{for} k=\nspnumber{1}\nspoperator{:}\nspnumber{1000} \nspkeyword{do}
+  \nspcomment{//draw the rectangles in the pixmap buffer}
+  move(r1,[\nspnumber{0.01}\nspoperator{,}\nspoperator{-}\nspnumber{0.01}])\nspoperator{;}move(r2,[\nspnumber{0.01}\nspoperator{,}\nspnumber{0.01}])
+  \nspcomment{//show the pixmap buffer}
+  show_pixmap()
+\nspkeyword{end}
+\end{Verbatim}

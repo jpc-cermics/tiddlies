@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xgetmouse</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli537.html" >next</a>] [<a 
+href="manualli535.html" >prev</a>] [<a 
+href="manualli535.html#tailmanualli535.html" >prev-tail</a>] [<a 
+href="#tailmanualli536.html">tail</a>] [<a 
+href="manualli370.html#manualli536.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x537-3195000"></a>xgetmouse</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx537-3195001"></a><a 
+ id="xgetmouse"></a><span 
+class="cmtt-10x-x-109">xgetmouse </span>&#x2013;                                              get the mouse events and current position<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x537-3196000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-663">
+&#x00A0;&#x00A0;rep=xgetmouse([flag],&#x00A0;[sel])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x537-3197000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: integer. If present, the mouse click event queue is not cleared when entering
+     xgetmouse.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sel</span>: boolean vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[getmotion,</span><span 
+class="cmtt-10x-x-109">&#x00A0;getrelease]</span></span></span>. default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[%t,</span><span 
+class="cmtt-10x-x-109">&#x00A0;%f]</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rep</span>: vector of size 3, [x,y,ibutton].</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x537-3198000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > If the mouse pointer is located in the current graphics window, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xgetmouse</span></span></span> returns in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rep</span></span></span> the
+current pointer position (x,y) and the value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ibutton</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ibutton</span></span></span> value indicates the event
+type:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==0</span> </span>: Left mouse button has been pressed
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==1</span> </span>: Middle mouse button has been pressed
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==2</span> </span>: Right mouse button has been pressed
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==3</span> </span>: Left mouse button has been clicked
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==4</span> </span>: Middle mouse button has been clicked
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==5</span> </span>: Right mouse button has been clicked
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==10</span> </span>: Left mouse button has been double-clicked
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==11</span> </span>: Middle mouse button has been double-clicked
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==12</span> </span>: Right mouse button has been double-clicked
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==-5</span> </span>: Left mouse button has been released
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==-4</span> </span>: Middle mouse button has been released
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==-3</span> </span>: Right mouse button has been released
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==-1</span> </span>: pointer has moved
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton </span><span 
+class="cmmi-10x-x-109">&#x003E; </span><span 
+class="cmbx-10x-x-109">=32</span> </span>: key with ascii code ascii(ibutton) has been pressed
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton </span><span 
+class="cmmi-10x-x-109">&#x003C; </span><span 
+class="cmbx-10x-x-109">=-32</span> </span>: key with ascii code ascii(-ibutton) has been released
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton </span><span 
+class="cmmi-10x-x-109">&#x003E; </span><span 
+class="cmbx-10x-x-109">=1000+32</span> </span>:  key  with  ascii  code  ascii(ibutton-1000)  has  been  pressed  while
+     CTRL key pressed
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">ibutton==-1000</span> </span>: graphic window has been closed</ul>
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x537-3199000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb420"><a 
+ id="x537-3199014r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xselect()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x537-3199016r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;alufunction&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x537-3199018r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;drawing</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span><span 
+class="cmtt-10x-x-109">&#x00A0;rectangle</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x537-3199020r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[b,x0,y0]=xclick()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">rep=[x0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">y0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">x=x0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y=y0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x537-3199022r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xrect(x0,y0,x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">x0,y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">y0)</span><br class="fancyvrb" /><a 
+ id="x537-3199024r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">while</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;rep(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">==</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span><br class="fancyvrb" /><a 
+ id="x537-3199026r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rep=xgetmouse(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x537-3199028r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xrect(x0,y0,x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">x0,y0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">y)</span>
+<br class="fancyvrb" /><a 
+ id="x537-3199030r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=rep(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y=rep(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x537-3199032r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xrect(x0,y0,x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">x0,y0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">y)</span><br class="fancyvrb" /><a 
+ id="x537-3199034r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x537-3199036r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;alufunction&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 79--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x537-3200000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli453.html#locate">locate</a>    <a 
+href="manualli526.html#xclick">xclick</a>    <a 
+href="manualli584.html#seteventhandler">seteventhandler</a>
+</p>
+<!--l. 83--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x537-3201000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   S. Steer
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli537.html" >next</a>] [<a 
+href="manualli535.html" >prev</a>] [<a 
+href="manualli535.html#tailmanualli535.html" >prev-tail</a>] [<a 
+href="manualli536.html" >front</a>] [<a 
+href="manualli370.html#manualli536.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli536.html"></a>  </p> 
+</body></html> 

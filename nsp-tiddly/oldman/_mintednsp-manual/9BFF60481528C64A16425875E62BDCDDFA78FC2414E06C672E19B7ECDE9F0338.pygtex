@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// first example}
+X=[\nspnumber{2}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{7}]
+m1=tabul(X)
+m2=tabul(X,\nspstring{"i"})
+\nspcomment{// second example}
+X=[\nspstring{"ba"}\nspoperator{,}\nspstring{"baba"}\nspoperator{,}\nspstring{"a"}\nspoperator{,}\nspstring{"A"}\nspoperator{,}\nspstring{"AA"}\nspoperator{,}\nspstring{"a"}\nspoperator{,}\nspstring{"aa"}\nspoperator{,}\nspstring{"aa"}\nspoperator{,}\nspstring{"aa"}\nspoperator{,}\nspstring{"A"}\nspoperator{,}\nspstring{"ba"}]
+m=tabul(X,\nspstring{"i"})
+\nspcomment{// third example}
+n=\nspnumber{50000}\nspoperator{;}
+X=grand(n,\nspnumber{1},\nspstring{"bin"},\nspnumber{70},\nspnumber{0.5})\nspoperator{;}
+m=tabul(X,\nspstring{"i"})\nspoperator{;}
+xbasc()
+plot2d3(m(\nspoperator{:},\nspnumber{1}),m(\nspoperator{:},\nspnumber{2})\nspoperator{/}n)
+xtitle(\nspstring{"empiral probabilities of B(70,0.5)"})
+\nspcomment{// last example: computes the occurrences of words of the scilab license}
+text=read(SCI\nspoperator{+}\nspstring{"/license.txt"},\nspoperator{-}\nspnumber{1},\nspnumber{1},\nspstring{"(A)"})\nspoperator{;}\nspcomment{// read the scilab license}
+bigstr=strcat(text,\nspstring{" "})\nspoperator{;}\nspcomment{// put all the lines in a big string}
+sep=[\nspstring{" "}\nspoperator{,}\nspstring{","}\nspoperator{,}\nspstring{"."}\nspoperator{,}\nspstring{";"}\nspoperator{,}\nspstring{"*"}\nspoperator{,}\nspstring{":"}\nspoperator{,}\nspstring{"-"}\nspoperator{,}\nspstring{""""}]\nspoperator{;}\nspcomment{// words separators}
+words=tokens(bigstr,sep)\nspoperator{;}\nspcomment{// cut the big string into words}
+m=tabul(words)\nspoperator{;}\nspcomment{// computes occurrences of each word}
+[occ,p]=sort(m(\nspnumber{2}))\nspoperator{;}\nspcomment{// sort by decreasing frequencies}
+results=[m(\nspnumber{1})(p)\nspoperator{,}string(occ)]\nspoperator{,}\nspcomment{// display result}
+\end{Verbatim}

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>errcatch</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli958.html" >next</a>] [<a 
+href="manualli956.html" >prev</a>] [<a 
+href="manualli956.html#tailmanualli956.html" >prev-tail</a>] [<a 
+href="#tailmanualli957.html">tail</a>] [<a 
+href="manualli931.html#manualli957.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x958-5499000"></a>errcatch</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx958-5499001"></a><a 
+ id="errcatch"></a><span 
+class="cmtt-10x-x-109">errcatch </span>&#x2013;                                                                                     error trapping<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x958-5500000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1071">
+&#x00A0;&#x00A0;errcatch(n&#x00A0;[,&#x0027;action&#x0027;]&#x00A0;[,&#x0027;option&#x0027;])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x958-5501000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: integer
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">action, option</span>: strings</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x958-5502000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">errcatch</span></span></span> gives an &#x201D;action&#x201D; (error-handler) to be performed when an error of type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> occurs. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> has
+the following meaning: if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n$&#x003E;$0</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> is the error number to trap if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n$&#x003C;$0</span></span></span> all errors are to be trapped
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">action</span></span></span> is one of the following character strings:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;pause&#x201D;</span> </span>: a pause is executed when trapping the error. This option is useful for debugging
+     purposes. Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">whereami()</span></span></span> to get informations on the current context.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;continue&#x201D;</span> </span>: next instruction in the function or exec files is executed, current instruction is
+     ignored. It is possible to check if an error has occured using the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">iserror</span></span></span> function. Do
+     not forget to clear the error using the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">errclear</span></span></span> function as soon as possible This option
+     is useful for error recovery. In many cases, usage of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;errcatch(n,&#x0022;continue&#x0022;,..)</span></span></span> can
+     be replaced by the use of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">execstr</span></span></span> function.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;kill&#x201D;</span> </span>: default mode, all intermediate functions are killed, scilab goes back to the level 0
+     prompt.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;stop&#x201D;</span> </span>: interrupts the current Scilab session (useful when Scilab is called from an external
+     program).</ul>
+</p><!--l. 47--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">option</span></span></span> is the character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;nomessage&#x0027;</span></span></span> for killing error message. To set back default mode,
+enter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">errcatch(-1,&#x0022;kill&#x0022;)</span></span></span> or similarly <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">errcatch(-1)</span></span></span>. Then called in a scilab function
+the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">errcatch</span></span></span> is automatically reset to the default mode when the function returns.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x958-5503000"></a><span 
+class="cmbx-10x-x-109">Remarques</span></span>
+   Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">execstr(...,&#x0027;errcatch&#x0027;)</span></span></span> instead of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">errcatch</span></span></span> when possible.
+</p>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x958-5504000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli958.html#errclear">errclear</a>    <a 
+href="manualli993.html#iserror">iserror</a>    <a 
+href="manualli1047.html#whereami">whereami</a>    <a 
+href="manualli962.html#execstr">execstr</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli958.html" >next</a>] [<a 
+href="manualli956.html" >prev</a>] [<a 
+href="manualli956.html#tailmanualli956.html" >prev-tail</a>] [<a 
+href="manualli957.html" >front</a>] [<a 
+href="manualli931.html#manualli957.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli957.html"></a>  </p> 
+</body></html> 

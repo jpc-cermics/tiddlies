@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+a=eye(\nspnumber{2},\nspnumber{2})\nspoperator{;}b=ones(a)\nspoperator{;}
+save(\nspstring{'val.dat'},a,b)\nspoperator{;}
+\nspkeyword{clear} a
+\nspkeyword{clear} b
+load(\nspstring{'val.dat'},\nspstring{'a'},\nspstring{'b'})\nspoperator{;}
+\nspcomment{// sequential save into a file}
+fd=mopen(\nspstring{'TMPDIR/foo'},\nspstring{'wb'})
+\nspkeyword{for} k=\nspnumber{1}\nspoperator{:}\nspnumber{4} \nspkeyword{do} x=k\nspoperator{^}\nspnumber{2}\nspoperator{;}save(fd,x,k)\nspoperator{,}\nspkeyword{end}
+mclose(fd)
+fd=mopen(\nspstring{'TMPDIR/foo'},\nspstring{'rb'})
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}\nspnumber{4} \nspkeyword{do} load(fd,\nspstring{'x'},\nspstring{'k'})\nspoperator{;}x\nspoperator{,}k\nspoperator{,}\nspkeyword{end}
+mclose(fd)
+\nspcomment{// appending variables to an old save file}
+fd=mopen(\nspstring{'TMPDIR/foo'},\nspstring{'r+'})
+mseek(\nspnumber{0},fd,\nspstring{'end'})
+lst=list(\nspnumber{1},\nspnumber{2},\nspnumber{3})
+save(fd,lst)
+mclose(fd)
+\end{Verbatim}

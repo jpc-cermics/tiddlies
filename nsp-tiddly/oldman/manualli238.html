@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>sparse</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli239.html" >next</a>] [<a 
+href="manualli237.html" >prev</a>] [<a 
+href="manualli237.html#tailmanualli237.html" >prev-tail</a>] [<a 
+href="#tailmanualli238.html">tail</a>] [<a 
+href="manualli104.html#manualli238.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x239-1411000"></a>sparse</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx239-1411001"></a><a 
+ id="sparse"></a><span 
+class="cmtt-10x-x-109">sparse </span>&#x2013;                                                                           sparse matrix definition<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x239-1412000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-364">
+&#x00A0;&#x00A0;sp=sparse(X)
+&#x00A0;<br />&#x00A0;&#x00A0;sp=sparse(ij,v&#x00A0;[,mn])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x239-1413000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: real or complex full (or sparse) matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ij</span>: two columns integer matrix (indices of non-zeros entries)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">v</span>: vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mn</span>: integer vector with two entries (row-dimension, column-dimension)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sp</span>: sparse matrix</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x239-1414000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sparse</span></span></span> is used to build a sparse matrix. Only non-zero entries are stored.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sp</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;sparse(X)</span></span></span>
+converts a full matrix to sparse form by squeezing out any zero elements. (If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is already
+sparse <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sp</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sp=sparse(ij,v</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,mn])</span></span></span> builds an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mn(1)</span></span></span>-by-<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mn(2)</span></span></span> sparse matrix with
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sp(ij(k,1),ij(k,2))=v(k)</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ij</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v</span></span></span> must have the same column dimension. If optional <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mn</span></span></span>
+parameter is not given the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sp</span></span></span> matrix dimensions are the max value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ij(:,1)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ij(:,2)</span></span></span>
+respectively. Operations (concatenation, addition, etc,) with sparse matrices are made using the
+same syntax as for full matrices. Elementary functions are also available (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">abs,maxi,sum,diag,...</span></span></span>)
+for sparse matrices. Mixed operations (full-sparse) are allowed. Results are full or sparse depending
+on the operations.
+</p>
+<!--l. 56--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x239-1415000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb193"><a 
+ id="x239-1415005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sp=sparse([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x239-1415007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;size(sp)</span><br class="fancyvrb" /><a 
+ id="x239-1415009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">abs(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">full(abs(sparse(x)))</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x239-1416000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli158.html#full">full</a>    <a 
+href="manualli241.html#spget">spget</a>    <a 
+href="manualli246.html#sprand">sprand</a>    <a 
+href="manualli240.html#speye">speye</a>    <a 
+href="manualli641.html#lufact">lufact</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli239.html" >next</a>] [<a 
+href="manualli237.html" >prev</a>] [<a 
+href="manualli237.html#tailmanualli237.html" >prev-tail</a>] [<a 
+href="manualli238.html" >front</a>] [<a 
+href="manualli104.html#manualli238.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli238.html"></a>  </p> 
+</body></html> 

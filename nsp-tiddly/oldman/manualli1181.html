@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>phc</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1182.html" >next</a>] [<a 
+href="manualli1180.html" >prev</a>] [<a 
+href="manualli1180.html#tailmanualli1180.html" >prev-tail</a>] [<a 
+href="#tailmanualli1181.html">tail</a>] [<a 
+href="manualli1135.html#manualli1181.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1182-6683000"></a>phc</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1182-6683001"></a><a 
+ id="phc"></a><span 
+class="cmtt-10x-x-109">phc </span>&#x2013;                                                                              Markovian representation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1182-6684000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1336">
+&#x00A0;&#x00A0;[H,F,G]=phc(hk,d,r)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1182-6685000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">hk</span>: hankel matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">d</span>: dimension of the observation
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r</span>: desired dimension of the state vector for the approximated model
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">H, F, G</span>: relevant matrices of the Markovian model</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1182-6686000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Function which computes the matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H,</span><span 
+class="cmtt-10x-x-109">&#x00A0;F,</span><span 
+class="cmtt-10x-x-109">&#x00A0;G</span></span></span> of a Markovian representation by the principal
+hankel component approximation method, from the hankel matrix built from the covariance
+sequence of a stochastic process.
+</p>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1182-6687000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb785"><a 
+ id="x1182-6687046r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687048r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//This</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;may</span><span 
+class="cmitt-10x-x-109">&#x00A0;usefully</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;compared</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;results</span><span 
+class="cmitt-10x-x-109">&#x00A0;from</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687050r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0027;levin&#x0027;</span><span 
+class="cmitt-10x-x-109">&#x00A0;macro</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;corresponding</span><span 
+class="cmitt-10x-x-109">&#x00A0;help</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;example)</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687052r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687054r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//We</span><span 
+class="cmitt-10x-x-109">&#x00A0;consider</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;process</span><span 
+class="cmitt-10x-x-109">&#x00A0;defined</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;two</span><span 
+class="cmitt-10x-x-109">&#x00A0;sinusoids</span><span 
+class="cmitt-10x-x-109">&#x00A0;(1Hz</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;Hz)</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687056r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//in</span><span 
+class="cmitt-10x-x-109">&#x00A0;additive</span><span 
+class="cmitt-10x-x-109">&#x00A0;Gaussian</span><span 
+class="cmitt-10x-x-109">&#x00A0;noise</span><span 
+class="cmitt-10x-x-109">&#x00A0;(this</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;observation);</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687058r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;simulated</span><span 
+class="cmitt-10x-x-109">&#x00A0;process</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;sampled</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;10</span><span 
+class="cmitt-10x-x-109">&#x00A0;Hz.</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687060r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687062r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687064r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=sin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">sin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y=y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">rand(y)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot(t,y)</span><br class="fancyvrb" /><a 
+ id="x1182-6687066r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687068r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//covariance</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687070r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687072r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nlag=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">128</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687074r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;c=corr(y,nlag)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687076r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687078r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//hankel</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix</span><span 
+class="cmitt-10x-x-109">&#x00A0;from</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;covariance</span><span 
+class="cmitt-10x-x-109">&#x00A0;sequence</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687080r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(we</span><span 
+class="cmitt-10x-x-109">&#x00A0;can</span><span 
+class="cmitt-10x-x-109">&#x00A0;choose</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;take</span><span 
+class="cmitt-10x-x-109">&#x00A0;more</span><span 
+class="cmitt-10x-x-109">&#x00A0;information</span><span 
+class="cmitt-10x-x-109">&#x00A0;from</span><span 
+class="cmitt-10x-x-109">&#x00A0;covariance</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687082r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//by</span><span 
+class="cmitt-10x-x-109">&#x00A0;taking</span><span 
+class="cmitt-10x-x-109">&#x00A0;greater</span><span 
+class="cmitt-10x-x-109">&#x00A0;n</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;m;</span><span 
+class="cmitt-10x-x-109">&#x00A0;try</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;compare</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;results</span><span 
+class="cmitt-10x-x-109">&#x00A0;!</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687084r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687086r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687088r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=hank(n,m,c)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687090r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687092r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//compute</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Markov</span><span 
+class="cmitt-10x-x-109">&#x00A0;representation</span><span 
+class="cmitt-10x-x-109">&#x00A0;(mh,mf,mg)</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687094r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//We</span><span 
+class="cmitt-10x-x-109">&#x00A0;just</span><span 
+class="cmitt-10x-x-109">&#x00A0;take</span><span 
+class="cmitt-10x-x-109">&#x00A0;here</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;state</span><span 
+class="cmitt-10x-x-109">&#x00A0;dimension</span><span 
+class="cmitt-10x-x-109">&#x00A0;equal</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;4:</span></span>
+                                                                                    
+
+                                                                                    
+<br class="fancyvrb" /><a 
+ id="x1182-6687096r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//this</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;rather</span><span 
+class="cmitt-10x-x-109">&#x00A0;difficult</span><span 
+class="cmitt-10x-x-109">&#x00A0;problem</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;estimating</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;order</span><span 
+class="cmitt-10x-x-109">&#x00A0;!</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687098r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Try</span><span 
+class="cmitt-10x-x-109">&#x00A0;varying</span><span 
+class="cmitt-10x-x-109">&#x00A0;ns</span><span 
+class="cmitt-10x-x-109">&#x00A0;!</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687100r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(the</span><span 
+class="cmitt-10x-x-109">&#x00A0;observation</span><span 
+class="cmitt-10x-x-109">&#x00A0;dimension</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;here</span><span 
+class="cmitt-10x-x-109">&#x00A0;equal</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;one)</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687102r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ns=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687104r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[mh,mf,mg]=phc(h,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,ns)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687106r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687108r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//verify</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;spectrum</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;mf</span><span 
+class="cmitt-10x-x-109">&#x00A0;contains</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687110r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//frequency</span><span 
+class="cmitt-10x-x-109">&#x00A0;spectrum</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;observed</span><span 
+class="cmitt-10x-x-109">&#x00A0;process</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687112r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//(remember</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;sampled</span><span 
+class="cmitt-10x-x-109">&#x00A0;-in</span><span 
+class="cmitt-10x-x-109">&#x00A0;our</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687114r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//at</span><span 
+class="cmitt-10x-x-109">&#x00A0;10Hz</span><span 
+class="cmitt-10x-x-109">&#x00A0;(T=0.1s)</span><span 
+class="cmitt-10x-x-109">&#x00A0;so</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;need</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687116r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//to</span><span 
+class="cmitt-10x-x-109">&#x00A0;retrieve</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;original</span><span 
+class="cmitt-10x-x-109">&#x00A0;frequencies</span><span 
+class="cmitt-10x-x-109">&#x00A0;through</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;log</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687118r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//and</span><span 
+class="cmitt-10x-x-109">&#x00A0;correct</span><span 
+class="cmitt-10x-x-109">&#x00A0;scaling</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;frequency</span><span 
+class="cmitt-10x-x-109">&#x00A0;sampling)</span></span>
+<br class="fancyvrb" /><a 
+ id="x1182-6687120r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687122r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=spec(mf)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">s=log(s)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687124r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687126r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687128r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//now</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;estimated</span><span 
+class="cmitt-10x-x-109">&#x00A0;spectrum</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687130r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;imag(s)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><br class="fancyvrb" /><a 
+ id="x1182-6687132r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span></div>
+<!--l. 92--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1182-6688000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1174.html#levin">levin</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1182.html" >next</a>] [<a 
+href="manualli1180.html" >prev</a>] [<a 
+href="manualli1180.html#tailmanualli1180.html" >prev-tail</a>] [<a 
+href="manualli1181.html" >front</a>] [<a 
+href="manualli1135.html#manualli1181.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1181.html"></a>  </p> 
+</body></html> 

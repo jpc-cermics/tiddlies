@@ -1,0 +1,68 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example 1: interpolation of cos(x)cos(y)}
+n=\nspnumber{7}\nspoperator{;}\nspcomment{// a regular grid with n x n interpolation points}
+\nspcomment{// will be used}
+x=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,n)\nspoperator{;}y=x\nspoperator{;}
+z=cos(x\nspoperator{'})\nspoperator{*}cos(y)\nspoperator{;}
+C=splin2d(x,y,z,\nspstring{"periodic"})\nspoperator{;}
+m=\nspnumber{50}\nspoperator{;}\nspcomment{// discretisation parameter of the evaluation grid}
+xx=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,m)\nspoperator{;}yy=xx\nspoperator{;}
+[XX,YY]=ndgrid(xx,yy)\nspoperator{;}
+zz=interp2d(XX,YY,x,y,C)\nspoperator{;}
+emax=max(abs(zz\nspoperator{-}cos(xx\nspoperator{'})\nspoperator{*}cos(yy)))\nspoperator{;}
+xbasc()
+plot3d(xx,yy,zz,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])
+[X,Y]=ndgrid(x,y)\nspoperator{;}
+param3d1(X,Y,list(z,\nspoperator{-}\nspnumber{9}\nspoperator{*}ones(\nspnumber{1},n)),flag = [\nspnumber{0}\nspoperator{,}\nspnumber{0}])
+str=msprintf(\nspstring{" with \nsppc{}d x \nsppc{}d interpolation points. ermax = \nsppc{}g"},n,n,emax)
+xtitle(\nspstring{"spline interpolation of cos(x)cos(y)"}\nspoperator{+}str)
+\nspcomment{// example 2: different interpolation functions on random datas}
+n=\nspnumber{6}\nspoperator{;}
+x=linspace(\nspnumber{0},\nspnumber{1},n)\nspoperator{;}y=x\nspoperator{;}
+z=rand(n,n)\nspoperator{;}
+np=\nspnumber{50}\nspoperator{;}
+xp=linspace(\nspnumber{0},\nspnumber{1},np)\nspoperator{;}yp=xp\nspoperator{;}
+[XP,YP]=ndgrid(xp,yp)\nspoperator{;}
+ZP1=interp2d(XP,YP,x,y,splin2d(x,y,z,\nspstring{"not_a_knot"}))\nspoperator{;}
+ZP2=linear_interpn(XP,YP,x,y,z)\nspoperator{;}
+ZP3=interp2d(XP,YP,x,y,splin2d(x,y,z,\nspstring{"natural"}))\nspoperator{;}
+ZP4=interp2d(XP,YP,x,y,splin2d(x,y,z,\nspstring{"monotone"}))\nspoperator{;}
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{64}))
+xbasc()
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{1})
+plot3d1(xp,yp,ZP1,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"not_a_knot"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{2})
+plot3d1(xp,yp,ZP2,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"bilinear interpolation"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{3})
+plot3d1(xp,yp,ZP3,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"natural"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{4})
+plot3d1(xp,yp,ZP4,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"monotone"})
+xselect()
+\nspcomment{// example 3: not_a_knot spline and monotone sub-spline}
+\nspcomment{//             on a step function}
+a=\nspnumber{0}\nspoperator{;}b=\nspnumber{1}\nspoperator{;}c=\nspnumber{0.25}\nspoperator{;}d=\nspnumber{0.75}\nspoperator{;}
+\nspcomment{// create interpolation grid}
+n=\nspnumber{11}\nspoperator{;}
+x=linspace(a,b,n)\nspoperator{;}
+ind=find(c\nspoperator{ <= }x\nspoperator{ && }x\nspoperator{ <= }d)\nspoperator{;}
+z=zeros(n,n)\nspoperator{;}z(ind,ind)=\nspnumber{1}\nspoperator{;}\nspcomment{// a step inside a square}
+\nspcomment{// create evaluation grid}
+np=\nspnumber{220}\nspoperator{;}
+xp=linspace(a,b,np)\nspoperator{;}
+[XP,YP]=ndgrid(xp,xp)\nspoperator{;}
+zp1=interp2d(XP,YP,x,x,splin2d(x,x,z))\nspoperator{;}
+zp2=interp2d(XP,YP,x,x,splin2d(x,x,z,\nspstring{"monotone"}))\nspoperator{;}
+\nspcomment{// plot}
+xbasc()
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{128}))
+subplot(\nspnumber{1},\nspnumber{2},\nspnumber{1})
+plot3d1(xp,xp,zp1,flag = [\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"spline (not_a_knot)"})
+subplot(\nspnumber{1},\nspnumber{2},\nspnumber{2})
+plot3d1(xp,xp,zp2,flag = [\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"subspline (monotone)"})
+\end{Verbatim}

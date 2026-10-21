@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>gfrancis</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli44.html" >next</a>] [<a 
+href="manualli42.html" >prev</a>] [<a 
+href="manualli42.html#tailmanualli42.html" >prev-tail</a>] [<a 
+href="#tailmanualli43.html">tail</a>] [<a 
+href="manualli12.html#manualli43.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x44-238000"></a>gfrancis</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx44-238001"></a><a 
+ id="gfrancis"></a><span 
+class="cmtt-10x-x-109">gfrancis </span>&#x2013;                                                                Francis equations for tracking<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x44-239000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-68">
+&#x00A0;&#x00A0;[L,M,T]=gfrancis(Plant,Model)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x44-240000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Plant</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Model</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">L,M,T</span>: real matrices</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x44-241000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > Given the the linear plant:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-69">
+&#x00A0;&#x00A0;x&#x0027;=&#x00A0;F*x&#x00A0;+&#x00A0;G*u
+&#x00A0;<br />&#x00A0;&#x00A0;y&#x00A0;=&#x00A0;H*x&#x00A0;+&#x00A0;J*u
+</div>
+<!--l. 40--><p class="nopar" >and the linear model
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-70">
+&#x00A0;&#x00A0;xm&#x0027;=&#x00A0;A*xm&#x00A0;+&#x00A0;B*um
+&#x00A0;<br />&#x00A0;&#x00A0;ym&#x00A0;=&#x00A0;C*xm&#x00A0;+&#x00A0;D*um
+</div>
+<!--l. 45--><p class="nopar" >the goal is for the plant to track the model i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;y</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;ym</span><span 
+class="cmtt-10x-x-109">&#x00A0;---$&#x003E;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span></span></span> while keeping stable the state
+x(t) of the plant. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span></span></span> is given by feedforward and feedback
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-71">
+&#x00A0;&#x00A0;u&#x00A0;=&#x00A0;L*xm&#x00A0;+&#x00A0;M*um&#x00A0;+&#x00A0;K*(x-T*xm)&#x00A0;=&#x00A0;[K&#x00A0;,&#x00A0;L-K*T]&#x00A0;*(x,xm)&#x00A0;+&#x00A0;M*um
+</div>
+<!--l. 51--><p class="nopar" >The matrices T,L,M satisfy generalized Francis equations
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-72">
+&#x00A0;&#x00A0;F*T&#x00A0;+&#x00A0;G*L&#x00A0;=&#x00A0;T*A
+&#x00A0;<br />&#x00A0;&#x00A0;H*T&#x00A0;+&#x00A0;J*L&#x00A0;=&#x00A0;C
+&#x00A0;<br />&#x00A0;&#x00A0;G*M&#x00A0;=&#x00A0;T*B
+&#x00A0;<br />&#x00A0;&#x00A0;J*M&#x00A0;=&#x00A0;D
+</div>
+<!--l. 58--><p class="nopar" >The matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span> must be chosen as stabilizing the pair <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(F,G)</span></span></span> See example of use in directory
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">demos/tracking</span></span></span>.
+</p>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x44-242000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb32"><a 
+ id="x44-242013r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Plant=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x44-242015r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[F,G,H,J]=abcd(Plant)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x44-242017r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nw=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nuu=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A=rand(nw,nw)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x44-242019r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;st=maxi(real(spec(A)))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A=A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">st</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">eye(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x44-242021r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=rand(nw,nuu)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,nw)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x44-242023r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Model=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x44-242025r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[L,M,T]=gfrancis(Plant,Model)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x44-242027r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(F</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">T</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">L</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">T</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x44-242029r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(H</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">T</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">J</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">L</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">C,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x44-242031r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(G</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">M</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">T</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x44-242033r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(J</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">M</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">D,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 79--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x44-243000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli53.html#lqg">lqg</a>    <a 
+href="manualli67.html#ppol">ppol</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli44.html" >next</a>] [<a 
+href="manualli42.html" >prev</a>] [<a 
+href="manualli42.html#tailmanualli42.html" >prev-tail</a>] [<a 
+href="manualli43.html" >front</a>] [<a 
+href="manualli12.html#manualli43.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli43.html"></a>  </p> 
+</body></html> 

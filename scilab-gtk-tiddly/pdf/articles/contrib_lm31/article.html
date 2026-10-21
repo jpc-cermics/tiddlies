@@ -1,0 +1,500 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Les Contributions au Logiciel Libre Scilab</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+<META NAME="GENERATOR" CONTENT="hevea 1.05"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HEVEA command line is: hevea article.tex -->
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<H1 ALIGN="center"><B>Les Contributions au Logiciel Libre Scilab</B></H1>
+<H3 ALIGN="center">Papa Momar Ndiaye &amp; Matthieu Philippe<BR>
+Soci&eacute;t&eacute; Saphir Control<BR>
+s/c INRIA Rocquencourt BP105,<BR>
+78153 Le Chesnay Cedex, France<BR>
+www.saphir-control.fr</H3>
+
+<!--TOC section Introduction-->
+<H2>1&nbsp;&nbsp; Introduction</H2>
+<!--SEC END -->
+Scilab est un logiciel libre et open source de calcul scientifique
+d&eacute;velopp&eacute; par l'INRIA et l'ENPC. En particulier, Scilab offre de
+large possibilit&eacute;s d'interfa&ccedil;age avec d'autres codes pour piloter
+vos propres applications et aussi des facilit&eacute;s pour rajouter vos
+biblioth&egrave;ques de mani&egrave;re permanente ou temporaire (Cf. Linuxmag
+num&eacute;ros 15 et 26). Autour de Scilab s'est organis&eacute;e une large
+communaut&eacute; d'utilisateurs qui participent &agrave; son &eacute;volution
+notamment en mettant en libre acc&egrave;s sur le site Scilab leurs propres
+contributions. Ces contributions a priori ind&eacute;pendantes de la version
+officielle support&eacute;e par le Scilab Group t&eacute;moignent de
+l'activit&eacute; autour de Scilab ainsi que de la vari&eacute;t&eacute; des
+domaines d'utilisation de ce logiciel (plus de 35 contributions disponibles
+&agrave; l'URL
+<A HREF="http://www-rocq.inria.fr/scilab/contributions.html"
+ TARGET="1">http://www-rocq.inria.fr/scilab/contributions.html</A> : liste
+donn&eacute;e en annexe). Du point de vue l'utilisateur, cela revient &agrave;
+greffer une biblioth&egrave;que de macros &agrave; Scilab avec la
+particularit&eacute; que le support de cette biblioth&egrave;que reste &agrave;
+la charge du d&eacute;veloppeur de la contribution. <BR>
+<BR>
+Cet article pr&eacute;sente les grandes lignes de l'installation d'une
+contribution, et montre les principales &eacute;tapes de la construction d'une
+contribution : en fait, il s'agit de faire rentrer vos propres Toolboxes dans
+une architecture suivant une normalisation propos&eacute;e par le Scilab Group.
+Libre &agrave; vous ensuite de soumettre le r&eacute;sultat au Scilab Group
+pour en partager le contenu et aussi la maintenance avec tout un r&eacute;seau
+d'utilisateurs. Pour aller plus loin, consulter le Guideline propos&eacute; sur
+le site Scilab (fichier
+<A HREF="ftp://ftp.inria.fr/INRIA/Projects/Meta2/Scilab/contrib/GUIDELINE/"
+ TARGET="1">GUIDELINE.tar.gz</A>, t&eacute;l&eacute;chargeable depuis l'URL
+cit&eacute;e plus haut).
+<!--TOC section Installation-->
+<H2>2&nbsp;&nbsp; Installation</H2>
+<!--SEC END -->
+Les contributions se t&eacute;l&eacute;chargent par ftp depuis la rubrique
+Contributions du site Scilab (<A HREF="http://www-rocq.inria.fr/scilab"
+TARGET="1">http://www-rocq.inria.fr/scilab</A>). Elles se pr&eacute;sentent
+sous forme d'archive, typiquement un fichier d'extension ``.tar.gz'' &agrave;
+d&eacute;compresser et extraire. Ensuite viennent l'installation et le
+chargement de la contribution qui se font dans la fen&ecirc;tre Scilab. En
+fait, toutes ces op&eacute;rations (extraction de l'archive, installation et
+chargement de la contribution) peuvent s'effectuer depuis la fen&ecirc;tre
+Scilab au prix de trois lignes de commandes seulement ! Comme illustration de
+cette simplicit&eacute;, prenons l'exemple de Slicot qui est un package de
+m&eacute;thodes num&eacute;riques pour le design et le contr&ocirc;le de
+syst&egrave;mes d&eacute;velopp&eacute; par le groupe NICONET (<A
+HREF="http://www.win.tue.nl/niconet/"
+TARGET="1">http://www.win.tue.nl/niconet/</A>). Naturellement, pas question
+d'entrer dans le d&eacute;tail du contenu, il est juste question de voir que la
+complexit&eacute; de ce package n'alourdit nullement son installation et son
+chargement. Nous d&eacute;crivons ci-apr&egrave;s le processus comple en
+supposant que vous avez d&eacute;ja t&eacute;l&eacute;charg&eacute; le fichier
+<EM>slicot-1.0.tar.gz</EM>. Il suffit alors de lancer Scilab depuis le
+m&ecirc;me r&eacute;pertoire <BR>
+<BR>
+<CENTER>
+<P><IMG SRC="Images/scilab.png" ALT="bar" BORDER="0" ALIGN="CENTER" WIDTH="668"
+HEIGHT="538"></P>
+</CENTER>
+<BR>
+<BR>
+et de proc&eacute;der en trois &eacute;tapes, comme suit. <OL TYPE="1">
+<LI> <B><EM>Extraction de l'archive</EM></B> <PRE>
+--&gt;unix('tar xzf slicot-1.0.tar.gz') //extraction : commande unix 
+ ans  =
+ 
+    0.
+</PRE>
+
+</LI>
+<LI><B><EM>Positionnement dans le r&eacute;pertoire nouvellement cr&eacute;e et
+installation de la contribution en lan&ccedil;ant le script
+builder.sce</EM></B> <PRE>
+--&gt;chdir slicot-1.0
+ ans  =
+
+    0.
+--&gt; 
+--&gt;exec(&quot;builder.sce&quot;) // installation 
+
+--&gt;mode(-1)
+
+ Be patient, this may take a while
+
+ making all in slicot
+
+ making all in auxiliary
+Warning :redefining function: compile
+
+
+ making all in slicot-scilab
+
+--&gt;
+</PRE>
+Cette op&eacute;ration d'installation est &agrave; ex&eacute;cuter une fois
+pour toutes. 
+</LI>
+<LI><B><EM>Chargement de la contribution en lan&ccedil;ant le script
+loader.sce</EM></B> <PRE>
+--&gt;exec(&quot;loader.sce&quot;) // chargemant 
+--&gt;mode(-1)
+linking files
+/home/saphir-control/slicot-1.0/src/slicot-scilab/slicot_gateway.o
+/home/saphir-control/slicot-1.0/libs/slicotlib.a
+/home/saphir-control/slicot-1.0/libs/slicotaux.a
+to create a shared executable
+shared archive loaded
+Linking slicot_gateway
+Interface 0 slicot_gateway
+--&gt; 
+
+</PRE>
+
+</LI>
+</OL>
+Apr&egrave;s ces manipulations &eacute;l&eacute;mentaires, vous pouvez utiliser
+la nouvelle contribution fra&icirc;chement install&eacute;e. Cependant,
+&agrave; chaque nouvelle session Scilab, il vous faudra &agrave; nouveau
+charger la contribution en lancant le <EM>loader.sce</EM>. Pour un chargement
+automatique, vous devez mettre la commande de chargement dans votre fichier
+<EM>.scilab</EM>.
+ 
+<!--TOC section Construire votre propre contribution-->
+<H2>3&nbsp;&nbsp; Construire votre propre contribution</H2>
+<!--SEC END -->
+<!--TOC subsection Architecture d'une contribution-->
+<H3>3.1&nbsp;&nbsp; Architecture d'une contribution</H3>
+<!--SEC END -->
+<OL TYPE="1">
+<LI> <B><EM>Un fichier d'installation </EM></B> : script Scilab
+<EM>builder.sce</EM> ex&eacute;cuter une seule fois par l'administrateur. </LI>
+<LI> <B><EM>Un fichier de chargement de chargement </EM></B> des fonctions dans
+l'environnement Scilab : script Scilab <EM>loader.sce</EM> &agrave;
+ex&eacute;cuter par l'utilisateur. </LI>
+<LI> <B><EM>Un fichier README</EM></B> d&eacute;crivant le contenu de la
+contribution ainsi que la proc&eacute;dure d'installation. </LI>
+<LI> <B><EM>Un r&eacute;pertoire src </EM></B> contenant les sources des
+routines C ou Fortran ainsi qu'un fichier C ou Fortran contenant la routine
+d'interface avec Scilab (Cf. Linuxmag num&eacute;ro 26) </LI>
+<LI> <B><EM>Un r&eacute;pertoire macros </EM></B> contenant les macros Scilab. 
+</LI>
+<LI> <B><EM>Un r&eacute;pertoire examples </EM></B> contenant les examples. 
+</LI>
+<LI> <B><EM>Un r&eacute;pertoire man </EM></B> contenant les pages du manuel de
+vos fonctions. Un fichier <EM>whatis</EM> et un fichier <EM>*.cat</EM> sont
+n&eacute;cessaires pour chaque fonction. </LI>
+<LI> <B><EM>Un r&eacute;pertoire doc </EM></B> contenant la documentation aux
+formats <EM>ps</EM>, <EM>pdf</EM>, <EM>html</EM>, <EM>tex</EM>. </LI>
+</OL>
+On retrouve cette architecture dans le r&eacute;pertoire <EM>slicot-1.0</EM>
+cr&eacute;e plus haut <PRE>
+[saphir-contol slicot-1.0]: ls
+Makefile      builder.sce  libs/       macros/     src/
+texput.log    Makefile.mak doc/        loader.sce  man/
+tests/
+</PRE>
+<!--TOC subsection Construction des fichiers d'installation et des pages de help-->
+
+<H3>3.2&nbsp;&nbsp; Construction des fichiers d'installation et des pages de
+help</H3>
+<!--SEC END -->
+En pratique, il suffit de construire les fichiers <EM>builder.sce</EM>,
+<EM>loader.sce</EM> et les pages de manuel. Le fichier <EM>builder.sce</EM> est
+un script de commandes Scilab qui r&eacute;alise l'installation compl&egrave;te
+de la contribution : <UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT> cr&eacute;ation
+des <EM>Makefiles</EM> si n&eacute;cessaire ; </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT> lancement des
+commandes de compilation ; </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT> cr&eacute;ation des
+librairies Scilab, si n&eacute;cessaire ; </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>
+&eacute;ventuellement cr&eacute;ation de la macro Scilab <EM>loader.sce</EM>. 
+</LI>
+</UL>
+Typiquement, le fichier <EM>builder.sce</EM> peut donc &ecirc;tre divis&eacute;
+en deux parties : <OL TYPE="1">
+<LI> une partie sp&eacute;cifique contenant les d&eacute;finitions des noms de
+librairies ; </LI>
+<LI> une partie g&eacute;n&eacute;rique contenant : <UL>
+<LI> des instructions de positionnement de Path, </LI>
+<LI> des instructions permettant la g&eacute;n&eacute;ration automatique des
+Makefile et la compilation des fichiers Fortran et C, </LI>
+<LI> des instructions permettant la g&eacute;n&eacute;ration de la librairie de
+macros Scilab, </LI>
+<LI> et &eacute;ventuellement des instructions permettant la
+g&eacute;n&eacute;ration du fichier <EM>loader.sce</EM>. </LI>
+</UL>
+</LI>
+</OL>
+Le fichier <EM>loader.sce</EM> permet &agrave; l'utilisateur de charger la
+contribution dans son environnement. Il contient les instructions pour rajouter
+des interfaces temporaires dans Scilab ainsi que des pages de help et des
+d&eacute;monstrations. Les helps en ligne se construisent &agrave; partir de
+fichiers <EM>nroff</EM> avec l'extension <EM>.man</EM> dont la compilation se
+fait avec la commande Scilab <EM>formatman</EM>. Des mod&egrave;les-types sont
+disponibles dans les distributions de Scilab (cf.
+r&eacute;pertoire&nbsp;:&nbsp;<EM>scilab-2.6/examples/man-examples</EM>. Des
+mod&egrave;les de fichiers <EM>loader.sce</EM> et <EM>builder.sce</EM> &agrave;
+adapter &agrave; vos applications sont accessibles sur le site Scilab
+(t&eacute;l&eacute;charger le fichier et d&eacute;compresser GUIDELINE.tar.gz.
+
+<!--TOC subsection Un petit exemple-->
+<H3>3.3&nbsp;&nbsp; Un petit exemple</H3>
+<!--SEC END -->
+Supposons juste pour illustrer que nous ayons besoin de rajouter un ensemble
+d'op&eacute;rations particuli&egrave;res sur des matrices-lignes ou
+matrices-colonnes du genre : add_sq : (<I>a</I>, <I>b</I>) <FONT
+FACE="symbol">&reg;</FONT> <I>a</I>.*<I>a</I> + <I>b</I>.*<I>b</I> et div_sq :
+(<I>a</I>, <I>b</I>) <FONT FACE="symbol">&reg;</FONT>
+(<I>a</I>.*<I>a</I>)./(<I>b</I>.*<I>b</I>). <BR>
+<BR>
+On dispose au d&eacute;part de la routine C <PRE>
+
+#include &quot;/usr/local/scilab-2.6/routines/machine.h&quot;
+int F2C(ext1c)(n, a, b, c)
+     int *n;
+     double *a, *b, *c;
+{
+  int k;
+  for (k = 0; k &lt; *n; ++k)
+      c[k] = a[k]*a[k] + b[k]*b[k];
+  return(0);
+} 
+</PRE>
+et de la routine Fortran 
+<PRE>
+      subroutine fsom(n,a,b,c)
+      real a(*),b(*),c(*)
+      do 1 k=1,n
+ 1       c(k)=a(k)*a(k)/(b(k)*b(k))
+      end 
+</PRE>
+qu'on veut piloter par deux fonctions Scilab de sorte qu'elles traitent
+indiff&eacute;rement les vecteurs-lignes ou vecteurs-colonnes. Evidemment, il
+s'agit d'un exemple exotique pour ne pas dire bidon, mais admettons que l'on en
+ait besoin. <BR>
+<BR>
+Nous allons donc construire une contribution qui va rajouter &agrave; scilab,
+deux primitives (<EM>add_square</EM> et <EM>div_square</EM>) et une librairie
+de nom <EM>totolib</EM> contenant les trois functions <EM>add_sq.sci</EM>,
+<EM>div_sq.sci</EM> et <EM>bizarre.sci</EM>. Voici la d&eacute;marche pratique.
+
+<OL TYPE="1">
+<LI> Cr&eacute;ation d'un r&eacute;pertoire <EM>src</EM> dans lequel on copie
+les fichiers source C et Fortran. </LI>
+<LI> Utilisation de <EM>intersci</EM>, par exemple, pour g&eacute;n&eacute;rer
+une interface commune pour les fichiers C et Fortran. </LI>
+<LI> Cr&eacute;ation du r&eacute;pertoire <EM>macros</EM> dans lequel on met
+les 3 fonctions Scilab : <EM>add_sq.sci</EM>, <EM>div_sq.sci</EM> et
+<EM>bizarre.sci</EM>. </LI>
+<LI> Cr&eacute;ation du r&eacute;pertoire <EM>man</EM> dans lequel on met les 3
+trois fichiers-sources du help : <EM>add_sq.man</EM>, <EM>div_sq.man</EM> et
+<EM>bizarre.man</EM>. Ces fichiers seront compil&eacute;s lors de
+l'ex&eacute;cution du <EM>builder.sce</EM> qui lance la commande Scilab
+<EM>formatman</EM>. </LI>
+<LI> Construction du <EM>builder.sce</EM> et du <EM>loader.sce</EM> en adaptant
+celui donn&eacute; dans le
+<A HREF="ftp://ftp.inria.fr/INRIA/Projects/Meta2/Scilab/contrib/GUIDELINE/"
+ TARGET="1">GUIDELINE.tar.gz</A>. </LI>
+<LI> Installation de la contribution avec le builder. </LI>
+<LI> Chargement de la contribution avec le loader. </LI>
+</OL>
+<BR>
+<BR>
+On obtient alors ce qui suit. <PRE>
+
+--&gt;;exec(&quot;builder.sce&quot;);
+  
+Building PETITE ALGEBRE
+  
+Building Completed
+
+Manuel Installed
+
+--&gt;;exec(&quot;loader.sce&quot;); 
+linking files /home/saphir-control/example/src/exf.o 
+/home/saphir-control/example/src/ex1c.o 
+/home/saphir-control/example/src/ex2f.o  
+to create a shared executable
+shared archive loaded
+Linking exf 
+Interface 0 exf
+ 
+PETITE ALGEBRE loaded
+Primitive add_square added
+Primitive div_square added
+ 
+Very Exotic library totolib loaded
+ 
+ Functions files location :/home/saphir-control/example/macros/
+ 
+ add_sq    bizarre   div_sq    
+
+</PRE>
+Les nouvelles fonctions Scilab <EM>add_sq.sci</EM>, <EM>div_sq.sci</EM> et
+<EM>bizarre.sci</EM> s'utilisent maintenant comme toutes les autres fonctions
+Scilab : 
+<PRE>
+
+--&gt;x = [1 2 3]
+ x  =
+ 
+!   1.    2.    3. !
+ 
+--&gt;y = 2 *x
+ y  =
+ 
+!   2.    4.    6. !
+ 
+--&gt;div_sq(x,y)
+ ans  =
+ 
+!   0.25 !
+!   0.25 !
+!   0.25 !
+ 
+--&gt;div_sq(x',y')  
+ ans  =
+ 
+!   0.25 !
+!   0.25 !
+!   0.25 !
+
+--&gt;add_sq(x, 2*x)
+ ans  =
+ 
+!   5.  !
+!   20. !
+!   45. !
+
+</PRE>
+On a aussi acc&egrave;s au pages du manuel puisque la commande Scilab
+<EM>apropos exotique</EM> ouvre la fen&ecirc;tre graphique suivante <BR>
+<BR>
+
+<CENTER>
+<P><IMG SRC="Images/apropos.png" ALT="bar" BORDER="0" ALIGN="CENTER"
+WIDTH="317" HEIGHT="158"></P>
+</CENTER>
+<BR>
+<BR>
+et en clicquant sur <EM>div_sq</EM> on obtient la fen&ecirc;tre de help
+suivante <BR>
+<BR>
+<CENTER>
+<P><IMG SRC="Images/div_sq.png" ALT="bar" BORDER="0" ALIGN="CENTER" WIDTH="808"
+HEIGHT="628"></P>
+</CENTER>
+<BR>
+<BR>
+qu'on aurait pu ouvrir avec la commande <EM>help div_sq</EM>. <BR>
+<BR>
+Vous l'aviez compris : l'exercice &eacute;tait un poncif. L'ensemble des
+sources n&eacute;cessaires pour le refaire est n&eacute;anmoins fourni
+<A HREF="Example/">ici</A>. 
+
+<!--TOC subsection Soumission d'une contribution-->
+<H3>3.4&nbsp;&nbsp; Soumission d'une contribution</H3>
+<!--SEC END -->
+Il suffit de : <OL TYPE="1">
+<LI> fabriquer une archive contenant votre contribution et de remplir un
+fichier lsm (cf
+<A HREF="http://metalab.unc.edu/pub/Linux/LSM-TEMPLATE"
+ TARGET="1">http://metalab.unc.edu/pub/Linux/LSM-TEMPLATE</A>) ou alors un
+fichier texte contenant les informations suivantes : <UL>
+<LI> Title: </LI>
+<LI> Version : </LI>
+<LI> Description : </LI>
+<LI> Author: </LI>
+<LI> Maintained-by: </LI>
+<LI> Maintained-at: </LI>
+<LI> Platforms: </LI>
+<LI> Copying-Policy: </LI>
+<LI> Keywords: </LI>
+</UL>
+</LI>
+<LI> d&eacute;poser le tout par ftp &agrave; l'adresse :
+<A
+ HREF="ftp://ftp.inria.fr/INRIA/Projects/Meta2/Scilab/incoming/">ftp://ftp.inria.fr/INRIA/Projects/Meta2/Scilab/incoming/</A>
+</LI>
+<LI> envoyer un mail &agrave; <A
+HREF="mailto:Scilab@inria.fr">Scilab@inria.fr</A> pour information. </LI>
+</OL>
+<!--TOC section Annexe : liste des contributions-->
+<H2>4&nbsp;&nbsp; Annexe : liste des contributions</H2>
+<!--SEC END -->
+<UL>
+<LI> ANN&nbsp;:&nbsp;conception de r&eacute;seaux de neuronnes. </LI>
+<LI> CmapUtility&nbsp;:&nbsp;Manipulation des cartes de couleurs. </LI>
+<LI> DYNOPTIM&nbsp;:&nbsp;Discrete time optimal control problems. </LI>
+<LI> EMACS&nbsp;:&nbsp;Mode scilab sous emacs. </LI>
+<LI>ENRICO&nbsp;:&nbsp;Fonctions graphiques de haut niveau pour l'imagerie. 
+</LI>
+<LI> EVOL&nbsp;:&nbsp;Evolution strategies. </LI>
+<LI> FABBRI&nbsp;:&nbsp;Fonctions graphiques de haut niveau pour l'imagerie. 
+</LI>
+<LI> FAULT_D&nbsp;:&nbsp;D&eacute;tection de pannes. </LI>
+<LI> FEM_Post&nbsp;:&nbsp;Finite Element Post Processing. </LI>
+<LI> FISLABFuzzy&nbsp;:&nbsp;Commande &agrave; logique floue. </LI>
+<LI> FRACLAB&nbsp;:&nbsp;Manipulation de Fractales. </LI>
+<LI> FREEFEM&nbsp;:&nbsp;El&eacute;ments finis 2d. </LI>
+<LI> FSQP&nbsp;:&nbsp;Interface Scilab-FSQP pour l'optimisation. </LI>
+<LI> FISLAB&nbsp;:&nbsp; Fuzzy logic inference. </LI>
+<LI> GENFILT&nbsp;:&nbsp;Code assembleur pour l'impl&eacute;mentation de filtre
+IIR. </LI>
+<LI> GUIDELINE&nbsp;:&nbsp;Guide pour la construction de contributions. </LI>
+<LI> HMM&nbsp;:&nbsp;Cha&icirc;nes de Markov. </LI>
+<LI> IMAGE&nbsp;:&nbsp;Lecture et l'&eacute;criture d'images aux formats PBM,
+PPM ou PGM. </LI>
+<LI> Interactive documents with Scilab&nbsp;:&nbsp;Interface pour appeler
+Scilab &agrave; partir d'un document PDF ou HTML. </LI>
+<LI> LABOSTAT&nbsp;:&nbsp;Fonctions basiques pour les statistiques. </LI>
+<LI> LIPSOL&nbsp;:&nbsp;Programmation Lin&eacute;aire par points
+int&eacute;rieurs. </LI>
+<LI> Mac&nbsp;:&nbsp;Macintosh 2.1.1 version. </LI>
+<LI> MAXPLUS&nbsp;:&nbsp;Alg&egrave;bre Maxplus. </LI>
+<LI> MODAL&nbsp;:&nbsp;Output modal analysis and diagnosis </LI>
+<LI> NETBSD&nbsp;:&nbsp;Support pour NetBSD. </LI>
+<LI> NURBS&nbsp;:&nbsp;Nurbs library. </LI>
+<LI> OLDSAVE&nbsp;:&nbsp; chargement des fichiers sauvegard&eacute;s avec des
+vielles version s de Scilab. </LI>
+<LI> Plotting library&nbsp;:&nbsp;Fonctions &eacute;mulant le <EM>plot()</EM>
+de Matlab. </LI>
+<LI> POLYTOOL&nbsp;:&nbsp;Manipulation de polyn&ocirc;mes. </LI>
+<LI> RAYPP&nbsp;:&nbsp; Quick travel-time calculations of P-P reflections for
+flat earth. </LI>
+<LI> SCIGRAPH&nbsp;:&nbsp;Manipulation de graphes METANET. </LI>
+<LI> SLICOT&nbsp;:&nbsp;Interface with SLICOT. </LI>
+<LI> STIXBOX&nbsp;:&nbsp;Package de statistiques pour l'agregation de
+math&eacute;matiques. </LI>
+<LI> TELECOM&nbsp;:&nbsp;Simulation des cha&icirc;nes de transmission numrique
+de t&eacute;lcommunications. </LI>
+<LI> TIME SERIES PLOTTING. </LI>
+<LI> TKGUI&nbsp;:&nbsp;Fonctions et IHM utilisant TCL/TK. </LI>
+<LI> XPM&nbsp;:&nbsp;G&eacute;n&eacute;ration d'images bitmap XPM contenant des
+pixels. </LI>
+</UL>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://pauillac.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

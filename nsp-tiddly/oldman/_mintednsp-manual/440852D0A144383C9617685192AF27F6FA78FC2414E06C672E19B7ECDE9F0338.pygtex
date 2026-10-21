@@ -1,0 +1,39 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Linear system with switching input}
+deff(\nspstring{'xdu=phis(t,x,u,flag)'},\nspstring{'if flag==0 then xdu=A*x+B*u; else xdu=1-u;end'})\nspoperator{;}
+x0=[\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}A=[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{1}]\nspoperator{;}B=[\nspnumber{1}\nspoperator{;}\nspnumber{2}]\nspoperator{;}u=\nspnumber{0}\nspoperator{;}nu=\nspnumber{1}\nspoperator{;}stdel=[\nspnumber{1}\nspoperator{,}\nspnumber{0}]\nspoperator{;}u0=\nspnumber{0}\nspoperator{;}t=\nspnumber{0}\nspoperator{:}\nspnumber{0.05}\nspoperator{:}\nspnumber{10}\nspoperator{;}
+xu=odedc([x0\nspoperator{;}u0],nu,stdel,\nspnumber{0},t,phis)\nspoperator{;}x=xu(\nspnumber{1}\nspoperator{:}\nspnumber{2},\nspoperator{:})\nspoperator{;}u=xu(\nspnumber{3},\nspoperator{:})\nspoperator{;}
+nx=\nspnumber{2}\nspoperator{;}
+plot2d1(\nspstring{'onn'},t\nspoperator{'},x\nspoperator{'},[\nspnumber{1}\nspoperator{:}nx],\nspstring{'161'})\nspoperator{;}
+plot2d2(\nspstring{'onn'},t\nspoperator{'},u\nspoperator{'},[nx\nspoperator{+}\nspnumber{1}\nspoperator{:}nx\nspoperator{+}nu],\nspstring{'000'})\nspoperator{;}
+\nspcomment{//Fortran external( see fydot2.f):}
+norm(xu\nspoperator{-}odedc([x0\nspoperator{;}u0],nu,stdel,\nspnumber{0},t,\nspstring{'phis'}),\nspnumber{1})
+\nspcomment{//Sampled feedback}
+\nspcomment{//}
+\nspcomment{//        |     xcdot=fc(t,xc,u)}
+\nspcomment{//  (system)   |}
+\nspcomment{//        |     y=hc(t,xc)}
+\nspcomment{//}
+\nspcomment{//}
+\nspcomment{//        |     xd+=fd(xd,y)}
+\nspcomment{//  (feedback) |}
+\nspcomment{//        |     u=hd(t,xd)}
+\nspcomment{//}
+deff(\nspstring{'xcd=f(t,xc,xd,iflag)'}, ...
+     [\nspstring{'if iflag==0 then '}\nspoperator{;}\nspstring{'  xcd=fc(t,xc,e(t)-hd(t,xd));'}\nspoperator{;}\nspstring{'else '}\nspoperator{;}\nspstring{'  xcd=fd(xd,hc(t,xc));'}\nspoperator{;}
+      \nspstring{'end'}])\nspoperator{;}
+A=[\nspoperator{-}\nspnumber{10}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{;}\nspnumber{4}\nspoperator{,}\nspoperator{-}\nspnumber{10}\nspoperator{,}\nspnumber{6}\nspoperator{;}\nspnumber{7}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspoperator{-}\nspnumber{10}]\nspoperator{;}B=[\nspnumber{1}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}C=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+Ad=[\nspnumber{1}\nspoperator{/}\nspnumber{2}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{/}\nspnumber{20}]\nspoperator{;}Bd=[\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}Cd=[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+deff(\nspstring{'st=e(t)'},\nspstring{'st=sin(3*t)'})
+deff(\nspstring{'xdot=fc(t,x,u)'},\nspstring{'xdot=A*x+B*u'})
+deff(\nspstring{'y=hc(t,x)'},\nspstring{'y=C*x'})
+deff(\nspstring{'xp=fd(x,y)'},\nspstring{'xp=Ad*x + Bd*y'})
+deff(\nspstring{'u=hd(t,x)'},\nspstring{'u=Cd*x'})
+h=\nspnumber{0.1}\nspoperator{;}t0=\nspnumber{0}\nspoperator{;}t=\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{;}
+x0c=[\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{0}]\nspoperator{;}x0d=[\nspnumber{0}\nspoperator{;}\nspnumber{0}]\nspoperator{;}nd=\nspnumber{2}\nspoperator{;}
+xcd=odedc([x0c\nspoperator{;}x0d],nd,h,t0,t,f)\nspoperator{;}
+norm(xcd\nspoperator{-}odedc([x0c\nspoperator{;}x0d],nd,h,t0,t,\nspstring{'fcd1'}))\nspoperator{,}\nspcomment{// Fast calculation (see fydot2.f)}
+plot2d([t\nspoperator{'}\nspoperator{,}t\nspoperator{'}\nspoperator{,}t\nspoperator{'}],xcd(\nspnumber{1}\nspoperator{:}\nspnumber{3},\nspoperator{:})\nspoperator{'})\nspoperator{;}
+xset(\nspstring{"window"},\nspnumber{2})\nspoperator{;}plot2d2(\nspstring{"gnn"},[t\nspoperator{'}\nspoperator{,}t\nspoperator{'}],xcd(\nspnumber{4}\nspoperator{:}\nspnumber{5},\nspoperator{:})\nspoperator{'})\nspoperator{;}
+xset(\nspstring{"window"},\nspnumber{0})\nspoperator{;}
+\end{Verbatim}

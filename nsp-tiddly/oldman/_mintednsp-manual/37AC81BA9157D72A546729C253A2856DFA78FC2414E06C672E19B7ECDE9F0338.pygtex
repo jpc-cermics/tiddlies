@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// plots a step function of value i on the segment [i,i+1]}
+\nspcomment{// the last segment is not drawn}
+plot2d2([\nspnumber{1}\nspoperator{:}\nspnumber{4}],[\nspnumber{1}\nspoperator{:}\nspnumber{4}],\nspnumber{1},\nspstring{"111"},\nspstring{"step function"},[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{5}])
+\nspcomment{// compare the following with plot2d}
+x=[\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}
+clf()
+plot2d2(x,[sin(x)\nspoperator{,}sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{,}sin(\nspnumber{3}\nspoperator{*}x)])
+\nspcomment{// In New graphics only}
+clf()
+set(\nspstring{"figure_style"},\nspstring{"new"})
+plot2d(x,[sin(x)\nspoperator{,}sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{,}sin(\nspnumber{3}\nspoperator{*}x)])
+e=gce()\nspoperator{;}
+e.children(\nspnumber{1}).polyline_style=\nspnumber{2}\nspoperator{;}
+e.children(\nspnumber{2}).polyline_style=\nspnumber{2}\nspoperator{;}
+e.children(\nspnumber{3}).polyline_style=\nspnumber{2}\nspoperator{;}
+\end{Verbatim}

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>sci_files</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli861.html" >next</a>] [<a 
+href="manualli859.html" >prev</a>] [<a 
+href="manualli859.html#tailmanualli859.html" >prev-tail</a>] [<a 
+href="#tailmanualli860.html">tail</a>] [<a 
+href="manualli756.html#manualli860.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x861-4977000"></a>sci_files</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx861-4977001"></a><a 
+ id="sci_files"></a><span 
+class="cmtt-10x-x-109">sci</span><span 
+class="cmtt-10x-x-109">_files </span>&#x2013;                                                         How to write conversion functions<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x861-4978000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > To convert calls to Matlab functions, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> uses a function called <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sci_$&#x003C;$Matlab_function_name$&#x003E;$</span></span></span>.
+All these functions are defined in <span 
+class="cmtt-10x-x-109">sci</span><span 
+class="cmtt-10x-x-109">_files </span>in directory SCI/macros/m2sci/sci_files/. The set of
+<span 
+class="cmtt-10x-x-109">sci</span><span 
+class="cmtt-10x-x-109">_files </span>given in Scilab distribution does not allow to convert calls to all Matlab functions yet.
+However, a Scilab user can add <span 
+class="cmtt-10x-x-109">sci</span><span 
+class="cmtt-10x-x-109">_files </span>(for Matlab functions or for user defined functions) to
+Scilab using the following tips. In M2SCI, a function call is considered as a &#x201D;tree&#x201D; (it is also the case
+for the instructions of the file to convert), represented in Scilab by a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> with following
+fields:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">name</div>: Matlab function name
+          </li>
+          <li class="itemize"><div class="itemdesc">lhsnb</div>: number of Matlab function output parameters
+          </li>
+          <li class="itemize"><div class="itemdesc">lhs</div>: list of Matlab function output parameters
+          </li>
+          <li class="itemize"><div class="itemdesc">rhs</div>: list of Matlab function input parameters</li></ul>
+     </ul>
+<!--l. 39--><p class="noindent" >A <span 
+class="cmtt-10x-x-109">sci</span><span 
+class="cmtt-10x-x-109">_function </span>has one input called <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tree</span></span></span> which is also the output of the function. A <span 
+class="cmtt-10x-x-109">sci</span><span 
+class="cmtt-10x-x-109">_function</span>
+has to convert this incoming &#x201D;tree&#x201D; so that it is compatible with Scilab by changing name, lhsnb, lhs
+and/or rhs. The other task that has to be done by this function is inference. Incoming tree contains
+inference data in its lhs that have to be updated with what can be infered for the outputs of this
+function. Some useful functions have been written to help to create M2SCI tlists while writing this
+conversion function:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+                                                                                    
+
+                                                                                    
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">Funcall</div>: create a tree representing a function call
+          </li>
+          <li class="itemize"><div class="itemdesc">Operation</div>: create a tree representing an operation
+          </li>
+          <li class="itemize"><div class="itemdesc">Variable</div>: create a tree representing a variable
+          </li>
+          <li class="itemize"><div class="itemdesc">Cste</div>: create a tree representing a constante value
+          </li>
+          <li class="itemize"><div class="itemdesc">Infer</div>: create a tree representing inference data
+          </li>
+          <li class="itemize"><div class="itemdesc">Type</div>: create a tree representing type for inference
+          </li>
+          <li class="itemize"><div class="itemdesc">Equal</div>: create a tree representing an instruction</li></ul>
+     </ul>
+<!--l. 57--><p class="noindent" >Some other functions have been designed to get properties of operands/inputs.
+Considering A is tlist used in macro tree, you can use the following functions:
+<!--tex4ht:inline--></p><div class="tabular"> <table id="TBL-47" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-47-1g"><col 
+id="TBL-47-1" /></colgroup><colgroup id="TBL-47-2g"><col 
+id="TBL-47-2" /></colgroup><colgroup id="TBL-47-3g"><col 
+id="TBL-47-3" /></colgroup><colgroup id="TBL-47-4g"><col 
+id="TBL-47-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-1-1"  
+class="td11">      Function         </td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-1-2"  
+class="td11">                             returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%T</span></span></span> if...                                              </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-2-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">is_empty(A)</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-2-2"  
+class="td11">                         all dimensions of A are 0                                       </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-3-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">not_empty(A)</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-3-2"  
+class="td11">      all dimensions of A are known and at least one dimension of A is not 0         </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-4-1"  
+class="td11"><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">is_a@underscalar(A)</span></span></span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-4-2"  
+class="td11">                         all dimensions of A are 1                                       </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-5-1"  
+class="td11"><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">not_a@underscalar(A)</span></span></span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-5-2"  
+class="td11">      all dimensions of A are known and at least one dimension of A is not 1         </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-6-1"  
+class="td11"><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">is_a@undervector(A)</span></span></span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-6-2"  
+class="td11">   all dimensions of A are known and all dimensions of A but one are equal to 1     </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-7-1"  
+class="td11"><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">not_a@undervector(A)</span></span></span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-7-2"  
+class="td11">all dimensions of A are known and at least two dimensions of A are greater than one</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-8-1"  
+class="td11">     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">is_real(A)</span></span></span>     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-8-2"  
+class="td11">                                A is real                                                  </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-9-1"  
+class="td11">   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">is_complex(A)</span></span></span>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-9-2"  
+class="td11">                              A is complex                                               </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-10-1"  
+class="td11">  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">isdefinedvar(A)</span></span></span>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-10-2"  
+class="td11">          A is a variable already created in M-file currently converted                </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-11-1"  
+class="td11">   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">allunknown(A)</span></span></span>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-47-11-2"  
+class="td11">                      all dimensions of A are unknown                                  </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-47-12-1"  
+class="td11">                    </td></tr></table>
+</div> Some other functions have been written for specific needs while writing conversion files:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">first_non_singleton</div>:  is  an  equivalent  to  <a 
+href="manualli762.html#firstnonsingleton">firstnonsingleton</a>     for  an  M2SCI  tlist.
+          Calling sequence: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;first_non_singleton(A)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc">gettempvar</div>: generates a temporary variable having a name which does not already
+          exist. Calling sequence:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;v</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;gettempvar()</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc">insert</div>: allows to insert instructions. Calling sequence:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;insert(Equal(...),opt)</span></span></span>
+          with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">opt~=1</span></span></span> to insert before current instruction and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;opt=1</span></span></span> to insert after it.
+          </li>
+          <li class="itemize"><div class="itemdesc">getoperands</div>: can be used to get each operand as a variable. Calling sequence:
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A,B]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;getoperands(operation_tlist)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc">getrhs</div>:  can  be  used  to  get  each  parameter  as  a  variable.  Calling  sequence:
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A,...]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;getrhs(funcall_tlist)</span></span></span>
+                                                                                    
+
+                                                                                    
+          </li>
+          <li class="itemize"><div class="itemdesc">convert2double</div>: change type of input when this type is not implemented for a
+          particular function is Scilab. Calling sequence:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;A</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;convert2double(A)</span></span></span></li></ul>
+     </ul>
+<!--l. 83--><p class="noindent" >To have more informations about how to write such files, refer to directory SCI/macros/m2sci/sci_files/
+which gives many examples from very simple ones (e.g. sci_abs.sci) to very complex ones (e.g.
+sci_zeros.sci).
+</p>
+<!--l. 88--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x861-4979000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli766.html#m2scideclare">m2scideclare</a>    <a 
+href="manualli763.html#Funcall">Funcall</a>    <a 
+href="manualli859.html#Operation">Operation</a>    <a 
+href="manualli862.html#Variable">Variable</a>    <a 
+href="manualli760.html#Cste">Cste</a>    <a 
+href="manualli765.html#Infer">Infer</a>    <a 
+href="manualli861.html#Type">Type</a>    <a 
+href="manualli761.html#Equal">Equal</a>
+</p>
+<!--l. 92--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x861-4980000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x861-4981000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli861.html" >next</a>] [<a 
+href="manualli859.html" >prev</a>] [<a 
+href="manualli859.html#tailmanualli859.html" >prev-tail</a>] [<a 
+href="manualli860.html" >front</a>] [<a 
+href="manualli756.html#manualli860.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli860.html"></a>  </p> 
+</body></html> 

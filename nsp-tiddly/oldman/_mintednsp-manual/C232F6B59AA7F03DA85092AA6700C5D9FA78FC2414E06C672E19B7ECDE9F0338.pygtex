@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+n=poly([\nspnumber{0.2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{5}],\nspstring{'z'})\nspoperator{;}
+d=poly([\nspnumber{0.1}\nspoperator{,}\nspnumber{0.3}\nspoperator{,}\nspnumber{7}],\nspstring{'z'})\nspoperator{;}
+R=syslin(\nspstring{'d'},n,d)\nspoperator{;}
+R1=factors(R,\nspstring{'d'})
+roots(R1(\nspstring{'num'}))
+roots(R1(\nspstring{'den'}))
+w=exp(\nspnumber{2}\nspoperator{*}%i\nspoperator{*}%pi\nspoperator{*}[\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{1}])\nspoperator{;}
+norm(abs(horner(R1,w))\nspoperator{-}abs(horner(R,w)))
+\end{Verbatim}

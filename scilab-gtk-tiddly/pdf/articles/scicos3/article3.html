@@ -1,0 +1,1069 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>La g&eacute;n&eacute;ration de code dans Scicos</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+<META NAME="GENERATOR" CONTENT="hevea 1.05"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HEVEA command line is: hevea article3.tex -->
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<H1 ALIGN="CENTER"><B>La g&eacute;n&eacute;ration de code dans Scicos</B></H1>
+<B>Dans l'article paru dans le num&eacute;ro pr&eacute;c&eacute;dent nous
+avions montr&eacute; en d&eacute;tail quelles sont, dans </B><B><TT>Scicos 
+</TT></B><B>, les diff&eacute;rentes &eacute;tapes nec&eacute;ssaires &agrave;
+la compilation et la simulation de sch&eacute;ma-blocs (repr&eacute;sentation
+d'un mod&egrave;le de syst&egrave;mes dynamiques). Nous pr&eacute;sentons ici
+une nouvelle boite &agrave; outils dans </B><B><TT>Scicos</TT></B><B>,
+d&eacute;di&eacute;e &agrave; la g&eacute;n&eacute;ration automatique de code,
+&agrave; partir d'un sch&eacute;ma-blocs.</B>
+
+
+
+<!--TOC section Introduction-->
+<H2>1&nbsp;&nbsp; Introduction</H2>
+<!--SEC END -->
+<EM>Scicos</EM> (Scilab Connected Object Simulator,
+http://www-rocq.inria.fr/scilab) est un environnement puissant, convivial et
+bien sur gratuit, pour la mod&eacute;lisation et la simulation de
+syst&egrave;mes dynamiques hybrides (constitu&eacute;s d'&eacute;l&eacute;ments
+continus, discrets, &eacute;v&eacute;nementiels). L'exemple le plus classique
+de ces syst&egrave;mes est un mod&egrave;le d'environnement physique continu,
+command&eacute; par un contr&ocirc;leur discret, dont la simulation est
+l'interpr&eacute;tation d'un algorithme, d&eacute;fini par le compilateur
+Scicos (cf. num&eacute;ro 35 de Linux Magazine) et d&eacute;crivant le
+fonctionnement du syst&egrave;me dans son ensemble. Le sch&eacute;ma-bloc de la
+figure&nbsp;<A HREF="#sys">1</A> illustre la repr&eacute;sentation d'un tel
+syst&egrave;me. Le bloc <TT>Horloge</TT> g&eacute;n&egrave;re des activations
+p&eacute;riodiques, imposant une cadence au contr&ocirc;leur. <BR>
+<BR>
+<CENTER>
+<IMG SRC="hybrangth.png" BORDER="0" WIDTH="224" HEIGHT="145"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 1: Un syst&egrave;me hybride typique 
+</DIV>
+<BR>
+<A NAME="sys"></A> La simulation d'un sch&eacute;ma-bloc hybride
+(continu-discret) est obtenue par l'ex&eacute;cution d'un algorithme
+d&eacute;crivant le fonctionnement du syst&egrave;me dynamique
+(mod&eacute;lis&eacute; par le sch&eacute;ma-bloc) dans son ensemble (cf.
+num&eacute;ro 35 de Linux Magazine). Signalons que, de par les interactions
+entre les diff&eacute;rentes parties d'un syst&egrave;me dynamique,
+l'algorithme de simulation ne peut pas &ecirc;tre d&eacute;composable en
+entit&eacute;s s&eacute;par&eacute;es. Autrement dit, le fonctionnement d'une
+partie du syst&egrave;me ne peut pas &ecirc;tre d&eacute;crit par une partie
+distincte de l'algorithme de simulation. Dans le contexte des applications
+industrielles &agrave; mettre en oeuvre (apr&egrave;s &eacute;tude), la plupart
+du temps, seul le mod&egrave;le de contr&ocirc;leur discret est concern&eacute;
+par une implantation sur un calculateur (architecture embarqu&eacute;e). Le
+mod&egrave;le de contr&ocirc;leur discret &eacute;tant d&eacute;fini par un
+algorithme lors de la simulation (dans Scicos), il ne reste plus qu'&agrave;
+g&eacute;n&eacute;rer cet algorithme sous la forme d'un code, pour qu'il puisse
+&ecirc;tre implant&eacute; sur une architecture embarqu&eacute;e. Il existe
+maintenant dans Scicos, une nouvelle bo&icirc;te &agrave; outils
+d&eacute;di&eacute;e &agrave; la g&eacute;n&eacute;ration automatique de code,
+qui permet de fournir sous la forme d'un code (en langage C) et de
+mani&egrave;re s&eacute;par&eacute;e, l'algorithme d&eacute;crivant n'importe
+quelle partie du syst&egrave;me. Cette nouvelle fonctionnalit&eacute; peut
+&ecirc;tre utilis&eacute;e &agrave; la fois pour acc&eacute;l&eacute;rer la
+simulation Scicos (en rempla&ccedil;ant un super-bloc par un bloc standard) ou
+pour g&eacute;n&eacute;rer du code &agrave; implanter sur une architecture
+embarqu&eacute;e (cf. figure&nbsp;<A HREF="#chaincod">2</A>). <BR>
+<BR>
+<CENTER>
+<IMG SRC="chaincod.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="441" HEIGHT="426"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 2: Un m&ecirc;me environnement 
+</DIV>
+<BR>
+<A NAME="chaincod"></A> En principe la g&eacute;n&eacute;ration de code
+pourrait concerner aussi bien le syst&egrave;me dans son ensemble qu'une de ses
+parties, mais puisque dans les faits, les produits vis&eacute;s par les
+applications industrielles ne concernent que la mise en oeuvre du mod&egrave;le
+de contr&ocirc;leur discret, nous avons donc limiter la
+g&eacute;n&eacute;ration automatique de code, &agrave; des sous-ensembles de
+blocs purement discrets. D'ailleurs, comme bien souvent les architectures sont
+embarqu&eacute;es (et donc avec des contraintes dimensionnelles), il faut
+savoir que le code g&eacute;n&eacute;r&eacute; pour des sous-ensembles continu
+impose l'int&eacute;gration d'un solveur num&eacute;rique n&eacute;cessitant
+des ressources m&eacute;moires plus qu'encombrantes pour de telles
+architectures.
+
+<!--TOC section Le pré-traitement du super-bloc-->
+<H2>2&nbsp;&nbsp; Le pr&eacute;-traitement du super-bloc</H2>
+<!--SEC END -->
+<A NAME="modif"></A> La premi&egrave;re &eacute;tape consiste &agrave; isoler
+le sous-ensemble de blocs d&eacute;finissant le contr&ocirc;leur (discret),
+dans un super-bloc. Et puisque nous nous limitons &agrave; des sous-ensembles
+de blocs purement discrets, cela exclu les blocs ayant un &eacute;tat continu
+(comme par exemple les bloc de type <TT>zcross</TT>). Notons aussi que
+l'utilisation des blocs ayant une fonction de simulation en langage Scilab (cf.
+num&eacute;ro 19 de Linux Magazine) n'est pas possible pour l'instant. Dans la
+pratique, cette nouvelle bo&icirc;te &agrave; outils permet de
+g&eacute;n&eacute;rer le code C associ&eacute; &agrave; un super-bloc, mais
+aussi de remplacer le super-bloc dans l'&eacute;diteur Scicos par un bloc
+compil&eacute; &eacute;quivalent. Ainsi, le code obtenu peut &ecirc;tre non
+seulement implant&eacute; sur une architecture embarqu&eacute;e (pour
+&ecirc;tre utilis&eacute; par n'importe quel programme ne n&eacute;cessitant
+pas forc&eacute;ment les routines Scilab), mais aussi r&eacute;utilis&eacute;
+dans le sch&eacute;ma bloc Scicos, en vue d'am&eacute;liorer les performances
+de simulation. Pour g&eacute;n&eacute;rer le code de l'algorithme de
+fonctionnement sp&eacute;cifique &agrave; un sous-ensemble de sch&eacute;ma
+bloc, il faut consid&eacute;rer le super-bloc ind&eacute;pendamment des autres
+&eacute;l&eacute;ments l'environnant. Pour ce faire, il est n&eacute;cessaire
+d'isoler au pr&eacute;alable les entr&eacute;es et sorties du super-bloc et de
+les remplacer automatiquement par des blocs fictifs, appel&eacute;s
+respectivement des ``capteurs'' et des ``actionneurs''. Ceci de mani&egrave;re
+&agrave; permettre &agrave; l'utilisateur, lors de l'implantation du code sur
+une architecture embarqu&eacute;e, d'adapter les entr&eacute;es et sorties du
+super-bloc &agrave; l'environnement ad hoc.
+<!--TOC subsection Au niveau des ports d'entrées réguliers-->
+<H3>2.1&nbsp;&nbsp; Au niveau des ports d'entr&eacute;es r&eacute;guliers</H3>
+<!--SEC END -->
+Si l'on consid&egrave;re un super-bloc au sein d'un sch&eacute;ma, ses ports
+d'entr&eacute;e r&eacute;guli&egrave;re re&ccedil;oivent des signaux
+&eacute;voluant en fonction d'activations. La premi&egrave;re &eacute;tape de
+la g&eacute;n&eacute;ration de code est de consid&eacute;rer le super-bloc au
+m&ecirc;me titre qu'un sch&eacute;ma Scicos et de le compiler. Le
+r&eacute;sultat de la compilation est alors utilis&eacute; pour
+g&eacute;n&eacute;rer du code en langage C. Le fait est cependant que la
+compilation n'est pas toujours rigoureusement concevable car le contenu du
+super-bloc n'est pas exactement celui d'un sch&eacute;ma bloc, en particulier
+en ce qui concerne les ports d'entr&eacute;e r&eacute;guli&egrave;re. Un
+sch&eacute;ma bloc ne peut pas avoir des ports d'entr&eacute;e
+r&eacute;guli&egrave;re ext&eacute;rieurs &agrave; son environnement, sans quoi
+les activations de ces signaux d'entr&eacute;es ne sont pas connues et ne
+peuvent donc pas &ecirc;tre prises en compte &agrave; la compilation. Il en va
+de m&ecirc;me pour les ports d'entr&eacute;e r&eacute;guli&egrave;re du
+super-bloc qui sont ainsi consid&eacute;r&eacute;es dans son environnement
+ext&eacute;rieur au m&ecirc;me titre que leurs activations. C'est pourquoi les
+ports d'entr&eacute;e r&eacute;guli&egrave;re qui sont alors remplac&eacute;s
+par des blocs fictifs doivent en plus &ecirc;tre activ&eacute;s
+artificiellement. Ainsi, nous choisissons de relier, syst&eacute;matiquement
+chaque ``capteur'', aux ports d'entr&eacute;e d'activation du super-bloc. En
+effet, ne connaissant pas &agrave; priori le conditionnement des entr&eacute;es
+r&eacute;guli&egrave;res, ce choix nous permet de traiter de mani&egrave;re
+g&eacute;n&eacute;rale les connections sur les ports du super-bloc. Le
+super-bloc de la figure&nbsp;<A HREF="#aval1">3</A> par exemple, apr&egrave;s
+la phase de traitement est transform&eacute; comme sur la figure&nbsp;<A
+HREF="#aval2">4</A>. <BR>
+<BR>
+<CENTER>
+<IMG SRC="aval1.png" BORDER="0" WIDTH="186" HEIGHT="113"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 3: Un simple super-bloc 
+</DIV>
+<BR>
+<A NAME="aval1"></A> <BR>
+<BR>
+<CENTER>
+<IMG SRC="aval2.png" BORDER="0" WIDTH="242" HEIGHT="154"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 4: Apr&egrave;s la phase de pr&eacute;-traitement 
+</DIV>
+<BR>
+<A NAME="aval2"></A> Notons que dans le code g&eacute;n&eacute;r&eacute;, les
+appels aux entr&eacute;es du super-bloc (repr&eacute;sent&eacute;es par des
+``capteurs'') sont syst&eacute;matiquement mis en commentaire, afin de
+permettre &agrave; l'utilisateur d'utiliser facilement les entr&eacute;es de
+son choix.
+
+<!--TOC subsection Au niveau des ports d'entrée d'activation-->
+<H3>2.2&nbsp;&nbsp; Au niveau des ports d'entr&eacute;e d'activation</H3>
+<!--SEC END -->
+Le super-bloc peut poss&eacute;der z&eacute;ro, un ou plusieurs ports
+d'entr&eacute;e d'activations. Ce qui n&eacute;cessite des modifications,
+&agrave; l'int&eacute;rieur du super-bloc, en fonction de trois situations
+possibles : <OL TYPE="1">
+<LI> <EM>le super-bloc ne poss&egrave;de pas de port d'entr&eacute;e
+d'activation</EM> : dans ce cas l'activation est h&eacute;rit&eacute;e du
+sch&eacute;ma bloc original. Pour compiler le super-bloc nous avons besoin
+d'introduire un signal d'activation sans quoi le compilateur le
+consid&egrave;re comme &eacute;tant inactif. Nous introduisons un bloc fictif
+pour activer les ``capteurs'', de mani&egrave;re &agrave; exploiter la notion
+de l'h&eacute;ritage &agrave; travers les autres blocs constituant le
+super-bloc (cf. fig&nbsp;<A HREF="#fictif1">5</A>). Ce bloc fictif d'activation
+est caract&eacute;ris&eacute; par : <UL>
+<LI> aucun port d'entr&eacute;e ni de sortie r&eacute;guli&egrave;re, </LI>
+<LI> aucun port d'entr&eacute;e d'activation, </LI>
+<LI> un unique port de sortie d'activation, </LI>
+</UL>
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="fictif1.png" BORDER="0" WIDTH="242" HEIGHT="198"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 5: Le super-bloc ne poss&egrave;de pas de port d'entr&eacute;e
+d'activation 
+</DIV>
+<BR>
+<A NAME="fictif1"></A> </LI>
+<LI> <EM>le bloc poss&egrave;de un ou plusieurs port(s) d'entr&eacute;e
+d'activation</EM> : de la m&ecirc;me mani&egrave;re que
+pr&eacute;c&eacute;demment nous introduisons un bloc fictif pour activer les
+``capteurs''. Mais si le bloc poss&egrave;de plusieurs ports d'entr&eacute;e
+d'activation, cette situation est plus d&eacute;licate car nous devons pouvoir
+consid&eacute;rer le cas ou les signaux d'entr&eacute;es d'activations sont
+synchrones. Pour cette raison, toutes les possibilit&eacute;s doivent
+&ecirc;tre prises en compte. Prenons par exemple le cas o&ugrave; nous avons
+deux ports d'entr&eacute;e d'activations, il faut envisager la
+possibilit&eacute; o&ugrave; l'activation est re&ccedil;ue par le premier port,
+la possibilit&eacute; o&ugrave; elle est re&ccedil;ue par le second port et la
+possibilit&eacute; o&ugrave; deux activations synchrones sont re&ccedil;ues par
+les deux ports. C'est la raison pour laquelle dans cette situation nous
+ajoutons au super-bloc un bloc fictif caract&eacute;ris&eacute; par : <UL>
+<LI> aucun port d'entr&eacute;e ni de sortie r&eacute;guli&egrave;re ; </LI>
+<LI> aucun port d'entr&eacute;e d'activation ; </LI>
+<LI> 2<SUP><FONT SIZE="2"><I>n</I></FONT></SUP>-1 ports de sortie d'activation,
+avec <I>n</I> : le nombre de ports d'entr&eacute;e d'activation du super-bloc
+(cf. fig&nbsp;<A HREF="#fictif3">6</A>). En effet, prenons l'exemple o&ugrave;
+le super-bloc poss&egrave;de 2 ports d'entr&eacute;e d'activation, cela
+signifie qu'il y a trois possibilit&eacute;s &agrave; consid&eacute;rer : soit
+il est activ&eacute; par l'un ou l'autre des ports, soit par les deux en
+m&ecirc;me temps. Ce qui fait que le bloc fictif a 3 ports de sortie
+d'activation, le troisi&egrave;me correspondant &agrave; l'activation synchrone
+des ports d'entr&eacute;e du superbloc. Dans ce cas il faut remplacer les
+liaisons d'activation &agrave; l'int&eacute;rieur du super-bloc, en respectant
+un codage binaire, &agrave; l'image de la figure&nbsp;<A HREF="#fictif3">6</A>.
+</LI>
+</UL>
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="fictif3.png" BORDER="0" WIDTH="242" HEIGHT="213"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 6: Le super-bloc poss&egrave;de plus d'un port d'entr&eacute;e
+d'activation 
+</DIV>
+<BR>
+<A NAME="fictif3"></A> </LI>
+</OL>
+ Ces modifications sont effectu&eacute;es de mani&egrave;re automatique pendant
+la phase de g&eacute;n&eacute;ration de code, le processus de transformation
+&eacute;tant compl&egrave;tement transparent pour l'utilisateur.
+
+
+
+<!--TOC section La procédure pour la génération de code-->
+<H2>3&nbsp;&nbsp; La proc&eacute;dure pour la g&eacute;n&eacute;ration de code 
+</H2>
+<!--SEC END -->
+La g&eacute;n&eacute;ration de code dans Scicos est une proc&eacute;dure qui a
+pour r&eacute;sultat la cr&eacute;ation des deux fichiers caract&eacute;risant
+syst&eacute;matiquement chaque bloc Scicos (cf. num&eacute;ro 19 de Linux
+Magazine) : <UL>
+<LI> <EM>une fonction d'interface graphique</EM> (fonction Scilab),
+cr&eacute;&eacute;e sur mesure et prenant compte des diff&eacute;rents ports du
+super-bloc. </LI>
+<LI> <EM>une fonction de simulation</EM> (proc&eacute;dure C), inspir&eacute;e
+principalement de la proc&eacute;dure de simulation <EM>``doit''</EM> (cf.
+num&eacute;ro 35 de Linux Magazine) et constituant <EM>le code
+g&eacute;n&eacute;r&eacute;</EM>. La fonction de simulation est une
+proc&eacute;dure r&eacute;alisant la commande dynamique du bloc. Pour la
+plupart des blocs Scicos, cette proc&eacute;dure contient de simples appels
+&agrave; des biblioth&egrave;ques num&eacute;riques de Scilab. C'est le cas par
+exemple du bloc ``GAIN'' qui appelle une proc&eacute;dure de calcul de produit
+matrice-par-vecteur dans Scilab. Une <EM>fonction de simulation</EM>
+g&eacute;n&eacute;r&eacute;e automatiquement peut &ecirc;tre cependant beaucoup
+plus complexe. En particulier si le super-bloc contient des blocs de type 
+<TT>synchro</TT> pour le conditionnement (If-Then-Else, etc...). La
+<EM>fonction de simulation</EM> g&eacute;n&eacute;r&eacute;e contient en
+g&eacute;n&eacute;ral des appels &agrave; des proc&eacute;dures de simulation
+des diff&eacute;rents blocs contenus dans le super-bloc. </LI>
+</UL>
+Dans la fen&ecirc;tre de l'&eacute;diteur Scicos, la g&eacute;n&eacute;ration
+de code s'ex&eacute;cute par un nouveau bouton (<EM>Code</EM>) dans la barre du
+menu <EM>Generation</EM>. Apr&egrave;s avoir plac&eacute; le sch&eacute;ma bloc
+d&eacute;sir&eacute; dans un super-bloc, l'action sur ce bouton permet de
+g&eacute;n&eacute;rer le code correspondant et de remplacer le super-bloc par
+un nouveau bloc standard ``&eacute;quivalent''. D&egrave;s que l'utilisateur
+d&eacute;signe par un clic de souris le super-bloc concern&eacute;, l'action
+sur le bouton <EM> Code</EM> lance la fonction Scilab
+<EM>``do_GenerateCode''</EM>. Le r&eacute;sultat obtenu est la transformation
+du super-bloc par un nouveau bloc standard ``&eacute;quivalent'', qui
+poss&egrave;de le m&ecirc;me nombre de ports d'entr&eacute;e-sortie
+(r&eacute;guli&egrave;re et d'activations) que le super-bloc. Pour
+r&eacute;aliser cette substitution, deux fonctions sont
+g&eacute;n&eacute;r&eacute;es : <UL>
+<LI> une fonction de simulation (langage C), constituant <EM>le code
+g&eacute;n&eacute;r&eacute;</EM> </LI>
+<LI> une fonction d'interface graphique (langage Scilab) </LI>
+</UL>
+La fonction <EM>``do_GenerateCode''</EM>, repr&eacute;sent&eacute;e &agrave; la
+figure&nbsp;<A HREF="#generatecode">7</A>, ex&eacute;cute les &eacute;tapes
+suivantes : <OL TYPE="1">
+<LI> la v&eacute;rification que le super-bloc est compilable
+s&eacute;par&eacute;ment : il ne poss&egrave;de pas de port de sortie
+d'activations, ne contient pas de blocs activ&eacute;s en continu. </LI>
+<LI> le pr&eacute;-traitement du contenu du super-bloc (ajout de bloc fictif,
+remplacement des blocs d'entr&eacute;e/sortie par des capteurs/actionneurs
+etc...). </LI>
+<LI> la compilation du sous-ensemble du sch&eacute;ma bloc, constituant le
+super-bloc. Cette &eacute;tape est ex&eacute;cut&eacute;e par les fonctions
+Scilab (``<EM>c_pass1</EM>'' et ``<EM>c_pass2</EM>''), afin de
+g&eacute;n&eacute;rer les tables de programmation n&eacute;cessaires &agrave;
+la construction de la fonction de simulation du nouveau bloc. </LI>
+<LI> la g&eacute;n&eacute;ration de la fonction d'interface graphique du
+nouveau bloc, par la fonction Scilab ``<EM>c_make_gui</EM>'', </LI>
+<LI> la g&eacute;n&eacute;ration de la fonction de simulation par la fonction
+Scilab ``<EM>c_make_main</EM>'', obtenue en trois parties : <UL>
+<LI> le fichier ``<EM>c_make_calcul.sci</EM>'' : pour la constitution du corps
+de la fonction de simulation, </LI>
+<LI> le fichier ``<EM>c_make_doit1.sci</EM>'' : pour la mise &agrave; jour de
+la sortie du bloc (flag 1), </LI>
+<LI> le fichier ``<EM>c_make_doit2.sci</EM>'' : pour la mise &agrave; jour de
+l'&eacute;tat discret du bloc (flag 2). </LI>
+</UL>
+</LI>
+<LI> la compilation de la <EM>fonction de simulation</EM> du nouveau bloc et
+son lien dynamique avec la session Scicos en cours, pour permettre la prise en
+compte dans la simulation, des modifications du sch&eacute;ma bloc Scicos. 
+</LI>
+</OL>
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="generatecode2.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="219" HEIGHT="387"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 7: La fonction do_generate_code.sci 
+</DIV>
+<BR>
+<A NAME="generatecode"></A>
+<!--TOC subsection Un exemple simple-->
+<H3>3.1&nbsp;&nbsp; Un exemple simple</H3>
+<!--SEC END -->
+Observons le sch&eacute;ma bloc simple de la figure&nbsp;<A
+HREF="#contrexemple2">8</A>. Le bloc <TT>Num(z)/Den(z)</TT> r&eacute;alise un
+filtre num&eacute;rique d&eacute;crit par sa transform&eacute;e en ``z''
+associ&eacute;e. Supposons que nous voulons r&eacute;unir ce bloc et le bloc 
+<TT>sin</TT> pour former un seul bloc dans le sch&eacute;ma Scicos, et pour
+g&eacute;n&eacute;rer le code adapt&eacute;. Cet exemple est bien entendu trop
+simple pour &ecirc;tre d'un r&eacute;el int&eacute;r&ecirc;t, mais nous
+l'utilisons seulement pour illustrer l'id&eacute;e. Dans cet exemple le
+super-bloc et le bloc <TT>Modulo Counter</TT> ont le m&ecirc;me
+conditionnement. Les modifications apport&eacute;es par la
+g&eacute;n&eacute;ration de code, font que le bloc <TT>sin</TT> h&eacute;rite
+des activations du bloc <TT>Modulo Counter</TT>. L'activation du bloc <TT> sin 
+</TT> est donc identique avant et apr&egrave;s la g&eacute;n&eacute;ration de
+code. Apr&egrave;s avoir plac&eacute; les deux blocs dans un super-bloc en
+utilisant le bouton <TT>Region to Super block</TT> du menu <TT>File</TT>, il
+suffit d'abord de cliquer sur le bouton <TT>Generation</TT> dans le menu <TT>
+Code</TT> (cf. figure&nbsp;<A HREF="#contrexemple2">8</A>), puis sur le
+super-bloc. Sur la figure&nbsp;<A HREF="#contrfoo2">9</A> on observe le
+r&eacute;sultat obtenu : le super-bloc est ``compil&eacute;'' et
+remplac&eacute; par un nouveau bloc standard appel&eacute; <TT>foo</TT> dans
+cet exemple (l'utilisateur peut sp&eacute;cifier le nom de son choix). <BR>
+<BR>
+<CENTER>
+<IMG SRC="contrexemple2.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="603" HEIGHT="529"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 8: Un exemple tr&egrave;s simple. 
+</DIV>
+<BR>
+<A NAME="contrexemple2"></A> <BR>
+<BR>
+<CENTER>
+<IMG SRC="contrfoo2.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="379" HEIGHT="291"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 9: Le sch&eacute;ma apr&egrave;s compilation du super-bloc. 
+</DIV>
+<BR>
+<A NAME="contrfoo2"></A> Le nouveau sch&eacute;ma Scicos doit bien entendu
+avoir un comportement qui doit &ecirc;tre compl&egrave;tement &eacute;quivalent
+au pr&eacute;c&eacute;dent lors de la simulation. Sur la figure&nbsp;<A
+HREF="#resut1">10</A> est illustr&eacute; le r&eacute;sultat de simulation qui
+est bien sur identique, avant et apr&egrave;s les modifications. <BR>
+<BR>
+<CENTER>
+<IMG SRC="resut1.png" BORDER="0" WIDTH="603" HEIGHT="476"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 10: Le r&eacute;sultat de simulation. 
+</DIV>
+<BR>
+<A NAME="resut1"></A> Le fichier <EM>``foo.c''</EM> obtenu contient le code
+g&eacute;n&eacute;r&eacute;, constitu&eacute; de la d&eacute;claration des
+diff&eacute;rents param&egrave;tres et du coeur du programme, comprenant les
+proc&eacute;dures <EM>``foo''</EM>, <EM> ``foomain1''</EM> et
+<EM>``foomain2''</EM>. Nous pr&eacute;sentons pour le sch&eacute;ma de la
+figure&nbsp;<A HREF="#contrfoo2">9</A> le coeur du programme
+g&eacute;n&eacute;r&eacute;, afin de le commenter.
+<!--TOC subsubsection La procédure <EM>``foo''</EM>-->
+<H4>3.1.1&nbsp;&nbsp; La proc&eacute;dure <EM>``foo''</EM></H4>
+<!--SEC END -->
+Cette proc&eacute;dure indique que lorsque le nouveau bloc <EM>foo</EM> est
+activ&eacute;, il doit mettre &agrave; jour : <UL>
+<LI> ses registres de sortie r&eacute;guli&egrave;re, en faisant appel &agrave;
+la proc&eacute;dure <EM>``foomain1''</EM> ; </LI>
+<LI> son registre d'&eacute;tat discret, en faisant appel &agrave; la
+proc&eacute;dure <EM>``foomain2''</EM>. </LI>
+</UL>
+<PRE>
+/* SCILAB Computational function  */
+/*     Copyright INRIA */
+/*     Generated by Code_Generation toolbox of Scicos with scilab-2.6 */
+/*     date : Year 2001, Month 12, Day 20 */
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &quot;/home/djenidi/scilab-2.6/routines/machine.h&quot;
+#include &quot;/home/djenidi/scilab-2.6/routines/sun/link.h&quot;
+#include &quot;/home/djenidi/scilab-2.6/routines/scicos/scicos.h&quot;
+.
+.
+.
+.
+{
+  /*     Copyright INRIA */
+  /*     Scicos block simulator */
+ 
+ 
+  /* Parameter adjustments */
+  --y1;
+  --ipar;
+  --rpar;
+  --tvec;
+  --z;
+  
+  /* Function Body */
+  z[3]=u1[1];  
+  totalnevprt= *nevprt;
+  if (*flag == 1) { /* update outputs */
+    foomain1(&amp;(z[1]),t);
+  } 
+  else if (*flag == 2) { /* update discrete states */
+    foomain2(&amp;(z[1]),t);
+  } 
+  if (*ierr != 0) { 
+    return 0; 
+  }
+  y1[1]=z[4];  
+  return 0; 
+} /* foo */  
+</PRE>
+Dans les proc&eacute;dures suivantes, pour pouvoir appeler des routines
+&eacute;crites en fortran, nous utilisons la directive de compilation <TT> C2F 
+</TT> qui se trouve dans le fichier <TT>machine.h</TT>.
+<!--TOC subsubsection La procédure <TT>foomain1</TT>-->
+
+<H4>3.1.2&nbsp;&nbsp; La proc&eacute;dure <TT>foomain1</TT></H4>
+<!--SEC END -->
+La proc&eacute;dure <TT>foomain1</TT> fait appel &agrave; la proc&eacute;dure 
+<TT> fooddoit1</TT> qui elle m&ecirc;me consiste en des appels aux
+proc&eacute;dures de simulation <EM>dsslti</EM> (bloc <TT>Num(z)/Den(z)</TT>),
+<EM>capteur1</EM> (entr&eacute;e r&eacute;guli&egrave;re du bloc <TT>foo</TT>)
+et <EM>sinblk</EM> (bloc <TT> sin</TT>), afin de mettre &agrave; jour les
+registres de sortie r&eacute;guli&egrave;re. Signalons qu'en ce qui concerne
+<EM>capteur1</EM>, l'appel &agrave; sa proc&eacute;dure de simulation a
+&eacute;t&eacute; mis automatiquement en commentaire afin de permettre &agrave;
+l'utilisateur de faire appel &agrave; l'entr&eacute;e de son choix. Notons que
+pour assurer sa r&eacute;cursivit&eacute;, la proc&eacute;dure <TT>fooddoit1 
+</TT> fait aussi appel &agrave; la proc&eacute;dure <TT>fooeddoit1</TT> dont le
+contenu lui est identique. <PRE>
+int foomain1(double *z, double *t)  
+{
+  double *rpar; 
+  integer *nrpar, *ipar, *nipar;
+  integer pointi[ ] = {0};
+  fooddoit1(
+     &amp;(z[0]),&amp;(zptr[0]),
+            &amp;t0,&amp;(tevts[0]),
+            &amp;(evtspt[0]),&amp;(nevts[0]),&amp;(pointi[0]),
+            &amp;(outptr[0]),
+            &amp;(clkptr[0]),&amp;(ordptr[0]),&amp;(ordclk[0]),
+     &amp;nordcl,&amp;(rpar[0]),&amp;(ipar[0]),
+            &amp;(rdfunptr[0]),&amp;(funtyp[0]),&amp;(z[2]),
+     &amp;(z[7]));
+} 
+</PRE>
+
+<PRE>
+/* ddoit1.c */ 
+/* Subroutine */ int fooddoit1( z, zptr, told, 
+    tevts, evtspt, nevts, pointi, outptr, 
+    clkptr, ordptr, ordclk, nordcl,  
+    rpar, ipar, funptr, funtyp, outtb, iwa) 
+  
+     double *z; 
+     integer *zptr; 
+     double *told,  *tevts; 
+     integer *evtspt, *nevts, *pointi, *outptr; 
+     integer *clkptr, *ordptr, *ordclk, *nordcl; 
+     double *rpar, *outtb; 
+     integer  *ipar, *funptr, *funtyp; 
+     integer *iwa; 
+{ 
+  /* System generated locals */ 
+  integer ordclk_dim1, ordclk_offset, i1, i2, i3; 
+.
+.
+.
+. 
+    ++iwa[9]; 
+    iwa[iwa[9]] = keve;
+ 
+ switch(keve) {
+ case 1:
+
+ 
+     flag = 1; 
+      nevprt=1;
+  args[0]=&amp;(outtb[1]);
+  args[1]=&amp;(outtb[3]);
+
+ C2F(dsslti) (&amp;flag, &amp;nevprt,told, &amp;(w[1]), &amp;(x[1]), &amp;nrd_0,
+&amp;(z[1]),&amp;nrd_1, tvec, &amp;ntvec, &amp;(rpar[1]), &amp;nrd_4, &amp;(ipar[1]), &amp;nrd_0
+ , (double *)args[0], &amp;nrd_1, (double *)args[1], &amp;nrd_1);
+
+ if(flag &lt; 0 ) {
+  *ierr = 5 - flag; 
+         return 0;
+ } 
+ 
+ 
+ 
+/*    flag = 1; 
+      nevprt=1;
+  args[0]=&amp;(outtb[1]);
+  args[1]=&amp;(outtb[2]);
+
+ C2F(capteur1) (&amp;flag, &amp;nevprt,told, &amp;(w[1]), &amp;(x[1]), &amp;nrd_0, &amp;(z[1]), 
+&amp;nrd_0, tvec, &amp;ntvec, &amp;(rpar[1]), &amp;nrd_0, &amp;(ipar[1]), &amp;nrd_1
+ , (double *)args[0], &amp;nrd_0, (double *)args[1], &amp;nrd_1);
+
+ if(flag &lt; 0 ) {
+  *ierr = 5 - flag; 
+         return 0;
+ }*/
+ 
+ 
+ 
+     flag = 1; 
+      nevprt=1;
+  args[0]=&amp;(outtb[2]);
+  args[1]=&amp;(outtb[1]);
+ C2F(sinblk) (&amp;flag, &amp;nevprt,told, &amp;(w[1]), &amp;(x[1]), &amp;nrd_0, &amp;(z[1]), 
+&amp;nrd_0, tvec, &amp;ntvec, &amp;(rpar[1]), &amp;nrd_0, &amp;(ipar[1]), &amp;nrd_0
+ , (double *)args[0], &amp;nrd_1, (double *)args[1], &amp;nrd_1);
+ 
+ if(flag &lt; 0 ) {
+  *ierr = 5 - flag; 
+         return 0;
+ } 
+ 
+ 
+ break;
+ }  
+  
+ switch(keve) {
+ case 1:
+ break;
+ }  
+ 
+ } 
+</PRE>
+
+<!--TOC subsubsection La procédure <EM>``foomain2''</EM>-->
+
+<H4>3.1.3&nbsp;&nbsp; La proc&eacute;dure <EM>``foomain2''</EM></H4>
+<!--SEC END -->
+La proc&eacute;dure <TT>foomain2</TT> fait appel &agrave; la proc&eacute;dure 
+<TT> fooddoit2</TT> qui elle m&ecirc;me consiste en des appels &agrave; la
+proc&eacute;dure de simulation <EM>dsslti</EM> du bloc <TT>Num(z)/Den(z)</TT>,
+afin de mettre &agrave; jour le registre d'&eacute;tat discret. Comme
+pr&eacute;c&eacute;dement pour la proc&eacute;dure <TT>fooddoit1</TT>, pour
+assurer sa r&eacute;cursivit&eacute; la proc&eacute;dure <TT>fooddoit2</TT>
+fait aussi appel &agrave; la proc&eacute;dure <TT> fooeddoit2</TT> dont le
+contenu lui est identique. <PRE>
+int foomain2(double *z, double *t)  
+{
+  double *rpar; 
+  integer *nrpar, *ipar, *nipar;
+  integer pointi[ ] = {0};
+  fooddoit2(
+     &amp;(z[0]),&amp;(zptr[0]),
+            &amp;t0,&amp;(tevts[0]),
+            &amp;(evtspt[0]),&amp;(nevts[0]),&amp;(pointi[0]),
+            &amp;(outptr[0]),
+            &amp;(clkptr[0]),&amp;(ordptr[0]),&amp;(ordclk[0]),
+     &amp;nordcl,&amp;(rpar[0]),&amp;(ipar[0]),
+            &amp;(rdfunptr[0]),&amp;(funtyp[0]),&amp;(z[2]),
+     &amp;(z[7]));
+
+} 
+</PRE>
+
+<PRE>
+/* ddoit1.c */ 
+/* Subroutine */ int fooddoit2( z, zptr, told, 
+    tevts, evtspt, nevts, pointi, outptr, 
+    clkptr, ordptr, ordclk, nordcl,  
+    rpar, ipar, funptr, funtyp, outtb, iwa) 
+  
+     double *z; 
+     integer *zptr; 
+     double *told,  *tevts; 
+     integer *evtspt, *nevts, *pointi, *outptr; 
+     integer *clkptr, *ordptr, *ordclk, *nordcl; 
+     double *rpar, *outtb; 
+     integer  *ipar, *funptr, *funtyp; 
+     integer *iwa; 
+{ 
+  /* System generated locals */ 
+  integer ordclk_dim1, ordclk_offset, i1, i2, i3; 
+.
+.
+.
+. 
+
+    /* Function Body */ 
+  
+/*     .  update continuous and discrete states on event */
+ if (iwa[9] == 0) {
+    return 0 ;
+ }
+  i1 = iwa[9];
+    for (i = 1; i &lt;= i1; ++i) {
+       keve = iwa[i];
+       switch(keve) {
+       case 1:
+         flag = 2;
+         nevprt=1;
+  
+  args[0]=&amp;(outtb[1]);
+  args[1]=&amp;(outtb[3]);
+
+         C2F(dsslti) (&amp;flag, &amp;nevprt,told, &amp;(w[1]),
+         &amp;(x[1]), &amp;nrd_0, &amp;(z[1]), &amp;nrd_1, tvec, &amp;ntvec, &amp;(rpar[1]), &amp;nrd_4,
+         &amp;(ipar[1]), &amp;nrd_0 , (double *)args[0], &amp;nrd_1, (double *)args[1],
+         &amp;nrd_1);
+ 
+  if(flag &lt; 0 ) {
+  *ierr = 5 - flag; 
+         return 0;
+  } 
+ 
+
+ 
+      break;
+    }  
+  }  
+} /* ddoit2 */      
+       }  
+
+</PRE>
+<!--TOC subsection Les problèmes en matière d'héritage-->
+
+<H3>3.2&nbsp;&nbsp; Les probl&egrave;mes en mati&egrave;re d'h&eacute;ritage 
+</H3>
+<!--SEC END -->
+<A NAME="prudence"></A> Un bloc standard peut &ecirc;tre activ&eacute; aussi
+bien par h&eacute;ritage des activations de ses entr&eacute;es
+r&eacute;guli&egrave;res ou directement par ses ports d'entr&eacute;es
+d'activations. Un sch&eacute;ma bloc (super-bloc) peut cependant contenir des
+blocs qui sont en partie activ&eacute;s par h&eacute;ritage et d'autres par
+activation directe. Compiler de tels sch&eacute;mas peut dans certains cas
+mener &agrave; des erreurs chronom&eacute;triques, en particulier lorsque des
+blocs sont activ&eacute;s par h&eacute;ritage, de l'ext&eacute;rieur du
+super-bloc. Dans ce cas, il est clairement impossible de construire un bloc
+standard ayant exactement la m&ecirc;me commande que le super-bloc. Prenons
+pour exemple le sch&eacute;ma de la figure&nbsp;<A
+HREF="#contrexemple1">11</A>, qui est une version l&eacute;g&egrave;rement
+modifi&eacute;e de notre exemple pr&eacute;c&eacute;dent. Ici le bloc <TT>sin 
+</TT> est activ&eacute; par h&eacute;ritage des activations &agrave; travers le
+premier bloc <TT>Clock</TT> (celui qui active le bloc <TT>MODULO COUNTER</TT>),
+tandis que le filtre num&eacute;rique est activ&eacute; par le second bloc 
+<TT>Clock</TT>. Le r&eacute;sultat de simulation dans ce cas est donn&eacute;
+dans la figure&nbsp;<A HREF="#resut2">12</A> pour un choix particulier de la
+fr&eacute;quence et de la phase des horloges. <BR>
+<BR>
+<CENTER>
+<IMG SRC="contrexemple1.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="360" HEIGHT="292"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 11: Un exemple de probl&egrave;me chronom&eacute;trique. 
+</DIV>
+<BR>
+<A NAME="contrexemple1"></A> <BR>
+<BR>
+<CENTER>
+<IMG SRC="resut2.png" BORDER="0" WIDTH="600" HEIGHT="476"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 12: R&eacute;sultats de simulation du sch&eacute;ma de la figure&nbsp;<A
+HREF="#contrexemple1">11</A>. 
+</DIV>
+<BR>
+<A NAME="resut2"></A> Apr&egrave;s la g&eacute;n&eacute;ration de code, les
+deux blocs <TT>sin</TT> et le filtre num&eacute;rique (plac&eacute; dans un
+super-bloc) sont remplac&eacute;s par un seul bloc standard (<TT>foo</TT>) (cf.
+figure&nbsp;<A HREF="#contrfoo1">13</A>. Le traitement de la bo&icirc;te
+&agrave; outils consid&egrave;re dans ce cas que le nouveau bloc
+cr&eacute;&eacute; est activ&eacute; &agrave; travers un port d'entr&eacute;e
+d'activation, et non par h&eacute;ritage. Cela implique que le sch&eacute;ma
+Scicos modifi&eacute; ne doit pas avoir exactement la m&ecirc;me commande
+dynamique qu'auparavant, comme on peut le voir par une simple simulation (cf.
+figure&nbsp;<A HREF="#resut3">14</A>). Dans ce cas, il n'y a tout simplement
+aucune solution pour remplacer le super-bloc par un seul bloc standard et
+pr&eacute;server la commande dynamique dans chaque situation ; la
+g&eacute;n&eacute;ration de code a seulement donn&eacute;e le meilleur choix
+possible. <BR>
+<BR>
+<CENTER>
+<IMG SRC="contrfoo1.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="360" HEIGHT="291"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 13: Sch&eacute;ma modifi&eacute;. 
+</DIV>
+<BR>
+<A NAME="contrfoo1"></A> <BR>
+<BR>
+<CENTER>
+<IMG SRC="resut3.png" BORDER="0" WIDTH="601" HEIGHT="477"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 14: R&eacute;sultats de simulation correspondant au sch&eacute;ma
+modifi&eacute;. 
+</DIV>
+<BR>
+<A NAME="resut3"></A> Ce type de probl&egrave;me n'est pas rencontr&eacute;
+souvent car pour cela le sch&eacute;ma Scicos doit contenir au moins deux
+horloges ind&eacute;pendantes activant les blocs &agrave; l'int&eacute;rieur du
+sous-ensemble en question. Et m&ecirc;me lorsqu'il y a pr&eacute;sence de plus
+d'un bloc <TT>Clock</TT>, souvent une simple inspection visuelle permet de
+s'assurer qu'aucun probl&egrave;me chronom&eacute;trique ne se produise
+apr&egrave;s la compilation du super-bloc. Mais il existe des sch&eacute;mas
+complexes pour lesquels il serait trop fastidieux de faire une telle
+inspection. Ceci nous am&egrave;ne &agrave; proposer une autre bo&icirc;te
+&agrave; outils : <EM>Check</EM> bient&ocirc;t disponible sur le site <TT>
+http://www-rocq.inria.fr/scilab</TT>, donnant la possibilit&eacute; &agrave;
+l'utilisateur, de d&eacute;tecter automatiquement si deux blocs
+connect&eacute;s ne sont pas activ&eacute;s par la m&ecirc;me source
+d'activation. De cette mani&egrave;re libre cours est laiss&eacute; &agrave;
+l'utilisateur pour appr&eacute;cier les effets du conditionnement
+signal&eacute;, avant d'envisager la g&eacute;n&eacute;ration de code.
+
+
+<!--TOC section Un exemple-->
+<H2>4&nbsp;&nbsp; Un exemple</H2>
+<!--SEC END -->
+<A NAME="appli"></A> Etudions maintenant un exemple l&eacute;g&egrave;rement
+plus complexe, traduisant en l'occurrence l'algorithme exprim&eacute; par le
+programme Scilab suivant : <PRE>
+for i = 1 : n 
+    if sin(i) &gt; 0 then 
+       S = S + 1 
+    else 
+       for j = 1 : n 
+          if sin(j)^2 &gt; 0 then 
+             S = S - 1 
+          end 
+       end 
+    end 
+end 
+</PRE>
+A partir de la d&eacute;finition de cet algorithme, nous construisons un
+sch&eacute;ma Scicos pour le mettre en oeuvre. Cela peut &ecirc;tre
+r&eacute;alis&eacute; dans Scicos de diff&eacute;rentes mani&egrave;res ;
+l'algorithme peut m&ecirc;me &ecirc;tre mod&eacute;lis&eacute; par un seul
+bloc. N&eacute;anmoins, nous choisissons ici d'utiliser uniquement des blocs de
+base existants et des blocs cr&eacute;&eacute;s sp&eacute;cifiquement (<EM>
+User's blocks</EM>). Notons d'ailleurs que les <EM>User's blocks</EM> peuvent
+avoir une proc&eacute;dure &eacute;crite en langage Fortran (cf. &nbsp;<A
+HREF="#profor">4.1</A>refprofor) ou en langage C (cf. &nbsp;<A
+HREF="#proc">4.2</A>.
+<!--TOC subsection Construction d'une procédure Fortran pour un <EM>User's
+block</EM>-->
+
+<H3>4.1&nbsp;&nbsp; Construction d'une proc&eacute;dure Fortran pour un
+<EM>User's block</EM></H3>
+<!--SEC END -->
+<A NAME="profor"></A> Pour cr&eacute;er une proc&eacute;dure en Fortran, il
+suffit de s'inspirer des proc&eacute;dures existantes dans le r&eacute;pertoire
+''scilab-2.6/routines/scicos''. Nous donnons ici l'exemple d'une
+proc&eacute;dure pour un compteur incr&eacute;mental avec remise &agrave;
+z&eacute;ro ''TIMER'': <PRE>
+      subroutine rdtimer(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec, &amp;
+     rpar,nrpar,ipar,nipar,y,ny) 
+c Scicos block simulator 
+c timer with gain and iteration number
+      
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*)
+      double precision y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,ny
+      
+      
+      common /dbcos/ idb
+      
+      if(idb.eq.1) then
+         write(6,'(''rdtimer t='',e10.3,'' flag='',i1,''nevprt='',i1)') t,flag,nevprt
+      endif
+      
+      
+      if(flag.eq.4.or.flag.eq.6) then
+         y(1)=1.0d0
+      endif
+
+      if(rpar(2).gt.y(1).and.nevprt.eq.3.and.flag.eq.2) then
+         y(1)=y(1)+rpar(1)
+      elseif(rpar(2).eq.0.0d0.and.nevprt.eq.3.and.flag.eq.2) then
+         y(1)=y(1)+rpar(1)
+      elseif(rpar(2).le.y(1).and.nevprt.eq.3.and.rpar(2).ne.0.0d0) then
+         write(6,*)y(1)
+         y(1)=0.0d0
+      endif  
+      end
+</PRE>
+<!--TOC subsection Construction d'une procédure C pour un <EM>User's
+block</EM>-->
+
+<H3>4.2&nbsp;&nbsp; Construction d'une proc&eacute;dure C pour un <EM>User's
+block</EM></H3>
+<!--SEC END -->
+<A NAME="proc"></A> Pour la cr&eacute;ation d'une proc&eacute;dure en langage
+C, il faut veiller &agrave; rajouter <TT>C2F</TT> devant le nom de la
+proc&eacute;dure. <TT>C2F</TT> est d&eacute;finit dans la biblioth&egrave;que
+<EM>machine.h</EM> qu'il faut aussi inclure, sans oublier de bien indiquer
+l'endroit (&lt;<I>chemin</I>&gt;) o&ugrave; Scilab est install&eacute;.
+L'exemple donn&eacute; ci-dessous concerne un bloc standard qui calcule en
+sortie le sinus au carr&eacute; de son entr&eacute;e r&eacute;guliere (bloc
+<I>sin</I><SUP><FONT SIZE="2">2</FONT></SUP>). <PRE>
+#include &lt;math.h&gt;
+#include &quot;&lt;chemin&gt;/scilab-2.6/routines/machine.h&quot;
+/* Copyright INRIA */
+ /*     Scicos block simulator */
+/* Element wise som^2 */
+
+void C2F(sinblk2)(flag, nevprt, t, xd, x, nx, z, nz, tvec, 
+     ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny)
+     double *t,xd[],x[],z[],tvec[];
+     int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,*nu,*ny;
+     double rpar[],u[],y[];
+{
+   
+  /* Local variables */
+  int i;
+  
+  /* Parameter adjustments */
+  --y;
+  --u;
+  --ipar;
+  --rpar;
+  --tvec;
+  --z;
+  --x;
+  --xd;
+  
+  /* Function Body */
+  for (i = 1; i &lt;=*nu ; ++i) {
+    y[i] = pow(sin(u[i]),2);
+    /* L15: */
+  }
+}
+</PRE>
+Le sch&eacute;ma repr&eacute;sent&eacute; &agrave; la figure&nbsp;<A
+HREF="#algo">15</A> montre l'utilisation des blocs <EM>synchro</EM>, pour
+l'ex&eacute;cution du conditionnement, ainsi que les <EM>User's blocks</EM> 
+<TT>TIMER</TT> et <I>sin</I> 
+<SUP><FONT SIZE="2">2</FONT></SUP>. <BR>
+<BR>
+<CENTER>
+<IMG SRC="ramine.png" BORDER="0" WIDTH="293" HEIGHT="293"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 15: Le sch&eacute;ma Scicos ex&eacute;cutant l'algorithme. 
+</DIV>
+<BR>
+<A NAME="algo"></A> Nous pla&ccedil;ons les 4 blocs constituants la boucle des
+it&eacute;rations <EM>j</EM> dans un super-bloc, pour lequel la compilation
+nous donne le sch&eacute;ma Scicos de la figure&nbsp;<A HREF="#algofoo">16</A>
+(le code C d'ex&eacute;cution est g&eacute;n&eacute;r&eacute; est plac&eacute;
+dans le fichier <EM>foo.c</EM>). <BR>
+<BR>
+<CENTER>
+<IMG SRC="algofoo.png" BORDER="0" WIDTH="604" HEIGHT="529"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 16: Le sch&eacute;ma Scicos modifi&eacute;. 
+</DIV>
+<BR>
+<A NAME="algofoo"></A> Dans cet exemple, la simulation confirme que nous
+obtenons, avant et apr&egrave;s la g&eacute;n&eacute;ration de code, le
+m&ecirc;me r&eacute;sultats (cf. figure&nbsp;<A HREF="#resultalgo">17</A>).
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="resultalgo.png" BORDER="0" WIDTH="602" HEIGHT="478"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 17: M&ecirc;me r&eacute;sultat dans les deux cas. 
+</DIV>
+<BR>
+<A NAME="resultalgo"></A>
+<!--TOC section Le mode d'emploi-->
+<H2>5&nbsp;&nbsp; Le mode d'emploi</H2>
+<!--SEC END -->
+L'utilisation de la bo&icirc;te &agrave; outils pour la
+g&eacute;n&eacute;ration automatique de code n&eacute;cessite une installation
+sp&eacute;cifique, pour cela toutes les informations n&eacute;cessaires sont
+aussi disponibles sur le site :
+http://www-rocq.inria.fr/scilab/contributions.html
+
+<!--TOC subsection L'installation-->
+<H3>5.1&nbsp;&nbsp; L'installation</H3>
+<!--SEC END -->
+Pour installer cette bo&icirc;te &agrave; outils l'administrateur de la machine
+doit ex&eacute;cuter, une fois pour toute, l'instruction suivante dans la
+fen&ecirc;tre Scilab : exec &lt;chemin&gt; /builder.sce Cette op&eacute;ration
+n&eacute;cessite un compilateur C (pour les syst&egrave;mes Unix/Linux) ou un
+compilateur VisualC++ (pour les syst&egrave;mes Windows), ainsi que les droits
+d'&eacute;criture dans : <OL TYPE="1">
+<LI> &lt;chemin&gt; /src afin de g&eacute;n&eacute;rer le fichier
+<EM>Makefile</EM> et les fichiers <EM>objets</EM> (*.o, pour les
+syst&egrave;mes Unix/Linux) ou (*.obj, *dll, ..., pour les syst&egrave;mes
+Windows) </LI>
+<LI> &lt;chemin&gt; /macros afin de g&eacute;n&eacute;rer les fichiers
+<EM>binaires</EM> (*.bin) ainsi que les fichiers <EM>names</EM> et
+<EM>lib</EM>. </LI>
+</OL>
+<!--TOC subsection L'utilisation-->
+<H3>5.2&nbsp;&nbsp; L'utilisation</H3>
+<!--SEC END -->
+Pour utiliser cette bo&icirc;te &agrave; outils, aussi bien sur les
+syst&egrave;mes Unix/Linux que les syst&egrave;mes Windows, l'utilisateur doit
+ex&eacute;cuter l'instruction suivante : exec &lt;chemin&gt;/loader.sce, dans
+Scilab et avant d'utiliser la bo&icirc;te &agrave; outils. Il peut aussi
+l'&eacute;crire dans son fichier de d&eacute;marrage <EM>.scilab</EM> pour un
+chargement automatique. On obtient ainsi dans la barre de menu un nouveau
+bouton <EM>Code</EM> qui donne l'acc&egrave;s &agrave; une unique
+s&eacute;lection : <EM> Generation</EM>. D'un simple clic sur cette
+derni&egrave;re, suivi d'un autre clic pour d&eacute;signer le super-bloc
+concern&eacute; et le tour est jou&eacute; ! Le super-bloc est
+transform&eacute; en un bloc, pour lequel ont &eacute;t&eacute;
+g&eacute;n&eacute;r&eacute;es et charg&eacute;es les fonctions d'interface
+graphique et de simulation.
+<!--TOC subsection Le contenu de la boîte à outils :-->
+<H3>5.3&nbsp;&nbsp; Le contenu de la bo&icirc;te &agrave; outils :</H3>
+<!--SEC END -->
+La bo&icirc;te &agrave; outils pour la g&eacute;n&eacute;ration automatique de
+code est constitu&eacute;e des r&eacute;pertoires et fichiers suivants : <UL>
+<LI> README : le fichier du mode d'emploi </LI>
+<LI> loader.sce : le fichier d'installation </LI>
+<LI> builder.sce : le fichier pour construire la biblioth&egrave;que </LI>
+<LI> src : le r&eacute;pertoire des sous programmes Fortran et C </LI>
+<LI> macros : le r&eacute;pertoire des fonctions Scilab, qui contient : 
+<OL TYPE="1">
+<LI> *.sci : les versions sources </LI>
+<LI>*.bin : les versions binaires pr&eacute;-compil&eacute;es
+(g&eacute;n&eacute;r&eacute;es) </LI>
+<LI>names : le fichier contenant la table des fonctions
+(g&eacute;n&eacute;r&eacute;) </LI>
+<LI>lib : le fichier de sauvegarde de la biblioth&egrave;que binaire Scilab
+(g&eacute;n&eacute;r&eacute;) </LI>
+</OL>
+</LI>
+<LI> man : le r&eacute;pertoire de l'aide en ligne, qui contient : <OL
+TYPE="1">
+<LI> Makefile : le fichier de construction de l'aide en ligne </LI>
+<LI>*.man : le fichier d'aide nroff </LI>
+<LI>*.cat : le fichier g&eacute;n&eacute;r&eacute; </LI>
+<LI>whatis : Une br&egrave;ve description des fonctions </LI>
+</OL>
+</LI>
+</UL>
+Rachid Djenidi <BR>
+Scilab Group <BR>
+scilab@inria.fr <BR> http://www-rocq.inria.fr/scilab/
+
+
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://pauillac.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

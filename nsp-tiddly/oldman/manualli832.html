@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_plot</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli833.html" >next</a>] [<a 
+href="manualli831.html" >prev</a>] [<a 
+href="manualli831.html#tailmanualli831.html" >prev-tail</a>] [<a 
+href="#tailmanualli832.html">tail</a>] [<a 
+href="manualli756.html#manualli832.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x833-4850000"></a>mtlb_plot</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx833-4850001"></a><a 
+ id="mtlb_plot"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_plot </span>&#x2013;                                                            Matlab plot emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x833-4851000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot</span></span></span> and Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot2d</span></span></span> behave differently. The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_plot(varargin)</span></span></span> is used by
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot(varargin)</span></span></span> when it was not possible to know what were the
+inputs while porting Matlab code to Scilab. This function will determine the correct
+semantic at run time. If you want to have a more efficient code it is possible to replace
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_plot</span></span></span> calls when there is no output value, however in this case, you have to set colors
+manualy:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> With one input, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is real, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_plot(Y)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot2d(Y)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>  With  one  input,  if  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span>  is  complex,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_plot(Y)</span></span></span>  may  be  replaced  by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot2d(real(Y),imag(Y))</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> With two inputs <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span>, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is not a character string, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_plot(X,Y)</span></span></span> may be
+          replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot2d(X,Y)</span></span></span></li></ul>
+     </ul>
+<!--l. 43--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_plot</span></span></span> has not to be used for hand coded functions.
+</p>
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x833-4852000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli473.html#plot2d">plot2d</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x833-4853000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x833-4854000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli833.html" >next</a>] [<a 
+href="manualli831.html" >prev</a>] [<a 
+href="manualli831.html#tailmanualli831.html" >prev-tail</a>] [<a 
+href="manualli832.html" >front</a>] [<a 
+href="manualli756.html#manualli832.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli832.html"></a>  </p> 
+</body></html> 

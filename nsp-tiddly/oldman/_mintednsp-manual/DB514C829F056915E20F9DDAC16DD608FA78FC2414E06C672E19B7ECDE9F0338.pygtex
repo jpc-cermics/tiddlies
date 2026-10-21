@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Chebyshev; ripple in the stopband}
+n=\nspnumber{10}\nspoperator{;}omegar=\nspnumber{6}\nspoperator{;}A=\nspnumber{1}\nspoperator{/}\nspnumber{0.2}\nspoperator{;}sample=\nspnumber{0.0001}\nspoperator{:}\nspnumber{0.05}\nspoperator{:}\nspnumber{10}\nspoperator{;}
+h2=cheb2mag(n,omegar,A,sample)\nspoperator{;}
+plot(sample,log(h2)\nspoperator{/}log(\nspnumber{10}),\nspstring{'frequencies'},\nspstring{'magnitude in dB'})
+\nspcomment{//Plotting of frequency edges}
+minval=(\nspoperator{-}maxi(\nspoperator{-}log(h2)))\nspoperator{/}log(\nspnumber{10})\nspoperator{;}
+plot2d([omegar\nspoperator{;}omegar],[minval\nspoperator{;}\nspnumber{0}],[\nspnumber{2}],\nspstring{"000"})\nspoperator{;}
+\nspcomment{//Computation of the attenuation in dB at the stopband edge}
+attenuation=\nspoperator{-}log(A\nspoperator{*}A)\nspoperator{/}log(\nspnumber{10})\nspoperator{;}
+plot2d(sample\nspoperator{'},attenuation\nspoperator{*}ones(sample)\nspoperator{'},[\nspnumber{5}],\nspstring{"000"})
+\end{Verbatim}

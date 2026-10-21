@@ -1,0 +1,46 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//}
+\nspcomment{//This example may usefully be compared with the results from}
+\nspcomment{//the 'levin' macro (see the corresponding help and example)}
+\nspcomment{//}
+\nspcomment{//We consider the process defined by two sinusoids (1Hz and 2 Hz)}
+\nspcomment{//in additive Gaussian noise (this is the observation);}
+\nspcomment{//the simulated process is sampled at 10 Hz.}
+\nspcomment{//}
+t=\nspnumber{0}\nspoperator{:}\nspnumber{.1}\nspoperator{:}\nspnumber{100}\nspoperator{;}rand(\nspstring{'normal'})\nspoperator{;}
+y=sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}t)\nspoperator{+}sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}\nspnumber{2}\nspoperator{*}t)\nspoperator{;}y=y\nspoperator{+}rand(y)\nspoperator{;}plot(t,y)
+\nspcomment{//}
+\nspcomment{//covariance of y}
+\nspcomment{//}
+nlag=\nspnumber{128}\nspoperator{;}
+c=corr(y,nlag)\nspoperator{;}
+\nspcomment{//}
+\nspcomment{//hankel matrix from the covariance sequence}
+\nspcomment{//(we can choose to take more information from covariance}
+\nspcomment{//by taking greater n and m; try it to compare the results !}
+\nspcomment{//}
+n=\nspnumber{20}\nspoperator{;}m=\nspnumber{20}\nspoperator{;}
+h=hank(n,m,c)\nspoperator{;}
+\nspcomment{//}
+\nspcomment{//compute the Markov representation (mh,mf,mg)}
+\nspcomment{//We just take here a state dimension equal to 4:}
+\nspcomment{//this is the rather difficult problem of estimating the order !}
+\nspcomment{//Try varying ns !}
+\nspcomment{//(the observation dimension is here equal to one)}
+ns=\nspnumber{4}\nspoperator{;}
+[mh,mf,mg]=phc(h,\nspnumber{1},ns)\nspoperator{;}
+\nspcomment{//}
+\nspcomment{//verify that the spectrum of mf contains the}
+\nspcomment{//frequency spectrum of the observed process y}
+\nspcomment{//(remember that y is sampled -in our example}
+\nspcomment{//at 10Hz (T=0.1s) so that we need}
+\nspcomment{//to retrieve the original frequencies through the log}
+\nspcomment{//and correct scaling by the frequency sampling)}
+\nspcomment{//}
+s=spec(mf)\nspoperator{;}s=log(s)\nspoperator{;}
+s=s\nspoperator{/}\nspnumber{2}\nspoperator{/}%pi\nspoperator{/}\nspnumber{.1}\nspoperator{;}
+\nspcomment{//}
+\nspcomment{//now we get the estimated spectrum}
+imag(s)\nspoperator{,}
+\nspcomment{//}
+\end{Verbatim}

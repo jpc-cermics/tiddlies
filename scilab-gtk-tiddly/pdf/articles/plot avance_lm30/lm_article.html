@@ -1,0 +1,765 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab : Courbes et Surfaces</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+<META NAME="GENERATOR" CONTENT="hevea 1.05"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HEVEA command line is: hevea lm_article.tex -->
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<H1 ALIGN="center"><B>Scilab&nbsp;:&nbsp;Courbes et Surfaces</B></H1>
+
+
+<!--TOC section Introduction-->
+<H2>1&nbsp;&nbsp; Introduction</H2>
+<!--SEC END -->
+Le graphique de Scilab est bas&eacute; sur des primitives graphiques dont la
+syntaxe d'appel est souvent complexe, &agrave; cause de nombreux
+param&egrave;tres optionnels. On donne ici quelques conseils pour
+r&eacute;aliser les taches les plus simples. Pour des graphiques plus
+sophistiqu&eacute;s la lecture des helps en ligne est indispensable... De
+mani&egrave;re g&eacute;n&eacute;rale, les sorties graphiques se font en
+programmant des fonctions Scilab qui vont &eacute;tablir un environnement
+graphique (essentiellement &agrave; l'aide des primitives <EM>xset</EM> et
+<EM>xsetech</EM>) et en faisant appel aux primitives graphiques (fonctions
+<EM>plot2d</EM>, <EM>plot3d</EM>, etc). Une fois un graphique mis au point, il
+est commode de sauvegarder la suite de commandes graphiques dans une fonction
+sp&eacute;cifique. On pourra aussi s'inspirer des nombreuses d&eacute;mos
+graphiques.
+<!--TOC section Rappels sur l'environnement graphique-->
+<H2>2&nbsp;&nbsp; Rappels sur l'environnement graphique</H2>
+<!--SEC END -->
+Une fen&ecirc;tre graphique peut &ecirc;tre ouverte soit explicitement en
+utilisant le menu ``Graphic Window'' de la fen&ecirc;tre principale de Scilab
+soit par l'utilisation d'une fonction graphique. Une fen&ecirc;tre graphique
+correspond &agrave; deux entit&eacute;s : une fen&ecirc;tre physique et un
+contexte.
+<!--TOC subsection Fenêtre physique-->
+<H3>2.1&nbsp;&nbsp; Fen&ecirc;tre physique</H3>
+<!--SEC END -->
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="win.png" BORDER="0" WIDTH="613" HEIGHT="487"> 
+</CENTER>
+<BR>
+<BR>
+<UL>
+<LI> une zone de titre avec le nom de la fen&ecirc;tre </LI>
+<LI> une barre de menus </LI>
+<LI> une zone d'information </LI>
+<LI> un panner et/ou des barres de d&eacute;filement </LI>
+<LI> une zone graphique </LI>
+</UL>
+<!--TOC subsection Contexte-->
+<H3>2.2&nbsp;&nbsp; Contexte</H3>
+<!--SEC END -->
+Il s'agit d'un ensemble de donn&eacute;es contenant les
+propri&eacute;t&eacute;s de la fen&ecirc;tre graphique et les param&egrave;tres
+de dessin : <UL>
+<LI> position de la fen&ecirc;tre physique </LI>
+<LI> tailles de fen&ecirc;tre physique et logique </LI>
+<LI> changement de coordonn&eacute;es </LI>
+<LI> propri&eacute;t&eacute; des fontes </LI>
+<LI> type de trait et &eacute;paisseur </LI>
+<LI> table de couleur </LI>
+<LI> couleur courante, couleur de fond, </LI>
+<LI> ... </LI>
+</UL>
+La fonction <EM>xset</EM> xset@<EM>xset</EM> est la fonction de base permettant
+de fixer les param&egrave;tres graphiques. Elle s'utilise en
+g&eacute;n&eacute;ral sous la forme <EM>xset(&quot;keyword&quot;,value)</EM>
+o&ugrave; <EM>keyword</EM> est le mot-cl&eacute; d&eacute;signant le
+param&egrave;tre graphique et <EM>value</EM> la valeur qu'on d&eacute;sire lui
+donner. <BR>
+<CENTER>
+<IMG SRC="xset.png" WIDTH="630" HEIGHT="593" BORDER="0"
+ ALT="{short description of image}" ALIGN="BOTTOM"> 
+</CENTER>
+<BR>
+Une m&ecirc;me commande graphique peut donc donner des r&eacute;sultats
+diff&eacute;rents selon les valeurs courantes des param&egrave;tres de
+l'environnement graphique. Ces param&egrave;tres reprennent leur valeurs par
+d&eacute;faut lorsque la fen&ecirc;tre graphique est ferm&eacute;e (bouton
+<EM>Close</EM> du menu <EM>File</EM> d'une fen&ecirc;tre graphique). Par
+contre, si fen&ecirc;tre est seulement effac&eacute;e (bouton <EM>Clear</EM> du
+menu <EM>File</EM> d'une fen&ecirc;tre graphique) les param&egrave;tres
+graphiques gardent leur valeur courante. La commande
+<EM>xset(&quot;default&quot;)</EM> restaure les param&egrave;tres par
+d&eacute;faut de la fen&ecirc;tre courante. Pour des applications graphiques
+complexes, il peut &ecirc;tre n&eacute;cessaire d'utiliser la fonction
+graphique xsetech@<EM>xsetech</EM> <EM>xsetech</EM>, qui agit aussi sur
+l'environnemnt graphique en &eacute;tablissant des changements de
+coordonn&eacute;es. Il faut noter aussi que, par d&eacute;faut, les commandes
+graphiques se font en mode de superposition. Deux commandes de trac&eacute; de
+courbes successives donneront donc deux courbes superpos&eacute;es dans la
+m&ecirc;me fen&ecirc;tre graphique. Pour que les commandes graphiques ne soient
+pas en mode de superposition il faut utiliser la commande <EM>xset(&quot;auto
+clear&quot;,&quot;on&quot;)</EM>.
+<!--TOC section Tracés 2D-->
+<H2>3&nbsp;&nbsp; Trac&eacute;s 2D</H2>
+<!--SEC END -->
+<!--TOC subsection Tracé des courbes de fonctions y=f(x)-->
+<H3>3.1&nbsp;&nbsp; Trac&eacute; des courbes de fonctions y=f(x)</H3>
+<!--SEC END -->
+<!--TOC subsubsection  courbe d'une fonction Scilab-->
+<H4>3.1.1&nbsp;&nbsp; courbe d'une fonction Scilab</H4>
+<!--SEC END -->
+<PRE>
+function y=f(x),y=abs(sin(x)),endfunction
+fplot2d(linspace(0,2*%pi,100),f)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s3.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Ce graphique et les suivants ne repr&eacute;sentent plus que le contenu de la
+zone de dessin. Le menu``2D Zoom'' permet de voir des d&eacute;tails. Il suffit
+de cliquer sur ce menu puis de s&eacute;lectionner un point de la fen&ecirc;tre
+et de d&eacute;placer la souris pour d&eacute;finir le rectangle &agrave;
+zoomer. Ce rectangle sera alors visualis&eacute; en utilisant la
+totalit&eacute; de la fen&ecirc;tre. La figure ci-dessous montre le graphique
+obtenu en zoomant une r&eacute;gion du graphique pr&eacute;c&eacute;dent: <BR>
+<BR>
+<CENTER>
+<IMG SRC="s4.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR> Il est possible de recommencer l'op&eacute;ration pour voir de plus en
+plus de d&eacute;tails. Le menu ``UnZoom'' r&eacute;affiche le graphique
+d'origine.
+
+<!--TOC subsubsection  Courbe d'une fonction tabulée-->
+<H4>3.1.2&nbsp;&nbsp; Courbe d'une fonction tabul&eacute;e</H4>
+<!--SEC END -->
+Tr&egrave;s souvent la fonction est repr&eacute;sent&eacute;e par un ensemble
+de donn&eacute;es (x(i),y(i)). La fonction <EM>plot2d</EM> peut &ecirc;tre
+utilis&eacute;e dans ce cas: <PRE>
+p=linspace(0,10,100) ;
+x=p.*sin(p) ;
+y=p.*cos(p) ;
+xbasc() ;plot2d(x,y)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s5.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+
+
+
+<!--TOC subsubsection  Tracé de plusieurs courbes-->
+<H4>3.1.3&nbsp;&nbsp; Trac&eacute; de plusieurs courbes</H4>
+<!--SEC END -->
+L'utilisateur souhaite souvent dessiner plusieurs courbes dans la m&ecirc;me
+fen&ecirc;tre pour comparer leurs &eacute;volutions. Deux situations
+diff&eacute;rentes peuvent &ecirc;tre rencontr&eacute;es: <UL>
+<LI> toutes les donn&eacute;es d'ordonn&eacute;es <EM>y</EM> correspondent
+&agrave; la m&ecirc;me discr&eacute;tisation des abscisses <EM>x</EM> <PRE>
+x=linspace(0,2*%pi,100) ;
+y=[sin(x)', sin(2*x-1)'] ;
+xbasc() ;plot2d(x,y)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s6.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Noter que chaque courbe correspond &agrave; une colonne de la matrice
+<EM>y</EM>. Chaque courbe est trac&eacute;e avec une couleur diff&eacute;rente.
+</LI>
+<LI> chaque fonction a sa propre discr&eacute;tisation des abscisses, on
+appelle plusieurs fois la fonction <EM>plot2d</EM> : <PRE>
+x1=linspace(0,2*%pi,100) ;
+x2=linspace(0,2*%pi,10) ;
+xbasc() ;
+plot2d(x1,sin(x1),style=5)
+plot2d(x2,sin(x2)+rand(x2)/10,style=-2)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s7.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Noter ici l'usage de l'option <EM>style</EM> pour s&eacute;lectionner la
+couleur rouge (<EM>style=5</EM>) pour la premi&egrave;re courbe et la marque
+``croix'' (<EM>style=-2</EM>) pour la seconde. </LI>
+</UL>
+<!--TOC subsection Options de la ligne de commande et options de contexte-->
+<H3>3.2&nbsp;&nbsp; Options de la ligne de commande et options de contexte</H3>
+
+
+<!--SEC END -->
+Les param&egrave;tres du graphique 2D peuvent &ecirc;tre
+sp&eacute;cifi&eacute;s soit par les arguments optionnels des fonctions
+<EM>plot2d</EM> ou <EM>fplot2d</EM> soit en positionnant les valeurs par
+d&eacute;faut du contexte graphique. L'exemple ci-dessous montre comment
+choisir le type et la couleur de la courbe ou des marques : <PRE>
+p=linspace(0,10,100) ;
+x=p.*sin(p) ;
+y1=p.*cos(p) ;y2=p.*cos(2*p) ;
+xbasc() ;
+xset('line style',2) ;plot2d(x,y1,style=5)
+xset('color',3) ;plot2d(x,y2,style=-2)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s8.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Le tiret&eacute; utilis&eacute; pour le trac&eacute; des traits et la couleur
+des marques ne peuvent &ecirc;tre sp&eacute;cifi&eacute;s que par
+l'interm&eacute;diaire de la valeur dans le contexte. Les instruction suivantes
+illustrent comment sp&eacute;cifier les param&egrave;tres caract&eacute;risant
+le trac&eacute; des axes des fonctions <EM>plot2dx</EM>. <PRE>
+xset('background',33)
+xset('foreground',34)
+xbasc() ;plot2d(x,y2,style=5,axesflag=4)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s9.png" BORDER="0" WIDTH="598" HEIGHT="398"> 
+</CENTER>
+<BR>
+<BR>
+Ici la couleur du fond <EM>background</EM> et la couleur de trac&eacute; par
+d&eacute;faut <EM>foreground</EM> sont sp&eacute;cifi&eacute;es dans le
+contexte tandis que la couleur de la courbe et la d&eacute;finition des axes
+sont d&eacute;finis par des arguments optionnels.
+<!--TOC subsection Ajout de ''décorations''-->
+<H3>3.3&nbsp;&nbsp; Ajout de ''d&eacute;corations''</H3>
+<!--SEC END -->
+<!--TOC subsubsection titres et légendes-->
+<H4>3.3.1&nbsp;&nbsp; titres et l&eacute;gendes</H4>
+<!--SEC END -->
+<PRE>
+x1=linspace(0,2*%pi,100) ;
+xbasc() ;
+plot2d(x1,10.^x1,style=5,logflag='nl')
+legends(['10^x'],5,1) //ajoute un cartouche en haut &agrave; droite
+//ajoute un titre et des &eacute;tiquettes d'axes
+xtitle('A linear/Log plot','x','y')
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s10.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Noter aussi l'utilisation de <EM>logflag</EM> pour requ&eacute;rir l'usage de
+coordonn&eacute;es logarithmique le long de l'un ou l'autre des axes.
+
+<!--TOC subsubsection Axes particuliers-->
+<H4>3.3.2&nbsp;&nbsp; Axes particuliers</H4>
+<!--SEC END -->
+L'option <EM>axesflag=2</EM> permet de supprimer le trac&eacute; par
+d&eacute;faut des axes, la fonction <EM>drawaxis</EM> permet de dessiner un axe
+dont la position, l'orientation et les graduations sont d&eacute;finies par
+l'utilisateur. <PRE>
+x1=linspace(0,2*%pi,100) ;
+xbasc() ;plot2d(x1,sin(x1),style=5,axesflag=2)
+drawaxis(dir='d',x=0:7,val=['a','b','c','e','f','g','h','i'])
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s11.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+
+<!--TOC subsection Autres fonctions graphiques utiles-->
+<H3>3.4&nbsp;&nbsp; Autres fonctions graphiques utiles</H3>
+<!--SEC END -->
+<!--TOC subsubsection Tracé de courbes en escalier-->
+<H4>3.4.1&nbsp;&nbsp; Trac&eacute; de courbes en escalier</H4>
+<!--SEC END -->
+Le trac&eacute; de courbes en escalier est r&eacute;alisable en utilisant la
+variante <EM>plot2d2</EM> de la fonction <EM>plot2d</EM> comme illustr&eacute;
+ci-dessous : <PRE>
+x1=linspace(0,2*%pi,30) ;
+xbasc() ;plot2d2(x1,sin(x1),style=3)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s12.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+<!--TOC subsubsection Représentation par barres verticales-->
+<H4>3.4.2&nbsp;&nbsp; Repr&eacute;sentation par barres verticales</H4>
+<!--SEC END -->
+La repr&eacute;sentation des donn&eacute;es par des barres verticales peut
+&ecirc;tre obtenue gr&acirc;ce &agrave; la fonction <EM>plot2d3</EM> variante
+de <EM>plot2d</EM> <PRE>
+x1=linspace(0,2*%pi,30) ;
+xbasc() ;plot2d3(x1,sin(x1),style=3)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s13.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+
+<!--TOC subsubsection Tracé d'histogramme-->
+<H4>3.4.3&nbsp;&nbsp; Trac&eacute; d'histogramme</H4>
+<!--SEC END -->
+La fonction <EM>histplot</EM> calcule et dessine l'histogramme &agrave; n
+classes d'un vecteur de donn&eacute;es. <PRE>
+x=rand(1,3000,'normal') ;
+xbasc() ;histplot(100,x,style=2)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s14.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+
+
+<!--TOC subsubsection Coordonnées polaires-->
+<H4>3.4.4&nbsp;&nbsp; Coordonn&eacute;es polaires</H4>
+<!--SEC END -->
+Ici nous dessinons des graphes de fonctions o&ugrave; les points sont
+donn&eacute;s par leur rayon <FONT FACE="symbol">r</FONT> et leur angle
+<FONT FACE="symbol">q</FONT>. <PRE>
+t= (0:.01:2*%pi)'
+xbasc() ;polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s15.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+
+
+<!--TOC subsection Visualisation Isométrique-->
+<H3>3.5&nbsp;&nbsp; Visualisation Isom&eacute;trique</H3>
+<!--SEC END -->
+Par d&eacute;faut la transformation de coordonn&eacute;es fait correspondre le
+rectangle de coordonn&eacute;es utilisateur avec les points extr&ecirc;mes de
+la (sous-)fen&ecirc;tre graphique. Si vous souhaitez, par exemple, qu'un cercle
+soit visualis&eacute; comme un cercle et non comme une ellipse vous devez
+utiliser l'option <EM>frameflag=4</EM> dans les param&egrave;tres d'appels des
+fonctions <EM>plot2dx</EM> <PRE>
+t=linspace(0,2*%pi,100) ;
+xbasc() ;plot2d(sin(t),cos(t))
+xbasc() ;plot2d(sin(t),cos(t),frameflag=4)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s18.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR> M&ecirc;me si l'utilisateur modifie les dimensions de la fen&ecirc;tre, le
+cercle reste visualis&eacute; comme un cercle !, les bornes utilisateurs sont
+automatiquement &eacute;largies pour garantir une visualisation
+isom&eacute;trique.
+
+<!--TOC section Tracés en 3D-->
+<H2>4&nbsp;&nbsp; Trac&eacute;s en 3D</H2>
+<!--SEC END -->
+<!--TOC subsection Les fonctions fplot3d et plot3d-->
+<H3>4.1&nbsp;&nbsp; Les fonctions fplot3d et plot3d</H3>
+<!--SEC END -->
+<!--TOC subsubsection Surface définie par une fonction <I>z</I>=<I>F</I>(<I>x</I>,<I>y</I>)-->
+<H4>4.1.1&nbsp;&nbsp; Surface d&eacute;finie par une fonction
+<I>z</I>=<I>F</I>(<I>x</I>,<I>y</I>)</H4>
+<!--SEC END -->
+Dessinons tout d'abord une surface d&eacute;finie par une fonction Scilab : <PRE>
+function z=f(x,y),z=(2*x^2*y+y^2)/(x^2+2*y^2),endfunction
+x=-7:0.55:7;
+xbasc();fplot3d(x,x,f)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s20.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+La couleur de la surface visible est par d&eacute;faut la couleur num&eacute;ro
+2. Cette valeur peur &ecirc;tre chang&eacute;e par l'interm&eacute;diaire du
+permier &eacute;l&eacute;ment du param&egrave;tre optionnel <EM>flag</EM>. <PRE>
+xbasc();fplot3d(x,x,f,flag=[3,2,2])
+</PRE>
+Le second et troisi&egrave;me &eacute;l&eacute;ment de <EM>flag</EM>
+controllent respectivement les bornes et le mode de trac&eacute; des axes. <BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s21.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Le menu ``3D Rot.'' permet de changer les angles de vue <FONT
+FACE="symbol">q</FONT> et <FONT FACE="symbol">a</FONT> <BR>
+<BR>
+<CENTER>
+<IMG SRC="s22.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+La m&ecirc;me rotation aurait pu &ecirc;tre r&eacute;alis&eacute;e en
+sp&eacute;cifiant les param&egrave;tres optionnels <EM>theta</EM> et
+<EM>alpha</EM> <PRE>
+fplot3d(x,x,f,theta=115,alpha=63,flag=[3,2,2])
+</PRE>
+La surface peut aussi &ecirc;tre repr&eacute;sent&eacute;e par deux vecteurs
+<EM>x</EM> et <EM>y</EM> donnant les discr&eacute;tisations le long des axes
+des abscisses et des ordonn&eacute;es et une matrice <EM>z</EM> telle que
+<EM>z(i,j)</EM> est l'&eacute;l&eacute;vation au point <EM>(x(i),y(j))</EM>. La
+surface definie par la fonction <EM>f</EM> ci-dessus peut-&ecirc;tre
+repr&eacute;sent&eacute;e par la matrice <EM>z</EM> calcul&eacute;e comme suit
+: 
+<PRE>
+z=feval(x,x,f);
+</PRE>
+ou plus &eacute;fficacement en utilisant les op&eacute;rateurs sur les matrices
+par 
+<PRE>
+Y=ones(x')*x ;X=x'*ones(x);
+z=(2*X.^2 .*Y+Y.^2)./(X.^2+2*Y.^2) ;
+</PRE>
+Le dessin de la surface ainsi repr&eacute;sent&eacute;e peut &ecirc;tre
+r&eacute;alis&eacute; en utilisant la fonction <EM>plot3d</EM> au lieu de
+<EM>fplot3d</EM>. 
+<PRE>
+xbasc();xset('color',5) ;xset('hidden3d',24) ;
+plot3d(x,x,z,theta=115,alpha=63)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s23.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Ici on peut voir que la couleur courante du contexte est utilis&eacute;e pour
+dessiner le ``quadrillage'' et que la couleur associ&eacute;e au champ
+<EM>hidden3d</EM> est utilis&eacute;e pour colorier la ``face
+inf&eacute;rieure'' de la surface. 
+
+<!--TOC subsection Les autres fonctions 3D-->
+<H3>4.2&nbsp;&nbsp; Les autres fonctions 3D</H3>
+<!--SEC END -->
+<!--TOC subsubsection Colorier les surfaces en fonction de l'élévation-->
+<H4>4.2.1&nbsp;&nbsp; Colorier les surfaces en fonction de
+l'&eacute;l&eacute;vation</H4>
+<!--SEC END -->
+On utilise la table de couleur <EM>hotcolormap</EM> de la mani&egrave;re
+suivante : <PRE>
+xset('colormap',hotcolormap(128))
+xbasc();plot3d1(x,x,z)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s24.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+<!--TOC subsubsection Représentation 2D des fonctions 3D-->
+<H4>4.2.2&nbsp;&nbsp; Repr&eacute;sentation 2D des fonctions 3D</H4>
+<!--SEC END -->
+Dans cet exemple, les valeurs de la matrice <EM>z</EM> sont
+repr&eacute;sent&eacute;es par des couleurs. <PRE>
+xbasc();grayplot(x,x,z)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s25.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Ajoutons les courbes iso-valeurs : <PRE>
+contour2d(x,x,z,10)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s26.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+
+<!--TOC subsubsection Valeurs non définies-->
+<H4>4.2.3&nbsp;&nbsp; Valeurs non d&eacute;finies</H4>
+<!--SEC END -->
+Les valeurs non d&eacute;finies sur une surface peuvent &ecirc;tre
+repr&eacute;sent&eacute;es par des valeurs <EM>%nan</EM> dans la matrice
+<EM>z</EM> : <PRE>
+z(10 :15,17:22)=\%nan ;
+xbasc() ;plot3d1(x,x,z)
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s27.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Les valeurs <EM>%nan</EM> produisent un trou dans la surface 
+
+<!--TOC subsubsection Représentation par facettes-->
+<H4>4.2.4&nbsp;&nbsp; Repr&eacute;sentation par facettes</H4>
+<!--SEC END -->
+Les repr&eacute;sentations <EM>x,y,z</EM> ou <EM>x,y,f</EM> ne permettent pas
+de dessiner des surfaces complexes. Ce type de surfaces peuvent &ecirc;tre
+d&eacute;crits par un ensemble de facettes : Dans l'exemple ci-dessous nous
+repr&eacute;sentons la surface pr&eacute;c&eacute;dente avec une sph&egrave;re
+pos&eacute;e dessus. La fonction <EM>genfac3d</EM> calcules la
+repr&eacute;sentation par facettes de la surface donn&eacute;e par
+<EM>x,y,z</EM>. Cette repr&eacute;sentation est retourn&eacute;e dans trois
+matrices <EM>xx,yy,zz</EM>. <EM>xx(:,i),yy(:,i),zz(:,i)</EM> definit la
+i&egrave;me facette. La fonction <EM>sph</EM> calcule les coordonn&eacute;es
+cart&eacute;siennes d'un ensemble de points de la surface d'une sph&egrave;re
+&eacute;tant donn&eacute; leur coordonn&eacute;es sph&eacute;riques. La
+fonction <EM>eval3dp</EM> appelle la fonction <EM>sph</EM> pour cr&eacute;er
+l'ensemble des facettes repr&eacute;sentant la sph&egrave;re. <PRE>
+[xx,yy,zz]=genfac3d(x,x,z);
+
+function [x,y,z]=sph(alp,tet)
+  x=r*cos(alp).*cos(tet)+orig(1)*ones(tet);
+  y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)
+  z=r*sin(alp)+orig(3)*ones(tet)
+endfunction
+
+r=2;//le rayon de la sph\`ere
+orig=[-3 3 7/3+r];//le centre de la sph\`ere
+[xx1,yy1,zz1]=eval3dp(sph,linspace(-\%pi/2,\%pi/2,20),linspace(0,\%pi*2,20));
+</PRE>
+L'association des deux surfaces s'effectue alors en concat&eacute;nant les deux
+ensembles de facettes. 
+<PRE>
+X=[xx,xx1] ;
+Y=[yy,yy1] ;
+Z=[zz,zz1] ;
+</PRE>
+les fonctions <EM>plot3d</EM> et <EM>plot3d1</EM> peuvent ensuite &ecirc;tre
+utilis&eacute;es pour visualiser les surfaces. 
+<PRE>
+xbasc() ;plot3d1(X,Y,Z,flag=[-1,4,4])
+</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<IMG SRC="s28.png" BORDER="0" WIDTH="600" HEIGHT="424"> 
+</CENTER>
+<BR>
+<BR>
+Noter ici la premi&egrave;re composante de flag positionn&eacute;e a
+<EM>-1</EM> pour demander l'interpolation des couleurs des facettes au lieu du
+mode par d&eacute;faut qui alloue une seule couleur par facette. 
+
+<!--TOC section Entrées graphiques-->
+<H2>5&nbsp;&nbsp; Entr&eacute;es graphiques</H2>
+<!--SEC END -->
+<!--TOC subsection Acquisition des coordonnées d'un point-->
+<H3>5.1&nbsp;&nbsp; Acquisition des coordonn&eacute;es d'un point</H3>
+<!--SEC END -->
+Il est souvent n&eacute;cessaire pour construire des applications de pouvoir
+acqu&eacute;rir les coordonn&eacute;es utilisateurs associ&eacute;es &agrave;
+un point de la fen&ecirc;tre graphique. Ceci peut &ecirc;tre fait grace
+&agrave; la fonction <EM>xclick</EM>. <PRE>
+xbasc() ;plot2d()
+[btn,x,y]=xclick()
+</PRE>
+Appel&eacute; avec 3 arguments &agrave; gauche la fonction <EM>xclick</EM>
+attend un click de souris dans la fen&ecirc;tre graphique courante et retourne
+le num&eacute;ro du bouton (0,1 ou 2) et les coordonn&eacute;es <EM>x</EM> et
+<EM>y</EM> du point s&eacute;lectionn&eacute;. Il est aussi possible d'attendre
+un clic dans n'importe laquelle des fen&ecirc;tres ouvertes : 
+<PRE>
+[btn,x,y,win]=xclick()
+</PRE>
+Ici l'argument suppl&eacute;mentaire <EM>win</EM> contient le num&eacute;ro de
+la fen&ecirc;tre o&ugrave; le point a &eacute;t&eacute;
+s&eacute;lectionn&eacute;.<!--TOC subsection Suivre la souris-->
+
+<H3>5.2&nbsp;&nbsp; Suivre la souris</H3>
+<!--SEC END -->
+La fonction <EM>xgetmouse</EM> permet de r&eacute;cup&eacute;rer la position de
+la souris dans la fen&ecirc;tre courante. Ici il n'y a pas besoin de cliquer,
+chaque fois que la fonction est appel&eacute;e et que la souris a boug&eacute;
+la fonction retourne la nouvelle position. <PRE>
+xset('window',0)
+while \%t
+  rep=xgetmouse() ;
+  plot2d(rep(1),rep(2),-3)
+  if rep(3)==2 then break,end
+end
+</PRE> Ce petit script dessine une
+marque &agrave; chaque position successive de la souris.
+<!--TOC section Exporter/Publier-->
+
+<H2>6&nbsp;&nbsp; Exporter/Publier</H2>
+<!--SEC END -->
+<!--TOC subsection Editeur graphique gr_menu-->
+<H3>6.1&nbsp;&nbsp; Editeur graphique gr_menu</H3>
+<!--SEC END -->
+<CODE>gr_menu</CODE> est une petit outil Scilab qui permet d'ajouter des objets
+graphiques (fl&egrave;ches, rectangle, cercle, texte, ...) en utilisant la
+souris et des menus. Cette fonction est &eacute;crite en Scilab en utilisant
+les entr&eacute;es graphiques pr&eacute;sent&eacute;es ci-dessus. <PRE>
+xbasc() ;plot2d()
+sd=gr_menu() ;
+</PRE>
+Le dessin suivant montre la fen&ecirc;tre graphique avec les menus ``objects''
+``settings'' and ``edit'' de l'outil <CODE>gr_menu</CODE>. Ces menus ont
+&eacute;t&eacute; utilis&eacute;s pour ajouter la fl&egrave;che rouge et la
+l&eacute;gende ``sin(x)''. La fonction <CODE>gr_menu</CODE> retourne une
+structure de donn&eacute;es <EM>sd</EM> <BR>
+<BR>
+
+<CENTER>
+<IMG SRC="gr_menu.png" BORDER="0" WIDTH="598" HEIGHT="454"> 
+</CENTER>
+<BR>
+<BR>
+La structure de donn&eacute;es <EM>sd</EM> peut &ecirc;tre traduite en
+instructions Scilab : <PRE>
+--&gt;sd2sci(sd)
+ ans  =
+ 
+!xsetech([0 0 1 1],[0,0,100,100])   !
+!                                   !
+!xset('pattern',7)                  !
+!                                   !
+!xarrows([63.8;38],[92;75],-1,-1);  !
+!                                   !
+
+!xstring(67.1,90.3,'sin(x) ',0,0);  !
+
+</PRE>
+<!--TOC subsection Exporter avec Xfig-->
+
+<H3>6.2&nbsp;&nbsp; Exporter avec Xfig</H3>
+<!--SEC END -->
+Xfig est un utilitaire Unix similaire a <CODE>gr_menu</CODE> mais beaucoup plus
+d&eacute;velopp&eacute;. Par exemple le dessin g&eacute;n&eacute;r&eacute; par
+: <PRE>
+p=linspace(0,10,100) ;
+x=p.*sin(p) ;
+y=p.*cos(p) ;
+xbasc() ;plot2d(x,y)
+</PRE>
+peut &ecirc;tre export&eacute; au format Xfig avec : 
+<PRE>
+driver('Fig') ;xinit('foo.fig') ;xtape('replay',0) ;xend()
+</PRE>
+La m&ecirc;me chose peut &ecirc;tre r&eacute;alis&eacute;e plus simplement avec
+le menu ``File/Export'' L'instruction Unix ci-dessous : 
+<PRE>
+xfig foo.fig
+</PRE>
+ouvre l'&eacute;diteur graphique, montr&eacute; ici avec le menu
+d'&eacute;dition de courbe ouvert <BR>
+<BR>
+
+<CENTER>
+<IMG SRC="xfig.png" BORDER="0" WIDTH="560" HEIGHT="518"> 
+</CENTER>
+<BR>
+<BR>
+Les graphiques peuvent aussi &ecirc;tre export&eacute;s en postscript pour
+&ecirc;tre inclus dans des documents Word ou LaTeX ou en format Gif qui est
+adapt&eacute; aux documents HTML et Word.<BR>
+Vous pouvez retrouver les <A HREF="exemples.sce">exemples ici. </A><BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Serge Steer &amp; la soci&eacute;t&eacute; Saphir Control<BR>
+INRIA Rocquencourt BP105, 78153 Le Chesnay Cedex, France<BR>
+Serge.Steer@inria.fr, www.saphir-control.fr 
+</DIV>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://pauillac.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

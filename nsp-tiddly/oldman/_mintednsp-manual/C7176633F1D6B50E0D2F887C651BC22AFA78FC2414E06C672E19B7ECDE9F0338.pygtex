@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//-Ex1- Arma model: y(t) = 0.2*u(t-1)+0.01*e(t-1)}
+ny=\nspnumber{1}\nspoperator{,}nu=\nspnumber{1}\nspoperator{,}sig=\nspnumber{0.01}\nspoperator{;}
+Arma=armac(\nspnumber{1},[\nspnumber{0}\nspoperator{,}\nspnumber{0.2}],[\nspnumber{0}\nspoperator{,}\nspnumber{1}],ny,nu,sig)\nspoperator{,}\nspcomment{//defining the above arma model}
+u=rand(\nspnumber{1},\nspnumber{1000},\nspstring{'normal'})\nspoperator{;}\nspcomment{//a random input sequence u}
+y=arsimul(Arma,u)\nspoperator{;}\nspcomment{//simulation of a y output sequence associated with u.}
+Armaest=armax(\nspnumber{0},\nspnumber{1},y,u)\nspoperator{;}\nspcomment{//Identified model given u and y.}
+Acoeff=Armaest(\nspstring{'a'})\nspoperator{;}\nspcomment{//Coefficients of the polynomial A(x)}
+Bcoeff=Armaest(\nspstring{'b'})\nspoperator{,}\nspcomment{//Coefficients of the polynomial B(x)}
+Dcoeff=Armaest(\nspstring{'d'})\nspoperator{;}\nspcomment{//Coefficients of the polynomial D(x)}
+[Ax,Bx,Dx]=arma2p(Armaest)\nspoperator{,}\nspcomment{//Results in polynomial form.}
+\nspcomment{//-Ex2- Arma1: y_t -0.8*y_\nspob{}t-1\nspcb{} + 0.2*y_\nspob{}t-2\nspcb{} =  sig*e(t)}
+ny=\nspnumber{1}\nspoperator{,}nu=\nspnumber{1}\nspoperator{;}sig=\nspnumber{0.001}\nspoperator{;}
+\nspcomment{// First step: simulation the Arma1 model, for that we define}
+\nspcomment{// Arma2: y_t -0.8*y_\nspob{}t-1\nspcb{} + 0.2*y_\nspob{}t-2\nspcb{} = sig*u(t)}
+\nspcomment{// with normal deviates for u(t).}
+Arma2=armac([\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{0.8}\nspoperator{,}\nspnumber{0.2}],sig,\nspnumber{0},ny,nu,\nspnumber{0})\nspoperator{;}
+\nspcomment{//Definition of the Arma2 arma model (a model with B=sig and without noise!)}
+u=rand(\nspnumber{1},\nspnumber{10000},\nspstring{'normal'})\nspoperator{;}\nspcomment{// An input sequence for Arma2}
+y=arsimul(Arma2,u)\nspoperator{;}\nspcomment{// y = output of Arma2 with input u}
+\nspcomment{//                     can be seen as output of Arma1.}
+\nspcomment{// Second step: identification. We look for an Arma model}
+\nspcomment{// y(t) + a1*y(t-1) + a2 *y(t-2) =  sig*e(t)}
+Arma1est=armax(\nspnumber{2},\nspoperator{-}\nspnumber{1},y,[])\nspoperator{;}
+[A,B,D]=arma2p(Arma1est)
+\end{Verbatim}

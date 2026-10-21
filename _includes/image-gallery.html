@@ -1,0 +1,22 @@
+<style>
+    .image-gallery {overflow: auto; margin-left: -1%!important;}
+    .image-gallery li {float: left; display: block; margin: 0 0 1% 1%; width: 19%;}
+    .image-gallery li a {text-align: center; text-decoration: none!important; color: #777;}
+    .image-gallery li a span {display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding: 3px 0;}
+    .image-gallery li a img {width: 100%; display: block;}
+</style>
+
+{% assign croppedfolder =  include.folder | append: "-cropped" %}
+<ul class="image-gallery">
+  {% for file in site.static_files %}
+  {% if file.path contains croppedfolder %}
+  {% if file.extname == '.jpg' %}
+  {% assign filenameparts = file.path | split: "/" %}
+  {% assign filename = filenameparts | last | replace: file.extname,"" %}
+  <li>
+    <a href="{{ include.folder }}/{{ filename }}.jpg" title="{{ filename }}">
+      <img src="{{ croppedfolder }}/{{ filename }}.jpg" alt="{{ filename }}" title="{{ filename }}" />
+      <span>{{ filename }}</span>
+    </a>
+  </li>{% endif %}{% endif %}{% endfor %}
+</ul>

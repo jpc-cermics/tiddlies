@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>analpf</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1137.html" >next</a>] [<a 
+href="manualli1135.html" >prev</a>] [<a 
+href="manualli1135.html#tailmanualli1135.html" >prev-tail</a>] [<a 
+href="#tailmanualli1136.html">tail</a>] [<a 
+href="manualli1135.html#manualli1136.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1137-6425000"></a>analpf</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1137-6425001"></a><a 
+ id="analpf"></a><span 
+class="cmtt-10x-x-109">analpf </span>&#x2013;                                                                      create analog low-pass filter<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1137-6426000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1283">
+&#x00A0;&#x00A0;[hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1137-6427000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: positive integer: filter order
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fdesign</span>: string: filter design method: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;butt&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;cheb1&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;cheb2&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ellip&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rp</span>: 2-vector of error values for cheb1, cheb2 and ellip filters where only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rp(1)</span></span></span> is used for cheb1
+     case, only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rp(2)</span></span></span> is used for cheb2 case, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rp(1)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rp(2)</span></span></span> are both used for ellip case.
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$rp(1),rp(2)$&#x003C;$1</span></span></span>
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>for cheb1 filters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1-rp(1)$&#x003C;$ripple$&#x003C;$1</span></span></span> in passband
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>for cheb2 filters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$ripple$&#x003C;$rp(2)</span></span></span> in stopband
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>for ellip filters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1-rp(1)$&#x003C;$ripple$&#x003C;$1</span></span></span> in passband <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$ripple$&#x003C;$rp(2)</span></span></span> in
+          stopband</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">omega</span>: cut-off frequency of low-pass filter in Hertz
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">hs</span>: rational polynomial transfer function
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">pols</span>: poles of transfer function
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">zers</span>: zeros of transfer function
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">gain</span>: gain of transfer function</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1137-6428000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 45--><p class="noindent" > Creates analog low-pass filter with cut-off frequency at omega.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hs=gain*poly(zers,&#x0027;s&#x0027;)/poly(pols,&#x0027;s&#x0027;)</span></span></span>
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1137-6429000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb758"><a 
+ id="x1137-6429008r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Evaluate</span><span 
+class="cmitt-10x-x-109">&#x00A0;magnitude</span><span 
+class="cmitt-10x-x-109">&#x00A0;response</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;continuous-time</span><span 
+class="cmitt-10x-x-109">&#x00A0;system</span></span><br class="fancyvrb" /><a 
+ id="x1137-6429010r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;hs=analpf(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;cheb1&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x1137-6429012r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fr=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1137-6429014r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;hf=freq(hs(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),hs(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">),%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">fr)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1137-6429016r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;hm=abs(hf)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1137-6429018r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(fr,hm)</span></div>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1137-6430000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   C. B.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1137.html" >next</a>] [<a 
+href="manualli1135.html" >prev</a>] [<a 
+href="manualli1135.html#tailmanualli1135.html" >prev-tail</a>] [<a 
+href="manualli1136.html" >front</a>] [<a 
+href="manualli1135.html#manualli1136.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1136.html"></a>  </p> 
+</body></html> 

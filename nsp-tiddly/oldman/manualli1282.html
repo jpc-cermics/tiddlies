@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>bifish</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1283.html" >next</a>] [<a 
+href="manualli1281.html" >prev</a>] [<a 
+href="manualli1281.html#tailmanualli1281.html" >prev-tail</a>] [<a 
+href="#tailmanualli1282.html">tail</a>] [<a 
+href="manualli1280.html#manualli1282.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1283-7238000"></a>bifish</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1283-7238001"></a><a 
+ id="bifish"></a><span 
+class="cmtt-10x-x-109">bifish </span>&#x2013;                shows a bifurcation diagram in a fish population discrete time model<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1283-7239000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1428">
+&#x00A0;&#x00A0;bifish([f_ch])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1283-7240000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f</span><span 
+class="cmtt-10x-x-109">_ch</span>: can be one of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fish</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fishr</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fishr2</span></span></span>. This option selects the population model.</li></ul>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1283-7241000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 33--><p class="noindent" > The dynamical system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fish</span></span></span> is the following:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1429">
+&#x00A0;&#x00A0;y=b*exp(-0.1*(x(k)_1+x(k)_2));
+&#x00A0;<br />&#x00A0;&#x00A0;x(k+1)=[&#x00A0;y&#x00A0;2*y&#x00A0;;&#x00A0;s&#x00A0;0.0]*x(k);
+</div>
+<!--l. 38--><p class="nopar" >and the parameters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> evolves to show the bifurcation diagram. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fishr</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fishr2</span></span></span> are constructed as
+above but with added white noises.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1430">
+&#x00A0;&#x00A0;fishr
+&#x00A0;<br />&#x00A0;&#x00A0;y=b*exp(-0.1*(xk(1)+xk(2)))
+&#x00A0;<br />&#x00A0;&#x00A0;xkp1=[&#x00A0;y&#x00A0;2*y&#x00A0;;&#x00A0;s*(1+0.1*(rand()-0.5))&#x00A0;0.0]*xk
+&#x00A0;<br />&#x00A0;&#x00A0;fishr2
+&#x00A0;<br />&#x00A0;&#x00A0;z=exp(-0.1*(xk(1)+xk(2)))
+&#x00A0;<br />&#x00A0;&#x00A0;xkp1=[&#x00A0;b*z**(1+0.1*(rand()-0.5))&#x00A0;2*b*z**(1+0.1*(rand()-0.5))&#x00A0;;&#x00A0;s&#x00A0;0.0]*xk
+</div>
+<!--l. 48--><p class="nopar" >The three macros <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fish,</span><span 
+class="cmtt-10x-x-109">&#x00A0;fishr,</span><span 
+class="cmtt-10x-x-109">&#x00A0;fishr2</span></span></span> are loaded in Scilab when calling <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bifish</span></span></span>.
+</p>
+<!--l. 52--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1283-7242000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli890.html#ode">ode</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1283.html" >next</a>] [<a 
+href="manualli1281.html" >prev</a>] [<a 
+href="manualli1281.html#tailmanualli1281.html" >prev-tail</a>] [<a 
+href="manualli1282.html" >front</a>] [<a 
+href="manualli1280.html#manualli1282.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1282.html"></a>  </p> 
+</body></html> 

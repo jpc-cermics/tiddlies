@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>syslin</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli259.html" >next</a>] [<a 
+href="manualli257.html" >prev</a>] [<a 
+href="manualli257.html#tailmanualli257.html" >prev-tail</a>] [<a 
+href="#tailmanualli258.html">tail</a>] [<a 
+href="manualli104.html#manualli258.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x259-1541000"></a>syslin</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx259-1541001"></a><a 
+ id="syslin"></a><span 
+class="cmtt-10x-x-109">syslin </span>&#x2013;                                                                            linear system definition<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x259-1542000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-393">
+&#x00A0;&#x00A0;[sl]=syslin(dom,A,B,C&#x00A0;[,D&#x00A0;[,x0]&#x00A0;])
+&#x00A0;<br />&#x00A0;&#x00A0;[sl]=syslin(dom,N,D)
+&#x00A0;<br />&#x00A0;&#x00A0;[sl]=syslin(dom,H)
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x259-1543000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dom</span>: character string (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span></span>), or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[]</span></span></span> or a scalar.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A,B,C,D</span>: matrices of the state-space representation (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> optional with default value zero
+     matrix). For improper systems <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> is a polynomial matrix.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: vector (initial state; default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">N, D</span>: polynomial matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">H</span>: rational matrix or linear state space representation
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sl</span>: tlist (&#x201D;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span>&#x201D; list) representing the linear system</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x259-1544000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> defines a linear system as a list and checks consistency of data.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dom</span></span></span> specifies the time
+domain of the system and can have the following values:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dom=&#x0027;c&#x0027;</span></span></span> for a continuous time system,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dom=&#x0027;d&#x0027;</span></span></span> for a discrete time system, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> for a sampled system with sampling period <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> (in
+seconds).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dom=[]</span></span></span> if the time domain is undefined State-space representation:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-394">
+&#x00A0;&#x00A0;sl=syslin(dom,A,B,C&#x00A0;[,D&#x00A0;[,x0]&#x00A0;])
+</div>
+<!--l. 47--><p class="nopar" >represents the system:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-395">
+&#x00A0;&#x00A0;s&#x00A0;x&#x00A0;&#x00A0;=&#x00A0;A*x&#x00A0;+&#x00A0;B*u
+&#x00A0;<br />&#x00A0;&#x00A0;y&#x00A0;&#x00A0;=&#x00A0;C*x&#x00A0;+&#x00A0;D*u
+&#x00A0;<br />&#x00A0;&#x00A0;x(0)&#x00A0;=&#x00A0;x0
+</div>
+<!--l. 53--><p class="nopar" >The output of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> is a list of the following form: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl=tlist([&#x0027;lss&#x0027;,&#x0027;A&#x0027;,&#x0027;B&#x0027;,&#x0027;C&#x0027;,&#x0027;D&#x0027;,&#x0027;X0&#x0027;,&#x0027;dt&#x0027;],A,B,C,D,x0,dom)</span></span></span>
+Note that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> is allowed to be a polynomial matrix (improper systems). Transfer matrix
+representation:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-396">
+&#x00A0;&#x00A0;sl=syslin(dom,N,D)
+&#x00A0;<br />&#x00A0;&#x00A0;sl=syslin(dom,H)
+</div>
+<!--l. 61--><p class="nopar" >The output of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> is a list of the following form: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl=tlist([&#x0027;r&#x0027;,&#x0027;num&#x0027;,&#x0027;den&#x0027;,&#x0027;dt&#x0027;],N,D,dom)</span></span></span>
+or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl=tlist([&#x0027;r&#x0027;,&#x0027;num&#x0027;,&#x0027;den&#x0027;,&#x0027;dt&#x0027;],H(2),H(3),dom)</span></span></span>. Linear systems defined as
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> can be manipulated as usual matrices (concatenation, extraction, transpose,
+multiplication, etc) both in state-space or transfer representation. Most of state-space control
+functions receive a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list as input instead of the four matrices defining the system.
+</p>
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x259-1545000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb213"><a 
+ id="x259-1545017r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x259-1545019r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Linear</span><span 
+class="cmitt-10x-x-109">&#x00A0;system</span><span 
+class="cmitt-10x-x-109">&#x00A0;definition</span></span>
+<br class="fancyvrb" /><a 
+ id="x259-1545021r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;A&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Display</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;A-matrix</span></span><br class="fancyvrb" /><a 
+ id="x259-1545023r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;X0&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">S1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;dt&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Display</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;X0</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;time</span><span 
+class="cmitt-10x-x-109">&#x00A0;domain</span></span>
+<br class="fancyvrb" /><a 
+ id="x259-1545025r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x259-1545027r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;D=s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x259-1545029r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S2=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D)</span><br class="fancyvrb" /><a 
+ id="x259-1545031r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H1=(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">S1bis=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,H1)</span>
+<br class="fancyvrb" /><a 
+ id="x259-1545033r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H2=(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">S2bis=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,H2)</span><br class="fancyvrb" /><a 
+ id="x259-1545035r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">S2</span><br class="fancyvrb" /><a 
+ id="x259-1545037r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[S1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">S2]</span><br class="fancyvrb" /><a 
+ id="x259-1545039r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(S1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">S1bis</span><br class="fancyvrb" /><a 
+ id="x259-1545041r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1bis</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">S2bis</span><br class="fancyvrb" /><a 
+ id="x259-1545043r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">S2bis</span><br class="fancyvrb" /><a 
+ id="x259-1545045r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;size(S1)</span></div>
+<!--l. 91--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x259-1546000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1040.html#tlist">tlist</a>    <a 
+href="manualli999.html#lsslist">lsslist</a>    <a 
+href="manualli1024.html#rlist">rlist</a>    <a 
+href="manualli252.html#ssrand">ssrand</a>    <a 
+href="manualli79.html#ss2tf">ss2tf</a>    <a 
+href="manualli85.html#tf2ss">tf2ss</a>    <a 
+href="manualli33.html#dscr">dscr</a>    <a 
+href="manualli13.html#abcd">abcd</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli259.html" >next</a>] [<a 
+href="manualli257.html" >prev</a>] [<a 
+href="manualli257.html#tailmanualli257.html" >prev-tail</a>] [<a 
+href="manualli258.html" >front</a>] [<a 
+href="manualli104.html#manualli258.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli258.html"></a>  </p> 
+</body></html> 

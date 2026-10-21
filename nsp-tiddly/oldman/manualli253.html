@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>sub2ind</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli254.html" >next</a>] [<a 
+href="manualli252.html" >prev</a>] [<a 
+href="manualli252.html#tailmanualli252.html" >prev-tail</a>] [<a 
+href="#tailmanualli253.html">tail</a>] [<a 
+href="manualli104.html#manualli253.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x254-1510000"></a>sub2ind</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx254-1510001"></a><a 
+ id="sub2ind"></a><span 
+class="cmtt-10x-x-109">sub2ind </span>&#x2013;                                                      matrix subscript values to linear index<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x254-1511000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-387">
+&#x00A0;&#x00A0;I&#x00A0;=&#x00A0;sub2ind(dims,i1,i2,...)
+&#x00A0;<br />&#x00A0;&#x00A0;J&#x00A0;=&#x00A0;sub2ind(dims,Mi)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x254-1512000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dims</span>: vector: the matrix dimensions
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">i1,i2,...</span>: the subscript value arrays(same matrix shape as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">I</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Mi</span>: matrix whose columns contains the subscript values.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">I</span>: the linear index array</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x254-1513000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sub2ind</span></span></span> is used to determine the equivalent single index corresponding to a given set of subscript
+values. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">I</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;sub2ind(dims,i1,i2,..)</span></span></span> returns the linear index equivalent to the row, column, ...
+subscripts in the arrays <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i1</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i2</span></span></span>,.. for an matrix of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims</span></span></span>. In this case <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i1</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i2</span></span></span>,.. must have the same
+shape and the result <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">I</span></span></span> has the same matrix shape. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">I</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;sub2ind(dims,Mi)</span></span></span> returns the linear index
+equivalent to the subscripts in the columns of the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Mi</span></span></span> for a matrix of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims</span></span></span>. in this case <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">I</span></span></span>
+is a column vector
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x254-1514000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb208"><a 
+ id="x254-1514008r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;i=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x254-1514010r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;j=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x254-1514012r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x254-1514014r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sub2ind([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],i,j,k)</span>
+<br class="fancyvrb" /><a 
+ id="x254-1514016r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sub2ind([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],[i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">j</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">k</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x254-1514018r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">EXAMPLE$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">$</span></div>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x254-1515000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli164.html#ind2sub">ind2sub</a>    <a 
+href="manualli967.html#extraction">extraction</a>    <a 
+href="manualli988.html#insertion">insertion</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x254-1516000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Serge Steer, INRIA
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli254.html" >next</a>] [<a 
+href="manualli252.html" >prev</a>] [<a 
+href="manualli252.html#tailmanualli252.html" >prev-tail</a>] [<a 
+href="manualli253.html" >front</a>] [<a 
+href="manualli104.html#manualli253.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli253.html"></a>  </p> 
+</body></html> 

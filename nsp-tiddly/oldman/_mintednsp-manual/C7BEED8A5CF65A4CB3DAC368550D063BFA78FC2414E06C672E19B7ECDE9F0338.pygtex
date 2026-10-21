@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+contour2d(\nspnumber{1}\nspoperator{:}\nspnumber{10},\nspnumber{1}\nspoperator{:}\nspnumber{10},rand(\nspnumber{10},\nspnumber{10}),\nspnumber{5},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{11}])
+\nspcomment{// changing the format of the printing of the levels}
+xset(\nspstring{"fpf"},\nspstring{"\nsppc{}.2f"})
+clf()
+contour2d(\nspnumber{1}\nspoperator{:}\nspnumber{10},\nspnumber{1}\nspoperator{:}\nspnumber{10},rand(\nspnumber{10},\nspnumber{10}),\nspnumber{5},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{11}])
+\nspcomment{// now an example with level numbers drawn in a legend}
+\nspcomment{// Caution there are a number of tricks...}
+x=linspace(\nspnumber{0},\nspnumber{4}\nspoperator{*}%pi,\nspnumber{80})\nspoperator{;}
+z=cos(x\nspoperator{'})\nspoperator{*}cos(x)\nspoperator{;}
+clf()\nspoperator{;}f=gcf()\nspoperator{;}
+xset(\nspstring{"fpf"},\nspstring{" "})\nspoperator{,}\nspcomment{// trick 1: this implies that the level numbers are not}
+\nspcomment{//          drawn on the level curves}
+f.color_map=jetcolormap(\nspnumber{7})\nspoperator{;}
+\nspcomment{// trick 2: to be able to put the legend on the right without}
+\nspcomment{//          interfering with the level curves use rect with a xmax}
+\nspcomment{//          value large enough}
+contour2d(x,x,z,\nspoperator{-}\nspnumber{0.75}\nspoperator{:}\nspnumber{0.25}\nspoperator{:}\nspnumber{0.75},frameflag = \nspnumber{3},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{5}\nspoperator{*}%pi\nspoperator{,}\nspnumber{4}\nspoperator{*}%pi])
+\nspcomment{// trick 3: use legends (note that the more practical legend function}
+\nspcomment{//          will not work as soon as one of the level is formed by 2 curves)}
+legends(string(\nspoperator{-}\nspnumber{0.75}\nspoperator{:}\nspnumber{0.25}\nspoperator{:}\nspnumber{0.75}),\nspnumber{1}\nspoperator{:}\nspnumber{7},\nspstring{"lr"})\nspoperator{;}
+xtitle(\nspstring{"Some level curves of the function cos(x)cos(y)"})
+\end{Verbatim}

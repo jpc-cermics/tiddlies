@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab : un logiciel libre pour le calcul scientifique</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <H1 ALIGN="center">Scilab : un logiciel
+libre pour le calcul scientifique</H1>
+<H3 ALIGN="center"> </H3>
+<BR>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+Linux, c'est aussi des logiciels professionnels qui passent du monde de la
+recherche ou de l'industrie vers le grand public. Le logiciel Scilab en est une
+belle illustration. Ce premier article, qui p&eacute;sente les grandes lignes
+du logiciel, sera suivi d'autres p&eacute;sentations plus
+d&eacute;taill&eacute;es et comportant des exemples d'utilisation.<BR>
+<BR>
+<!--TOC section Calcul scientifique, symbolique ou numérique ?-->
+<H2>1&nbsp;&nbsp; Calcul scientifique, symbolique ou num&eacute;rique ?</H2>
+On trouve sur le march&eacute; deux types de logiciels de calcul scientifique,
+les logiciels de calcul symbolique qui, en gros, ``font des maths'' et les
+logiciels de calcul num&eacute;rique, qui sont faits plut&ocirc;t pour les
+applications des maths. Dans la premi&egrave;re cat&eacute;gorie on trouve
+entre autres Maple, Mathematica et MuPad. Ce dernier offre des licences
+gratuites aux &eacute;tudiants et aux chercheurs. Ces logiciels sont
+utilis&eacute;s depuis quelques ann&eacute;es dans les classes pr&eacute;pas
+scientifiques. Dans la deuxi&egrave;me cat&eacute;gorie, o&ugrave; le
+march&eacute; est plus large, on trouve essentiellement les logiciels
+commerciaux (et tr&egrave;s chers !) Matlab et Xmath et maintenant Scilab qui
+est un logiciel libre (et tout aussi puissant que ses concurrents),
+distribu&eacute; avec son code source. Scilab a &eacute;t&eacute;
+d&eacute;velopp&eacute; par des chercheurs de l'INRIA et de l'ENPC dans un
+environnement Unix pour des applications industrielles et comme outil de
+recherche (d&eacute;veloppement et tests d'algorithmes). Scilab est bien
+entendu compatible avec Linux et son essor doit beaucoup &agrave; Linux (et
+&agrave; d'autres programmes libres qui sont incorpor&eacute;s dans
+l'environnement Scilab...). Une version Windows est aussi disponible. Alors que
+les logiciels de calcul symbolique font des calculs exacts avec des gros
+nombres entiers (des ``bignums'' selon la terminologie anglosaxonne), les
+logiciels num&eacute;riques font eux leurs calculs avec des nombres flottants
+et la vitesse de calcul est essentielle. Par exemple, pour inverser une matrice
+de polyn&ocirc;mes de taille 10 x 10 contenant des nombres flottants, Maple va
+vite jeter l'&eacute;ponge alors que Scilab va donner le r&eacute;sultat
+imm&eacute;diatement. Au contraire Scilab est incapable de trouver la
+d&eacute;riv&eacute;e symbolique de la fonction sinus ! A chacun son
+domaine...<BR>
+<BR>
+<!--TOC section Comment se procurer Scilab ?-->
+<H2>2&nbsp;&nbsp; Comment se procurer Scilab ?</H2>
+Si vous avez un acc&egrave;s &agrave; Internet avec un d&eacute;bit
+raisonnable, vous pouvez t&eacute;l&eacute;charger Scilab depuis son site
+&agrave; l'Inria :<BR>
+<CODE>http://www-rocq.inria.fr/scilab</CODE><BR>
+Sachez que la version binaire, une fois install&eacute;e fait environ 25
+M&eacute;gas et que la version compress&eacute;e <CODE>.tgz</CODE> du source
+environ 7 M&eacute;gas (le <CODE>rpm</CODE> fait lui environ 6 M&eacute;gas).
+Scilab est aussi distribu&eacute; sur le CD-Rom des logiciels libres &agrave;
+l'INRIA Rocquencourt. On peut obtenir gratuitement ce CD-Rom en &eacute;crivant
+&agrave; : <PRE>
+        INRIA - SICS Diffusion
+        Distribution de Scilab
+     Domaine de Voluceau, B.P. 105
+        78153 Le Chesnay CEDEX 
+</PRE>
+Il vous faut alors fournir une enveloppe (appropri&eacute;e &agrave; contenir
+un CD-ROM) portant vos nom et adresse, et 4 timbres fran&ccedil;ais au tarif
+lettre (ou un coupon-r&eacute;ponse international).<BR>
+<BR>
+<!--TOC section Qu'est-ce que Scilab ?-->
+
+<H2>3&nbsp;&nbsp; Qu'est-ce que Scilab ?</H2>
+Scilab est un puissant environnement de programmation interactif pour le calcul
+num&eacute;rique. C'est un gros logiciel : environ 13 000 fichiers, plus de 400
+000 lignes de code source (en C et Fortran), 70 000 lignes de code Scilab
+(librairies sp&eacute;cialis&eacute;es), 80 000 lignes de ``man'' (help en
+ligne et doc), le tout g&eacute;r&eacute; sous Linux par 18 000 lignes de
+fichiers de configuration (scripts et Makefiles). Scilab comporte un langage de
+programmation et un interpr&eacute;teur qui travaille sur des objets de type
+num&eacute;riques mais pouvant &ecirc;tre structur&eacute;s selon les besoins
+de l'utilisateur. C'est un syst&egrave;me compl&egrave;tement ouvert, puisque
+c'est l'utilisateur qui d&eacute;finit ses propres fonctions &agrave; partir
+des puissantes primitives de calcul qui sont fournies. Scilab est
+distribu&eacute; sous forme binaire pour les PC-Linux, Windows et les stations
+Unix ``classiques'' (Sun HP, DEC, SGI, ...), mais construire Scilab sous Linux
+&agrave; partir de la version source ne pose aucun probl&egrave;me car les
+compilateurs <CODE>gcc</CODE> et <CODE>g77</CODE> sont dans les distributions
+standards. Un ``configure'' suivi d'un ``make all'' et c'est parti pour la
+compilation : 10 &agrave; 15 minutes plus tard (avec un pentium assez
+r&eacute;cent !) Scilab est pr&ecirc;t &agrave; d&eacute;marrer. Le code
+ex&eacute;cutable (scilex) se trouve dans le sous r&eacute;pertoire
+<CODE>bin</CODE> et fait &agrave; peu pr&egrave;s 5 M&eacute;gas. Evidemment,
+les sources et les Makefiles &eacute;tant disponibles, l'utilisateur plus
+courageux peut m&ecirc;me se recompiler un Scilab personnalis&eacute; &agrave;
+son go&ucirc;t. 
+<!--TOC section Comment démarrer ?-->
+<H2>4&nbsp;&nbsp; Comment d&eacute;marrer ?</H2>
+On lance Scilab en tapant la commande ``scilab'' dans le r&eacute;pertoire
+<CODE>bin</CODE>. Le script ``scilab'' d&eacute;finit quelques variables
+d'environnment et lance le code ex&eacute;cutable. <BLOCKQUOTE> <CENTER>
+<HR SIZE="2">
+<IMG SRC="scilab.jpg" ALT="scilab" WIDTH="733" HEIGHT="437" BORDER="0"> <BR>
+<DIV ALIGN="center">
+Figure 1: <A NAME="msf"></A>La fen&ecirc;tre principale Scilab 
+</DIV>
+<HR SIZE="2">
+</CENTER>
+</BLOCKQUOTE>
+On obtient la fen&ecirc;tre de la figure <A HREF="#msf">1</A>, un peu
+aust&egrave;re certes mais Scilab est un logiciel de type professionnel, pas un
+jeu en 3D ! Vu la taille du logiciel, l'utilisateur novice risque d'&ecirc;tre
+un peu d&eacute;rout&eacute;. Cependant, Scilab peut tout d'abord &ecirc;tre
+utilis&eacute; comme une simple calculette (de luxe !). A l'invite (le
+``prompt'') not&eacute;e <CODE>--&gt;</CODE>, on passe une commande, Scilab
+donne le r&eacute;sulat puis redonne <CODE>--&gt;</CODE>. Apr&egrave;s avoir
+pass&eacute; quelques commandes, les premiers pas se font en cliquant sur le
+bouton ``d&eacute;mos''. En observant les d&eacute;mos, on commence &agrave;
+voir les capacit&eacute;s du logiciel. On comprend vite que les objets
+manipul&eacute;s sont surtout des vecteurs et des matrices num&eacute;riques,
+ce qui donne un code tr&egrave;s compact avec des notations matricielles
+naturelles. En fait, la syntaxe de Scilab est identique &agrave; la syntaxe de
+Matlab pour tout ce qui concerne les manipulations sur les vecteurs et les
+matrices. Le gain par rapport &agrave; un codage en C (ou Fortran) est
+&eacute;norme : pas de d&eacute;claration de types, pas de compilation, ni
+d'allocation de m&eacute;moire, tout est automatique. Le prix &agrave; payer
+est bien s&ucirc;r celui de l'interpr&eacute;tation qui peut devenir
+tr&egrave;s cher pour certaines applications. Un help en ligne est disponible;
+il donne la syntaxe d'appel des diff&eacute;rentes fonctions (il y en a plus de
+mille...). La plupart des fonctions sont illustr&eacute;es par un exemple qu'on
+peut faire tourner par un simple copier-coller &agrave; la souris depuis la
+fen&ecirc;tre de help vers la fen&ecirc;tre Scilab. Les d&eacute;mos donnent
+des exemples de graphiques, de traitement du signal, de commande, et de
+simulation de syst&egrave;mes dont la c&eacute;l&egrave;bre d&eacute;mo du
+v&eacute;lo, qui montre la simulation d'un v&eacute;lo &agrave; partir des
+&eacute;quations math&eacute;matiques d'un v&eacute;lo id&eacute;al se
+d&eacute;pla&ccedil;ant sans frottement sur une surface plane. Les
+&eacute;quations du v&eacute;lo ont &eacute;t&eacute; obtenues &agrave; l'aide
+de Maple qui g&eacute;n&egrave;re aussi le programme num&eacute;rique
+exploit&eacute; directement par Scilab.<BR>
+<BR>
+<!--TOC section Un système ouvert-->
+<H2>5&nbsp;&nbsp; Un syst&egrave;me ouvert</H2>
+Scilab se veut avant tout un syst&egrave;me ouvert. Pour tirer profit au mieux
+du logiciel, l' utilisateur doit apprendre &agrave; utiliser le langage Scilab
+pour d&eacute;velopper ses applications. En g&eacute;n&eacute;ral, un programme
+Scilab se compose de quelques lignes car les primitives de calcul et de
+manipulation d'objets fournies sont nombreuses et puissantes. Ces programmes
+sont d&eacute;finis dans des fichiers que l'utilisateur construit &agrave;
+l'aide de son &eacute;diteur pr&eacute;f&eacute;r&eacute; (sous Linux, il
+s'agit en g&eacute;n&eacute;ral d'<CODE>emacs</CODE> pour lequel existe
+d'ailleurs un mode scilab), puis charg&eacute;s dans Scilab. Cel&agrave; se
+fait &agrave; la souris (Menu <CODE>File operations</CODE>) ou directement par
+la commande <CODE>getf</CODE>. Un fichier peut bien s&ucirc;r contenir un
+nombre arbitraire de fonctions Scilab. L'utilisateur standard de Scilab passe
+souvent l'essentiel de son temps &agrave; d&eacute;finir et mettre au point ses
+fonctions en faisant de nombreux allers-retours entre son &eacute;diteur et
+Scilab.<BR>
+<BR>
+En plus des vecteurs et des matrices (qui peuvent contenir des nombres
+r&eacute;els ou complexes, des chaines de caract&egrave;res, des
+polyn&ocirc;mes, ...), on peut d&eacute;finir des objets plus complexes
+&agrave; partir de listes typ&eacute;es ou non. Ces objets peuvent &ecirc;tre
+manipul&eacute;s &agrave; leur tour par des op&eacute;rateurs d&eacute;finis
+par l'utilisateur. Enfin l'utilisateur peut rajouter &agrave; Scilab des
+fonctions &eacute;crites en langage C (ou Fortran). Il peut alors linker
+dynamiquement son application &agrave; Scilab. Un r&eacute;pertoire
+<CODE>examples</CODE> donne (comme son nom l'indique) de nombreux exemples de
+fonctions link&eacute;es dynamiquement &agrave; Scilab. Les utilisateurs
+habitu&eacute;s &agrave; Matlab y trouveront m&ecirc;me des fonctions
+&eacute;mulant les fonctions d'interfacage Matlab. 
+<!--TOC section Le graphique-->
+<H2>6&nbsp;&nbsp; Le graphique</H2>
+<BLOCKQUOTE><CENTER>
+<HR SIZE="2">
+<IMG SRC="ring.jpg" ALT="ring" WIDTH="662" HEIGHT="427" BORDER="0"> <BR>
+<DIV ALIGN="center">
+Figure 2: <A NAME="ring"></A>Un plot3d 
+</DIV>
+<HR SIZE="2">
+</CENTER>
+</BLOCKQUOTE>
+Le graphique sous Scilab est assez d&eacute;routant pour le d&eacute;butant et
+un investissement important est n&eacute;cessaire pour appr&eacute;hender
+l'ensemble des primitives graphiques dont l'usage ``brut'' semble peu
+convivial. La meilleure fa&ccedil;on de d&eacute;marrer est encore de faire
+tourner les d&eacute;mos graphiques, de rep&eacute;rer celle qui ressemble le
+plus &agrave; ce que l'on veut faire, puis de modifier le script propos&eacute;
+dans la d&eacute;mo pour l'adapter &agrave; ses besoins dans une nouvelle
+fonction. On peut faire des graphiques 2D et 3D, des trac&eacute;s de contours,
+des trac&eacute;s param&eacute;triques, des animations, etc. Le graphique
+Scilab supporte bien s&ucirc;r un driver X qui interface la plupart des
+primitives X11. Les graphiques peuvent &ecirc;tre export&eacute;s au format
+Xfig, Postscript, Gif et Postscript-Latex. La figure <A HREF="#ring">2</A> est
+tir&eacute;e d'une des d&eacute;mo graphique est obtenue en quelques lignes de
+code par la commande primitive graphique <CODE>plot3d2</CODE>.<BR>
+<BR>
+L'application Scicos, qui est une boite &agrave; outils dont l'&eacute;diteur
+graphique est enti&egrave;rement &eacute;crit en Scilab illustre bien les
+puissantes capacit&eacute;s du graphique. Cette application est une interface
+bloc-diagramme pour la simulation de syst&egrave;mes dynamiques
+interconnect&eacute;s. C'est l'analogue du logiciel Simulink de Matlab (mais
+Simulink n'est pas fourni en standard dans la distribution de Matlab : il faut
+payer une licence suppl&eacute;mentaire sp&eacute;cifique). Cet outil est
+tr&egrave;s utilis&eacute; en milieu industriel (par exemple &agrave; EDF) pour
+simuler des syst&egrave;mes complexes. La figure <A HREF="#scicos">3</A> montre
+un tr&egrave;s simple diagramme Scicos. La premi&egrave;re pr&eacute;occupation
+de l'utilisateur est de d&eacute;finir un mod&egrave;le de simulation pour le
+syst&egrave;me qu'il &eacute;tudie (ce qui peut &ecirc;tre aussi bien un moteur
+de voiture qu'une centrale &eacute;lectrique) et de regarder si les simulations
+faites avec son mod&egrave;le correspondent bien &agrave; la
+r&eacute;alit&eacute;...
+<!--TOC section Les boites à outils-->
+<H2>7&nbsp;&nbsp; Les boites &agrave; outils</H2>
+<BLOCKQUOTE><CENTER>
+<HR SIZE="2">
+<IMG SRC="scicos.jpg" ALT="scicos" WIDTH="541" HEIGHT="680" BORDER="0"> <BR>
+<DIV ALIGN="center">
+Figure 3: <A NAME="scicos"></A>Un sch&eacute;ma Scicos 
+</DIV>
+<HR SIZE="2">
+</CENTER>
+</BLOCKQUOTE> En plus de Scicos, Scilab fournit des boites &agrave; outils dans
+la plupart des domaines de l'ing&eacute;nierie : traitement du signal,
+commande, optimisation, graphes, analyse fractale, calcul parall&egrave;le,
+statistique, etc... Ces boites &agrave; outils sont bien s&ucirc;r fournies
+avec la version distribu&eacute;e de Scilab. &Agrave; ces boites &agrave;
+outils s'ajoutent des contributions ext&eacute;rieures : l' objectif de Scilab
+est bien de fournir une structure d'accueil gratuite pour toutes sortes d'
+applications scientifiques. Les bonnes volont&eacute;s sont donc mises &agrave;
+contribution. C'est le principe du logiciel libre : qualit&eacute; et mise en
+commun des efforts. Une interface Tk-Tcl permet de d&eacute;finir des
+applications o&ugrave; l'interaction avec l'utilisateur se fait avec cet outil
+et les calculs num&eacute;riques par les fonctions Scilab.
+<!--TOC section La documentation-->
+<H2>8&nbsp;&nbsp; La documentation</H2>
+&Agrave; la documentation en ligne, s'ajoute un manuel ``Introduction &agrave;
+Scilab'' d'une centaine de pages, qui se trouve dans le r&eacute;pertoire
+<CODE>doc</CODE>. Un livre (en Anglais et cher...) ``Engineering and Scientific
+Computing with Scilab'' est paru r&eacute;cemment chez Birkhauser. Le site Web
+de Scilab cit&eacute; plus haut contient aussi de la documentation en ligne au
+format HTML ou PDF et un FAQ. Il existe un Newsgroup d&eacute;di&eacute;
+&agrave; Scilab : <PRE>
+comp.soft-sys.math.scilab
+</PRE>
+Enfin l'&eacute;quipe de Scilab &agrave; l'Inria s'efforce dans la mesure du
+possible de r&eacute;pondre aux mails envoy&eacute;s &agrave;
+<CODE>scilab@inria.fr</CODE>... <BR>
+<BR>
+Dans le prochaine article nous vous montrerons tous pour manipuler les matrices
+sous Scilab.<BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scilab
+Group.
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

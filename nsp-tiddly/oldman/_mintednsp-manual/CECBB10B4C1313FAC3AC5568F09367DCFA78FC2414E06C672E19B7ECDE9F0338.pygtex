@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Let the LP problem:}
+\nspcomment{//objective:}
+\nspcomment{//   min     XONE + 4 YTWO + 9 ZTHREE}
+\nspcomment{//constraints:}
+\nspcomment{//  LIM1:    XONE +   YTWO            $<$ = 5}
+\nspcomment{//  LIM2:    XONE +            ZTHREE $>$ = 10}
+\nspcomment{// MYEQN:         -   YTWO  +  ZTHREE   = 7}
+\nspcomment{//Bounds}
+\nspcomment{//  0 $<$ = XONE $<$ = 4}
+\nspcomment{// -1 $<$ = YTWO $<$ = 1}
+\nspcomment{//Generate MPS file}
+txt=[\nspstring{'NAME          TESTPROB'}\nspoperator{;}\nspstring{'ROWS'}\nspoperator{;}\nspstring{' N  COST'}\nspoperator{;}\nspstring{' L  LIM1'}\nspoperator{;}\nspstring{' G  LIM2'}\nspoperator{;}\nspstring{' E  MYEQN'}\nspoperator{;}
+     \nspstring{'COLUMNS'}\nspoperator{;}\nspstring{'    XONE      COST                 1   LIM1                 1'}\nspoperator{;}
+     \nspstring{'    XONE      LIM2                 1'}\nspoperator{;}
+     \nspstring{'    YTWO      COST                 4   LIM1                 1'}\nspoperator{;}
+     \nspstring{'    YTWO      MYEQN               -1'}\nspoperator{;}
+     \nspstring{'    ZTHREE    COST                 9   LIM2                 1'}\nspoperator{;}
+     \nspstring{'    ZTHREE    MYEQN                1'}\nspoperator{;}\nspstring{'RHS'}\nspoperator{;}
+     \nspstring{'    RHS1      LIM1                 5   LIM2                10'}\nspoperator{;}
+     \nspstring{'    RHS1      MYEQN                7'}\nspoperator{;}\nspstring{'BOUNDS'}\nspoperator{;}
+     \nspstring{' UP BND1      XONE                 4'}\nspoperator{;}\nspstring{' LO BND1      YTWO                -1'}\nspoperator{;}
+     \nspstring{' UP BND1      YTWO                 1'}\nspoperator{;}\nspstring{'ENDATA'}]\nspoperator{;}
+mputl(txt,TMPDIR\nspoperator{+}\nspstring{'/test.mps'})
+\nspcomment{//Read the MPS file}
+P=readmps(TMPDIR\nspoperator{+}\nspstring{'/test.mps'},[\nspnumber{0}\nspoperator{,}\nspnumber{10}\nspoperator{^}\nspnumber{30}])
+\nspcomment{//Convert it to linpro format}
+LP=mps2linpro(P)
+\nspcomment{//Solve it with linpro}
+[x,lagr,f]=linpro(LP(\nspnumber{2}\nspoperator{:}$))
+\end{Verbatim}

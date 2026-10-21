@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+rand(\nspstring{'seed'},\nspnumber{0})\nspoperator{;}sl=ssrand(\nspnumber{2},\nspnumber{2},\nspnumber{5})\nspoperator{;}[A,B,C,D]=abcd(sl)\nspoperator{;}poles=spec(A)
+[Q,M]=pbig(A,\nspnumber{0},\nspstring{'c'})\nspoperator{;}\nspcomment{//keeping unstable poles}
+slred=projsl(sl,Q,M)\nspoperator{;}spec(slred(\nspstring{'A'}))
+sl(\nspstring{'D'})=rand(\nspnumber{2},\nspnumber{2})\nspoperator{;}\nspcomment{//making proper system}
+trzeros(sl)\nspoperator{,}\nspcomment{//zeros of sl}
+wi=inv(sl)\nspoperator{;}\nspcomment{//wi=inverse in state-space}
+[q,m]=psmall(wi(\nspstring{'A'}),\nspnumber{2},\nspstring{'d'})\nspoperator{;}\nspcomment{//keeping small zeros (poles of wi) i.e. abs(z)$<$2}
+slred2=projsl(sl,q,m)\nspoperator{;}
+trzeros(slred2)\nspoperator{,}\nspcomment{//zeros of slred2 = small zeros of sl}
+\nspcomment{//  Example keeping second order modes}
+A=diag([\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{3}])\nspoperator{;}
+sl=syslin(\nspstring{'c'},A,rand(\nspnumber{3},\nspnumber{2}),rand(\nspnumber{2},\nspnumber{3}))\nspoperator{;}[nk2,W]=hankelsv(sl)
+[Q,M]=pbig(W,nk2(\nspnumber{2})\nspoperator{-}%eps,\nspstring{'c'})\nspoperator{;}\nspcomment{//keeping 2 eigenvalues of W}
+slr=projsl(sl,Q,M)\nspoperator{;}\nspcomment{//reduced model}
+hankelsv(slr)
+\end{Verbatim}

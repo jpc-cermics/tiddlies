@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>kroneck</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli638.html" >next</a>] [<a 
+href="manualli636.html" >prev</a>] [<a 
+href="manualli636.html#tailmanualli636.html" >prev-tail</a>] [<a 
+href="#tailmanualli637.html">tail</a>] [<a 
+href="manualli607.html#manualli637.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x638-3794000"></a>kroneck</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx638-3794001"></a><a 
+ id="kroneck"></a><span 
+class="cmtt-10x-x-109">kroneck </span>&#x2013;                                                              Kronecker form of matrix pencil<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x638-3795000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-785">
+&#x00A0;&#x00A0;[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)
+&#x00A0;<br />&#x00A0;&#x00A0;[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x638-3796000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">F</span>: real matrix pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F=s*E-A</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">E,A</span>: two real matrices of same dimensions
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q,Z</span>: two square orthogonal matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Qd,Zd</span>: two vectors of integers
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">numbeps,numeta</span>: two vectors of integers</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x638-3797000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > Kronecker form of matrix pencil: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">kroneck</span></span></span> computes two orthogonal matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Z</span></span></span> which put the
+pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F=s*E</span><span 
+class="cmtt-10x-x-109">&#x00A0;-A</span></span></span> into upper-triangular form:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-786">
+&#x00A0;&#x00A0;|&#x00A0;sE(eps)-A(eps)&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;X&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;X&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;X&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;|----------------|----------------|------------|---------------|
+&#x00A0;<br />&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;O&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;sE(inf)-A(inf)&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;X&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;X&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;Q(sE-A)Z&#x00A0;=&#x00A0;|---------------------------------|----------------------------|
+&#x00A0;<br />&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;sE(f)-A(f)&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;X&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;|--------------------------------------------------------------|
+&#x00A0;<br />&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;sE(eta)-A(eta)|
+</div>
+<!--l. 52--><p class="nopar" >The dimensions of the four blocks are given by:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eps=Qd(1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;Zd(1)</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">inf=Qd(2)</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;Zd(2)</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;Qd(3)</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;Zd(3)</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eta=Qd(4)xZd(4)</span></span></span> The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">inf</span></span></span> block contains the infinite modes of the pencil.
+The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> block contains the finite modes of the pencil The structure of epsilon and eta
+blocks are given by:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numbeps(1)</span></span></span> = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> of eps blocks of size 0 x 1<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numbeps(2)</span></span></span> = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> of eps
+blocks of size 1 x 2<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numbeps(3)</span></span></span> = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> of eps blocks of size 2 x 3 etc...<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numbeta(1)</span></span></span> = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> of
+eta blocks of size 1 x 0<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numbeta(2)</span></span></span> = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> of eta blocks of size 2 x 1<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numbeta(3)</span></span></span> = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> of
+eta blocks of size 3 x 2 etc... The code is taken from T. Beelen (Slicot-WGS group).
+</p>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x638-3798000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb496"><a 
+ id="x638-3798014r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F=randpencil([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x638-3798016r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">17</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">17</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Z=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">18</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">18</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">F=Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x638-3798018r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//random</span><span 
+class="cmitt-10x-x-109">&#x00A0;pencil</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;eps1=1,eps2=1,eps3=1;</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;J-blocks</span><span 
+class="cmitt-10x-x-109">&#x00A0;@</span><span 
+class="cmitt-10x-x-109">&#x00A0;infty</span></span><br class="fancyvrb" /><a 
+ id="x638-3798020r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//with</span><span 
+class="cmitt-10x-x-109">&#x00A0;dimensions</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span></span>
+<br class="fancyvrb" /><a 
+ id="x638-3798022r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//3</span><span 
+class="cmitt-10x-x-109">&#x00A0;finite</span><span 
+class="cmitt-10x-x-109">&#x00A0;eigenvalues</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;-1,3,1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;eta1=0,eta2=3</span></span><br class="fancyvrb" /><a 
+ id="x638-3798024r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x638-3798026r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//eps.</span><span 
+class="cmitt-10x-x-109">&#x00A0;part</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;sum(epsi)</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;(sum(epsi)</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;number</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;epsi)</span></span>
+<br class="fancyvrb" /><a 
+ id="x638-3798028r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//infinity</span><span 
+class="cmitt-10x-x-109">&#x00A0;part</span></span><br class="fancyvrb" /><a 
+ id="x638-3798030r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//finite</span><span 
+class="cmitt-10x-x-109">&#x00A0;part</span></span>
+<br class="fancyvrb" /><a 
+ id="x638-3798032r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//eta</span><span 
+class="cmitt-10x-x-109">&#x00A0;part</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;(sum(etai)</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;number(eta1))</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;sum(etai)</span></span><br class="fancyvrb" /><a 
+ id="x638-3798034r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;numbeps</span><br class="fancyvrb" /><a 
+ id="x638-3798036r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;numbeta</span></div>
+<!--l. 80--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x638-3799000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli630.html#gschur">gschur</a>    <a 
+href="manualli631.html#gspec">gspec</a>    <a 
+href="manualli930.html#systmat">systmat</a>    <a 
+href="manualli649.html#pencan">pencan</a>    <a 
+href="manualli658.html#randpencil">randpencil</a>    <a 
+href="manualli87.html#trzeros">trzeros</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli638.html" >next</a>] [<a 
+href="manualli636.html" >prev</a>] [<a 
+href="manualli636.html#tailmanualli636.html" >prev-tail</a>] [<a 
+href="manualli637.html" >front</a>] [<a 
+href="manualli607.html#manualli637.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli637.html"></a>  </p> 
+</body></html> 

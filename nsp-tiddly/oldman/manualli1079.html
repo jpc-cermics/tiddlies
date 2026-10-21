@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_reduce</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1080.html" >next</a>] [<a 
+href="manualli1078.html" >prev</a>] [<a 
+href="manualli1078.html#tailmanualli1078.html" >prev-tail</a>] [<a 
+href="#tailmanualli1079.html">tail</a>] [<a 
+href="manualli1054.html#manualli1079.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1080-6120000"></a>pvm_reduce</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1080-6120001"></a><a 
+ id="pvm_reduce"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_reduce </span>&#x2013;               Performs a reduce operation over members of the specified group<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1080-6121000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1188">
+&#x00A0;&#x00A0;[buff,&#x00A0;info]&#x00A0;=&#x00A0;pvm_reduce(func,&#x00A0;buff,&#x00A0;msgtag,&#x00A0;group,&#x00A0;rootginst)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1080-6122000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">func: string, defines the operation performed on the global  </span>data.   Should
+     be: Max, Min, Sum or Pro.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">buff: scalar, local scilab variable. On return, the data array on </span>the root
+     will be overwritten with the result of the reduce operation over the group.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">msgtag: integer, message tag supplied by the user. msgtag </span>should be <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0.
+     It allows the user&apos;s program to distinguish between different kinds of messages.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">group</span>: string, group name of an existing group.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rootginst : integer, instance number of group member who gets the </span>result.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info: integer, status code returned by the routine. Values </span>less  than  zero
+     indicate an error.</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1080-6123000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_reduce</span></span></span> performs global operations such as max, min, sum or product over all the tasks in a
+group. All group members call pvm_reduce with their local data, and the result of the reduction
+operation appears on the user specified root task root. The root task is identified by its instance
+number in the group. Max and Min are implemented for scalar datatypes (double, complex). For
+complex values the minimum [maximum] is that complex pair with the minimum [maximum]
+modulus. Sum and Product are implemented for scalar datatypes. Note: pvm_reduce does not block.
+If a task calls pvm_reduce and then leaves the group before the root has called pvm_reduce an error
+may occur.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1080-6124000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb741"><a 
+ id="x1080-6124004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">msgtag=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><br class="fancyvrb" /><a 
+ id="x1080-6124006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[buff,info]=pvm_reduce(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Max&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,A,msgtag,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Workers&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1080-6125000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-bcast">pvm_bcast</a>    <a 
+href="#pvm-barrier">pvm_barrier</a>    <a 
+href="#pvm-send">pvm_send</a>    <a 
+href="#pvm-getinst">pvm_getinst</a>    <a 
+href="#pvm-gsize">pvm_gsize</a>    <a 
+href="#pvm-joingroup">pvm_joingroup</a>
+<a 
+href="#pvm-lvgroup">pvm_lvgroup</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1080.html" >next</a>] [<a 
+href="manualli1078.html" >prev</a>] [<a 
+href="manualli1078.html#tailmanualli1078.html" >prev-tail</a>] [<a 
+href="manualli1079.html" >front</a>] [<a 
+href="manualli1054.html#manualli1079.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1079.html"></a>  </p> 
+</body></html> 

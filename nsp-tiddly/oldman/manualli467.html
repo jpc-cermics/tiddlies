@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>paramfplot2d</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli468.html" >next</a>] [<a 
+href="manualli466.html" >prev</a>] [<a 
+href="manualli466.html#tailmanualli466.html" >prev-tail</a>] [<a 
+href="#tailmanualli467.html">tail</a>] [<a 
+href="manualli370.html#manualli467.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x468-2764000"></a>paramfplot2d</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx468-2764001"></a><a 
+ id="paramfplot2d"></a><span 
+class="cmtt-10x-x-109">paramfplot2d </span>&#x2013;                                    animated 2D plot, curve defined by a function<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x468-2765000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-591">
+&#x00A0;&#x00A0;paramfplot2d(f,x,theta)
+&#x00A0;<br />&#x00A0;&#x00A0;paramfplot2d(f,x,theta,flag)
+&#x00A0;<br />&#x00A0;&#x00A0;paramfplot2d(f,x,theta,flagrect)
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x468-2766000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: real vector.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f</span>: function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y=f(x,t)</span></span></span> . f is a Scilab function or a dynamically linked routine (referred
+     to as a string).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">theta</span>: real vector (set of parameters).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;no&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;yes&#x0027;</span></span></span>: If &#x201D;yes&#x201D; screen is cleared between two consecutive plots.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rect</span>: &#x201D;rectangle&#x201D; [xmin, xmax, ymin, ymax] (1 x 4 real vector),</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x468-2767000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > Animated plot of the function x&#x2013;<span 
+class="cmmi-10x-x-109">&#x003E;</span>f(x,t) for t=theta(1),theta(2),etc. f can be a either Scilab
+function or a dynamically linked routine since y=f(x,t) is evaluated as y=feval(x(:),t,f). See
+feval. f: mapping x,t -<span 
+class="cmmi-10x-x-109">&#x003E; </span>f(x,t) = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R^N</span></span></span> valued function for x= vector of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R^N</span></span></span> and t=real
+number. x is a N-vector of x-values and for each t in theta, f(x,t)=N-vector of y-values.
+</p>
+<!--l. 47--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x468-2768000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb364"><a 
+ id="x468-2768005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=f(x,t)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=t*sin(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x468-2768007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">theta=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.05</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x468-2768009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;paramfplot2d(f,x,theta)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x468-2769000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli473.html#plot2d">plot2d</a>    <a 
+href="manualli968.html#feval">feval</a>    <a 
+href="manualli415.html#fplot2d">fplot2d</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli468.html" >next</a>] [<a 
+href="manualli466.html" >prev</a>] [<a 
+href="manualli466.html#tailmanualli466.html" >prev-tail</a>] [<a 
+href="manualli467.html" >front</a>] [<a 
+href="manualli370.html#manualli467.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli467.html"></a>  </p> 
+</body></html> 

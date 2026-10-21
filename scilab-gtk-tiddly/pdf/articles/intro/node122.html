@@ -1,0 +1,1017 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>7. Demo session</TITLE>
+<META NAME="description" CONTENT="7. Demo session">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node123.html">
+<LINK REL="previous" HREF="node83.html">
+<LINK REL="up" HREF="index.html">
+<LINK REL="next" HREF="node123.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1867"
+ HREF="node123.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1863"
+ HREF="index.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1857"
+ HREF="node121.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1865"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1866"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1868"
+ HREF="node123.html">8. System interconnexion</A>
+<B> Up:</B> <A NAME="tex2html1864"
+ HREF="index.html">No Title</A>
+<B> Previous:</B> <A NAME="tex2html1858"
+ HREF="node121.html">6.6.2.0.5 Scilab functions</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00800000000000000000">
+7. Demo session</A>
+</H1><FONT SIZE="-2"><FONT SIZE="-1">
+We give here the Scilab session corresponding to the first demo.
+</FONT></FONT>
+<P>
+<PRE>
+ 
+--&gt;//               SCILAB OBJECTS
+ 
+--&gt;//               1. SCALARS
+ 
+--&gt;a=1               //real constant
+ a  =
+ 
+    1.  
+ 
+--&gt;1==1              //boolean
+ ans  =
+ 
+  T  
+ 
+--&gt;'string'          //character string
+ ans  =
+ 
+ string   
+ 
+--&gt;z=poly(0,'z')     // polynomial with variable 'z' and with one root at zero
+ z  =
+ 
+    z   
+ 
+--&gt;p=1+3*z+4.5*z^2   //polynomial
+ p  =
+ 
+                 2  
+    1 + 3z + 4.5z   
+ 
+--&gt;r=z/p             //rational
+ r  =
+ 
+          z         
+    -------------   
+                 2  
+    1 + 3z + 4.5z   
+ 
+ 
+--&gt;//                2. MATRICES
+ 
+--&gt;A=[a+1 2 3
+--&gt;     0 0 atan(1)
+--&gt;     5 9 -1]      //3 x 3 constant matrix
+ A  =
+ 
+!   2.    2.    3.        !
+!   0.    0.    0.7853982 !
+!   5.    9.  - 1.        !
+ 
+ 
+--&gt;b=[%t,%f]         //1 x 2 boolean matrix
+ b  =
+ 
+! T F !
+ 
+ 
+--&gt;Mc=['this','is';
+--&gt;    'a' ,'matrix']   //2 x 2 matrix of strings
+ Mc  =
+ 
+!this  is      !
+!              !
+!a     matrix  !
+ 
+ 
+--&gt;Mp=[p,1-z;
+--&gt;    1,z*p]        //2 x 2 polynomial matrix
+ Mp  =
+ 
+!                2                   !
+!   1 + 3z + 4.5z     1 - z          !
+!                                    !
+!                           2      3 !
+!   1                 z + 3z + 4.5z  !
+ 
+ 
+--&gt;F=Mp/poly([1+%i 1-%i 1],'z')   //rational matrix
+ F  =
+ 
+!                 2                      !
+!    1 + 3z + 4.5z        - 1            !
+!   ---------------     ---------        !
+!              2   3              2      !
+! - 2 + 4z - 3z + z     2 - 2z + z       !
+!                                        !
+!                              2      3  !
+!          1             z + 3z + 4.5z   !
+!   ---------------     ---------------  !
+!              2   3               2   3 !
+! - 2 + 4z - 3z + z   - 2 + 4z - 3z + z  !
+ 
+ 
+--&gt;Sp=sparse([1,2;4,5;3,10],[1,2,3])   //sparse matrix
+ Sp  =
+ 
+(    4,   10) sparse matrix
+ 
+(    1,    2)        1. 
+(    3,   10)        3. 
+(    4,    5)        2. 
+ 
+ 
+--&gt;Sp(1,10)==Sp(1,1)                   //boolean sparse matrix
+ ans  =
+ 
+(    1,    1) sparse matrix
+ 
+(    1,    1)    T 
+ 
+ 
+--&gt;//                 3. LISTS
+ 
+--&gt;L=list(a,-(1:5), Mp,['this','is';'a','list'])   //list
+ L  =
+ 
+ 
+       L(1)
+ 
+    1.  
+ 
+       L(2)
+ 
+! - 1.  - 2.  - 3.  - 4.  - 5. !
+ 
+       L(3)
+ 
+!                2                   !
+!   1 + 3z + 4.5z     1 - z          !
+!                                    !
+!                           2      3 !
+!   1                 z + 3z + 4.5z  !
+ 
+       L(4)
+ 
+!this  is    !
+!            !
+!a     list  !
+ 
+--&gt;L(2)(3)     //sub-entry in list
+ ans  =
+ 
+  - 3.  
+ 
+--&gt;Lt=tlist(['mylist','color','position','weight'],'blue',[0,1],10)  //typed-list
+ Lt  =
+ 
+ 
+       Lt(1)
+ 
+!mylist  color  position  weight  !
+ 
+       Lt(2)
+ 
+ blue   
+ 
+       Lt(3)
+ 
+!   0.    1. !
+ 
+       Lt(4)
+ 
+    10.  
+ 
+--&gt;Lt('color')      //extracting
+ ans  =
+ 
+ blue   
+ 
+--&gt;Lt('weight')     //extracting
+ ans  =
+ 
+    10.  
+ 
+--&gt;A=diag([2,3,4]);B=[1 0;0 1;0 0];C=[1 -1 0];D=0*C*B;x0=[0;0;0];
+ 
+--&gt;Sl=syslin('c',A,B,C,D,x0)    //Standard state-space linear system
+ Sl  =
+ 
+ 
+       Sl(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       Sl(2) = A matrix = 
+ 
+!   2.    0.    0. !
+!   0.    3.    0. !
+!   0.    0.    4. !
+ 
+       Sl(3) = B matrix = 
+ 
+!   1.    0. !
+!   0.    1. !
+!   0.    0. !
+ 
+       Sl(4) = C matrix = 
+ 
+!   1.  - 1.    0. !
+ 
+       Sl(5) = D matrix = 
+ 
+!   0.    0. !
+ 
+       Sl(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+!   0. !
+ 
+       Sl(7) = Time domain = 
+ 
+ c   
+ 
+--&gt;Sl("A"), Sl("C")             //Retrieving elements of a typed list
+ ans  =
+ 
+!   2.    0.    0. !
+!   0.    3.    0. !
+!   0.    0.    4. !
+ ans  =
+ 
+!   1.  - 1.    0. !
+ 
+--&gt;Slt=ss2tf(Sl)                // Transfer matrix
+ Slt  =
+ 
+!     1       - 1    !
+!   -----     -----  !
+! - 2 + s   - 3 + s  !
+ 
+--&gt;Slt('num'), Slt('den')
+ ans  =
+ 
+!   1   - 1  !
+ ans  =
+ 
+! - 2 + s   - 3 + s  !
+ 
+--&gt;//                  OPERATIONS
+ 
+--&gt;v=1:5;W=v'*v                 //constant matrix multiplication
+ W  =
+ 
+!   1.    2.     3.     4.     5.  !
+!   2.    4.     6.     8.     10. !
+!   3.    6.     9.     12.    15. !
+!   4.    8.     12.    16.    20. !
+!   5.    10.    15.    20.    25. !
+ 
+--&gt;W(1,:)                       //extracting first row
+ ans  =
+ 
+!   1.    2.    3.    4.    5. !
+ 
+--&gt;W(:,$)                       //extracting last column
+ ans  =
+ 
+!   5.  !
+!   10. !
+!   15. !
+!   20. !
+!   25. !
+ 
+--&gt;Mp'*Mp+eye()                 //polynomial matrix
+ ans  =
+ 
+ 
+         column 1
+ 
+!               2     3        4 !
+!   3 + 6z + 18z + 27z + 20.25z  !
+!                                !
+!                2               !
+!   1 + 3z + 4.5z                !
+ 
+         column 2
+ 
+!                2                         !
+!   1 + 3z + 4.5z                          !
+!                                          !
+!              2    3     4     5        6 !
+!   2 - 2z + 2z + 6z + 18z + 27z + 20.25z  !
+ 
+--&gt;Mp1=Mp(1,1)+4.5*%i           //complex
+ Mp1  =
+ 
+real part
+ 
+ 
+                 2  
+    1 + 3z + 4.5z   
+imaginary part
+ 
+ 
+    4.5   
+ 
+--&gt;Fi=C*(z*eye()-A)^(-1)*B;     //transfer function evaluation
+ 
+--&gt;F(:,1)*Fi                    //operations with rationals
+ ans  =
+ 
+!                    2                          2      !
+!       1 + 3z + 4.5z            - 1 - 3z - 4.5z       !
+!   ---------------------      ---------------------   !
+!                2    3   4                 2    3   4 !
+!   4 - 10z + 10z - 5z + z     6 - 14z + 13z - 6z + z  !
+!                                                      !
+!             1                        - 1             !
+!   ---------------------      ---------------------   !
+!                2    3   4                 2    3   4 !
+!   4 - 10z + 10z - 5z + z     6 - 14z + 13z - 6z + z  !
+ 
+--&gt;M=[Mp -Mp; Mp' Mp+eye()]     //concatenation of polynomial matrices
+ M  =
+ 
+ 
+         column 1 to 3
+ 
+!                2                                   2 !
+!   1 + 3z + 4.5z     1 - z           - 1 - 3z - 4.5z  !
+!                                                      !
+!                           2      3                   !
+!   1                 z + 3z + 4.5z   - 1              !
+!                                                      !
+!                2                                   2 !
+!   1 + 3z + 4.5z     1                 2 + 3z + 4.5z  !
+!                                                      !
+!                           2      3                   !
+!   1 - z             z + 3z + 4.5z     1              !
+ 
+         column 4
+ 
+! - 1 + z              !
+!                      !
+!         2      3     !
+! - z - 3z - 4.5z      !
+!                      !
+!   1 - z              !
+!                      !
+!             2      3 !
+!   1 + z + 3z + 4.5z  !
+ 
+--&gt;[Fi, Fi(:,1)]                // ... or rationals
+ ans  =
+ 
+!     1       - 1         1    !
+!   -----     -----     -----  !
+! - 2 + z   - 3 + z   - 2 + z  !
+ 
+--&gt;F=syslin('c',F);
+ 
+--&gt;Num=F('num');Den=F('den');           //operation on transfer matrix
+ 
+ 
+--&gt;//                  SOME NUMERICAL PRIMITIVES
+ 
+--&gt;inv(A)                       //Inverse
+ ans  =
+ 
+!   0.5    0.           0.   !
+!   0.     0.3333333    0.   !
+!   0.     0.           0.25 !
+ 
+--&gt;inv(Mp)                      //Inverse
+ ans  =
+ 
+ 
+         column 1
+ 
+!                  2      3           !
+!            z + 3z + 4.5z            !
+!   -------------------------------   !
+!              2     3     4        5 !
+! - 1 + 2z + 6z + 18z + 27z + 20.25z  !
+!                                     !
+!                - 1                  !
+!   -------------------------------   !
+!              2     3     4        5 !
+! - 1 + 2z + 6z + 18z + 27z + 20.25z  !
+ 
+         column 2
+ 
+!              - 1 + z                !
+!   -------------------------------   !
+!              2     3     4        5 !
+! - 1 + 2z + 6z + 18z + 27z + 20.25z  !
+!                                     !
+!                         2           !
+!            1 + 3z + 4.5z            !
+!   -------------------------------   !
+!              2     3     4        5 !
+! - 1 + 2z + 6z + 18z + 27z + 20.25z  !
+ 
+--&gt;inv(Sl*Sl')                  //Product of two linear systems and inverse
+ ans  =
+ 
+ 
+       ans(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       ans(2) = A matrix = 
+ 
+!   2.8641369  - 0.9304438    0.    0. !
+!   0.4111970    2.1358631    0.    0. !
+!   0.         - 9.339D-16    4.    0. !
+!   0.           0.           0.    4. !
+ 
+       ans(3) = B matrix = 
+ 
+!   0.7027925 !
+!   0.3620534 !
+!   1.665D-16 !
+!   0.        !
+ 
+       ans(4) = C matrix = 
+ 
+! - 0.3238304    0.6285968    1.890D-15    0. !
+ 
+       ans(5) = D matrix = 
+ 
+                      2  
+    2.75 - 2.5s + 0.5s   
+ 
+       ans(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+!   0. !
+!   0. !
+ 
+       ans(7) = Time domain = 
+ 
+ c   
+ 
+--&gt;w=ss2tf(ans)                 //Transfer function representation
+ w  =
+ 
+                    2    3      4  
+    18 - 30s + 18.5s - 5s + 0.5s   
+    ----------------------------   
+                        2          
+            6.5 - 5s + s           
+ 
+--&gt;w1=inv(ss2tf(Sl)*ss2tf(Sl'))    //Product of two transfer functions and inverse
+ w1  =
+ 
+                  2     3   4  
+    36 - 60s + 37s - 10s + s   
+    ------------------------   
+                      2        
+         13 - 10s + 2s         
+ 
+--&gt;clean(w-w1)
+ ans  =
+ 
+    1.730D-09 - 6.605D-10s   
+    ----------------------   
+                     2       
+         6.5 - 5s + s        
+ 
+--&gt;A=rand(3,3);;B=rand(3,1);n=contr(A,B)                 //Controllability
+ n  =
+ 
+    3.  
+ 
+--&gt;K=ppol(A,B,[-1-%i -1+%i -1])        //Pole placement
+ K  =
+ 
+!   7.1638394    7.2295307    0.3176982 !
+ 
+--&gt;poly(A-B*K,'z')-poly([-1-%i -1+%i -1],'z')    //Check...
+ ans  =
+ 
+                                       2  
+  - 8.882D-16 + 1.776D-15z - 1.332D-15z   
+ 
+ 
+--&gt;s=sin(0:0.1:5*%pi);
+ 
+--&gt;ss=fft(s(1:128),-1);        //FFT
+ 
+--&gt;xbasc();
+ 
+--&gt;plot2d3("enn",1,abs(ss)');      //simple plot
+ 
+ 
+ 
+--&gt;//              ON LINE DEFINITION OF FUNCTION
+ 
+--&gt;deff('[x]=fact(n)','if n=0 then x=1,else x=n*fact(n-1),end')
+ Warning: obsolete use of = instead of ==
+if n=0 then x=1,else x=n*fact(n-1),end
+      !       
+at line       2 of function fact                     called by :  
+deff('[x]=fact(n)','if n=0 then x=1,else x=n*fact(n-1),end')
+ 
+ 
+ 
+--&gt;10+fact(5)
+ ans  =
+ 
+    130.  
+ 
+--&gt;//                    OPTIMIZATION
+ 
+--&gt;deff('[f,g,ind]=rosenbro(x,ind)', 'a=x(2)-x(1)^2 , b=1-x(2) ,...
+--&gt;f=100.*a^2 + b^2 , g(1)=-400.*x(1)*a , g(2)=200.*a -2.*b ');
+ 
+--&gt;[f,x,g]=optim(rosenbro,[2;2],'qn')
+ g  =
+ 
+!   0. !
+!   0. !
+ x  =
+ 
+!   1. !
+!   1. !
+ f  =
+ 
+    0.  
+ 
+ 
+--&gt;//                   SIMULATION
+ 
+--&gt;a=rand(3,3)
+ a  =
+ 
+!   0.7263507    0.2320748    0.8833888 !
+!   0.1985144    0.2312237    0.6525135 !
+!   0.5442573    0.2164633    0.3076091 !
+ 
+--&gt;e=expm(a)
+ e  =
+ 
+!   2.6034702    0.5788017    1.7895052 !
+!   0.6508072    1.4242213    1.1108378 !
+!   1.0616116    0.4238856    1.8909166 !
+ 
+--&gt;deff('[ydot]=f(t,y)','ydot=a*y');
+ 
+--&gt;e(:,1)-ode([1;0;0],0,1,f)
+ ans  =
+ 
+! - 1.425D-07 !
+! - 7.368D-08 !
+! - 8.683D-08 !
+ 
+ 
+--&gt;//                  SYSTEM DEFINITION
+ 
+--&gt;s=poly(0,'s');
+ 
+--&gt;h=[1/s,1/(s+1);1/s/(s+1),1/(s+2)/(s+2)]
+ h  =
+ 
+!   1           1         !
+!   -         -----       !
+!   s         1 + s       !
+!                         !
+!     1           1       !
+!   -----     ---------   !
+!        2              2 !
+!   s + s     4 + 4s + s  !
+ 
+--&gt;w=tf2ss(h);
+ 
+--&gt;ss2tf(w)
+ ans  =
+ 
+!         1                 1             !
+!   -------------         -----           !
+! - 4.710D-16 + s         1 + s           !
+!                                         !
+!    1 + 6.935D-16s       1 + 2.448D-16s  !
+!   ----------------      --------------  !
+!                    2                2   !
+! - 1.610D-15 + s + s       4 + 4s + s    !
+ 
+--&gt;h1=clean(ans)
+ h1  =
+ 
+!   1           1         !
+!   -         -----       !
+!   s         1 + s       !
+!                         !
+!     1           1       !
+!   -----     ---------   !
+!        2              2 !
+!   s + s     4 + 4s + s  !
+ 
+ 
+--&gt;//             EXAMPLE: SECOND ORDER SYSTEM ANALYSIS
+ 
+--&gt;sl=syslin('c',1/(s*s+0.2*s+1))
+ sl  =
+ 
+         1         
+    -----------    
+                2  
+    1 + 0.2s + s   
+ 
+--&gt;instants=0:0.05:20;
+ 
+--&gt;//             step response:
+ 
+--&gt;y=csim('step',instants,sl);
+ 
+--&gt;xbasc();plot2d(instants',y')
+ 
+--&gt;//             Delayed step response
+ 
+--&gt;deff('[in]=u(t)','if t&lt;3 then in=0;else in=1;end');
+ 
+--&gt;y1=csim(u,instants,sl);plot2d(instants',y1');
+ 
+ 
+--&gt;//             Impulse response;
+ 
+--&gt;yi=csim('imp',instants,sl);xbasc();plot2d(instants',yi');
+ 
+--&gt;yi1=csim('step',instants,s*sl);plot2d(instants',yi1');
+ 
+ 
+--&gt;//              Discretization
+ 
+--&gt;dt=0.05;
+ 
+--&gt;sld=dscr(tf2ss(sl),0.05);
+ 
+ 
+--&gt;//               Step response
+ 
+--&gt;u=ones(instants);
+Warning :redefining function: u                       
+ 
+ 
+--&gt;yyy=flts(u,sld);
+ 
+--&gt;xbasc();plot(instants,yyy)
+ 
+ 
+--&gt;//              Impulse response
+ 
+--&gt;u=0*ones(instants);u(1)=1/dt;
+ 
+--&gt;yy=flts(u,sld);
+ 
+--&gt;xbasc();plot(instants,yy)
+ 
+ 
+--&gt;//            system interconnexion
+ 
+--&gt;w1=[w,w];
+ 
+--&gt;clean(ss2tf(w1))
+ ans  =
+ 
+!   1           1            1           1         !
+!   -         -----          -         -----       !
+!   s         1 + s          s         1 + s       !
+!                                                  !
+!     1           1            1           1       !
+!   -----     ---------      -----     ---------   !
+!        2              2         2              2 !
+!   s + s     4 + 4s + s     s + s     4 + 4s + s  !
+ 
+--&gt;w2=[w;w];
+ 
+--&gt;clean(ss2tf(w2))
+ ans  =
+ 
+!   1           1         !
+!   -         -----       !
+!   s         1 + s       !
+!                         !
+!     1           1       !
+!   -----     ---------   !
+!        2              2 !
+!   s + s     4 + 4s + s  !
+!                         !
+!   1           1         !
+!   -         -----       !
+!   s         1 + s       !
+!                         !
+!     1           1       !
+!   -----     ---------   !
+!        2              2 !
+!   s + s     4 + 4s + s  !
+ 
+ 
+--&gt;//               change of variable
+ 
+--&gt;z=poly(0,'z');
+ 
+--&gt;horner(h,(1-z)/(1+z))  //bilinear transform
+ ans  =
+ 
+!   1 + z          1 + z       !
+!   -----          -----       !
+!   1 - z            2         !
+!                              !
+!             2              2 !
+!   1 + 2z + z     1 + 2z + z  !
+!   ----------     ----------  !
+!                            2 !
+!     2 - 2z       9 + 6z + z  !
+ 
+ 
+--&gt;//                 PRIMITIVES
+ 
+--&gt;H=[1.    1.    1.    0.;
+--&gt;   2.   -1.    0.    1;
+--&gt;   1.    0.    1.    1.;
+--&gt;   0.    1.    2.   -1];
+ 
+ 
+--&gt;ww=spec(H)
+ ww  =
+ 
+!   2.7320508 !
+! - 2.7320508 !
+!   0.7320508 !
+! - 0.7320508 !
+ 
+ 
+--&gt;//             STABLE SUBSPACES
+ 
+--&gt;[X,d]=schur(H,'cont');
+ 
+--&gt;X'*H*X
+ ans  =
+ 
+! - 2.7320508  - 1.110D-15    0.           1.        !
+!   0.         - 0.7320508  - 1.         - 7.772D-16 !
+!   7.216D-16    0.           2.7320508    0.        !
+!   0.         - 6.106D-16    0.           0.7320508 !
+ 
+ 
+--&gt;[X,d]=schur(H,'disc');
+ 
+--&gt;X'*H*X
+ ans  =
+ 
+!   0.7320508    0.           7.772D-16    1.        !
+!   0.         - 0.7320508  - 1.           8.604D-16 !
+!   0.           0.           2.7320508  - 1.166D-15 !
+!   7.772D-16    1.110D-15  - 1.277D-15  - 2.7320508 !
+ 
+ 
+--&gt;//Selection of user-defined eigenvalues (# 3 and 4 here);
+ 
+--&gt;deff('[flg]=sel(x)',...
+--&gt;'flg=0,ev=x(2)/x(3),...
+--&gt; if abs(ev-ww(3))&lt;0.0001|abs(ev-ww(4))&lt;0.00001 then flg=1,end')
+ 
+--&gt;[X,d]=schur(H,sel)
+ d  =
+ 
+    2.  
+ X  =
+ 
+! - 0.5705632  - 0.2430494  - 0.6640233  - 0.4176813 !
+! - 0.4176813    0.6640233  - 0.2430494    0.5705632 !
+!   0.5705632  - 0.2430494  - 0.6640233    0.4176813 !
+!   0.4176813    0.6640233  - 0.2430494  - 0.5705632 !
+ 
+ 
+--&gt;X'*H*X
+ ans  =
+ 
+!   0.7320508    0.           7.772D-16    1.        !
+!   0.         - 0.7320508  - 1.           8.604D-16 !
+!   0.           0.           2.7320508  - 1.166D-15 !
+!   7.772D-16    1.110D-15  - 1.277D-15  - 2.7320508 !
+ 
+ 
+--&gt;//               With matrix pencil
+ 
+--&gt;[X,d]=gschur(H,eye(H),sel)
+ d  =
+ 
+    2.  
+ X  =
+ 
+!   0.5705632    0.2430494    0.6640233    0.4176813 !
+!   0.4176813  - 0.6640233    0.2430494  - 0.5705632 !
+! - 0.5705632    0.2430494    0.6640233  - 0.4176813 !
+! - 0.4176813  - 0.6640233    0.2430494    0.5705632 !
+ 
+--&gt;X'*H*X
+ ans  =
+ 
+!   0.7320508    0.           9.576D-16    1.        !
+!   0.         - 0.7320508  - 1.           0.        !
+!   8.882D-16    0.           2.7320508    0.        !
+!   0.           0.           0.         - 2.7320508 !
+ 
+ 
+--&gt;//            block diagonalization
+ 
+--&gt;[ab,x,bs]=bdiag(H);
+ 
+ 
+--&gt;inv(x)*H*x
+ ans  =
+ 
+!   2.7320508    1.610D-15    0.           0.        !
+! - 3.664D-15  - 2.7320508    0.           6.661D-16 !
+!   0.           0.           0.7320508  - 7.910D-16 !
+!   0.           0.           0.         - 0.7320508 !
+ 
+ 
+--&gt;//                     Matrix pencils
+ 
+--&gt;E=rand(3,2)*rand(2,3);
+ 
+--&gt;A=rand(3,2)*rand(2,3);
+ 
+--&gt;s=poly(0,'s');
+ 
+ 
+--&gt;w=det(s*D-A)   //determinant
+ w  =
+ 
+                           2  
+  - 0.0149837s + 0.0004193s   
+ 
+--&gt;[al,be]=gspec(A,E);
+ 
+--&gt;al./(be+%eps*ones(be))
+ ans  =
+ 
+!   9.202D+14 !
+!   35.734043 !
+! - 1.170D-16 !
+ 
+--&gt;roots(w)
+ ans  =
+ 
+!   0         !
+!   35.734043 !
+ 
+--&gt;[Ns,d]=coffg(s*D-A);    //inverse of polynomial matrix;
+ 
+--&gt;clean(Ns/d*(s*D-A))
+ ans  =
+ 
+!   1     0     0  !
+!   -     -     -  !
+!   1     1     1  !
+!                  !
+!   0     1     0  !
+!   -     -     -  !
+!   1     1     1  !
+!                  !
+!   0     0     1  !
+!   -     -     -  !
+!   1     1     1  !
+ 
+--&gt;[Q,M,i1]=pencan(E,A);   // Canonical form;
+    rank A^k    rcond
+        2.      0.169D-01
+    rank A^k    rcond
+        2.      0.847D+00
+ 
+--&gt;clean(M*E*Q)
+ ans  =
+ 
+!   1.    0.    0. !
+!   0.    1.    0. !
+!   0.    0.    0. !
+ 
+--&gt;clean(M*A*Q)
+ ans  =
+ 
+!   35.774235  - 3.0560234    0. !
+!   0.4704929  - 0.0401920    0. !
+!   0.           0.           1. !
+ 
+ 
+--&gt;//           PAUSD-RESUME
+ 
+--&gt;write(%io(2),'pause command...');
+pause command...
+ 
+--&gt;write(%io(2),'TO CONTINUE...');
+TO CONTINUE...
+ 
+--&gt;write(%io(2),'ENTER ''resume (or return) or click on resume!!''');
+ENTER 'resume (or return) or click on resume!!'
+ 
+--&gt;//pause;
+ 
+ 
+--&gt;//           CALLING EXTERNAL ROUTINE
+ 
+--&gt;foo=['void foo(a,b,c)';
+--&gt;     'double *a,*b,*c;';
+--&gt;     '{ *c = *a + *b; }'  ];
+ 
+--&gt;unix_s('rm -f foo.c')
+ 
+--&gt;write('foo.c',foo);
+ 
+--&gt;unix_s('make foo.o')     //Compiling...(needs a compiler)
+ 
+--&gt;link('foo.o','foo','C')    //Linking to Scilab
+ ans  =
+ 
+    0.  
+ 
+--&gt;//5+7 by C function
+ 
+--&gt;fort('foo',5,1,'d',7,2,'d','out',[1,1],3,'d')
+ ans  =
+ 
+    12.
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1867"
+ HREF="node123.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1863"
+ HREF="index.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1857"
+ HREF="node121.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1865"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1866"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1868"
+ HREF="node123.html">8. System interconnexion</A>
+<B> Up:</B> <A NAME="tex2html1864"
+ HREF="index.html">No Title</A>
+<B> Previous:</B> <A NAME="tex2html1858"
+ HREF="node121.html">6.6.2.0.5 Scilab functions</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

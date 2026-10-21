@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+realtimeinit(\nspnumber{1}\nspoperator{/}\nspnumber{2})\nspoperator{;}\nspcomment{//sets time unit to half a second}
+realtime(\nspnumber{0})\nspoperator{;}\nspcomment{//sets current date to 0}
+\nspkeyword{for} k=\nspnumber{1}\nspoperator{:}\nspnumber{10} \nspkeyword{do} realtime(k)\nspoperator{;}mprintf(\nspstring{'current time is '}\nspoperator{+}string(k\nspoperator{/}\nspnumber{2})\nspoperator{+}\nspstring{'sec .\nspbs{}r\nspbs{}n'})\nspoperator{;}\nspkeyword{end}
+\nspcomment{//next instruction outputs a dot each 2 seconds}
+realtimeinit(\nspnumber{2})\nspoperator{;}realtime(\nspnumber{0})\nspoperator{;}\nspkeyword{for} k=\nspnumber{1}\nspoperator{:}\nspnumber{10} \nspkeyword{do} realtime(k)\nspoperator{;}mprintf(\nspstring{'.\nspbs{}r\nspbs{}n'})\nspoperator{;}\nspkeyword{end}
+realtimeinit(\nspnumber{1})\nspoperator{;}realtime(\nspnumber{0})\nspoperator{;}
+dt=getdate(\nspstring{'s'})\nspoperator{;}realtime(\nspnumber{10})\nspoperator{;}getdate(\nspstring{'s'})\nspoperator{-}dt
+\end{Verbatim}

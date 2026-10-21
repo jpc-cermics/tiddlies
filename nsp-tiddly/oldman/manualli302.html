@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mgetl</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli303.html" >next</a>] [<a 
+href="manualli301.html" >prev</a>] [<a 
+href="manualli301.html#tailmanualli301.html" >prev-tail</a>] [<a 
+href="#tailmanualli302.html">tail</a>] [<a 
+href="manualli274.html#manualli302.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x303-1797000"></a>mgetl</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx303-1797001"></a><a 
+ id="mgetl"></a><span 
+class="cmtt-10x-x-109">mgetl </span>&#x2013;                                                                         read lines from an ascii file<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x303-1798000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-438">
+&#x00A0;&#x00A0;txt=mgetl(file_desc&#x00A0;[,m])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x303-1799000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">file</span><span 
+class="cmtt-10x-x-109">_desc</span>:a character string giving the file name or a logical unit returned by mopen
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">m</span>: an integer scalar. Default value is -1.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">txt</span>: a column vector of string</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x303-1800000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mgetl</span></span></span> function allows to read a lines from an ascii file. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is omitted or is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> all lines till end of file
+occurs are read. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is given <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mgetl</span></span></span> tries to read exactly m lines. This option is useful to sequentialy
+read part of a file. In this case if an end of file (EOF) occurs before <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> lines are read the read
+lines are returned (it is possible to check if EOF had occured using the meof function)
+issued.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mgetl</span></span></span> allows to read files coming from Unix, Windows, or Mac operating systems.
+</p>
+<!--l. 47--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x303-1801000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb244"><a 
+ id="x303-1801007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mgetl(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/scilab.star&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x303-1801009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;mgetl</span><span 
+class="cmitt-10x-x-109">&#x00A0;SCI/macros/elem/erf.sci</span></span>
+<br class="fancyvrb" /><a 
+ id="x303-1801011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fd=mopen(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/scilab.star&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;r&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x303-1801013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mgetl(fd,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x303-1801015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd)</span></div>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x303-1802000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli307.html#mputl">mputl</a>    <a 
+href="manualli297.html#mclose">mclose</a>    <a 
+href="manualli301.html#mfscanf">mfscanf</a>    <a 
+href="manualli304.html#mget">mget</a>    <a 
+href="manualli303.html#mgetstr">mgetstr</a>    <a 
+href="manualli305.html#mopen">mopen</a>    <a 
+href="manualli322.html#read">read</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x303-1803000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   S. Steer
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli303.html" >next</a>] [<a 
+href="manualli301.html" >prev</a>] [<a 
+href="manualli301.html#tailmanualli301.html" >prev-tail</a>] [<a 
+href="manualli302.html" >front</a>] [<a 
+href="manualli274.html#manualli302.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli302.html"></a>  </p> 
+</body></html> 

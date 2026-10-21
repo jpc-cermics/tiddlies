@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>cainv</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli20.html" >next</a>] [<a 
+href="manualli18.html" >prev</a>] [<a 
+href="manualli18.html#tailmanualli18.html" >prev-tail</a>] [<a 
+href="#tailmanualli19.html">tail</a>] [<a 
+href="manualli12.html#manualli19.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x20-91000"></a>cainv</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx20-91001"></a><a 
+ id="cainv"></a><span 
+class="cmtt-10x-x-109">cainv </span>&#x2013;                                                                                          Dual of abinv<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x20-92000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-29">
+&#x00A0;&#x00A0;[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x20-93000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list containing the matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A,B,C,D]</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">alfa</span>: real number or vector (possibly complex, location of closed loop poles)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">beta</span>: real number or vector (possibly complex, location of closed loop poles)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: (optional) character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ge&#x0027;</span></span></span> (default) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;st&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;pp&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: orthogonal matrix of size nx (dim of state space).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dims</span>: integer row vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims=[nd1,nu1,dimS,dimSg,dimN]</span></span></span> (5 entries, nondecreasing
+     order).If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;st&#x0027;</span></span></span>, (resp. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;pp&#x0027;</span></span></span>), <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims</span></span></span> has 4 (resp. 3) components.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">J</span>: real matrix (output injection)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Y</span>: orthogonal matrix of size ny (dim of output space).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">k</span>: integer (normal rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Z</span>: non-singular linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list)</li></ul>
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x20-94000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 42--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cainv</span></span></span> finds a bases <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(X,Y)</span></span></span> (of state space and output space resp.) and output injection matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">J</span></span></span>
+such that the matrices of Sl in bases (X,Y) are displayed as:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-30">
+&#x00A0;&#x00A0;[A11,*,*,*,*,*]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[*]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,A22,*,*,*,*]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[*]
+&#x00A0;<br />&#x00A0;&#x00A0;X&#x0027;*(A+J*C)*X&#x00A0;=&#x00A0;[0,0,A33,*,*,*]&#x00A0;&#x00A0;&#x00A0;X&#x0027;*(B+J*D)&#x00A0;=&#x00A0;[*]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,0,A44,*,*]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[0]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,0,0,A55,*]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[0]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,0,0,0,A66]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[0]
+&#x00A0;<br />&#x00A0;&#x00A0;Y*C*X&#x00A0;=&#x00A0;[0,0,C13,*,*,*]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;Y*D&#x00A0;=&#x00A0;[*]
+&#x00A0;<br />&#x00A0;&#x00A0;[0,0,0,0,0,C26]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[0]
+</div>
+<!--l. 55--><p class="nopar" >The partition of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is defined by the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims=[nd1,nu1,dimS,dimSg,dimN]</span></span></span> and the partition
+of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is determined by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span>. Eigenvalues of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A11</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(nd1</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;nd1)</span></span></span> are unstable. Eigenvalues of
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A22</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(nu1-nd1</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;nu1-nd1)</span></span></span> are stable. The pair <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A33,</span><span 
+class="cmtt-10x-x-109">&#x00A0;C13)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(dimS-nu1</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;dimS-nu1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;dimS-nu1)</span></span></span> is
+observable, and eigenvalues of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A33</span></span></span> are set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alfa</span></span></span>. Matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A44</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(dimSg-dimS</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;dimSg-dimS)</span></span></span> is
+unstable. Matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A55</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(dimN-dimSg,dimN-dimSg)</span></span></span> is stable The pair <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A66,C26)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(nx-dimN</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;nx-dimN)</span></span></span> is
+observable, and eigenvalues of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A66</span></span></span> set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">beta</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimS</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> span S= smallest (C,A)
+invariant subspace which contains Im(B), <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimSg</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> span Sg the maximal
+&#x201D;complementary detectability subspace&#x201D; of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimN</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> span the maximal
+&#x201D;complementary observability subspace&#x201D; of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span>. (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimS=0</span></span></span> if B(ker(D))=0). If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;st&#x0027;</span></span></span> is given, a
+five blocks partition of the matrices is returned and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dims</span></span></span> has four components. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;pp&#x0027;</span></span></span> is
+given a four blocks partition is returned (see abinv). This function can be used to calculate an
+unknown input observer:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-31">
+&#x00A0;&#x00A0;//&#x00A0;DDEP:&#x00A0;dot(x)=A&#x00A0;x&#x00A0;+&#x00A0;Bu&#x00A0;+&#x00A0;Gd
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;y=&#x00A0;Cx&#x00A0;&#x00A0;&#x00A0;(observation)
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;z=&#x00A0;Hx&#x00A0;&#x00A0;&#x00A0;&#x00A0;(z=variable&#x00A0;to&#x00A0;be&#x00A0;estimated,&#x00A0;d=disturbance)
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;&#x00A0;Find:&#x00A0;dot(w)&#x00A0;=&#x00A0;Fw&#x00A0;+&#x00A0;Ey&#x00A0;+&#x00A0;Ru&#x00A0;such&#x00A0;that
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;zhat&#x00A0;=&#x00A0;Mw&#x00A0;+&#x00A0;Ny
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;z-Hx&#x00A0;goes&#x00A0;to&#x00A0;zero&#x00A0;at&#x00A0;infinity
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;&#x00A0;Solution&#x00A0;exists&#x00A0;iff&#x00A0;Ker&#x00A0;H&#x00A0;contains&#x00A0;Sg(A,C,G)&#x00A0;inter&#x00A0;KerC&#x00A0;(assuming&#x00A0;detectability)
+&#x00A0;<br />&#x00A0;&#x00A0;//i.e.&#x00A0;H&#x00A0;is&#x00A0;such&#x00A0;that:
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;For&#x00A0;any&#x00A0;W&#x00A0;which&#x00A0;makes&#x00A0;a&#x00A0;column&#x00A0;compression&#x00A0;of&#x00A0;[Xp(1:dimSg,:);C]
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;with&#x00A0;Xp=X&#x0027;&#x00A0;and&#x00A0;[X,dims,J,Y,k,Z]=cainv(syslin(&#x0027;c&#x0027;,A,G,C));
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;[Xp(1:dimSg,:);C]*W&#x00A0;=&#x00A0;[0&#x00A0;|&#x00A0;*]&#x00A0;one&#x00A0;has
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;H*W&#x00A0;=&#x00A0;[0&#x00A0;|&#x00A0;*]&#x00A0;&#x00A0;(with&#x00A0;at&#x00A0;least&#x00A0;as&#x00A0;many&#x00A0;aero&#x00A0;columns&#x00A0;as&#x00A0;above).
+</div>
+<!--l. 90--><p class="nopar" >
+</p>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x20-95000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli14.html#abinv">abinv</a>    <a 
+href="#dt-ility">dt_ility</a>    <a 
+href="#ui-observer">ui_observer</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli20.html" >next</a>] [<a 
+href="manualli18.html" >prev</a>] [<a 
+href="manualli18.html#tailmanualli18.html" >prev-tail</a>] [<a 
+href="manualli19.html" >front</a>] [<a 
+href="manualli12.html#manualli19.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli19.html"></a>  </p> 
+</body></html> 

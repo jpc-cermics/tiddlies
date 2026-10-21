@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure}
+f=gcf()
+f.figure_size=[\nspnumber{610}\nspoperator{,}\nspnumber{469}]\nspoperator{/}\nspnumber{2}\nspoperator{;}
+f.figure_name=\nspstring{"Foo"}\nspoperator{;}
+f=figure()\nspoperator{;}\nspcomment{// create a figure}
+h=uicontrol(f,\nspstring{'style'},\nspstring{'listbox'},\nspstring{'position'},[\nspnumber{10}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{150}\nspoperator{,}\nspnumber{160}])\nspoperator{;}\nspcomment{// create a listbox}
+set(h,\nspstring{'string'},\nspstring{"item 1|item 2|item3"})\nspoperator{;}\nspcomment{// fill the list}
+set(h,\nspstring{'value'},[\nspnumber{1}\nspoperator{,}\nspnumber{3}])\nspoperator{;}\nspcomment{// select item 1 and 3 in the list}
+gcf()
+scf(\nspnumber{0})\nspoperator{;}\nspcomment{//make graphic window 0 the current figure}
+gcf()\nspoperator{,}\nspcomment{// return the graphic handle of the current figure}
+figure(f)\nspoperator{,}\nspcomment{//make GUI  window f the current figure}
+gcf()
+\end{Verbatim}

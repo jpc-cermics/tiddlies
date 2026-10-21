@@ -1,0 +1,670 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab : un logiciel libre pour le calcul scientifique7e Partie -
+Introduction &agrave; Scicos (2/2)</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 --><BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <H1 ALIGN="center">Scilab&nbsp;: un
+logiciel libre pour le calcul scientifique<BR>
+7<SUP><FONT SIZE="2"><I>e</I></FONT></SUP> Partie - Introduction &agrave;
+Scicos (2/2)</H1>
+<H3 ALIGN="center"> </H3>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+<EM>On a vu dans le num&eacute;ro pr&eacute;c&eacute;dent l'utilisation de
+Scicos pour la construction de syst&egrave;mes dynamiques sous forme
+sch&eacute;ma-blocs &agrave; partir des blocs existants. Dans ce num&eacute;ro,
+on pr&eacute;sente une fa&ccedil;on de constuire de nouveaux blocs.</EM><BR>
+<BR>
+Les blocs pr&eacute;d&eacute;finis dans les palettes standard de Scicos
+permettent de construire des sch&eacute;mas tr&egrave;s divers mais, dans
+certains cas, une fonctionnalit&eacute; d&eacute;crite &agrave; partir de
+plusieurs blocs peut &ecirc;tre r&eacute;alis&eacute;e par un seul bloc ce qui
+donne souvent une simulation plus efficace. On a d&eacute;j&agrave; vu une
+fa&ccedil;on de remplacer plusieurs blocs par un seul en utilisant le
+&lt;&lt;Super Block&gt;&gt;. Cela permet de construire des sch&eacute;mas
+hi&eacute;rarchiques plus lisibles mais n'am&eacute;liore en rien
+l'efficacit&eacute; de la simulation car la premi&egrave;re &eacute;tape de la
+compilation dans Scicos consiste &agrave; mettre &agrave; plat le diagramme. En
+fait, un &lt;&lt;Super Block&gt;&gt; n'est qu'une facilit&eacute; graphique
+pour masquer des sous-diagrammes&nbsp;; ce n'est pas un bloc de base.<BR>
+<BR>
+Un nouveau bloc de base peut &ecirc;tre d&eacute;fini de plusieurs
+fa&ccedil;ons, mais dans tous les cas on a besoin de deux fonctions. Une
+fonction d'interface, presque toujours &eacute;crite en langage Scilab, pour
+g&eacute;rer l'interface avec l'&eacute;diteur Scicos, et une fonction de
+simulation r&eacute;alisant le comportement dynamique du bloc. Cette
+derni&egrave;re est utilis&eacute;e par le simulateur et doit donc &ecirc;tre
+rapide. Elle est souvent en C ou Fortran, mais elle peut aussi &ecirc;tre en
+langage Scilab, en particulier dans la phase de mise au point.<BR>
+<BR>
+Dans cet article on ne consid&egrave;re que les blocs
+&lt;&lt;r&eacute;guliers&gt;&gt;&nbsp;; il existe dans Scicos d'autres types de
+bloc, par exemple les blocs <CODE>Zero-crossing</CODE> et les blocs
+utilis&eacute;s pour le conditionnement d'&eacute;v&eacute;nements. On a
+rarement besoin de d&eacute;finir de nouveaux blocs de tels types.<BR>
+<BR>
+<!--TOC paragraph La fonction d'interface-->
+<H5> La fonction d'interface</H5>
+La fonction d'interface d'un bloc d&eacute;termine non seulement sa
+g&eacute;om&eacute;trie, sa couleur de fond, son ic&ocirc;ne, les nombres et
+les tailles de ses ports d'entr&eacute;es-sorties, etc..., mais aussi ses
+&eacute;tats initiaux et ses param&egrave;tres. De plus, elle g&egrave;re le
+dialogue qui permet de modifier ses propri&eacute;t&eacute;s&nbsp;; ce que
+l'utilisateur peut faire en cliquant sur le bloc. <BR>
+<BR>
+Si le bloc qu'on veut d&eacute;finir n'a pas un aspect tr&egrave;s particulier
+(c'est-&agrave;-dire s'il est rectangulaire, avec des ports plac&eacute;s aux
+endroits habituels et une ic&ocirc;ne ne contenant qu'un texte), il est assez
+facile de construire sa fonction d'interface en copiant celle d'un bloc
+pr&eacute;d&eacute;fini. La seule partie qu'il faut adapter est la gestion de
+dialogue avec l'utilisateur, utilis&eacute; pour modifier les param&egrave;tres
+du bloc.<BR>
+<BR>
+Dans la palette <CODE>Others</CODE> on trouve le bloc <CODE>GENERIC</CODE>. Ce
+bloc a une fonction d'interface g&eacute;n&eacute;rique qui peut &ecirc;tre
+utilis&eacute;e dans la plupart des cas pour tester et mettre au point une
+fonction de simulation. Cette fonction d'interface suppose cependant que le
+dialogue avec l'utilisateur (suite au clic sur le bloc) est
+g&eacute;n&eacute;rique&nbsp;: elle propose la possibilit&eacute; de modifier
+tous les param&egrave;tres du bloc, m&ecirc;me ceux qui ne sont pas
+utilis&eacute;s dans le bloc concern&eacute;, et ne fournit presqu'aucun test
+de validit&eacute; sur les r&eacute;ponses de l'utilisateur. Cette fonction
+doit &ecirc;tre modifi&eacute;e en particulier pour prot&eacute;ger et informer
+les autres utilisateurs de ce bloc qui ne conna&icirc;traient pas
+forc&eacute;ment son fonctionnement interne. Nous verrons plus tard sur un
+exemple comment cela peut se faire.<BR>
+<BR>
+<!--TOC paragraph La fonction de simulation-->
+<H5> La fonction de simulation</H5>
+Cette fonction est appel&eacute;e au cours de la simulation pour effectuer les
+t&acirc;ches suivantes&nbsp;: <UL>
+<LI> <B>Initialisation&nbsp;:</B> Le simulateur appelle cette fonction une fois
+tout au d&eacute;but de la simulation pour lui permettre d'initialiser ses
+&eacute;tats initiaux (si n&eacute;cessaire car les &eacute;tats initiaux sont
+aussi initialis&eacute;s par la fonction d'interface). &Agrave; cette occasion,
+la fonction peut effectuer d'autres t&acirc;ches comme par exemple ouvrir et
+initialiser une fen&ecirc;tre graphique ou ouvrir un fichier. &Agrave; ce stade
+les entr&eacute;es du blocs ne sont pas disponibles.<BR>
+<BR>
+</LI>
+<LI><B>R&eacute;-initialisation&nbsp;:</B> Dans ce cas, les valeurs des
+entr&eacute;es sont disponibles et la fonction doit initialiser les sorties du
+bloc. &Agrave; cette occasion, la fonction peut aussi r&eacute;-initialiser ses
+&eacute;tats initiaux.<BR>
+<BR>
+</LI>
+<LI><B>Calcul des sorties&nbsp;:</B> La fonction calcule ses sorties en
+fonction des valeurs de ses entr&eacute;es et de ses &eacute;tats.<BR>
+<BR>
+</LI>
+<LI><B>Mise &agrave; jour des &eacute;tats&nbsp;:</B> La fonction met &agrave;
+jour son &eacute;tat discret en fonction de ses &eacute;tats courants et de ses
+entr&eacute;es. Elle peut faire de m&ecirc;me avec son &eacute;tat continu
+(pour mod&eacute;liser des sauts &eacute;ventuels).<BR>
+<BR>
+</LI>
+<LI><B>Calcul de la d&eacute;riv&eacute;e de l'&eacute;tat continu&nbsp;:</B>
+Si le bloc contient un &eacute;tat continu, dans ce cas la fonction de
+simulation calcule la d&eacute;riv&eacute;e de cet &eacute;tat. <BR>
+<BR>
+</LI>
+<LI><B>Calcul des dates des &eacute;v&eacute;nements de sortie&nbsp;:</B> Si le
+bloc a des ports d'&eacute;v&eacute;nements de sortie, la fonction fournit
+l'information concernant les dates des prochaines g&eacute;n&eacute;rations de
+ces &eacute;v&eacute;nements.<BR>
+<BR>
+</LI>
+<LI><B>Terminaison&nbsp;:</B> Tous les blocs sont appel&eacute;s une fois
+&agrave; la fin de la simulation pour qu'ils effectuent des t&acirc;ches comme
+la fermeture des fichiers, si n&eacute;cessaire.</LI>
+</UL>
+Un &lt;&lt;flag&gt;&gt; dans la liste d'appel de la fonction de simulation
+indique la t&acirc;che &agrave; effectuer&nbsp;: <DIV ALIGN="center">
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">Flag</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">T&acirc;che</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Calcul de la d&eacute;riv&eacute;e de
+l'&eacute;tat continu</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Calcul des sorties</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">2</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Mise &agrave; jour des &eacute;tats</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">3</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Calcul des dates des &eacute;v&eacute;nements
+de sortie</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">4</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Initialisation</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">5</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Terminaison</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">6</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">R&eacute;-initialisation</TD>
+</TR>
+</TABLE>
+</DIV>
+Les autres arguments de la liste d'appel de la fonction de simulation sont des
+pointeurs sur les &eacute;tats, les entr&eacute;es, les sorties, les
+param&egrave;tres, etc..., et leurs dimensions. On y trouve aussi un entier
+(indicateur d'activation) indiquant dans quelle condition la fonction a
+&eacute;t&eacute; appel&eacute;e (le bloc correspondant a &eacute;t&eacute;
+activ&eacute;).<BR>
+<BR>
+La liste d'appel de la fonction de simulation d'un bloc r&eacute;gulier n'a pas
+une syntaxe unique&nbsp;; Scicos accepte plusieurs types de fonctions de
+simulation ayant des listes d'appel diff&eacute;rentes. <DIV ALIGN="center">
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">Type de fonction</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">Scilab</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">Fortran</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">C</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Commentaires</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">non</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">oui</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">oui</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">liste d'appel de longueur variable</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">2</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">non</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">non</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">oui</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">liste d'appel de longueur fixe</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">oui</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">non</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">non</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">les entr&eacute;es-sorties sont des
+<CODE>list</CODE> Scilab</TD>
+</TR>
+</TABLE>
+</DIV>
+On ne va pas faire ici une pr&eacute;sentation exhaustive de tous les types de
+fonctions de simulation&nbsp;; on ne consid&eacute;rera que le type&nbsp;1 qui
+est utilis&eacute;e dans 90% des blocs pr&eacute;d&eacute;finis de Scicos. Les
+fonctions de simulation associ&eacute;es &agrave; ce type de bloc ont une liste
+d'appel de longueur variable en fonction des nombres d'entr&eacute;es et de
+sorties. Par exemple un bloc ayant deux entr&eacute;es et une sortie aura une
+fonction de simulation en C qui serait comme suit&nbsp;: <PRE>
+
+void mafonc(int* flag,int* nevprt,double* t,double* xd,
+        double* x,int* nx,double* z,int* nz,double* tvec,
+        int* ntvec,double* rpar,int* nrpar,int* ipar,int* nipar,
+        double* u1,int* nu1,double* u2,int* nu2,double* y1,int* ny1)
+{
+................
+}
+
+</PRE>
+Pour plus d'information sur les arguments de cette fonction voir
+Tableau&nbsp;<A HREF="#tab11">1</A>. 
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I/O</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">Args.</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Description</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>flag</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">0,1,2,3,4,5 ou 6</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>nevprt</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">indicateur d'activation</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>t</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">temps</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">O</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>xd</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">d&eacute;riv&eacute;e de l'&eacute;tat continu
+</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I/O</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>x</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&eacute;tat continu</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>nx</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">taille de <CODE>x</CODE></TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I/O</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>z</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&eacute;tat discret</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>nz</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">taille de <CODE>z</CODE></TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">O</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>tvec</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">dates des &eacute;v&eacute;nements de sorties
+(pour <CODE>flag</CODE>=3)</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>ntvec</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">taille de <CODE>tvec</CODE></TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>rpar</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">param&egrave;tres</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>nrpar</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">taille de <CODE>rpar</CODE></TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>ipar</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">param&egrave;tres</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>nipar</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">taille de <CODE>ipar</CODE></TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>ui</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP"><CODE>i</CODE><SUP><FONT
+SIZE="2"><I>i</I>&egrave;<I>me</I></FONT></SUP> entr&eacute;e,
+<CODE>i</CODE>=1,2,..</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>nui</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">taille de <CODE>ui</CODE></TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">O</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>yj</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP"><CODE>j</CODE><SUP><FONT
+SIZE="2"><I>i</I>&egrave;<I>me</I></FONT></SUP> sortie, <CODE>j</CODE>=1,2,.. 
+</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">I</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><CODE>nyj</CODE></TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">taille de <CODE>uj</CODE></TD>
+</TR>
+</TABLE>
+<A NAME="tab11"></A> 
+</DIV>
+<BR>
+<DIV ALIGN="center">
+Table 1: 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+La fonction de simulation est appel&eacute;e quand le bloc correspondant est
+activ&eacute;. Apr&egrave;s les initialisations et au cours de la simulation,
+cela se produit parce que le bloc re&ccedil;oit un &eacute;v&eacute;nement sur
+l'un de ses ports d'entr&eacute;es d'&eacute;v&eacute;nement ou dans le cas
+d'absence de ce type de port, il h&eacute;rite d'un &eacute;v&eacute;nement par
+l'une ou plusieurs de ses entr&eacute;es. L'indicateur d'activation indique par
+quelle voie le bloc a &eacute;t&eacute; activ&eacute; (1 si
+l'&eacute;v&eacute;nement d'activation a &eacute;t&eacute; re&ccedil;u sur le
+premier port d'entr&eacute;e d'&eacute;v&eacute;nement, 2 si sur le
+deuxi&egrave;me, 3 si sur le premier et sur le deuxi&egrave;me
+simultan&eacute;ment, 4 si sur le troisi&egrave;me, etc...). Le bloc peut aussi
+&ecirc;tre activ&eacute; sans qu'il re&ccedil;oive d'&eacute;v&eacute;nement
+d'activation s'il a &eacute;t&eacute; d&eacute;clar&eacute; comme &eacute;tant
+&lt;&lt;temps-d&eacute;pendant&gt;&gt;, c'est-&agrave;-dire actif en
+permanence. Dans ce cas, l'indicateur d'activation vaut&nbsp;0.<BR>
+<BR>
+&Agrave; chaque activation du bloc en cours de simulation, la fonction de
+simulation peut &ecirc;tre appel&eacute;e une ou plusieurs fois. Dans le cas
+d'un simple bloc r&eacute;alisant une fonction imm&eacute;diate, par exemple le
+bloc <CODE>sinus</CODE>, la fonction n'est appel&eacute;e qu'une seule fois
+avec flag&nbsp;1. Un bloc contenant un &eacute;tat discret sera aussi
+appel&eacute; avec flag&nbsp;2, et si de plus le bloc a des ports de sorties
+d'&eacute;v&eacute;nement, il sera appel&eacute; aussi avec flag&nbsp;3.
+L'ordre des appels, dans le cas d'une activation par &eacute;v&eacute;nement,
+est flag&nbsp;1 suivi par flag&nbsp;3, et enfin flag&nbsp;2. Dans le cas
+d'activation continue, c'est&nbsp;1 puis 0. <BR>
+<BR>
+<!--TOC paragraph Exemple-->
+<H5> Exemple</H5>
+Dans l'article pr&eacute;c&eacute;dent on a construit un syst&egrave;me
+dynamique mod&eacute;lisant la r&eacute;gulation de la population des requins
+et des sardines (voir Figure&nbsp;<A HREF="#fig13">1</A>). <BLOCKQUOTE> 
+<HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="Predcos.jpg" ALT="{short description of image}" WIDTH="648"
+ HEIGHT="628" BORDER="0"> 
+</DIV>
+<A NAME="fig13"></A> <BR>
+<DIV ALIGN="center">
+Figure 1: Le mod&egrave;le de la r&eacute;gulation de la population des requins
+et des sardines de l'article pr&eacute;c&eacute;dent (Linux Magazine&nbsp;18). 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Dans ce cas, presque la moiti&eacute; des blocs sont utilis&eacute;s pour
+implanter le mod&egrave;le de la population des requins et des sardines&nbsp;:
+{ <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>'(<I>t</I>)=<I>a</I>&nbsp;<I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>(<I>t</I>)-<I>b</I>&nbsp;<I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>(<I>t</I>)<I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>(<I>t</I>)+<I>f</I>&nbsp;<I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>(<I>t</I>) &nbsp;&nbsp;&nbsp;&nbsp; <I>a</I>,<I>b</I>
+&gt; 0,&nbsp;&nbsp;<I>f</I>&lt;0,</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>'(<I>t</I>)=<I>c</I>&nbsp;<I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>(<I>t</I>)<I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>(<I>t</I>)-<I>d</I>&nbsp;<I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>(<I>t</I>) &nbsp;&nbsp;&nbsp;&nbsp; <I>c</I>,<I>d</I>
+&gt; 0</TD>
+</TR>
+</TABLE>
+. (noter qu'il y a un petit changement de notation par rapport &agrave;
+l'article pr&eacute;c&eacute;dent&nbsp;: ici <I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>(<I>t</I>) repr&eacute;sente le nombre de sardines et
+<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>(<I>t</I>) repr&eacute;sente le
+nombre de requins).<BR>
+<BR>
+Les autres blocs sont d&eacute;di&eacute;s &agrave; la partie r&eacute;gulation
+et &agrave; la visualisation. Il serait donc interessant de d&eacute;finir avec
+un seul bloc le mod&egrave;le de la population. Ce bloc aurait comme
+entr&eacute;e <I>f</I> (l'effort de p&ecirc;che), et le vecteur
+<CODE>x</CODE>=(<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB>,<I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>) comme &eacute;tat continu et sortie. Les
+param&egrave;tres seraient
+<CODE>rpar</CODE>=(<I>a</I>,<I>b</I>,<I>c</I>,<I>d</I>). La fonction de
+simulation (en C) pourrait &ecirc;tre &eacute;crite comme suit&nbsp;: <PRE>
+void pred_prey(int* flag,int* nevprt,double* t,double* xd,
+        double* x,int* nx,double* z,int* nz,double* tvec,
+        int* ntvec,double* rpar,int* nrpar,int* ipar,int* nipar,
+        double* u1,int* nu1,double* y1,int* ny1,double* y2,int* ny2)
+
+{   
+    if (*flag == 1 || *flag == 6) {
+      /*  y=x  */
+      *y1=x[0];
+      *y2=x[1];
+    } else if (*flag == 0) {
+      /*     x0d = a*x0-b*x0*x1+f*x0 */
+      /*     x1d = c*x0*x1-d*x1 */
+      xd[0]=rpar[0]* x[0]-rpar[1]* x[0]* x[1] + *u1* x[0];
+      xd[1]=rpar[2]* x[0]* x[1]-rpar[3]* x[1];      
+    }
+    return ;
+} 
+
+</PRE>
+Ce bloc ne sera appel&eacute; qu'avec les flags 0, 1, 4, 5 et&nbsp;6. Pour les
+flags&nbsp;4 et&nbsp;5, il n'y a clairement rien &agrave; faire. Pour les
+flags&nbsp;1 et&nbsp;6, il faut calculer les sorties, c'est-&agrave;-dire
+recopier l'&eacute;tat dans les sorties. Enfin, pour le flag&nbsp;0, il faut
+calculer la d&eacute;riv&eacute;e de <I>x</I> que l'on place dans
+<CODE>xd</CODE> (c'est-&agrave;-dire <I>x</I>').<BR>
+<BR>
+Une fois cette fonction compil&eacute;e (et mise par exemple dans le fichier
+<CODE>pred_prey.o</CODE>), on peut la linker dans Scilab et l'utiliser dans
+Scicos. Pour la linker, on utilise la fonction <CODE>link</CODE>&nbsp;: 
+<PRE>
+--&gt;link('pred_prey.o','pred_prey','C')
+</PRE>
+La fonction de simulation <CODE>pred_prey</CODE> est maintenant utilisable dans
+Scicos pour la construction du bloc <CODE>Pred-Prey</CODE>. Il ne nous reste
+donc qu'&agrave; &eacute;crire la fonction d'interface.<BR>
+<BR>
+Dans un premier temps, on utilise la fonction d'interface canonique
+<CODE>GENERIC</CODE>. On commence par supprimer tous les blocs qu'on veut
+remplacer dans le diagramme. Puis on copie le bloc <CODE>GENERIC</CODE> qui se
+trouve dans la palette <CODE>Others</CODE> et on le place dans le diagramme. En
+cliquant dessus, on ouvre une fen&ecirc;tre de dialogue qui permet de choisir
+ses param&egrave;tres (voir les Figures&nbsp;<A HREF="#mdia1">2</A> et&nbsp;<A
+HREF="#mdia2">3</A>). 
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="Mdia1.jpg" ALT="{short description of image}" WIDTH="314"
+ HEIGHT="255" BORDER="0"> 
+</DIV>
+<A NAME="mdia1"></A> <BR>
+<DIV ALIGN="center">
+Figure 2: Le dialogue du bloc <TT>GENERIC</TT> : le nom de la fonction de
+simulation, son type, les tailles et les nombres d'entr&eacute;es-sorties,
+etc... 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="Mdia2.jpg" ALT="{short description of image}" WIDTH="314"
+ HEIGHT="255" BORDER="0"> 
+</DIV>
+<A NAME="mdia2"></A> <BR>
+<DIV ALIGN="center">
+Figure 3: Le dialogue du bloc <TT>GENERIC</TT> (suite). 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Noter les deux derni&egrave;res questions. La premi&egrave;re concerne
+l'existence d'une d&eacute;pendence directe entr&eacute;e-sortie. Dans ce cas,
+les sorties <I>x</I><SUB><FONT SIZE="2">0</FONT></SUB> et <I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB> ne d&eacute;pendent pas directement de l'entr&eacute;e
+<I>f</I> (seulement la d&eacute;riv&eacute;e de <I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB> en d&eacute;pend, on consid&egrave;re cela comme une
+d&eacute;pendance indirecte). La deuxi&egrave;me question concerne la
+propri&eacute;t&eacute; de temps-d&eacute;pendance. La r&eacute;ponse est oui
+car ce bloc doit &ecirc;tre actif en permanence, il n'est pas activ&eacute; par
+des signaux d'activation.<BR>
+<BR>
+Apr&egrave;s avoir cliqu&eacute; sur <CODE>OK</CODE>, on constate que le bloc
+<CODE>GENERIC</CODE> se redessine avec un port d'entr&eacute;e et deux ports de
+sortie. On peut alors brancher les entr&eacute;es et les sorties pour obtenir
+le sch&eacute;ma de la Figure&nbsp;<A HREF="#fig14">4</A>. <BR>
+<BR>
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="Pred_prey_m.jpg" ALT="{short description of image}" WIDTH="635"
+ HEIGHT="628" BORDER="0"> 
+</DIV>
+<A NAME="fig14"></A> <BR>
+<DIV ALIGN="center">
+Figure 4: L'utilisation du bloc <TT>GENERIC</TT>. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+La simulation du nouveau sch&eacute;ma montre qu'il est identique au
+pr&eacute;c&eacute;dent en fonctionnalit&eacute; et un peu plus efficace en ce
+qui concerne la vitesse de simulation.<BR>
+<BR>
+Ce bloc peut maintenant &ecirc;tre copi&eacute;, plac&eacute; dans une palette,
+etc..., comme n'importe quel autre bloc Scicos. Mais l'utilisation de ce bloc
+n'est pas conviviale. On peut bien entendu adapter le bloc en changeant sa
+couleur et son ic&ocirc;ne, mais quand on clique dessus, on a toujours le
+m&ecirc;me dialogue canonique dont la moiti&eacute; des questions ne sont pas
+pertinentes. <BR>
+<BR>
+Il faut donc construire une fonction d'interface pour pr&eacute;senter un
+dialogue sp&eacute;cifique avec &eacute;ventuellement des tests de
+validit&eacute; (par exemple ne pas accepter des param&egrave;tres <I>a</I>,
+<I>b</I>, <I>c</I>, <I>d</I> n&eacute;gatifs). Une fonction d'interface qui
+permet de faire cela est la suivante&nbsp;: <PRE>
+function [x,y,typ]=P_Prey(job,arg1,arg2)
+x=[];y=[];typ=[]
+select job
+case 'plot' then
+  standard_draw(arg1)
+case 'getinputs' then
+  [x,y,typ]=standard_inputs(arg1)
+case 'getoutputs' then
+  [x,y,typ]=standard_outputs(arg1)
+case 'getorigin' then
+  [x,y]=standard_origin(arg1)
+
+case 'set' then
+  x=arg1
+  graphics=arg1(2);model=arg1(3);label=graphics(4)
+  while %t do
+    [ok,a,b,c,d,x0,label]=getvalue('Definissez les parametres du bloc',..
+        ['a';'b';'c';'d';'Etat initial'],..
+        list('vec',1,'vec',1,'vec',1,'vec',1,'vec',2),label)
+    if ~ok then break,end
+    if a&lt;0 | b&lt;0 | c&lt;0 | d&lt;0 then 
+      message('les parametres doivent etre positifs')
+    else
+      if ok then
+        graphics(4)=label;
+        model(6)=x0(:);model(8)=[a;b;c;d];
+        x(2)=graphics;x(3)=model
+        break
+      end
+    end
+  end
+case 'define' then
+  x0=[2;1];a=2;b=1;c=.3;d=1;  //default
+  model=list(list('pred_prey',1),1,[1;1],[],[],x0,[],[a;b;c;d],[],..
+      'r',[],[%f %t],' ',list())
+  label=[string(a);string(b);string(c);string(d);strcat(sci2exp(x0))]
+  gr_i=['xstringb(orig(1),orig(2),''Pred_prey'',sz(1),sz(2),''fill'');']
+  x=standard_define([3 2],model,label,gr_i)
+end
+</PRE>
+On a utilis&eacute; ici les fonctions standard pour les cas <CODE>plot</CODE>
+(dessiner le bloc), <CODE>getinputs</CODE> (retourner les coordonn&eacute;s des
+entr&eacute;es), <CODE>getoutputs</CODE> (retourner les coordonn&eacute;s des
+sorties), <CODE>getorigin</CODE> (retourner les coordonn&eacute;s du bloc dans
+le sch&eacute;ma). Cela peut se faire pour tous les blocs rectangulaires. Les
+cas <CODE>set</CODE> et <CODE>define</CODE> sont par contre sp&eacute;cifiques.
+Le premier g&egrave;re le dialogue avec l'utilisateur et le deuxi&egrave;me
+d&eacute;finit les valeurs initiales des param&egrave;tres. <BR>
+<BR>
+Pour comprendre cette fonction, il faut savoir qu'un bloc Scicos est
+d&eacute;fini par une <CODE>list</CODE> Scilab comme suit&nbsp;: 
+<PRE>
+ list('Block',graphics,model,unused,interf_function)
+</PRE>
+Les variable <CODE>graphics</CODE> et <CODE>model</CODE> sont aussi des
+<CODE>list</CODE>. La structure graphique <CODE>graphics</CODE> contient des
+informations sur l'aspet graphique du bloc comme sa taille, son emplacemement,
+son orientation, etc..., et <CODE>model</CODE> des informations
+n&eacute;cessaires pour la simulation comme le nom de la fonction de simulation
+et son type, les nombres et les tailles des ports d'entr&eacute;es-sorties, les
+valeurs des &eacute;tats, des param&egrave;tres, etc... Enfin,
+<CODE>interf_function</CODE> est une cha&icirc;ne de caract&egrave;res Scilab
+contenant le nom de la fonction d'interface associ&eacute;e &agrave; ce bloc.
+<BR>
+<BR>
+La variable <CODE>model</CODE> est initialis&eacute;e dans le cas
+<CODE>define</CODE>. On constate alors que le nom de la fonction de simulation
+est <CODE>pred_prey</CODE>, qui est de type&nbsp;1, que le bloc a une seule
+entr&eacute;e de taille&nbsp;1 et deux sorties de taille&nbsp;1 chacune, qu'il
+n'a ni entr&eacute;e, ni sortie de type &eacute;v&eacute;nement, que son
+&eacute;tat continu initial est [2;1], qu'il n'a pas d'&eacute;tat discret,
+qu'il a comme param&egrave;tre r&eacute;el le vecteur [2;1;.3;1] et pas de
+param&egrave;tre entier et qu'il s'agit d'un bloc
+&lt;&lt;r&eacute;gulier&gt;&gt;. &Agrave; noter aussi l'&eacute;l&eacute;ment
+<CODE>[%f %t]</CODE> du <CODE>model</CODE> de notre exemple qui indique que ce
+bloc ne contient pas de d&eacute;pendence directe entr&eacute;e-sortie, mais
+qu'il est temps-d&eacute;pendant. Les autres champs sont utilis&eacute;s pour
+la documentation et identification.<BR>
+<BR>
+Pour utiliser ce bloc, il suffit maintenant d'utiliser le bouton
+<CODE>AddNewBlock</CODE> du menu <CODE>Edit</CODE>. On peut alors remplacer le
+bloc <CODE>GENERIC</CODE> par ce bloc (<CODE>Pred_prey</CODE>). La simulation
+donne alors exactement le m&ecirc;me r&eacute;sultat qu'avant, mais maintenant
+en cliquant sur le bloc on obtient&nbsp;: 
+<DIV ALIGN="center">
+<IMG SRC="didi.jpg" ALT="{short description of image}" WIDTH="265" HEIGHT="327"
+ BORDER="0"> 
+</DIV>
+<BR>
+Pour construire des blocs plus sophistiqu&eacute;s, on peut toujours chercher
+un bloc pr&eacute;d&eacute;fini ayant des caract&eacute;ristiques semblables
+&agrave; ce qu'on cherche &agrave; construire et examiner les sources de ses
+fonctions correspondantes. Les fonctions d'interfaces des blocs
+pr&eacute;d&eacute;finis se trouvent dans le r&eacute;pertoire
+<CODE>&lt;SCI&gt;/macros/scicos_blocks</CODE> et les fonctions de simulation
+dans <CODE>&lt;SCI&gt;/routines/scicos</CODE>. Pour plus d'information, en
+particulier sur le formalisme de base et le fonctionnement interne de Scicos,
+voir <CODE>http://www-rocq.inria.fr/scilab/doc/scicos_html/</CODE>.<BR>
+<BR>
+Ramine Nikoukhah<BR>
+Scilab Group<BR>
+<A HREF="mailto:scilab@inria.fr">scilab@inria.fr</A><BR>
+<BR>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

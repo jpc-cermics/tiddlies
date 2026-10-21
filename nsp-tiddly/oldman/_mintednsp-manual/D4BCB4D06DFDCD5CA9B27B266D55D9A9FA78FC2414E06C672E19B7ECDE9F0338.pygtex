@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=diag([\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{2}])\nspoperator{;}B=[\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}C=[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+Sys=syslin(\nspstring{'c'},A,B,C)\nspoperator{;}
+frq=\nspnumber{0}\nspoperator{:}\nspnumber{0.02}\nspoperator{:}\nspnumber{5}\nspoperator{;}w=frq\nspoperator{*}\nspnumber{2}\nspoperator{*}%pi\nspoperator{;}\nspcomment{//frq=frequencies in Hz ;w=frequencies in rad/sec;}
+[frq1,rep]=repfreq(Sys,frq)\nspoperator{;}
+[db,phi]=dbphi(rep)\nspoperator{;}
+Systf=ss2tf(Sys)\nspoperator{,}\nspcomment{//Transfer function of Sys}
+x=horner(Systf,w(\nspnumber{2})\nspoperator{*}sqrt(\nspoperator{-}\nspnumber{1}))\nspoperator{,}\nspcomment{// x is Systf(s) evaluated at s = i w(2)}
+rep=\nspnumber{20}\nspoperator{*}log(abs(x))\nspoperator{/}log(\nspnumber{10})\nspoperator{,}\nspcomment{//magnitude of x in dB}
+db(\nspnumber{2})\nspoperator{,}\nspcomment{// same as rep}
+ang=atan(imag(x),real(x))\nspoperator{;}\nspcomment{//in rad.}
+ang=ang\nspoperator{*}\nspnumber{180}\nspoperator{/}%pi\nspoperator{,}\nspcomment{//in degrees}
+phi(\nspnumber{2})
+repf=repfreq(Sys,frq)\nspoperator{;}
+repf(\nspnumber{2})\nspoperator{-}x
+\end{Verbatim}

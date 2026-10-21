@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example \nspsh{}1}
+x=\nspoperator{-}\nspnumber{10}\nspoperator{:}\nspnumber{10}\nspoperator{;}y=\nspoperator{-}\nspnumber{10}\nspoperator{:}\nspnumber{10}\nspoperator{;}m=rand(\nspnumber{21},\nspnumber{21})\nspoperator{;}
+xbasc()
+xset(\nspstring{"colormap"},hotcolormap(\nspnumber{64}))
+Sgrayplot(x,y,m,strf = \nspstring{"011"},rect = [\nspoperator{-}\nspnumber{20}\nspoperator{,}\nspoperator{-}\nspnumber{20}\nspoperator{,}\nspnumber{20}\nspoperator{,}\nspnumber{20}])
+\nspcomment{// example \nspsh{}2}
+t=\nspoperator{-}%pi\nspoperator{:}\nspnumber{0.1}\nspoperator{:}%pi\nspoperator{;}m=sin(t)\nspoperator{'}\nspoperator{*}cos(t)\nspoperator{;}
+xbasc()
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{64}))
+colorbar(\nspoperator{-}\nspnumber{1},\nspnumber{1})
+Sgrayplot(t,t,m,strf = \nspstring{"041"})
+\nspcomment{// example \nspsh{}3: an animation display cos(t)*sin(x)sin(y).}
+\nspcomment{// (Remark: this animation uses the old mode)}
+n=\nspnumber{30}\nspoperator{;}
+nt=\nspnumber{100}\nspoperator{;}
+x=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,n)\nspoperator{;}
+y=linspace(\nspnumber{0},%pi,n\nspoperator{/}\nspnumber{2})\nspoperator{;}
+z=sin(x\nspoperator{'})\nspoperator{*}sin(y)\nspoperator{;}
+t=linspace(\nspnumber{0},\nspnumber{4}\nspoperator{*}%pi,nt)\nspoperator{;}
+xselect()\nspoperator{;}xbasc()
+fig_styl_init=get(\nspstring{"figure_style"})\nspoperator{;}
+\nspkeyword{if} fig_styl_init\nspoperator{==}\nspstring{"new"} \nspkeyword{then} set(\nspstring{"figure_style"},\nspstring{"old"})\nspoperator{,}\nspkeyword{end}
+xset(\nspstring{"font"},\nspnumber{6},\nspnumber{2})
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{64}))
+driver(\nspstring{"X11"})\nspoperator{;}xset(\nspstring{"pixmap"},\nspnumber{1})\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}nt \nspkeyword{do}
+  xbasc()
+  colorbar(\nspoperator{-}\nspnumber{1},\nspnumber{1})
+  Sgrayplot(x,y,cos(t(i))\nspoperator{*}z,strf = \nspstring{"042"},zminmax = [\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{1}])
+  xtitle(\nspstring{"Kaa''s eyes"})
+  xset(\nspstring{"wshow"})
+\nspkeyword{end}
+xset(\nspstring{"pixmap"},\nspnumber{0})\nspoperator{;}driver(\nspstring{"Rec"})
+\nspkeyword{if} fig_styl_init\nspoperator{==}\nspstring{"new"} \nspkeyword{then} set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspkeyword{end}
+\end{Verbatim}

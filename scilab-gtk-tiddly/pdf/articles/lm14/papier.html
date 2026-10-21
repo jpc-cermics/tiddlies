@@ -1,0 +1,534 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>untitled</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <DIV ALIGN="center">
+<FONT SIZE="4"><B>Scilab&nbsp;: un logiciel libre pour le calcul
+scientifique<BR>
+troisi&egrave;me partie&nbsp;:<BR>
+<BR>
+<BR>
+&lt;&lt;Structure de donn&eacute;es et surcharge d'op&eacute;rateurs.&gt;&gt;
+</B></FONT> 
+</DIV>
+<BR>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+<I>Un langage matriciel, la possibilit&eacute; de d&eacute;finir de nouveaux
+objets et des m&eacute;canismes de surcharge des op&eacute;rateurs et des
+fonctions font de Scilab un langage de programmation puissant permettant
+d'&eacute;crire des programmes complexes de fa&ccedil;on lisible et
+compacte.</I> <BR>
+<BR>
+Nous avons &eacute;voqu&eacute; dans les premiers articles les objets de base
+de Scilab (matrices de nombres, de polyn&ocirc;mes, de cha&icirc;nes de
+caract&egrave;res et de bool&eacute;ens). Mais pour d&eacute;velopper des
+programmes complexes avec un code lisible et concis, le programmeur a besoin de
+structures pouvant contenir des donn&eacute;es
+h&eacute;t&eacute;rog&egrave;nes. Scilab permet de d&eacute;finir et de
+manipuler ces nouveaux objets ais&eacute;ment. Par exemple&nbsp;:<BR>
+<BR>
+<PRE></PRE>
+
+<FONT SIZE="2"> --&gt;tableau=list(['x';'y'],['a','b','c'],rand(2,3))
+</FONT><BR>
+<BR>
+cr&eacute;e une structure de donn&eacute;es repr&eacute;sentant un tableau de
+nombres auquel est associ&eacute; des noms de lignes et de colonnes. Les
+diff&eacute;rents champs de cette structure sont accessibles par leur rang dans
+la structure.<BR>
+<BR>
+<PRE></PRE>
+
+<FONT SIZE="2"> --&gt;tableau(2) <BR>
+ans=!a b c ! <BR>
+<BR>
+--&gt;sum(tableau(3)(1,:))<BR>
+ans=1.1943134 </FONT><BR>
+<BR>
+<I>On note ici l'usage du symbole &lt;&lt;</I><I><TT>&nbsp;: 
+</TT></I><I>&gt;&gt; qui d&eacute;signe l'ensemble des lignes de la
+matrice.</I> <BR>
+Il est bien &eacute;videmment possible de changer la valeur d'un champ <PRE></PRE>
+
+<FONT SIZE="2"> --&gt;tableau(3)=[1 2 3;4 5 6];</FONT><BR>
+<FONT SIZE="2"> --&gt;tableau(3) <BR>
+ans=! 1. 2. 3. ! ! 4. 5. 6. ! </FONT><BR>
+<BR>
+<BR>
+voire m&ecirc;me d'une sous-matrice contenue dans l'un des champs <PRE></PRE>
+
+<FONT SIZE="2"> --&gt;tableau(3)(:,2)=[0;0];<BR>
+--&gt;tableau(3)<BR>
+ans=! 1. 0. 3. ! ! 4. 0. 6. ! </FONT><BR>
+<BR>
+<FONT SIZE="2"> </FONT> Ce type de structure peut &ecirc;tre r&eacute;cursif
+d&eacute;finissant ainsi des structures de donn&eacute;es arborescentes, comme
+dans l'exemple ci-dessous o&ugrave; l'on veut d&eacute;crire l'arbre des
+descendants d'une personne. Un individu y est d&eacute;crit par une liste
+contenant son &eacute;tat civil (pr&eacute;nom, date de naissance, liste des
+enfants). Cette structure est cr&eacute;ee par la fonction <TT>etat_civil 
+</TT>.<BR>
+<BR>
+<PRE></PRE>
+
+<FONT SIZE="2">function individu=etat_civil(prenom,date_naissance,enfants) <BR>
+[lhs,rhs]=argn() <BR>
+if rhs==2 then enfants=list(),end <BR>
+individu=list(prenom,date_naissance,enfants) </FONT> <BR>
+<BR>
+<I>On note ici l'usage de la fonction </I><I><TT>argn</TT></I><I> qui permet de
+conna&icirc;tre le nombre effectif d'arguments de sortie et d'entr&eacute;e
+pass&eacute;s lors de l'appel de la fonction.</I><BR>
+Exemple d'utilisation&nbsp;: <PRE></PRE>
+
+<FONT SIZE="2"> --&gt;JeanPierre=etat_civil('Jean-Pierre',1908) <BR>
+&nbsp;&nbsp;&nbsp;JeanPierre=<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JeanPierre(1)<BR>
+&nbsp;&nbsp;&nbsp;Jean-Pierre <BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JeanPierre(2) <BR>
+&nbsp;&nbsp;&nbsp;&nbsp;1908. <BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JeanPierre(3)<BR>
+&nbsp;&nbsp;&nbsp;() </FONT> <BR>
+<BR>
+<I>On observe ci-dessus la visualisation par d&eacute;faut des structures.</I>
+<BR>
+La fonction r&eacute;cursive <TT>nouveau</TT> ajoute un nouveau descendant
+&agrave; un ascendant sp&eacute;cifi&eacute; par son pr&eacute;nom.<BR>
+<BR>
+<PRE></PRE>
+
+<FONT SIZE="2">function l=nouveau(l,individu,ascendant) <BR>
+if l(1)==ascendant then // L'ascendant designe a ete trouve <BR>
+&nbsp;&nbsp;&nbsp;l(3)($+1)=individu // Extension de la liste des enfants <BR>
+else <BR>
+&nbsp;&nbsp;&nbsp;for k=1:size(l(3)) // Parcours de l'arbre des descendants
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l(3)(k)=nouveau(l(3)(k),individu,ascendant)
+<BR>
+&nbsp;&nbsp;&nbsp;end <BR>
+end </FONT><BR>
+<BR>
+Pour illustrer l'usage de ces fonctions, cr&eacute;ons la descendance de Jean
+Pierre&nbsp;:<BR>
+<BR>
+<PRE></PRE>
+
+<FONT SIZE="2">arbre=etat_civil('Jean-Pierre',1908);// l'ancetre <BR>
+&nbsp;&nbsp;&nbsp;// et sa descendance ... <BR>
+arbre=nouveau(arbre,etat_civil('Maurice',1928),'Jean-Pierre'); <BR>
+arbre=nouveau(arbre,etat_civil('Francois',1930),'Jean-Pierre'); <BR>
+arbre=nouveau(arbre,etat_civil('Marianne',1953),'Francois'); <BR>
+arbre=nouveau(arbre,etat_civil('Claude',1960),'Maurice'); <BR>
+arbre=nouveau(arbre,etat_civil('Serge',1965),'Maurice'); <BR>
+arbre=nouveau(arbre,etat_civil('Jean-Philippe',1985),'Marianne'); </FONT><BR>
+<BR>
+La visualisation par d&eacute;faut de la structure <TT>arbre</TT> n'est pas
+tr&egrave;s lisible, nous d&eacute;finissons donc la fonction r&eacute;cursive 
+<TT>affiche_arbre</TT> pour r&eacute;aliser une visualisation
+sp&eacute;cifique. <BR>
+<BR>
+<BR>
+<PRE>
+
+</PRE>
+<BR>
+<I>On peut noter ici l'usage du symbole &lt;&lt;</I><I><TT>+ 
+</TT></I><I>&gt;&gt; pour la concat&eacute;nation des cha&icirc;nes, de la
+fonction </I><I><TT>string</TT></I><I> qui convertit un nombre en une
+cha&icirc;ne de caract&egrave;res et de la fonction </I><I><TT>exists 
+</TT></I><I> qui permet de savoir si une variable existe.</I><BR>
+Cette fonction g&eacute;nere le r&eacute;sultat suivant&nbsp;: 
+<PRE></PRE>
+
+<FONT SIZE="2"> --&gt;affiche_arbre(arbre) Jean-Pierre 1908 Maurice 1928 Claude
+1960 Serge 1965 Francois 1930 Marianne 1953 Jean-Philippe 1985 </FONT><FONT
+SIZE="2"> </FONT>Avec de telles structures, le programmeur veut quelquefois
+d&eacute;signer les champs par des noms symboliques plut&ocirc;t que par un
+num&eacute;ro. Cela peut &ecirc;tre fait en utilisant les structures
+&lt;&lt;typ&eacute;es&gt;&gt; cr&eacute;ees par la fonction <TT>tlist</TT>. Ce
+type de structure h&eacute;rite de toutes les propri&eacute;t&eacute;s des
+structures pr&eacute;c&eacute;dentes mais il est de plus possible d'y attacher
+un type symbolique ainsi que de nommer les champs.<BR>
+<BR>
+La fonction <TT>etat_civil</TT> peut &ecirc;tre modifi&eacute;e comme suit pour
+utiliser ce type de structure&nbsp;:<BR>
+<BR>
+<PRE>function individu=etat_civil(prenom,date_naissance,enfants)
+[lhs,rhs]=argn()
+if rhs==2 then enfants=list(),end 
+individu=tlist(['etat','prenom','date','enfants'],..
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prenom,date_naissance,enfants)
+</PRE>
+Le premier champ de la nouvelle structure <TT>individu</TT> est un vecteur de
+cha&icirc;nes de caract&egrave;res. La premi&egrave;re cha&icirc;ne donne le
+type symbolique de la structure et les suivants les noms symboliques des
+champs. La fonction <TT>nouveau</TT> s'&eacute;crit alors de fa&ccedil;on plus
+lisible&nbsp;:<BR>
+<BR>
+
+<PRE>
+function l=nouveau(l,individu,ascendant) 
+if l.prenom==ascendant then // L'ascendant designe a ete trouve
+&nbsp;&nbsp;l.enfants($+1)=individu // Extension de la liste des enfants
+else
+&nbsp;&nbsp;for k=1:size(l.enfants) // Parcours de l'arbre des descendants
+&nbsp;&nbsp;&nbsp;&nbsp;l.enfants(k)=nouveau(l.enfants(k),individu,ascendant)
+&nbsp;&nbsp;end 
+end
+</PRE>
+<BR>
+Et la fonction <TT>%etat_p</TT> ci-dessous adapt&eacute;e de <TT>affiche_arbre 
+</TT> permet de surcharger la visualisation par d&eacute;faut des structure de
+type <TT>etat</TT>. Le nom la fonction (<TT>%etat_p</TT>) est construit
+&agrave; partir du nom symbolique du type <TT>etat</TT> et du symbole du
+display &lt;&lt;<TT>p</TT>&gt;&gt;.<BR>
+<BR>
+
+<PRE>
+function %etat_p(descendants)
+if ~exists('shift') then shift='',end
+// affiche le niveau courant
+write(%io(2),shift+descendants.prenom+' '+string(descendants.date))
+// accroit le decalage les descendants
+shift=shift+'     ';// decalage du texte relatif a ce niveau
+for k=1:size(descendants.enfants) // boucle sur les descendants
+  // appel recursif de la fonction pour traiter les descendants
+  %etat_p(descendants.enfants(k))
+end
+</PRE>
+Il n'est alors plus besoin d'appeler explicitement une fonction pour
+r&eacute;aliser la visualisation de la structure <TT>arbre</TT>&nbsp;:<BR>
+<BR>
+
+<PRE> 
+--&gt;arbre 
+Jean-Pierre 1908 
+	Maurice 1928 
+		Claude 1960 
+		Serge 1965 
+	Francois 1930 
+		Marianne 1953 
+			Jean-Philippe 1985 
+</PRE>
+De la m&ecirc;me fa&ccedil;on, la s&eacute;mantique de l'insertion peut
+&ecirc;tre surcharg&eacute;e en d&eacute;finissant la fonction <TT>%etat_i_etat
+</TT> comme ci-dessous. Le nom de la fonction est contruit &agrave; partir du
+nom symbolique des op&eacute;rateurs (ici <TT>etat</TT>) et du symbole de
+l'op&eacute;rateur (ici &lt;&lt;<TT>i</TT>&gt;&gt; pour l'insertion).<BR>
+<BR>
+
+<PRE>function l=%etat_i_etat(ascendant,individu,l) 
+if l.prenom==ascendant then 
+	l.enfants($+1)=individu 
+else 
+	for k=1:size(l.enfants) // boucle sur les descendants
+		l.enfants(k)=nouveau(l.enfants(k),individu,ascendant) 
+	end 
+end </PRE>
+La d&eacute;finition de la descendance se fait alors plus simplement&nbsp;: 
+<PRE>arbre=etat_civil('Jean-Pierre',1908);// l'ancetre // et sa
+descendance arbre('Jean-Pierre')=etat_civil('Maurice',1928);
+arbre('Jean-Pierre')=etat_civil('Francois',1930);
+arbre.Maurice=etat_civil('Claude',1960); arbre.Maurice=etat_civil('Serge',1965)
+arbre.Francois=etat_civil('Marianne',1953)
+arbre.Marianne=etat_civil('Jean-Philippe',1985) </PRE>
+<I>On note ici l'usage de la syntaxe </I><I><TT>arbre('Jean-Pierre') 
+</TT></I><I> au lieu de la notation &lt;&lt;</I><I><TT>.</TT></I><I>&gt;&gt;
+&agrave; cause du symbole op&eacute;ratoire &lt;&lt;</I><I><TT>- 
+</TT></I><I>&gt;&gt; inclut dans le pr&eacute;nom.</I> <BR>
+<BR>
+<B>Toujours plus fort!</B> Le programmeur veut maintenant d&eacute;finir des
+matrices d'objets. Nous allons illustrer comment cela peut se faire sous Scilab
+pour le calcul automatique de la d&eacute;riv&eacute;e d'une fonction Scilab
+par surcharge d'op&eacute;rateurs.<BR>
+<BR>
+&Eacute;tant donn&eacute;e une fonction Scilab <TT>F</TT> r&eacute;alisant
+<I>y</I>=<I>F</I>(<I>x</I>) o&ugrave; <I>x</I> et <I>y</I> sont des vecteurs ou
+des matrices, on veut pouvoir calculer la valeur de la fonction <I>G</I> 
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"><I>G</I>(<I>x</I>,<I>z</I>)=</TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>d</I> <I>F</I>(<I>x</I>+<FONT
+FACE="symbol">l</FONT> <I>z</I>)</TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>d</I> <FONT FACE="symbol">l</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+pour tout couple (<I>x</I>,<I>z</I>) ou <I>z</I> est une matrice de m&ecirc;me
+dimension que <I>x</I> et <FONT FACE="symbol">l</FONT> un scalaire (pour les
+connaisseurs, il s'agit du calcul de la d&eacute;riv&eacute;e directionnelle
+dans la la direction <I>z</I>) en utilisant le code de la fonction Scilab <TT>F
+</TT>.<BR>
+<BR>
+Cela peut se faire tout simplement en rempla&ccedil;ant <TT>x</TT> par une
+structure <TT>xdx</TT> contenant <I>x</I> et <I>z</I> et en surchargeant la
+d&eacute;finition des op&eacute;rateurs et des fonctions de base de Scilab pour
+que les diff&eacute;rents calculs d&eacute;finis dans la fonction <TT>F</TT>
+&eacute;valuent la valeur de la d&eacute;riv&eacute;e de leur r&eacute;sutat
+par rapport &agrave; <FONT FACE="symbol">l</FONT> en m&ecirc;me temps que la
+valeur elle-m&ecirc;me.<BR>
+<BR>
+La fonction <TT>der</TT> ci-dessous permet de cr&eacute;er un nouveau type de
+donn&eacute;e qui contient la valeur d'une variable en un point <TT>x</TT>
+ainsi que la valeur de la d&eacute;riv&eacute;e directionnelle <TT>dx</TT>.
+<BR>
+<BR>
+<PRE></PRE>
+
+<PRE>function [xdx]=der(x,dx) 
+xdx=mlist(['der';'v';'dv'],x,dx)
+</PRE>
+<I>On note ici l'usage de la fonction </I><I><TT>mlist</TT></I><I> qui permet
+de cr&eacute;er des structures de donn&eacute;es orient&eacute;es matricielle
+(ce qui veut dire que les syntaxe </I><I><TT>xdx(i)</TT></I><I> et </I><I> 
+<TT>xdx(i,j)</TT></I><I> seront interpr&eacute;t&eacute;es comme l'indexage de
+sous-matrice de </I><I><TT>xdx</TT></I><I>).</I> <BR>
+Nous souhaitons appliquer cette m&eacute;thode &agrave; la fonction 
+<TT>normalize</TT>&nbsp;: 
+<PRE></PRE>
+
+<PRE>function x=normalize(x) 
+for k=1 : size(x,2) 
+	s=sum(x(:,k)) 
+	if s~=0 then 
+		x(:,k)=x(:,k)/s, 
+	end 
+end </PRE>
+Pour ne pas compliquer l'expos&eacute;, nous ne montrerons que les fonctions de
+surcharges n&eacute;cessaires. Commen&ccedil;ons par les fonctions qui
+surchargent l'extraction de sous-matrice <BR>
+<BR>
+
+<PRE></PRE>
+
+<PRE>function [z]=%der_e (varargin) 
+if size(varargin)==2 then //extraction x(i) 
+	[i,x]=varargin(:) ; 
+	z=der(x.v(i),x.dv(i)) 
+else // extraction
+	x(i,j) [i,j,x]=varargin(:) ; z=der(x.v(i,j),x.dv(i,j)) 
+end </PRE>
+et l'insertion 
+<FONT SIZE="2">function y=%der_i_der(varargin) if size(varargin)==3 then //
+syntaxe y(i)=x [i,x,y]=varargin(:) y.v(i)=x.v ; // insertion pour le champ
+valeur y.dv(i)=x.dv ;// insertion pour le champ derivee else // syntaxe
+z(i,x)=y [i,j,x,y]=varargin(:) y.v(i,j)=x.v y.dv(i,j)=x.dv end </FONT><I>On
+note ici l'usage du mot cl&eacute; </I><I><TT>varargin</TT></I><I> qui permet
+de passer un nombre variable d'arguments d'entr&eacute;e. La variable </I><I> 
+<TT>varargin</TT></I><I> est la structure (de type </I><I><TT>list</TT></I><I>)
+des arguments effectifs d'entr&eacute;e.</I> <BR>
+Les fonctions de surcharge des fonctions <TT>size</TT> et <TT>sum</TT>
+s'&eacute;crivent comme suit&nbsp;:<BR>
+<BR>
+<PRE>function m=%der_size(a,flag) 
+m=size(a.v,flag) 
+
+function z=%der_sum(x) 
+z=der(sum(x.v),sum(x.dv)) 
+</PRE>
+Bien &eacute;videmment la d&eacute;riv&eacute;e de la somme est &eacute;gale
+&agrave; la somme des d&eacute;riv&eacute;es. <BR>
+En ce qui concerne les fonctions de surcharge des op&eacute;rateurs &lt;&lt; 
+<TT>/</TT>&gt;&gt; et &lt;&lt;<TT>=</TT>&gt;&gt; le nom de la fonction est
+construit &agrave; partir du nom de type de chaque op&eacute;rande et du code
+de l'op&eacute;rateur qui est &lt;&lt;<TT>r</TT>&gt;&gt; pour la division
+&agrave; droite et &lt;&lt;<TT>n</TT>&gt;&gt; pour la comparaison.<BR>
+<BR>
+
+<PRE>function z=%der_r_der 
+(x,y) r=x.v / y.v 
+z=der(r,(x.dv - r*y.dv)/ y.v ) </PRE>
+
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>d</I> (<I>x</I>/<I>y</I>)</TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"> <I>d</I> <FONT FACE="symbol">l</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP">=</TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>d</I> <I>x</I></TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>d</I> <FONT FACE="symbol">l</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP">/<I>y</I> - <I>x</I> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>d</I> <I>y</I></TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>d</I> <FONT FACE="symbol">l</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP">/<I>y</I><SUP><FONT SIZE="2">2</FONT></SUP></TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+La fonction de surcharge de la comparaison est beaucoup plus simple&nbsp;:<BR>
+<BR>
+<PRE>function z=%der_n_s(x,y) 
+z=x.v </PRE>
+
+<PRE> y </PRE>
+Et miracle, sans rien changer &agrave; la fonction <TT>normalize</TT>, on
+obtient<BR>
+<BR>
+
+<PRE></PRE>
+
+<PRE>--&gt;a=[1 2;3 4]; 
+--&gt;y=normalize(a) 
+  y=
+  ! 0.25 0.3333333 ! 
+  ! 0.75 0.6666667 ! 
+--&gt;A=der(a,eye(a)); 
+--&gt;Y=normalize(A) 
+Y=
+	Y(1) 
+	!der ! 
+	!    !
+	!v   ! 
+	!    ! 
+	!dv  ! 
+	
+	Y(2) 
+	! 0.25 0.3333333 ! 
+	! 0.75 0.6666667 ! 
+	
+	Y(3) 
+	! 0.1875 - 0.0555556 ! 
+	! - 0.1875 0.0555556 !
+	
+--&gt;norm(Y.dv-(normalize(a+1.d-9*A.dv)-y)/1.d-9) //test 
+	ans=
+		2.288D-08
+</PRE>
+Cet exemple est extrait d'une bo&icirc;te &agrave; outil de
+diff&eacute;rentiation automatique de programmes en pr&eacute;paration. Par
+ailleurs, un certain nombre de types de variable d&eacute;finis dans la version
+2.5 de Scilab (matrice de fractions rationnelles, syst&egrave;mes dynamiques
+lin&eacute;aires et matrices n-dimensionnelles sont cod&eacute;s par des
+structures Scilab et les op&eacute;rations associ&eacute;es d&eacute;finies par
+surcharge d'op&eacute;rateurs.<BR>
+<BR>
+Par exemple, cela permet une syntaxe d'utilisation des matrices
+n-dimensionnelles tr&egrave;s proche de celle des matrices ordinaires.<BR>
+<BR>
+
+<PRE>--&gt;a=[1 2;3 4]; 
+--&gt;a(:,:,2)=eye(2,2) 
+a=(:,:,1) 
+! 1. 2. !
+! 3. 4. ! 
+(:,:,2) 
+! 1. 0. ! 
+! 0. 1. ! 
+--&gt;[a a] 
+ans=(:,:,1) 
+! 1. 2. 1. 2. ! 
+
+! 3. 4. 3. 4. ! 
+(:,:,2) 
+! 1. 0. 1. 0. ! 
+! 0. 1. 0. 1. ! 
+</PRE>
+<BR>
+Par ailleur, le traducteur Matlab -&gt; Scilab, enti&egrave;rement &eacute;crit
+en Scilab, utilise massivement ce type de structures. Pour m&eacute;nager le
+suspense nous n'avons parl&eacute; ici que de la surcharge des
+op&eacute;rateurs et fonctions par la d&eacute;finition de fonctions
+&eacute;crites en Scilab. Cela est aussi possible par la d&eacute;finition de
+nouvelles primitives &eacute;crites en C ou en Fortran. <BR>
+<BR>
+Pour en apprendre d'avantage sur les capacit&eacute;s de Scilab, rendez-vous au
+prochain num&eacute;ro... <BR>
+<BR>
+Serge Steer <BR>
+Scilab Group <BR>
+<A HREF="mailto:scilab@inria.fr">scilab@inria.fr</A><BR>
+<A
+ HREF="http://www-rocq.inria.fr/scilab/">http://www-rocq.inria.fr/scilab/</A><BR>
+<A HREF="news:comp.soft-sys.math.scilab">Newsgroups:
+comp.soft-sys.math.scilab</A><BR>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

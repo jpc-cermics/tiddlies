@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_barrier</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1059.html" >next</a>] [<a 
+href="manualli1057.html" >prev</a>] [<a 
+href="manualli1057.html#tailmanualli1057.html" >prev-tail</a>] [<a 
+href="#tailmanualli1058.html">tail</a>] [<a 
+href="manualli1054.html#manualli1058.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1059-5999000"></a>pvm_barrier</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1059-5999001"></a><a 
+ id="pvm_barrier"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_barrier </span>&#x2013;      blocks the calling process until all processes in a group have called it. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1059-6000000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1159">
+&#x00A0;&#x00A0;[info]&#x00A0;=&#x00A0;pvm_barrier(group,count)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1059-6001000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">type</span>: string, name of an existing group.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">count</span>: integer, specifying the number of group members that must call pvm_barrier
+     before they are all released.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info</span>: integer, status code returned by the routine.</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1059-6002000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_barrier</span></span></span> blocks the calling process until <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">count</span></span></span> members of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">group</span></span></span> have called
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_barrier</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">count</span></span></span> argument is required because processes could be joining the given group
+after other processes have called <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_barrier</span></span></span>. Thus PVM doesn&apos;t know how many group members
+to wait for at any given instant. Although <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">count</span></span></span> can be set less, it is typically the total number of
+members of the group. So the logical function of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_barrier</span></span></span> call is to provide a group
+synchronization. During any given barrier call all participating group members must call barrier
+with the same count value. Once a given barrier has been successfully passed, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_barrier</span></span></span>
+can be called again by the same group using the same group name. The returned value
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info</span></span></span>will be zero if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_barrier</span></span></span> is successful and will be will be <span 
+class="cmmi-10x-x-109">&#x003C; </span>0 if some error occurs.
+</p>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1059-6003000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb724"><a 
+ id="x1059-6003003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;info=pvm_barrier(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;worker&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,pvm_gsize(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;worker&#x0022;</span></span><span 
+class="cmtt-10x-x-109">))</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1059-6004000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-joingroup">pvm_joingroup</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1059.html" >next</a>] [<a 
+href="manualli1057.html" >prev</a>] [<a 
+href="manualli1057.html#tailmanualli1057.html" >prev-tail</a>] [<a 
+href="manualli1058.html" >front</a>] [<a 
+href="manualli1054.html#manualli1058.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1058.html"></a>  </p> 
+</body></html> 

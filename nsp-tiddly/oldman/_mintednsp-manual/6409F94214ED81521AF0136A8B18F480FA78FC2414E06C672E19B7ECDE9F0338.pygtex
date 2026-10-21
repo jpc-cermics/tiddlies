@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//inline definition (see function)}
+\nspkeyword{function} [x,y]=\nspfunction{myfct}(a,b)
+  x=a\nspoperator{+}b
+  y=a\nspoperator{-}b
+\nspkeyword{endfunction}
+[x,y]=myfct(\nspnumber{3},\nspnumber{2})
+\nspcomment{//a one line function definition}
+\nspkeyword{function} y=\nspfunction{sq}(x) y=x\nspoperator{^}\nspnumber{2}\nspoperator{,}\nspkeyword{endfunction}
+sq(\nspnumber{3})
+\nspcomment{//nested functions definition}
+\nspkeyword{function} y=\nspfunction{foo}(x)
+  a=sin(x)
+  \nspkeyword{function} y=\nspfunction{sq}(x) y=x\nspoperator{^}\nspnumber{2}\nspoperator{,}\nspkeyword{endfunction}
+  y=sq(a)\nspoperator{+}\nspnumber{1}
+\nspkeyword{endfunction}
+foo(%pi\nspoperator{/}\nspnumber{3})
+\nspcomment{// definition in an script file (see exec)}
+\nspkeyword{exec} SCI/macros/elem/asinh.sci\nspoperator{;}
+\end{Verbatim}

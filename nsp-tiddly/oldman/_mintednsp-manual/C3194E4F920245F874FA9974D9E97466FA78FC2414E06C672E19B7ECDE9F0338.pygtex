@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+u=linspace(\nspoperator{-}%pi\nspoperator{/}\nspnumber{2},%pi\nspoperator{/}\nspnumber{2},\nspnumber{40})\nspoperator{;}
+v=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,\nspnumber{20})\nspoperator{;}
+X=cos(u)\nspoperator{'}\nspoperator{*}cos(v)\nspoperator{;}
+Y=cos(u)\nspoperator{'}\nspoperator{*}sin(v)\nspoperator{;}
+Z=sin(u)\nspoperator{'}\nspoperator{*}ones(v)\nspoperator{;}
+plot3d2(X,Y,Z)\nspoperator{;}
+\nspcomment{// New Graphic mode only}
+e=gce()\nspoperator{;}
+e.color_mode=\nspnumber{4}\nspoperator{;}\nspcomment{// change color}
+f=e.data\nspoperator{;}
+TL=tlist([\nspstring{"3d"}\nspoperator{,}\nspstring{"x"}\nspoperator{,}\nspstring{"y"}\nspoperator{,}\nspstring{"z"}\nspoperator{,}\nspstring{"color"}],f.x,f.y,f.z,\nspnumber{10}\nspoperator{*}(f.z)\nspoperator{+}\nspnumber{1})\nspoperator{;}
+e.data=TL\nspoperator{;}
+e.color_flag=\nspnumber{2}\nspoperator{;}
+\end{Verbatim}

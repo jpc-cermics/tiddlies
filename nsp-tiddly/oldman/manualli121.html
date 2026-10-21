@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>atan</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli122.html" >next</a>] [<a 
+href="manualli120.html" >prev</a>] [<a 
+href="manualli120.html#tailmanualli120.html" >prev-tail</a>] [<a 
+href="#tailmanualli121.html">tail</a>] [<a 
+href="manualli104.html#manualli121.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x122-691000"></a>atan</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx122-691001"></a><a 
+ id="atan"></a><span 
+class="cmtt-10x-x-109">atan </span>&#x2013;                                                     2-quadrant and 4-quadrant inverse tangent<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x122-692000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-202">
+&#x00A0;&#x00A0;phi=atan(x)
+&#x00A0;<br />&#x00A0;&#x00A0;phi=atan(y,x)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x122-693000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: real or complex scalar, vector or matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">phi</span>: real or complex scalar, vector or matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x, y</span>: real scalars, vectors or matrices of the same size
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">phi</span>: real scalar, vector or matrix</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x122-694000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > The first form computes the 2-quadrant inverse tangent, which is the inverse of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tan(phi)</span></span></span>. For real
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phi</span></span></span> is in the interval (-pi/2, pi/2). For complex <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">atan</span></span></span> has two singular, branching points
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">+%i</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-%i</span></span></span> and the chosen branch cuts are the two imaginary half-straight lines [i, i*oo) and (-i*oo,
+-i]. The second form computes the 4-quadrant arctangent (atan2 in Fortran), this is, it
+returns the argument (angle) of the complex number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x+i*y</span></span></span>. The range of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">atan(y,x)</span></span></span> is
+(-pi, pi]. For real arguments, both forms yield identical values if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x$&#x003E;$0</span></span></span>. In case of vector
+or matrix arguments, the evaluation is done element-wise, so that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phi</span></span></span> is a vector or
+matrix of the same size with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phi(i,j)=atan(x(i,j))</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phi(i,j)=tan(y(i,j),x(i,j))</span></span></span>.
+</p>
+<!--l. 52--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x122-695000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb85"><a 
+ id="x122-695016r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;examples</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;second</span><span 
+class="cmitt-10x-x-109">&#x00A0;form</span></span><br class="fancyvrb" /><a 
+ id="x122-695018r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%i]</span><br class="fancyvrb" /><a 
+ id="x122-695020r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;phasex=atan(imag(x),real(x))</span><br class="fancyvrb" /><a 
+ id="x122-695022r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atan(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x122-695024r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atan(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%eps,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x122-695026r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;branch</span><span 
+class="cmitt-10x-x-109">&#x00A0;cuts</span></span><br class="fancyvrb" /><a 
+ id="x122-695028r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atan(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%eps</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i)</span><br class="fancyvrb" /><a 
+ id="x122-695030r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atan(%eps</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i)</span><br class="fancyvrb" /><a 
+ id="x122-695032r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atan(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%eps</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i)</span>
+<br class="fancyvrb" /><a 
+ id="x122-695034r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atan(%eps</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i)</span><br class="fancyvrb" /><a 
+ id="x122-695036r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;branching</span><span 
+class="cmitt-10x-x-109">&#x00A0;points</span></span><br class="fancyvrb" /><a 
+ id="x122-695038r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ieee(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x122-695040r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atan(%i)</span><br class="fancyvrb" /><a 
+ id="x122-695042r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atan(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%i)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x122-696000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli262.html#tan">tan</a>    <a 
+href="manualli986.html#ieee">ieee</a>
+</p>
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x122-697000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x122-698000"></a></span>
+   B.P.
+</p>
+<!--l. 77--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x122-699000"></a></span>
+   L.V.D. <span 
+class="cmti-10x-x-109">(authors of the complex atan function).</span>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli122.html" >next</a>] [<a 
+href="manualli120.html" >prev</a>] [<a 
+href="manualli120.html#tailmanualli120.html" >prev-tail</a>] [<a 
+href="manualli121.html" >front</a>] [<a 
+href="manualli104.html#manualli121.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli121.html"></a>  </p> 
+</body></html> 

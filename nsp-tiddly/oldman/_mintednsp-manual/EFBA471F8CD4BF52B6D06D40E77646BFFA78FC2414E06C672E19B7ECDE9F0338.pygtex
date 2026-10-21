@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//}
+\nspcomment{//Example of how to use the fsfirlin macro for the design}
+\nspcomment{//of an FIR filter by a frequency sampling technique.}
+\nspcomment{//}
+\nspcomment{//Two filters are designed: the first (response hst1) with}
+\nspcomment{//abrupt transitions from 0 to 1 between passbands and stop}
+\nspcomment{//bands; the second (response hst2) with one sample in each}
+\nspcomment{//transition band (amplitude 0.5) for smoothing.}
+\nspcomment{//}
+hd=[zeros(\nspnumber{1},\nspnumber{15})\nspoperator{,}ones(\nspnumber{1},\nspnumber{10})\nspoperator{,}zeros(\nspnumber{1},\nspnumber{39})]\nspoperator{;}\nspcomment{//desired samples}
+hst1=fsfirlin(hd,\nspnumber{1})\nspoperator{;}\nspcomment{//filter with no sample in the transition}
+hd(\nspnumber{15})=\nspnumber{.5}\nspoperator{;}hd(\nspnumber{26})=\nspnumber{.5}\nspoperator{;}\nspcomment{//samples in the transition bands}
+hst2=fsfirlin(hd,\nspnumber{1})\nspoperator{;}\nspcomment{//corresponding filter}
+pas=\nspnumber{1}\nspoperator{/}prod(size(hst1))\nspoperator{*}\nspnumber{.5}\nspoperator{;}
+fg=\nspnumber{0}\nspoperator{:}pas\nspoperator{:}\nspnumber{.5}\nspoperator{;}\nspcomment{//normalized frequencies grid}
+plot2d([\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{ .*.}fg(\nspnumber{1}\nspoperator{:}\nspnumber{257})\nspoperator{'},[hst1\nspoperator{'}\nspoperator{,}hst2\nspoperator{'}])\nspoperator{;}
+\nspcomment{// 2nd example}
+hd=[\nspnumber{0}\nspoperator{*}ones(\nspnumber{1},\nspnumber{15})\nspoperator{,}ones(\nspnumber{1},\nspnumber{10})\nspoperator{,}\nspnumber{0}\nspoperator{*}ones(\nspnumber{1},\nspnumber{39})]\nspoperator{;}\nspcomment{//desired samples}
+hst1=fsfirlin(hd,\nspnumber{1})\nspoperator{;}\nspcomment{//filter with no sample in the transition}
+hd(\nspnumber{15})=\nspnumber{.5}\nspoperator{;}hd(\nspnumber{26})=\nspnumber{.5}\nspoperator{;}\nspcomment{//samples in the transition bands}
+hst2=fsfirlin(hd,\nspnumber{1})\nspoperator{;}\nspcomment{//corresponding filter}
+pas=\nspnumber{1}\nspoperator{/}prod(size(hst1))\nspoperator{*}\nspnumber{.5}\nspoperator{;}
+fg=\nspnumber{0}\nspoperator{:}pas\nspoperator{:}\nspnumber{.5}\nspoperator{;}\nspcomment{//normalized frequencies grid}
+n=prod(size(hst1))
+plot(fg(\nspnumber{1}\nspoperator{:}n),hst1)\nspoperator{;}
+plot2d(fg(\nspnumber{1}\nspoperator{:}n)\nspoperator{'},hst2\nspoperator{'},[\nspnumber{3}],\nspstring{"000"})\nspoperator{;}
+\end{Verbatim}

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>window</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1198.html" >next</a>] [<a 
+href="manualli1196.html" >prev</a>] [<a 
+href="manualli1196.html#tailmanualli1196.html" >prev-tail</a>] [<a 
+href="#tailmanualli1197.html">tail</a>] [<a 
+href="manualli1135.html#manualli1197.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1198-6774000"></a>window</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1198-6774001"></a><a 
+ id="window"></a><span 
+class="cmtt-10x-x-109">window </span>&#x2013;                                                 compute symmetric window of various type<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1198-6775000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1359">
+&#x00A0;&#x00A0;win_l=window(&#x0027;re&#x0027;,n)
+&#x00A0;<br />&#x00A0;&#x00A0;win_l=window(&#x0027;tr&#x0027;,n)
+&#x00A0;<br />&#x00A0;&#x00A0;win_l=window(&#x0027;hn&#x0027;,n)
+&#x00A0;<br />&#x00A0;&#x00A0;win_l=window(&#x0027;hm&#x0027;,n)
+&#x00A0;<br />&#x00A0;&#x00A0;win_l=window(&#x0027;kr&#x0027;,n,alpha)
+&#x00A0;<br />&#x00A0;&#x00A0;[win_l,cwp]=window(&#x0027;ch&#x0027;,n,par)
+</div>
+<!--l. 30--><p class="nopar" >
+</p>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1198-6776000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: window length
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">par</span>: parameter 2-vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">par=[dp,df])</span></span></span>, where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dp</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$dp$&#x003C;$.5</span></span></span>) rules the main lobe
+     width and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">df</span></span></span> rules the side lobe height (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">df$&#x003E;$0</span></span></span>).Only one of these two value should be
+     specified the other one should set equal to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">alpha</span>: kaiser window parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alpha</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003E;$0</span></span></span>).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">win</span>: window
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">cwp</span>: unspecified Chebyshev window parameter</li></ul>
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1198-6777000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 46--><p class="noindent" > function which calculates various symmetric window for Disgital signal processing The Kaiser
+window is a nearly optimal window function. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alpha</span></span></span> is an arbitrary positive real number that
+determines the shape of the window, and the integer <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> is the length of the window. By construction,
+this function peaks at unity for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;n/2</span></span></span> , i.e. at the center of the window, and decays
+exponentially towards the window edges. The larger the value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alpha</span></span></span>, the narrower the window
+becomes; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alpha</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span></span></span> corresponds to a rectangular window. Conversely, for larger <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alpha</span></span></span> the width of
+the main lobe increases in the Fourier transform, while the side lobes decrease in amplitude.
+Thus, this parameter controls the tradeoff between main-lobe width and side-lobe area.
+                                                                                    
+
+                                                                                    
+<!--tex4ht:inline--></p><div class="tabular"> <table id="TBL-51" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-51-1g"><col 
+id="TBL-51-1" /></colgroup><colgroup id="TBL-51-2g"><col 
+id="TBL-51-2" /></colgroup><colgroup id="TBL-51-3g"><col 
+id="TBL-51-3" /></colgroup><colgroup id="TBL-51-4g"><col 
+id="TBL-51-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-51-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-51-1-1"  
+class="td11">alpha</td><td  style="white-space:nowrap; text-align:center;" id="TBL-51-1-2"  
+class="td11">        window shape            </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-51-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-51-2-1"  
+class="td11">  0   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-51-2-2"  
+class="td11">      Rectangular shape         </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-51-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-51-3-1"  
+class="td11">  5   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-51-3-2"  
+class="td11">Similar to the Hamming window</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-51-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-51-4-1"  
+class="td11">  6   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-51-4-2"  
+class="td11"> Similar to the Hanning window </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-51-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-51-5-1"  
+class="td11"> 8.6  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-51-5-2"  
+class="td11">Similar to the Blackman window</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-51-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-51-6-1"  
+class="td11">     </td></tr></table>
+</div> The Chebyshev window minimizes the mainlobe width, given a particular sidelobe height. It is
+characterized by an equiripple behavior, that is, its sidelobes all have the same height. The Hanning
+and Hamming windows are quite similar, they only differ in the choice of one parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alpha</span></span></span>:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;w=alpha+(1</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;alpha)*cos(2*%pi*x/(n-1))</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">alpha</span></span></span> is equal to 1/2 in Hanning window and to 0.54
+in Hamming window.
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1198-6778000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb791"><a 
+ id="x1198-6778032r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Hamming</span><span 
+class="cmitt-10x-x-109">&#x00A0;window</span></span><br class="fancyvrb" /><a 
+ id="x1198-6778034r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x1198-6778036r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;N=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">64</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1198-6778038r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;w=window(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;hm&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,N)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778040r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">121</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">N,w,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blue&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x1198-6778042r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(gca(),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;grid&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gray&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778044r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">122</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1198-6778046r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">256</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[W,fr]=frmag(w,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1198-6778048r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(fr,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">log10(W),style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blue&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778050r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(gca(),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;grid&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gray&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x1198-6778052r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Kaiser</span><span 
+class="cmitt-10x-x-109">&#x00A0;window</span></span><br class="fancyvrb" /><a 
+ id="x1198-6778054r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x1198-6778056r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;N=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">64</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1198-6778058r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;w=window(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;kr&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,N,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778060r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">121</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">N,w,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blue&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x1198-6778062r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(gca(),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;grid&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gray&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778064r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">122</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1198-6778066r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">256</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[W,fr]=frmag(w,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1198-6778068r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(fr,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">log10(W),style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blue&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778070r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(gca(),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;grid&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gray&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x1198-6778072r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Chebyshev</span><span 
+class="cmitt-10x-x-109">&#x00A0;window</span></span><br class="fancyvrb" /><a 
+ id="x1198-6778074r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x1198-6778076r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;N=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">64</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778078r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[w,df]=window(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ch&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,N,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.005</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1198-6778080r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">121</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">N,w,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blue&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778082r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(gca(),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;grid&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gray&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x1198-6778084r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">122</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1198-6778086r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">256</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[W,fr]=frmag(w,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1198-6778088r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(fr,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">log10(W),style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blue&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x1198-6778090r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(gca(),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;grid&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">color(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gray&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span></div>
+<!--l. 111--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1198-6779000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1194.html#wfir">wfir</a>    <a 
+href="manualli1161.html#frmag">frmag</a>    <a 
+href="manualli1153.html#ffilt">ffilt</a>
+</p>
+<!--l. 115--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1198-6780000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Carey Bunks
+</p>
+<!--l. 119--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1198-6781000"></a><span 
+class="cmbx-10x-x-109">Bibliography</span></span>
+   IEEE. Programs for Digital Signal Processing. IEEE Press. New York: John Wiley and Sons,
+1979. Program 5.2.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1198.html" >next</a>] [<a 
+href="manualli1196.html" >prev</a>] [<a 
+href="manualli1196.html#tailmanualli1196.html" >prev-tail</a>] [<a 
+href="manualli1197.html" >front</a>] [<a 
+href="manualli1135.html#manualli1197.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1197.html"></a>  </p> 
+</body></html> 

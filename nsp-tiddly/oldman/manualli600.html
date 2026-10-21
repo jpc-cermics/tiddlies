@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>findBDK</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli601.html" >next</a>] [<a 
+href="manualli599.html" >prev</a>] [<a 
+href="manualli599.html#tailmanualli599.html" >prev-tail</a>] [<a 
+href="#tailmanualli600.html">tail</a>] [<a 
+href="manualli597.html#manualli600.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x601-3565000"></a>findBDK</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx601-3565001"></a><a 
+ id="findBDK"></a><span 
+class="cmtt-10x-x-109">findBDK </span>&#x2013;                    Kalman gain and B D system matrices of a discrete-time system<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x601-3566000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-729">
+&#x00A0;&#x00A0;[B,D,K]&#x00A0;=&#x00A0;findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
+&#x00A0;<br />&#x00A0;&#x00A0;[B,D,RCND]&#x00A0;=&#x00A0;findBDK(S,N,L,R,A,C,METH,JOB)
+&#x00A0;<br />&#x00A0;&#x00A0;[B,D,K,Q,Ry,S,RCND]&#x00A0;=&#x00A0;findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x601-3567000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">S</span>: integer, the number of block rows in the block-Hankel matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">N</span>: integer
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">L</span>: integer
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">R</span>: matrix, relevant part of the R factor of the concatenated block-Hankel matrices
+     computed by a call to findR.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: square matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">C</span>: matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">METH</span>: integer, an option for the method to use
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">= 1</span>: MOESP method with past inputs and outputs;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">= 2</span>: N4SID method;</li></ul>
+     <!--l. 43--><p class="noindent" >Default: METH = 2.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">JOB</span>: an option specifying which system matrices should be computed:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">= 1</span>: compute the matrix B;
+                                                                                    
+
+                                                                                    
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">= 2</span>: compute the matrices B and D.</li></ul>
+     <!--l. 49--><p class="noindent" >Default: JOB = 2.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">NSMPL</span>: integer, the total number of samples used for calculating the covariance matrices and
+     the Kalman predictor gain. This parameter is not needed if the covariance matrices and/or the
+     Kalman predictor gain matrix are not desired. If NSMPL = 0, then K, Q, Ry, and S are not
+     computed. Default: NSMPL = 0.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">TOL</span>: the tolerance used for estimating the rank of matrices. If TOL <span 
+class="cmmi-10x-x-109">&#x003E; </span>0, then the given value
+     of TOL is used as a lower bound for the reciprocal condition number. Default:
+     prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine
+     precision.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">PRINTW</span>: integer, switch for printing the warning messages.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">PRINTW </span>= 1: print warning messages;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">PRINTW </span>= 0: do not print warning messages.</li></ul>
+     <!--l. 57--><p class="noindent" >Default: PRINTW = 0.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">SYS</span>: computes a state-space realization SYS = (A,B,C,D) (an syslin object)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">K</span>: the Kalman predictor gain K (if NSMPL <span 
+class="cmmi-10x-x-109">&#x003E; </span>0)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q</span>: state covariance
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Ry</span>: output covariance
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">S</span>: state-output cross-covariance
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">RCND</span>: he vector of length 12 containing the reciprocal condition numbers of the matrices
+     involved in rank decisions, least squares or Riccati equation solutions.</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x601-3568000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 66--><p class="noindent" > finds the system matrices B and D and the Kalman gain of a discrete-time system, given
+the system order, the matrices A and C, and the relevant part of the R factor of the
+concatenated block-Hankel matrices, using subspace identification techniques (MOESP or
+N4SID).
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">*</span> </span>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW) computes the system
+     matrices B (if JOB = 1), B and D (if JOB = 2), and the Kalman predictor gain K (if NSMPL
+     <span 
+class="cmmi-10x-x-109">&#x003E; </span>0). The model structure is:
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-730">
+     &#x00A0;&#x00A0;x(k+1)&#x00A0;=&#x00A0;Ax(k)&#x00A0;+&#x00A0;Bu(k)&#x00A0;+&#x00A0;Ke(k),&#x00A0;&#x00A0;&#x00A0;k&#x00A0;$&#x003E;$=&#x00A0;1,
+     &#x00A0;<br />&#x00A0;&#x00A0;y(k)&#x00A0;&#x00A0;&#x00A0;=&#x00A0;Cx(k)&#x00A0;+&#x00A0;Du(k)&#x00A0;+&#x00A0;e(k),
+</div>
+     <!--l. 76--><p class="nopar" >where x(k) and y(k) are vectors of length N and L, respectively.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">*</span> </span>[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB) also returns the vector RCND of length
+     4 containing the reciprocal condition numbers of the matrices involved in rank
+     decisions.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">*</span> </span>[B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW) also
+     returns the state, output, and state-output (cross-)covariance matrices Q, Ry, and S (used for
+     computing the Kalman gain), as well as the vector RCND of length 12 containing the
+     reciprocal condition numbers of the matrices involved in rank decisions, least squares or
+     Riccati equation solutions.</ul>
+</p><!--l. 81--><p class="noindent" >Matrix R, computed by findR, should be determined with suitable arguments METH and JOBD.
+METH = 1 and JOBD = 1 must be used in findR, for METH = 1 in findBDK. Using METH = 1 in
+FINDR and METH = 2 in findBDK is allowed. The number of output arguments may vary, but
+should correspond to the input arguments, e.g.,
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-731">
+&#x00A0;&#x00A0;B&#x00A0;=&#x00A0;findBDK(S,N,L,R,A,C,METH,1)&#x00A0;&#x00A0;or
+&#x00A0;<br />&#x00A0;&#x00A0;[B,D]&#x00A0;=&#x00A0;findBDK(S,N,L,R,A,C,METH,2)&#x00A0;&#x00A0;or
+&#x00A0;<br />&#x00A0;&#x00A0;[B,D,RCND]&#x00A0;=&#x00A0;findBDK(S,N,L,R,A,C,METH,2)
+</div>
+<!--l. 90--><p class="nopar" >
+</p>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x601-3569000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb467"><a 
+ id="x601-3569024r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//generate</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span><span 
+class="cmitt-10x-x-109">&#x00A0;from</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span><span 
+class="cmitt-10x-x-109">&#x00A0;linear</span><span 
+class="cmitt-10x-x-109">&#x00A0;system</span></span>
+<br class="fancyvrb" /><a 
+ id="x601-3569026r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x601-3569028r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569030r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569032r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS=syslin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569034r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nsmp=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x601-3569036r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;U=prbs_a(nsmp,nsmp</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569038r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y=(flts(U,SYS)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,nsmp,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x601-3569040r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Compute</span><span 
+class="cmitt-10x-x-109">&#x00A0;R</span></span><br class="fancyvrb" /><a 
+ id="x601-3569042r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">L=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569044r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[R,N,SVAL]=findR(S,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569046r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;N=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569048r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;METH=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">TOL=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x601-3569050r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,C]=findAC(S,N,L,R,METH,TOL)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569052r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[B,D,K]=findBDK(S,N,L,R,A,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569054r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS1=syslin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x601-3569056r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS1.X0=inistate(SYS1,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569058r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y1=flts(U,SYS1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x601-3569060r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d((</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">nsmp)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Y1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+<!--l. 120--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x601-3570000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli598.html#findABCD">findABCD</a>    <a 
+href="manualli599.html#findAC">findAC</a>    <a 
+href="manualli601.html#findBD">findBD</a>    <a 
+href="manualli602.html#findR">findR</a>    <a 
+href="manualli606.html#sorder">sorder</a>    <a 
+href="manualli605.html#sident">sident</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli601.html" >next</a>] [<a 
+href="manualli599.html" >prev</a>] [<a 
+href="manualli599.html#tailmanualli599.html" >prev-tail</a>] [<a 
+href="manualli600.html" >front</a>] [<a 
+href="manualli597.html#manualli600.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli600.html"></a>  </p> 
+</body></html> 

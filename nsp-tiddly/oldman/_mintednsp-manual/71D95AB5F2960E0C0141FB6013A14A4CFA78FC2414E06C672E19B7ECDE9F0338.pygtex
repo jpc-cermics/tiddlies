@@ -1,0 +1,37 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// Choose the number of cosine functions and create a dense grid}
+\nspcomment{// in [0,.24) and [.26,.5)}
+nc=\nspnumber{21}\nspoperator{;}ngrid=nc\nspoperator{*}\nspnumber{16}\nspoperator{;}
+fg=\nspnumber{.24}\nspoperator{*}(\nspnumber{0}\nspoperator{:}ngrid\nspoperator{/}\nspnumber{2}\nspoperator{-}\nspnumber{1})\nspoperator{/}(ngrid\nspoperator{/}\nspnumber{2}\nspoperator{-}\nspnumber{1})\nspoperator{;}
+fg(ngrid\nspoperator{/}\nspnumber{2}\nspoperator{+}\nspnumber{1}\nspoperator{:}ngrid)=fg(\nspnumber{1}\nspoperator{:}ngrid\nspoperator{/}\nspnumber{2})\nspoperator{+}\nspnumber{.26}\nspoperator{*}ones(\nspnumber{1}\nspoperator{:}ngrid\nspoperator{/}\nspnumber{2})\nspoperator{;}
+\nspcomment{// Specify a low pass filter magnitude for the desired response}
+ds(\nspnumber{1}\nspoperator{:}ngrid\nspoperator{/}\nspnumber{2})=ones(\nspnumber{1}\nspoperator{:}ngrid\nspoperator{/}\nspnumber{2})\nspoperator{;}
+ds(ngrid\nspoperator{/}\nspnumber{2}\nspoperator{+}\nspnumber{1}\nspoperator{:}ngrid)=zeros(\nspnumber{1}\nspoperator{:}ngrid\nspoperator{/}\nspnumber{2})\nspoperator{;}
+\nspcomment{// Specify a uniform weighting function}
+wt=ones(fg)\nspoperator{;}
+\nspcomment{// Run remezb}
+an=remezb(nc,fg,ds,wt)
+\nspcomment{// Make a linear phase FIR filter}
+hn(\nspnumber{1}\nspoperator{:}nc\nspoperator{-}\nspnumber{1})=an(nc\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{2})\nspoperator{/}\nspnumber{2}\nspoperator{;}
+hn(nc)=an(\nspnumber{1})\nspoperator{;}
+hn(nc\nspoperator{+}\nspnumber{1}\nspoperator{:}\nspnumber{2}\nspoperator{*}nc\nspoperator{-}\nspnumber{1})=an(\nspnumber{2}\nspoperator{:}nc)\nspoperator{/}\nspnumber{2}\nspoperator{;}
+\nspcomment{// Plot the filter's magnitude response}
+plot(\nspnumber{.5}\nspoperator{*}(\nspnumber{0}\nspoperator{:}\nspnumber{255})\nspoperator{/}\nspnumber{256},frmag(hn,\nspnumber{256}))\nspoperator{;}
+\nspcomment{//////////////}
+\nspcomment{// Choose the number of cosine functions and create a dense grid in [0,.5)}
+nc=\nspnumber{21}\nspoperator{;}ngrid=nc\nspoperator{*}\nspnumber{16}\nspoperator{;}
+fg=\nspnumber{.5}\nspoperator{*}(\nspnumber{0}\nspoperator{:}(ngrid\nspoperator{-}\nspnumber{1}))\nspoperator{/}ngrid\nspoperator{;}
+\nspcomment{// Specify a triangular shaped magnitude for the desired response}
+ds(\nspnumber{1}\nspoperator{:}ngrid\nspoperator{/}\nspnumber{2})=(\nspnumber{0}\nspoperator{:}ngrid\nspoperator{/}\nspnumber{2}\nspoperator{-}\nspnumber{1})\nspoperator{/}(ngrid\nspoperator{/}\nspnumber{2}\nspoperator{-}\nspnumber{1})\nspoperator{;}
+ds(ngrid\nspoperator{/}\nspnumber{2}\nspoperator{+}\nspnumber{1}\nspoperator{:}ngrid)=ds(ngrid\nspoperator{/}\nspnumber{2}\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1})\nspoperator{;}
+\nspcomment{// Specify a uniform weighting function}
+wt=ones(fg)\nspoperator{;}
+\nspcomment{// Run remezb}
+an=remezb(nc,fg,ds,wt)
+\nspcomment{// Make a linear phase FIR filter}
+hn(\nspnumber{1}\nspoperator{:}nc\nspoperator{-}\nspnumber{1})=an(nc\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{2})\nspoperator{/}\nspnumber{2}\nspoperator{;}
+hn(nc)=an(\nspnumber{1})\nspoperator{;}
+hn(nc\nspoperator{+}\nspnumber{1}\nspoperator{:}\nspnumber{2}\nspoperator{*}nc\nspoperator{-}\nspnumber{1})=an(\nspnumber{2}\nspoperator{:}nc)\nspoperator{/}\nspnumber{2}\nspoperator{;}
+\nspcomment{// Plot the filter's magnitude response}
+plot(\nspnumber{.5}\nspoperator{*}(\nspnumber{0}\nspoperator{:}\nspnumber{255})\nspoperator{/}\nspnumber{256},frmag(hn,\nspnumber{256}))\nspoperator{;}
+\end{Verbatim}

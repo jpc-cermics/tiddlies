@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ftuneq</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1228.html" >next</a>] [<a 
+href="manualli1226.html" >prev</a>] [<a 
+href="manualli1226.html#tailmanualli1226.html" >prev-tail</a>] [<a 
+href="#tailmanualli1227.html">tail</a>] [<a 
+href="manualli1220.html#manualli1227.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1228-6935000"></a>ftuneq</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1228-6935001"></a><a 
+ id="ftuneq"></a><span 
+class="cmtt-10x-x-109">ftuneq </span>&#x2013;                                                    Fischer ratio for samples of unequal size. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1228-6936000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1388">
+&#x00A0;&#x00A0;f=ftuneq(sample1[,sample2[,sample3]...]])
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;[f,p]=ftuneq(sample1[,sample2[,sample3]...]])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1228-6937000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sample1, sample2, sample3,... </span>: real or complex matrix of any type</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1228-6938000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > This function computes the F ratio for samples of unequal size. &#x201D;The most efficient design is to
+make all samples the same size n. However when this is nor feasible, it still is possible to modify the
+ANOVA calculations.&#x201D; Note that the definition of xbarbar is no longer mean(xbar), but rather a
+weighted average with weights ni. Additionnally it gives (in p) the p-value of the computed Fischer
+ratio. Given a number a of samples each of them composed of n_i (i from 1 to a) observations this
+fonction computes in f the Fischer ratio (it is the ratio between nr times the variance of the
+means of samples and the mean of the variances of each sample).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;f=ftest(samples)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>
+computes the Fischer ratio of the nc samples whose values are in the columns of the matrix
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">samples</span></span></span>. Each one of these samples is composed of nr values. (The Fischer ratio is the ratio
+between nr times the variance of the means of samples and the mean of variances of each
+sample)<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;[f,p]=ftest(samples)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> gives in p the p-value of the computed Fischer ratio f.
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1228-6939000"></a><span 
+class="cmbx-10x-x-109">References</span></span>
+   Wonacott, T.H. &#x0026;amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &#x0026;amp; Sons,
+1990.
+</p>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1228-6940000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb804"><a 
+ id="x1228-6940004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;samples=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">46</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">55</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">54</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">53</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">54</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">49</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">58</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">51</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">61</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">51</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">46</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">52</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">49</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x1228-6940006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,p]=ftest(samples)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1228-6941000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#ftuneq">ftuneq</a>
+</p>
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1228-6942000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Carlos Klimann
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1228.html" >next</a>] [<a 
+href="manualli1226.html" >prev</a>] [<a 
+href="manualli1226.html#tailmanualli1226.html" >prev-tail</a>] [<a 
+href="manualli1227.html" >front</a>] [<a 
+href="manualli1220.html#manualli1227.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1227.html"></a>  </p> 
+</body></html> 

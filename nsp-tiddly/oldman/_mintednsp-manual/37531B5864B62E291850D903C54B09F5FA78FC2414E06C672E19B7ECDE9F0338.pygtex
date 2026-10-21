@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+G=ssrand(\nspnumber{1},\nspnumber{1},\nspnumber{3})\nspoperator{;}K=ssrand(\nspnumber{1},\nspnumber{1},\nspnumber{3})\nspoperator{;}
+[Se,Re,Te]=sensi(G,K)\nspoperator{;}
+Se1=inv(eye()\nspoperator{+}G\nspoperator{*}K)\nspoperator{;}\nspcomment{//Other way to compute}
+ss2tf(Se)\nspoperator{,}\nspcomment{//Se seen in transfer form}
+ss2tf(Se1)
+ss2tf(Te)
+ss2tf(G\nspoperator{*}K\nspoperator{*}Se1)
+[Si,Ri,Ti]=sensi(G,K,\nspstring{'i'})\nspoperator{;}
+w1=[ss2tf(Si)\nspoperator{;}ss2tf(Ri)\nspoperator{;}ss2tf(Ti)]
+w2=[ss2tf(inv(eye()\nspoperator{+}K\nspoperator{*}G))\nspoperator{;}ss2tf(G\nspoperator{*}inv(eye()\nspoperator{+}K\nspoperator{*}G))\nspoperator{;}ss2tf(K\nspoperator{*}G\nspoperator{*}inv(eye()\nspoperator{+}K\nspoperator{*}G))]\nspoperator{;}
+clean(w1\nspoperator{-}w2)
+\end{Verbatim}

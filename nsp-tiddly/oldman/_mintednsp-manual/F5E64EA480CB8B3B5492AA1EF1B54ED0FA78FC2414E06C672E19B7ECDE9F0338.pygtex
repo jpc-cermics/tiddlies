@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})
+h=syslin(\nspstring{'c'},(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{*}\nspnumber{0.9}\nspoperator{*}\nspnumber{10}\nspoperator{*}s\nspoperator{+}\nspnumber{100})\nspoperator{/}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{*}\nspnumber{0.3}\nspoperator{*}\nspnumber{10.1}\nspoperator{*}s\nspoperator{+}\nspnumber{102.01}))
+h1=h\nspoperator{*}syslin(\nspstring{'c'},(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{*}\nspnumber{0.1}\nspoperator{*}\nspnumber{15.1}\nspoperator{*}s\nspoperator{+}\nspnumber{228.01})\nspoperator{/}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{*}\nspnumber{0.9}\nspoperator{*}\nspnumber{15}\nspoperator{*}s\nspoperator{+}\nspnumber{225}))
+[f1,spl]=calfrq(h1,\nspnumber{0.01},\nspnumber{1000})\nspoperator{;}
+rf=repfreq(h1,f1)\nspoperator{;}
+plot2d(real(rf)\nspoperator{'},imag(rf)\nspoperator{'})
+\end{Verbatim}

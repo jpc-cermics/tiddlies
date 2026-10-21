@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>arl2</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli17.html" >next</a>] [<a 
+href="manualli15.html" >prev</a>] [<a 
+href="manualli15.html#tailmanualli15.html" >prev-tail</a>] [<a 
+href="#tailmanualli16.html">tail</a>] [<a 
+href="manualli12.html#manualli16.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x17-73000"></a>arl2</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx17-73001"></a><a 
+ id="arl2"></a><span 
+class="cmtt-10x-x-109">arl2 </span>&#x2013;                                       SISO model realization by L2 transfer approximation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x17-74000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-25">
+&#x00A0;&#x00A0;h=arl2(y,den0,n&#x00A0;[,imp])
+&#x00A0;<br />&#x00A0;&#x00A0;h=arl2(y,den0,n&#x00A0;[,imp],&#x0027;all&#x0027;)
+&#x00A0;<br />&#x00A0;&#x00A0;[den,num,err]=arl2(y,den0,n&#x00A0;[,imp])
+&#x00A0;<br />&#x00A0;&#x00A0;[den,num,err]=arl2(y,den0,n&#x00A0;[,imp],&#x0027;all&#x0027;)
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x17-75000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: real vector or polynomial in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z^-1</span></span></span>, it contains the coefficients of the Fourier&apos;s series
+     of the rational system to approximate (the impulse response)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">den0</span>:  a  polynomial  which  gives  an  initial  guess  of  the  solution,  it  may  be
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">poly(1,&#x0027;z&#x0027;,&#x0027;c&#x0027;)</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: integer, the degree of approximating transfer function (degree of den)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">imp</span>: integer in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(0,1,2)</span></span></span> (verbose mode)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">h</span>: transfer function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">num/den</span></span></span> or transfer matrix (column vector) when flag <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;all&#x0027;</span></span></span> is
+     given.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">den</span>: polynomial or vector of polynomials, contains the denominator(s) of the solution(s)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">num</span>: polynomial or vector of polynomials, contains the numerator(s) of the solution(s)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">err</span>: real constant or vector , the l2-error achieved for each solutions</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x17-76000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 43--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[den,num,err]=arl2(y,den0,n</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,imp])</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> finds a pair of polynomials <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">num</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">den</span></span></span> such that
+the transfer function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">num/den</span></span></span> is stable and its impulse response approximates (with a
+minimal l2 norm) the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> assumed to be completed by an infinite number of zeros. If
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y(z)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y(1)(1/z)+y(2)(1/z^2)+</span><span 
+class="cmtt-10x-x-109">&#x00A0;...+</span><span 
+class="cmtt-10x-x-109">&#x00A0;y(ny)(1/z^ny)</span></span></span> then l2-norm of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">num/den</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;y(z)</span></span></span> is
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">err</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> is the degree of the polynomial <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">den</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">num/den</span></span></span> transfer function is a L2 approximant
+of the Fourier&apos;s series of the rational system. Various intermediate results are printed
+according to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">imp</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[den,num,err]=arl2(y,den0,n</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,imp],&#x0027;all&#x0027;)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> returns in the vectors of
+polynomials <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">num</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">den</span></span></span> a set of local optimums for the problem. The solutions are sorted
+with increasing errors <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">err</span></span></span>. In this case <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">den0</span></span></span> is already assumed to be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">poly(1,&#x0027;z&#x0027;,&#x0027;c&#x0027;)</span></span></span>
+</p>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x17-77000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb9"><a 
+ id="x17-77013r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;v=ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x17-77015r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x17-77017r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;enn&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,[v</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">80</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;051&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.5</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x17-77019r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[d,n,e]=arl2(v,poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x17-77021r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;enn&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,ldiv(n,d,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;000&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x17-77023r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[d,n,e]=arl2(v,d,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x17-77025r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;enn&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,ldiv(n,d,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;000&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x17-77027r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[d,n,e]=arl2(v,d,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x17-77029r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;enn&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,ldiv(n,d,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;000&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x17-77031r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[d,n,e]=arl2(v,poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;all&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x17-77033r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;enn&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,ldiv(n(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),d(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;000&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x17-78000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli916.html#ldiv">ldiv</a>    <a 
+href="manualli45.html#imrep2ss">imrep2ss</a>    <a 
+href="#time-id">time_id</a>    <a 
+href="manualli5.html#armax">armax</a>    <a 
+href="manualli40.html#frep2tf">frep2tf</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli17.html" >next</a>] [<a 
+href="manualli15.html" >prev</a>] [<a 
+href="manualli15.html#tailmanualli15.html" >prev-tail</a>] [<a 
+href="manualli16.html" >front</a>] [<a 
+href="manualli12.html#manualli16.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli16.html"></a>  </p> 
+</body></html> 

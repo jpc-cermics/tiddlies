@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>wfir</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1195.html" >next</a>] [<a 
+href="manualli1193.html" >prev</a>] [<a 
+href="manualli1193.html#tailmanualli1193.html" >prev-tail</a>] [<a 
+href="#tailmanualli1194.html">tail</a>] [<a 
+href="manualli1135.html#manualli1194.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1195-6760000"></a>wfir</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1195-6760001"></a><a 
+ id="wfir"></a><span 
+class="cmtt-10x-x-109">wfir </span>&#x2013;                                                                               linear-phase FIR filters<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1195-6761000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1356">
+&#x00A0;&#x00A0;[wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1195-6762000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ftype</span>: string: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;lp&#x0027;,&#x0027;hp&#x0027;,&#x0027;bp&#x0027;,&#x0027;sb&#x0027;</span></span></span> (filter type)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">forder</span>: Filter order (pos integer)(odd for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ftype=&#x0027;hp&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;sb&#x0027;</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">cfreq</span>: 2-vector of cutoff frequencies (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$cfreq(1),cfreq(2)$&#x003C;$.5</span></span></span>) only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cfreq(1)</span></span></span> is
+     used when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ftype=&#x0027;lp&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;hp&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">wtype</span>: Window type (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;re&#x0027;,&#x0027;tr&#x0027;,&#x0027;hm&#x0027;,&#x0027;hn&#x0027;,&#x0027;kr&#x0027;,&#x0027;ch&#x0027;</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fpar</span>:  2-vector  of  window  parameters.  Kaiser  window  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fpar(1)$&#x003E;$0</span><span 
+class="cmtt-10x-x-109">&#x00A0;fpar(2)=0</span></span></span>.
+     Chebyshev window <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fpar(1)$&#x003E;$0,</span><span 
+class="cmtt-10x-x-109">&#x00A0;fpar(2)$&#x003C;$0</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fpar(1)$&#x003C;$0,</span><span 
+class="cmtt-10x-x-109">&#x00A0;0$&#x003C;$fpar(2)$&#x003C;$.5</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">wft</span>: time domain filter coefficients
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">wfm</span>: frequency domain filter response on the grid fr
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fr</span>: Frequency grid</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1195-6763000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > Function which makes linear-phase, FIR low-pass, band-pass, high-pass, and stop-band
+filters using the windowing technique. Works interactively if called with no arguments.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 47--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1195-6764000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   C. Bunks
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1195.html" >next</a>] [<a 
+href="manualli1193.html" >prev</a>] [<a 
+href="manualli1193.html#tailmanualli1193.html" >prev-tail</a>] [<a 
+href="manualli1194.html" >front</a>] [<a 
+href="manualli1135.html#manualli1194.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1194.html"></a>  </p> 
+</body></html> 

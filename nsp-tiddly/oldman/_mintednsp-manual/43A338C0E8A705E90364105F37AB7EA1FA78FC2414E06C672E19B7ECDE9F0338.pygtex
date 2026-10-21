@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+H=syslin(\nspstring{'c'},\nspnumber{352}\nspoperator{*}poly(\nspoperator{-}\nspnumber{5},\nspstring{'s'})\nspoperator{/}poly([\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{2000}\nspoperator{,}\nspnumber{200}\nspoperator{,}\nspnumber{25}\nspoperator{,}\nspnumber{1}],\nspstring{'s'},\nspstring{'c'}))\nspoperator{;}
+evans(H,\nspnumber{100})
+P=\nspnumber{3.0548543}\nspoperator{-}\nspnumber{8.8491842}\nspoperator{*}%i\nspoperator{;}\nspcomment{//P=selected point}
+k=\nspoperator{-}\nspnumber{1}\nspoperator{/}real(horner(H,P))\nspoperator{;}
+Ns=H(\nspstring{'num'})\nspoperator{;}Ds=H(\nspstring{'den'})\nspoperator{;}
+roots(Ds\nspoperator{+}k\nspoperator{*}Ns)\nspoperator{,}\nspcomment{//contains P as particular root}
+\nspcomment{// Another one}
+clf()\nspoperator{;}s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}n=\nspnumber{1}\nspoperator{+}s\nspoperator{;}
+d=real(poly([\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}%i\nspoperator{,}%i],\nspstring{'s'}))\nspoperator{;}
+evans(n,d,\nspnumber{100})\nspoperator{;}
+\nspcomment{//}
+clf()\nspoperator{;}n=real(poly([\nspnumber{0.1}\nspoperator{-}%i\nspoperator{,}\nspnumber{0.1}\nspoperator{+}%i\nspoperator{,}\nspoperator{-}\nspnumber{10}],\nspstring{'s'}))\nspoperator{;}
+evans(n,d,\nspnumber{80})\nspoperator{;}
+\end{Verbatim}

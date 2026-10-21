@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// set old_style on // switch to old graphic mode}
+driver(\nspstring{'Rec'})\nspoperator{;}xbasc()\nspoperator{;}plot2d([\nspnumber{0}\nspoperator{,}\nspnumber{1.5}\nspoperator{,}\nspnumber{4}])\nspoperator{,}\nspcomment{//make a plot}
+xsave(TMPDIR\nspoperator{+}\nspstring{'/foo.scg'})\nspoperator{,}\nspcomment{//save it in a binary file}
+rec=loadplots(TMPDIR\nspoperator{+}\nspstring{'/foo.scg'})\nspoperator{;}\nspcomment{//get the associated data structure}
+\nspcomment{//here rec(9) is the data structure associated with the plot2d instruction}
+rec(\nspnumber{9}).x\nspoperator{,}\nspcomment{//the x vector}
+rec(\nspnumber{9}).y\nspoperator{,}\nspcomment{//the y vector}
+string(rec)\nspoperator{,}\nspcomment{//the scilab instructions producing the same plot}
+mputl(string(rec),TMPDIR\nspoperator{+}\nspstring{'/foo.sce'})\nspoperator{,}\nspcomment{//creates a script file}
+xbasc()\nspoperator{;}exec(TMPDIR\nspoperator{+}\nspstring{'/foo.sce'},\nspoperator{-}\nspnumber{1})\nspoperator{,}\nspcomment{//execute it to re-create the plot}
+xbasc()\nspoperator{;}
+\nspcomment{// set old_style off  // switch nack to new graphic mode}
+\end{Verbatim}

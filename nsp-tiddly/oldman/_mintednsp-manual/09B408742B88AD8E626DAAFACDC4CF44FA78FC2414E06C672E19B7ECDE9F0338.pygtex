@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+P=[\nspnumber{1}\nspoperator{/}s\nspoperator{,}\nspnumber{1}\nspoperator{/}(s\nspoperator{+}\nspnumber{1})\nspoperator{;}\nspnumber{1}\nspoperator{/}(s\nspoperator{+}\nspnumber{2})\nspoperator{,}\nspnumber{2}\nspoperator{/}s]\nspoperator{;}K=\nspnumber{1}\nspoperator{/}(s\nspoperator{-}\nspnumber{1})\nspoperator{;}
+lft(P,K)
+lft(P,[\nspnumber{1}\nspoperator{,}\nspnumber{1}],K)
+P(\nspnumber{1},\nspnumber{1})\nspoperator{+}P(\nspnumber{1},\nspnumber{2})\nspoperator{*}K\nspoperator{*}inv(\nspnumber{1}\nspoperator{-}P(\nspnumber{2},\nspnumber{2})\nspoperator{*}K)\nspoperator{*}P(\nspnumber{2},\nspnumber{1})\nspoperator{,}\nspcomment{//Numerically dangerous!}
+ss2tf(lft(tf2ss(P),tf2ss(K)))
+lft(P,\nspoperator{-}\nspnumber{1})
+f=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}w=P\nspoperator{/.}f\nspoperator{;}w(\nspnumber{1},\nspnumber{1})
+\nspcomment{//Improper plant (PID control)}
+W=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{/}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.1}\nspoperator{*}s)]\nspoperator{;}K=\nspnumber{1}\nspoperator{+}\nspnumber{1}\nspoperator{/}s\nspoperator{+}s
+lft(W,[\nspnumber{1}\nspoperator{,}\nspnumber{1}],K)\nspoperator{;}ss2tf(lft(tf2ss(W),[\nspnumber{1}\nspoperator{,}\nspnumber{1}],tf2ss(K)))
+\end{Verbatim}

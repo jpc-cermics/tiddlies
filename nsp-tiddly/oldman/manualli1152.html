@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>faurre</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1153.html" >next</a>] [<a 
+href="manualli1151.html" >prev</a>] [<a 
+href="manualli1151.html#tailmanualli1151.html" >prev-tail</a>] [<a 
+href="#tailmanualli1152.html">tail</a>] [<a 
+href="manualli1135.html#manualli1152.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1153-6524000"></a>faurre</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1153-6524001"></a><a 
+ id="faurre"></a><span 
+class="cmtt-10x-x-109">faurre </span>&#x2013;                                              filter computation by simple Faurre algorithm<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1153-6525000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1302">
+&#x00A0;&#x00A0;[P,R,T]=faurre(n,H,F,G,R0)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1153-6526000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: number of iterations.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">H, F, G</span>: estimated triple from the covariance sequence of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">R0</span>: E(yk*yk&apos;)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P</span>: solution of the Riccati equation after n iterations.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">R, T</span>: gain matrix of the filter.</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1153-6527000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > This function computes iteratively the minimal solution of the algebraic Riccati equation and gives
+the matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">T</span></span></span> of the filter model. The algorithm tries to compute the solution P as the
+growing limit of a sequence of matrices Pn such that
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1303">
+&#x00A0;&#x00A0;-1
+&#x00A0;<br />&#x00A0;&#x00A0;Pn+1=F*Pn*F&#x0027;+(G-F*Pn*h&#x0027;)*(R0-H*Pn*H&#x0027;)&#x00A0;&#x00A0;*(G&#x0027;-H*Pn*F&#x0027;)
+&#x00A0;<br />&#x00A0;&#x00A0;-1
+&#x00A0;<br />&#x00A0;&#x00A0;P0=G*R0&#x00A0;*G&#x0027;
+</div>
+<!--l. 48--><p class="nopar" >Note that this method may not converge,especially when F has poles near the unit circle. Use
+preferably the srfaur function.
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1153-6528000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1189.html#srfaur">srfaur</a>    <a 
+href="manualli1177.html#lindquist">lindquist</a>    <a 
+href="manualli1181.html#phc">phc</a>
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1153-6529000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   G. Le V.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1153.html" >next</a>] [<a 
+href="manualli1151.html" >prev</a>] [<a 
+href="manualli1151.html#tailmanualli1151.html" >prev-tail</a>] [<a 
+href="manualli1152.html" >front</a>] [<a 
+href="manualli1135.html#manualli1152.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1152.html"></a>  </p> 
+</body></html> 

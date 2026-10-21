@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>rankqr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli661.html" >next</a>] [<a 
+href="manualli659.html" >prev</a>] [<a 
+href="manualli659.html#tailmanualli659.html" >prev-tail</a>] [<a 
+href="#tailmanualli660.html">tail</a>] [<a 
+href="manualli607.html#manualli660.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x661-3940000"></a>rankqr</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx661-3940001"></a><a 
+ id="rankqr"></a><span 
+class="cmtt-10x-x-109">rankqr </span>&#x2013;                                                                 rank revealing QR factorization<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x661-3941000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-813">
+&#x00A0;&#x00A0;[Q,R,JPVT,RANK,SVAL]=rankqr(A,&#x00A0;[RCOND,JPVT])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x661-3942000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: real or complex matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">RCOND</span>: real number used to determine the effective rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>, which is defined as the
+     order of the largest leading triangular submatrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R11</span></span></span> in the QR factorization with
+     pivoting of<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>, whose estimated condition number <span 
+class="cmmi-10x-x-109">&#x003C; </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1/RCOND</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">JPVT </span>: integer vector on entry, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">JPVT(i)</span></span></span> is not 0, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>-th column of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;A</span></span></span> is permuted
+     to the front of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">AP</span></span></span>, otherwise column <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> is a free column. On exit, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">JPVT(i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span></span></span>, then
+     the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>-th column of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A*P</span></span></span> was the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span>-th column of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">RANK</span>: the effective rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>, i.e., the order of the submatrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R11</span></span></span>. This is the same as
+     the order of the submatrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">T1</span></span></span> in the complete orthogonal factorization of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">SVAL</span>: real vector with 3 components; The estimates of some of the singular values of the
+     triangular factor <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SVAL(1)</span></span></span> is the largest singular value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R(1:RANK,1:RANK)</span></span></span>;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SVAL(2)</span></span></span>
+     is the smallest singular value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R(1:RANK,1:RANK)</span></span></span>;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SVAL(3)</span></span></span> is the smallest singular
+     value  of  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R(1:RANK+1,1:RANK+1)</span></span></span>,  if  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">RANK</span></span></span> <span 
+class="cmmi-10x-x-109">&#x003C;  </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">MIN(M,N)</span></span></span>,  or  of  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R(1:RANK,1:RANK)</span></span></span>,
+     otherwise.</li></ul>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x661-3943000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 55--><p class="noindent" > To compute (optionally) a rank-revealing QR factorization of a real general M-by-N
+real or complex matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>, which may be rank-deficient, and estimate its effective rank
+using incremental condition estimation. The routine uses a QR factorization with column
+pivoting:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-814">
+&#x00A0;&#x00A0;A&#x00A0;*&#x00A0;P&#x00A0;=&#x00A0;Q&#x00A0;*&#x00A0;R,&#x00A0;&#x00A0;where&#x00A0;&#x00A0;R&#x00A0;=&#x00A0;[&#x00A0;R11&#x00A0;R12&#x00A0;],
+&#x00A0;<br />&#x00A0;&#x00A0;[&#x00A0;&#x00A0;0&#x00A0;&#x00A0;R22&#x00A0;]
+</div>
+<!--l. 64--><p class="nopar" >with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R11</span></span></span> defined as the largest leading submatrix whose estimated condition number is less than
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1/RCOND</span></span></span>. The order of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R11</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">RANK</span></span></span>, is the effective rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>. If the triangular factorization is a
+rank-revealing one (which will be the case if the leading columns were well- conditioned), then
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SVAL(1)</span></span></span> will also be an estimate for the largest singular value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SVAL(2)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SVAL(3)</span></span></span> will
+be estimates for the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">RANK</span></span></span>-th and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(RANK+1)</span></span></span>-st singular values of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>, respectively. By examining these
+values, one can confirm that the rank is well defined with respect to the chosen value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">RCOND</span></span></span>. The
+ratio <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SVAL(1)/SVAL(2)</span></span></span> is an estimate of the condition number of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R(1:RANK,1:RANK)</span></span></span>.
+</p>
+<!--l. 82--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x661-3944000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb516"><a 
+ id="x661-3944004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x661-3944006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)</span></div>
+<!--l. 89--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x661-3945000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli656.html#qr">qr</a>    <a 
+href="manualli661.html#rank">rank</a>
+Slicot library routines MB03OD, ZB03OD.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli661.html" >next</a>] [<a 
+href="manualli659.html" >prev</a>] [<a 
+href="manualli659.html#tailmanualli659.html" >prev-tail</a>] [<a 
+href="manualli660.html" >front</a>] [<a 
+href="manualli607.html#manualli660.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli660.html"></a>  </p> 
+</body></html> 

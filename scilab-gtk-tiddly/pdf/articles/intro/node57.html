@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.2 The Media</TITLE>
+<META NAME="description" CONTENT="5.2 The Media">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node58.html">
+<LINK REL="previous" HREF="node56.html">
+<LINK REL="up" HREF="node55.html">
+<LINK REL="next" HREF="node58.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1002"
+ HREF="node58.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html998"
+ HREF="node55.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html992"
+ HREF="node56.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1000"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1001"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1003"
+ HREF="node58.html">5.3 Global Parameters of</A>
+<B> Up:</B> <A NAME="tex2html999"
+ HREF="node55.html">5. Graphics</A>
+<B> Previous:</B> <A NAME="tex2html993"
+ HREF="node56.html">5.1 The Graphics Window</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00620000000000000000">
+5.2 The Media</A>
+</H1>
+There are different graphics devices in Scilab which can be used to send
+graphics to windows or paper. The default for the output is 
+<code>ScilabGraphic0</code> window .
+
+<P>
+The different drivers are:
+
+<P>
+<UL>
+<LI><code>X11</code>	: graphics driver for the X11 window system
+<LI><code>Rec</code>	: an X Window driver (X11) which also
+	records all the graphic commands. This is the default
+	(required for the zoom and rotate).
+<LI><code>Wdp</code>	: an X11 driver without recorded
+	graphics; the graphics are done on a pixmap and are send to
+	the graphic window with the command  <TT>xset("wshow")</TT>. The 
+	pixmap is cleared with the command <TT>xset("wwpc")</TT> or with the
+	usual command <TT>xbasc()</TT>
+<LI><code>Pos</code>	: graphics driver for Postscript printers
+<LI><code>Fig</code>	: graphics driver for the Xfig system
+</UL>
+<P>
+In the 3 first cases the 'implicit' device is a graphics window
+(existing or created by the plot). For the 2 last cases we will see
+later how to affect a specific device to the plot : a file where the
+plot will be recorded in the Postscript or Xfig format.
+
+<P>
+The basic Scilab graphics commands are :
+<UL>
+<LI><code>driver</code>: selects a graphic driver
+
+<P>
+The next 3 commands are specific of the X-drivers :
+
+<P>
+<LI><code>xclear</code>: clears one or more graphic windows; does
+	not affect the graphics context of these windows.
+<LI><code>xbasc</code>: clears a graphic window and erase the
+	recorded graphics; does not affect the graphics context of  
+	the window.
+<LI><code>xpause</code>: a pause in milliseconds
+<LI><code>xselect</code>: raises the current graphic window
+	(for X-drivers)
+<LI><code>xclick</code>: waits for a mouse click
+<LI><code>xbasr</code>: redraws the plot of a graphic window
+<LI><code>xdel</code>: deletes a graphic window (equivalent to the
+	<TT>Close</TT> button
+
+<P>
+The following commands are specific of the Postscript and Xfig 
+drivers :
+<LI><code>xinit</code>: initializes a graphic device
+	simply opens a graphics window for the X-drivers this command
+	is necessary for Postscript and Xfig drivers.
+<LI><code>xend</code>: closes a graphic session (and the
+	associated device).
+</UL>
+<P>
+In fact, the regular driver for a common use is <TT>Rec</TT> and there
+are special commands in order to avoid a change of driver; in many
+cases, one can ignore the existence of drivers and use the
+functions <code>xbasimp</code>, <code>xs2fig</code> in order to send a graphic 
+to a printer or in a file for the <code>Xfig</code> system. For example with
+:
+
+<P>
+<PRE>
+--&gt;driver('Pos')
+ 
+--&gt;xinit('foo.ps')
+ 
+--&gt;plot(1:10)
+ 
+--&gt;xend()
+ 
+--&gt;driver('Rec')
+ 
+--&gt;plot(1:10)
+ 
+--&gt;xbasimp(0,'foo1.ps')
+</PRE>
+<P>
+we get two identical Postscript files : <TT>'foo.ps'</TT> and <TT>'foo1.ps.0'</TT>
+(the appending 0 is the number of the active window where the plot has been 
+done).
+
+<P>
+The default for plotting is the superposition; this means that between
+2 different plots one of the 2 following command is needed :
+<TT>xbasc(window-number)</TT> which clears the window and erase the
+recorded Scilab graphics command associated with the window 
+<code>window-number</code> or <TT>xclear</TT>) which simply clears the window.
+
+<P>
+If you enlarge a graphic window, the command <code>xbasr(window-number)</code>
+is executed by Scilab. This command clears the graphic window
+<code>window-number</code> and replays the graphic commands associated with it. One 
+can call this function manually, in order to verify the associated
+recorded graphics commands. 
+
+<P>
+Any number of graphics windows can be created with buttons 
+or with the commands <code>xset</code> or <code>xselect</code>. The environment 
+variable DISPLAY can be used to specify an X11 Display or one can use
+the <code>xinit</code> function in order to open a graphic window on a
+specific display. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1002"
+ HREF="node58.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html998"
+ HREF="node55.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html992"
+ HREF="node56.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1000"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1001"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1003"
+ HREF="node58.html">5.3 Global Parameters of</A>
+<B> Up:</B> <A NAME="tex2html999"
+ HREF="node55.html">5. Graphics</A>
+<B> Previous:</B> <A NAME="tex2html993"
+ HREF="node56.html">5.1 The Graphics Window</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

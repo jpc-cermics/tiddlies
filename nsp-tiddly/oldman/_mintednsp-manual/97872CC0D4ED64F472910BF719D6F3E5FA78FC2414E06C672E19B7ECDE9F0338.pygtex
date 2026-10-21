@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//define function and prepare it for profiling}
+deff(\nspstring{'x=foo(n)'}, ...
+     [\nspstring{'if n==0 then'}\nspoperator{;}\nspstring{'  x=[]'}\nspoperator{;}\nspstring{'else'}\nspoperator{;}\nspstring{'  x=0'}\nspoperator{;}\nspstring{'  for k=1:n'}\nspoperator{;}\nspstring{'    s=svd(rand(n+10,n+10))'}\nspoperator{;}
+      \nspstring{'    x=x+s(1)'}\nspoperator{;}\nspstring{'  end'}\nspoperator{;}\nspstring{'end'}],\nspstring{'p'})
+\nspcomment{//call the function}
+foo(\nspnumber{30})
+\nspcomment{//get execution profiles}
+showprofile(foo)
+\end{Verbatim}

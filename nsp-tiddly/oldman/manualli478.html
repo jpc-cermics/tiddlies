@@ -1,0 +1,1148 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>plot3d</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli479.html" >next</a>] [<a 
+href="manualli477.html" >prev</a>] [<a 
+href="manualli477.html#tailmanualli477.html" >prev-tail</a>] [<a 
+href="#tailmanualli478.html">tail</a>] [<a 
+href="manualli370.html#manualli478.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x479-2839000"></a>plot3d</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx479-2839001"></a><a 
+ id="plot3d"></a><span 
+class="cmtt-10x-x-109">plot3d </span>&#x2013;                                                                                3D plot of a surface<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x479-2840000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-602">
+&#x00A0;&#x00A0;plot3d(x,y,z,[theta,alpha,leg,flag,ebox])
+&#x00A0;<br />&#x00A0;&#x00A0;plot3d(x,y,z,$&#x003C;$opt_args$&#x003E;$)
+&#x00A0;<br />&#x00A0;&#x00A0;plot3d(xf,yf,zf,[theta,alpha,leg,flag,ebox])
+&#x00A0;<br />&#x00A0;&#x00A0;plot3d(xf,yf,zf,$&#x003C;$opt_args$&#x003E;$)
+&#x00A0;<br />&#x00A0;&#x00A0;plot3d(xf,yf,list(zf,colors),[theta,alpha,leg,flag,ebox])
+&#x00A0;<br />&#x00A0;&#x00A0;plot3d(xf,yf,list(zf,colors),$&#x003C;$opt_args$&#x003E;$)
+</div>
+<!--l. 30--><p class="nopar" >
+</p>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x479-2841000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,y</span>: row vectors of sizes n1 and n2 (x-axis and y-axis coordinates). These coordinates
+     must be monotone.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">z</span>: matrix of size (n1,n2). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(i,j)</span></span></span> is the value of the surface at the point (x(i),y(j)).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xf,yf,zf</span>: matrices of size (nf,n). They define the facets used to draw the surface. There
+     are <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> facets. Each facet <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> is defined by a polygon with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nf</span></span></span> points. The x-axis, y-axis
+     and z-axis coordinates of the points of the ith facet are given respectively by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xf(:,i)</span></span></span>,
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yf(:,i)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zf(:,i)</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">colors</span>: a vector of size n giving the color of each facets or a matrix of size (nf,n) giving
+     color near each facet boundary (facet color is interpolated ).
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">opt</span><span 
+class="cmtt-10x-x-109">_args</span><span 
+class="cmmi-10x-x-109">&#x003E;</span>: This represents a sequence of statements <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1=value1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;key2=value2</span></span></span>,...
+     where  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1</span></span></span>,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key2,...</span></span></span> can  be  one  of  the  following:  theta,  alpha  ,leg,flag,ebox  (see
+     definition below).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">theta, alpha</span>: real values giving in degree the spherical coordinates of the observation
+     point.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">leg</span>: string defining the labels for each axis with @ as a field separator, for example
+     &#x201D;X@Y@Z&#x201D;.
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: a real vector of size three. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=[mode,type,box]</span></span></span>.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span>: an integer (surface color).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span><span 
+class="cmmi-10x-x-109">&#x003E;</span><span 
+class="cmtt-10x-x-109">0</span>: the surface is painted with color <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;mode&#x0022;</span></span></span> ; the boundary of the facet
+              is drawn with current line style and color.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode=0:  </span>a mesh of the surface is drawn.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">0:  </span>the surface is painted with color <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;-mode&#x0022;</span></span></span> ; the boundary of the
+              facet is not drawn.Note that the surface color treatement can be done using
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_mode</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_flag</span></span></span> options through the surface entity properties
+              (see <a 
+href="#surface-properties">surface_properties</a>    ).</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">type</span>: an integer (scaling).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=0:  </span>the plot is made using the current 3D scaling (set by a previous call
+              to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">param3d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d1</span></span></span>).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=1:  </span>rescales  automatically  3d  boxes  with  extreme  aspect  ratios,  the
+              boundaries are specified by the value of the optional argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=2:  </span>rescales  automatically  3d  boxes  with  extreme  aspect  ratios,  the
+              boundaries are computed using the given data.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=3:  </span>3d isometric with box bounds given by optional <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>, similarily to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=1</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=4:  </span>3d isometric bounds derived from the data, to similarily<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=2</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=5:  </span>3d expanded isometric bounds with box bounds given by optional
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>, similarily to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=1</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=6:  </span>3d expanded isometric bounds derived from the data, similarily to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=2</span></span></span>.Note that axes boundaries can be customized through the axes entity
+              properties (see <a 
+href="#axes-properties">axes_properties</a>    ).</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">box</span>: an integer (frame around the plot).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=0:  </span>nothing is drawn around the plot.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=1:  </span>unimplemented (like box=0).
+                                                                                    
+
+                                                                                    
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=2:  </span>only the axes behind the surface are drawn.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=3:  </span>a box surrounding the surface is drawn and captions are added.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=4:  </span>a  box  surrounding  the  surface  is  drawn,  captions  and  axes  are
+              added.Note that axes aspect can also be customized through the axes entity
+              properties (see <a 
+href="#axes-properties">axes_properties</a>    ).</li></ul>
+          </li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ebox</span>: It specifies the boundaries of the plot as the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xmin,xmax,ymin,ymax,zmin,zmax]</span></span></span>.
+     This argument is used together with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span>: if it is set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">5</span></span></span> (see above
+     to see the corresponding behaviour). If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is missing, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span> is not taken into
+     acoount. Note that, when specified, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span> argument acts on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data_bounds</span></span></span>
+     field that can also be reset through the axes entity properties (see <a 
+href="#axes-properties">axes_properties</a>
+     ).</li></ul>
+<!--l. 120--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x479-2842000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 120--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d(x,y,z,[theta,alpha,leg,flag,ebox])</span></span></span> draws the parametric surface
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z=f(x,y)</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d(xf,yf,zf,[theta,alpha,leg</span><span 
+class="cmtt-10x-x-109">&#x00A0;,flag,ebox])</span></span></span> draws a surface defined by a set of
+facets. You can draw multiple plots by replacing <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xf</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yf</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zf</span></span></span> by multiple matrices assembled by
+rows as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xf1</span><span 
+class="cmtt-10x-x-109">&#x00A0;xf2</span><span 
+class="cmtt-10x-x-109">&#x00A0;...]</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[yf1</span><span 
+class="cmtt-10x-x-109">&#x00A0;yf2</span><span 
+class="cmtt-10x-x-109">&#x00A0;...]</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[zf1</span><span 
+class="cmtt-10x-x-109">&#x00A0;zf2</span><span 
+class="cmtt-10x-x-109">&#x00A0;...]</span></span></span>. Note that data can also be set or get
+through the surface entity properties (see <a 
+href="#surface-properties">surface_properties</a>    ).You can give a specific color for
+each facet by using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list(zf,colors)</span></span></span> instead of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zf</span></span></span>, where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">colors</span></span></span> is a vector of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span>. If
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">colors(i)</span></span></span> is positive it gives the color of facet <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> and the boundary of the facet is drawn with
+current line style and color. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">colors(i)</span></span></span> is negative, color id <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-colors(i)</span></span></span> is used and the boundary
+of the facet is not drawn.It is also possible to get interpolated color for facets. For that
+the color argument must be a matrix of size nfxn giving the color near each boundary
+of each facets. In this case positive values for colors mean that the boundary are not
+drawn. Note that colors can also be set through the surface entity properties (via <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span>
+affectations) and edited using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_flag</span></span></span> option (see <a 
+href="#surface-properties">surface_properties</a>    ).The optional
+arguments <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">theta,</span><span 
+class="cmtt-10x-x-109">&#x00A0;alpha,</span><span 
+class="cmtt-10x-x-109">&#x00A0;leg</span><span 
+class="cmtt-10x-x-109">&#x00A0;,flag,</span><span 
+class="cmtt-10x-x-109">&#x00A0;ebox</span></span></span>, can be passed by a sequence of statements
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1=value1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;key2=value2</span></span></span>, ... In this case, the order has no special meaning. Note that all these
+optional arguments except <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> can be customized through the axes entity properties
+(see <a 
+href="#axes-properties">axes_properties</a>    ). As described before, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> option deals with surface entity
+properties for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mode</span></span></span> (see <a 
+href="#surface-properties">surface_properties</a>    ) and axes properties for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">box</span></span></span> (see
+<a 
+href="#axes-properties">axes_properties</a>    ).You can use the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">genfac3d</span></span></span> to compute four sided facets from the
+surface <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z=f(x,y)</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eval3dp</span></span></span> can also be used.Enter the command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d()</span></span></span> to see a demo.
+</p>
+<!--l. 154--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x479-2843000"></a><span 
+class="cmbx-10x-x-109">More information</span></span>
+                                                                                    
+
+                                                                                    
+   To get more information on the plot3d old syntax , use the <a 
+href="#plot3d-old-version">plot3d_old_version</a>    help
+document.
+</p>
+<!--l. 158--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x479-2844000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb375"><a 
+ id="x479-2844070r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;simple</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;using</span><span 
+class="cmitt-10x-x-109">&#x00A0;z=f(x,y)</span></span><br class="fancyvrb" /><a 
+ id="x479-2844072r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844074r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z=sin(t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">cos(t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844076r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d(t,t,z)</span>
+<br class="fancyvrb" /><a 
+ id="x479-2844078r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;using</span><span 
+class="cmitt-10x-x-109">&#x00A0;facets</span><span 
+class="cmitt-10x-x-109">&#x00A0;computed</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;genfac3d</span></span><br class="fancyvrb" /><a 
+ id="x479-2844080r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xx,yy,zz]=genfac3d(t,t,z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844082r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x479-2844084r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d(xx,yy,zz)</span>
+<br class="fancyvrb" /><a 
+ id="x479-2844086r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;multiple</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span></span><br class="fancyvrb" /><a 
+ id="x479-2844088r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x479-2844090r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d([xx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">xx],[yy</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy],[zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">zz])</span><br class="fancyvrb" /><a 
+ id="x479-2844092r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;multiple</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span><span 
+class="cmitt-10x-x-109">&#x00A0;using</span><span 
+class="cmitt-10x-x-109">&#x00A0;colors</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844094r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x479-2844096r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d([xx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">xx],[yy</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy],list([zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">)]))</span>
+<br class="fancyvrb" /><a 
+ id="x479-2844098r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;simple</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;viewpoint</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;captions</span></span><br class="fancyvrb" /><a 
+ id="x479-2844100r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span>
+<br class="fancyvrb" /><a 
+ id="x479-2844102r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">),alpha</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">35</span></span><span 
+class="cmtt-10x-x-109">,theta</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">45</span></span><span 
+class="cmtt-10x-x-109">,flag</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x479-2844104r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;sphere</span><span 
+class="cmitt-10x-x-109">&#x00A0;using</span><span 
+class="cmitt-10x-x-109">&#x00A0;facets</span><span 
+class="cmitt-10x-x-109">&#x00A0;computed</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;eval3dp</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844106r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;[x,y,z]=sph(alp,tet)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span><br class="fancyvrb" /><a 
+ id="x479-2844108r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844110r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z=r*sin(alp)+orig(3)*ones(tet)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844112r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;r=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">orig=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844114r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xx,yy,zz]=eval3dp(sph,linspace(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span 
+class="cmtt-10x-x-109">),linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844116r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot3d(xx,yy,zz)</span><br class="fancyvrb" /><a 
+ id="x479-2844118r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844120r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=gcf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844122r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f.color_map=hotcolormap(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">128</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844124r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;r=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">orig=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844126r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xx1,yy1,zz1]=eval3dp(sph,linspace(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span 
+class="cmtt-10x-x-109">),linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844128r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;cc=(xx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">32</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">cc1=(xx1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">orig(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">zz1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">r</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">32</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844130r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844132r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d1([xx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">xx1],[yy</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy1],list([zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">zz1],[cc</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">cc1]),theta</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">70</span></span><span 
+class="cmtt-10x-x-109">,alpha</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">80</span></span><span 
+class="cmtt-10x-x-109">,flag</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x479-2844134r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Available</span><span 
+class="cmitt-10x-x-109">&#x00A0;operations</span><span 
+class="cmitt-10x-x-109">&#x00A0;using</span><span 
+class="cmitt-10x-x-109">&#x00A0;only</span><span 
+class="cmitt-10x-x-109">&#x00A0;New</span><span 
+class="cmitt-10x-x-109">&#x00A0;Graphics...</span></span><br class="fancyvrb" /><a 
+ id="x479-2844136r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;delete(gcf())</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844138r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">z=sin(t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">cos(t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844140r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xx,yy,zz]=genfac3d(t,t,z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844142r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d([xx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">xx],[yy</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy],list([zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">)]))</span><br class="fancyvrb" /><a 
+ id="x479-2844144r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e=gce()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844146r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=e.data</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844148r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TL=tlist([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;3d&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;x&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;color&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],f.x,f.y,f.z,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(f.z))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;color</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix</span></span><br class="fancyvrb" /><a 
+ id="x479-2844150r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.data=TL</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844152r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TL2=tlist([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;3d&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;x&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;color&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],f.x,f.y,f.z,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">800</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;color</span><span 
+class="cmitt-10x-x-109">&#x00A0;vector</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844154r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.data=TL2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844156r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TL3=tlist([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;3d&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;x&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;color&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],f.x,f.y,f.z,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">)])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844158r45"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.data=TL3</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844160r46"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TL4=tlist([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;3d&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;x&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],f.x,f.y,f.z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;no</span><span 
+class="cmitt-10x-x-109">&#x00A0;color</span></span><br class="fancyvrb" /><a 
+ id="x479-2844162r47"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.data=TL4</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844164r48"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.color_flag=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;color</span><span 
+class="cmitt-10x-x-109">&#x00A0;index</span><span 
+class="cmitt-10x-x-109">&#x00A0;proportional</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;altitude</span><span 
+class="cmitt-10x-x-109">&#x00A0;(z</span><span 
+class="cmitt-10x-x-109">&#x00A0;coord.)</span></span><br class="fancyvrb" /><a 
+ id="x479-2844166r49"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.color_flag=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;back</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span><span 
+class="cmitt-10x-x-109">&#x00A0;mode</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844168r50"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.color_flag=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolated</span><span 
+class="cmitt-10x-x-109">&#x00A0;shading</span><span 
+class="cmitt-10x-x-109">&#x00A0;mode</span><span 
+class="cmitt-10x-x-109">&#x00A0;(based</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;blue</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span><span 
+class="cmitt-10x-x-109">&#x00A0;color)</span></span><br class="fancyvrb" /><a 
+ id="x479-2844170r51"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span>
+<br class="fancyvrb" /><a 
+ id="x479-2844172r52"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d([xx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">xx],[yy</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy],list([zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">zz</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">)]))</span>
+<br class="fancyvrb" /><a 
+ id="x479-2844174r53"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=gce()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;current</span><span 
+class="cmitt-10x-x-109">&#x00A0;entity</span><span 
+class="cmitt-10x-x-109">&#x00A0;(here</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;surface)</span></span><br class="fancyvrb" /><a 
+ id="x479-2844176r54"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=gca()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;current</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844178r55"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.rotation_angles=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">70</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844180r56"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.grid=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//make</span><span 
+class="cmitt-10x-x-109">&#x00A0;grids</span></span><br class="fancyvrb" /><a 
+ id="x479-2844182r57"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.data_bounds=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844184r58"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.axes_visible=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;hidden</span></span><br class="fancyvrb" /><a 
+ id="x479-2844186r59"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.axes_bounds=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844188r60"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h.color_flag=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//color</span><span 
+class="cmitt-10x-x-109">&#x00A0;according</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;z</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844190r61"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h.color_mode=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//remove</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;facets</span><span 
+class="cmitt-10x-x-109">&#x00A0;boundary</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;setting</span><span 
+class="cmitt-10x-x-109">&#x00A0;color_mode</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;white</span><span 
+class="cmitt-10x-x-109">&#x00A0;color</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844192r62"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h.color_flag=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//color</span><span 
+class="cmitt-10x-x-109">&#x00A0;according</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span><span 
+class="cmitt-10x-x-109">&#x00A0;colors</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844194r63"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h.color_mode=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;put</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;facets</span><span 
+class="cmitt-10x-x-109">&#x00A0;boundary</span><span 
+class="cmitt-10x-x-109">&#x00A0;back</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;setting</span><span 
+class="cmitt-10x-x-109">&#x00A0;color_mode</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;black</span><span 
+class="cmitt-10x-x-109">&#x00A0;color</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844196r64"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=gcf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;parent</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span></span><br class="fancyvrb" /><a 
+ id="x479-2844198r65"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f.color_map=hotcolormap(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">512</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844200r66"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;c=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x479-2844202r67"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TL.color=[c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844204r68"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h.data=TL</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x479-2844206r69"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h.color_flag=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolated</span><span 
+class="cmitt-10x-x-109">&#x00A0;shading</span><span 
+class="cmitt-10x-x-109">&#x00A0;mode</span></span></div>
+<!--l. 231--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x479-2845000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli404.html#eval3dp">eval3dp</a>    <a 
+href="manualli424.html#genfac3d">genfac3d</a>    <a 
+href="manualli425.html#geom3d">geom3d</a>    <a 
+href="manualli466.html#param3d">param3d</a>    <a 
+href="manualli474.html#plot3d1">plot3d1</a>    <a 
+href="manualli385.html#clf">clf</a>    <a 
+href="manualli419.html#gca">gca</a>    <a 
+href="manualli421.html#gcf">gcf</a>    <a 
+href="manualli528.html#xdel">xdel</a>    <a 
+href="manualli395.html#delete">delete</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 235--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x479-2846000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli479.html" >next</a>] [<a 
+href="manualli477.html" >prev</a>] [<a 
+href="manualli477.html#tailmanualli477.html" >prev-tail</a>] [<a 
+href="manualli478.html" >front</a>] [<a 
+href="manualli370.html#manualli478.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli478.html"></a>  </p> 
+</body></html> 

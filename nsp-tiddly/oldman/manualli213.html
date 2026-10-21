@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>number_properties</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli214.html" >next</a>] [<a 
+href="manualli212.html" >prev</a>] [<a 
+href="manualli212.html#tailmanualli212.html" >prev-tail</a>] [<a 
+href="#tailmanualli213.html">tail</a>] [<a 
+href="manualli104.html#manualli213.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x214-1266000"></a>number_properties</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx214-1266001"></a><a 
+ id="number_properties"></a><span 
+class="cmtt-10x-x-109">number</span><span 
+class="cmtt-10x-x-109">_properties </span>&#x2013;                                          determine floating-point parameters<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x214-1267000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-337">
+&#x00A0;&#x00A0;pr&#x00A0;=&#x00A0;number_properties(prop)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x214-1268000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">prop</span>: string
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">pr</span>: real or boolean scalar</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x214-1269000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > This function may be used to get the characteristic numbers/properties of the floating point set
+denoted here by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F(b,p,emin,emax)</span></span></span> (usually the 64 bits float numbers set prescribe by IEEE 754).
+Numbers of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span> are of the form:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-338">
+&#x00A0;&#x00A0;sign&#x00A0;*&#x00A0;m&#x00A0;*&#x00A0;b^e
+</div>
+<!--l. 41--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e</span></span></span> is the exponent and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> the mantissa:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-339">
+&#x00A0;&#x00A0;m&#x00A0;=&#x00A0;d_1&#x00A0;b^(-1)&#x00A0;+&#x00A0;d_2&#x00A0;b^(-2)&#x00A0;+&#x00A0;....&#x00A0;+&#x00A0;d_p&#x00A0;b^(-p)
+</div>
+<!--l. 45--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d_i</span></span></span> the digits are in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[0,</span><span 
+class="cmtt-10x-x-109">&#x00A0;b-1]</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[emin,</span><span 
+class="cmtt-10x-x-109">&#x00A0;emax]</span></span></span>, the number is said &#x201D;normalised&#x201D; if
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d_1</span><span 
+class="cmtt-10x-x-109">&#x00A0;~=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span></span></span>. The following may be gotten:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;radix&#x201D;</span> </span>then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is the radix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">b</span></span></span> of the set <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;digits&#x201D;</span> </span>then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is the number of digits <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;huge&#x201D;</span> </span>then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is the max positive float of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;tiny&#x201D;</span> </span>then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is the min positive normalised float of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;denorm&#x201D;</span> </span>then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is a boolean (%t if denormalised numbers are used)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;tiniest&#x201D;</span> </span>then if denorm = %t, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is the min positive denormalised number else
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> = tiny
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;eps&#x201D;</span> </span>then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is the epsilon machine ( generally (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">b^(1-p))/2</span></span></span> ) which is the relative
+     max error between a real <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> (such than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">|x|</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[tiny,</span><span 
+class="cmtt-10x-x-109">&#x00A0;huge]</span></span></span>) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fl(x)</span></span></span>, its floating
+     point approximation in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;minexp&#x201D;</span> </span>then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">emin</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prop = &#x201D;maxexp&#x201D;</span> </span>then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pr</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">emax</span></span></span></ul>
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x214-1270000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   This function uses the lapack routine dlamch to get the machine parameters (the names (radix,
+digit, huge, etc...) are those recommended by the LIA 1 standard and are different from the
+corresponding lapack&apos;s ones) ; CAUTION: sometimes you can see the following definition for the
+epsilon machine: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eps</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b^(1-p)</span></span></span> but in this function we use the traditionnal one (see prop =
+&#x201D;eps&#x201D; before) and so <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eps</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;(b^(1-p))/2</span></span></span> if normal rounding occurs and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eps</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;b^(1-p)</span></span></span> if
+not.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x214-1271000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb169"><a 
+ id="x214-1271004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b=number_properties(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;radix&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x214-1271006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;eps=number_properties(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;eps&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 81--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x214-1272000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli208.html#nearfloat">nearfloat</a>    <a 
+href="manualli157.html#frexp">frexp</a>
+</p>
+<!--l. 85--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x214-1273000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Bruno Pincon
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli214.html" >next</a>] [<a 
+href="manualli212.html" >prev</a>] [<a 
+href="manualli212.html#tailmanualli212.html" >prev-tail</a>] [<a 
+href="manualli213.html" >front</a>] [<a 
+href="manualli104.html#manualli213.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli213.html"></a>  </p> 
+</body></html> 

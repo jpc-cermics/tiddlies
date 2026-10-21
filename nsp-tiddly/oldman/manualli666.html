@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>schur</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli667.html" >next</a>] [<a 
+href="manualli665.html" >prev</a>] [<a 
+href="manualli665.html#tailmanualli665.html" >prev-tail</a>] [<a 
+href="#tailmanualli666.html">tail</a>] [<a 
+href="manualli607.html#manualli666.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x667-3979000"></a>schur</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx667-3979001"></a><a 
+ id="schur"></a><span 
+class="cmtt-10x-x-109">schur </span>&#x2013;                                       [ordered] Schur decomposition of matrix and pencils<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x667-3980000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-820">
+&#x00A0;&#x00A0;[U,T]&#x00A0;=&#x00A0;schur(A)
+&#x00A0;<br />&#x00A0;&#x00A0;[U,dim&#x00A0;[,T]&#x00A0;]=schur(A,flag)
+&#x00A0;<br />&#x00A0;&#x00A0;[U,dim&#x00A0;[,T]&#x00A0;]=schur(A,extern1)
+&#x00A0;<br />&#x00A0;&#x00A0;[As,Es&#x00A0;[,Q,Z]]=schur(A,E)
+&#x00A0;<br />&#x00A0;&#x00A0;[As,Es&#x00A0;[,Q],Z,dim]&#x00A0;=&#x00A0;schur(A,E,flag)
+&#x00A0;<br />&#x00A0;&#x00A0;[Z,dim]&#x00A0;=&#x00A0;schur(A,E,flag)
+&#x00A0;<br />&#x00A0;&#x00A0;[As,Es&#x00A0;[,Q],Z,dim]=&#x00A0;schur(A,E,extern2)
+&#x00A0;<br />&#x00A0;&#x00A0;[Z,dim]=&#x00A0;schur(A,E,extern2)
+</div>
+<!--l. 32--><p class="nopar" >
+</p>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x667-3981000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: real or complex square matrix.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">E</span>: real or complex square matrix with same dimensions as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;A</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: character string (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">extern1</span>: an &#x201C;external&#x201D;, see below
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">extern2</span>: an &#x201C;external&#x201D;, see below
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">U</span>: orthogonal or unitary square matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q</span>: orthogonal or unitary square matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Z</span>: orthogonal or unitary square matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">T</span>: upper triangular or quasi-triangular square matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">As</span>: upper triangular or quasi-triangular square matrix
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Es</span>: upper triangular square matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dim</span>: integer</li></ul>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x667-3982000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 51--><p class="noindent" > Schur forms, ordered Schur forms of matrices and pencils
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">MATRIX SCHUR FORM</span> </span>
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">Usual schur form:</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[U,T]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;schur(A)</span></span></span> produces  a  Schur  matrix  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">T</span></span></span> and  a  unitary
+          matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">U</span></span></span> so that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;U*T*U&#x0027;</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">U&#x0027;*U</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;eye(U)</span></span></span>. By itself, schur(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>) returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">T</span></span></span>. If
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is complex, the Complex Schur Form is returned in matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">T</span></span></span>. The Complex Schur
+          Form is upper triangular with the eigenvalues of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> on the diagonal. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is real, the
+          Real Schur Form is returned. The Real Schur Form has the real eigenvalues on the
+          diagonal and the complex eigenvalues in 2-by-2 blocks on the diagonal.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">Ordered Schur forms</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[U,dim]=schur(A,&#x0027;c&#x0027;)</span></span></span> returns an unitary matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">U</span></span></span> which
+          transforms <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> into schur form. In addition, the dim first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">U</span></span></span> make a basis of the
+          eigenspace of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> associated with eigenvalues with negative real parts (stable &#x201D;continuous
+          time&#x201D; eigenspace).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[U,dim]=schur(A,&#x0027;d&#x0027;)</span></span></span> returns an unitary matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">U</span></span></span> which
+          transforms <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> into schur form. In addition, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">U</span></span></span> span
+          a basis of the eigenspace of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> associated with eigenvalues with magnitude
+          lower than 1 (stable &#x201D;discrete time&#x201D; eigenspace). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[U,dim]=schur(A,extern1)</span></span></span>
+          returns an unitary matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">U</span></span></span> which transforms <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> into schur form. In addition, the
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">U</span></span></span> span a basis of the eigenspace of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> associated with the
+          eigenvalues which are selected by the external function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">extern1</span></span></span> (see external for
+          details). This external can be described by a Scilab function or by C or Fortran
+          procedure:
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+          <span 
+class="cmbx-10x-x-109">a Scilab function</span> </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">extern1</span></span></span> is described by a Scilab function, it should have
+              the following calling sequence: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s=extern1(Ev)</span></span></span>, where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ev</span></span></span> is an eigenvalue and
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> a boolean.
+              <li class="nbitemize"><span class="bitem">
+          <span 
+class="cmbx-10x-x-109">a C or Fortran procedure</span> </span>If
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">extern1</span></span></span> is described by a C or Fortran function it should have the following
+              calling sequence: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">int</span><span 
+class="cmtt-10x-x-109">&#x00A0;extern1(double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*EvR,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*EvI)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">EvR</span></span></span> and
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">EvI</span></span></span> are eigenvalue real and complex parts. a true or non zero returned value
+              stands for selected eigenvalue.</ul>
+          </ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">PENCIL SCHUR FORMS</span> </span>
+                                                                                    
+
+                                                                                    
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">Usual Pencil Schur form</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[As,Es]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;schur(A,E)</span></span></span> produces  a  quasi  triangular  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">As</span></span></span>
+          matrix and a triangular <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Es</span></span></span> matrix which are the generalized Schur form of the pair
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A,</span><span 
+class="cmtt-10x-x-109">&#x00A0;E</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[As,Es,Q,Z]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;schur(A,E)</span></span></span> returns in addition two unitary matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q</span></span></span> and
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Z</span></span></span> such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">As=Q&#x0027;*A*Z</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Es=Q&#x0027;*E*Z</span></span></span>.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">Ordered Schur forms:</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[As,Es,Z,dim]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;schur(A,E,&#x0027;c&#x0027;)</span></span></span> returns the real generalized
+          Schur form of the pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s*E-A</span></span></span>. In addition, the dim first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Z</span></span></span> span a basis of the
+          right eigenspace associated with eigenvalues with negative real parts (stable &#x201D;continuous
+          time&#x201D; generalized eigenspace).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[As,Es,Z,dim]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;schur(A,E,&#x0027;d&#x0027;)</span></span></span> returns the
+          real generalized Schur form of the pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s*E-A</span></span></span>. In addition, the dim first
+          columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Z</span></span></span> make a basis of the right eigenspace associated with eigenvalues
+          with magnitude lower than 1 (stable &#x201D;discrete time&#x201D; generalized eigenspace).
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[As,Es,Z,dim]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;schur(A,E,extern2)</span></span></span> returns the real generalized Schur form of
+          the pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s*E-A</span></span></span>. In addition, the dim first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Z</span></span></span> make a basis of the
+          right eigenspace associated with eigenvalues of the pencil which are selected
+          according to a rule which is given by the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">extern2</span></span></span>. (see external for
+          details). This external can be described by a Scilab function or by C or Fortran
+          procedure:
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+          <span 
+class="cmbx-10x-x-109">A Scilab function</span> </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">extern2</span></span></span> is described by a Scilab function, it should have the
+              following calling sequence: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s=extern2(Alpha,Beta)</span></span></span>, where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Alpha</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Beta</span></span></span>
+              defines a generalized eigenvalue and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> a boolean.
+              <li class="nbitemize"><span class="bitem">
+          <span 
+class="cmbx-10x-x-109">C or Fortran procedure</span> </span>if external <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">extern2</span></span></span> is described by a C or a Fortran
+              procedure, it should have the following calling sequence:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">int</span><span 
+class="cmtt-10x-x-109">&#x00A0;extern2(double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*AlphaR,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*AlphaI,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*Beta)</span></span></span>
+              if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span> are real and<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">int</span><span 
+class="cmtt-10x-x-109">&#x00A0;extern2(double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*AlphaR,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*AlphaI,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*BetaR,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*BetaI)</span></span></span>
+              if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span> are complex. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Alpha</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Beta</span></span></span> defines the generalized eigenvalue. a
+              true or non zero returned value stands for selected generalized eigenvalue.</ul>
+          </ul>
+     </ul>
+</p>
+<!--l. 142--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x667-3983000"></a><span 
+class="cmbx-10x-x-109">References</span></span>
+   Matrix schur form computations are based on the Lapack routines DGEES and ZGEES. Pencil
+schur form computations are based on the Lapack routines DGGES and ZGGES.
+</p>
+<!--l. 146--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x667-3984000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb522"><a 
+ id="x667-3984045r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//SCHUR</span><span 
+class="cmitt-10x-x-109">&#x00A0;FORM</span><span 
+class="cmitt-10x-x-109">&#x00A0;OF</span><span 
+class="cmitt-10x-x-109">&#x00A0;A</span><span 
+class="cmitt-10x-x-109">&#x00A0;MATRIX</span></span><br class="fancyvrb" /><a 
+ id="x667-3984047r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//----------------------</span></span><br class="fancyvrb" /><a 
+ id="x667-3984049r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=diag([</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.9</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">X=rand(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A=inv(X)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984051r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[U,T]=schur(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">T</span><br class="fancyvrb" /><a 
+ id="x667-3984053r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[U,dim,T]=schur(A,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x667-3984055r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;T(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">dim,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">dim)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//stable</span><span 
+class="cmitt-10x-x-109">&#x00A0;cont.</span><span 
+class="cmitt-10x-x-109">&#x00A0;eigenvalues</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984057r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;t=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">mytest</span></span><span 
+class="cmtt-10x-x-109">(Ev)</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=abs(Ev)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.95</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span><br class="fancyvrb" /><a 
+ id="x667-3984059r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[U,dim,T]=schur(A,mytest)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x667-3984061r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;T(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">dim,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">dim)</span>
+                                                                                    
+
+                                                                                    
+<br class="fancyvrb" /><a 
+ id="x667-3984063r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;The</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span><span 
+class="cmitt-10x-x-109">&#x00A0;(a</span><span 
+class="cmitt-10x-x-109">&#x00A0;Compiler</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;required)</span></span><br class="fancyvrb" /><a 
+ id="x667-3984065r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;mytest(double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*EvR,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*EvI)</span><span 
+class="cmtt-10x-x-109">&#x00A0;{&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984067r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;(*EvR</span><span 
+class="cmtt-10x-x-109">&#x00A0;*</span><span 
+class="cmtt-10x-x-109">&#x00A0;*EvR</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;*EvI</span><span 
+class="cmtt-10x-x-109">&#x00A0;*</span><span 
+class="cmtt-10x-x-109">&#x00A0;*EvI</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0026;lt;</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.9025)</span><span 
+class="cmtt-10x-x-109">&#x00A0;return</span><span 
+class="cmtt-10x-x-109">&#x00A0;1;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;else</span><span 
+class="cmtt-10x-x-109">&#x00A0;return</span><span 
+class="cmtt-10x-x-109">&#x00A0;0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;}&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[]]</span>
+<br class="fancyvrb" /><a 
+ id="x667-3984069r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(C,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/mytest.c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x667-3984071r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//build</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;link</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984073r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lp=ilib_for_link(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytest&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytest.o&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/Makefile&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x667-3984075r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;link(lp,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytest&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984077r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//run</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span></span><br class="fancyvrb" /><a 
+ id="x667-3984079r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[U,dim,T]=schur(A,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytest&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x667-3984081r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//SCHUR</span><span 
+class="cmitt-10x-x-109">&#x00A0;FORM</span><span 
+class="cmitt-10x-x-109">&#x00A0;OF</span><span 
+class="cmitt-10x-x-109">&#x00A0;A</span><span 
+class="cmitt-10x-x-109">&#x00A0;PENCIL</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984083r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//----------------------</span></span><br class="fancyvrb" /><a 
+ id="x667-3984085r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">%s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">%s]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984087r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=coeff(F,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">E=coeff(F,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x667-3984089r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[As,Es,Q,Z]=schur(A,E)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x667-3984091r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//It</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;As+%s*Es</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984093r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[As,Es,Z,dim]=schur(A,E,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x667-3984095r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;t=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">mytest</span></span><span 
+class="cmtt-10x-x-109">(Alpha,Beta)</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=real(Alpha)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984097r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[As,Es,Z,dim]=schur(A,E,mytest)</span><br class="fancyvrb" /><a 
+ id="x667-3984099r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;Fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;(a</span><span 
+class="cmitt-10x-x-109">&#x00A0;Compiler</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;required)</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984101r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ftn=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;integer</span><span 
+class="cmtt-10x-x-109">&#x00A0;function</span><span 
+class="cmtt-10x-x-109">&#x00A0;mytestf(ar,ai,b)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;precision</span><span 
+class="cmtt-10x-x-109">&#x00A0;ar,ai,b&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytestf=0&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984103r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;if(ar.lt.0.0d0)</span><span 
+class="cmtt-10x-x-109">&#x00A0;mytestf=1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;end&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x667-3984105r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">ftn,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/mytestf.f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x667-3984107r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//build</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;link</span></span><br class="fancyvrb" /><a 
+ id="x667-3984109r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lp=ilib_for_link(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytestf&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytestf.o&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;F&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/Makefile&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x667-3984111r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;link(lp,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytestf&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x667-3984113r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//run</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span></span><br class="fancyvrb" /><a 
+ id="x667-3984115r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[As,Es,Z,dim]=schur(A,E,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mytestf&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 194--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x667-3985000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli671.html#spec">spec</a>    <a 
+href="manualli610.html#bdiag">bdiag</a>    <a 
+href="manualli71.html#ricc">ricc</a>    <a 
+href="manualli648.html#pbig">pbig</a>    <a 
+href="manualli655.html#psmall">psmall</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli667.html" >next</a>] [<a 
+href="manualli665.html" >prev</a>] [<a 
+href="manualli665.html#tailmanualli665.html" >prev-tail</a>] [<a 
+href="manualli666.html" >front</a>] [<a 
+href="manualli607.html#manualli666.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli666.html"></a>  </p> 
+</body></html> 

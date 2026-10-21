@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lin</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli51.html" >next</a>] [<a 
+href="manualli49.html" >prev</a>] [<a 
+href="manualli49.html#tailmanualli49.html" >prev-tail</a>] [<a 
+href="#tailmanualli50.html">tail</a>] [<a 
+href="manualli12.html#manualli50.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x51-282000"></a>lin</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx51-282001"></a><a 
+ id="lin"></a><span 
+class="cmtt-10x-x-109">lin </span>&#x2013;                                                                                               linearization<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-283000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-81">
+&#x00A0;&#x00A0;[A,B,C,D]=lin(sim,x0,u0)
+&#x00A0;<br />&#x00A0;&#x00A0;[sl]=lin(sim,x0,u0)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-284000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sim</span>: function
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0, u0</span>: vectors of compatible dimensions
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A,B,C,D</span>: real matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sl</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-285000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > linearization of the non-linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[y,xdot]=sim(x,u)</span></span></span> around <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0,u0</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sim</span></span></span> is a function which
+computes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xdot</span></span></span>. The output is a linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list) <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> or the four matrices
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A,B,C,D)</span></span></span> For example, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ftz</span></span></span> is the function passed to ode e.g.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-82">
+&#x00A0;&#x00A0;[zd]=ftz(t,z,u)
+</div>
+<!--l. 45--><p class="nopar" >and if we assume that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y=x</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[z]=ode(x0,t0,tf,list(ftz,u)</span></span></span> compute <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(tf)</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">simula</span></span></span> is the
+following function:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-83">
+&#x00A0;&#x00A0;deff(&#x0027;[y,xd]=simula(x,u)&#x0027;,&#x0027;xd=ftz(tf,x,u);&#x00A0;y=x;&#x0027;);
+</div>
+<!--l. 50--><p class="nopar" >the tangent linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> can be obtained by:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-84">
+&#x00A0;&#x00A0;[A,B,C,D]=lin(simula,z,u)
+&#x00A0;<br />&#x00A0;&#x00A0;sl&#x00A0;=&#x00A0;syslin(&#x0027;c&#x0027;,A,B,C,D,x0)
+</div>
+<!--l. 55--><p class="nopar" >
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-286000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb38"><a 
+ id="x51-286004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[y,xdot]=sim(x,u)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;xdot=[u*sin(x);-u*x^2];y=xdot(1)+xdot(2)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x51-286006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sl=lin(sim,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-287000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli966.html#external">external</a>    <a 
+href="manualli903.html#derivat">derivat</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli51.html" >next</a>] [<a 
+href="manualli49.html" >prev</a>] [<a 
+href="manualli49.html#tailmanualli49.html" >prev-tail</a>] [<a 
+href="manualli50.html" >front</a>] [<a 
+href="manualli12.html#manualli50.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli50.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+clf()
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure}
+set(\nspstring{"auto_clear"},\nspstring{"off"})\nspoperator{;}
+\nspcomment{// Exemple of a Plot 2D}
+x=[\nspoperator{-}\nspnumber{.2}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}
+plot2d(x\nspoperator{-}\nspnumber{.3},[sin(x\nspoperator{-}\nspnumber{1})\nspoperator{,}cos(\nspnumber{2}\nspoperator{*}x)],[\nspnumber{1}\nspoperator{,}\nspnumber{2}])\nspoperator{;}
+a=get(\nspstring{"current_axes"})\nspoperator{;}
+p1=a.children.children(\nspnumber{1})\nspoperator{;}
+p2=a.children.children(\nspnumber{2})\nspoperator{;}
+\nspcomment{// set the named properties to the specified values on the objects}
+set(p2,\nspstring{"foreground"},\nspnumber{13})\nspoperator{;}
+set(p2,\nspstring{"polyline_style"},\nspnumber{2})\nspoperator{;}
+set(a,\nspstring{'tight_limits'},\nspstring{"on"})\nspoperator{;}
+set(a,\nspstring{"box"},\nspstring{"off"})\nspoperator{;}
+set(a,\nspstring{"sub_tics"},[\nspnumber{7}\nspoperator{,}\nspnumber{0}])\nspoperator{;}
+set(a,\nspstring{"y_location"},\nspstring{"middle"})
+set(p2,\nspstring{'thickness'},\nspnumber{2})\nspoperator{;}
+set(p1,\nspstring{'mark_mode'},\nspstring{"on"})\nspoperator{;}
+set(p1,\nspstring{'mark_style'},\nspnumber{3})\nspoperator{;}
+plot2d(x\nspoperator{-}\nspnumber{2},x\nspoperator{ .^}\nspnumber{2}\nspoperator{/}\nspnumber{20})\nspoperator{;}
+p3=a.children(\nspnumber{1}).children\nspoperator{;}
+set([a\nspoperator{,}p1\nspoperator{,}p2\nspoperator{,}p3],\nspstring{"foreground"},\nspnumber{5})
+\end{Verbatim}

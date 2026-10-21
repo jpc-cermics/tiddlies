@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Assume the equations}
+\nspcomment{//.}
+\nspcomment{//x = Ax + Ge}
+\nspcomment{//y = Cx + v}
+\nspcomment{//with}
+\nspcomment{//E ee' = Q_e,    Evv' = R,    Eev' = N}
+\nspcomment{//}
+\nspcomment{//This is equivalent to}
+\nspcomment{//.}
+\nspcomment{//x = Ax  + B1 w}
+\nspcomment{//y = C2x + D21 w}
+\nspcomment{//with E \nspob{}[Ge ]  [Ge v]' \nspcb{} = E \nspob{}[B1w ] [B1w D21w]' \nspcb{} = bigR =}
+\nspcomment{//         [ v ]                  [D21w]}
+\nspcomment{//}
+\nspcomment{//[B1*B1'  B1*D21';}
+\nspcomment{// D21*B1'  D21*D21']}
+\nspcomment{//=}
+\nspcomment{//[G*Q_e*G' G*N;}
+\nspcomment{// N*G' R]}
+\nspcomment{//To find (B1,D21) given (G,Q_e,R,N) form bigR =[G*Q_e*G' G*N;N'*G' R].}
+\nspcomment{//Then [W,Wt]=fullrf(bigR);  B1=W(1:size(G,1),:);}
+\nspcomment{//D21=W(($+1-size(C2,1)):$,:)}
+\nspcomment{//}
+\nspcomment{//P21=syslin('c',A,B1,C2,D21);}
+\nspcomment{//[K,X]=lqe(P21);}
+\nspcomment{//Example:}
+nx=\nspnumber{5}\nspoperator{;}ne=\nspnumber{2}\nspoperator{;}ny=\nspnumber{3}\nspoperator{;}
+A=\nspoperator{-}diag(\nspnumber{1}\nspoperator{:}nx)\nspoperator{;}G=ones(nx,ne)\nspoperator{;}
+C=ones(ny,nx)\nspoperator{;}Q_e(ne,ne)=\nspnumber{1}\nspoperator{;}R=diag(\nspnumber{1}\nspoperator{:}ny)\nspoperator{;}N=zeros(ne,ny)\nspoperator{;}
+bigR=[G\nspoperator{*}Q_e\nspoperator{*}G\nspoperator{'}\nspoperator{,}G\nspoperator{*}N\nspoperator{;}N\nspoperator{'}\nspoperator{*}G\nspoperator{'}\nspoperator{,}R]\nspoperator{;}
+[W,Wt]=fullrf(bigR)\nspoperator{;}B1=W(\nspnumber{1}\nspoperator{:}size(G,\nspnumber{1}),\nspoperator{:})\nspoperator{;}
+D21=W(($\nspoperator{+}\nspnumber{1}\nspoperator{-}size(C,\nspnumber{1}))\nspoperator{:}$,\nspoperator{:})\nspoperator{;}
+C2=C\nspoperator{;}
+P21=syslin(\nspstring{'c'},A,B1,C2,D21)\nspoperator{;}
+[K,X]=lqe(P21)\nspoperator{;}
+\nspcomment{//Riccati check:}
+S=G\nspoperator{*}N\nspoperator{;}Q=B1\nspoperator{*}B1\nspoperator{'}\nspoperator{;}
+(A\nspoperator{-}S\nspoperator{*}inv(R)\nspoperator{*}C2)\nspoperator{*}X\nspoperator{+}X\nspoperator{*}(A\nspoperator{-}S\nspoperator{*}inv(R)\nspoperator{*}C2)\nspoperator{'}\nspoperator{-}X\nspoperator{*}C2\nspoperator{'}\nspoperator{*}inv(R)\nspoperator{*}C2\nspoperator{*}X\nspoperator{+}Q\nspoperator{-}S\nspoperator{*}inv(R)\nspoperator{*}S\nspoperator{'}
+\nspcomment{//Stability check:}
+spec(A\nspoperator{+}K\nspoperator{*}C)
+\end{Verbatim}

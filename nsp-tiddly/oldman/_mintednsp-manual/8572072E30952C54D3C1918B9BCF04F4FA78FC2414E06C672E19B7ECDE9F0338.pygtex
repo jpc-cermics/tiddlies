@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{3}\nspoperator{,}\nspnumber{4}]\nspoperator{;}
+cumsum(A)
+cumsum(A,\nspstring{'r'})
+cumsum(A,\nspstring{'c'})
+a=rand(\nspnumber{3},\nspnumber{4})\nspoperator{+}%i\nspoperator{;}
+[m,n]=size(a)\nspoperator{;}
+w=zeros(a)\nspoperator{;}
+w(\nspnumber{1},\nspoperator{:})=a(\nspnumber{1},\nspoperator{:})\nspoperator{;}
+\nspkeyword{for} k=\nspnumber{2}\nspoperator{:}m \nspkeyword{do} w(k,\nspoperator{:})=w(k\nspoperator{-}\nspnumber{1},\nspoperator{:})\nspoperator{+}a(k,\nspoperator{:})\nspoperator{;}\nspkeyword{end}\nspoperator{;}w\nspoperator{-}cumsum(a,\nspstring{'r'})
+\end{Verbatim}

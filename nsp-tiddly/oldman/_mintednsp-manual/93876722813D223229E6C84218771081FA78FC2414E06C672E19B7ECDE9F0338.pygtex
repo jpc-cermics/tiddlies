@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// At first we create 0.5 seconds of sound parameters.}
+t=soundsec(\nspnumber{0.5})\nspoperator{;}
+\nspcomment{// Then we generate the sound.}
+s=sin(\nspnumber{440}\nspoperator{*}t)\nspoperator{+}sin(\nspnumber{220}\nspoperator{*}t)\nspoperator{/}\nspnumber{2}\nspoperator{+}sin(\nspnumber{880}\nspoperator{*}t)\nspoperator{/}\nspnumber{2}\nspoperator{;}
+[nr,nc]=size(t)\nspoperator{;}
+s(nc\nspoperator{/}\nspnumber{2}\nspoperator{:}nc)=sin(\nspnumber{330}\nspoperator{*}t(nc\nspoperator{/}\nspnumber{2}\nspoperator{:}nc))\nspoperator{;}
+analyze(s)\nspoperator{;}
+\end{Verbatim}

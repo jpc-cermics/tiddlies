@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+addmenu(\nspstring{'foo'})
+foo=\nspstring{'disp(''hello'')'}
+addmenu(\nspstring{'Hello'},[\nspstring{'Franck'}\nspoperator{;}\nspstring{'Peter'}])
+Hello=[\nspstring{'disp(''hello Franck'')'}\nspoperator{;}\nspstring{'disp(''hello Peter'')'}]
+addmenu(\nspnumber{0},\nspstring{'Hello'},[\nspstring{'Franck'}\nspoperator{;}\nspstring{'Peter'}])
+Hello_0=[\nspstring{'disp(''hello Franck'')'}\nspoperator{;}\nspstring{'disp(''hello Peter'')'}]
+addmenu(\nspstring{'Bye'},list(\nspnumber{0},\nspstring{'French_Bye'}))
+French_Bye=\nspstring{'disp(''Au revoir'')'}
+\nspcomment{//C defined Callback}
+\nspcomment{// creating Callback code}
+code=[\nspstring{'\nspsh{}include ""machine.h""'}\nspoperator{;}\nspstring{'void foo(char *name,int *win,int *entry)'}\nspoperator{;}\nspstring{'\nspob{}'}\nspoperator{;}
+      \nspstring{'  if (*win==-1) '}\nspoperator{;}
+      \nspstring{'    sciprint(""menu \nsppc{}s(\nsppc{}i) in Scilab window selected\nspbs{}r\nspbs{}n"",name,*entry+1);'}\nspoperator{;}\nspstring{'  else'}\nspoperator{;}
+      \nspstring{'    sciprint(""menu \nsppc{}s(\nsppc{}i) in window \nsppc{}i selected\nspbs{}r\nspbs{}n"",name,*entry+1,*win);'}\nspoperator{;}\nspstring{'\nspcb{}'}]\nspoperator{;}
+\nspcomment{//creating foo.c file}
+dir=getcwd()\nspoperator{;}chdir(TMPDIR)
+mputl(code,TMPDIR\nspoperator{+}\nspstring{'/foo.c'})\nspoperator{;}
+\nspcomment{//reating Makefile}
+ilib_for_link(\nspstring{'foo'},\nspstring{'foo.o'},[],\nspstring{'c'})\nspoperator{;}
+exec(\nspstring{'loader.sce'})\nspoperator{;}
+chdir(dir)\nspoperator{;}
+\nspcomment{//add menu}
+addmenu(\nspstring{'foo'},[\nspstring{'a'}\nspoperator{,}\nspstring{'b'}\nspoperator{,}\nspstring{'c'}],list(\nspnumber{1},\nspstring{'foo'}))
+\end{Verbatim}

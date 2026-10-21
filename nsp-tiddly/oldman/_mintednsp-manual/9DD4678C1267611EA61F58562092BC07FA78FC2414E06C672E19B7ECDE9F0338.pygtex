@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+H=[s\nspoperator{/}(s\nspoperator{+}\nspnumber{1})\nspoperator{^}\nspnumber{2}\nspoperator{,}\nspnumber{1}\nspoperator{/}(s\nspoperator{+}\nspnumber{2})]\nspoperator{;}N=numer(H)\nspoperator{;}D=denom(H)\nspoperator{;}
+w=residu(N\nspoperator{ .*}horner(N,\nspoperator{-}s),D,horner(D,\nspoperator{-}s))\nspoperator{;}\nspcomment{//N(s) N(-s) / D(s) D(-s)}
+sqrt(sum(w))\nspoperator{,}\nspcomment{//This is H2 norm}
+h2norm(tf2ss(H))
+\nspcomment{//}
+p=(s\nspoperator{-}\nspnumber{1})\nspoperator{*}(s\nspoperator{+}\nspnumber{1})\nspoperator{*}(s\nspoperator{+}\nspnumber{2})\nspoperator{*}(s\nspoperator{+}\nspnumber{10})\nspoperator{;}a=(s\nspoperator{-}\nspnumber{5})\nspoperator{*}(s\nspoperator{-}\nspnumber{1})\nspoperator{*}(s\nspoperator{*}s)\nspoperator{*}((s\nspoperator{+}\nspnumber{1}\nspoperator{/}\nspnumber{2})\nspoperator{^}\nspnumber{2})\nspoperator{;}
+b=(s\nspoperator{-}\nspnumber{3})\nspoperator{*}(s\nspoperator{+}\nspnumber{2}\nspoperator{/}\nspnumber{5})\nspoperator{*}(s\nspoperator{+}\nspnumber{3})\nspoperator{;}
+residu(p,a,b)\nspoperator{+}\nspnumber{531863}\nspoperator{/}\nspnumber{4410}\nspoperator{,}\nspcomment{//Exact}
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}a=z\nspoperator{^}\nspnumber{3}\nspoperator{+}\nspnumber{0.7}\nspoperator{*}z\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.5}\nspoperator{*}z\nspoperator{-}\nspnumber{0.3}\nspoperator{;}b=z\nspoperator{^}\nspnumber{3}\nspoperator{+}\nspnumber{0.3}\nspoperator{*}z\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.2}\nspoperator{*}z\nspoperator{+}\nspnumber{0.1}\nspoperator{;}
+atild=gtild(a,\nspstring{'d'})\nspoperator{;}btild=gtild(b,\nspstring{'d'})\nspoperator{;}
+residu(b\nspoperator{*}btild,z\nspoperator{*}a,atild)\nspoperator{-}\nspnumber{2.9488038}\nspoperator{,}\nspcomment{//Exact}
+a=a\nspoperator{+}\nspnumber{0}\nspoperator{*}%i\nspoperator{;}b=b\nspoperator{+}\nspnumber{0}\nspoperator{*}%i\nspoperator{;}
+real(residu(b\nspoperator{*}btild,z\nspoperator{*}a,atild)\nspoperator{-}\nspnumber{2.9488038})\nspoperator{,}\nspcomment{//Complex case}
+\end{Verbatim}

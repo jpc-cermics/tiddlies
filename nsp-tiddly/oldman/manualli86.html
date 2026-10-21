@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>time_id</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli87.html" >next</a>] [<a 
+href="manualli85.html" >prev</a>] [<a 
+href="manualli85.html#tailmanualli85.html" >prev-tail</a>] [<a 
+href="#tailmanualli86.html">tail</a>] [<a 
+href="manualli12.html#manualli86.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x87-508000"></a>time_id</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx87-508001"></a><a 
+ id="time_id"></a><span 
+class="cmtt-10x-x-109">time</span><span 
+class="cmtt-10x-x-109">_id </span>&#x2013;                                                               SISO least square identification<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x87-509000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-165">
+&#x00A0;&#x00A0;[H&#x00A0;[,err]]=time_id(n,u,y)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x87-510000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: order of transfer
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">u</span>: one of the following
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">u1</span>: a vector of inputs to the system
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;impuls&#x0022; </span>: if y is an impulse response
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;step&#x0022; </span>: if y is a step response.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: vector of response.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">H</span>: rational function with degree n denominator and degree n-1 numerator if y(1)==0 or
+     rational function with degree n denominator and numerator if y(1)<span 
+class="cmmi-10x-x-109">&#x003C;&#x003E;</span>0.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">err</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">||y</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;impuls(H,npt)||^2</span></span></span>, where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">impuls(H,npt)</span></span></span> are the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">npt</span></span></span> first coefficients of
+     impulse response of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H</span></span></span></li></ul>
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x87-511000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 42--><p class="noindent" > Identification of discrete time response. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> is strictly proper (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y(1)=0</span></span></span>) then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">time_id</span></span></span> computes the
+least square solution of the linear equation: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Den*y-Num*u=0</span></span></span> with the constraint <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">coeff(Den,n):=1</span></span></span>.
+if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y(1)~=0</span></span></span> then the algorithm first computes the proper part solution and then add y(1) to the
+solution
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x87-512000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb67"><a 
+ id="x87-512015r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x87-512017r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x87-512019r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rep=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ldiv(h(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;num&#x0027;</span></span><span 
+class="cmtt-10x-x-109">),h(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;den&#x0027;</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//impulse</span><span 
+class="cmitt-10x-x-109">&#x00A0;response</span></span>
+<br class="fancyvrb" /><a 
+ id="x87-512021r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H=time_id(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;impuls&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,rep)</span><br class="fancyvrb" /><a 
+ id="x87-512023r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;Same</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;flts</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;u</span></span><br class="fancyvrb" /><a 
+ id="x87-512025r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">u(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x87-512027r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rep=flts(u,tf2ss(h))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//impulse</span><span 
+class="cmitt-10x-x-109">&#x00A0;response</span></span><br class="fancyvrb" /><a 
+ id="x87-512029r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H=time_id(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,u,rep)</span><br class="fancyvrb" /><a 
+ id="x87-512031r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;step</span><span 
+class="cmitt-10x-x-109">&#x00A0;response</span></span>
+<br class="fancyvrb" /><a 
+ id="x87-512033r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x87-512035r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rep=flts(u,tf2ss(h))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//step</span><span 
+class="cmitt-10x-x-109">&#x00A0;response.</span></span><br class="fancyvrb" /><a 
+ id="x87-512037r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H=time_id(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;step&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,rep)</span>
+<br class="fancyvrb" /><a 
+ id="x87-512039r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H=time_id(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,u,rep)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//with</span><span 
+class="cmitt-10x-x-109">&#x00A0;u</span><span 
+class="cmitt-10x-x-109">&#x00A0;as</span><span 
+class="cmitt-10x-x-109">&#x00A0;input</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;too</span><span 
+class="cmitt-10x-x-109">&#x00A0;high</span><span 
+class="cmitt-10x-x-109">&#x00A0;order</span><span 
+class="cmitt-10x-x-109">&#x00A0;required</span></span></div>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x87-513000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli45.html#imrep2ss">imrep2ss</a>    <a 
+href="manualli16.html#arl2">arl2</a>    <a 
+href="manualli5.html#armax">armax</a>    <a 
+href="manualli40.html#frep2tf">frep2tf</a>
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x87-514000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Serge Steer INRIA
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli87.html" >next</a>] [<a 
+href="manualli85.html" >prev</a>] [<a 
+href="manualli85.html#tailmanualli85.html" >prev-tail</a>] [<a 
+href="manualli86.html" >front</a>] [<a 
+href="manualli12.html#manualli86.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli86.html"></a>  </p> 
+</body></html> 

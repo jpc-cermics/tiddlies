@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xls_open</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli340.html" >next</a>] [<a 
+href="manualli338.html" >prev</a>] [<a 
+href="manualli338.html#tailmanualli338.html" >prev-tail</a>] [<a 
+href="#tailmanualli339.html">tail</a>] [<a 
+href="manualli274.html#manualli339.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x340-2003000"></a>xls_open</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx340-2003001"></a><a 
+ id="xls_open"></a><span 
+class="cmtt-10x-x-109">xls</span><span 
+class="cmtt-10x-x-109">_open </span>&#x2013;                                                                Open an Excel file for reading<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2004000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-473">
+&#x00A0;&#x00A0;[fd,SST,Sheetnames,Sheetpos]&#x00A0;=&#x00A0;xls_open(file_path)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2005000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">file</span><span 
+class="cmtt-10x-x-109">_path </span>: a character string: the path of the Excel file.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fd </span>: a number, the logical unit on the Excel stream.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">SST </span>: A vector of all character strings which appear in the Excel sheets.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sheetnames </span>: a vector of strings: the sheet names.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sheetpos </span>: a vector of numbers: the position of the beginning of sheets in the Excel
+     stream.</li></ul>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2006000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 43--><p class="noindent" > This function first analyzes the ole2 data structure associated with the given file to extract the
+Excel stream which is included in. After that the Excel stream is saved in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">TMDIR</span></span></span> directory and
+opened. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span> logical unit points to this temporary file. Then the first sheet in this stream is read
+to get the global informations like number of sheets, sheet names <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sheetnames</span></span></span>, sheet
+adresses within the stream <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sheetpos</span></span></span> and the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SST</span></span></span> which contains all the strings used in the
+following sheets.The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sheetpos</span></span></span> data have to be passed to <a 
+href="#xls-read">xls_read</a>    to read the data
+sheets.The <a 
+href="manualli323.html#readxls">readxls</a>    function can be used to read all an Excel file in one function with a
+single function call. Warning only BIFF8 Excel files (last Excel file version) are handled
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2007000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="fancyvrb" id="fancyvrb264"><a 
+ id="x340-2007008r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Decode</span><span 
+class="cmitt-10x-x-109">&#x00A0;ole</span><span 
+class="cmitt-10x-x-109">&#x00A0;file,</span><span 
+class="cmitt-10x-x-109">&#x00A0;extract</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;open</span><span 
+class="cmitt-10x-x-109">&#x00A0;Excel</span><span 
+class="cmitt-10x-x-109">&#x00A0;stream</span></span>
+<br class="fancyvrb" /><a 
+ id="x340-2007010r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[fd,SST,Sheetnames,Sheetpos]=xls_open(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/demos/excel/Test1.xls&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x340-2007012r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Read</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span><span 
+class="cmitt-10x-x-109">&#x00A0;sheet</span></span>
+<br class="fancyvrb" /><a 
+ id="x340-2007014r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Value,TextInd]=xls_read(fd,Sheetpos(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x340-2007016r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//close</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;excel</span><span 
+class="cmitt-10x-x-109">&#x00A0;stream</span></span><br class="fancyvrb" /><a 
+ id="x340-2007018r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd)</span></div>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2008000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#xls-read">xls_read</a>    <a 
+href="manualli323.html#readxls">readxls</a>
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2009000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 73--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2010000"></a><span 
+class="cmbx-10x-x-109">Pierrick Mode</span></span>
+   INRIA
+</p>
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2011000"></a><span 
+class="cmbx-10x-x-109">Serge Steer</span></span>
+   INRIA
+</p>
+<!--l. 79--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x340-2012000"></a><span 
+class="cmbx-10x-x-109">Bibliography</span></span>
+   This function is based on the Microsoft ole2 file documentation (http://chicago.sourceforge.net/devel/docs/ole/)
+and on Excel stream description from OpenOffice (http://sc.openoffice.org/excelfileformat.pdf).
+The ripole-0.1.4 procedure (http://www.pldaniels.com/ripole) is used to extract the excel stream
+out of the ole file.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli340.html" >next</a>] [<a 
+href="manualli338.html" >prev</a>] [<a 
+href="manualli338.html#tailmanualli338.html" >prev-tail</a>] [<a 
+href="manualli339.html" >front</a>] [<a 
+href="manualli274.html#manualli339.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli339.html"></a>  </p> 
+</body></html> 

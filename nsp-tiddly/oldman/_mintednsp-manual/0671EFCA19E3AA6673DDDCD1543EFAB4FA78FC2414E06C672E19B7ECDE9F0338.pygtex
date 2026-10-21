@@ -1,0 +1,96 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example 1: 1d linear interpolation}
+x=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,\nspnumber{11})\nspoperator{;}
+y=sin(x)\nspoperator{;}
+xx=linspace(\nspoperator{-}\nspnumber{2}\nspoperator{*}%pi,\nspnumber{4}\nspoperator{*}%pi,\nspnumber{400})\nspoperator{'}\nspoperator{;}
+yy=linear_interpn(xx,x,y,\nspstring{"periodic"})\nspoperator{;}
+xbasc()
+plot2d(xx,yy,style = \nspnumber{2})
+plot2d(x,y,style = \nspoperator{-}\nspnumber{9},strf = \nspstring{"000"})
+xtitle(\nspstring{"linear interpolation of sin(x) with 11 interpolation points"})
+\nspcomment{// example 2: bilinear interpolation}
+n=\nspnumber{8}\nspoperator{;}
+x=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,n)\nspoperator{;}y=x\nspoperator{;}
+z=\nspnumber{2}\nspoperator{*}sin(x\nspoperator{'})\nspoperator{*}sin(y)\nspoperator{;}
+xx=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,\nspnumber{40})\nspoperator{;}
+[xp,yp]=ndgrid(xx,xx)\nspoperator{;}
+zp=linear_interpn(xp,yp,x,y,z)\nspoperator{;}
+xbasc()
+plot3d(xx,xx,zp,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{4}])
+[xg,yg]=ndgrid(x,x)\nspoperator{;}
+param3d1(xg,yg,list(z,\nspoperator{-}\nspnumber{9}\nspoperator{*}ones(\nspnumber{1},n)),flag = [\nspnumber{0}\nspoperator{,}\nspnumber{0}])
+xtitle(\nspstring{"Bilinear interpolation of 2sin(x)sin(y)"})
+legends(\nspstring{"interpolation points"},\nspoperator{-}\nspnumber{9},\nspnumber{1})
+xselect()
+\nspcomment{// example 3: bilinear interpolation and experimentation}
+\nspcomment{//             with all the outmode features}
+nx=\nspnumber{20}\nspoperator{;}ny=\nspnumber{30}\nspoperator{;}
+x=linspace(\nspnumber{0},\nspnumber{1},nx)\nspoperator{;}
+y=linspace(\nspnumber{0},\nspnumber{2},ny)\nspoperator{;}
+[X,Y]=ndgrid(x,y)\nspoperator{;}
+z=\nspnumber{0.4}\nspoperator{*}cos(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}X)\nspoperator{ .*}cos(%pi\nspoperator{*}Y)\nspoperator{;}
+nxp=\nspnumber{60}\nspoperator{;}nyp=\nspnumber{120}\nspoperator{;}
+xp=linspace(\nspoperator{-}\nspnumber{0.5},\nspnumber{1.5},nxp)\nspoperator{;}
+yp=linspace(\nspoperator{-}\nspnumber{0.5},\nspnumber{2.5},nyp)\nspoperator{;}
+[XP,YP]=ndgrid(xp,yp)\nspoperator{;}
+zp1=linear_interpn(XP,YP,x,y,z,\nspstring{"natural"})\nspoperator{;}
+zp2=linear_interpn(XP,YP,x,y,z,\nspstring{"periodic"})\nspoperator{;}
+zp3=linear_interpn(XP,YP,x,y,z,\nspstring{"C0"})\nspoperator{;}
+zp4=linear_interpn(XP,YP,x,y,z,\nspstring{"by_zero"})\nspoperator{;}
+zp5=linear_interpn(XP,YP,x,y,z,\nspstring{"by_nan"})\nspoperator{;}
+xbasc()
+subplot(\nspnumber{2},\nspnumber{3},\nspnumber{1})
+plot3d(x,y,z,leg = \nspstring{"x@y@z"},flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"initial function 0.4 cos(2 pi x) cos(pi y)"})
+subplot(\nspnumber{2},\nspnumber{3},\nspnumber{2})
+plot3d(xp,yp,zp1,leg = \nspstring{"x@y@z"},flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"Natural"})
+subplot(\nspnumber{2},\nspnumber{3},\nspnumber{3})
+plot3d(xp,yp,zp2,leg = \nspstring{"x@y@z"},flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"Periodic"})
+subplot(\nspnumber{2},\nspnumber{3},\nspnumber{4})
+plot3d(xp,yp,zp3,leg = \nspstring{"x@y@z"},flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"C0"})
+subplot(\nspnumber{2},\nspnumber{3},\nspnumber{5})
+plot3d(xp,yp,zp4,leg = \nspstring{"x@y@z"},flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"by_zero"})
+subplot(\nspnumber{2},\nspnumber{3},\nspnumber{6})
+plot3d(xp,yp,zp5,leg = \nspstring{"x@y@z"},flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"by_nan"})
+xselect()
+\nspcomment{// example 4: trilinear interpolation (see splin3d help}
+\nspcomment{//             page which have the same example with}
+\nspcomment{//             tricubic spline interpolation)}
+getf(\nspstring{"SCI/demos/interp/interp_demo.sci"})
+func=\nspstring{"v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2"}\nspoperator{;}
+deff(\nspstring{"v=f(x,y,z)"},func)\nspoperator{;}
+n=\nspnumber{5}\nspoperator{;}
+x=linspace(\nspnumber{0},\nspnumber{1},n)\nspoperator{;}y=x\nspoperator{;}z=x\nspoperator{;}
+[X,Y,Z]=ndgrid(x,y,z)\nspoperator{;}
+V=f(X,Y,Z)\nspoperator{;}
+\nspcomment{// compute (and display) the linear interpolant on some slices}
+m=\nspnumber{41}\nspoperator{;}
+dir=[\nspstring{"z="}\nspoperator{,}\nspstring{"z="}\nspoperator{,}\nspstring{"z="}\nspoperator{,}\nspstring{"x="}\nspoperator{,}\nspstring{"y="}]\nspoperator{;}
+val=[\nspnumber{0.1}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.9}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}]\nspoperator{;}
+ebox=[\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+XF=[]\nspoperator{;}YF=[]\nspoperator{;}ZF=[]\nspoperator{;}VF=[]\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}length(val) \nspkeyword{do}
+  [Xm,Xp,Ym,Yp,Zm,Zp]=slice_parallelepiped(dir(i),val(i),ebox,m,m,m)\nspoperator{;}
+  Vm=linear_interpn(Xm,Ym,Zm,x,y,z,V)\nspoperator{;}
+  [xf,yf,zf,vf]=nf3dq(Xm,Ym,Zm,Vm,\nspnumber{1})\nspoperator{;}
+  XF=[XF\nspoperator{,}xf]\nspoperator{;}YF=[YF\nspoperator{,}yf]\nspoperator{;}ZF=[ZF\nspoperator{,}zf]\nspoperator{;}VF=[VF\nspoperator{,}vf]\nspoperator{;}
+  Vp=linear_interpn(Xp,Yp,Zp,x,y,z,V)\nspoperator{;}
+  [xf,yf,zf,vf]=nf3dq(Xp,Yp,Zp,Vp,\nspnumber{1})\nspoperator{;}
+  XF=[XF\nspoperator{,}xf]\nspoperator{;}YF=[YF\nspoperator{,}yf]\nspoperator{;}ZF=[ZF\nspoperator{,}zf]\nspoperator{;}VF=[VF\nspoperator{,}vf]\nspoperator{;}
+\nspkeyword{end}
+nb_col=\nspnumber{128}\nspoperator{;}
+vmin=min(VF)\nspoperator{;}vmax=max(VF)\nspoperator{;}
+color=dsearch(VF,linspace(vmin,vmax,nb_col\nspoperator{+}\nspnumber{1}))\nspoperator{;}
+xset(\nspstring{"colormap"},jetcolormap(nb_col))\nspoperator{;}
+xbasc()
+xset(\nspstring{"hidden3d"},xget(\nspstring{"background"}))
+colorbar(vmin,vmax)
+plot3d(XF,YF,list(ZF,color),flag = [\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"tri-linear interpolation of "}\nspoperator{+}func)
+xselect()
+\end{Verbatim}

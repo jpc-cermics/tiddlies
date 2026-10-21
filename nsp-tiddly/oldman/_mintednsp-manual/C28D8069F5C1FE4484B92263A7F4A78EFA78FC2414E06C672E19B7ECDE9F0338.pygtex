@@ -1,0 +1,71 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// simple plot using z=f(x,y)}
+t=[\nspnumber{0}\nspoperator{:}\nspnumber{0.3}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}
+z=sin(t)\nspoperator{*}cos(t\nspoperator{'})\nspoperator{;}
+plot3d(t,t,z)
+\nspcomment{// same plot using facets computed by genfac3d}
+[xx,yy,zz]=genfac3d(t,t,z)\nspoperator{;}
+clf()
+plot3d(xx,yy,zz)
+\nspcomment{// multiple plots}
+clf()
+plot3d([xx\nspoperator{,}xx],[yy\nspoperator{,}yy],[zz\nspoperator{,}\nspnumber{4}\nspoperator{+}zz])
+\nspcomment{// multiple plots using colors}
+clf()
+plot3d([xx\nspoperator{,}xx],[yy\nspoperator{,}yy],list([zz\nspoperator{,}zz\nspoperator{+}\nspnumber{4}],[\nspnumber{4}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})\nspoperator{,}\nspnumber{5}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})]))
+\nspcomment{// simple plot with viewpoint and captions}
+clf()
+plot3d(\nspnumber{1}\nspoperator{:}\nspnumber{10},\nspnumber{1}\nspoperator{:}\nspnumber{20},\nspnumber{10}\nspoperator{*}rand(\nspnumber{10},\nspnumber{20}),alpha = \nspnumber{35},theta = \nspnumber{45},flag = [\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}])
+\nspcomment{// plot of a sphere using facets computed by eval3dp}
+deff(\nspstring{"[x,y,z]=sph(alp,tet)"}, ...
+     [\nspstring{"x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)"}\nspoperator{;}
+      \nspstring{"y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)"}\nspoperator{;}\nspstring{"z=r*sin(alp)+orig(3)*ones(tet)"}])\nspoperator{;}
+r=\nspnumber{1}\nspoperator{;}orig=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+[xx,yy,zz]=eval3dp(sph,linspace(\nspoperator{-}%pi\nspoperator{/}\nspnumber{2},%pi\nspoperator{/}\nspnumber{2},\nspnumber{40}),linspace(\nspnumber{0},%pi\nspoperator{*}\nspnumber{2},\nspnumber{20}))\nspoperator{;}
+clf()\nspoperator{;}plot3d(xx,yy,zz)
+clf()\nspoperator{;}
+f=gcf()\nspoperator{;}
+f.color_map=hotcolormap(\nspnumber{128})\nspoperator{;}
+r=\nspnumber{0.3}\nspoperator{;}orig=[\nspnumber{1.5}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+[xx1,yy1,zz1]=eval3dp(sph,linspace(\nspoperator{-}%pi\nspoperator{/}\nspnumber{2},%pi\nspoperator{/}\nspnumber{2},\nspnumber{40}),linspace(\nspnumber{0},%pi\nspoperator{*}\nspnumber{2},\nspnumber{20}))\nspoperator{;}
+cc=(xx\nspoperator{+}zz\nspoperator{+}\nspnumber{2})\nspoperator{*}\nspnumber{32}\nspoperator{;}cc1=(xx1\nspoperator{-}orig(\nspnumber{1})\nspoperator{+}zz1\nspoperator{/}r\nspoperator{+}\nspnumber{2})\nspoperator{*}\nspnumber{32}\nspoperator{;}
+clf()\nspoperator{;}
+plot3d1([xx\nspoperator{,}xx1],[yy\nspoperator{,}yy1],list([zz\nspoperator{,}zz1],[cc\nspoperator{,}cc1]),theta = \nspnumber{70},alpha = \nspnumber{80},flag = [\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{3}])
+\nspcomment{//Available operations using only New Graphics...}
+delete(gcf())\nspoperator{;}
+t=[\nspnumber{0}\nspoperator{:}\nspnumber{0.3}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}z=sin(t)\nspoperator{*}cos(t\nspoperator{'})\nspoperator{;}
+[xx,yy,zz]=genfac3d(t,t,z)\nspoperator{;}
+plot3d([xx\nspoperator{,}xx],[yy\nspoperator{,}yy],list([zz\nspoperator{,}zz\nspoperator{+}\nspnumber{4}],[\nspnumber{4}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})\nspoperator{,}\nspnumber{5}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})]))
+e=gce()\nspoperator{;}
+f=e.data\nspoperator{;}
+TL=tlist([\nspstring{"3d"}\nspoperator{,}\nspstring{"x"}\nspoperator{,}\nspstring{"y"}\nspoperator{,}\nspstring{"z"}\nspoperator{,}\nspstring{"color"}],f.x,f.y,f.z,\nspnumber{6}\nspoperator{*}rand(f.z))\nspoperator{;}\nspcomment{// random color matrix}
+e.data=TL\nspoperator{;}
+TL2=tlist([\nspstring{"3d"}\nspoperator{,}\nspstring{"x"}\nspoperator{,}\nspstring{"y"}\nspoperator{,}\nspstring{"z"}\nspoperator{,}\nspstring{"color"}],f.x,f.y,f.z,\nspnumber{4}\nspoperator{*}rand(\nspnumber{1},\nspnumber{800}))\nspoperator{;}\nspcomment{// random color vector}
+e.data=TL2\nspoperator{;}
+TL3=tlist([\nspstring{"3d"}\nspoperator{,}\nspstring{"x"}\nspoperator{,}\nspstring{"y"}\nspoperator{,}\nspstring{"z"}\nspoperator{,}\nspstring{"color"}],f.x,f.y,f.z,[\nspnumber{20}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})\nspoperator{,}\nspnumber{6}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})])\nspoperator{;}
+e.data=TL3\nspoperator{;}
+TL4=tlist([\nspstring{"3d"}\nspoperator{,}\nspstring{"x"}\nspoperator{,}\nspstring{"y"}\nspoperator{,}\nspstring{"z"}],f.x,f.y,f.z)\nspoperator{;}\nspcomment{// no color}
+e.data=TL4\nspoperator{;}
+e.color_flag=\nspnumber{1}\nspoperator{,}\nspcomment{// color index proportional to altitude (z coord.)}
+e.color_flag=\nspnumber{2}\nspoperator{;}\nspcomment{// back to default mode}
+e.color_flag=\nspnumber{3}\nspoperator{;}\nspcomment{// interpolated shading mode (based on blue default color)}
+clf()
+plot3d([xx\nspoperator{,}xx],[yy\nspoperator{,}yy],list([zz\nspoperator{,}zz\nspoperator{+}\nspnumber{4}],[\nspnumber{4}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})\nspoperator{,}\nspnumber{5}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})]))
+h=gce()\nspoperator{;}\nspcomment{//get handle on current entity (here the surface)}
+a=gca()\nspoperator{;}\nspcomment{//get current axes}
+a.rotation_angles=[\nspnumber{40}\nspoperator{,}\nspnumber{70}]\nspoperator{;}
+a.grid=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}\nspcomment{//make grids}
+a.data_bounds=[\nspoperator{-}\nspnumber{6}\nspoperator{,}\nspnumber{6}\nspoperator{;}\nspnumber{6}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{5}]\nspoperator{;}
+a.axes_visible=\nspstring{"off"}\nspoperator{;}\nspcomment{//axes are hidden}
+a.axes_bounds=[\nspnumber{.2}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+h.color_flag=\nspnumber{1}\nspoperator{;}\nspcomment{//color according to z}
+h.color_mode=\nspoperator{-}\nspnumber{2}\nspoperator{;}\nspcomment{//remove the facets boundary by setting color_mode to white color}
+h.color_flag=\nspnumber{2}\nspoperator{;}\nspcomment{//color according to given colors}
+h.color_mode=\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspcomment{// put the facets boundary back by setting color_mode to black color}
+f=gcf()\nspoperator{;}\nspcomment{//get the handle of the parent figure}
+f.color_map=hotcolormap(\nspnumber{512})\nspoperator{;}
+c=[\nspnumber{1}\nspoperator{:}\nspnumber{400}\nspoperator{,}\nspnumber{1}\nspoperator{:}\nspnumber{400}]\nspoperator{;}
+TL.color=[c\nspoperator{;}c\nspoperator{+}\nspnumber{1}\nspoperator{;}c\nspoperator{+}\nspnumber{2}\nspoperator{;}c\nspoperator{+}\nspnumber{3}]\nspoperator{;}
+h.data=TL\nspoperator{;}
+h.color_flag=\nspnumber{3}\nspoperator{;}\nspcomment{// interpolated shading mode}
+\end{Verbatim}

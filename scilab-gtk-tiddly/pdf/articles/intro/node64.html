@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.4.3 Specialized 2D Plottings</TITLE>
+<META NAME="description" CONTENT="5.4.3 Specialized 2D Plottings">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node65.html">
+<LINK REL="previous" HREF="node63.html">
+<LINK REL="up" HREF="node61.html">
+<LINK REL="next" HREF="node65.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1095"
+ HREF="node65.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1091"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1085"
+ HREF="node63.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1093"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1094"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1096"
+ HREF="node65.html">5.4.4 Plotting Some Geometric</A>
+<B> Up:</B> <A NAME="tex2html1092"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1086"
+ HREF="node63.html">5.4.2 Captions and Presentation</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00643000000000000000">
+5.4.3 Specialized 2D Plottings</A>
+</H2>
+<UL>
+<LI><code>champ</code>	: vector field in <I>R</I><SUP>2</SUP>
+<P>
+<PRE>
+//try champ
+x=[-1:0.1:1];y=x;u=ones(x);
+fx=x.*.u';fy=u.*.y';
+champ(x,y,fx,fy);
+xset("font",2,3);
+xtitle(['Vector field plot';'(with champ command)']);
+//with the color (and a large stacksize)
+x=[-1:0.004:1];y=x;u=ones(x);
+fx=x.*.u';fy=u.*.y';
+champ1(x,y,fx,fy);
+</PRE>
+<P>
+  
+  
+Figdirfigures/
+  
+<BR>
+<DIV ALIGN="CENTER"><A NAME="nouv5">&#160;</A><A NAME="3845">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.6:</STRONG>
+Vector field in the plane</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img17.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.0,212.0)
+\special{ps...
+...nouv5.epsf hscale=100.0 vscale=100.0}
+\end{picture}} \end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<LI><code>fchamp</code>	: for a vector field in <I>R</I><SUP>2</SUP> defined by a 
+function. The same plot than <TT>champ</TT> for a vector field defined
+for example by a scilab program.
+
+<P>
+<LI><code>fplot2d</code>	: 2D plotting of a curve described by a 
+function. This function plays the same role for <TT>plot2d</TT> than the 
+previous for <TT>champ</TT>.
+
+<P>
+<LI><code>grayplot</code>	: 2D plot of a surface using gray
+levels; the surface being defined by the matrix of the values
+for a grid.
+
+<P>
+<LI><code>fgrayplot</code>	: the same than the previous for a
+surface defined by a function (scilab program).
+
+<P>
+In fact these 2 functions can be replaced by a usual color plot with
+an appropriate colormap where the 3 RGB components are the same.
+
+<P>
+<PRE>
+R=[1:256]/256;RGB=[R' R' R'];
+xset('colormap',RGB);
+deff('[z]=surf(x,y)','z=-((abs(x)-1)**2+(abs(y)-1)**2)');
+fgrayplot(-1.8:0.02:1.8,-1.8:0.02:1.8,surf,"111",[-2,-2,2,2]);
+xset('font',2,3);
+xtitle(["Grayplot";"(with fgrayplot command)"]);
+//the same plot can be done with a ``unique'' given color
+R=[1:256]/256;
+G=0.1*ones(R);
+RGB=[R' G' G'];
+xset('colormap',RGB);
+fgrayplot(-1.8:0.02:1.8,-1.8:0.02:1.8,surf,"111",[-2,-2,2,2]);
+</PRE>
+<P>
+  
+  
+Figdirfigures/
+  
+<BR>
+<DIV ALIGN="CENTER"><A NAME="nouv6">&#160;</A><A NAME="3914">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.7:</STRONG>
+Gray plot with a gray colormap</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img18.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.0,212.0)
+\special{ps...
+...nouv6.epsf hscale=100.0 vscale=100.0}
+\end{picture}} \end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<LI><code>errbar</code>	: creates a plot with error bars
+</UL>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1095"
+ HREF="node65.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1091"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1085"
+ HREF="node63.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1093"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1094"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1096"
+ HREF="node65.html">5.4.4 Plotting Some Geometric</A>
+<B> Up:</B> <A NAME="tex2html1092"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1086"
+ HREF="node63.html">5.4.2 Captions and Presentation</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

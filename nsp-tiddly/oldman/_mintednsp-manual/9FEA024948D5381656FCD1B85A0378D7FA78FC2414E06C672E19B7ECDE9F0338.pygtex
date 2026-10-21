@@ -1,0 +1,92 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+lines(\nspnumber{0})\nspoperator{,}\nspcomment{// disables vertical paging}
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure}
+a=get(\nspstring{"current_axes"})\nspoperator{,}\nspcomment{//get the handle of the newly created axes}
+a.axes_visible=\nspstring{"on"}\nspoperator{;}\nspcomment{// makes the axes visible}
+a.font_size=\nspnumber{3}\nspoperator{;}\nspcomment{//set the tics label font size}
+a.x_location=\nspstring{"top"}\nspoperator{;}\nspcomment{//set the x axis position}
+a.data_bounds=[\nspoperator{-}\nspnumber{100}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{100}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+\nspcomment{//set the boundary values for the x, y and z coordinates.}
+a.sub_tics=[\nspnumber{5}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+a.labels_font_color=\nspnumber{5}\nspoperator{;}
+a.grid=[\nspnumber{2}\nspoperator{,}\nspnumber{2}]\nspoperator{;}
+a.box=\nspstring{"off"}\nspoperator{;}
+\nspcomment{// Example with 3D axes}
+clf()\nspoperator{;}\nspcomment{//clear the graphics window}
+x=\nspnumber{0.1}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi\nspoperator{;}plot2d(x\nspoperator{-}\nspnumber{.3},sin(x)\nspoperator{*}\nspnumber{7}\nspoperator{+}\nspnumber{.2})\nspoperator{;}
+a=gca()\nspoperator{;}\nspcomment{// get the handle of the current axes}
+a.grid=[\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}]\nspoperator{;}\nspcomment{//make x-grid}
+a.rotation_angles=[\nspnumber{70}\nspoperator{,}\nspnumber{250}]\nspoperator{;}\nspcomment{//turn the axes with giving angles}
+a.grid=[\nspnumber{1}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspoperator{-}\nspnumber{1}]\nspoperator{;}\nspcomment{//make y-grid}
+a.view=\nspstring{"2d"}\nspoperator{;}\nspcomment{//return te the 2d view}
+a.box=\nspstring{"off"}\nspoperator{;}
+a.labels_font_color=\nspnumber{5}\nspoperator{;}
+a.children.children.thickness=\nspnumber{4}\nspoperator{;}
+a.children.children.polyline_style=\nspnumber{3}\nspoperator{;}
+a.view=\nspstring{"3d"}\nspoperator{;}\nspcomment{//return te the 3d view}
+a.children.children.thickness=\nspnumber{1}\nspoperator{;}
+a.children.children.foreground=\nspnumber{2}\nspoperator{;}
+a.grid=[\nspnumber{1}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{3}]\nspoperator{;}\nspcomment{//make z-grid}
+a.parent.background=\nspnumber{4}\nspoperator{;}
+a.background=\nspnumber{7}\nspoperator{;}
+plot2d(cos(x)\nspoperator{+}\nspnumber{1},\nspnumber{3}\nspoperator{*}sin(x)\nspoperator{-}\nspnumber{3})\nspoperator{;}
+plot2d(cos(x)\nspoperator{+}\nspnumber{7},\nspnumber{3}\nspoperator{*}sin(x)\nspoperator{+}\nspnumber{3})\nspoperator{;}
+a.children(\nspnumber{2}).children.polyline_style=\nspnumber{2}\nspoperator{;}
+a.children(\nspnumber{1}).children.polyline_style=\nspnumber{4}\nspoperator{;}
+a.children(\nspnumber{1}).children.foreground=\nspnumber{5}\nspoperator{;}
+a.children(\nspnumber{2}).children.foreground=\nspnumber{14}\nspoperator{;}
+a.parent.figure_size=[\nspnumber{1200}\nspoperator{,}\nspnumber{800}]\nspoperator{;}
+a.box=\nspstring{"on"}\nspoperator{;}
+a.labels_font_size=\nspnumber{4}\nspoperator{;}
+a.parent.background=\nspnumber{8}\nspoperator{;}
+a.parent.figure_size=[\nspnumber{400}\nspoperator{,}\nspnumber{200}]\nspoperator{;}
+a.rotation_angles=[\nspnumber{0}\nspoperator{,}\nspnumber{260}]\nspoperator{;}
+delete(a.children(\nspnumber{2}))\nspoperator{;}
+delete()\nspoperator{;}\nspcomment{// delete current object}
+a.labels_font_size=\nspnumber{1}\nspoperator{;}
+a.auto_clear=\nspstring{"on"}\nspoperator{;}
+x=\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2.5}\nspoperator{*}%pi\nspoperator{;}plot2d(\nspnumber{10}\nspoperator{*}cos(x),sin(x))\nspoperator{;}
+a=gca()\nspoperator{;}
+a.rotation_angles=[\nspnumber{45}\nspoperator{,}\nspnumber{45}]\nspoperator{;}
+a.data_bounds=[\nspoperator{-}\nspnumber{20}\nspoperator{,}\nspoperator{-}\nspnumber{3}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{;}\nspnumber{20}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{2}]\nspoperator{;}
+xrect([\nspoperator{-}\nspnumber{4}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{1}])\nspoperator{;}
+a.isoview=\nspstring{"on"}\nspoperator{;}\nspcomment{// isoview mode}
+xrect([\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{0.25}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{0.5}])\nspoperator{;}
+a.children(\nspnumber{1}).fill_mode=\nspstring{"on"}\nspoperator{;}
+a.axes_visibles=\nspstring{"off"}\nspoperator{;}
+a.children(\nspnumber{1}).data=[\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{0.25}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{0.5}]\nspoperator{;}
+a.children(\nspnumber{2}).data=[\nspoperator{-}\nspnumber{4}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+x=\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}(\nspnumber{0}\nspoperator{:}\nspnumber{7})\nspoperator{/}\nspnumber{8}\nspoperator{;}
+xv=[\nspnumber{.2}\nspoperator{*}sin(x)\nspoperator{;}\nspnumber{.9}\nspoperator{*}sin(x)]\nspoperator{;}yv=[\nspnumber{.2}\nspoperator{*}cos(x)\nspoperator{;}\nspnumber{.9}\nspoperator{*}cos(x)]\nspoperator{;}
+xsegs(\nspnumber{10}\nspoperator{*}xv,yv,\nspnumber{1}\nspoperator{:}\nspnumber{8})
+s=a.children(\nspnumber{1})\nspoperator{;}
+s.arrow_size=\nspnumber{1}\nspoperator{;}
+s.segs_color=\nspnumber{5}\nspoperator{;}
+a.data_bounds\nspoperator{,}\nspcomment{//the boundary values for the x,y and z coordinates}
+a.view=\nspstring{"2d"}\nspoperator{;}
+a.data_bounds=[\nspoperator{-}\nspnumber{10}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{10}\nspoperator{,}\nspnumber{1}]\nspoperator{;}\nspcomment{// set the boundary values for the two-dimensional views}
+\nspcomment{// Example on axes model}
+da=gda()\nspoperator{,}\nspcomment{// get the handle on axes model to view and edit the fields}
+\nspcomment{// title by default}
+da.title.text=\nspstring{"My Default@Title"}
+da.title.foreground=\nspnumber{12}\nspoperator{;}
+da.title.font_size=\nspnumber{4}\nspoperator{;}
+\nspcomment{// x labels default}
+da.x_label.text=\nspstring{"x"}\nspoperator{;}
+da.x_label.font_style=\nspnumber{8}\nspoperator{;}
+da.x_label.font_size=\nspnumber{2}\nspoperator{;}
+da.x_label.foreground=\nspnumber{5}\nspoperator{;}
+da.x_location=\nspstring{"middle"}\nspoperator{;}
+\nspcomment{// y labels default}
+da.y_label.text=\nspstring{"y"}\nspoperator{;}
+da.y_label.font_style=\nspnumber{3}\nspoperator{;}
+da.y_label.font_size=\nspnumber{5}\nspoperator{;}
+da.y_label.foreground=\nspnumber{3}\nspoperator{;}
+da.y_location=\nspstring{"right"}\nspoperator{;}
+da.thickness=\nspnumber{2}\nspoperator{;}
+da.foreground=\nspnumber{7}\nspoperator{;}
+\nspcomment{// the plot}
+x=(\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi)\nspoperator{'}\nspoperator{;}
+plot2d(x,[sin(x)\nspoperator{,}sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{,}sin(\nspnumber{3}\nspoperator{*}x)],style = [\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}],rect = [\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{*}%pi\nspoperator{,}\nspnumber{2}])\nspoperator{;}
+sda()\nspoperator{,}\nspcomment{// back to default axes model}
+\end{Verbatim}

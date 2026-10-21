@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.2.4 Special Function Commands</TITLE>
+<META NAME="description" CONTENT="3.2.4 Special Function Commands">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node40.html">
+<LINK REL="up" HREF="node37.html">
+<LINK REL="next" HREF="node42.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html776"
+ HREF="node42.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html772"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html768"
+ HREF="node40.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html774"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html775"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html777"
+ HREF="node42.html">3.3 Definition of Operations</A>
+<B> Up:</B> <A NAME="tex2html773"
+ HREF="node37.html">3.2 Defining and Using</A>
+<B> Previous:</B> <A NAME="tex2html769"
+ HREF="node40.html">3.2.3 Global and Local</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00424000000000000000">
+3.2.4 Special Function Commands</A>
+</H2>
+Scilab has several special commands which are used almost exclusively
+in functions.  These are the commands 
+
+<P>
+<UL>
+<LI><TT>argn</TT><A NAME="2281">&#160;</A>: returns the number of input
+and output arguments for the function
+<LI><TT>error</TT><A NAME="2282">&#160;</A>: used to suspend the 
+operation of a function, to print an error message, and to return to the
+previous level of environment when an error is detected.
+<LI><TT>warning</TT><A NAME="2283">&#160;</A>,
+<LI><TT>pause</TT><A NAME="2284">&#160;</A>: temporarily suspends the 
+operation of a function.
+<LI><TT>break</TT><A NAME="2285">&#160;</A>: forces the end of a loop
+<LI><TT>return</TT><A NAME="2286">&#160;</A> or <TT>resume</TT> : used 
+to return to the calling environment and to pass local
+variables from the function environment to the calling environment.  
+</UL>
+<P>
+The following example runs the following <TT>foo</TT> function which
+illustrates these commands.
+<PRE>
+function [z]=foo(x,y)
+[out,in]=argn(0);
+if x=0 then,
+     error('division by zero');
+end,
+slope=y/x;
+pause,
+z=sqrt(slope);
+s=resume(slope);
+</PRE><PRE>
+ 
+--&gt; z=foo(0,1)
+error('division by zero');
+                          !--error 10000 
+division by zero                                                                
+at line       4 of function    foo      called by :  
+ z=foo(0,1)
+ 
+ 
+--&gt; z=foo(2,1)
+ 
+-1-&gt; resume
+ z         =
+ 
+    0.7071068  
+ 
+--&gt; s
+ s         =
+ 
+    0.5
+</PRE>In the example, the first call to <TT>foo</TT> passes an argument which cannot
+be used in the calculation of the function.  The function discontinues
+operation and indicates the nature of the error to the user.  The second call
+to the function suspends operation after the calculation of <TT>slope</TT>.
+Here the user can examine values calculated inside of the function,
+perform plots, and, in fact perform any operations 
+allowed in Scilab.  The <TT>-1-&gt;</TT> prompt indicates that the current
+environment created by the <TT>pause</TT> command is the environment 
+of the function and not that of the calling environment.  Control is 
+returned to the function by the command <TT>return</TT>.  Operation of the
+function can be stopped by the command <TT>quit</TT> or <TT>abort</TT>.
+Finally the function terminates its calculation returning the
+value of <TT>z</TT>.  Also available in the environment is the variable
+<TT>s</TT> which is a local variable from the function which is passed to
+the global environment.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html776"
+ HREF="node42.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html772"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html768"
+ HREF="node40.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html774"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html775"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html777"
+ HREF="node42.html">3.3 Definition of Operations</A>
+<B> Up:</B> <A NAME="tex2html773"
+ HREF="node37.html">3.2 Defining and Using</A>
+<B> Previous:</B> <A NAME="tex2html769"
+ HREF="node40.html">3.2.3 Global and Local</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>fusee</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1287.html" >next</a>] [<a 
+href="manualli1285.html" >prev</a>] [<a 
+href="manualli1285.html#tailmanualli1285.html" >prev-tail</a>] [<a 
+href="#tailmanualli1286.html">tail</a>] [<a 
+href="manualli1280.html#manualli1286.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1287-7256000"></a>fusee</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1287-7256001"></a><a 
+ id="fusee"></a><span 
+class="cmtt-10x-x-109">fusee </span>&#x2013;                                          a set of Scilab macro for a landing rocket problem<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1287-7257000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" >
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">FUSEE</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xdot]=fusee(t,x)</span></span></span> gives the dynamical motion equation for the rocket
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">FINIT</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">finit()</span></span></span> Initialises the following parameters for rocket landing. </p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">k</div>: The acceleration of the rocket engines
+          </li>
+          <li class="itemize"><div class="itemdesc">gamma</div>: The moon gravity acceleration.
+          </li>
+          <li class="itemize"><div class="itemdesc">umax</div>: the gaz ejection flow out.
+          </li>
+          <li class="itemize"><div class="itemdesc">mcap</div>: the mass of the space capsule.
+          </li>
+          <li class="itemize"><div class="itemdesc">cpen</div>: penalisation in the cost function of the final state.</li></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">FUSEEGRAD</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[ukp1]=fuseegrad(niter,ukp1,pasg)</span></span></span> Iterate a gradient method and returns the
+     computed control.
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">niter</div>: number of gradient iteration steps.
+          </li>
+          <li class="itemize"><div class="itemdesc">ukp1</div>: initial control value ( vector of sie 135 )
+          </li>
+          <li class="itemize"><div class="itemdesc">pasg</div>: the gradient step value.</li></ul>
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">FUSEEP</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[pdot]=fuseep(t,p)</span></span></span> adjoint equation for the landing rocket problem.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">POUSSE</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[ut]=pousse(t)</span></span></span> return the value of a piece wise constant control build on the discrete
+     control <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">uk</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">UBANG</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[uk]=ubang(tf,tcom)</span></span></span> returns a bang-bang control, 0 form time 0 to tcom and 1 form
+     tcom to tf.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">FCOUT</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[c,xk,pk,ukp1]=fcout(tf,uk,pasg)</span></span></span> optimise the following cost function by gradient
+     iterations. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">c</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;-m(tf)</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;C*(</span><span 
+class="cmtt-10x-x-109">&#x00A0;h(tf)**2</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;v(tf)**2)</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">SFUSEE</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[]=sfusee(tau,h0,v0,m0,Tf)</span></span></span> computes the rocket trajectory when a bang-bang
+     control is used <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tau</span></span></span> is the commutation time.
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">h0</div>: The initial position (high)
+          </li>
+          <li class="itemize"><div class="itemdesc">v0</div>: The initial speed ( negative if the rocket is landing )
+          </li>
+          <li class="itemize"><div class="itemdesc">m0</div>: The total initial mass ( capsule and fuel).
+          </li>
+          <li class="itemize"><div class="itemdesc">Tf</div>: Time horizon.</li></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">EQUAD</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;[xk,pk]=equad(tf,uk)</span></span></span> Computes the state and adjoint state of the rocket system for a
+     given control <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ur</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">TRAJ</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;[xt]=traj(t)</span></span></span> returns a piece wise value of the mass evolution.</ul>
+<!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1287.html" >next</a>] [<a 
+href="manualli1285.html" >prev</a>] [<a 
+href="manualli1285.html#tailmanualli1285.html" >prev-tail</a>] [<a 
+href="manualli1286.html" >front</a>] [<a 
+href="manualli1280.html#manualli1286.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1286.html"></a>  </p> 
+</body></html> 

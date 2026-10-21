@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Play this example line per line}
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure in entity mode}
+\nspcomment{//get the handle on the Figure entity and display its properties}
+f=get(\nspstring{"current_figure"})
+a=f.children\nspoperator{,}\nspcomment{// the handle on the Axes child}
+x=(\nspnumber{1}\nspoperator{:}\nspnumber{10})\nspoperator{'}\nspoperator{;}plot2d(x,[x\nspoperator{ .^}\nspnumber{2}\nspoperator{,}x\nspoperator{ .^}\nspnumber{1.5}])
+e=a.children\nspoperator{,}\nspcomment{//Agregation of 2 polylines}
+p1=e.children(\nspnumber{1})\nspoperator{,}\nspcomment{//the last drawn polyline properties}
+p1.foreground=\nspnumber{5}\nspoperator{;}\nspcomment{// change the polyline color}
+e.children.thickness=\nspnumber{5}\nspoperator{;}\nspcomment{// change the thickness of the two polylines}
+delete(e.children(\nspnumber{2}))
+move(e.children,[\nspnumber{0}\nspoperator{,}\nspnumber{30}])\nspoperator{,}\nspcomment{//translate the polyline}
+a.axes_bounds=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}]\nspoperator{;}
+subplot(\nspnumber{222})\nspoperator{,}\nspcomment{//create a new Axes entity}
+plot(\nspnumber{1}\nspoperator{:}\nspnumber{10})\nspoperator{;}
+a1=f.children(\nspnumber{1})\nspoperator{;}\nspcomment{//get its handle}
+copy(e.children,a1)\nspoperator{;}\nspcomment{//copy the polyline of the first plot in the new Axes}
+a1.data_bounds=[\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{10}\nspoperator{,}\nspnumber{100}]\nspoperator{;}\nspcomment{//change the Axes bounds}
+set(\nspstring{"current_figure"},\nspnumber{10})\nspoperator{,}\nspcomment{//create a new figure with figure_id=10}
+plot3d()\nspoperator{,}\nspcomment{//the drawing are sent to figure 10}
+set(\nspstring{"current_figure"},f)\nspoperator{,}\nspcomment{//make the previous figure the current one}
+plot2d(x,x\nspoperator{^}\nspnumber{3})\nspoperator{,}\nspcomment{//the drawing are sent to the initial figure}
+\end{Verbatim}

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>factors</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli908.html" >next</a>] [<a 
+href="manualli906.html" >prev</a>] [<a 
+href="manualli906.html#tailmanualli906.html" >prev-tail</a>] [<a 
+href="#tailmanualli907.html">tail</a>] [<a 
+href="manualli894.html#manualli907.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x908-5257000"></a>factors</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx908-5257001"></a><a 
+ id="factors"></a><span 
+class="cmtt-10x-x-109">factors </span>&#x2013;                                                                       numeric real factorization<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x908-5258000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1030">
+&#x00A0;&#x00A0;[lnum,g]=factors(pol&#x00A0;[,&#x0027;flag&#x0027;])
+&#x00A0;<br />&#x00A0;&#x00A0;[lnum,lden,g]=factors(rat&#x00A0;[,&#x0027;flag&#x0027;])
+&#x00A0;<br />&#x00A0;&#x00A0;rat=factors(rat,&#x0027;flag&#x0027;)
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x908-5259000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">pol</span>: real polynomial
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rat</span>: real rational polynomial (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rat=pol1/pol2</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">lnum</span>: list of polynomials (of degrees 1 or 2)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">lden</span>: list of polynomials (of degrees 1 or 2)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">g</span>: real number
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span></span></li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x908-5260000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > returns the factors of polynomial <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pol</span></span></span> in the list <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lnum</span></span></span> and the &#x201D;gain&#x201D; g. One has pol= g times
+product of entries of the list <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lnum</span></span></span> (if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is not given). If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;c&#x0027;</span></span></span> is given, then one has
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">|pol(i</span><span 
+class="cmtt-10x-x-109">&#x00A0;omega)|</span></span></span> = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">|g*prod(lnum_j(i</span><span 
+class="cmtt-10x-x-109">&#x00A0;omega)|</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;d&#x0027;</span></span></span> is given, then one has
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">|pol(exp(i</span><span 
+class="cmtt-10x-x-109">&#x00A0;omega))|</span></span></span> = <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">|g*prod(lnum_i(exp(i</span><span 
+class="cmtt-10x-x-109">&#x00A0;omega))|</span></span></span>. If argument of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">factors</span></span></span> is a 1x1
+rational <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rat=pol1/pol2</span></span></span>, the factors of the numerator <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pol1</span></span></span> and the denominator <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pol2</span></span></span> are
+returned in the lists <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lnum</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lden</span></span></span> respectively. The &#x201D;gain&#x201D; is returned as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>,i.e. one
+has: rat= g times (product entries in lnum) / (product entries in lden). If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span></span>
+(resp. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span></span>), the roots of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pol</span></span></span> are refected wrt the imaginary axis (resp. the unit circle),
+i.e. the factors in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lnum</span></span></span> are stable polynomials. Same thing if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">factors</span></span></span> is invoked with
+a rational arguments: the entries in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lnum</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lden</span></span></span> are stable polynomials if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is
+given. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R2=factors(R1,&#x0027;c&#x0027;)</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R2=factors(R1,&#x0027;d&#x0027;)</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R1</span></span></span> a rational function or SISO
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list then the output <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R2</span></span></span> is a transfer with stable numerator and denominator
+                                                                                    
+
+                                                                                    
+and with same magnitude as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R1</span></span></span> along the imaginary axis (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span></span>) or unit circle (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span></span>).
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x908-5261000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb634"><a 
+ id="x908-5261010r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=poly([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x908-5261012r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;d=poly([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x908-5261014r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;R=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,n,d)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x908-5261016r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;R1=factors(R,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x908-5261018r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;roots(R1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;num&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x908-5261020r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;roots(R1(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;den&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x908-5261022r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;w=exp(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x908-5261024r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(abs(horner(R1,w))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">abs(horner(R,w)))</span></div>
+<!--l. 78--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x908-5262000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli928.html#simp">simp</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli908.html" >next</a>] [<a 
+href="manualli906.html" >prev</a>] [<a 
+href="manualli906.html#tailmanualli906.html" >prev-tail</a>] [<a 
+href="manualli907.html" >front</a>] [<a 
+href="manualli894.html#manualli907.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli907.html"></a>  </p> 
+</body></html> 

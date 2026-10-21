@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lft</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1117.html" >next</a>] [<a 
+href="manualli1115.html" >prev</a>] [<a 
+href="manualli1115.html#tailmanualli1115.html" >prev-tail</a>] [<a 
+href="#tailmanualli1116.html">tail</a>] [<a 
+href="manualli1089.html#manualli1116.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1117-6320000"></a>lft</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1117-6320001"></a><a 
+ id="lft"></a><span 
+class="cmtt-10x-x-109">lft </span>&#x2013;                                                                      linear fractional transformation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1117-6321000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1248">
+&#x00A0;&#x00A0;[P1]=LFT(P,K)
+&#x00A0;<br />&#x00A0;&#x00A0;[P1]=LFT(P,r,K)
+&#x00A0;<br />&#x00A0;&#x00A0;[P1,r1]=LFT(P,r,Ps,rs)
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1117-6322000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P</span>: linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list), the &#x201C;augmented&#x201D; plant, implicitly partitioned into four
+     blocks (two input ports and two output ports).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">K</span>: linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list), the controller (possibly an ordinary gain).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r</span>: 1x2 row vector, dimension of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P22</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Ps </span>: linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list), implicitly partitioned into four blocks (two input ports
+     and two output ports).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rs </span>: 1x2 row vector, dimension of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ps22</span></span></span></li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1117-6323000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > Linear fractional transform between two standard plants <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ps</span></span></span> in state space form
+or in transfer form (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> lists).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r=</span><span 
+class="cmtt-10x-x-109">&#x00A0;size(P22)</span><span 
+class="cmtt-10x-x-109">&#x00A0;rs=size(P22s)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LFT(P,r,</span><span 
+class="cmtt-10x-x-109">&#x00A0;K)</span></span></span> is the
+linear fractional transform between <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span> and a controller <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span> may be a gain or a controller
+in state space form or in transfer form);<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LFT(P,K)</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LFT(P,r,K)</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r</span></span></span>=size of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span>
+transpose;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P1=</span><span 
+class="cmtt-10x-x-109">&#x00A0;P11+P12*K*</span><span 
+class="cmtt-10x-x-109">&#x00A0;(I-P22*K)^-1</span><span 
+class="cmtt-10x-x-109">&#x00A0;*P21</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[P1,r1]=LFT(P,r,Ps,rs)</span></span></span> returns the generalized
+(2 ports) lft of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ps</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P1</span></span></span> is the pair two-port interconnected plant and the partition of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P1</span></span></span> into 4
+blocks in given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">r1</span></span></span> which is the dimension of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">22</span></span></span> block of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P1</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> can be PSSDs i.e. may
+admit a polynomial <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> matrix.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1117-6324000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb755"><a 
+ id="x1117-6324013r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1117-6324015r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;P=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">K=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1117-6324017r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lft(P,K)</span><br class="fancyvrb" /><a 
+ id="x1117-6324019r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lft(P,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],K)</span>
+<br class="fancyvrb" /><a 
+ id="x1117-6324021r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;P(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">P(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">K</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">inv(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">P(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">K)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">P(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Numerically</span><span 
+class="cmitt-10x-x-109">&#x00A0;dangerous!</span></span><br class="fancyvrb" /><a 
+ id="x1117-6324023r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ss2tf(lft(tf2ss(P),tf2ss(K)))</span>
+<br class="fancyvrb" /><a 
+ id="x1117-6324025r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lft(P,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1117-6324027r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">w=P</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/.</span></span><span 
+class="cmtt-10x-x-109">f</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">w(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1117-6324029r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Improper</span><span 
+class="cmitt-10x-x-109">&#x00A0;plant</span><span 
+class="cmitt-10x-x-109">&#x00A0;(PID</span><span 
+class="cmitt-10x-x-109">&#x00A0;control)</span></span>
+<br class="fancyvrb" /><a 
+ id="x1117-6324031r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;W=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">K=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">s</span><br class="fancyvrb" /><a 
+ id="x1117-6324033r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lft(W,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],K)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ss2tf(lft(tf2ss(W),[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],tf2ss(K)))</span></div>
+<!--l. 70--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1117-6325000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1127.html#sensi">sensi</a>    <a 
+href="manualli1090.html#augment">augment</a>    <a 
+href="manualli38.html#feedback">feedback</a>    <a 
+href="manualli257.html#sysdiag">sysdiag</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1117.html" >next</a>] [<a 
+href="manualli1115.html" >prev</a>] [<a 
+href="manualli1115.html#tailmanualli1115.html" >prev-tail</a>] [<a 
+href="manualli1116.html" >front</a>] [<a 
+href="manualli1089.html#manualli1116.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1116.html"></a>  </p> 
+</body></html> 

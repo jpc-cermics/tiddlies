@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+W=[\nspnumber{1}\nspoperator{/}s\nspoperator{,}\nspnumber{1}\nspoperator{/}(s\nspoperator{+}\nspnumber{1})]
+W\nspoperator{'}\nspoperator{*}W
+Num=[s\nspoperator{,}s\nspoperator{+}\nspnumber{2}\nspoperator{;}\nspnumber{1}\nspoperator{,}s]\nspoperator{;}Den=[s\nspoperator{*}s\nspoperator{,}s\nspoperator{;}s\nspoperator{,}s\nspoperator{*}s]\nspoperator{;}
+tlist([\nspstring{'r'}\nspoperator{,}\nspstring{'num'}\nspoperator{,}\nspstring{'den'}\nspoperator{,}\nspstring{'dt'}],Num,Den,[])
+H=Num\nspoperator{ ./}Den
+syslin(\nspstring{'c'},Num,Den)
+syslin(\nspstring{'c'},H)
+[Num1,Den1]=simp(Num,Den)
+\end{Verbatim}

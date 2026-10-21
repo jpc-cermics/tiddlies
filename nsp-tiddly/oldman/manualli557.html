@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xsegs</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli558.html" >next</a>] [<a 
+href="manualli556.html" >prev</a>] [<a 
+href="manualli556.html#tailmanualli556.html" >prev-tail</a>] [<a 
+href="#tailmanualli557.html">tail</a>] [<a 
+href="manualli370.html#manualli557.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x558-3328000"></a>xsegs</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx558-3328001"></a><a 
+ id="xsegs"></a><span 
+class="cmtt-10x-x-109">xsegs </span>&#x2013;                                                                       draw unconnected segments<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x558-3329000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-684">
+&#x00A0;&#x00A0;xsegs(xv,yv,[style])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x558-3330000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xv,yv</span>: matrices of the same size.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">style</span>: vector or scalar. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">style</span></span></span> is a positive scalar, it gives the color to use for all
+     segments. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">style</span></span></span> is a negative scalar, then current color is used. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">style</span></span></span> is a vector,
+     then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">style(i)</span></span></span> gives the color to use for segment <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>.</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x558-3331000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xsegs</span></span></span> draws a set of unconnected segments given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xv</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yv</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xv</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yv</span></span></span> are matrices they are
+considered as vectors by concatenating their columns. The coordinates of the two points defining a
+segment are given by two consecutive values of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xv</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yv</span></span></span>:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(xv(i),yv(i))--$&#x003E;$(xv(i+1),yv(i+1))</span></span></span>.For
+instance, using matrices of size (2,n), the segments can be defined by:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-685">
+&#x00A0;&#x00A0;xv=[xi_1&#x00A0;xi_2&#x00A0;...;&#x00A0;xf_1&#x00A0;xf_2&#x00A0;...]&#x00A0;yv=[yi_1&#x00A0;yi_2&#x00A0;...;&#x00A0;yf_1&#x00A0;yf_2
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;...]
+</div>
+<!--l. 49--><p class="nopar" >and the segments are <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(xi_k,yi_k)--$&#x003E;$(xf_k,yf_k)</span></span></span>.
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x558-3332000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb437"><a 
+ id="x558-3332007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x558-3332009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xv=[sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sin(x)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x558-3332011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yv=[cos(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">cos(x)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x558-3332013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d([</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;022&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x558-3332015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsegs(xv,yv,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x558-3333000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli558.html" >next</a>] [<a 
+href="manualli556.html" >prev</a>] [<a 
+href="manualli556.html#tailmanualli556.html" >prev-tail</a>] [<a 
+href="manualli557.html" >front</a>] [<a 
+href="manualli370.html#manualli557.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli557.html"></a>  </p> 
+</body></html> 

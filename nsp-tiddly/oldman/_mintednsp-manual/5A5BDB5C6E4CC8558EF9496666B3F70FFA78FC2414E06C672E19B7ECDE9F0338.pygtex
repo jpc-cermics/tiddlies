@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ta=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{12}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{15}\nspoperator{,}\nspnumber{16}\nspoperator{,}\nspnumber{16}\nspoperator{,}\nspnumber{17}\nspoperator{,}\nspnumber{17}]\nspoperator{;}
+he=[\nspnumber{2}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{15}\nspoperator{,}\nspnumber{12}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{16}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{17}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{15}]\nspoperator{;}
+gt=make_graph(\nspstring{'foo'},\nspnumber{1},\nspnumber{17},ta,he)\nspoperator{;}
+gt(\nspstring{'node_x'})=[\nspnumber{283}\nspoperator{,}\nspnumber{163}\nspoperator{,}\nspnumber{63}\nspoperator{,}\nspnumber{57}\nspoperator{,}\nspnumber{164}\nspoperator{,}\nspnumber{164}\nspoperator{,}\nspnumber{273}\nspoperator{,}\nspnumber{271}\nspoperator{,}\nspnumber{339}\nspoperator{,}\nspnumber{384}\nspoperator{,}\nspnumber{504}\nspoperator{,}\nspnumber{513}\nspoperator{,}\nspnumber{439}\nspoperator{,}\nspnumber{623}\nspoperator{,}\nspnumber{631}\nspoperator{,}\nspnumber{757}\nspoperator{,}\nspnumber{642}]\nspoperator{;}
+gt(\nspstring{'node_y'})=[\nspnumber{59}\nspoperator{,}\nspnumber{133}\nspoperator{,}\nspnumber{223}\nspoperator{,}\nspnumber{318}\nspoperator{,}\nspnumber{227}\nspoperator{,}\nspnumber{319}\nspoperator{,}\nspnumber{221}\nspoperator{,}\nspnumber{324}\nspoperator{,}\nspnumber{432}\nspoperator{,}\nspnumber{141}\nspoperator{,}\nspnumber{209}\nspoperator{,}\nspnumber{319}\nspoperator{,}\nspnumber{428}\nspoperator{,}\nspnumber{443}\nspoperator{,}\nspnumber{187}\nspoperator{,}\nspnumber{151}\nspoperator{,}\nspnumber{301}]\nspoperator{;}
+gt(\nspstring{'edge_color'})=modulo([\nspnumber{1}\nspoperator{:}(edge_number(gt))],\nspnumber{15})\nspoperator{+}\nspnumber{1}\nspoperator{;}
+gt(\nspstring{'node_diam'})=[\nspnumber{1}\nspoperator{:}(gt(\nspstring{'node_number'}))]\nspoperator{+}\nspnumber{20}\nspoperator{;}
+show_graph(gt)\nspoperator{;}
+g=graph_simp(gt)\nspoperator{;}
+g(\nspstring{'edge_color'})=modulo([\nspnumber{1}\nspoperator{:}(edge_number(g))],\nspnumber{15})\nspoperator{+}\nspnumber{1}\nspoperator{;}
+g(\nspstring{'node_diam'})=gt(\nspstring{'node_diam'})\nspoperator{;}
+g(\nspstring{'default_edge_hi_width'})=\nspnumber{12}\nspoperator{;}
+show_graph(g)\nspoperator{;}
+spc=cycle_basis(g)\nspoperator{;}
+\nspkeyword{for} kk=\nspnumber{1}\nspoperator{:}(size(spc,\nspnumber{1})) \nspkeyword{do}
+  aaa=spc(kk,\nspoperator{:})\nspoperator{;}aaa=full(aaa)\nspoperator{;}aaa(aaa\nspoperator{==}\nspnumber{0})=[]\nspoperator{;}
+  show_arcs(aaa)\nspoperator{;}
+\nspkeyword{end}\nspoperator{;}
+\end{Verbatim}

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>auwrite</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1207.html" >next</a>] [<a 
+href="manualli1205.html" >prev</a>] [<a 
+href="manualli1205.html#tailmanualli1205.html" >prev-tail</a>] [<a 
+href="#tailmanualli1206.html">tail</a>] [<a 
+href="manualli1203.html#manualli1206.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1207-6818000"></a>auwrite</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1207-6818001"></a><a 
+ id="auwrite"></a><span 
+class="cmtt-10x-x-109">auwrite </span>&#x2013;                                                                              writes .au sound file<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1207-6819000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1369">
+&#x00A0;&#x00A0;auwrite(y,aufile)
+&#x00A0;<br />&#x00A0;&#x00A0;auwrite(y,Fs,aufile)
+&#x00A0;<br />&#x00A0;&#x00A0;auwrite(y,Fs,bits,aufile)
+&#x00A0;<br />&#x00A0;&#x00A0;auwrite(y,Fs,bits,method,aufile)
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1207-6820000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: real vector or matrix with entries in [-1,1].
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">aufile</span>: string (The .au extension is appended if no extension is given)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Fs</span>: integer, frequency sampling in Hz.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">bits</span>: integer, number of bits in the encoding.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">method</span>: string , <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;mu&#x0027;</span></span></span> (default) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;linear&#x0027;</span></span></span>, encoding method.</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1207-6821000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > Utility function to save <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.au</span></span></span> sound file. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auwrite(y,aufile)</span></span></span> writes a sound file specified by the
+string aufile. The data should be arranged with one channel per column. Amplitude values outside
+the range [-1,+1] are ignored. Supports multi-channel data for 8-bit mu-law, and 8- and 16-bit
+linear formats.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auwrite(y,Fs,aufile)</span></span></span> specifies in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Fs</span></span></span> the sample rate of the data in
+Hertz.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auwrite(y,Fs,bits,aufile)</span></span></span> selects the number of bits in the encoder. Allowable settings
+are bits=8 and bits=16. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auwrite(y,Fs,bits,method,aufile)</span></span></span> allows selection of the encoding
+method, which can be either &apos;mu&apos; or &apos;linear&apos;. Note that mu-law files must be 8-bit. By default,
+method=&apos;mu&apos;.
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1207-6822000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1205.html#auread">auread</a>    <a 
+href="manualli1215.html#wavread">wavread</a>    <a 
+href="manualli1213.html#savewave">savewave</a>    <a 
+href="manualli1204.html#analyze">analyze</a>    <a 
+href="manualli1210.html#mapsound">mapsound</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1207.html" >next</a>] [<a 
+href="manualli1205.html" >prev</a>] [<a 
+href="manualli1205.html#tailmanualli1205.html" >prev-tail</a>] [<a 
+href="manualli1206.html" >front</a>] [<a 
+href="manualli1203.html#manualli1206.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1206.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+lines(\nspnumber{0})\nspoperator{,}\nspcomment{// disables vertical paging}
+\nspcomment{//Example 1}
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure and set the figure as the current selected one}
+f=get(\nspstring{"current_figure"})\nspoperator{,}\nspcomment{//get the handle of the current figure:}
+\nspcomment{//if none exists, create a figure and return the corresponding handle}
+f.figure_position
+f.figure_size=[\nspnumber{200}\nspoperator{,}\nspnumber{200}]
+f.background=\nspnumber{2}
+f.children\nspoperator{,}\nspcomment{// man can see that an Axes entity already exists}
+delete(f)\nspoperator{;}
+f=gcf()\nspoperator{;}\nspcomment{// macro shortcut $<$=$>$ f=get("current_figure")}
+f.pixmap=\nspstring{"on"}\nspoperator{,}\nspcomment{// set pixmap status to on}
+plot2d()\nspoperator{,}\nspcomment{// nothing happens on the screen...}
+show_pixmap()\nspoperator{,}\nspcomment{// ...display the pixmap on screen}
+\nspcomment{//Example 2: default_figure settings}
+df=get(\nspstring{"default_figure"})\nspoperator{,}\nspcomment{// get the default values (shortcut is gdf() )}
+\nspcomment{// Let's change the defaults...}
+df.color_map=hotcolormap(\nspnumber{128})
+df.background=\nspnumber{110}\nspoperator{,}
+\nspcomment{// set background toa kind of yellow (Note that we are using a color index inside the color_map previously redefined)}
+scf(\nspnumber{122})\nspoperator{;}\nspcomment{// creates new figure number 122 with the new default}
+plot2d()
+scf(\nspnumber{214})\nspoperator{;}
+t=\nspoperator{-}%pi\nspoperator{:}\nspnumber{0.3}\nspoperator{:}%pi\nspoperator{;}
+plot3d(t,t,sin(t)\nspoperator{'}\nspoperator{*}cos(t),\nspnumber{35},\nspnumber{45},\nspstring{'X@Y@Z'},[\nspnumber{15}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}])\nspoperator{;}
+\end{Verbatim}

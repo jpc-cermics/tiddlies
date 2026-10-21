@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspkeyword{if} MSDOS \nspkeyword{then}
+  unix(\nspstring{'del asave'})\nspoperator{;}
+\nspkeyword{else}
+  unix(\nspstring{'rm -f asave'})\nspoperator{;}\nspkeyword{end}
+A=rand(\nspnumber{5},\nspnumber{3})\nspoperator{;}write(\nspstring{'asave'},A)\nspoperator{;}A=read(\nspstring{'asave'},\nspnumber{5},\nspnumber{3})\nspoperator{;}
+write(%io(\nspnumber{2}),A,\nspstring{'('' | '',3(f10.3,'' | ''))'})
+write(%io(\nspnumber{2}),string(\nspnumber{1}\nspoperator{:}\nspnumber{10}))
+write(%io(\nspnumber{2}),strcat(string(\nspnumber{1}\nspoperator{:}\nspnumber{10}),\nspstring{','}))
+write(%io(\nspnumber{2}),\nspnumber{1}\nspoperator{:}\nspnumber{10},\nspstring{'(10(i2,3x))'})
+\nspkeyword{if} MSDOS \nspkeyword{then}
+  unix(\nspstring{'del foo'})\nspoperator{;}
+\nspkeyword{else}
+  unix(\nspstring{'rm -f foo'})\nspoperator{;}\nspkeyword{end}
+write(\nspstring{'foo'},A)
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspkeyword{function} d=\nspfunction{DIR}(path)
+  path=pathconvert(path,%t,%t)
+  \nspkeyword{if} MSDOS \nspkeyword{then}
+    d=unix_g(\nspstring{'dir '}\nspoperator{+}path)
+  \nspkeyword{else}
+    d=unix_g(\nspstring{'ls '}\nspoperator{+}path)
+  \nspkeyword{end}
+\nspkeyword{endfunction}
+DIR(\nspstring{'SCI/demos'})
+\end{Verbatim}

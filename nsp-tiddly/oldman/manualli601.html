@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>findBD</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli602.html" >next</a>] [<a 
+href="manualli600.html" >prev</a>] [<a 
+href="manualli600.html#tailmanualli600.html" >prev-tail</a>] [<a 
+href="#tailmanualli601.html">tail</a>] [<a 
+href="manualli597.html#manualli601.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x602-3571000"></a>findBD</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx602-3571001"></a><a 
+ id="findBD"></a><span 
+class="cmtt-10x-x-109">findBD </span>&#x2013;                  initial state and system matrices B and D of a discrete-time system<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x602-3572000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-732">
+&#x00A0;&#x00A0;[(x0)&#x00A0;(,B&#x00A0;(,D))&#x00A0;(,V)&#x00A0;(,rcnd)]&#x00A0;=&#x00A0;findBD(jobx0,comuse&#x00A0;(,job),A&#x00A0;(,B),C&#x00A0;(,D),Y
+&#x00A0;<br />&#x00A0;&#x00A0;(,U,tol,printw,ldwork))
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x602-3573000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">jobx0</span>: integer option to specify whether or not the initial state should be computed:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: compute the initial state x0;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>2: do not compute the initial state (possibly, because x0 is known to be zero).</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">comuse</span>: integer option to specify whether the system matrices B and D should be computed
+     or used:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: compute the matrices B and D, as specified by job;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>2: use the matrices B and D, as specified by job;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>3: do not compute/use the matrices B and D.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">job</span>: integer option to determine which of the system matrices B and D should be computed or
+     used:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: compute/use the matrix B only (D is known to be zero);
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>2: compute/use the matrices B and D.</li></ul>
+     <!--l. 47--><p class="noindent" >job must not be specified if jobx0 = 2 and comuse = 2, or if comuse = 3.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: state matrix of the given system
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">B</span>: optionnal, input matrix of the given system
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">C</span>: output matrix of the given system
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">D</span>: optionnal, direct feedthrough of the given system
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Y</span>: the t-by-l output-data sequence matrix. Column j of Y contains the t values of the j-th
+     output component for consecutive time increments.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">U</span>: the t-by-m input-data sequence matrix (input when jobx0 = 1 and comuse = 2, or comuse
+     = 1). Column j of U contains the t values of the j-th input component for consecutive time
+     increments.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol</span>: optionnal, tolerance used for estimating the rank of matrices. If tol <span 
+class="cmmi-10x-x-109">&#x003E; </span>0, then the given
+     value of tol is used as a lower bound for the reciprocal condition number; an m-by-n matrix
+     whose estimated condition number is less than 1/tol is considered to be of full
+     rank. Default: m*n*epsilon_machine where epsilon_machine is the relative machine
+     precision.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">printw</span>:optionnal, switch for printing the warning messages.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: print warning messages;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>0: do not print warning messages.</li></ul>
+     <!--l. 65--><p class="noindent" >Default: printw = 0.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ldwork</span>: (optional) the workspace size. Default: computed by the formula LDWORK = MAX(
+     minimum workspace size needed, 2*CSIZE/3, CSIZE - ( m + l )*t - 2*n*( n + m + l ) - l*m )
+     where CSIZE is the cache size in double precision words.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: initial state vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Br</span>: system input matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Dr</span>: system direct feedthrough matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">V</span>: the n-by-n orthogonal matrix which reduces A to a real Schur form (output when jobx0 = 1
+     or comuse = 1).
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rcnd</span>: (optional) the reciprocal condition numbers of the matrices involved in rank
+     decisions.</li></ul>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x602-3574000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 74--><p class="noindent" > findBD function for estimating the initial state and the system matrices B and D of a discrete-time
+system, using SLICOT routine IB01CD.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-733">
+&#x00A0;&#x00A0;[x0,Br,V,rcnd]&#x00A0;=&#x00A0;findBD(1,1,1,A,C,Y,U)
+&#x00A0;<br />&#x00A0;&#x00A0;[x0,Br,Dr,V,rcnd]&#x00A0;=&#x00A0;findBD(1,1,2,A,C,Y,U)
+&#x00A0;<br />&#x00A0;&#x00A0;[Br,V,rcnd]&#x00A0;=&#x00A0;findBD(2,1,1,A,C,Y,U)
+&#x00A0;<br />&#x00A0;&#x00A0;[B,Dr,V,rcnd]&#x00A0;=&#x00A0;findBD(2,1,2,A,C,Y,U)
+&#x00A0;<br />&#x00A0;&#x00A0;[x0,V,rcnd]&#x00A0;=&#x00A0;findBD(1,2,1,A,B,C,Y,U)
+&#x00A0;<br />&#x00A0;&#x00A0;[x0,V,rcnd]&#x00A0;=&#x00A0;findBD(1,2,2,A,B,C,D,Y,U)
+&#x00A0;<br />&#x00A0;&#x00A0;[x0,rcnd]&#x00A0;=&#x00A0;findBD(2,2)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;//&#x00A0;(Set&#x00A0;x0&#x00A0;=&#x00A0;0,&#x00A0;rcnd&#x00A0;=&#x00A0;1)
+&#x00A0;<br />&#x00A0;&#x00A0;[x0,V,rcnd]&#x00A0;=&#x00A0;findBD(1,3,A,C,Y)
+</div>
+<!--l. 87--><p class="nopar" >Note: the example lines above may contain at the end the parameters tol, printw, ldwork. FINDBD
+estimates the initial state and/or the system matrices Br and Dr of a discrete-time system, given
+the system matrices A, C, and possibly B, D, and the input and output trajectories of the system.
+The model structure is:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-734">
+&#x00A0;&#x00A0;x(k+1)&#x00A0;=&#x00A0;Ax(k)&#x00A0;+&#x00A0;Bu(k),&#x00A0;&#x00A0;&#x00A0;k&#x00A0;$&#x003E;$=&#x00A0;1,
+&#x00A0;<br />&#x00A0;&#x00A0;y(k)&#x00A0;&#x00A0;&#x00A0;=&#x00A0;Cx(k)&#x00A0;+&#x00A0;Du(k),
+</div>
+<!--l. 97--><p class="nopar" >where x(k) is the n-dimensional state vector (at time k), u(k) is the m-dimensional input vector,
+y(k) is the l-dimensional output vector, and A, B, C, and D are real matrices of appropriate
+dimensions.
+</p>
+<!--l. 105--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x602-3575000"></a><span 
+class="cmbx-10x-x-109">Comments</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">1.</div> The n-by-m system input matrix B is an input parameter when jobx0 = 1 and comuse
+     = 2, and it is an output parameter when comuse = 1.
+     </li>
+     <li class="itemize"><div class="itemdesc">2.</div> The l-by-m system matrix D is an input parameter when jobx0 = 1, comuse = 2 and
+     job = 2, and it is an output parameter when comuse = 1 and job = 2.
+     </li>
+     <li class="itemize"><div class="itemdesc">3.</div> The n-vector of estimated initial state x(0) is an output parameter when jobx0 = 1,
+     but also when jobx0 = 2 and comuse <span 
+class="cmmi-10x-x-109">&#x003C;</span>= 2, in which case it is set to 0.
+     </li>
+     <li class="itemize"><div class="itemdesc">4.</div> If ldwork is specified, but it is less than the minimum workspace size needed, that
+     minimum value is used instead.</li></ul>
+<!--l. 113--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x602-3576000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb468"><a 
+ id="x602-3576023r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//generate</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span><span 
+class="cmitt-10x-x-109">&#x00A0;from</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span><span 
+class="cmitt-10x-x-109">&#x00A0;linear</span><span 
+class="cmitt-10x-x-109">&#x00A0;system</span></span>
+<br class="fancyvrb" /><a 
+ id="x602-3576025r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x602-3576027r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576029r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576031r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS=syslin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576033r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nsmp=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576035r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;U=prbs_a(nsmp,nsmp</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x602-3576037r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y=(flts(U,SYS)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,nsmp,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576039r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Compute</span><span 
+class="cmitt-10x-x-109">&#x00A0;R</span></span><br class="fancyvrb" /><a 
+ id="x602-3576041r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">L=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576043r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[R,N,SVAL]=findR(S,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x602-3576045r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;N=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576047r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;METH=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">TOL=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576049r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,C]=findAC(S,N,L,R,METH,TOL)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576051r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X0,B,D]=findBD(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,A,C,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x602-3576053r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS1=syslin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C,D,X0)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576055r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y1=flts(U,SYS1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x602-3576057r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d((</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">nsmp)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Y1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+<!--l. 139--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x602-3577000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli604.html#inistate">inistate</a>    <a 
+href="manualli603.html#findx0BD">findx0BD</a>    <a 
+href="manualli598.html#findABCD">findABCD</a>    <a 
+href="manualli599.html#findAC">findAC</a>    <a 
+href="#findBD">findBD</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 143--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x602-3578000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   V. Sima, Katholieke Univ. Leuven, Belgium, May 2000. (Revisions: V. Sima, July 2000)
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli602.html" >next</a>] [<a 
+href="manualli600.html" >prev</a>] [<a 
+href="manualli600.html#tailmanualli600.html" >prev-tail</a>] [<a 
+href="manualli601.html" >front</a>] [<a 
+href="manualli597.html#manualli601.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli601.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+txt=[\nspstring{'56'}\nspoperator{,}\nspstring{'x'}\nspoperator{,}\nspstring{'night'}\nspoperator{;}\nspstring{'1'}\nspoperator{,}\nspstring{'foo'}\nspoperator{,}\nspstring{'stars'}\nspoperator{;}\nspstring{'2000'}\nspoperator{,}\nspstring{'z'}\nspoperator{,}\nspstring{'locomotion'}]\nspoperator{;}
+l_txt=m2s([])\nspoperator{;}
+r_txt=m2s([])\nspoperator{;}
+[m,n]=size(txt)\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}n \nspkeyword{do}
+  col=txt(\nspoperator{:},i)\nspoperator{;}
+  len=max(length(col))\nspoperator{*}ones(m,\nspnumber{1})\nspoperator{;}
+  l_txt=[l_txt\nspoperator{,}sprintf(\nspstring{'\nsppc{}-*s'},len,col)]\nspoperator{;}
+  r_txt=[r_txt\nspoperator{,}sprintf(\nspstring{'\nsppc{}*s'},len,col)]\nspoperator{;}
+\nspkeyword{end}
+\end{Verbatim}

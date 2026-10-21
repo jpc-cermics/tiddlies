@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>derivative</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli869.html" >next</a>] [<a 
+href="manualli867.html" >prev</a>] [<a 
+href="manualli867.html#tailmanualli867.html" >prev-tail</a>] [<a 
+href="#tailmanualli868.html">tail</a>] [<a 
+href="manualli863.html#manualli868.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x869-5022000"></a>derivative</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx869-5022001"></a><a 
+ id="derivative"></a><span 
+class="cmtt-10x-x-109">derivative </span>&#x2013;                                                   approximate derivatives of a function<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x869-5023000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-956">
+&#x00A0;&#x00A0;derivative(F,x)
+&#x00A0;<br />&#x00A0;&#x00A0;[J&#x00A0;[,H]]&#x00A0;=&#x00A0;derivative(F,x&#x00A0;[,h&#x00A0;,order&#x00A0;,H_form&#x00A0;,Q])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x869-5024000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">F</span>: a Scilab function F: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R^n</span><span 
+class="cmtt-10x-x-109">&#x00A0;--$&#x003E;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;R^m</span></span></span> or a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list(F,p1,...,pk)</span></span></span>, where F is a scilab
+     function in the form <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y=F(x,p1,...,pk)</span></span></span>, p1, ..., pk being any scilab objects (matrices,
+     lists,...).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: real column vector of dimension n.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">h</span>: (optional) real, the stepsize used in the finite difference approximations.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">order</span>: (optional) integer, the order of the finite difference formula used to approximate
+     the derivatives (order = 1,2 or 4, default is order=2 ).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">H</span><span 
+class="cmtt-10x-x-109">_form</span>: (optional) string, the form in which the Hessean will be returned. Possible forms
+     are:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">H</span><span 
+class="cmtt-10x-x-109">_form=&apos;default&apos; </span>: H is a m x (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n^2</span></span></span>) matrix ; in this form, the k-th row of H
+          corresponds to the Hessean of the k-th component of F, given as the following row
+          vector:
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-957">
+          &#x00A0;&#x00A0;[&#x00A0;d(grad(F_k))/dx_1&#x00A0;|&#x00A0;.....&#x00A0;|&#x00A0;d(grad(F_k))/dx_n&#x00A0;]
+</div>
+          <!--l. 43--><p class="nopar" >((grad(F_k) being a row vector).
+          </p></li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">H</span><span 
+class="cmtt-10x-x-109">_form=&apos;blockmat&apos;:  </span>H is a (mxn) x n block matrix: the classic Hessean matrices (of
+          each component of F) are stacked by row (H = [H1 ; H2 ; ... ; Hm] in scilab
+          syntax).
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">H</span><span 
+class="cmtt-10x-x-109">_form=&apos;hypermat&apos;:  </span>H is a n x n matrix for m=1, and a n x n x m hypermatrix
+          otherwise. H(:,:,k) is the classic Hessean matrix of the k-th component of
+          F.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q</span>: (optional) real matrix, orthogonal (default is eye(n,n)).</li></ul>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x869-5025000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 53--><p class="noindent" > Numerical approximation of the first and second derivatives of a function F: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;R^n</span><span 
+class="cmtt-10x-x-109">&#x00A0;--$&#x003E;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;R^m</span></span></span> at
+the point x. The Jacobian is computed by approximating the directional derivatives of the
+components of F in the direction of the columns of Q. (For m=1, v=Q(:,k): grad(F(x))*v =
+Dv(F(x)).) The second derivatives are computed by composition of first order derivatives. If H is
+given in its default form the Taylor series of F(x) up to terms of second order is given
+by:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-958">
+&#x00A0;&#x00A0;F(x+dx)&#x00A0;=&#x00A0;F(x)&#x00A0;+&#x00A0;J(x)*dx&#x00A0;+&#x00A0;1/2*H(x)*(dx&#x00A0;.*.&#x00A0;dx)&#x00A0;+&#x00A0;...
+</div>
+<!--l. 64--><p class="nopar" >(([J,H]=derivative(F,x,H_form=&apos;default&apos;), J=J(x), H=H(x).)
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x869-5026000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   Numerical approximation of derivatives is generally an unstable process. The step size h must be
+small to get a low error but if it is too small floating point errors will dominate by cancellation. As a
+rule of thumb don&apos;t change the default step size. To work around numerical difficulties one may also
+change the order and/or choose different orthogonal matrices Q (the default is eye(n,n)),
+especially if the approximate derivatives are used in optimization routines. All the optional
+arguments may also be passed as named arguments, so that one can use calls in the
+form:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-959">
+&#x00A0;&#x00A0;derivative(F,&#x00A0;x,&#x00A0;H_form&#x00A0;=&#x00A0;&#x0022;hypermat&#x0022;)
+&#x00A0;<br />&#x00A0;&#x00A0;derivative(F,&#x00A0;x,&#x00A0;order&#x00A0;=&#x00A0;4)&#x00A0;etc.
+</div>
+<!--l. 80--><p class="nopar" >
+</p>
+<!--l. 82--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x869-5027000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb606"><a 
+ id="x869-5027045r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;y=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">F</span></span><span 
+class="cmtt-10x-x-109">(x)</span><br class="fancyvrb" /><a 
+ id="x869-5027047r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=[sin(x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">exp(x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">sum(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027049r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027051r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;y=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">G</span></span><span 
+class="cmtt-10x-x-109">(x,p)</span><br class="fancyvrb" /><a 
+ id="x869-5027053r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=[sin(x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">p)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">exp(x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">sum(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027055r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027057r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[J,H]=derivative(F,x,H_form</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blockmat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027059r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(J)</span><br class="fancyvrb" /><a 
+ id="x869-5027061r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(H)</span><br class="fancyvrb" /><a 
+ id="x869-5027063r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027065r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;form</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;orthogonal</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix:</span></span><br class="fancyvrb" /><a 
+ id="x869-5027067r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nu=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">while</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;nu$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">$n</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;[Q,nu]=colcomp(rand(n,n))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x869-5027069r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;i=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027071r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[J,H]=derivative(F,x,order</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;i,H_form</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blockmat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,Q</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027073r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;order=</span><span 
+class="cmtt-10x-x-109">&#x00A0;%d</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x005C;n&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,i)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027075r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(H)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027077r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x869-5027079r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">h=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1E-3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027081r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[J,H]=derivative(list(G,p),x,h,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,H_form</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;hypermat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027083r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(H)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027085r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[J,H]=derivative(list(G,p),x,h,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">,Q</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027087r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;disp(H)</span><br class="fancyvrb" /><a 
+ id="x869-5027089r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Taylor</span><span 
+class="cmitt-10x-x-109">&#x00A0;series</span><span 
+class="cmitt-10x-x-109">&#x00A0;example:</span></span><br class="fancyvrb" /><a 
+ id="x869-5027091r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;dx=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1E-3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027093r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[J,H]=derivative(F,x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027095r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">dx)</span><br class="fancyvrb" /><a 
+ id="x869-5027097r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">dx)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">F(x)</span><br class="fancyvrb" /><a 
+ id="x869-5027099r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">dx)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">F(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">J</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">dx</span><br class="fancyvrb" /><a 
+ id="x869-5027101r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">dx)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">F(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">J</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">dx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">H</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(dx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*.</span></span><span 
+class="cmtt-10x-x-109">dx)</span>
+<br class="fancyvrb" /><a 
+ id="x869-5027103r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;A</span><span 
+class="cmitt-10x-x-109">&#x00A0;trivial</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span></span><br class="fancyvrb" /><a 
+ id="x869-5027105r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;y=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">f</span></span><span 
+class="cmtt-10x-x-109">(x,A,p,w)</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">w</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027107r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;Jacobian</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;Hessean</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;J(x)=x&#x0027;*(A+A&#x0027;)+p&#x0027;,</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;H(x)=A+A&#x0027;.</span></span><br class="fancyvrb" /><a 
+ id="x869-5027109r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">p=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">w=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027111r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027113r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[J,H]=derivative(list(f,A,p,w),x,h</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,H_form</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blockmat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x869-5027115r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Since</span><span 
+class="cmitt-10x-x-109">&#x00A0;f(x)</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;quadratic</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;x,</span><span 
+class="cmitt-10x-x-109">&#x00A0;approximate</span><span 
+class="cmitt-10x-x-109">&#x00A0;derivatives</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;order=2</span><span 
+class="cmitt-10x-x-109">&#x00A0;or</span><span 
+class="cmitt-10x-x-109">&#x00A0;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;finite</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027117r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;differences</span><span 
+class="cmitt-10x-x-109">&#x00A0;should</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;exact</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;all</span><span 
+class="cmitt-10x-x-109">&#x00A0;h~=0.</span><span 
+class="cmitt-10x-x-109">&#x00A0;The</span><span 
+class="cmitt-10x-x-109">&#x00A0;apparent</span><span 
+class="cmitt-10x-x-109">&#x00A0;errors</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;caused</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027119r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;cancellation</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;floating</span><span 
+class="cmitt-10x-x-109">&#x00A0;point</span><span 
+class="cmitt-10x-x-109">&#x00A0;operations,</span><span 
+class="cmitt-10x-x-109">&#x00A0;so</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0022;big&#x0022;</span><span 
+class="cmitt-10x-x-109">&#x00A0;h</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;choosen.</span></span>
+<br class="fancyvrb" /><a 
+ id="x869-5027121r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Comparison</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;exact</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrices:</span></span><br class="fancyvrb" /><a 
+ id="x869-5027123r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Je=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027125r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;He=A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><br class="fancyvrb" /><a 
+ id="x869-5027127r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(Je</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">J)</span><br class="fancyvrb" /><a 
+ id="x869-5027129r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(He</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">H)</span></div>
+<!--l. 130--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x869-5028000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli884.html#numdiff">numdiff</a>    <a 
+href="manualli903.html#derivat">derivat</a>
+</p>
+<!--l. 134--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x869-5029000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Rainer von Seggern, Bruno Pincon
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli869.html" >next</a>] [<a 
+href="manualli867.html" >prev</a>] [<a 
+href="manualli867.html#tailmanualli867.html" >prev-tail</a>] [<a 
+href="manualli868.html" >front</a>] [<a 
+href="manualli863.html#manualli868.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli868.html"></a>  </p> 
+</body></html> 

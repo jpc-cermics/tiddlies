@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// see example section of cshep2d}
+\nspcomment{// this example shows the behavior far from the interpolation points ...}
+deff(\nspstring{"z=f(x,y)"},\nspstring{"z = 1+ 50*(x.*(1-x).*y.*(1-y)).^2"})
+x=linspace(\nspnumber{0},\nspnumber{1},\nspnumber{10})\nspoperator{;}
+[X,Y]=ndgrid(x,x)\nspoperator{;}
+X=X(\nspoperator{:})\nspoperator{;}Y=Y(\nspoperator{:})\nspoperator{;}Z=f(X,Y)\nspoperator{;}
+S=cshep2d([X\nspoperator{,}Y\nspoperator{,}Z])\nspoperator{;}
+\nspcomment{// evaluation inside and outside the square [0,1]x[0,1]}
+m=\nspnumber{40}\nspoperator{;}
+xx=linspace(\nspoperator{-}\nspnumber{1.5},\nspnumber{0.5},m)\nspoperator{;}
+[xp,yp]=ndgrid(xx,xx)\nspoperator{;}
+zp=eval_cshep2d(xp,yp,S)\nspoperator{;}
+\nspcomment{// compute facet (to draw one color for extrapolation region}
+\nspcomment{// and another one for the interpolation region)}
+[xf,yf,zf]=genfac3d(xx,xx,zp)\nspoperator{;}
+color=\nspnumber{2}\nspoperator{*}ones(\nspnumber{1},size(zf,\nspnumber{2}))\nspoperator{;}
+\nspcomment{// indices corresponding to facet in the interpolation region}
+ind=find(mean(xf,\nspstring{"r"})\nspoperator{ > }\nspnumber{0}\nspoperator{ && }mean(xf,\nspstring{"r"})\nspoperator{ < }\nspnumber{1}\nspoperator{ && }mean(yf,\nspstring{"r"})\nspoperator{ > }\nspnumber{0}\nspoperator{ && }mean(yf,\nspstring{"r"})\nspoperator{ < }\nspnumber{1})\nspoperator{;}
+color(ind)=\nspnumber{3}\nspoperator{;}
+xbasc()\nspoperator{;}
+plot3d(xf,yf,list(zf,color),flag = [\nspnumber{2}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{4}])
+legends([\nspstring{"extrapolation region"}\nspoperator{,}\nspstring{"interpolation region"}],[\nspnumber{2}\nspoperator{,}\nspnumber{3}],\nspnumber{1})
+xselect()
+\end{Verbatim}

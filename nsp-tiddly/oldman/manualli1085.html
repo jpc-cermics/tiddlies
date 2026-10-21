@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_start</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1086.html" >next</a>] [<a 
+href="manualli1084.html" >prev</a>] [<a 
+href="manualli1084.html#tailmanualli1084.html" >prev-tail</a>] [<a 
+href="#tailmanualli1085.html">tail</a>] [<a 
+href="manualli1054.html#manualli1085.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1086-6156000"></a>pvm_start</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1086-6156001"></a><a 
+ id="pvm_start"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_start </span>&#x2013;                                                                       Start the PVM daemon<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1086-6157000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1196">
+&#x00A0;&#x00A0;[info]&#x00A0;=&#x00A0;pvm_start([&#x0022;hostfile&#x0022;])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1086-6158000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">hostfile</span>: name of the hostfile describing the configuration for each host of the virtual
+     machine.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info</span>: integer, status code returned by the routine. Values less than zero indicate an
+     error.</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1086-6159000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_start</span></span></span> starts the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Pvmd3</span></span></span> daemon process which coordinates unix hosts in a virtual machine.
+One pvmd3 must run on each host component of the virtual machine. They provide the
+communication and process control functions needed by the user&apos;s PVM processes. The local and
+remote pvmds can also be started from the PVM console program pvm. The optional parameter is
+the name of a host file. See pvmd3 for more details on the host file format. If no argument is
+given to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_start</span></span></span>, but the variable PVM_ROOT is set, scilab will try to load the file
+<span 
+class="cmmi-10x-x-109">HOME&#x2215;.pvmd.conf.Ifthisfiledoesnotexist,orthevariablePV M</span>_<span 
+class="cmmi-10x-x-109">ROOTisnotset,scilabwilltrytoloadthedefaultfile</span>SCI/.pvmd.conf.
+In all other cases, scilab will supposed that PVM and scilab are in standard place on
+your net. Note that, to be able to start a PVM daemon, scilex must know the place to
+find both scilex and pvmd. Normally, scilex will start a new PVM daemon by using
+rsh. See the help on pvmd3 and pvm for more detail on how to start/stop pvm. For
+example:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1197">
+&#x00A0;&#x00A0;pvm_start()
+&#x00A0;<br />&#x00A0;&#x00A0;ans&#x00A0;&#x00A0;=
+&#x00A0;<br />&#x00A0;&#x00A0;0.
+&#x00A0;<br />&#x00A0;&#x00A0;--$&#x003E;$pvm_start()
+&#x00A0;<br />&#x00A0;&#x00A0;ans&#x00A0;&#x00A0;=
+&#x00A0;<br />&#x00A0;&#x00A0;-&#x00A0;28.
+</div>
+<!--l. 60--><p class="nopar" >Error -28 means: pvm_start_pvmd(): Duplicate host
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1086-6160000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1062.html#pvmd3">pvmd3</a>    <a 
+href="#pvm-halt">pvm_halt</a>    <a 
+href="#pvm-addhosts">pvm_addhosts</a>    <a 
+href="#pvm-config">pvm_config</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1086.html" >next</a>] [<a 
+href="manualli1084.html" >prev</a>] [<a 
+href="manualli1084.html#tailmanualli1084.html" >prev-tail</a>] [<a 
+href="manualli1085.html" >front</a>] [<a 
+href="manualli1054.html#manualli1085.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1085.html"></a>  </p> 
+</body></html> 

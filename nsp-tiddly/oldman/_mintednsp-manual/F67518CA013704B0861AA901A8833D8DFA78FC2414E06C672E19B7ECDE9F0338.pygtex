@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// create an exec file (script)}
+write(TMPDIR\nspoperator{+}\nspstring{'/foo.sce'},[\nspstring{'a=1'}\nspoperator{;}\nspstring{'plot2d()'}])
+\nspcomment{// start a new Scilab on the same host to execute the script}
+[tids,numt]=pvm_spawn(TMPDIR\nspoperator{+}\nspstring{'/foo.sce'},\nspnumber{1})
+pvm_kill(tids)\nspoperator{,}\nspcomment{//terminate the new scilab}
+\end{Verbatim}

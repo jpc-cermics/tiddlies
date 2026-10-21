@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ss2des</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli78.html" >next</a>] [<a 
+href="manualli76.html" >prev</a>] [<a 
+href="manualli76.html#tailmanualli76.html" >prev-tail</a>] [<a 
+href="#tailmanualli77.html">tail</a>] [<a 
+href="manualli12.html#manualli77.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x78-452000"></a>ss2des</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx78-452001"></a><a 
+ id="ss2des"></a><span 
+class="cmtt-10x-x-109">ss2des </span>&#x2013;                                                 (polynomial) state-space to descriptor form<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x78-453000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-147">
+&#x00A0;&#x00A0;S=ss2des(Sl)
+&#x00A0;<br />&#x00A0;&#x00A0;S=ss2des(Sl,flag)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x78-454000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list: proper or improper linear system.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;withD&#x0022;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">S</span>: list</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x78-455000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Given the linear system in state-space representation <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list), with a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> matrix which
+is either polynomial or constant, but not zero <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ss2des</span></span></span> returns a descriptor system as
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list(&#x0027;des&#x0027;,A,B,C,0,E)</span></span></span> such that:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-148">
+&#x00A0;&#x00A0;Sl=C*(s*E-A)^(-1)*B
+</div>
+<!--l. 44--><p class="nopar" >If the flag <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;withD&#x0022;</span></span></span> is given, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;S=list(&#x0027;des&#x0027;,A,B,C,D,E)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> with a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> matrix of maximal rank.
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x78-456000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb59"><a 
+ id="x78-456008r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x78-456010r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;G=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Sl=tf2ss(G)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x78-456012r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S=ss2des(Sl)</span>
+<br class="fancyvrb" /><a 
+ id="x78-456014r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1=ss2des(Sl,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;withD&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x78-456016r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Des=des2ss(S)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Des(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)=clean(Des(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x78-456018r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Des1=des2ss(S1)</span></div>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x78-457000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli919.html#pol2des">pol2des</a>    <a 
+href="manualli1128.html#tf2des">tf2des</a>    <a 
+href="manualli1096.html#des2ss">des2ss</a>
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x78-458000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F. D.; ;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli78.html" >next</a>] [<a 
+href="manualli76.html" >prev</a>] [<a 
+href="manualli76.html#tailmanualli76.html" >prev-tail</a>] [<a 
+href="manualli77.html" >front</a>] [<a 
+href="manualli12.html#manualli77.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli77.html"></a>  </p> 
+</body></html> 

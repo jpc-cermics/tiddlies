@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>fstair</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli625.html" >next</a>] [<a 
+href="manualli623.html" >prev</a>] [<a 
+href="manualli623.html#tailmanualli623.html" >prev-tail</a>] [<a 
+href="#tailmanualli624.html">tail</a>] [<a 
+href="manualli607.html#manualli624.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x625-3713000"></a>fstair</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx625-3713001"></a><a 
+ id="fstair"></a><span 
+class="cmtt-10x-x-109">fstair </span>&#x2013;                           computes pencil column echelon form by qz transformations<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x625-3714000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-767">
+&#x00A0;&#x00A0;[AE,EE,QE,ZE,blcks,muk,nuk,muk0,nuk0,mnei]=fstair(A,E,Q,Z,stair,rk,tol)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x625-3715000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: m x n matrix with real entries.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol</span>: real positive scalar.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">E</span>: column echelon form matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q</span>: m x m unitary matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Z</span>: n x n unitary matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">stair</span>: vector of indexes (see ereduc)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rk</span>: integer, estimated rank of the matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">AE</span>: m x n matrix with real entries.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">EE</span>: column echelon form matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">QE</span>: m x m unitary matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ZE</span>: n x n unitary matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nblcks</span>:is the number of submatrices having full row rank <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0 detected in matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>.
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">muk:  </span>integer  array  of  dimension  (n).  Contains  the  column  dimensions  mu(k)
+     (k=1,...,nblcks) of the submatrices having full column rank in the pencil sE(eps)-A(eps)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nuk:  </span>integer  array  of  dimension  (m+1).  Contains  the  row  dimensions  nu(k)
+     (k=1,...,nblcks) of the submatrices having full row rank in the pencil sE(eps)-A(eps)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">muk0:  </span>integer  array  of  dimension  (n).  Contains  the  column  dimensions  mu(k)
+     (k=1,...,nblcks)   of   the   submatrices   having   full   column   rank   in   the   pencil
+     sE(eps,inf)-A(eps,inf)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nuk:     </span>integer      array      of      dimension      (m+1).      Contains      the      row
+     dimensions nu(k) (k=1,...,nblcks) of the submatrices having full row rank in the pencil
+     sE(eps,inf)-A(eps,inf)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mnei:  </span>integer array of dimension (4). mnei(1) = row dimension of sE(eps)-A(eps)</li></ul>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x625-3716000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 49--><p class="noindent" > Given a pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sE-A</span></span></span> where matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span> is in column echelon form the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fstair</span></span></span> computes
+according to the wishes of the user a unitary transformed pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">QE(sEE-AE)ZE</span></span></span> which is more or less
+similar to the generalized Schur form of the pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sE-A</span></span></span>. The function yields also part of the
+Kronecker structure of the given pencil.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q,Z</span></span></span> are the unitary matrices used to compute the pencil
+where E is in column echelon form (see ereduc)
+</p>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x625-3717000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli657.html#quaskro">quaskro</a>    <a 
+href="manualli621.html#ereduc">ereduc</a>
+</p>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x625-3718000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli625.html" >next</a>] [<a 
+href="manualli623.html" >prev</a>] [<a 
+href="manualli623.html#tailmanualli623.html" >prev-tail</a>] [<a 
+href="manualli624.html" >front</a>] [<a 
+href="manualli607.html#manualli624.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli624.html"></a>  </p> 
+</body></html> 

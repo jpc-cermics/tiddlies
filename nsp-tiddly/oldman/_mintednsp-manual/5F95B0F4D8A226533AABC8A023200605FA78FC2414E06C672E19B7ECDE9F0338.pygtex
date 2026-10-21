@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+S1=rand(\nspnumber{2},\nspnumber{2})\nspoperator{;}S1=S1\nspoperator{*}S1\nspoperator{'}\nspoperator{;}
+S2=rand(\nspnumber{2},\nspnumber{2})\nspoperator{;}S2=S2\nspoperator{*}S2\nspoperator{'}\nspoperator{;}
+S3=rand(\nspnumber{2},\nspnumber{2})\nspoperator{;}S3=S3\nspoperator{*}S3\nspoperator{'}\nspoperator{;}
+P=sysdiag(S1,S2,zeros(\nspnumber{4},\nspnumber{4}))\nspoperator{;}
+Q=sysdiag(S1,zeros(\nspnumber{2},\nspnumber{2}),S3,zeros(\nspnumber{2},\nspnumber{2}))\nspoperator{;}
+X=rand(\nspnumber{8},\nspnumber{8})\nspoperator{;}
+P=X\nspoperator{*}P\nspoperator{*}X\nspoperator{'}\nspoperator{;}Q=inv(X)\nspoperator{'}\nspoperator{*}Q\nspoperator{*}inv(X)\nspoperator{;}
+[T,siz]=equil1(P,Q)\nspoperator{;}
+P1=clean(T\nspoperator{*}P\nspoperator{*}T\nspoperator{'})
+Q1=clean(inv(T)\nspoperator{'}\nspoperator{*}Q\nspoperator{*}inv(T))
+\end{Verbatim}

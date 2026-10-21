@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//generate data from a given linear system}
+A=[\nspnumber{0.5}\nspoperator{,}\nspnumber{0.1}\nspoperator{,}\nspoperator{-}\nspnumber{0.1}\nspoperator{,}\nspnumber{0.2}\nspoperator{;}\nspnumber{0.1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{0.1}\nspoperator{,}\nspoperator{-}\nspnumber{0.1}\nspoperator{;}\nspoperator{-}\nspnumber{0.4}\nspoperator{,}\nspoperator{-}\nspnumber{0.6}\nspoperator{,}\nspoperator{-}\nspnumber{0.7}\nspoperator{,}\nspoperator{-}\nspnumber{0.1}\nspoperator{;}\nspnumber{0.8}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{0.6}\nspoperator{,}\nspoperator{-}\nspnumber{0.6}]\nspoperator{;}
+B=[\nspnumber{0.8}\nspoperator{;}\nspnumber{0.1}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{1}]\nspoperator{;}
+C=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+SYS=syslin(\nspnumber{0.1},A,B,C)\nspoperator{;}
+U=(ones(\nspnumber{1},\nspnumber{1000})\nspoperator{+}rand(\nspnumber{1},\nspnumber{1000},\nspstring{'normal'}))\nspoperator{;}
+Y=(flts(U,SYS)\nspoperator{+}\nspnumber{0.5}\nspoperator{*}rand(\nspnumber{1},\nspnumber{1000},\nspstring{'normal'}))\nspoperator{;}
+\nspcomment{// Compute R}
+[R,N,SVAL]=findR(\nspnumber{15},Y\nspoperator{'},U\nspoperator{'})\nspoperator{;}
+SVAL
+N
+\end{Verbatim}

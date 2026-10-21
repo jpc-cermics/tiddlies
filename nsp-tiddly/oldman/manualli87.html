@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>trzeros</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli88.html" >next</a>] [<a 
+href="manualli86.html" >prev</a>] [<a 
+href="manualli86.html#tailmanualli86.html" >prev-tail</a>] [<a 
+href="#tailmanualli87.html">tail</a>] [<a 
+href="manualli12.html#manualli87.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x88-515000"></a>trzeros</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx88-515001"></a><a 
+ id="trzeros"></a><span 
+class="cmtt-10x-x-109">trzeros </span>&#x2013;                                                          transmission zeros and normal rank<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x88-516000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-166">
+&#x00A0;&#x00A0;[tr]=trzeros(Sl)
+&#x00A0;<br />&#x00A0;&#x00A0;[nt,dt,rk]=trzeros(Sl)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x88-517000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl</span>: linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nt</span>: complex vectors
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dt</span>: real vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rk</span>: integer (normal rank of Sl)</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x88-518000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > Called with one output argument, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">trzeros(Sl)</span></span></span> returns the transmission zeros of the linear system
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> may have a polynomial (but square) <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> matrix. Called with 2 output arguments,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">trzeros</span></span></span> returns the transmission zeros of the linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tr=nt./dt</span></span></span>; (Note
+that some components of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dt</span></span></span> may be zeros) Called with 3 output arguments, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span> is the
+normal rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> Transfer matrices are converted to state-space. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> is a (square)
+polynomial matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">trzeros</span></span></span> returns the roots of its determinant. For usual state-space
+system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">trzeros</span></span></span> uses the state-space algorithm of Emami-Naeni and Van Dooren. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> is
+invertible the transmission zeros are the eigenvalues of the &#x201D;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> matrix&#x201D; of the inverse
+system: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;B*inv(D)*C</span></span></span>; If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">C*B</span></span></span> is invertible the transmission zeros are the eigenvalues of
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N*A*M</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">M*N</span></span></span> is a full rank factorization of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eye(A)-B*inv(C*B)*C</span></span></span>; For systems with a
+polynomial <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> matrix zeros are calculated as the roots of the determinant of the system matrix.
+Caution: the computed zeros are not always reliable, in particular in case of repeated zeros.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x88-519000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb68"><a 
+ id="x88-519009r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;W1=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">trzeros(W1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//call</span><span 
+class="cmitt-10x-x-109">&#x00A0;trzeros</span></span><br class="fancyvrb" /><a 
+ id="x88-519011r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;roots(det(systmat(W1)))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//roots</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;det(system</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix)</span></span>
+<br class="fancyvrb" /><a 
+ id="x88-519013r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">W=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">W2=(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">W</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">W</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[nt,dt,rk]=trzeros(W2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x88-519015r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;St=systmat(tf2ss(W2))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(St)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x88-519017r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;St1=Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">St</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">rowf=(Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">(Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Qd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x88-519019r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;colf=(Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">(Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Zd(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x88-519021r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;roots(St1(rowf,colf))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">nt</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;./</span></span><span 
+class="cmtt-10x-x-109">dt</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//By</span><span 
+class="cmitt-10x-x-109">&#x00A0;Kronecker</span><span 
+class="cmitt-10x-x-109">&#x00A0;form</span></span></div>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x88-520000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli631.html#gspec">gspec</a>    <a 
+href="manualli637.html#kroneck">kroneck</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli88.html" >next</a>] [<a 
+href="manualli86.html" >prev</a>] [<a 
+href="manualli86.html#tailmanualli86.html" >prev-tail</a>] [<a 
+href="manualli87.html" >front</a>] [<a 
+href="manualli12.html#manualli87.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli87.html"></a>  </p> 
+</body></html> 

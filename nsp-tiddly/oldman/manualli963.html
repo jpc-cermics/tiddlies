@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>exec</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli964.html" >next</a>] [<a 
+href="manualli962.html" >prev</a>] [<a 
+href="manualli962.html#tailmanualli962.html" >prev-tail</a>] [<a 
+href="#tailmanualli963.html">tail</a>] [<a 
+href="manualli931.html#manualli963.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x964-5533000"></a>exec</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx964-5533001"></a><a 
+ id="exec"></a><span 
+class="cmtt-10x-x-109">exec </span>&#x2013;                                                                                    script file execution<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x964-5534000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1077">
+&#x00A0;&#x00A0;exec(path&#x00A0;[,mode])
+&#x00A0;<br />&#x00A0;&#x00A0;exec(fun&#x00A0;[,mode])
+&#x00A0;<br />&#x00A0;&#x00A0;ierr=exec(path,&#x0027;errcatch&#x0027;&#x00A0;[,mode])
+&#x00A0;<br />&#x00A0;&#x00A0;ierr=exec(fun,&#x0027;errcatch&#x0027;&#x00A0;[,mode])
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x964-5535000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">path</span>: a string, the path of the script file
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span>: an integer scalar, the execution mode (see below)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fun</span>: a scilab function
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ierr</span>: integer, 0 or error number</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x964-5536000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">exec(path</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,mode])</span></span></span> executes sequentialy the scilab instructions contained in the file given by
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">path</span></span></span> with an optional execution mode <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mode</span></span></span> . The different cases for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mode</span></span></span> are: 0 : the default value
+-1 : nothing is printed 1 : echo of each command line 2 : prompt <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">--$&#x003E;$</span></span></span> is printed 3 : echoes +
+prompts 4 : stops before each prompt. Execution resumes after a carriage return. 7 : stops +
+prompts + echoes: useful mode for demos.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">exec(fun</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,mode])</span></span></span> executes function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> as a script: no
+input nor output argument nor specific variable environment. This form is more efficient, because
+script code may be pre-compiled (see getf, comp). This method for script evaluation allows to store
+scripts as function in libraries. If an error is encountered while executing, if &apos;errcatch&apos; flag is present
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">exec</span></span></span> issues no error message, aborts execution of the instructions and resumes with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ierr</span></span></span> equal
+to the error number. If &apos;errcatch&apos; flag is not present, standard error handling works.
+</p>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x964-5537000"></a><span 
+class="cmbx-10x-x-109">Remark</span></span>
+   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">exec</span></span></span> files may now be used to define functions using the inline function definition syntax (see
+function).
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x964-5538000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb667"><a 
+ id="x964-5538019r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;script</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span></span><br class="fancyvrb" /><a 
+ id="x964-5538021r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a=1;b=2&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/myscript&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x964-5538023r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;execute</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span></span>
+<br class="fancyvrb" /><a 
+ id="x964-5538025r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;exec(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/myscript&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x964-5538027r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">who</span></span><br class="fancyvrb" /><a 
+ id="x964-5538029r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span></span><br class="fancyvrb" /><a 
+ id="x964-5538031r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=foo(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a=x+1;y=a^2&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x964-5538033r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">clear</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;a,b</span>
+<br class="fancyvrb" /><a 
+ id="x964-5538035r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;call</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span></span><br class="fancyvrb" /><a 
+ id="x964-5538037r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;foo(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x964-5538039r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;variable</span><span 
+class="cmitt-10x-x-109">&#x00A0;created</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;environment</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;foo</span></span>
+<br class="fancyvrb" /><a 
+ id="x964-5538041r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;destroyed</span><span 
+class="cmitt-10x-x-109">&#x00A0;when</span><span 
+class="cmitt-10x-x-109">&#x00A0;foo</span><span 
+class="cmitt-10x-x-109">&#x00A0;returns</span></span><br class="fancyvrb" /><a 
+ id="x964-5538043r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">who</span></span><br class="fancyvrb" /><a 
+ id="x964-5538045r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//create</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;make</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;known</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;script</span><span 
+class="cmitt-10x-x-109">&#x00A0;foo</span></span>
+<br class="fancyvrb" /><a 
+ id="x964-5538047r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;exec(foo)</span><br class="fancyvrb" /><a 
+ id="x964-5538049r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;created</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;current</span><span 
+class="cmitt-10x-x-109">&#x00A0;environment</span></span><br class="fancyvrb" /><a 
+ id="x964-5538051r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">who</span></span></div>
+<!--l. 94--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x964-5539000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli355.html#getf">getf</a>    <a 
+href="manualli962.html#execstr">execstr</a>    <a 
+href="manualli961.html#evstr">evstr</a>    <a 
+href="manualli345.html#comp">comp</a>    <a 
+href="manualli1005.html#mode">mode</a>    <a 
+href="manualli1336.html#chdir">chdir</a>    <a 
+href="manualli1017.html#getcwd">getcwd</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli964.html" >next</a>] [<a 
+href="manualli962.html" >prev</a>] [<a 
+href="manualli962.html#tailmanualli962.html" >prev-tail</a>] [<a 
+href="manualli963.html" >front</a>] [<a 
+href="manualli931.html#manualli963.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli963.html"></a>  </p> 
+</body></html> 

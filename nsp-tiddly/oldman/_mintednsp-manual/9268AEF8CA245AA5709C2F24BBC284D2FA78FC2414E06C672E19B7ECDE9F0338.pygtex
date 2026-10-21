@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// simple plot using z=f(x,y)}
+t=[\nspnumber{0}\nspoperator{:}\nspnumber{0.3}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}z=sin(t)\nspoperator{*}cos(t\nspoperator{'})\nspoperator{;}
+plot3d1(t,t,z)
+\nspcomment{// same plot using facets computed by genfac3d}
+[xx,yy,zz]=genfac3d(t,t,z)\nspoperator{;}
+clf()\nspoperator{;}
+plot3d1(xx,yy,zz)
+\nspcomment{// multiple plots}
+clf()\nspoperator{;}
+plot3d1([xx\nspoperator{,}xx],[yy\nspoperator{,}yy],[zz\nspoperator{,}\nspnumber{4}\nspoperator{+}zz])
+\nspcomment{// simple plot with viewpoint and captions}
+clf()\nspoperator{;}
+plot3d1(\nspnumber{1}\nspoperator{:}\nspnumber{10},\nspnumber{1}\nspoperator{:}\nspnumber{20},\nspnumber{10}\nspoperator{*}rand(\nspnumber{10},\nspnumber{20}),\nspnumber{35},\nspnumber{45},\nspstring{"X@Y@Z"},[\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}])
+\nspcomment{// same plot without grid}
+clf()
+plot3d1(\nspnumber{1}\nspoperator{:}\nspnumber{10},\nspnumber{1}\nspoperator{:}\nspnumber{20},\nspnumber{10}\nspoperator{*}rand(\nspnumber{10},\nspnumber{20}),\nspnumber{35},\nspnumber{45},\nspstring{"X@Y@Z"},[\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}])
+\nspcomment{// plot of a sphere using facets computed by eval3dp}
+deff(\nspstring{"[x,y,z]=sph(alp,tet)"}, ...
+     [\nspstring{"x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)"}\nspoperator{;}
+      \nspstring{"y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)"}\nspoperator{;}\nspstring{"z=r*sin(alp)+orig(3)*ones(tet)"}])\nspoperator{;}
+r=\nspnumber{1}\nspoperator{;}orig=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+[xx,yy,zz]=eval3dp(sph,linspace(\nspoperator{-}%pi\nspoperator{/}\nspnumber{2},%pi\nspoperator{/}\nspnumber{2},\nspnumber{40}),linspace(\nspnumber{0},%pi\nspoperator{*}\nspnumber{2},\nspnumber{20}))\nspoperator{;}
+clf()
+plot3d(xx,yy,zz)
+e=gce()\nspoperator{;}
+e.color_flag=\nspnumber{1}\nspoperator{;}
+scf(\nspnumber{2})\nspoperator{;}
+plot3d1(xx,yy,zz)\nspoperator{,}\nspcomment{// the 2 graphics are similar}
+\end{Verbatim}

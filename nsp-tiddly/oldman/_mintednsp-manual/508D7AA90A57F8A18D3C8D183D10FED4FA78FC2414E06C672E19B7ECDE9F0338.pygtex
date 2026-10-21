@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Comparison with explicit formula}
+\nspcomment{//----------------------------------}
+a=[\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{;}\nspnumber{3}]\nspoperator{;}n=size(a,\nspstring{'*'})\nspoperator{;}
+norm(\nspnumber{1}\nspoperator{/}n\nspoperator{*}exp(\nspnumber{2}\nspoperator{*}%i\nspoperator{*}%pi\nspoperator{*}(\nspnumber{0}\nspoperator{:}n\nspoperator{-}\nspnumber{1})\nspoperator{'}\nspoperator{ .*.}(\nspnumber{0}\nspoperator{:}n\nspoperator{-}\nspnumber{1})\nspoperator{/}n)\nspoperator{*}a\nspoperator{-}fft(a,\nspnumber{1}))
+norm(exp(\nspoperator{-}\nspnumber{2}\nspoperator{*}%i\nspoperator{*}%pi\nspoperator{*}(\nspnumber{0}\nspoperator{:}n\nspoperator{-}\nspnumber{1})\nspoperator{'}\nspoperator{ .*.}(\nspnumber{0}\nspoperator{:}n\nspoperator{-}\nspnumber{1})\nspoperator{/}n)\nspoperator{*}a\nspoperator{-}fft(a,\nspoperator{-}\nspnumber{1}))
+\nspcomment{//Frequency components of a signal}
+\nspcomment{//----------------------------------}
+\nspcomment{// build a noides signal sampled at 1000hz  containing to pure frequencies}
+\nspcomment{// at 50 and 70 Hz}
+sample_rate=\nspnumber{1000}\nspoperator{;}
+t=\nspnumber{0}\nspoperator{:}\nspnumber{1}\nspoperator{/}sample_rate\nspoperator{:}\nspnumber{0.6}\nspoperator{;}
+N=size(t,\nspstring{'*'})\nspoperator{;}\nspcomment{//number of samples}
+s=sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}\nspnumber{50}\nspoperator{*}t)\nspoperator{+}sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}\nspnumber{70}\nspoperator{*}t\nspoperator{+}%pi\nspoperator{/}\nspnumber{4})\nspoperator{+}grand(\nspnumber{1},N,\nspstring{'nor'},\nspnumber{0},\nspnumber{1})\nspoperator{;}
+y=fft(s)\nspoperator{;}
+\nspcomment{//the fft response is symetric we retain only the first N/2 points}
+f=sample_rate\nspoperator{*}(\nspnumber{0}\nspoperator{:}(N\nspoperator{/}\nspnumber{2}))\nspoperator{/}N\nspoperator{;}\nspcomment{//associated frequency vector}
+n=size(f,\nspstring{'*'})
+clf()
+plot2d(f,abs(y(\nspnumber{1}\nspoperator{:}n)))
+\end{Verbatim}

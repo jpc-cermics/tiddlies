@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>armax1</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli5.html" >next</a>] [<a 
+href="manualli3.html" >prev</a>] [<a 
+href="manualli3.html#tailmanualli3.html" >prev-tail</a>] [<a 
+href="#tailmanualli4.html">tail</a>] [<a 
+href="manualli1.html#manualli4.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x5-16000"></a>armax1</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx5-16001"></a><a 
+ id="armax1"></a><span 
+class="cmtt-10x-x-109">armax1 </span>&#x2013;                                                                                armax identification<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x5-17000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-5">
+&#x00A0;&#x00A0;[arc,resid]=armax1(r,s,q,y,u&#x00A0;[,b0f])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x5-18000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: output signal
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">u</span>: input signal
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r,s,q</span>: auto regression orders with r <span 
+class="cmmi-10x-x-109">&#x003E;</span>=0, s <span 
+class="cmmi-10x-x-109">&#x003E;</span>=-1.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">b0f</span>: optional parameter. Its default value is 0 and it means that the coefficient b0 must
+     be identified. if bof=1 the b0 is supposed to be zero and is not identified
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">arc</span>: is tlist with type &#x201D;ar&#x201D; and fields a, b, d, ny, nu, sig
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">a</span>: is the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[1,a1,...,a_r]</span></span></span>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">b</span>: is the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[b0,......,b_s]</span></span></span>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">d</span>: is the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[1,d1,....,d_q]</span></span></span>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">sig</span>: resid=[ sig*echap(1),....,];</li></ul>
+     </li></ul>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x5-19000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 43--><p class="noindent" > armax1 is used to identify the coefficients of a 1-dimensional ARX process:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-6">
+&#x00A0;&#x00A0;A(z^-1)y=&#x00A0;B(z^-1)u&#x00A0;+&#x00A0;D(z^-1)sig*e(t)
+&#x00A0;<br />&#x00A0;&#x00A0;e(t)&#x00A0;is&#x00A0;a&#x00A0;1-dimensional&#x00A0;white&#x00A0;noise&#x00A0;with&#x00A0;variance&#x00A0;1.
+&#x00A0;<br />&#x00A0;&#x00A0;A(z)=&#x00A0;1+a1*z+...+a_r*z^r;&#x00A0;(&#x00A0;r=0&#x00A0;=$&#x003E;$&#x00A0;A(z)=1)
+&#x00A0;<br />&#x00A0;&#x00A0;B(z)=&#x00A0;b0+b1*z+...+b_s&#x00A0;z^s&#x00A0;(&#x00A0;s=-1&#x00A0;=$&#x003E;$&#x00A0;B(z)=0)
+&#x00A0;<br />&#x00A0;&#x00A0;D(z)=&#x00A0;1+d1*z+...+d_q*z^q&#x00A0;&#x00A0;(&#x00A0;q=0&#x00A0;=$&#x003E;$&#x00A0;D(z)=1)
+</div>
+<!--l. 52--><p class="nopar" >for the method, see Eykhoff in trends and progress in system identification) page 96.
+with
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-7">
+&#x00A0;&#x00A0;z(t)=[y(t-1),..,y(t-r),u(t),...,
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;u(t-s),e(t-1),...,e(t-q)]
+</div>
+<!--l. 58--><p class="nopar" >and
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-8">
+&#x00A0;&#x00A0;coef=&#x00A0;[-a1,..,-ar,b0,...,b_s,d1,...,d_q]&#x0027;
+&#x00A0;<br />&#x00A0;&#x00A0;y(t)=&#x00A0;coef&#x0027;*&#x00A0;z(t)&#x00A0;+&#x00A0;sig*e(t).
+</div>
+<!--l. 63--><p class="nopar" >a sequential version of the AR estimation where e(t-i) is replaced by an estimated value is used
+(RLLS). With q=0 this method is exactly a sequential version of armax
+</p>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x5-20000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.-Ph.C; ;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli5.html" >next</a>] [<a 
+href="manualli3.html" >prev</a>] [<a 
+href="manualli3.html#tailmanualli3.html" >prev-tail</a>] [<a 
+href="manualli4.html" >front</a>] [<a 
+href="manualli1.html#manualli4.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli4.html"></a>   </p> 
+</body></html> 

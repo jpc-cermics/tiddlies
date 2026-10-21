@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=diag([\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{2}])\nspoperator{;}B=[\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}C=[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}D=\nspnumber{1}\nspoperator{;}s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+W1=syslin(\nspstring{'c'},A,B,C,D)\nspoperator{;}
+phi=gtild(W1,\nspstring{'c'})\nspoperator{+}W1\nspoperator{;}
+phis=clean(ss2tf(phi))
+clean(phis\nspoperator{-}horner(phis,\nspoperator{-}s)\nspoperator{'})\nspoperator{;}\nspcomment{//check this is 0...}
+[A,B,C,D]=abcd(W1)\nspoperator{;}
+[W0,L]=specfact(A,B,C,D)\nspoperator{;}
+W=syslin(\nspstring{'c'},A,B,L,W0)
+Ws=ss2tf(W)\nspoperator{;}
+horner(Ws,\nspoperator{-}s)\nspoperator{*}Ws
+\end{Verbatim}

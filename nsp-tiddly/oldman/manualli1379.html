@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>%helps</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1380.html" >next</a>] [<a 
+href="manualli1378.html" >prev</a>] [<a 
+href="manualli1378.html#tailmanualli1378.html" >prev-tail</a>] [<a 
+href="#tailmanualli1379.html">tail</a>] [<a 
+href="manualli1327.html#manualli1379.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1380-7818000"></a>%helps</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1380-7818001"></a><a 
+ id="helps"></a><span 
+class="cmtt-10x-x-109">helps </span>&#x2013;                                                 Variable defining the path of help directories<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1380-7819000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > The global variable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps</span></span></span> is an N x 2 matrix of strings. The kth row of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps(k,:)</span></span></span>
+represents the kth chapter of the manual and is made of two strings:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps(k,1)</span></span></span> is the absolute
+pathname for a help directory.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps(k,2)</span></span></span> is a title for this help directory. For instance,
+for k=2, we have the graphics chapter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps(2,:)</span></span></span>. The variable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps</span></span></span> is defined
+in the Scilab startup file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SCI+&#x0022;/scilab.star&#x0022;</span></span></span>. To add a new help directory, the user
+should add a row to the variable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps</span></span></span>. (One row for each directory). For instance,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%helps=[%helps;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;Path-Of-My-Help-Dir&#x0022;,&#x0022;My-Title&#x0022;];</span></span></span> enables the Scilab help browser to look
+for help manual items in the directory with pathname &#x201D;Path-Of-My-Help-Dir&#x201D;. &#x201D;My-Title&#x201D; is then
+the title of a new help chapter. A valid help directory must contain: 1- A set of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.html</span></span></span> files (e.g.
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">item1.html,</span><span 
+class="cmtt-10x-x-109">&#x00A0;item2.html</span></span></span> etc). The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.html</span></span></span> files are usually built from XML files. 2- A
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">whatis.html</span></span></span> file, which must have a special format. Each row of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">whatis</span></span></span> must be as
+follows:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1586">
+&#x00A0;&#x00A0;$&#x003C;$BR$&#x003E;$$&#x003C;$A&#x00A0;HREF=&#x0022;item.html&#x0022;$&#x003E;$item$&#x003C;$/A$&#x003E;$&#x00A0;-&#x00A0;quick&#x00A0;description
+</div>
+<!--l. 42--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">item</span></span></span> is the item of the help, i.e. the command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">help</span><span 
+class="cmtt-10x-x-109">&#x00A0;item</span></span></span> displays the contents of the file
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">item.html</span></span></span>. The command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">apropos</span><span 
+class="cmtt-10x-x-109">&#x00A0;keyword</span></span></span> returns the row(s) of all the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">whatis.html</span></span></span>
+file(s) in which the keyword appears. On Linux platforms Scilab provides a Makefile
+for transforming <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.xml</span></span></span> pages into <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.html</span></span></span> pages (see SCIDIR/examples/man-examples).
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1380-7820000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1332.html#apropos">apropos</a>    <a 
+href="manualli1358.html#help">help</a>    <a 
+href="manualli1372.html#man">man</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1380.html" >next</a>] [<a 
+href="manualli1378.html" >prev</a>] [<a 
+href="manualli1378.html#tailmanualli1378.html" >prev-tail</a>] [<a 
+href="manualli1379.html" >front</a>] [<a 
+href="manualli1327.html#manualli1379.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1379.html"></a>  </p> 
+</body></html> 

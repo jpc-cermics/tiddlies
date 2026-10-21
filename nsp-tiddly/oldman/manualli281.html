@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>file</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli282.html" >next</a>] [<a 
+href="manualli280.html" >prev</a>] [<a 
+href="manualli280.html#tailmanualli280.html" >prev-tail</a>] [<a 
+href="#tailmanualli281.html">tail</a>] [<a 
+href="manualli274.html#manualli281.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x282-1671000"></a>file</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx282-1671001"></a><a 
+ id="file"></a><span 
+class="cmtt-10x-x-109">file </span>&#x2013;                                                                                        file management<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x282-1672000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-417">
+&#x00A0;&#x00A0;[unit&#x00A0;[,err]]=file(&#x0027;open&#x0027;,&#x00A0;file-name&#x00A0;[,status]&#x00A0;[,access&#x00A0;[,recl]]&#x00A0;[,format])
+&#x00A0;<br />&#x00A0;&#x00A0;file(action,unit)
+&#x00A0;<br />&#x00A0;&#x00A0;[units&#x00A0;[,typ&#x00A0;[,nams&#x00A0;[,mod&#x00A0;[,swap]]]]]&#x00A0;=&#x00A0;file([unit])
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x282-1673000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">file-name</span>: string, file name of the file to be opened
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">status</span>: string, The status of the file to be opened
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;new&#x0022;</span>: file must not exist new file (default)
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;old&#x0022;</span>: file must already exists.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;unknown&#x0022;</span>: unknown status
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;scratch&#x0022;</span>: file is to be deleted at end of session</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">access</span>: string, The type of access to the file
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;sequential&#x0022; </span>: sequential access (default)
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;direct&#x0022; </span>: direct access.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">format</span>: string,
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;formatted&#x0022; </span>: for a formatted file (default)
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;unformatted&#x0022; </span>: binary record.</li></ul>
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">recl</span>: integer,is the size of records in bytes when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">access=&#x0022;direct&#x0022;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">unit</span>: integer, logical unit descriptor of the opened file
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">units</span>: integer vector, logical unit descriptor of the opened files. Units 1 5 and 6 are reserved
+     by the system for history file , input and output devices.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">typs</span>: Character string vector, type (C or Fortran) of opened files.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nams</span>: Character string vector, pathnames of opened files.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mod</span>: file opening mode. Formed by three digits abc
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">Fortran files</span>
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">a</span>: 0 stands for formatted and 1 for unformatted (binary)
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">b </span>0 stands for sequential acces and 1 for direct access
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">c</span>: 0 stands for &#x201D;new&#x201D;, 1 for &#x201D;old&#x201D;, 2 for &#x201D;scratch&#x201D; and 3 for &#x201D;unknown&#x201D;</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">C files</span>
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">a</span>: is 1 if file has been opened with a &#x201D;b&#x201D; (binary) mode
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">b</span>: is 1 if file has been opened with a &#x201D;+&#x201D; (updating) mode
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">c</span>: 1 stands for &#x201D;r&#x201D; (read), 2 stands for &#x201D;w&#x201D; (write) and 3 for &#x201D;a&#x201D; (append)</li></ul>
+          </li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">swap</span>: automatic swap switch. swap=1 if automatic swap is on. swap is always 0 for Fortran
+     files.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">err</span>: integer, error message number (see error), if open fails. If err is omitted an error message
+     is issued.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">action</span>: is one of the following strings:
+                                                                                    
+
+                                                                                    
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;close&#x0022; </span>: closes the file(s) given by the logical unit descriptors given in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">units</span></span></span>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;rewind&#x0022; </span>: puts the pointer at beginning of file
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;backspace&#x0022; </span>: puts the pointer at beginning of last record.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;last&#x0022; </span>: puts the pointer after last record.</li></ul>
+     </li></ul>
+<!--l. 83--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x282-1674000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 83--><p class="noindent" > selects a logical unit <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">unit</span></span></span> and manages the file
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">file-name</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[unit</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,err]]=file(&#x0027;open&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;file-name</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,status]</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,access</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,recl]][,format])</span></span></span>
+allows to open a file with specified properties and to get the associated unit number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">unit</span></span></span>. This
+unit number may be used for further actions on this file or as file descriptor in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">read</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">write</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">readb</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">writb</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">save</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">load</span></span></span> function calls.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">file(action,unit)</span></span></span> allows to close the
+file , or move the current file pointer .<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">file()</span></span></span> returns the logical unit descriptors of the
+opened files. So <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">file(&#x0027;close&#x0027;,file()</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span></span></span> closes all user opened files (C or Fortran type).
+</p>
+<!--l. 96--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x282-1675000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb233"><a 
+ id="x282-1675016r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=file(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;open&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;unknown&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x282-1675018r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;k=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span><br class="fancyvrb" /><a 
+ id="x282-1675020r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x282-1675022r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;write(u,a)</span><br class="fancyvrb" /><a 
+ id="x282-1675024r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span>
+<br class="fancyvrb" /><a 
+ id="x282-1675026r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;file(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rewind&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,u)</span><br class="fancyvrb" /><a 
+ id="x282-1675028r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=read(u,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x282-1675030r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;file(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;close&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,u)</span><br class="fancyvrb" /><a 
+ id="x282-1675032r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x282-1675034r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u1=file(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;open&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;unknown&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x282-1675036r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u2=mopen(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo1&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;wb&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x282-1675038r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[units,typs,nams]=file()</span><br class="fancyvrb" /><a 
+ id="x282-1675040r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;file(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;close&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,u1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x282-1675042r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(u2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 115--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x282-1676000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli325.html#save">save</a>    <a 
+href="manualli292.html#load">load</a>    <a 
+href="manualli337.html#write">write</a>    <a 
+href="manualli322.html#read">read</a>    <a 
+href="manualli335.html#writb">writb</a>    <a 
+href="manualli319.html#readb">readb</a>    <a 
+href="manualli338.html#xgetfile">xgetfile</a>    <a 
+href="manualli305.html#mopen">mopen</a>    <a 
+href="manualli297.html#mclose">mclose</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli282.html" >next</a>] [<a 
+href="manualli280.html" >prev</a>] [<a 
+href="manualli280.html#tailmanualli280.html" >prev-tail</a>] [<a 
+href="manualli281.html" >front</a>] [<a 
+href="manualli274.html#manualli281.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli281.html"></a>  </p> 
+</body></html> 

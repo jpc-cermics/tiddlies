@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>findR</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli603.html" >next</a>] [<a 
+href="manualli601.html" >prev</a>] [<a 
+href="manualli601.html#tailmanualli601.html" >prev-tail</a>] [<a 
+href="#tailmanualli602.html">tail</a>] [<a 
+href="manualli597.html#manualli602.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x603-3579000"></a>findR</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx603-3579001"></a><a 
+ id="findR"></a><span 
+class="cmtt-10x-x-109">findR </span>&#x2013;       Preprocessor for estimating the matrices of a linear time-invariant dynamical
+system<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x603-3580000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-735">
+&#x00A0;&#x00A0;[R,N&#x00A0;[,SVAL,RCND]]&#x00A0;=&#x00A0;findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)
+&#x00A0;<br />&#x00A0;&#x00A0;[R,N]&#x00A0;=&#x00A0;findR(S,Y)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x603-3581000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">S</span>: the number of block rows in the block-Hankel matrices.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Y</span>:
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">U</span>:
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">METH</span>: an option for the method to use:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">1</span>: MOESP method with past inputs and outputs;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">2</span>: N4SI15 0 1 1 1000D method.</li></ul>
+     <!--l. 39--><p class="noindent" >Default: METH = 1.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ALG</span>: an option for the algorithm to compute the triangular factor of the concatenated
+     block-Hankel matrices built from the input-output data:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">1</span>: Cholesky algorithm on the correlation matrix;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">2</span>: fast QR algorithm;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">3</span>: standard QR algorithm.</li></ul>
+     <!--l. 46--><p class="noindent" >Default: ALG = 1.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">JOBD</span>: an option to specify if the matrices B and D should later be computed using the
+     MOESP approach:
+                                                                                    
+
+                                                                                    
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: the matrices B and D should later be computed using the MOESP approach;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>2: the matrices B and D should not be computed using the MOESP approach.</li></ul>
+     <!--l. 52--><p class="noindent" >Default: JOBD = 2. This parameter is not relevant for METH = 2.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">TOL</span>: a vector of length 2 containing tolerances:
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">TOL </span>(1) is the tolerance for estimating the rank of matrices. If TOL(1) <span 
+class="cmmi-10x-x-109">&#x003E; </span>0, the
+          given value of TOL(1) is used as a lower bound for the reciprocal condition number.
+          Default: TOL(1) = prod(size(matrix))*epsilon_machine where epsilon_machine is
+          the relative machine precision.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">TOL </span>(2) is the tolerance for estimating the system order. If TOL(2) <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0, the
+          estimate is indicated by the index of the last singular value greater than or equal to
+          TOL(2). (Singular values less than TOL(2) are considered as zero.) When TOL(2)
+          = 0, then S*epsilon_machine*sval(1) is used instead TOL(2), where sval(1) is the
+          maximal singular value. When TOL(2) <span 
+class="cmmi-10x-x-109">&#x003C; </span>0, the estimate is indicated by the index
+          of the singular value that has the largest logarithmic gap to its successor. Default:
+          TOL(2) = -1.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">PRINTW</span>: a switch for printing the warning messages.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>1: print warning messages;
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">=  </span>0: do not print warning messages.</li></ul>
+     <!--l. 65--><p class="noindent" >Default: PRINTW = 0.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">R</span>:
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">N</span>: the order of the discrete-time realization
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">SVAL</span>: singular values SVAL, used for estimating the order.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">RCND</span>: vector of length 2 containing the reciprocal condition numbers of the matrices involved
+     in rank decisions or least squares solutions.</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x603-3582000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 72--><p class="noindent" > findR Preprocesses the input-output data for estimating the matrices of a linear
+time-invariant dynamical system, using Cholesky or (fast) QR factorization and subspace
+identification techniques (MOESP or N4SID), and estimates the system order. [R,N] =
+findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW) returns the processed upper triangular factor R of
+the concatenated block-Hankel matrices built from the input-output data, and the order N of a
+discrete-time realization. The model structure is:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-736">
+&#x00A0;&#x00A0;x(k+1)&#x00A0;=&#x00A0;Ax(k)&#x00A0;+&#x00A0;Bu(k)&#x00A0;+&#x00A0;w(k),&#x00A0;&#x00A0;&#x00A0;k&#x00A0;$&#x003E;$=&#x00A0;1,
+&#x00A0;<br />&#x00A0;&#x00A0;y(k)&#x00A0;&#x00A0;&#x00A0;=&#x00A0;Cx(k)&#x00A0;+&#x00A0;Du(k)&#x00A0;+&#x00A0;e(k).
+</div>
+<!--l. 84--><p class="nopar" >The vectors y(k) and u(k) are transposes of the k-th rows of Y and U, respectively. [R,N,SVAL,RCND]
+= findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW) also returns the singular values SVAL, used for
+estimating the order, as well as, if meth = 2, the vector RCND of length 2 containing the reciprocal
+condition numbers of the matrices involved in rank decisions or least squares solutions. [R,N]
+= findR(S,Y) assumes U = [] and default values for the remaining input arguments.
+</p>
+<!--l. 96--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x603-3583000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb469"><a 
+ id="x603-3583016r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//generate</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span><span 
+class="cmitt-10x-x-109">&#x00A0;from</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span><span 
+class="cmitt-10x-x-109">&#x00A0;linear</span><span 
+class="cmitt-10x-x-109">&#x00A0;system</span></span>
+<br class="fancyvrb" /><a 
+ id="x603-3583018r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x603-3583020r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x603-3583022r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x603-3583024r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SYS=syslin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span 
+class="cmtt-10x-x-109">,A,B,C)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x603-3583026r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;U=(ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1000</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1000</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x603-3583028r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y=(flts(U,SYS)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1000</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x603-3583030r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Compute</span><span 
+class="cmitt-10x-x-109">&#x00A0;R</span></span><br class="fancyvrb" /><a 
+ id="x603-3583032r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[R,N,SVAL]=findR(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span 
+class="cmtt-10x-x-109">,Y</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x603-3583034r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;SVAL</span><br class="fancyvrb" /><a 
+ id="x603-3583036r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;N</span></div>
+<!--l. 115--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x603-3584000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli598.html#findABCD">findABCD</a>    <a 
+href="manualli599.html#findAC">findAC</a>    <a 
+href="manualli601.html#findBD">findBD</a>    <a 
+href="manualli600.html#findBDK">findBDK</a>    <a 
+href="manualli606.html#sorder">sorder</a>    <a 
+href="manualli605.html#sident">sident</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli603.html" >next</a>] [<a 
+href="manualli601.html" >prev</a>] [<a 
+href="manualli601.html#tailmanualli601.html" >prev-tail</a>] [<a 
+href="manualli602.html" >front</a>] [<a 
+href="manualli597.html#manualli602.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli602.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>sci2for</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1324.html" >next</a>] [<a 
+href="manualli1322.html" >prev</a>] [<a 
+href="manualli1322.html#tailmanualli1322.html" >prev-tail</a>] [<a 
+href="#tailmanualli1323.html">tail</a>] [<a 
+href="manualli1316.html#manualli1323.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1324-7476000"></a>sci2for</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1324-7476001"></a><a 
+ id="sci2for"></a><span 
+class="cmtt-10x-x-109">sci2for </span>&#x2013;                                              scilab function to Fortran routine conversion<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1324-7477000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1490">
+&#x00A0;&#x00A0;txt=sci2for(fun,nam,vtps&#x00A0;[,lvtps])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1324-7478000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fun</span>: Scilab function
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nam</span>: character string, the name of generated subroutine
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">vtps</span>: list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">lvtps</span>: list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">txt</span>: string, text of the subroutine Fortran code</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1324-7479000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > The elements of the list <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vtps</span></span></span> give the type and dimensions of the input variables of the calling
+sequence and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lvtps</span></span></span> optionally gives the type and dimensions of the output variables. This last
+parameter is usefull if type and/or dimension inference cannot be able to determine the desired
+values. These lists are structured as described below:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1491">
+&#x00A0;&#x00A0;vtps(i)=list(typ,row_dim,col_dim)
+</div>
+<!--l. 46--><p class="nopar" >where:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">typ</span> </span>: is a character string giving the type of the variable:
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;0&#x201D;</span> </span>: constant,integer vector or matrix
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;1&#x201D;</span> </span>: constant,double precision vector or matrix
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;10&#x201D;</span> </span>: character string
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">row</span><span 
+class="cmbx-10x-x-109">_dim</span> </span>: character string (row dimension)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">col</span><span 
+class="cmbx-10x-x-109">_dim</span> </span>: character string (column dimension)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">txt</span> </span>: Fortran code Generated code may use routines of scilab libraries and some others whose
+     source code may be found in <span 
+class="cmmi-10x-x-109">&#x003C;</span>SCIDIR<span 
+class="cmmi-10x-x-109">&#x003E;</span>/util/sci2for.f</ul>
+</p>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1324-7480000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   This function is just a try. Only simple function may be translated. Many function calls have not
+yet Fortran equivalent, to add the translation of a new function call you may define a scilab
+function. whose name is f_<span 
+class="cmmi-10x-x-109">&#x003C;</span>name of function<span 
+class="cmmi-10x-x-109">&#x003E;</span>. see <span 
+class="cmmi-10x-x-109">&#x003C;</span>SCIDIR<span 
+class="cmmi-10x-x-109">&#x003E;</span>/macros/sci2for/f_*.sci files for
+examples. The following keywords:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1492">
+&#x00A0;&#x00A0;work,iwork,ierr
+&#x00A0;<br />&#x00A0;&#x00A0;iw*&#x00A0;&#x00A0;iiw*
+&#x00A0;<br />&#x00A0;&#x00A0;ilbN&#x00A0;&#x00A0;&#x00A0;(N&#x00A0;integer)
+</div>
+<!--l. 68--><p class="nopar" >may not appear in the function code.
+</p>
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1324-7481000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli352.html#function">function</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1324.html" >next</a>] [<a 
+href="manualli1322.html" >prev</a>] [<a 
+href="manualli1322.html#tailmanualli1322.html" >prev-tail</a>] [<a 
+href="manualli1323.html" >front</a>] [<a 
+href="manualli1316.html#manualli1323.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1323.html"></a>  </p> 
+</body></html> 

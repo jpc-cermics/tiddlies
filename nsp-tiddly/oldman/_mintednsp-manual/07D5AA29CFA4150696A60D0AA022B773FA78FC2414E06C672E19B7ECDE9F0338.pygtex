@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+x=[\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}
+\nspcomment{// set old_style off}
+f=get(\nspstring{"default_figure"})\nspoperator{;}\nspcomment{// get the handle of the model figure}
+a=get(\nspstring{"default_axes"})\nspoperator{;}\nspcomment{// get the handle of the model axes}
+\nspcomment{// setting its' properties}
+f.background=\nspnumber{4}\nspoperator{;}
+f.auto_resize=\nspstring{"off"}\nspoperator{;}
+f.figure_size=[\nspnumber{400}\nspoperator{,}\nspnumber{300}]\nspoperator{;}
+f.axes_size=[\nspnumber{600}\nspoperator{,}\nspnumber{400}]\nspoperator{;}
+f.figure_position=[\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1}]\nspoperator{;}
+a.x_location=\nspstring{"top"}\nspoperator{;}
+a.y_location=\nspstring{"left"}\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}\nspnumber{6} \nspkeyword{do}
+  xset(\nspstring{"window"},i)\nspoperator{;}\nspcomment{// create a figure with the identifier i}
+  plot2d(x,[sin(x)\nspoperator{,}cos(x)],[i\nspoperator{,}\nspoperator{-}i])
+  xclick()\nspoperator{;}
+  \nspkeyword{if} i\nspoperator{==}\nspnumber{4} \nspkeyword{then} sdf()\nspoperator{;}\nspkeyword{end}\nspoperator{;}\nspcomment{// return to the  default values of the figure's model}
+\nspkeyword{end}
+\end{Verbatim}

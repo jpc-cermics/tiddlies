@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//define some variables}
+\nspkeyword{function} z=\nspfunction{myplus}(x,y) z=x\nspoperator{+}y\nspoperator{,}\nspkeyword{endfunction}
+\nspkeyword{function} z=\nspfunction{yourplus}(x,y) x=x\nspoperator{-}y\nspoperator{,}\nspkeyword{endfunction}
+A=\nspnumber{1}\nspoperator{:}\nspnumber{10}\nspoperator{;}
+\nspcomment{//create the *.bin files in libdir}
+libdir=TMPDIR
+save(libdir\nspoperator{+}\nspstring{'/myplus.bin'},myplus)\nspoperator{;}
+save(libdir\nspoperator{+}\nspstring{'/yourplus.bin'},yourplus)\nspoperator{;}
+save(libdir\nspoperator{+}\nspstring{'/A.bin'},A)\nspoperator{;}
+\nspcomment{//create the name file}
+mputl([\nspstring{'myplus'}\nspoperator{;}\nspstring{'yourplus'}\nspoperator{;}\nspstring{'A'}],TMPDIR\nspoperator{+}\nspstring{'/names'})\nspoperator{;}
+\nspcomment{//build the library containing myplus and yourplus}
+xlib=lib(libdir\nspoperator{+}\nspstring{'/'})
+\nspcomment{//erase the variables}
+\nspkeyword{clear} myplus,yourplus,A
+\nspcomment{//Automatic loading and execution}
+myplus(\nspnumber{1},\nspnumber{2})
+A
+\end{Verbatim}

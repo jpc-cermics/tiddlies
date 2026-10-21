@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xgetech</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli536.html" >next</a>] [<a 
+href="manualli534.html" >prev</a>] [<a 
+href="manualli534.html#tailmanualli534.html" >prev-tail</a>] [<a 
+href="#tailmanualli535.html">tail</a>] [<a 
+href="manualli370.html#manualli535.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x536-3188000"></a>xgetech</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx536-3188001"></a><a 
+ id="xgetech"></a><span 
+class="cmtt-10x-x-109">xgetech </span>&#x2013;                                                                  get the current graphics scale<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x536-3189000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-662">
+&#x00A0;&#x00A0;[wrect,frect,logflag,arect]=xgetech()
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x536-3190000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">wrect,frect</span>: real vectors.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">logflag</span>: string of size 2 &#x201D;xy&#x201D;.</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x536-3191000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xgetech</span></span></span> returns the current graphics scale (of the current window). The rectangle
+[xmin,ymin,xmax,ymax] given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frect</span></span></span> is the size of the whole graphics window. The plotting will
+be made in the region of the current graphics window specified by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect=[x,y,w,h]</span></span></span>
+(upper-left point, width, height) describes a region inside the graphics window. The values in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect</span></span></span>
+are specified using proportion of the width and height of the graphics window:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect=[0</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span><span 
+class="cmtt-10x-x-109">&#x00A0;1]</span></span></span>
+means that the whole graphics window is used.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect=[0.5</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.5</span><span 
+class="cmtt-10x-x-109">&#x00A0;1]</span></span></span> means that the graphics
+region is the right half of the graphics window.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">logflag</span></span></span> is a string of size 2 &#x201D;xy&#x201D;, where x and y can
+be &#x201D;n&#x201D; or &#x201D;l&#x201D;. &#x201D;n&#x201D; stands for normal (linear) scale and &#x201D;l&#x201D; stands for logscale. x stands for the x-axis
+and y stands for the y-axis.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">arect=[x_left,</span><span 
+class="cmtt-10x-x-109">&#x00A0;x_right,y_up,y_down]</span></span></span> gives the frame size inside the
+subwindow. The graphic frame is specified (like <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wrect</span></span></span>) using proportion of the width or height of
+the current graphic subwindow. Default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1/8*[1,1,1,1]</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">arect</span></span></span> is not given, current value
+remains unchanged.
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x536-3192000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb419"><a 
+ id="x536-3192016r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;subwindow</span></span><br class="fancyvrb" /><a 
+ id="x536-3192018r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x536-3192020r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d()</span>
+<br class="fancyvrb" /><a 
+ id="x536-3192022r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;then</span><span 
+class="cmitt-10x-x-109">&#x00A0;xsetech</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;used</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;set</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;second</span><span 
+class="cmitt-10x-x-109">&#x00A0;sub</span><span 
+class="cmitt-10x-x-109">&#x00A0;window</span></span><br class="fancyvrb" /><a 
+ id="x536-3192024r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x536-3192026r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;grayplot()</span><br class="fancyvrb" /><a 
+ id="x536-3192028r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphic</span><span 
+class="cmitt-10x-x-109">&#x00A0;scales</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;subwindow</span></span><br class="fancyvrb" /><a 
+ id="x536-3192030r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x536-3192032r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[wrect,frect,logflag,arect]=xgetech()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x536-3192034r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphic</span><span 
+class="cmitt-10x-x-109">&#x00A0;scales</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;second</span><span 
+class="cmitt-10x-x-109">&#x00A0;subwindow</span></span>
+<br class="fancyvrb" /><a 
+ id="x536-3192036r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsetech([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x536-3192038r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[wrect,frect,logflag,arect]=xgetech()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x536-3192040r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x536-3192042r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xset(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;default&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x536-3193000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli559.html#xsetech">xsetech</a>
+</p>
+<!--l. 73--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x536-3194000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli536.html" >next</a>] [<a 
+href="manualli534.html" >prev</a>] [<a 
+href="manualli534.html#tailmanualli534.html" >prev-tail</a>] [<a 
+href="manualli535.html" >front</a>] [<a 
+href="manualli370.html#manualli535.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli535.html"></a>  </p> 
+</body></html> 

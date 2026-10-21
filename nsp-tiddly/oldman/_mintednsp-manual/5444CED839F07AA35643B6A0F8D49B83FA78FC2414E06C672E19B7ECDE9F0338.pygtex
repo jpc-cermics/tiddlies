@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Kalman filter}
+Sys=ssrand(\nspnumber{3},\nspnumber{2},\nspnumber{4})\nspoperator{;}Sys(\nspstring{'D'})=rand(\nspnumber{3},\nspnumber{2})\nspoperator{;}
+S=sysfact(Sys,lqr(Sys),\nspstring{'post'})\nspoperator{;}
+ww=minss(Sys\nspoperator{*}S)\nspoperator{;}
+ss2tf(gtild(ww)\nspoperator{*}ww)\nspoperator{,}Sys(\nspstring{'D'})\nspoperator{'}\nspoperator{*}Sys(\nspstring{'D'})
+\nspcomment{//Kernel}
+Sys=ssrand(\nspnumber{2},\nspnumber{3},\nspnumber{4})\nspoperator{;}
+[X,d,F,U,k,Z]=abinv(Sys)\nspoperator{;}
+ss2tf(Sys\nspoperator{*}Z)
+ss2tf(Sys\nspoperator{*}sysfact(Sys,F,\nspstring{'post'})\nspoperator{*}U)
+\end{Verbatim}

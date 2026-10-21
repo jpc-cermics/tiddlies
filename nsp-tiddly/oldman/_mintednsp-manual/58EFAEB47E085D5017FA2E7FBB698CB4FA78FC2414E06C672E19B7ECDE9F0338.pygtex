@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// Integration of the differential equation}
+\nspcomment{// dy/dt=y , y(0)=1, and finds the minimum time t such that y(t)=2}
+deff(\nspstring{"[ydot]=f(t,y)"},\nspstring{"ydot=y"})
+deff(\nspstring{"[z]=g(t,y)"},\nspstring{"z=y-2"})
+y0=\nspnumber{1}\nspoperator{;}ng=\nspnumber{1}\nspoperator{;}
+[y,rd]=ode(\nspstring{"roots"},y0,\nspnumber{0},\nspnumber{2},f,ng,g)
+deff(\nspstring{"[z]=g(t,y)"},\nspstring{"z=y-[2;2;33]"})
+[y,rd]=ode(\nspstring{"roots"},\nspnumber{1},\nspnumber{0},\nspnumber{2},f,\nspnumber{3},g)
+\end{Verbatim}

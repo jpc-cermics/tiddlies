@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// Gain:}
+Sys=ssrand(\nspnumber{0},\nspnumber{2},\nspnumber{5},list(\nspstring{'st'},\nspnumber{2},\nspnumber{3},\nspnumber{3}))\nspoperator{;}
+A=Sys(\nspstring{'A'})\nspoperator{;}B=Sys(\nspstring{'B'})\nspoperator{;}F=stabil(A,B)\nspoperator{;}
+spec(A)\nspoperator{,}\nspcomment{//2 controllable modes 2 unstable uncontrollable modes}
+\nspcomment{//and one stable uncontrollable mode}
+spec(A\nspoperator{+}B\nspoperator{*}F)\nspoperator{,}\nspcomment{//the two controllable modes are set to -1.}
+\nspcomment{// Compensator:}
+Sys=ssrand(\nspnumber{3},\nspnumber{2},\nspnumber{5},list(\nspstring{'st'},\nspnumber{2},\nspnumber{3},\nspnumber{3}))\nspoperator{;}\nspcomment{//3 outputs, 2 inputs, 5 states}
+\nspcomment{//2 controllables modes, 3 controllable or stabilizable modes.}
+K=stabil(Sys,\nspoperator{-}\nspnumber{2},\nspoperator{-}\nspnumber{3})\nspoperator{;}\nspcomment{//Compensator for Sys.}
+spec(Sys(\nspstring{'A'}))
+spec(h_cl(Sys,K))\nspoperator{,}\nspcomment{//K Stabilizes what can be stabilized.}
+\end{Verbatim}

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>diag</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli145.html" >next</a>] [<a 
+href="manualli143.html" >prev</a>] [<a 
+href="manualli143.html#tailmanualli143.html" >prev-tail</a>] [<a 
+href="#tailmanualli144.html">tail</a>] [<a 
+href="manualli104.html#manualli144.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x145-839000"></a>diag</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx145-839001"></a><a 
+ id="diag"></a><span 
+class="cmtt-10x-x-109">diag </span>&#x2013;                                                                    diagonal including or extracting<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x145-840000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-239">
+&#x00A0;&#x00A0;[y]=diag(vm,&#x00A0;[k])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x145-841000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">vm</span>: vector or matrix (full or sparse storage)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">k</span>: integer (default value 0)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: vector or matrix</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x145-842000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vm</span></span></span> a (row or column) n-vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">diag(vm)</span></span></span> returns a diagonal matrix with entries of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vm</span></span></span> along the
+main diagonal.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">diag(vm,k)</span></span></span> is a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(n+abs(k))x(n+abs(k))</span></span></span> matrix with the entries of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vm</span></span></span> along the kth
+diagonal. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k=0</span></span></span> is the main diagonal <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k$&#x003E;$0</span></span></span> is for upper diagonals and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k$&#x003C;$0</span></span></span> for lower diagonals. For a
+matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vm</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">diag(vm,k)</span></span></span> is the column vector made of entries of the kth diagonal of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vm</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">diag(vm)</span></span></span> is
+the main diagonal of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vm</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">diag(diag(x))</span></span></span> is a diagonal matrix. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vm</span></span></span> is a sparse matrix
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">diag(vm,k)</span></span></span> returns a sparse matrix. To construct a diagonal linear system, use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sysdiag</span></span></span>. Note
+that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eye(A).*A</span></span></span> returns a diagonal matrix made with the diagonal entries of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>. This
+is valid for any matrix (constant, polynomial, rational, state-space linear system,...).
+</p>
+<!--l. 52--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x145-843000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb105"><a 
+ id="x145-843009r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;diag([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x145-843011r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x145-843013r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;diag(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;main</span><span 
+class="cmitt-10x-x-109">&#x00A0;diagonal</span></span><br class="fancyvrb" /><a 
+ id="x145-843015r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;diag(A,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x145-843017r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;diag(sparse(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;sparse</span><span 
+class="cmitt-10x-x-109">&#x00A0;diagonal</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix</span></span><br class="fancyvrb" /><a 
+ id="x145-843019r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;form</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;tridiagonal</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;size</span><span 
+class="cmitt-10x-x-109">&#x00A0;2*m+1</span></span>
+<br class="fancyvrb" /><a 
+ id="x145-843021r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">diag(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">m</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">m)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">diag(ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">m,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">diag(ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">m,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x145-844000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli257.html#sysdiag">sysdiag</a>    <a 
+href="manualli238.html#sparse">sparse</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli145.html" >next</a>] [<a 
+href="manualli143.html" >prev</a>] [<a 
+href="manualli143.html#tailmanualli143.html" >prev-tail</a>] [<a 
+href="manualli144.html" >front</a>] [<a 
+href="manualli104.html#manualli144.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli144.html"></a>  </p> 
+</body></html> 

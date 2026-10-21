@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>atanh</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli120.html" >next</a>] [<a 
+href="manualli118.html" >prev</a>] [<a 
+href="manualli118.html#tailmanualli118.html" >prev-tail</a>] [<a 
+href="#tailmanualli119.html">tail</a>] [<a 
+href="manualli104.html#manualli119.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x120-678000"></a>atanh</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx120-678001"></a><a 
+ id="atanh"></a><span 
+class="cmtt-10x-x-109">atanh </span>&#x2013;                                                                         hyperbolic tangent inverse<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x120-679000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-200">
+&#x00A0;&#x00A0;t=atanh(x)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x120-680000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: real or complex vector/matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">t</span>: real or complex vector/matrix</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x120-681000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > The components of vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t</span></span></span> are the hyperbolic tangent inverse of the corresponding entries of
+vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. Definition domain is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[-1,1]</span></span></span> for the real function (see Remark).
+</p>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x120-682000"></a><span 
+class="cmbx-10x-x-109">Remark</span></span>
+   In Scilab (as in some others numerical software) when you try to evaluate an elementary
+mathematical function outside its definition domain in the real case, then the complex extension is
+used (with a complex result). The more famous example being the sqrt function (try <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sqrt(-1)</span></span></span> !).
+This approach have some drawbacks when you evaluate the function at a singular point which may
+led to different results when the point is considered as real or complex. For the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">atanh</span></span></span> this
+occurs for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span> because the at these points the imaginary part do not converge
+and so <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">atanh(1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;+Inf</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;i</span><span 
+class="cmtt-10x-x-109">&#x00A0;NaN</span></span></span> while <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">atanh(1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;+Inf</span></span></span> for the real case (as lim
+x-<span 
+class="cmmi-10x-x-109">&#x003E;</span>1- of atanh(x)). So when you evaluate this function on the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[1</span><span 
+class="cmtt-10x-x-109">&#x00A0;2]</span></span></span> then like <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2</span></span></span>
+is outside the definition domain, the complex extension is used for all the vector and
+you get <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">atanh(1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;+Inf</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;i</span><span 
+class="cmtt-10x-x-109">&#x00A0;NaN</span></span></span> while you get <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">atanh(1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;+Inf</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[1</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.5]</span></span></span> for
+instance.
+</p>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x120-683000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb83"><a 
+ id="x120-683013r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span></span><br class="fancyvrb" /><a 
+ id="x120-683015r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%i]</span><br class="fancyvrb" /><a 
+ id="x120-683017r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tanh(atanh(x))</span><br class="fancyvrb" /><a 
+ id="x120-683019r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span></span><br class="fancyvrb" /><a 
+ id="x120-683021r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%inf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%inf]</span>
+<br class="fancyvrb" /><a 
+ id="x120-683023r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ieee(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x120-683025r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atanh(tanh(x))</span><br class="fancyvrb" /><a 
+ id="x120-683027r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;Remark)</span></span><br class="fancyvrb" /><a 
+ id="x120-683029r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ieee(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x120-683031r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atanh([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x120-683033r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;atanh([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x120-684000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli260.html#tanh">tanh</a>    <a 
+href="manualli986.html#ieee">ieee</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli120.html" >next</a>] [<a 
+href="manualli118.html" >prev</a>] [<a 
+href="manualli118.html#tailmanualli118.html" >prev-tail</a>] [<a 
+href="manualli119.html" >front</a>] [<a 
+href="manualli104.html#manualli119.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli119.html"></a>  </p> 
+</body></html> 

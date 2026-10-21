@@ -1,0 +1,21 @@
+
+{% assign permanents = site.staff_members | where_exp: "item", "item.position contains 'Researcher'" %}
+
+<style>
+    .image-gallery-stm {overflow: auto; margin-left: -1%!important;}
+    .image-gallery-stm li {float: left; display: block; margin: 0 0 1% 1%; width: 15%;}
+    .image-gallery-stm li a {text-align: center; text-decoration: none!important; color: #777;}
+    .image-gallery-stm li a span {display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding: 3px 0;}
+    .image-gallery-stm li a img {width: 100%; display: block;}
+</style>
+
+<ul class="image-gallery-stm">
+  {% for person in permanents %}
+  {% assign image =  '/assets/staff_images/' | append: person.image |  relative_url %}
+  <li><a href="{{ person.homepage }}"><img src="{{ image }}"/></a><small><small><p>{{ person.sur }}<br>
+      {% if person.team == "OPTIM" %}<a href="{% link optimization.md %}">{{ person.team }}</a>,{% endif %}
+      {% if person.team == "PROBA" %}<a href="{% link applied-probability.md %}">{{ person.team }}</a>,{% endif %}
+      {% if person.team == "MAS" %}<a href="{% link mas.md %}">{{ person.team }}</a>,{% endif %}<br>
+      </p></small></small></li>
+  {% endfor %}
+</ul>

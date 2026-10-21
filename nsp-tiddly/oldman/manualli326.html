@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>scanf_conversion</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli327.html" >next</a>] [<a 
+href="manualli325.html" >prev</a>] [<a 
+href="manualli325.html#tailmanualli325.html" >prev-tail</a>] [<a 
+href="#tailmanualli326.html">tail</a>] [<a 
+href="manualli274.html#manualli326.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x327-1937000"></a>scanf_conversion</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx327-1937001"></a><a 
+ id="scanf_conversion"></a><span 
+class="cmtt-10x-x-109">scanf</span><span 
+class="cmtt-10x-x-109">_conversion </span>&#x2013;                                scanf, sscanf, fscanf conversion specifications<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x327-1938000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Each conversion specification in the format parameter contains the following elements:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">+</span> </span>The character % (percent sign)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">+</span> </span>The optional assignment suppression character *
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">+</span> </span>An optional numeric maximum field width
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">+</span> </span>A conversion code</ul>
+</p><!--l. 30--><p class="noindent" >The conversion specification has the following syntax: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[*][width][size]convcode</span></span></span>. The
+results from the conversion are placed in v_i arguments unless you specify assignment
+suppression with * (asterisk). Assignment suppression provides a way to describe an
+input field that is to be skipped. The input field is a string of nonwhite-space characters.
+It extends to the next inappropriate character or until the field width, if specified, is
+exhausted. The conversion code indicates how to interpret the input field. You should not
+specify the v_i parameter for a suppressed field. You can use the following conversion
+codes:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">%</span> </span>:Accepts a single % (percent sign) input at this point; no assignment is done.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">d, i</span> </span>:Accepts a decimal integer;
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">u</span> </span>:Accepts an unsigned decimal integer;
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">o</span> </span>:Accepts an octal integer;
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">x</span> </span>:Accepts a hexadecimal integer;
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">e,f,g</span> </span>:Accepts a floating-point number. The next field is converted accordingly and stored
+     through the corresponding parameter, which should be a pointer to a float. The input
+     format  for  floating-point  numbers  is  a  string  of  digits,  with  the  following  optional
+     characteristics:
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">+</span> </span>It can be a signed value.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">+</span> </span>It can be an exponential value, containing a decimal point followed by an exponent field,
+     which consists of an E or an e followed by an (optionally signed) integer.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">+</span> </span>It can be one of the special values INF, NaN,
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">s</span> </span>:Accepts a string of characters.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">c</span> </span>:character value is expected. The normal skip over white space is suppressed.</ul>
+</p>
+<!--l. 56--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x327-1939000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli327.html#scanf">scanf</a>    <a 
+href="manualli327.html#scanf">scanf</a>    <a 
+href="manualli285.html#fscanf">fscanf</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli327.html" >next</a>] [<a 
+href="manualli325.html" >prev</a>] [<a 
+href="manualli325.html#tailmanualli325.html" >prev-tail</a>] [<a 
+href="manualli326.html" >front</a>] [<a 
+href="manualli274.html#manualli326.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli326.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lqg2stan</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli53.html" >next</a>] [<a 
+href="manualli51.html" >prev</a>] [<a 
+href="manualli51.html#tailmanualli51.html" >prev-tail</a>] [<a 
+href="#tailmanualli52.html">tail</a>] [<a 
+href="manualli12.html#manualli52.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x53-295000"></a>lqg2stan</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx53-295001"></a><a 
+ id="lqg2stan"></a><span 
+class="cmtt-10x-x-109">lqg2stan </span>&#x2013;                                                                     LQG to standard problem<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x53-296000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-91">
+&#x00A0;&#x00A0;[P,r]=lqg2stan(P22,bigQ,bigR)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x53-297000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P22</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (nominal plant) in state-space form
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">bigQ</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Q,S;S&#x0027;,N]</span></span></span> (symmetric) weighting matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">bigR</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[R,T;T&#x0027;,V]</span></span></span> (symmetric) covariance matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>x<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2</span></span></span> row vector = (number of measurements, number of inputs) (dimension of the 2,2
+     part of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (augmented plant)</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x53-298000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lqg2stan</span></span></span> returns the augmented plant for linear LQG (H2) controller design.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P22=syslin(dom,A,B2,C2)</span></span></span>
+is the nominal plant; it can be in continuous time (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dom=&#x0027;c&#x0027;</span></span></span>) or discrete time (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dom=&#x0027;d&#x0027;</span></span></span>).
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-92">
+&#x00A0;&#x00A0;.
+&#x00A0;<br />&#x00A0;&#x00A0;x&#x00A0;=&#x00A0;Ax&#x00A0;+&#x00A0;w1&#x00A0;+&#x00A0;B2u
+&#x00A0;<br />&#x00A0;&#x00A0;y&#x00A0;=&#x00A0;C2x&#x00A0;+&#x00A0;w2
+</div>
+<!--l. 45--><p class="nopar" >for continuous time plant.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-93">
+&#x00A0;&#x00A0;x[n+1]=&#x00A0;Ax[n]&#x00A0;+&#x00A0;w1&#x00A0;+&#x00A0;B2u
+&#x00A0;<br />&#x00A0;&#x00A0;y&#x00A0;=&#x00A0;C2x&#x00A0;+&#x00A0;w2
+</div>
+<!--l. 50--><p class="nopar" >for discrete time plant. The (instantaneous) cost function is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[x&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u&#x0027;]</span><span 
+class="cmtt-10x-x-109">&#x00A0;bigQ</span><span 
+class="cmtt-10x-x-109">&#x00A0;[x;u]</span></span></span>. The covariance
+of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[w1;w2]</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E[w1;w2]</span><span 
+class="cmtt-10x-x-109">&#x00A0;[w1&#x0027;,w2&#x0027;]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;bigR</span></span></span> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[B1;D21]</span></span></span> is a factor of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bigQ</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[C1,D12]</span></span></span> is
+a factor of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bigR</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A,B2,C2,D22]</span></span></span> is a realization of P22, then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span> is a realization of
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A,[B1,B2],[C1,-C2],[0,D12;D21,D22]</span></span></span>. The (negative) feedback computed by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lqg</span></span></span> stabilizes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P22</span></span></span>,
+i.e. the poles of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cl=P22/.K</span></span></span> are stable.
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x53-299000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb40"><a 
+ id="x53-299011r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ny=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nu=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nx=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x53-299013r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;P22=ssrand(ny,nu,nx)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x53-299015r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;bigQ=rand(nx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">nu,nx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">nu)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">bigQ=bigQ</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">bigQ</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x53-299017r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;bigR=rand(nx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">ny,nx</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">ny)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">bigR=bigR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">bigR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x53-299019r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[P,r]=lqg2stan(P22,bigQ,bigR)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">K=lqg(P,r)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//K=LQG-controller</span></span>
+<br class="fancyvrb" /><a 
+ id="x53-299021r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(h_cl(P,r,K))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Closed</span><span 
+class="cmitt-10x-x-109">&#x00A0;loop</span><span 
+class="cmitt-10x-x-109">&#x00A0;should</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;stable</span></span><br class="fancyvrb" /><a 
+ id="x53-299023r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Same</span><span 
+class="cmitt-10x-x-109">&#x00A0;as</span><span 
+class="cmitt-10x-x-109">&#x00A0;Cl=P22/.K;</span><span 
+class="cmitt-10x-x-109">&#x00A0;spec(Cl(&#x0027;A&#x0027;))</span></span>
+<br class="fancyvrb" /><a 
+ id="x53-299025r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x53-299027r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lqg2stan(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),eye(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),eye(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span></div>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x53-300000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli53.html#lqg">lqg</a>    <a 
+href="manualli54.html#lqr">lqr</a>    <a 
+href="manualli51.html#lqe">lqe</a>    <a 
+href="manualli59.html#obscont">obscont</a>    <a 
+href="#h-inf">h_inf</a>    <a 
+href="manualli1090.html#augment">augment</a>    <a 
+href="manualli1102.html#fstabst">fstabst</a>    <a 
+href="manualli38.html#feedback">feedback</a>
+</p>
+<!--l. 80--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x53-301000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.D.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli53.html" >next</a>] [<a 
+href="manualli51.html" >prev</a>] [<a 
+href="manualli51.html#tailmanualli51.html" >prev-tail</a>] [<a 
+href="manualli52.html" >front</a>] [<a 
+href="manualli12.html#manualli52.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli52.html"></a>  </p> 
+</body></html> 

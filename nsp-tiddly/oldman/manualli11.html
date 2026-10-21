@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>reglin</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli12.html" >next</a>] [<a 
+href="manualli10.html" >prev</a>] [<a 
+href="manualli10.html#tailmanualli10.html" >prev-tail</a>] [<a 
+href="#tailmanualli11.html">tail</a>] [<a 
+href="manualli1.html#manualli11.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x12-49000"></a>reglin</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx12-49001"></a><a 
+ id="reglin"></a><span 
+class="cmtt-10x-x-109">reglin </span>&#x2013;                                                                                    Linear regression<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x12-50000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-18">
+&#x00A0;&#x00A0;[a,b,sig]=reglin(x,y)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 27--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x12-51000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 27--><p class="noindent" > solve the regression problem y=a*x+ b in the least square sense. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sig</span></span></span> is the standard
+deviation of the residual. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> are two matrices of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(p,n)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y(q,n)</span></span></span>, where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> is the
+number of samples. The estimator <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> is a matrix of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(q,p)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">b</span></span></span> is a vector of size
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(q,1)</span></span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-19">
+&#x00A0;&#x00A0;//&#x00A0;simulation&#x00A0;of&#x00A0;data&#x00A0;for&#x00A0;a(3,5)&#x00A0;and&#x00A0;b(3,1)
+&#x00A0;<br />&#x00A0;&#x00A0;x=rand(5,100);
+&#x00A0;<br />&#x00A0;&#x00A0;aa=testmatrix(&#x0027;magi&#x0027;,5);aa=aa(1:3,:);
+&#x00A0;<br />&#x00A0;&#x00A0;bb=[9;10;11]
+&#x00A0;<br />&#x00A0;&#x00A0;y=aa*x&#x00A0;+bb*ones(1,100)+&#x00A0;0.1*rand(3,100);
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;identification
+&#x00A0;<br />&#x00A0;&#x00A0;[a,b,sig]=reglin(x,y);
+&#x00A0;<br />&#x00A0;&#x00A0;maxi(abs(aa-a))
+&#x00A0;<br />&#x00A0;&#x00A0;maxi(abs(bb-b))
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;an&#x00A0;other&#x00A0;example:&#x00A0;fitting&#x00A0;a&#x00A0;polynom
+&#x00A0;<br />&#x00A0;&#x00A0;f=1:100;&#x00A0;x=[f.*f;&#x00A0;f];
+&#x00A0;<br />&#x00A0;&#x00A0;y=&#x00A0;[&#x00A0;2,3]*x+&#x00A0;10*ones(f)&#x00A0;+&#x00A0;0.1*rand(f);
+&#x00A0;<br />&#x00A0;&#x00A0;[a,b]=reglin(x,y)
+</div>
+<!--l. 48--><p class="nopar" >
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x12-52000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli651.html#pinv">pinv</a>    <a 
+href="manualli878.html#leastsq">leastsq</a>    <a 
+href="manualli656.html#qr">qr</a>
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli12.html" >next</a>] [<a 
+href="manualli10.html" >prev</a>] [<a 
+href="manualli10.html#tailmanualli10.html" >prev-tail</a>] [<a 
+href="manualli11.html" >front</a>] [<a 
+href="manualli1.html#manualli11.html" >up</a>] </p></div>
+<!--l. 3--><p class="indent" >   <a 
+ id="tailmanualli11.html"></a>   </p> 
+</body></html> 

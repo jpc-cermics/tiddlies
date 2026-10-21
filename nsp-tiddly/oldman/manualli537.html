@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xget</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli538.html" >next</a>] [<a 
+href="manualli536.html" >prev</a>] [<a 
+href="manualli536.html#tailmanualli536.html" >prev-tail</a>] [<a 
+href="#tailmanualli537.html">tail</a>] [<a 
+href="manualli370.html#manualli537.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x538-3202000"></a>xget</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx538-3202001"></a><a 
+ id="xget"></a><span 
+class="cmtt-10x-x-109">xget </span>&#x2013;                                                       get current values of the graphics context<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x538-3203000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-664">
+&#x00A0;&#x00A0;[x1]=xget(str,[flag])
+&#x00A0;<br />&#x00A0;&#x00A0;xget()
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x538-3204000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">str</span>: string.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: optional. Set to 1 gives a verbose mode.</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x538-3205000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > This function is used to get values from the graphics context on the topic specified by the string
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str</span></span></span>. When called with no argument, a choice menu is created showing the current values and
+changes can be performed through toggle buttons.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">number=xget(&#x201D;alufunction&#x201D;)</span> </span>: Get the logical function number used for drawing. See
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">str=xget(&#x201D;auto clear&#x201D;)</span> </span>: Get the auto clear status (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span>).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">color=xget(&#x201D;background&#x201D;)</span> </span>: Get the background color of the current graphics window.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">rect=xget(&#x201D;clipping&#x201D;)</span> </span>: Get the clipping zone as a rectangle rect=[x,y,w,h] (Upper-Left
+     point Width Height).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">c=xget(&#x201D;color&#x201D;)</span> </span>: Get the default color for filling, line or text drawing functions. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">c</span></span></span> is an
+     integer projected in the interval [0,whiteid]. 0 stands for black filling and whiteid for
+     white. The value of whiteid can be obtained with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xget(&#x0022;white&#x0022;)</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">cmap=xget(&#x201D;colormap&#x201D;)</span> </span>: Get the colormap used for the current graphics window as a
+     m x 3 RGB matrix.
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">dash=xget(&#x201D;dashes&#x201D;)</span> </span>:  Get  the  dash  style  dash=[dash_number]  where  dash_number
+     is  the  id  of  the  dash.  This  keyword  is  obsolete,  please  use  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xget(&#x0022;color&#x0022;)</span></span></span> or
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xget(&#x0022;line</span><span 
+class="cmtt-10x-x-109">&#x00A0;style&#x0022;)</span></span></span> instead.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">font=xget(&#x201D;font&#x201D;)</span> </span>: Get font=[fontid,fontsize], the default font and the default size for
+     fonts. size.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">fontsize=xget(&#x201D;font size&#x201D;)</span> </span>: Get the default size for fonts size.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">color=xget(&#x201D;foreground&#x201D;)</span> </span>: Get the foreground color of the current graphics window.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">str=xget(&#x201D;fpf&#x201D;)</span> </span>: Get the floating point format for number display in contour functions.
+     Note that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;&#x0022;</span></span></span> when default format is used.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">color=xget(&#x201D;hidden3d&#x201D;)</span> </span>: Get the color number for hidden faces in plot3d.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">pat=xget(&#x201D;lastpattern&#x201D;)</span> </span>: Get the id of the last available pattern or color, with the current
+     colormap of the current window. In fact <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pat+1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pat+2</span></span></span> are also available and stand
+     respectively for black and white pattern.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">type=xget(&#x201D;line mode&#x201D;)</span> </span>:  Get  the  line  drawing  mode.  type=1  is  absolute  mode  and
+     type=0 is relative mode. (Warning: the mode type=0 is has bugs)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">xget(&#x201D;line style&#x201D;)</span> </span>: Get the default line style (1: solid, <span 
+class="cmmi-10x-x-109">&#x003E;</span>1 for dashed lines).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">mark=xget(&#x201D;mark&#x201D;)</span> </span>:   Get   the   default   mark   id   and   the   default   marks   size.
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark=[markid,marksize]</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">marksize=xget(&#x201D;mark size&#x201D;)</span> </span>: Get the default marks size.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">pat=xget(&#x201D;pattern&#x201D;)</span> </span>: Get the current pattern or the current color. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pat</span></span></span> is an integer in
+     the range <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[1,last]</span></span></span>. When one uses black and white, 0 is used for black filling and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">last</span></span></span>
+     for white. The value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">last</span></span></span> can be obtained with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xget(&#x0022;lastpattern&#x0022;)</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">value=xget(&#x201D;thickness&#x201D;)</span> </span>: Get the thickness of lines in pixel (0 and 1 have the same
+     meaning: 1 pixel thick).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">flag=xget(&#x201D;use color&#x201D;)</span> </span>: Get the flag 0 (use black and white) or 1 (use colors). See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset</span></span></span>.
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">[x,y</span> </span>=xget(&#x201D;viewport&#x201D;)]: Get the current postion of the visible part of graphics in the panner.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">dim=xget(&#x201D;wdim&#x201D;)</span> </span>:  Get  the  width  and  the  height  of  the  current  graphics  window
+     dim=[width,height].
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">win=xget(&#x201D;window&#x201D;)</span> </span>: Get the current window number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">win</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">pos=xget(&#x201D;wpos&#x201D;);</span> </span>: Get the position of the upper left point of the graphics window
+     pos=[x,y].</ul>
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x538-3206000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli561.html#xset">xset</a>    <a 
+href="manualli388.html#colormap">colormap</a>
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x538-3207000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli538.html" >next</a>] [<a 
+href="manualli536.html" >prev</a>] [<a 
+href="manualli536.html#tailmanualli536.html" >prev-tail</a>] [<a 
+href="manualli537.html" >front</a>] [<a 
+href="manualli370.html#manualli537.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli537.html"></a>  </p> 
+</body></html> 

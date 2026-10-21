@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// this is an artifical example where the datas xd and yd}
+\nspcomment{// are build from a perturbed sin function}
+a=\nspnumber{0}\nspoperator{;}b=\nspnumber{2}\nspoperator{*}%pi\nspoperator{;}
+sigma=\nspnumber{0.1}\nspoperator{;}\nspcomment{// standard deviation of the gaussian noise}
+m=\nspnumber{200}\nspoperator{;}\nspcomment{// number of experimental points}
+xd=linspace(a,b,m)\nspoperator{'}\nspoperator{;}
+yd=sin(xd)\nspoperator{+}grand(xd,\nspstring{"nor"},\nspnumber{0},sigma)\nspoperator{;}
+n=\nspnumber{6}\nspoperator{;}\nspcomment{// number of breakpoints}
+x=linspace(a,b,n)\nspoperator{'}\nspoperator{;}
+\nspcomment{// compute the spline}
+[y,d]=lsq_splin(xd,yd,x)\nspoperator{;}\nspcomment{// use equal weights}
+\nspcomment{// plotting}
+ye=sin(xd)\nspoperator{;}
+ys=interp(xd,x,y,d)\nspoperator{;}
+xbasc()
+plot2d(xd,[ye\nspoperator{,}yd\nspoperator{,}ys],style = [\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{3}], ...
+       leg = \nspstring{"exact function@experimental measures (gaussian perturbation)@fitted spline"})
+xtitle(\nspstring{"a least square spline"})
+xselect()
+\end{Verbatim}

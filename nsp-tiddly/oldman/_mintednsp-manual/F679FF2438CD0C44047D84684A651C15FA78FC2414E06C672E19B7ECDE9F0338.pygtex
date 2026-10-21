@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=rand(\nspnumber{5},\nspnumber{2})\nspoperator{*}rand(\nspnumber{2},\nspnumber{4})\nspoperator{;}\nspcomment{// 4 col. vectors, 2 independent.}
+[X,dim]=rowcomp(A)\nspoperator{;}Xp=X\nspoperator{'}\nspoperator{;}
+svd([Xp(\nspoperator{:},\nspnumber{1}\nspoperator{:}dim)\nspoperator{,}A])\nspoperator{,}\nspcomment{//span(A) = span(Xp(:,1:dim)}
+x=A\nspoperator{*}rand(\nspnumber{4},\nspnumber{1})\nspoperator{;}\nspcomment{//x belongs to span(A)}
+y=X\nspoperator{*}x
+norm(y(dim\nspoperator{+}\nspnumber{1}\nspoperator{:}$))\nspoperator{/}norm(y(\nspnumber{1}\nspoperator{:}dim))\nspoperator{,}\nspcomment{// small}
+\end{Verbatim}

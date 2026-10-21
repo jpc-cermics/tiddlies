@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>external</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli967.html" >next</a>] [<a 
+href="manualli965.html" >prev</a>] [<a 
+href="manualli965.html#tailmanualli965.html" >prev-tail</a>] [<a 
+href="#tailmanualli966.html">tail</a>] [<a 
+href="manualli931.html#manualli966.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x967-5549000"></a>external</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx967-5549001"></a><a 
+ id="external"></a><span 
+class="cmtt-10x-x-109">external </span>&#x2013;                                               Scilab Object, external function or routine<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x967-5550000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > External function or routine for use with specific commands. An &#x201D;external&#x201D; is a function or
+routine which is used as an argument of some high-level primitives (such as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">schur</span></span></span>...). The calling sequence of the external (function or routine) is imposed by the
+high-level primitive which sets the arguments of the external. For example the external
+function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costfunc</span></span></span> is an argument of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span> primitive. Its calling sequence must be:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[f,g,ind]=costfunc(x,ind)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span> (the high-level optimization primitive) is invoked as
+follows:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1079">
+&#x00A0;&#x00A0;optim(costfunc,...)
+</div>
+<!--l. 32--><p class="nopar" >Here <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costfunc</span></span></span> (the cost function to be minimized by the primitive <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span>) evaluates <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f=f(x)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g=</span></span></span>
+gradient of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind</span></span></span> is an integer. Its use is precised in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span> help). If other values are needed
+by the external function these variables can be defined in its environment. Also, they can be put in
+a list. For example,the external function
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1080">
+&#x00A0;&#x00A0;[f,g,ind]=costfunc(x,ind,a,b,c)
+</div>
+<!--l. 40--><p class="nopar" >is valid for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span> if the external is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list(costfunc,a,b,c)</span></span></span> and the call to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span> is
+then:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1081">
+&#x00A0;&#x00A0;optim(list(costfunc,a1,b1,c1),....
+</div>
+<!--l. 45--><p class="nopar" >An external can also be a Fortran or C routine: this is convenient to speed up the computations.
+The name of the routine is given to the high-level primitive as a character string. The calling
+sequence of the routine is also imposed. Examples are given in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">routines/default</span></span></span> directory (see
+the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">README</span></span></span> file). External Fortran or C routines can also be dynamically linked (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span>)
+</p>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x967-5551000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli890.html#ode">ode</a>    <a 
+href="manualli891.html#optim">optim</a>    <a 
+href="manualli871.html#impl">impl</a>    <a 
+href="manualli866.html#dassl">dassl</a>    <a 
+href="manualli875.html#intg">intg</a>    <a 
+href="manualli666.html#schur">schur</a>    <a 
+href="manualli630.html#gschur">gschur</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli967.html" >next</a>] [<a 
+href="manualli965.html" >prev</a>] [<a 
+href="manualli965.html#tailmanualli965.html" >prev-tail</a>] [<a 
+href="manualli966.html" >front</a>] [<a 
+href="manualli931.html#manualli966.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli966.html"></a>  </p> 
+</body></html> 

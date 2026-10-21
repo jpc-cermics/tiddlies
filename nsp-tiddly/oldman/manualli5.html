@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>armax</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli6.html" >next</a>] [<a 
+href="manualli4.html" >prev</a>] [<a 
+href="manualli4.html#tailmanualli4.html" >prev-tail</a>] [<a 
+href="#tailmanualli5.html">tail</a>] [<a 
+href="manualli1.html#manualli5.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x6-21000"></a>armax</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx6-21001"></a><a 
+ id="armax"></a><span 
+class="cmtt-10x-x-109">armax </span>&#x2013;                                                                                  armax identification<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x6-22000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-9">
+&#x00A0;&#x00A0;[arc,la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x6-23000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: output process y(ny,n); ( ny: dimension of y , n: sample size)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">u</span>: input process u(nu,n); ( nu: dimension of u , n: sample size)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">r and s</span>: auto-regression orders r <span 
+class="cmmi-10x-x-109">&#x003E;</span>=0 et s <span 
+class="cmmi-10x-x-109">&#x003E;</span>=-1
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">b0f</span>: optional parameter. Its default value is 0 and it means that the coefficient b0 must
+     be identified. if bof=1 the b0 is supposed to be zero and is not identified
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">prf</span>: optional parameter for display control. If prf =1, the default value, a display of the
+     identified Arma is given.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">arc</span>: a Scilab arma object (see armac)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">la</span>: is the list(a,a+eta,a-eta) ( la = a in dimension 1) ; where eta is the estimated
+     standard deviation. , a=[Id,a1,a2,...,ar] where each ai is a matrix of size (ny,ny)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">lb</span>:  is  the  list(b,b+etb,b-etb)  (lb  =b  in  dimension  1)  ;  where  etb  is  the  estimated
+     standard deviation. b=[b0,.....,b_s] where each bi is a matrix of size (nu,nu)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sig</span>: is the estimated standard deviation of the noise and resid=[ sig*e(t0),....] (</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x6-24000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > armax is used to identify the coefficients of a n-dimensional ARX process
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-10">
+&#x00A0;&#x00A0;A(z^-1)y=&#x00A0;B(z^-1)u&#x00A0;+&#x00A0;sig*e(t)
+</div>
+<!--l. 46--><p class="nopar" >where e(t) is a n-dimensional white noise with variance I. sig an nxn matrix and A(z) and
+B(z):
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-11">
+&#x00A0;&#x00A0;A(z)&#x00A0;=&#x00A0;1+a1*z+...+a_r*z^r;&#x00A0;(&#x00A0;r=0&#x00A0;=$&#x003E;$&#x00A0;A(z)=1)
+&#x00A0;<br />&#x00A0;&#x00A0;B(z)&#x00A0;=&#x00A0;b0+b1*z+...+b_s&#x00A0;z^s&#x00A0;(&#x00A0;s=-1&#x00A0;=$&#x003E;$&#x00A0;B(z)=0)
+</div>
+<!--l. 52--><p class="nopar" >for the method see Eykhoff in trends and progress in system identification, page 96. with
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)]</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">coef=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[-a1,..,-ar,b0,...,b_s]</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> we can write
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y(t)=</span><span 
+class="cmtt-10x-x-109">&#x00A0;coef*</span><span 
+class="cmtt-10x-x-109">&#x00A0;z(t)</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;sig*e(t)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> and the algorithm minimises <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sum_{t=1}^N</span><span 
+class="cmtt-10x-x-109">&#x00A0;(</span><span 
+class="cmtt-10x-x-109">&#x00A0;[y(t)-</span><span 
+class="cmtt-10x-x-109">&#x00A0;coef&#x0027;z(t)]^2)</span></span></span>
+where t0=maxi(maxi(r,s)+1,1))).
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x6-25000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb3"><a 
+ id="x6-25026r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//-Ex1-</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma</span><span 
+class="cmitt-10x-x-109">&#x00A0;model:</span><span 
+class="cmitt-10x-x-109">&#x00A0;y(t)</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;0.2*u(t-1)+0.01*e(t-1)</span></span><br class="fancyvrb" /><a 
+ id="x6-25028r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ny=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">nu=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">sig=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.01</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25030r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Arma=armac(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],ny,nu,sig)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//defining</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;above</span><span 
+class="cmitt-10x-x-109">&#x00A0;arma</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25032r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1000</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//a</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;input</span><span 
+class="cmitt-10x-x-109">&#x00A0;sequence</span><span 
+class="cmitt-10x-x-109">&#x00A0;u</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25034r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=arsimul(Arma,u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//simulation</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;output</span><span 
+class="cmitt-10x-x-109">&#x00A0;sequence</span><span 
+class="cmitt-10x-x-109">&#x00A0;associated</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;u.</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25036r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Armaest=armax(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,y,u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Identified</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span><span 
+class="cmitt-10x-x-109">&#x00A0;u</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;y.</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25038r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Acoeff=Armaest(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Coefficients</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;polynomial</span><span 
+class="cmitt-10x-x-109">&#x00A0;A(x)</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25040r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Bcoeff=Armaest(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Coefficients</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;polynomial</span><span 
+class="cmitt-10x-x-109">&#x00A0;B(x)</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25042r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Dcoeff=Armaest(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Coefficients</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;polynomial</span><span 
+class="cmitt-10x-x-109">&#x00A0;D(x)</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25044r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Ax,Bx,Dx]=arma2p(Armaest)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Results</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;polynomial</span><span 
+class="cmitt-10x-x-109">&#x00A0;form.</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25046r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//-Ex2-</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma1:</span><span 
+class="cmitt-10x-x-109">&#x00A0;y_t</span><span 
+class="cmitt-10x-x-109">&#x00A0;-0.8*y_{t-1}</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;0.2*y_{t-2}</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;sig*e(t)</span></span><br class="fancyvrb" /><a 
+ id="x6-25048r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ny=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">nu=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">sig=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.001</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25050r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;First</span><span 
+class="cmitt-10x-x-109">&#x00A0;step:</span><span 
+class="cmitt-10x-x-109">&#x00A0;simulation</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma1</span><span 
+class="cmitt-10x-x-109">&#x00A0;model,</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;define</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25052r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma2:</span><span 
+class="cmitt-10x-x-109">&#x00A0;y_t</span><span 
+class="cmitt-10x-x-109">&#x00A0;-0.8*y_{t-1}</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;0.2*y_{t-2}</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;sig*u(t)</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25054r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;normal</span><span 
+class="cmitt-10x-x-109">&#x00A0;deviates</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;u(t).</span></span><br class="fancyvrb" /><a 
+ id="x6-25056r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Arma2=armac([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span 
+class="cmtt-10x-x-109">],sig,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,ny,nu,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25058r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Definition</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma2</span><span 
+class="cmitt-10x-x-109">&#x00A0;arma</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span><span 
+class="cmitt-10x-x-109">&#x00A0;(a</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;B=sig</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;without</span><span 
+class="cmitt-10x-x-109">&#x00A0;noise!)</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25060r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10000</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;An</span><span 
+class="cmitt-10x-x-109">&#x00A0;input</span><span 
+class="cmitt-10x-x-109">&#x00A0;sequence</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma2</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25062r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=arsimul(Arma2,u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;output</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma2</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;input</span><span 
+class="cmitt-10x-x-109">&#x00A0;u</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25064r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;can</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;seen</span><span 
+class="cmitt-10x-x-109">&#x00A0;as</span><span 
+class="cmitt-10x-x-109">&#x00A0;output</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma1.</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25066r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Second</span><span 
+class="cmitt-10x-x-109">&#x00A0;step:</span><span 
+class="cmitt-10x-x-109">&#x00A0;identification.</span><span 
+class="cmitt-10x-x-109">&#x00A0;We</span><span 
+class="cmitt-10x-x-109">&#x00A0;look</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;Arma</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span></span>
+<br class="fancyvrb" /><a 
+ id="x6-25068r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;y(t)</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;a1*y(t-1)</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;a2</span><span 
+class="cmitt-10x-x-109">&#x00A0;*y(t-2)</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;sig*e(t)</span></span><br class="fancyvrb" /><a 
+ id="x6-25070r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Arma1est=armax(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,y,[])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x6-25072r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[A,B,D]=arma2p(Arma1est)</span></div>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x6-26000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli45.html#imrep2ss">imrep2ss</a>    <a 
+href="#time-id">time_id</a>    <a 
+href="manualli16.html#arl2">arl2</a>    <a 
+href="#armax">armax</a>    <a 
+href="manualli40.html#frep2tf">frep2tf</a>
+</p>
+<!--l. 97--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x6-27000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J-Ph. Chancelier.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli6.html" >next</a>] [<a 
+href="manualli4.html" >prev</a>] [<a 
+href="manualli4.html#tailmanualli4.html" >prev-tail</a>] [<a 
+href="manualli5.html" >front</a>] [<a 
+href="manualli1.html#manualli5.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli5.html"></a>   </p> 
+</body></html> 

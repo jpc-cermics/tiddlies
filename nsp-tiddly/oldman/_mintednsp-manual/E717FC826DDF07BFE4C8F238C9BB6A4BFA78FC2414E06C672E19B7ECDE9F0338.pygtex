@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=diag([\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}])\nspoperator{;}B=[\nspnumber{1}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}C=[\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}]\nspoperator{;}
+sys=syslin(\nspstring{'c'},A,B,C)\nspoperator{;}
+sys(\nspstring{"A"})
+sys(\nspstring{"C"})
+[A1,B1,C1,D1]=abcd(sys)\nspoperator{;}
+A1
+systf=ss2tf(sys)\nspoperator{;}
+[a,b,c,d]=abcd(systf)
+spec(a)
+c\nspoperator{*}b\nspoperator{-}C\nspoperator{*}B
+c\nspoperator{*}a\nspoperator{*}b\nspoperator{-}C\nspoperator{*}A\nspoperator{*}B
+\end{Verbatim}

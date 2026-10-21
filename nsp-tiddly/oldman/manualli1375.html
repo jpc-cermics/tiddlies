@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>man</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1376.html" >next</a>] [<a 
+href="manualli1374.html" >prev</a>] [<a 
+href="manualli1374.html#tailmanualli1374.html" >prev-tail</a>] [<a 
+href="#tailmanualli1375.html">tail</a>] [<a 
+href="manualli1327.html#manualli1375.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1376-7787000"></a>man</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1376-7787001"></a><a 
+ id="man"></a><span 
+class="cmtt-10x-x-109">man </span>&#x2013;                                                          on line help XML file description format<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1376-7788000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > The on line help source files are written in XML. Source files (with extension .xml) can be
+found in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$SCIDIR$&#x003E;$/man/$&#x003C;$language$&#x003E;$/*</span></span></span> directories. The file name is usually
+associated to a keyword (corresponding to a function name most of the cases) it describes.
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1376-7789000"></a><span 
+class="cmbx-10x-x-109">A few words about XML</span></span>
+   An XML file resembles to an HTML file but with both a more rigid and free syntax. Free
+because you may build your own tags: the set of tags together with its rules must be described
+somewhere, generally in another file (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$SCIDIR$&#x003E;$/man/manrev.dtd</span></span></span> for scilab), and rigid because,
+once the tags and rules are defined (which are called the Definition Type Document: DTD) , you
+must respect its (in particular to every open tags <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$MY_TAG$&#x003E;$</span></span></span> must correspond a closed
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/MY_TAG$&#x003E;$</span></span></span>). The DTD manrev.dtd is written in SGML and precises the exact syntax
+required by a scilab XML help page. So if you know this language you may red this file.
+The following annotated example (see the next section) shows you some possibilities
+offered by this DTD and may be enough to write simple help pages. Once an XML page is
+written and conforms to the DTD, it may be transformed in HTML to be red by your
+favorite browser or by the tcltk scilab browser (see section browser choice in this page).
+The XML -<span 
+class="cmmi-10x-x-109">&#x003E; </span>HTML translation is controled by a set of rules written in the (XML) file
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$SCIDIR$&#x003E;$/man/language/html.xsl</span></span></span>. Those rules are currently more or less restricted to
+fit the tcltk scilab browser features (which may display correctly only basic HTML): if
+you use a real HTML browser and want a better appearance you have to modify this
+file.
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1376-7790000"></a><span 
+class="cmbx-10x-x-109">How to write a simple xml scilab help page: the lazzy way</span></span>
+                                                                                    
+
+                                                                                    
+   If one want to write the xml file associated to a new scilab function he or she may use the Scilab
+function <a 
+href="#help-skeleton">help_skeleton</a>    to produce the skeleton of the xml file. In most cases the user will not be
+required to know xml syntax.
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1376-7791000"></a><span 
+class="cmbx-10x-x-109">How to write a simple xml scilab help page: an example</span></span>
+   Here is a simple annotated XML scilab help page which describes an hypothetic
+foo scilab function. In the following, the XML file is displayed in a <span 
+class="cmtt-10x-x-109">type writer font</span>
+and cut-out in several parts, each part being preceded by some associated explanations.
+The entire XML file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foo.xml</span></span></span> is in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$SCIDIR$&#x003E;$/man/eng/utility</span></span></span> directory and
+the result may be displayed by clicking on <a 
+href="manualli1350.html#foo">foo</a>    . (you may found others examples in
+the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$SCIDIR$&#x003E;$/examples/man-examples-xml</span></span></span> directory). note that some tag pairs
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$TAG$&#x003E;$</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/TAG$&#x003E;$</span></span></span> have been renamed here <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$ATAG$&#x003E;$</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/ATAG$&#x003E;$</span></span></span>. This is
+because some scilab scripts which do some work on or from the xml files don&apos;t verify if a
+tag is inside a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">VERBATIM</span></span></span> entry. The 3 first lines of the file are mandatory, the second
+precises the path to the DTD file and the third, formed by the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$MAN$&#x003E;$</span></span></span> tag, begin the
+hierarchical description (the file must finish with the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/MAN$&#x003E;$</span></span></span> tag). The 4 followings
+entries: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LANGUAGE</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">TITLE</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">TYPE</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">DATE</span></span></span>, are also mandatory (in this order) the text
+corresponding to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$TYPE$&#x003E;$</span></span></span> being generally &apos;Scilab function&apos; (most of the cases) but may be
+simply &apos;Scilab keyword&apos; or &apos;Scilab data type&apos;, ..., depending of what explains the help
+page.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1570">
+&#x00A0;&#x00A0;$&#x003C;$?xml&#x00A0;version=&#x0022;1.0&#x0022;&#x00A0;encoding=&#x0022;ISO-8859-1&#x0022;&#x00A0;standalone=&#x0022;no&#x0022;?$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$!DOCTYPE&#x00A0;MAN&#x00A0;SYSTEM&#x00A0;&#x0022;$&#x003C;$SCIDIR$&#x003E;$/man/manrev.dtd&#x0022;$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$MAN$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$LANGUAGE$&#x003E;$eng$&#x003C;$/LANGUAGE$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$TITLE$&#x003E;$foo$&#x003C;$/TITLE$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$TYPE$&#x003E;$Scilab&#x00A0;function$&#x003C;$/TYPE$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$DATE$&#x003E;$Jan&#x00A0;2003$&#x003C;$/DATE$&#x003E;$
+</div>
+<!--l. 81--><p class="nopar" >The first of these 2 following entries (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SHORT_DESCRIPTION</span></span></span>) is mandatory and important since the
+words of the short description text, are used by the <a 
+href="manualli1332.html#apropos">apropos</a>    command to search help pages from a
+keyword: the short description is used to build the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">whatis.html</span></span></span> file corresponding to your toolbox
+and the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">apropos</span><span 
+class="cmtt-10x-x-109">&#x00A0;keyword</span></span></span> command looks in all the whatis files and then proposes the links
+to every page containing the word <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">keyword</span></span></span> in its short description (in fact the actual
+associated tags are <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$SHORT_DESCRIPTION$&#x003E;$</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/SHORT_DESCRIPTION$&#x003E;$</span></span></span> and
+not <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$ASHORT_DESCRIPTION$&#x003E;$</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/ASHORT_DESCRIPTION$&#x003E;$</span></span></span>). The next entry
+(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">CALLING_SEQUENCE</span></span></span>) must be used if you describe a function (but is not strictly mandatory). If
+your function have several calling sequences use several <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">CALLING_SEQUENCE_ITEM</span></span></span> entries.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1571">
+&#x00A0;&#x00A0;$&#x003C;$ASHORT_DESCRIPTION&#x00A0;name=&#x0022;foo&#x0022;$&#x003E;$foo&#x00A0;short&#x00A0;description$&#x003C;$/ASHORT_DESCRIPTION$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$CALLING_SEQUENCE$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$CALLING_SEQUENCE_ITEM$&#x003E;$[y]&#x00A0;=&#x00A0;foo(x)$&#x003C;$/CALLING_SEQUENCE_ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/CALLING_SEQUENCE$&#x003E;$
+</div>
+<!--l. 99--><p class="nopar" >The following entry (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PARAM</span></span></span>) is not strictly mandatory but is the good one to describe each
+parameters (input and output) in case of a function.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1572">
+&#x00A0;&#x00A0;$&#x003C;$PARAM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$PARAM_INDENT$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$PARAM_ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$PARAM_NAME$&#x003E;$x$&#x003C;$/PARAM_NAME$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$PARAM_DESCRIPTION$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$SP$&#x003E;$:&#x00A0;what&#x00A0;may&#x00A0;be&#x00A0;x$&#x003C;$/SP$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/PARAM_DESCRIPTION$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/PARAM_ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$PARAM_ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$PARAM_NAME$&#x003E;$y$&#x003C;$/PARAM_NAME$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$PARAM_DESCRIPTION$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$SP$&#x003E;$:&#x00A0;what&#x00A0;may&#x00A0;be&#x00A0;y$&#x003C;$/SP$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/PARAM_DESCRIPTION$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/PARAM_ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/PARAM_INDENT$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/PARAM$&#x003E;$
+</div>
+<!--l. 119--><p class="nopar" >The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">DESCRIPTION</span></span></span> entry is perhaps the most significant one (but not strictly mandatory) and may
+be more sophisticated than in this example (for instance you may have <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">DESCRIPTION_ITEM</span></span></span>
+sub-entries). Here you see how to write several paragraphes (each one enclosed between the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$P$&#x003E;$</span></span></span>
+and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/P$&#x003E;$</span></span></span> tags), how to emphasis a variable or a function name (by enclosing it between the
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$VERB$&#x003E;$</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/VERB$&#x003E;$</span></span></span> tags), how to emphasis a part of text (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$EM$&#x003E;$</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$BD$&#x003E;$</span></span></span> and
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$TT$&#x003E;$</span></span></span> to put it in a type writer font)), and finally, how to put a link onto another help page (in
+fact the actual associated tags are <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$LINK$&#x003E;$</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/LINK$&#x003E;$</span></span></span> and not <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$ALINK$&#x003E;$</span></span></span> and
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/ALINK$&#x003E;$</span></span></span>).
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1573">
+&#x00A0;&#x00A0;$&#x003C;$DESCRIPTION$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$P$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;A&#x00A0;first&#x00A0;paragraph&#x00A0;which&#x00A0;explains&#x00A0;what&#x00A0;computes&#x00A0;the&#x00A0;foo&#x00A0;function.
+&#x00A0;<br />&#x00A0;&#x00A0;If&#x00A0;you&#x00A0;want&#x00A0;to&#x00A0;emphasis&#x00A0;a&#x00A0;parameter&#x00A0;name&#x00A0;then&#x00A0;you&#x00A0;use&#x00A0;the&#x00A0;following
+&#x00A0;<br />&#x00A0;&#x00A0;tag&#x00A0;$&#x003C;$VERB$&#x003E;$x$&#x003C;$/VERB$&#x003E;$,&#x00A0;if&#x00A0;you&#x00A0;want&#x00A0;to&#x00A0;emphasis&#x00A0;a&#x00A0;part&#x00A0;of&#x00A0;text
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$EM$&#x003E;$inclose&#x00A0;it&#x00A0;inside&#x00A0;theses&#x00A0;tags$&#x003C;$/EM$&#x003E;$&#x00A0;and&#x00A0;use&#x00A0;theses&#x00A0;ones
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$BD$&#x003E;$to&#x00A0;have&#x00A0;a&#x00A0;bold&#x00A0;font$&#x003C;$/BD$&#x003E;$&#x00A0;and&#x00A0;finally&#x00A0;$&#x003C;$TT$&#x003E;$for&#x00A0;a&#x00A0;type&#x00A0;writer&#x00A0;style$&#x003C;$/TT$&#x003E;$.
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/P$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$P$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;A&#x00A0;second&#x00A0;paragraph...&#x00A0;Here&#x00A0;is&#x00A0;an&#x00A0;example&#x00A0;of&#x00A0;a&#x00A0;link&#x00A0;to&#x00A0;another&#x00A0;page:
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$ALINK$&#x003E;$man$&#x003C;$/ALINK$&#x003E;$.
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/P$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/DESCRIPTION$&#x003E;$
+</div>
+<!--l. 145--><p class="nopar" >Here is how to write your own entry, for instance to describe some outside remarks and/or notes
+about your wonderful function.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1574">
+&#x00A0;&#x00A0;$&#x003C;$SECTION&#x00A0;label=&#x0027;Notes&#x0027;$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$P$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;Here&#x00A0;is&#x00A0;a&#x00A0;list&#x00A0;of&#x00A0;notes:
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/P$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$ITEM&#x00A0;label=&#x0027;first&#x0027;$&#x003E;$$&#x003C;$SP$&#x003E;$blablabla...$&#x003C;$/SP$&#x003E;$$&#x003C;$/ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$ITEM&#x00A0;label=&#x0027;second&#x0027;$&#x003E;$$&#x003C;$SP$&#x003E;$toto&#x00A0;is&#x00A0;the&#x00A0;french&#x00A0;foo...$&#x003C;$/SP$&#x003E;$$&#x003C;$/ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/SECTION$&#x003E;$
+</div>
+<!--l. 156--><p class="nopar" >An important entry is the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">EXAMPLE</span></span></span> one which is reserved to show scilab uses of your function (begin
+with simple ones !). Note that you must close this entry with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">]]$&#x003E;$$&#x003C;$/EXAMPLE$&#x003E;$</span></span></span> and not like
+here with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">}}$&#x003E;$$&#x003C;$/EXAMPLE$&#x003E;$</span></span></span> (once again this is a bad trick to avoid some interpretation
+problems).
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1575">
+&#x00A0;&#x00A0;$&#x003C;$EXAMPLE$&#x003E;$$&#x003C;$![CDATA[
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;deff(&#x0022;y=foo(x)&#x0022;,&#x0022;y=x&#x0022;);&#x00A0;//&#x00A0;define&#x00A0;the&#x00A0;foo&#x00A0;function&#x00A0;as&#x00A0;the&#x00A0;identity&#x00A0;function
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;foo(&#x0022;toto&#x0022;)
+&#x00A0;<br />&#x00A0;&#x00A0;}}$&#x003E;$$&#x003C;$/EXAMPLE$&#x003E;$
+</div>
+<!--l. 166--><p class="nopar" >This last part explains how to put the links onto others related help pages (as said before the good
+tags are in fact <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$LINK$&#x003E;$</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/LINK$&#x003E;$</span></span></span> and not <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$ALINK$&#x003E;$</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$/ALINK$&#x003E;$</span></span></span> ) and
+finally how to reveal your name if you want (use one <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">AUTHOR_ITEM</span></span></span> entry by author). Perhaps it is a
+good idea to put an email adress if you look for bug reports !
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1576">
+&#x00A0;&#x00A0;$&#x003C;$SEE_ALSO$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$SEE_ALSO_ITEM$&#x003E;$&#x00A0;$&#x003C;$ALINK$&#x003E;$man$&#x003C;$/ALINK$&#x003E;$&#x00A0;$&#x003C;$/SEE_ALSO_ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$SEE_ALSO_ITEM$&#x003E;$&#x00A0;$&#x003C;$ALINK$&#x003E;$apropos$&#x003C;$/ALINK$&#x003E;$&#x00A0;$&#x003C;$/SEE_ALSO_ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/SEE_ALSO$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$AUTHOR$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$AUTHOR_ITEM$&#x003E;$B.&#x00A0;P.$&#x003C;$/AUTHOR_ITEM$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/AUTHOR$&#x003E;$
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$/MAN$&#x003E;$
+</div>
+<!--l. 182--><p class="nopar" >
+</p>
+<!--l. 184--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1376-7792000"></a><span 
+class="cmbx-10x-x-109">Browser choice</span></span>
+   Scilab includes its own simple browser written in TCL/TK. On unix/Linux systems it is possible
+to choose an other one. The global variable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%browsehelp</span></span></span> contains a string defining which browser
+must be used: its value may be changed (or redefined in your .scilab file). Note that
+when you enter an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">help</span></span></span> command while <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%browsehelp</span></span></span> contains the empty matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[]</span></span></span>
+then the different browser choice possibilities are displayed (so that you can enter the 2
+instructions <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">global</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;%browsehelp;</span><span 
+class="cmtt-10x-x-109">&#x00A0;%browsehelp=[]</span></span></span> for changing of browser !). As generally
+different browsers have differents calling sequences, if your favorite one is not in the list you
+have to change somethings in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$SCIDIR$&#x003E;$/macros/util/browsehelp.sci</span></span></span> scilab
+function.
+</p>
+<!--l. 196--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1376-7793000"></a><span 
+class="cmbx-10x-x-109">How to to transform your xml pages in html</span></span>
+   See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$SCIDIR$&#x003E;$/examples/man-examples-xml/</span></span></span> directory where a complete example is given.
+The method used required some tools (see the README file) but must work on both Unix and
+Windows.
+</p>
+<!--l. 201--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1376-7794000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb894"><a 
+ id="x1376-7794005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;y=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">foo</span></span><span 
+class="cmtt-10x-x-109">(a,b,c)</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">b</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span><br class="fancyvrb" /><a 
+ id="x1376-7794007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;path=help_skeleton(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR)</span><br class="fancyvrb" /><a 
+ id="x1376-7794009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;scipad(path)</span></div>
+<!--l. 209--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1376-7795000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1332.html#apropos">apropos</a>    <a 
+href="manualli1358.html#help">help</a>    <a 
+href="#help-skeleton">help_skeleton</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1376.html" >next</a>] [<a 
+href="manualli1374.html" >prev</a>] [<a 
+href="manualli1374.html#tailmanualli1374.html" >prev-tail</a>] [<a 
+href="manualli1375.html" >front</a>] [<a 
+href="manualli1327.html#manualli1375.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1375.html"></a>  </p> 
+</body></html> 

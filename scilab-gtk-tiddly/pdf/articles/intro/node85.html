@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.1.1 Dynamic link</TITLE>
+<META NAME="description" CONTENT="6.1.1 Dynamic link">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node86.html">
+<LINK REL="previous" HREF="node84.html">
+<LINK REL="up" HREF="node84.html">
+<LINK REL="next" HREF="node86.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1389"
+ HREF="node86.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1385"
+ HREF="node84.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1379"
+ HREF="node84.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1387"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1388"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1390"
+ HREF="node86.html">6.1.2 Calling a dynamically</A>
+<B> Up:</B> <A NAME="tex2html1386"
+ HREF="node84.html">6.1 Using dynamic link</A>
+<B> Previous:</B> <A NAME="tex2html1380"
+ HREF="node84.html">6.1 Using dynamic link</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00711000000000000000">&#160;</A>
+<A NAME="dynamiclink">&#160;</A>
+<BR>
+6.1.1 Dynamic link
+</H2>
+The command <TT>link('path/pgm.o','pgm',flag)</TT>
+links the compiled program <TT>pgm</TT> to Scilab.
+Here <TT>pgm.o</TT> is an object file located in the <TT>path</TT>
+directory and <TT>pgm</TT> is an entry point (program name) in the file <TT>pgm.o</TT>
+(An object file can have several entry points: to link them, use a vector of
+character strings such as <code>['pgm1','pgm2']</code>).
+
+<P>
+<TT>flag</TT> should be set to <TT>'C'</TT> for a C-coded program
+and to <TT>'F'</TT> for a Fortran subroutine. (<TT>'F'</TT> is
+the default flag and can be omitted).
+
+<P>
+If the link operation is OK, scilab returns an integer <TT>n</TT> associated
+with this linked program. To undo the link enter <TT>ulink(n)</TT>.
+
+<P>
+The command <code>c_link('pgm')</code> returns true if <TT>pgm</TT> is
+currently linked to Scilab and false if not.
+
+<P>
+Here is a example, with the Fortran BLAS <TT>daxpy</TT> subroutine 
+used in Scilab:
+<PRE>
+--&gt;n=link(SCI+'/routines/calelm/daxpy.o','daxpy')
+linking files /usr/local/lib/scilab-2.4/routines/calelm/daxpy.o
+to create a shared executable.
+Linking daxpy (in fact daxpy_)
+Link done
+ n  =
+ 
+    0.  
+ 
+--&gt;c_link('daxpy')
+ ans  =
+ 
+  T  
+
+--&gt;ulink(n)
+ 
+--&gt;c_link('daxpy')
+ ans  =
+ 
+  F
+</PRE>
+<P>
+For more details, enter <TT>help link</TT>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1389"
+ HREF="node86.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1385"
+ HREF="node84.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1379"
+ HREF="node84.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1387"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1388"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1390"
+ HREF="node86.html">6.1.2 Calling a dynamically</A>
+<B> Up:</B> <A NAME="tex2html1386"
+ HREF="node84.html">6.1 Using dynamic link</A>
+<B> Previous:</B> <A NAME="tex2html1380"
+ HREF="node84.html">6.1 Using dynamic link</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

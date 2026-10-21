@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mseek</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli311.html" >next</a>] [<a 
+href="manualli309.html" >prev</a>] [<a 
+href="manualli309.html#tailmanualli309.html" >prev-tail</a>] [<a 
+href="#tailmanualli310.html">tail</a>] [<a 
+href="manualli274.html#manualli310.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x311-1843000"></a>mseek</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx311-1843001"></a><a 
+ id="mseek"></a><span 
+class="cmtt-10x-x-109">mseek </span>&#x2013;                                                               set current position in binary file. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x311-1844000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-446">
+&#x00A0;&#x00A0;mseek(n&#x00A0;[,fd,&#x00A0;flag])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x311-1845000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>:a positive scalar: The offset from origin in number of bytes.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fd</span>: scalar. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span> parameter returned by the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mopen</span></span></span>. -1 stands for last opened
+     file. Default value is -1.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: a string. specifies the origin. Default value &apos;set&apos;.</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x311-1846000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mseek()</span></span></span> sets the position of the next input or output operation on the stream <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span>.
+The new position is at the signed distance given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> bytes from the beginning, from the current
+position, or from the end of the file, according to the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> value which can be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;set&#x0027;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;cur&#x0027;</span></span></span> or
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;end&#x0027;</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mseek()</span></span></span> allows the file position indicator to be set beyond the end of the existing data in the
+file. If data is later written at this point, subsequent reads of data in the gap will return zero until
+data is actually written into the gap. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mseek()</span></span></span>, by itself, does not extend the size of the file.
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x311-1847000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb248"><a 
+ id="x311-1847021r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;file3=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;test3.bin&#x0027;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847023r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fd1=mopen(file3,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;wb&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847025r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;i=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;mput(i,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x311-1847027r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mseek(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847029r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mput(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">678</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x311-1847031r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mseek(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,fd1,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;end&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847033r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mput(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">932</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847035r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd1)</span><br class="fancyvrb" /><a 
+ id="x311-1847037r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fd1=mopen(file3,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rb&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847039r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;res=mget(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x311-1847041r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;res1=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">res1(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">678</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">res1($)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">932</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847043r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;res1$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">$$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">$res</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;write(%io(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Bug&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x311-1847045r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mseek(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,fd1,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;set&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847047r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;trying</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;read</span><span 
+class="cmitt-10x-x-109">&#x00A0;more</span><span 
+class="cmitt-10x-x-109">&#x00A0;than</span><span 
+class="cmitt-10x-x-109">&#x00A0;stored</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span></span><br class="fancyvrb" /><a 
+ id="x311-1847049r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;res1=mget(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,fd1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x311-1847051r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;res1$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">$$</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">$res</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;write(%io(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Bug&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x311-1847053r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;meof(fd1)</span><br class="fancyvrb" /><a 
+ id="x311-1847055r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclearerr(fd1)</span><br class="fancyvrb" /><a 
+ id="x311-1847057r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x311-1848000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli297.html#mclose">mclose</a>    <a 
+href="manualli299.html#meof">meof</a>    <a 
+href="manualli306.html#mfprintf">mfprintf</a>    <a 
+href="manualli282.html#fprintfMat">fprintfMat</a>    <a 
+href="manualli301.html#mfscanf">mfscanf</a>    <a 
+href="manualli284.html#fscanfMat">fscanfMat</a>    <a 
+href="manualli304.html#mget">mget</a>    <a 
+href="manualli303.html#mgetstr">mgetstr</a>    <a 
+href="manualli305.html#mopen">mopen</a>
+<a 
+href="manualli306.html#mprintf">mprintf</a>    <a 
+href="manualli309.html#mput">mput</a>    <a 
+href="manualli308.html#mputstr">mputstr</a>    <a 
+href="manualli301.html#mscanf">mscanf</a>    <a 
+href="#mseek">mseek</a>    <a 
+href="manualli311.html#mtell">mtell</a>    <a 
+href="manualli298.html#mdelete">mdelete</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli311.html" >next</a>] [<a 
+href="manualli309.html" >prev</a>] [<a 
+href="manualli309.html#tailmanualli309.html" >prev-tail</a>] [<a 
+href="manualli310.html" >front</a>] [<a 
+href="manualli274.html#manualli310.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli310.html"></a>  </p> 
+</body></html> 

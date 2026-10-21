@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.3.1.3.3 Example 3</TITLE>
+<META NAME="description" CONTENT="6.3.1.3.3 Example 3">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node107.html">
+<LINK REL="previous" HREF="node105.html">
+<LINK REL="up" HREF="node103.html">
+<LINK REL="next" HREF="node107.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1672"
+ HREF="node107.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1668"
+ HREF="node103.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1662"
+ HREF="node105.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1670"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1671"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1673"
+ HREF="node107.html">6.3.1.3.4 Example 4</A>
+<B> Up:</B> <A NAME="tex2html1669"
+ HREF="node103.html">6.3.1.3 Examples</A>
+<B> Previous:</B> <A NAME="tex2html1663"
+ HREF="node105.html">6.3.1.3.2 Example 2</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H4><A NAME="SECTION00731330000000000000">&#160;</A>
+<A NAME="ex3">&#160;</A>
+<BR>
+6.3.1.3.3 Example 3
+</H4>
+<P>
+<FONT SIZE="-2">The Scilab function is <TT>[o,b]=ext(a)</TT>. Its input is a matrix and its
+outputs are a matrix and a column vector.
+</FONT>
+<P>
+<FONT SIZE="-2">The corresponding Fortran subroutine is <TT>fext(a,m,n,b,p)</TT> and its arguments
+are an integer array (used as input and output), its dimensions m,n (used as
+input) and another integer array and its dimension p (used as outputs).
+</FONT>
+<P>
+<FONT SIZE="-2">The dimension <TT>p</TT> of the output <TT>b</TT> is computed by the Fortran subroutine
+and the memory for this variable is also allocated by the Fortran subroutine
+(perhaps by to a call to another C function). So the type of the variable is
+external and we choose <TT>cintf</TT>.
+</FONT>
+<P>
+<FONT SIZE="-2">Moreover, the output <TT>a</TT> of the Scilab function is the same as the input
+but its type changes from a </FONT>
+<!-- MATH: $m \times n$ -->
+<IMG
+ WIDTH="73" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.gif"
+ ALT="$m\times n$"><FONT SIZE="-2"> matrix to a </FONT>
+<!-- MATH: $n \times m$ -->
+<IMG
+ WIDTH="73" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img30.gif"
+ ALT="$n \times m$"><FONT SIZE="-2"> matrix. This
+conversion is made my introducing the Scilab variable <TT>o</TT>
+</FONT>
+<P>
+<FONT SIZE="-2">The description file is the following:
+</FONT><PRE>
+ext     a
+a       matrix  m       n
+b       column  p
+o       matrix  n       m
+
+fext    a       m       n       b       p
+a       integer
+m       integer
+n       integer
+b       cintf
+p       integer
+
+out     sequence        o       b
+o       a
+***************************
+</PRE>
+<P><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1672"
+ HREF="node107.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1668"
+ HREF="node103.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1662"
+ HREF="node105.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1670"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1671"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1673"
+ HREF="node107.html">6.3.1.3.4 Example 4</A>
+<B> Up:</B> <A NAME="tex2html1669"
+ HREF="node103.html">6.3.1.3 Examples</A>
+<B> Previous:</B> <A NAME="tex2html1663"
+ HREF="node105.html">6.3.1.3.2 Example 2</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

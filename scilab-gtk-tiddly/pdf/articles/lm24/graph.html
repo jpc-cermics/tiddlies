@@ -1,0 +1,681 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Graphes et r&eacute;seaux avec Scilab, la bo&icirc;te &agrave; outils
+MetanetPremi&egrave;re partie</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <H1 ALIGN="center">Graphes et
+r&eacute;seaux avec Scilab, la bo&icirc;te &agrave; outils Metanet<BR>
+<FONT SIZE="4">Premi&egrave;re partie</FONT></H1>
+<H3 ALIGN="center">Claude Gomez &nbsp;&nbsp;Maurice Goursat<BR>
+<BR>
+</H3>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+Les probl&egrave;mes de r&eacute;seaux sont tr&egrave;s classiques dans de
+nombreux domaines. Les r&eacute;seaux que l'on rencontre le plus souvent sont :
+<UL>
+<LI> les r&eacute;seaux dits de service : eau, gaz, &eacute;lectricit&eacute;
+et t&eacute;l&eacute;phone ; </LI>
+<LI>les r&eacute;seaux de transport auxquels nous sommes de plus en plus
+sensibles et qui nous causent des soucis quotidiens. En effet, qui n'a pas
+&eacute;t&eacute; pris dans un embouteillage, particuli&egrave;rement en
+&Icirc;le de France ? </LI>
+</UL>
+Pour tous ces probl&egrave;mes de r&eacute;seaux, les mod&eacute;lisations
+varient mais la structure sous-jacente utilis&eacute;e est celle d'un graphe.
+Ces m&ecirc;mes structures se retrouvent dans d'autres domaines, par exemple en
+informatique. Nous pouvons citer deux probl&egrave;mes standards : celui de
+l'analyse et de l'optimisation d'algorithmes pour la compilation et celui de
+l'implantation d'algorithmes sur des r&eacute;seaux de processeurs.<BR>
+<BR>
+On dispose dans Scilab d'une bo&icirc;te &agrave; outils pour d&eacute;finir,
+traiter et visualiser les graphes et les r&eacute;seaux : elle s'appelle
+Metanet. Gr&acirc;ce &agrave; l'existence dans Scilab de la structure de
+donn&eacute;es de listes, les graphes ont &eacute;t&eacute; d&eacute;finis en
+utilisant de telles structures (ici des <B><TT>tlist</TT></B>, voir Linux
+Magazine 14). Cela permet de manipuler facilement des graphes sous la forme de
+simples variables et d'avoir toute une panoplie de fonctions qui op&egrave;rent
+sur ces variables : les fonctions de plus bas niveau sont celles qui modifient
+le graphe, viennent ensuite celle qui calculent sur les graphes et enfin celles
+qui r&eacute;solvent des probl&egrave;mes de r&eacute;seaux. De plus un
+&eacute;diteur et visualisateur graphique est disponible, ce qui est
+indispensable lorsque l'on veut voir ce qu'il se passe.<BR>
+<BR>
+<!--TOC section Euler se promène-->
+<H2>1&nbsp;&nbsp; Euler se prom&egrave;ne</H2>
+<A NAME="Euler"></A>Leonhard Euler (1707-1783) est consid&eacute;r&eacute; par
+certains historiens des sciences comme le plus grand math&eacute;maticien de
+tous les temps. C'est en particulier lui qui a d&eacute;couvert la
+c&eacute;l&egrave;bre relation <I>e</I><SUP><FONT SIZE="2"><I>i</I><FONT
+FACE="symbol">p</FONT></FONT></SUP>=-1 o&ugrave; l'on retrouve trois des plus
+fameux symboles math&eacute;matiques.<BR>
+<BR>
+La ville de Koenigsberg est travers&eacute;e par une rivi&egrave;re qui
+poss&egrave;de deux branches et qui entoure une &icirc;le. Il y a sept ponts
+pour traverser la rivi&egrave;re &agrave; diff&eacute;rents endroits (voir la
+figure <A HREF="#Koenig">X</A>(a)). Quand un grand math&eacute;maticien comme
+Euler se prom&egrave;ne &agrave; Koenigsberg, c'est tout &agrave; fait normal
+qu'il se demande si un pi&eacute;ton, en se promenant, peut trouver un chemin
+lui permettant de passer sur tous les ponts en passant une fois et une seule
+sur chacun d'eux ? On dit que ce probl&egrave;me est l'un des tout premiers de
+la th&eacute;orie des graphes.<BR>
+<BR>
+En effet, il est possible d'associer &agrave; ce probl&egrave;me ce que l'on
+appelle un graphe non orient&eacute; dans lequel les ponts sont les
+ar&ecirc;tes du graphe et les sommets correspondent aux quatre parties de la
+ville d&eacute;limit&eacute;es par la rivi&egrave;re (voir la figure
+<A HREF="#Koenig">X</A>(b)). On voit bien sur ce graphe que l'on peut passer de
+la partie 3 &agrave; la partie 4 en utilisant les ponts 5 ou 6. R&eacute;soudre
+le probl&egrave;me d'Euler consiste &agrave; trouver un chemin dans le graphe
+qui passe par toutes les ar&ecirc;tes une fois et une seule : dans le langage
+des graphes on parlera de cha&icirc;ne plut&ocirc;t que de chemin car il n'y a
+pas d'orientation sur les ar&ecirc;tes.<BR>
+<BR>
+<BLOCKQUOTE><HR SIZE="2">
+<A NAME="Koenig"></A> <BR>
+<DIV ALIGN="center">
+<IMG SRC="K1.jpg" ALT="La ville de Koenigsberg" WIDTH="218"
+ HEIGHT="304" BORDER="0"><IMG SRC="K2.jpg" ALT="La ville de Koenigsberg"
+WIDTH="178" HEIGHT="151" BORDER="0"> <BR>
+Figure 1: La ville de Koenigsberg 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Bien s&ucirc;r, Euler a r&eacute;solu le probl&egrave;me, et vous ?<BR>
+<BR>
+Peut-on utiliser Metanet pour r&eacute;soudre ce probl&egrave;me ?<BR>
+<BR>
+On va tout d'abord cr&eacute;er le graphe en utilisant l'&eacute;diteur
+graphique de Metanet. Pour cela on lance la commande : <PRE>
+metanet()
+</PRE>
+et la fen&ecirc;tre graphique s'affiche aussit&ocirc;t. On clique dans l'item
+<B><TT>New</TT></B> du menu <B><TT>Files</TT></B>, on donne un nom au graphe,
+par exemple <B><TT>pont</TT></B>, on dit qu'il n'est pas orient&eacute; (en
+anglais &lt;&lt; orient&eacute; &gt;&gt; se dit &lt;&lt; directed &gt;&gt;) et
+on utilise la souris pour cr&eacute;er le graphe : un click du bouton droit de
+la souris cr&eacute;e un sommet, un click du bouton gauche permet de
+s&eacute;lectionner un sommet ou une ar&ecirc;te, et un click du bouton droit
+dans un sommet apr&egrave;s en avoir s&eacute;lectionn&eacute; un autre
+cr&eacute;e une ar&ecirc;te entre les deux. Automatiquement les sommets et les
+ar&ecirc;tes sont num&eacute;rot&eacute;s de fa&ccedil;on interne. Il est aussi
+possible de leur donner n'importe quel nom. Ici cela n'a aucun
+int&eacute;r&ecirc;t et l'on utilise l'item <B><TT>Automatic Name</TT></B> du
+menu <B><TT>Modify</TT></B> pour utiliser la num&eacute;rotation interne comme
+noms. On sauve le graphe (item <B><TT>Save</TT></B> du menu <B><TT>Files 
+</TT></B>) et par l'item <B><TT>Quit</TT></B> du menu <B><TT>Files</TT></B> on
+quitte le mode d'&eacute;dition de graphes. Pour visualiser les noms des
+sommets et des arcs, on s&eacute;lectionne les sous-items <B><TT>name</TT></B>
+des items <B><TT>Node display</TT></B> et <B><TT>Arc display</TT></B> du menu
+<B><TT>Graph</TT></B>. Voir la figure <A HREF="#metapont">X</A>. Voil&agrave;
+notre graphe cr&eacute;&eacute;, on peut travailler !<BR>
+<BR>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="metapont.jpg" ALT="La fenêtre Metanet avec le graphe du pont"
+ WIDTH="593" HEIGHT="420" BORDER="0"> 
+</DIV>
+<A NAME="metapont"></A> <BR>
+<DIV ALIGN="center">
+Figure 2: La fen&ecirc;tre Metanet avec le graphe du pont 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+En fait, actuellement, l'&eacute;diteur/visualisateur de graphes est un
+processus ind&eacute;pendant de Scilab et le r&eacute;sultat de notre travail
+est la cr&eacute;ation d'un fichier ASCII nomm&eacute; <B><TT>pont.graph 
+</TT></B>. Il possible que dans des releases futures ce fonctionnement soit
+chang&eacute; et que Scilab partage les graphes avec
+l'&eacute;diteur/visualisateur. Donc pour pouvoir travailler avec ce graphe, il
+faut le charger dans Scilab en faisant : <PRE>
+g=load_graph(&quot;pont&quot;);
+</PRE>
+o&ugrave; <B><TT>g</TT></B> n'est autre qu'une <B><TT>tlist</TT></B> contenant
+toutes les informations sur le graphe.<BR>
+<BR>
+Pour r&eacute;soudre le probl&egrave;me d'Euler, on va utiliser la
+m&eacute;thode bien connue parfois qualifi&eacute;e de
+&lt;&lt;&nbsp;bourrin&nbsp;&gt;&gt; qui va consister &agrave; tester tous les
+ensembles d'ar&ecirc;tes contenant les 7 ar&ecirc;tes distinctes (qui
+correspondent aux ponts) afin de voir si ce sont des cha&icirc;nes. Pour cela,
+on va d'abord g&eacute;n&eacute;rer tous les arrangements de ces ar&ecirc;tes
+dans une matrices <B><TT>ar</TT></B> qui va avoir 5040 lignes (factorielle 7)
+et 7 colonnes : une ligne de la matrice sera un ensemble d'ar&ecirc;tes
+&agrave; tester. Un vrai informaticien de nos amis nous a donn&eacute;
+l'algorithme qui permet de g&eacute;n&eacute;rer cette matrice dont nous
+donnons ci-apr&egrave;s la fonction Scilab correspondante (sauv&eacute;e dans
+un fichier <B><TT>genar.sci</TT></B>) 
+<PRE>
+function ar=genar(n)
+global ar l;
+fact=1; for i=1:n, fact=fact*i; end;
+ar=zeros(fact,n); l=1;
+ar(1,:)=1:n; ref=1:n;
+genar1(n,1,ref);
+
+function genar1(n,m,ref)
+global ar l;
+if size(ref,&quot;*&quot;)&lt;&gt;0 then
+  for i=1:size(ref,&quot;*&quot;)
+    ar(l:$,m)=ref(i);
+    ref2=ref; ref2(i)=[];
+    genar1(n,m+1,ref2);
+  end
+else
+  l=l+1; 
+end;
+</PRE>
+qui g&eacute;n&egrave;re la matrice d&eacute;sir&eacute;e. Comme on peut le
+voir, cette fonction n'a rien &agrave; envier &agrave; un programme C++ ou
+Scheme, et elle montre que l'on peut faire de la r&eacute;cursion en Scilab.
+Nous laissons au lecteur curieux le soin de comprendre pourquoi &ccedil;a
+marche, pour notre part nous avons abandonn&eacute;.<BR>
+<BR>
+Ensuite la session suivante nous donne la solution du probl&egrave;me des ponts
+de Koenisberg : 
+<PRE>
+--&gt;getf(&quot;genar.sci&quot;)
+ 
+--&gt;ar=genar(7);
+ 
+--&gt;nsol=0; sol=zeros(1,7);
+ 
+--&gt;for i=1:size(ar,&quot;r&quot;)
+--&gt;  p=ar(i,:);
+--&gt;  ns=path_2_nodes(p,g); // transforme un chemin en sommets
+--&gt;  if ns &lt;&gt; [] then nsol=nsol+1; sol(nsol,:)=p; end;
+--&gt;end
+ 
+--&gt;nsol
+ nsol  =
+    0.  
+</PRE>
+On boucle sur les lignes de <B><TT>ar</TT></B> qui contiennent toutes les
+possibilit&eacute;s de cha&icirc;nes <B><TT>p</TT></B>. La fonction <B> 
+<TT>path_2_nodes</TT></B> cherche une suite de sommets cons&eacute;cutifs
+correspondant &agrave; ces cha&icirc;nes et retourne la matrice vide s'il n'y
+en a pas. Donc <B><TT>nsol</TT></B> compte le nombre de cha&icirc;nes qui
+r&eacute;solvent le probl&egrave;me et elles sont stock&eacute;es dans la
+matrice <B><TT>sol</TT></B>.<BR>
+<BR>
+Tout cela pour voir qu'il n'y a pas de solution ! C'est d'ailleurs ce qu'Euler
+avait trouv&eacute;. Mais, comme souvent, il vaut mieux r&eacute;fl&eacute;chir
+avant de programmer. &Agrave; chaque sommet, on peut associer son degr&eacute;
+c'est-&agrave;-dire le nombre d'ar&ecirc;tes ayant ce sommet pour
+extr&eacute;mit&eacute;. Le fait de pouvoir trouver une cha&icirc;ne solution
+du probl&egrave;me est d&eacute;termin&eacute; par le nombre de sommets ayant
+des degr&eacute;s pairs ou impairs. Sur la cha&icirc;ne solution, les sommets
+interm&eacute;diaires figurent une fois s'ils sont de degr&eacute; 2 (on arrive
+et on part une et une seule fois) ou 2 fois s'ils sont de degr&eacute; 4
+(chaque passage utilise 2 ar&ecirc;tes), etc. Un sommet de degr&eacute; impair
+ne peut donc pas &ecirc;tre un sommet interm&eacute;diaire, il ne peut
+&ecirc;tre qu'un sommet initial ou terminal. Et dans notre graphe tous les
+sommets sont de degr&eacute; impair, donc pas de solution.<BR>
+<BR>
+Mais il serait dommage d'avoir r&eacute;alis&eacute; ces beaux programmes pour
+rien. Alors, nous allons les utiliser pour un petit probl&egrave;me bien connu
+des &eacute;coliers (qui s'ennuient en classe). Prenant le dessin d'une
+enveloppe ouverte, voir la figure <A HREF="#env">X</A>(a), il s'agit de savoir
+si l'on peut, partant d'un point quelconque, r&eacute;aliser le trac&eacute;
+sans lever la plume du stylo. La r&eacute;ponse est oui et il est tr&egrave;s
+facile de trouver la solution par quelques essais. On sait m&ecirc;me avec le
+raisonnement de tout &agrave; l'heure que la solution part du sommet 1 pour
+arriver au sommet 2 ou le contraire. Mais une question plus difficile est :
+combien y-a-t'il de solutions possibles ? On voit sur la m&ecirc;me figure
+<A HREF="#env">X</A>(a) le graphe correspondant au probl&egrave;me qui est ici
+tout trac&eacute; puisque c'est l'enveloppe elle-m&ecirc;me (noter que le
+croisement des diagonales n'est pas un sommet).<BR>
+<BR>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="E1.jpg" ALT="Les enveloppes " WIDTH="212" HEIGHT="213"
+ BORDER="0"><IMG SRC="E2.jpg" ALT="Les enveloppes" WIDTH="218" HEIGHT="218"
+BORDER="0"> 
+</DIV>
+<A NAME="env"></A> <BR>
+<DIV ALIGN="center">
+Figure 3: Les enveloppes 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+De m&ecirc;me que pour le probl&egrave;me d'Euler, on cr&eacute;e le graphe
+avec Metanet et on le sauve dans le fichier <B><TT>enveloppe.graph</TT></B>. La
+session suivante donne le r&eacute;sultat (apr&egrave;s un temps de calcul
+assez long) : <PRE>
+--&gt;getf(&quot;genar.sci&quot;)
+ 
+--&gt;g=load_graph(&quot;enveloppe&quot;);
+ 
+--&gt;ar=genar(8);
+ 
+--&gt;nsol=0; sol=zeros(1,8);
+ 
+--&gt;for i=1:size(ar,&quot;r&quot;)
+--&gt;  p=ar(i,:);
+--&gt;  ns=path_2_nodes(p,g);
+--&gt;  if ns &lt;&gt; [] then nsol=nsol+1; sol(nsol,:)=p; end;
+--&gt;end
+ 
+--&gt;nsol
+ nsol  =
+    88.  
+</PRE>
+Il y a 88 possibilit&eacute;s ! Elles sont sym&eacute;triques deux &agrave;
+deux, donc il y en 44 partant du sommet 1. Tout de m&ecirc;me pas facile pour
+les compter toutes. Par exemple en voici une (la 33 
+<SUP><FONT SIZE="2">e</FONT></SUP>) trouv&eacute;e : <PRE>
+--&gt;sol(33,:) // suite des aretes
+ ans  =
+!   2.    6.    5.    1.    7.    4.    3.    8. !
+
+--&gt;path_2_nodes(ans,g) // suite des sommets
+ ans  =
+!   2.    3.    5.    1.    2.    5.    4.    3.    1. !
+</PRE>
+Elle part du sommet 2.<BR>
+<BR>
+Noter que l'on ne peut pas utiliser cette m&eacute;thode de recherche
+exhaustive avec un nombre d'ar&ecirc;tes trop grand car elle est tr&egrave;s
+co&ucirc;teuse en place m&eacute;moire et en temps. Mais elle illustre bien la
+puissance d'un outil comme Scilab o&ugrave; l'on peut vraiment <EM>programmer
+avec des graphes</EM>, c'est-&agrave;-dire m&eacute;langer les calculs sur les
+graphes avec la programmation interactive et efficace de Scilab.<BR>
+<BR>
+On peut se poser la m&ecirc;me question dans le cas o&ugrave; l'enveloppe est
+totalement d&eacute;pli&eacute;e (voir la figure <A HREF="#env">X</A>(b)).
+Comme dans ce cas il y a quatre sommets d'ordre impair &eacute;gal &agrave; 5,
+il n'y a pas de solution. Notez que &ccedil;a fonctionne &agrave; nouveau si
+l'on supprime un pli de l'enveloppe compl&egrave;tement
+d&eacute;pli&eacute;e...<BR>
+<BR>
+On nous a racont&eacute; qu'un moniteur de colonie de vacances ne voulant pas
+donner une autorisation de sortie a trouv&eacute; astucieux, plut&ocirc;t que
+de choisir un refus mal ressenti, de conditionner la sortie par la solution de
+ce probl&egrave;me. Les enfants ont us&eacute; plusieurs crayons et sont partis
+se coucher...C'est une application tr&egrave;s d&eacute;tourn&eacute;e de la
+th&eacute;orie des graphes.<BR>
+<BR>
+<!--TOC section Les entrailles de Metanet-->
+
+<H2>2&nbsp;&nbsp; Les entrailles de Metanet</H2>
+Tout d'abord, nous allons th&eacute;oriser un petit peu et se poser la question
+fondamentale qui est l'objet du paragraphe suivant.<BR>
+<BR>
+<!--TOC subsection Qu'est-ce qu'un graphe ?-->
+<H3>2.1&nbsp;&nbsp; Qu'est-ce qu'un graphe ?</H3>
+Un graphe <FONT COLOR="red"> <I>G</I>=( <I>N</I>, <I>A</I>) </FONT> est
+d&eacute;fini par la donn&eacute;e d'un ensemble de points <FONT COLOR="red">
+<I>N</I></FONT> qui sont les sommets du graphe (on parle aussi de noeuds) et
+d'un ensemble <FONT COLOR="red"> <I>A</I></FONT> qui sont les arcs (on parle
+d'ar&ecirc;tes dans le cas o&ugrave; les arcs ne sont pas orient&eacute;s) du
+graphe. Si les sommets <FONT COLOR="red"> <I>N</I></FONT> sont
+num&eacute;rot&eacute;s (1,2,...,<I>n</I>), un arc est simplement un couple
+(<I>i</I>,<I>j</I>) avec <I>i</I>,<I>j</I> <FONT FACE="symbol">&Icirc;</FONT>
+<FONT COLOR="red"> <I>N</I></FONT> : il y a donc un lien entre les sommets
+<I>i</I> et <I>j</I>. On dit que <I>j</I> est la t&ecirc;te (ou le
+d&eacute;but) de l'arc et <I>i</I> sa queue (ou sa fin). Ceci correspond au cas
+orient&eacute; : l'arc &lt;&lt; va de i vers j &gt;&gt; ; dans le cas non
+orient&eacute;, le lien est appel&eacute; ar&ecirc;te et il n'y pas de sens sur
+le lien. <BR>
+<BR>
+Dans le cas de la circulation automobile, par exemple, les liens sont les
+routes et les croisements sont les noeuds. Quand la route est &agrave; double
+sens entre deux noeuds, il y a un arc dans chaque sens : c'est un graphe
+orient&eacute;. Si l'on consid&egrave;re un r&eacute;seau
+t&eacute;l&eacute;phonique, entre deux points reli&eacute;s par une ligne une
+communication on peut passer dans un sens ou dans l'autre : le graphe (les
+noeuds sont les centraux) est non orient&eacute;. Mais en fait, lorsque l'on
+veut r&eacute;soudre des probl&egrave;mes de t&eacute;l&eacute;communications,
+les graphes deviennent orient&eacute;s ; on consid&egrave;re alors un paquet de
+lignes entre 2 centraux C1 et C2 que l'on ventile &agrave; chaque instant (on a
+un graphe dynamique) : les lignes occup&eacute;es de C1 vers C2 (donc
+orient&eacute;es), celles de C2 vers C1 et enfin les lignes libres (non
+orient&eacute;es).<BR>
+<BR>
+Un graphe peut avoir des boucles, c'est-&agrave;-dire des arcs
+(<I>i</I>,<I>i</I>) et des arcs multiples entre deux sommets (on parle dans ce
+cas de multigraphes). Au prix de l'augmentation de la taille du graphe, en
+cr&eacute;ant des sommets et des arcs fictifs, on peut se ramener au cas d'un
+graphe simple, c'est-&agrave;-dire qui n'a qu'un seul arc entre deux sommets.
+Il y a l&agrave; un point technique tr&egrave;s important : en effet les
+graphes simples sont les seuls &agrave; pouvoir &ecirc;tre
+repr&eacute;sent&eacute;s par des matrices (et vice-versa), ce qui permet
+d'utiliser toute l'algorithmique correspondante qui est bien s&ucirc;r
+disponible dans Scilab. Ces matrices ont la particularit&eacute; d'&ecirc;tre
+creuses (elles contiennent tr&egrave;s peu d'&eacute;l&eacute;ments non nuls)
+et les algorithmes sp&eacute;ciaux sur les matrices creuses de Scilab peuvent
+leur &ecirc;tre appliqu&eacute;s.<BR>
+<BR>
+<!--TOC subsection La <B><TT>graph-list</TT></B>-->
+<H3>2.2&nbsp;&nbsp; La <B><TT>graph-list</TT></B></H3>
+Dans Metanet un graphe est repr&eacute;sent&eacute; par une <B><TT>tlist 
+</TT></B> appel&eacute;e <B><TT>graph-list</TT></B> et qui contient 33
+entr&eacute;es (dont la plupart sont optionnelles). Seules les cinq
+premi&egrave;res entr&eacute;es sont obligatoires : <DL COMPACT="compact">
+<DT> name</DT>
+<DD> nom du graphe (une cha&icirc;ne de caract&egrave;res) ; </DD>
+<DT>directed</DT>
+<DD> flag qui vaut 1 si le graphe est orient&eacute; ou 0 sinon ; </DD>
+<DT>node_number</DT>
+<DD> nombre de sommets ; </DD>
+<DT>tail</DT>
+<DD> vecteur ligne des num&eacute;ros des sommets de queue pour chaque arc ; 
+</DD>
+<DT>head</DT>
+<DD> vecteur ligne des num&eacute;ros des sommets de t&ecirc;te pour chaque arc
+; </DD>
+</DL>
+Un graphe doit avoir au moins un arc, donc <B><TT>tail</TT></B> et <B><TT>head 
+</TT></B> ne peuvent pas &ecirc;tre vides. Avec ce mod&egrave;le tous les types
+de graphes, simples, multigraphes, avec ou sans boucle, peuvent &ecirc;tre
+trait&eacute;s par Metanet.<BR>
+<BR>
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="foo.jpg" ALT="Un petit graphe orienté" WIDTH="138"
+ HEIGHT="90" BORDER="0"> 
+</DIV>
+<A NAME="foo"></A> <BR>
+<DIV ALIGN="center">
+Figure 4: Un petit graphe orient&eacute; 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+La fonction de base pour cr&eacute;er un graphe s'appelle <B><TT>make_graph 
+</TT></B> qui prend en entr&eacute;e les cinq param&egrave;tres d&eacute;crits
+ci-dessus et g&eacute;n&egrave;re la <B><TT>tlist</TT></B> du graphe. Par
+exemple, pour cr&eacute;er le petit graphe orient&eacute; de la figure
+<A HREF="#foo">X</A>, on &eacute;crira : <PRE>
+g=make_graph(&quot;foo&quot;,1,4,[1 1 2 3],[2 3 1 3]);
+</PRE>
+On peut visualiser ce graphe en faisant : 
+<PRE>
+show_graph(g)
+</PRE>
+qui ouvre automatiquement une fen&ecirc;tre Metanet s'il n'y en a pas
+d&eacute;j&agrave; une ouverte et qui affiche le graphe avec un positionnement
+automatique des sommets puisque nous n'avons pas donn&eacute; leurs
+coordonn&eacute;es.<BR>
+<BR>
+Bien s&ucirc;r, on aurait pu cr&eacute;er ce graphe en utilisant
+l'&eacute;diteur graphique comme nous l'avons fait dans le paragraphe
+<A HREF="#Euler">X</A>. Dans ce cas, apr&egrave;s chargement dans Scilab par
+<B><TT>load_graph</TT></B>, les coordonn&eacute;es des sommets sont disponibles
+dans les slots <B><TT>node_x</TT></B> (vecteur ligne des abscisses des sommets)
+et <B><TT>node_y</TT></B> (vecteur ligne des ordonn&eacute;es des sommets). On
+aurait aussi pu les donner directement dans Scilab par : 
+<PRE>
+g(&quot;node_x&quot;)=[42 108 176 162];
+g(&quot;node_y&quot;)=[36 134 36 93];
+</PRE>
+On voit donc que l'on peut faire des allers et retours entre
+l'&eacute;diteur/visualisateur de graphes et l'interpr&eacute;teur de Scilab et
+qu'un certain nombre de choses pour la d&eacute;finition et les
+caract&eacute;ristiques des graphes peuvent &ecirc;tre faites
+indiff&eacute;remment dans l'un ou dans l'autre.<BR>
+<BR>
+En fait, il y a trois cat&eacute;gories d'&eacute;l&eacute;ments dans la <B> 
+<TT>graph-list</TT></B> : ceux qui d&eacute;finissent la structure
+math&eacute;matique minimale du graphe, ceux qui sont utilis&eacute;s pour la
+repr&eacute;sentation graphique et ceux qui sont li&eacute;s &agrave; des
+probl&egrave;mes de r&eacute;seaux en donnant des valeurs aux sommets et aux
+arcs (capacit&eacute;, longueur, poids, co&ucirc;t, etc.).<BR>
+<BR>
+Dans ceux qui sont utilis&eacute;s pour la repr&eacute;sentation graphique, <B>
+<TT>node_color</TT></B> et <B><TT>edge_color</TT></B>, qui d&eacute;terminent
+respectivement la couleur des sommets et des ar&ecirc;tes, sont tr&egrave;s
+utiles pour visualiser des chemins ou des ensembles de sommets dans les
+graphes. Les deux fonctions <B><TT>show_arcs</TT></B> et <B><TT>show_nodes 
+</TT></B> permettent aussi de visualiser respectivement des ensembles
+d'ar&ecirc;tes ou de sommets en les distinguant par rapport aux autres parties
+du graphe.<BR>
+<BR>
+<!--TOC subsection Comment représenter un graphe ?-->
+
+<H3>2.3&nbsp;&nbsp; Comment repr&eacute;senter un graphe ?</H3>
+La structure de donn&eacute;es utilis&eacute;e pour repr&eacute;senter un
+graphe est capitale pour la complexit&eacute; des algorithmes : co&ucirc;t et
+taille. Si la repr&eacute;sentation sous la forme t&ecirc;te-queue est
+tr&egrave;s compacte et g&eacute;n&eacute;rale, c'est souvent une
+repr&eacute;sentation par <EM>listes d'adjacences</EM>, d&eacute;crite
+ci-apr&egrave;s, qui est utilis&eacute;e. Elle utilise trois vecteurs (pour un
+graphe de <I>n</I> sommets et <I>m</I> arcs) : <UL>
+<LI> <B><TT>lp</TT></B> est le tableau des pointeurs, de taille <I>n</I>+1 ; 
+</LI>
+<LI><B><TT>ls</TT></B> est le tableau des sommets, de taille <I>m</I> ; </LI>
+<LI><B><TT>la</TT></B> est le tableau des arcs, de taille <I>m</I>. </LI>
+</UL>
+Pour chaque sommet <B><TT>i</TT></B>, la liste des sommets successeurs de <B> 
+<TT>i</TT></B> est contenue dans le tableau <B><TT>ls</TT></B> &agrave; partir
+de l'&eacute;l&eacute;ment num&eacute;ro <B><TT>lp(i)</TT></B>. Les successeurs
+du sommet <B><TT>i</TT></B> se trouvent donc dans le tableau <B><TT>ls</TT></B>
+de l'&eacute;l&eacute;ment <B><TT>lp(i)</TT></B> &agrave;
+l'&eacute;l&eacute;ment <B><TT>lp(i+1)-1</TT></B>. Par exemple, pour obtenir le
+vecteur des successeurs du sommet <B><TT>i</TT></B>, on &eacute;crit simplement
+en Scilab <B><TT>ls(lp(i) :lp(i+1)-1)</TT></B>. Les arcs correspondants
+permettant d'atteindre ces sommets successeurs sont dans le tableau <B><TT>la 
+</TT></B>, toujours de l'&eacute;l&eacute;ment <B><TT>lp(i)</TT></B> &agrave;
+l'&eacute;l&eacute;ment <B><TT>lp(i+1)-1</TT></B>. Noter que le dernier
+&eacute;l&eacute;ment de <B><TT>lp</TT></B> ne correspond pas &agrave; un
+sommet, mais n'est l&agrave; que pour indiquer la fin des pointeurs.<BR>
+<BR>
+Dans le cas o&ugrave; le graphe n'est pas orient&eacute;, on consid&egrave;re
+que chaque ar&ecirc;te correspond &agrave; deux arcs d'orientation
+oppos&eacute;e.<BR>
+<BR>
+Par exemple, la repr&eacute;sentation pour le graphe de la figure
+<A HREF="#foo">X</A> est :<BR>
+<DIV ALIGN="center">
+<IMG SRC="foo_adj.jpg" WIDTH="250" HEIGHT="130" BORDER="0"
+ ALT="{short description of image}"> 
+</DIV>
+<BR>
+La plupart des algorithmes utilisent cette repr&eacute;sentation et elle est
+automatiquement calcul&eacute;e par les fonctions correspondantes. Sinon c'est
+la fonction <B><TT>adj_lists</TT></B> qui permet de calculer directement ces
+listes d'adjacence. Toujours avec le m&ecirc;me graphe : <PRE>
+--&gt;g=make_graph(&quot;foo&quot;,1,4,[1 1 2 3],[2 3 1 3]);
+ 
+--&gt;[lp,la,ls]=adj_lists(g)
+ ls  = 
+!   2.    3.    1.    3. !
+ la  =
+!   1.    2.    3.    4. !
+ lp  =
+!   1.    3.    4.    5.    5. !
+</PRE>
+<BR>
+<BR>
+D'autres repr&eacute;sentations sont disponibles dans Metanet : les matrices
+sommets-arcs, sommets-sommets et les listes cha&icirc;n&eacute;es. Avec bien
+entendu toutes les fonctions qui permettent de les obtenir et de les
+manipuler.<BR>
+<BR>
+<!--TOC section Jouer avec les graphes-->
+
+<H2>3&nbsp;&nbsp; Jouer avec les graphes</H2>
+Nous allons d'abord montrer en quelques petits exemples comment on peut jouer
+avec les &eacute;l&eacute;ments de la <B><TT>graph-list</TT></B> et visualiser
+des ensembles de sommets et d'ar&ecirc;tes.<BR>
+<BR>
+<!--TOC subsection Distinguer les sommets de degré impair-->
+<H3>3.1&nbsp;&nbsp; Distinguer les sommets de degr&eacute; impair</H3>
+On peut faire de la programmation en Scilab sur un ou plusieurs graphes afin
+d'en calculer des caract&eacute;ristiques comme par exemple distinguer les
+sommets de degr&eacute; impair. On &eacute;crit ainsi quelques lignes qui vont
+donner la solution et on va l'appliquer au graphe de l'enveloppe du paragraphe
+<A HREF="#Euler">X</A>, figure <A HREF="#env">X</A>(a). D'abord on charge le
+graphe et on l'affiche : <PRE>
+--&gt;g=load_graph(&quot;enveloppe&quot;);
+ 
+--&gt;show_graph(g);
+</PRE>
+On fait une boucle sur les sommets du graphe et on calcule leur degr&eacute;.
+<B><TT>find</TT></B> est une fonction standard de Scilab qui prend en argument
+une condition sur une matrice (expression bool&eacute;enne) et retourne les
+indices des &eacute;l&eacute;ments de la matrice pour lesquels cette condition
+est v&eacute;rifi&eacute;e. Donc ici <B><TT>find</TT></B> retourne le vecteur
+des sommets li&eacute;s au sommet <B><TT>i</TT></B> ; il suffit d'en calculer
+la taille et, si elle est impaire, de stocker le num&eacute;ro du sommet
+correspondant dans le vecteur <B><TT>ns</TT></B> : 
+<PRE>
+--&gt;n=0;
+ 
+--&gt;for i=1:node_number(g)
+--&gt;  d=size(find(g('tail')==i | g('head')==i),&quot;c&quot;);
+--&gt;  if modulo(d,2) &lt;&gt; 0 then n=n+1; ns(1,n)=i; end;
+--&gt;end;
+</PRE>
+On trouve bien les sommets 1 et 2 et on les distingue par <B><TT>show_nodes 
+</TT></B> : 
+<PRE>
+--&gt;ns
+ ns  = 
+!   1.    2. !
+ 
+--&gt;show_nodes(ns)
+</PRE>
+Le graphe de l'enveloppe est tout petit, mais le m&ecirc;me calcul peut
+&ecirc;tre fait sur un graphe de plusieurs milliers de sommets sans
+probl&egrave;me. On peut aussi transformer ces lignes de code en fonction
+Scilab et cr&eacute;er une nouvelle fonction qui retourne pour un graphe
+donn&eacute; le nombre de ses sommets de degr&eacute; impair. En fait, la
+fonction qui retourne le degr&eacute; des sommets existe d&eacute;j&agrave;
+dans Scilab, c'est <B><TT>nodes_degrees</TT></B>, et on aurait pu l'utiliser
+ici, mais le but &eacute;tait de montrer comment on pouvait facilement
+programmer sur les graphes avec Scilab.<BR>
+<BR>
+Sur ce petit exemple, on vient de voir comment le fait de disposer de toute la
+puissance de Scilab avec la bo&icirc;te &agrave; outils Metanet permet de faire
+rapidement et facilement des calculs souvent fastidieux avec d'autres logiciels
+de graphes.<BR>
+<BR>
+<!--TOC subsection Circuit hamiltonien-->
+
+<H3>3.2&nbsp;&nbsp; Circuit hamiltonien</H3>
+Nous allons montrer maintenant une autre m&eacute;thode pour distinguer des
+sommets ou des arcs d'un graphe : faire du coloriage. Nous allons prendre pour
+cela l'exemple de la recherche d'un circuit hamiltonien.<BR>
+<BR>
+Un <EM>circuit</EM> d'un graphe orient&eacute; est un chemin ferm&eacute;,
+c'est-&agrave;-dire une suite d'arcs cons&eacute;cutifs qui permet de partir
+d'un sommet du graphe pour retourner &agrave; ce m&ecirc;me sommet. Un
+<EM>circuit hamiltonien</EM> est un circuit qui passe une fois et une fois
+seulement par tous les sommets du graphe. Il n'y a bien s&ucirc;r aucune raison
+qu'un cycle et &agrave; plus forte raison qu'un cycle hamiltonien existe dans
+un graphe orient&eacute;.<BR>
+<BR>
+On cr&eacute;e un joli graphe en utilisant l'&eacute;diteur de Metanet, on le
+charge et on cherche un circuit hamiltonien en utilisant la fonction Scilab <B>
+<TT>hamilton</TT></B> qui va retourner en cas d'existence le vecteur des arcs
+du circuit : <PRE>
+g=load_graph(&quot;hamilton&quot;);
+cir=hamilton(g);
+</PRE>
+On cr&eacute;e un vecteur de 1 (correspondant &agrave; la couleur noire) que
+l'on remplit de 11 (correspondant &agrave; la couleur rouge), on l'assigne
+&agrave; l'entr&eacute;e <B><TT>edge_color</TT></B> du graphe <B><TT>g</TT></B>
+et on l'affiche : 
+<PRE>
+edgecolor=ones(1,arc_number(g)); edgecolor(cir)=11*ones(cir);
+g(&quot;edge_color&quot;)=edgecolor;
+show_graph(g)
+</PRE>
+Cela donne la figure <A HREF="#hamilton">X</A>.<BR>
+<BR>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="H.jpg" ALT="Figure 5: Circuit hamiltonien" WIDTH="578" HEIGHT="409"
+ BORDER="0"> 
+</DIV>
+<A NAME="hamilton"></A> <BR>
+<DIV ALIGN="center">
+Figure 5: Circuit hamiltonien 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Il est ainsi facile en jouant avec les couleurs de faire appara&icirc;tre des
+tas de propri&eacute;t&eacute;s ou des r&eacute;sultats de calcul sur les
+graphes.<BR>
+<BR>
+<!--TOC subsection Autres jeux de base-->
+<H3>3.3&nbsp;&nbsp; Autres jeux de base</H3>
+Avec les graphes, on peut faire des tas d'autres choses comme : <UL>
+<LI> d&eacute;terminer les composantes connexes ou fortement connexes ; </LI>
+<LI>chercher des cycles, des circuits, calculer des bases de cycles ; </LI>
+<LI>chercher des plus courts chemins ; </LI>
+<LI>calculer la fermeture transitive ; </LI>
+<LI>d&eacute;terminer le couplage maximum ; </LI>
+<LI>d&eacute;terminer une clique maximale ; </LI>
+<LI>d&eacute;terminer les points d'articulation ; </LI>
+<LI>d&eacute;terminer le centre, le diam&egrave;tre ; </LI>
+<LI>trouver un arbre de poids minimum ; </LI>
+<LI>etc. </LI>
+</UL>
+Toutes ces fonctions, et bien d'autres encore, sont disponibles dans
+Metanet.<BR>
+<BR>
+<!--TOC section Conclusion-->
+<H2>4&nbsp;&nbsp; Conclusion</H2>
+Bien s&ucirc;r il existe toute une panoplie de fonctions plus
+sophistiqu&eacute;es qui travaillent sur les graphes et les r&eacute;seaux.
+Nous avons montr&eacute; simplement le fonctionnement de la bo&icirc;te
+&agrave; outils Metanet, mais il y a bien d'autres fonctionnalit&eacute;s car
+comme disait Hamlet &agrave; son pote Horatio &lt;&lt; There are more things in
+heaven and Earth, Horatio, Than are dreamt of in our philosophy &gt;&gt;. Nous
+verrons cela dans le num&eacute;ro suivant.<BR>
+<BR>
+<!--TOC section Contacts-->
+<H2>Contacts</H2>
+Site Web de Scilab : <B><TT>http://www-rocq.inria.fr/scilab</TT></B><BR>
+<BR>
+Serveur ftp : <B><TT>ftp://ftp.inria.fr/INRIA/Scilab</TT></B><BR>
+<BR>
+Adresse email : <B><TT>Scilab@inria.fr</TT></B><BR>
+<BR>
+Newsgroup : <B><TT>comp.soft-sys.math.scilab</TT></B><BR>
+<BR>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

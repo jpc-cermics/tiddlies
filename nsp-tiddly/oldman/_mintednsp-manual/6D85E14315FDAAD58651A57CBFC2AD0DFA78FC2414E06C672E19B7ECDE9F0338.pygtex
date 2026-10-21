@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ny=\nspnumber{2}\nspoperator{;}nu=\nspnumber{3}\nspoperator{;}nx=\nspnumber{4}\nspoperator{;}
+P22=ssrand(ny,nu,nx)\nspoperator{;}
+bigQ=rand(nx\nspoperator{+}nu,nx\nspoperator{+}nu)\nspoperator{;}bigQ=bigQ\nspoperator{*}bigQ\nspoperator{'}\nspoperator{;}
+bigR=rand(nx\nspoperator{+}ny,nx\nspoperator{+}ny)\nspoperator{;}bigR=bigR\nspoperator{*}bigR\nspoperator{'}\nspoperator{;}
+[P,r]=lqg2stan(P22,bigQ,bigR)\nspoperator{;}
+J=fstabst(P,r)\nspoperator{;}
+Q=ssrand(nu,ny,\nspnumber{1})\nspoperator{;}Q(\nspstring{'A'})=\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspcomment{//Stable Q}
+K=lft(J,r,Q)\nspoperator{;}
+A=h_cl(P,r,K)\nspoperator{;}spec(A)
+\end{Verbatim}

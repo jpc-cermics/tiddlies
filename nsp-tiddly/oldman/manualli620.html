@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>eigenmarkov</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli621.html" >next</a>] [<a 
+href="manualli619.html" >prev</a>] [<a 
+href="manualli619.html#tailmanualli619.html" >prev-tail</a>] [<a 
+href="#tailmanualli620.html">tail</a>] [<a 
+href="manualli607.html#manualli620.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x621-3688000"></a>eigenmarkov</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx621-3688001"></a><a 
+ id="eigenmarkov"></a><span 
+class="cmtt-10x-x-109">eigenmarkov </span>&#x2013;                                      normalized left and right Markov eigenvectors<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x621-3689000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-763">
+&#x00A0;&#x00A0;[M,Q]=eigenmarkov(P)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x621-3690000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P</span>: real N x N Markov matrix. Sum of entries in each row should add to one.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">M</span>: real matrix with N columns.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q</span>: real matrix with N rows.</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x621-3691000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > Returns normalized left and right eigenvectors associated with the eigenvalue 1 of the Markov
+transition matrix P. If the multiplicity of this eigenvalue is m and P is N x N, M is a m x N matrix
+and Q a N x m matrix. M(k,:) is the probability distribution vector associated with the kth ergodic
+set (recurrent class). M(k,x) is zero if x is not in the k-th recurrent class. Q(x,k) is the
+probability to end in the k-th recurrent class starting from x. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P^k</span></span></span> converges for large
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> (no eigenvalues on the unit circle except 1), then the limit is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q*M</span></span></span> (eigenprojection).
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x621-3692000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb483"><a 
+ id="x621-3692007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//P</span><span 
+class="cmitt-10x-x-109">&#x00A0;has</span><span 
+class="cmitt-10x-x-109">&#x00A0;two</span><span 
+class="cmitt-10x-x-109">&#x00A0;recurrent</span><span 
+class="cmitt-10x-x-109">&#x00A0;classes</span><span 
+class="cmitt-10x-x-109">&#x00A0;(with</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span><span 
+class="cmitt-10x-x-109">&#x00A0;states)</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;transient</span><span 
+class="cmitt-10x-x-109">&#x00A0;states</span></span>
+<br class="fancyvrb" /><a 
+ id="x621-3692009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;P=genmarkov([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x621-3692011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[M,Q]=eigenmarkov(P)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x621-3692013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;P</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">Q</span><br class="fancyvrb" /><a 
+ id="x621-3692015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">M</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">P</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span></div>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x621-3693000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli627.html#genmarkov">genmarkov</a>    <a 
+href="manualli614.html#classmarkov">classmarkov</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli621.html" >next</a>] [<a 
+href="manualli619.html" >prev</a>] [<a 
+href="manualli619.html#tailmanualli619.html" >prev-tail</a>] [<a 
+href="manualli620.html" >front</a>] [<a 
+href="manualli607.html#manualli620.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli620.html"></a>  </p> 
+</body></html> 

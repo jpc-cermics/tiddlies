@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+rand(\nspstring{'seed'},\nspnumber{0})\nspoperator{;}nx=\nspnumber{6}\nspoperator{;}nz=\nspnumber{3}\nspoperator{;}nu=\nspnumber{2}\nspoperator{;}ny=\nspnumber{1}\nspoperator{;}
+A=diag(\nspnumber{1}\nspoperator{:}\nspnumber{6})\nspoperator{;}A(\nspnumber{2},\nspnumber{2})=\nspoperator{-}\nspnumber{7}\nspoperator{;}A(\nspnumber{5},\nspnumber{5})=\nspoperator{-}\nspnumber{9}\nspoperator{;}B2=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{3}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{4}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{5}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+C1=[zeros(nz,nz)\nspoperator{,}eye(nz,nz)]\nspoperator{;}D12=[\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{3}]\nspoperator{;}
+Sys12=syslin(\nspstring{'c'},A,B2,C1,D12)\nspoperator{;}
+C=[C1\nspoperator{;}rand(ny,nx)]\nspoperator{;}D2=[D12\nspoperator{;}rand(ny,size(D12,\nspnumber{2}))]\nspoperator{;}
+Sys=syslin(\nspstring{'c'},A,B2,C,D2)\nspoperator{;}
+[A,B2,C1,D12]=abcd(Sys12)\nspoperator{;}\nspcomment{//The matrices of Sys12.}
+alfa=\nspoperator{-}\nspnumber{1}\nspoperator{;}beta=\nspoperator{-}\nspnumber{2}\nspoperator{;}flag=\nspstring{'ge'}\nspoperator{;}
+[X,dims,F,U,k,Z]=abinv(Sys12,alfa,beta,flag)\nspoperator{;}
+clean(X\nspoperator{'}\nspoperator{*}(A\nspoperator{+}B2\nspoperator{*}F)\nspoperator{*}X)
+clean(X\nspoperator{'}\nspoperator{*}B2\nspoperator{*}U)
+clean((C1\nspoperator{+}D12\nspoperator{*}F)\nspoperator{*}X)
+clean(D12\nspoperator{*}U)\nspoperator{;}
+\nspcomment{//Calculating an ad-hoc B1,D1}
+G1=rand(size(B2,\nspnumber{2}),\nspnumber{3})\nspoperator{;}
+B1=\nspoperator{-}B2\nspoperator{*}G1\nspoperator{;}
+D11=\nspoperator{-}D12\nspoperator{*}G1\nspoperator{;}
+D1=[D11\nspoperator{;}rand(ny,size(B1,\nspnumber{2}))]\nspoperator{;}
+[Closed,F,G]=ddp(Sys,\nspnumber{1}\nspoperator{:}nz,B1,D1,\nspstring{'st'},alfa,beta)\nspoperator{;}
+closed=syslin(\nspstring{'c'},A\nspoperator{+}B2\nspoperator{*}F,B1\nspoperator{+}B2\nspoperator{*}G,C1\nspoperator{+}D12\nspoperator{*}F,D11\nspoperator{+}D12\nspoperator{*}G)\nspoperator{;}
+ss2tf(closed)
+\end{Verbatim}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_halt</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1072.html" >next</a>] [<a 
+href="manualli1070.html" >prev</a>] [<a 
+href="manualli1070.html#tailmanualli1070.html" >prev-tail</a>] [<a 
+href="#tailmanualli1071.html">tail</a>] [<a 
+href="manualli1054.html#manualli1071.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1072-6074000"></a>pvm_halt</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1072-6074001"></a><a 
+ id="pvm_halt"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_halt </span>&#x2013;                                                                        stops the PVM daemon<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1072-6075000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1178">
+&#x00A0;&#x00A0;[info]&#x00A0;=&#x00A0;pvm_halt()
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1072-6076000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info</span>: integer, status code returned by the routine. Values less than zero indicate an
+     error.</li></ul>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1072-6077000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 33--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_halt</span></span></span> kills all PVM tasks, all the remote daemons, and the local daemon. If the
+master pvmd is killed manually it should be sent a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SIGTERM</span></span></span> signal to allow it to kill
+the remote pvmds and clean up various files. The pvmd can be killed in a manner that
+leaves the file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">/tmp/pvmd.uid</span></span></span> behind on one or more hosts (the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">uid</span></span></span> suffix is the
+numeric user ID from <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">/etc/passwd</span></span></span>) of the user. This will prevent PVM from restarting
+on that host. Deletion of this file will fix this problem and it can be done as follows:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;rm</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0060;(</span><span 
+class="cmtt-10x-x-109">&#x00A0;grep</span><span 
+class="cmtt-10x-x-109">&#x00A0;$user</span><span 
+class="cmtt-10x-x-109">&#x00A0;/etc/passwd</span><span 
+class="cmtt-10x-x-109">&#x00A0;||</span><span 
+class="cmtt-10x-x-109">&#x00A0;ypmatch</span><span 
+class="cmtt-10x-x-109">&#x00A0;$user</span><span 
+class="cmtt-10x-x-109">&#x00A0;passwd</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;|</span><span 
+class="cmtt-10x-x-109">&#x00A0;awk</span><span 
+class="cmtt-10x-x-109">&#x00A0;-F:</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;{print</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;/tmp/pvmd.&#x0022;;$3;exit}&#x0027;&#x0060;</span></span></span>
+For example:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1179">
+&#x00A0;&#x00A0;--$&#x003E;$pvm_halt()
+&#x00A0;<br />&#x00A0;&#x00A0;ans&#x00A0;&#x00A0;=
+&#x00A0;<br />&#x00A0;&#x00A0;0.
+&#x00A0;<br />&#x00A0;&#x00A0;--$&#x003E;$pvm_halt()
+&#x00A0;<br />&#x00A0;&#x00A0;ans&#x00A0;&#x00A0;=
+&#x00A0;<br />&#x00A0;&#x00A0;-&#x00A0;14.
+</div>
+<!--l. 54--><p class="nopar" >Error -14 means: pvm_halt(): Can&apos;t contact local daemon
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1072-6078000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-start">pvm_start</a>    <a 
+href="#pvm-addhosts">pvm_addhosts</a>    <a 
+href="#pvm-config">pvm_config</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1072.html" >next</a>] [<a 
+href="manualli1070.html" >prev</a>] [<a 
+href="manualli1070.html#tailmanualli1070.html" >prev-tail</a>] [<a 
+href="manualli1071.html" >front</a>] [<a 
+href="manualli1054.html#manualli1071.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1071.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.2.0.0.3 Matrices</TITLE>
+<META NAME="description" CONTENT="2.2.0.0.3 Matrices">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node17.html">
+<LINK REL="up" HREF="node15.html">
+<LINK REL="next" HREF="node19.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html489"
+ HREF="node19.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html485"
+ HREF="node15.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html481"
+ HREF="node17.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html487"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html488"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html490"
+ HREF="node19.html">2.3 Matrices of Character</A>
+<B> Up:</B> <A NAME="tex2html486"
+ HREF="node15.html">2.2 Constant Matrices</A>
+<B> Previous:</B> <A NAME="tex2html482"
+ HREF="node17.html">2.2.0.0.2 Vectors</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H4><A NAME="SECTION00320030000000000000">&#160;</A><A NAME="1097">&#160;</A><A NAME="1098">&#160;</A>
+<BR>
+2.2.0.0.3 Matrices
+</H4>
+Row elements are separated by commas or spaces
+ and column elements by semi-colons.  Multiplication
+of matrices by scalars, vectors, or other matrices is in the usual
+sense.  Addition and
+subtraction of matrices is element-wise and element-wise
+multiplication and division can be accomplished with the <TT>.*</TT>
+and <TT>./</TT> operators.
+<PRE>
+ 
+--&gt; A=[2 1 4;5 -8 2]
+ A         =
+ 
+!   2.    1.    4. !
+!   5.  - 8.    2. !
+ 
+--&gt; b=ones(2,3)
+ b         =
+ 
+!   1.    1.    1. !
+!   1.    1.    1. !
+ 
+--&gt; A.*b
+ ans       =
+ 
+!   2.    1.    4. !
+!   5.  - 8.    2. !
+ 
+--&gt; A*b'
+ ans       =
+ 
+!   7.    7. !
+! - 1.  - 1. !
+</PRE>Notice that the <TT>ones</TT><A NAME="1147">&#160;</A><A NAME="1105">&#160;</A>
+operator with two real numbers as arguments separated
+by a comma creates a matrix of ones using the arguments as
+dimensions (same for <TT>zeros</TT>).
+Matrices can be used as elements to larger 
+matrices<A NAME="1107">&#160;</A>.  Furthermore,
+the dimensions of a matrix can be changed.
+<PRE>
+ 
+--&gt; A=[1 2;3 4]
+ A         =
+ 
+!   1.    2. !
+!   3.    4. !
+ 
+--&gt; B=[5 6;7 8];
+ 
+--&gt; C=[9 10;11 12];
+ 
+--&gt; D=[A,B,C]
+ D         =
+ 
+!   1.    2.    5.    6.    9.     10. !
+!   3.    4.    7.    8.    11.    12. !
+ 
+--&gt; E=matrix(D,3,4)
+ E         =
+ 
+!   1.    4.    6.    11. !
+!   3.    5.    8.    10. !
+!   2.    7.    9.    12. !
+
+--&gt;F=eye(E)
+ F  =
+ 
+!   1.    0.    0.    0. !
+!   0.    1.    0.    0. !
+!   0.    0.    1.    0. !
+ 
+--&gt;G=eye(4,3)
+ G  =
+ 
+!   1.    0.    0. !
+!   0.    1.    0. !
+!   0.    0.    1. !
+!   0.    0.    0. !
+</PRE>Notice that matrix <TT>D</TT> is created by using other matrix
+elements.  The <TT>matrix</TT><A NAME="1148">&#160;</A> 
+primitive creates a new matrix <TT>E</TT> with the elements of the
+matrix <TT>D</TT> using
+the dimensions specified by the second two arguments.  The element
+ordering in the matrix <TT>D</TT> is top to bottom and then left to right
+which explains the ordering of the re-arranged matrix in <TT>E</TT>.
+
+<P>
+The function <TT>eye</TT> creates an <IMG
+ WIDTH="73" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.gif"
+ ALT="$m\times n$">
+matrix with 1 along the main
+diagonal (if the argument is a matrix <TT>E</TT> , <I>m</I> and <I>n</I> are the 
+dimensions of <TT>E</TT> ) .
+
+<P>
+Sparse constant matrices are defined through their nonzero entries 
+(type help <TT>sparse</TT> for more details). Once defined, they are
+manipulated as full matrices.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html489"
+ HREF="node19.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html485"
+ HREF="node15.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html481"
+ HREF="node17.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html487"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html488"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html490"
+ HREF="node19.html">2.3 Matrices of Character</A>
+<B> Up:</B> <A NAME="tex2html486"
+ HREF="node15.html">2.2 Constant Matrices</A>
+<B> Previous:</B> <A NAME="tex2html482"
+ HREF="node17.html">2.2.0.0.2 Vectors</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

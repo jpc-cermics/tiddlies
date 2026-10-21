@@ -1,0 +1,106 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// We will show different calling possibilities of leastsq on one (trivial) example}
+\nspcomment{// which is non linear but doesn't really need to be solved with leastsq (applying}
+\nspcomment{// log linearizes the model and the problem may be solved with linear algebra).}
+\nspcomment{// In this example we look for the 2 parameters x(1) and x(2) of a simple}
+\nspcomment{// exponential decay model (x(1) being the unknow initial value and x(2) the}
+\nspcomment{// decay constant):}
+\nspkeyword{function} y=\nspfunction{yth}(t,x)
+  y=x(\nspnumber{1})\nspoperator{*}exp(\nspoperator{-}x(\nspnumber{2})\nspoperator{*}t)
+\nspkeyword{endfunction}
+\nspcomment{// we have the m measures (ti, yi):}
+m=\nspnumber{10}\nspoperator{;}
+tm=[\nspnumber{0.25}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.75}\nspoperator{,}\nspnumber{1.0}\nspoperator{,}\nspnumber{1.25}\nspoperator{,}\nspnumber{1.5}\nspoperator{,}\nspnumber{1.75}\nspoperator{,}\nspnumber{2.0}\nspoperator{,}\nspnumber{2.25}\nspoperator{,}\nspnumber{2.5}]\nspoperator{'}\nspoperator{;}
+ym=[\nspnumber{0.79}\nspoperator{,}\nspnumber{0.59}\nspoperator{,}\nspnumber{0.47}\nspoperator{,}\nspnumber{0.36}\nspoperator{,}\nspnumber{0.29}\nspoperator{,}\nspnumber{0.23}\nspoperator{,}\nspnumber{0.17}\nspoperator{,}\nspnumber{0.15}\nspoperator{,}\nspnumber{0.12}\nspoperator{,}\nspnumber{0.08}]\nspoperator{'}\nspoperator{;}
+wm=ones(m,\nspnumber{1})\nspoperator{;}\nspcomment{// measure weights (here all equal to 1...)}
+\nspcomment{// and we want to find the parameters x such that the model fits the given}
+\nspcomment{// datas in the least square sense:}
+\nspcomment{//}
+\nspcomment{//  minimize  f(x) = sum_i  wm(i)^2 ( yth(tm(i),x) - ym(i) )^2}
+\nspcomment{// initial parameters guess}
+x0=[\nspnumber{1.5}\nspoperator{;}\nspnumber{0.8}]\nspoperator{;}
+\nspcomment{// in the first examples, we define the function fun and dfun}
+\nspcomment{// in scilab language}
+\nspkeyword{function} e=\nspfunction{myfun}(x,tm,ym,wm)
+  e=wm\nspoperator{ .*}(yth(tm,x)\nspoperator{-}ym)
+\nspkeyword{endfunction}
+\nspkeyword{function} g=\nspfunction{mydfun}(x,tm,ym,wm)
+  v=wm\nspoperator{ .*}exp(\nspoperator{-}x(\nspnumber{2})\nspoperator{*}tm)
+  g=[v\nspoperator{,}\nspoperator{-}x(\nspnumber{1})\nspoperator{*}tm\nspoperator{ .*}v]
+\nspkeyword{endfunction}
+\nspcomment{// now we could call leastsq:}
+\nspcomment{// 1- the simplest call}
+[f,xopt,gropt]=leastsq(list(myfun,tm,ym,wm),x0)
+\nspcomment{// 2- we provide the Jacobian}
+[f,xopt,gropt]=leastsq(list(myfun,tm,ym,wm),mydfun,x0)
+\nspcomment{// a small graphic (before showing other calling features)}
+tt=linspace(\nspnumber{0},\nspnumber{1.1}\nspoperator{*}max(tm),\nspnumber{100})\nspoperator{'}\nspoperator{;}
+yy=yth(tt,xopt)\nspoperator{;}
+xbasc()
+plot2d(tm,ym,style = \nspoperator{-}\nspnumber{2})
+plot2d(tt,yy,style = \nspnumber{2})
+legend([\nspstring{"measure points"}\nspoperator{,}\nspstring{"fitted curve"}])\nspoperator{;}
+xtitle(\nspstring{"a simple fit with leastsq"})
+\nspcomment{// 3- how to get some informations (we use imp=1)}
+[f,xopt,gropt]=leastsq(\nspnumber{1},list(myfun,tm,ym,wm),mydfun,x0)
+\nspcomment{// 4- using the conjugate gradient (instead of quasi Newton)}
+[f,xopt,gropt]=leastsq(\nspnumber{1},list(myfun,tm,ym,wm),mydfun,x0,\nspstring{"gc"})
+\nspcomment{// 5- how to provide bound constraints (not useful here !)}
+xinf=[\nspoperator{-}%inf\nspoperator{,}\nspoperator{-}%inf]\nspoperator{;}xsup=[%inf\nspoperator{,}%inf]\nspoperator{;}
+[f,xopt,gropt]=leastsq(list(myfun,tm,ym,wm),\nspstring{"b"},xinf,xsup,x0)\nspoperator{,}\nspcomment{// without Jacobian}
+[f,xopt,gropt]=leastsq(list(myfun,tm,ym,wm),mydfun,\nspstring{"b"},xinf,xsup,x0)\nspoperator{,}\nspcomment{// with Jacobian}
+\nspcomment{// 6- playing with some stopping parameters of the algorithm}
+\nspcomment{//    (allows only 40 function calls, 8 iterations and set epsg=0.01, epsf=0.1)}
+[f,xopt,gropt]=leastsq(\nspnumber{1},list(myfun,tm,ym,wm),mydfun,x0,\nspstring{"ar"},\nspnumber{40},\nspnumber{8},\nspnumber{0.01},\nspnumber{0.1})
+\nspcomment{// 7 and 8: now we want to define fun and dfun in fortran then in C}
+\nspcomment{//          Note that the "compile and link to scilab" method used here}
+\nspcomment{//          is believed to be OS independant (but there are some requirements,}
+\nspcomment{//          in particular you need a C and a fortran compiler, and they must}
+\nspcomment{//          be compatible with the ones used to build your scilab binary).}
+\nspcomment{// 7- fun and dfun in fortran}
+\nspcomment{// 7-1/ Let 's Scilab write the fortran code (in the TMPDIR directory):}
+f_code=[\nspstring{"      subroutine myfun(m,n,x,param,f)"}\nspoperator{;}
+        \nspstring{"*     param(i) = tm(i), param(m+i) = ym(i), param(2m+i) = wm(i)"}\nspoperator{;}
+        \nspstring{"      implicit none"}\nspoperator{;}\nspstring{"      integer n,m"}\nspoperator{;}
+        \nspstring{"      double precision x(n), param(*), f(m)"}\nspoperator{;}\nspstring{"      integer i"}\nspoperator{;}\nspstring{"      do i = 1,m"}\nspoperator{;}
+        \nspstring{"         f(i) = param(2*m+i)*( x(1)*exp(-x(2)*param(i)) - param(m+i) )"}\nspoperator{;}
+        \nspstring{"      enddo"}\nspoperator{;}\nspstring{"      end ! subroutine fun"}\nspoperator{;}\nspstring{""}\nspoperator{;}
+        \nspstring{"      subroutine mydfun(m,n,x,param,df)"}\nspoperator{;}
+        \nspstring{"*     param(i) = tm(i), param(m+i) = ym(i), param(2m+i) = wm(i)"}\nspoperator{;}
+        \nspstring{"      implicit none"}\nspoperator{;}\nspstring{"      integer n,m"}\nspoperator{;}
+        \nspstring{"      double precision x(n), param(*), df(m,n)"}\nspoperator{;}\nspstring{"      integer i"}\nspoperator{;}
+        \nspstring{"      do i = 1,m"}\nspoperator{;}\nspstring{"         df(i,1) =  param(2*m+i)*exp(-x(2)*param(i))"}\nspoperator{;}
+        \nspstring{"         df(i,2) = -x(1)*param(i)*df(i,1)"}\nspoperator{;}\nspstring{"      enddo"}\nspoperator{;}
+        \nspstring{"      end ! subroutine dfun"}]\nspoperator{;}
+mputl(f_code,TMPDIR\nspoperator{+}\nspstring{'/myfun.f'})
+\nspcomment{// 7-2/ compiles it. You need a fortran compiler !}
+names=[\nspstring{"myfun"}\nspoperator{,}\nspstring{"mydfun"}]
+flibname=ilib_for_link(names,\nspstring{"myfun.o"},[],\nspstring{"f"},TMPDIR\nspoperator{+}\nspstring{"/Makefile"})\nspoperator{;}
+\nspcomment{// 7-3/ link it to scilab (see link help page)}
+link(flibname,names,\nspstring{"f"})
+\nspcomment{// 7-4/ ready for the leastsq call: be carreful don't forget to}
+\nspcomment{//      give the dimension m after the routine name !}
+[f,xopt,gropt]=leastsq(list(\nspstring{"myfun"},m,tm,ym,wm),x0)\nspoperator{,}\nspcomment{// without Jacobian}
+[f,xopt,gropt]=leastsq(list(\nspstring{"myfun"},m,tm,ym,wm),\nspstring{"mydfun"},x0)\nspoperator{,}\nspcomment{// with Jacobian}
+\nspcomment{// 8- last example: fun and dfun in C}
+\nspcomment{// 8-1/ Let 's Scilab write the C code (in the TMPDIR directory):}
+c_code=[\nspstring{"\nspsh{}include $&lt;$math.h$&gt;$"}\nspoperator{;}
+        \nspstring{"void myfunc(int *m,int *n, double *x, double *param, double *f)"}\nspoperator{;}\nspstring{"\nspob{}"}\nspoperator{;}
+        \nspstring{"  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"}\nspoperator{;}\nspstring{"  int i;"}\nspoperator{;}
+        \nspstring{"  for ( i = 0 ; i $&lt;$ *m ; i++ )"}\nspoperator{;}
+        \nspstring{"    f[i] = param[2*(*m)+i]*( x[0]*exp(-x[1]*param[i]) - param[(*m)+i] );"}\nspoperator{;}
+        \nspstring{"  return;"}\nspoperator{;}\nspstring{"\nspcb{}"}\nspoperator{;}\nspstring{""}\nspoperator{;}
+        \nspstring{"void mydfunc(int *m,int *n, double *x, double *param, double *df)"}\nspoperator{;}\nspstring{"\nspob{}"}\nspoperator{;}
+        \nspstring{"  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"}\nspoperator{;}\nspstring{"  int i;"}\nspoperator{;}
+        \nspstring{"  for ( i = 0 ; i $&lt;$ *m ; i++ )"}\nspoperator{;}\nspstring{"    \nspob{}"}\nspoperator{;}
+        \nspstring{"      df[i] = param[2*(*m)+i]*exp(-x[1]*param[i]);"}\nspoperator{;}
+        \nspstring{"      df[i+(*m)] = -x[0]*param[i]*df[i];"}\nspoperator{;}\nspstring{"    \nspcb{}"}\nspoperator{;}\nspstring{"  return;"}\nspoperator{;}\nspstring{"\nspcb{}"}]\nspoperator{;}
+mputl(c_code,TMPDIR\nspoperator{+}\nspstring{'/myfunc.c'})
+\nspcomment{// 8-2/ compiles it. You need a C compiler !}
+names=[\nspstring{"myfunc"}\nspoperator{,}\nspstring{"mydfunc"}]
+clibname=ilib_for_link(names,\nspstring{"myfunc.o"},[],\nspstring{"c"},TMPDIR\nspoperator{+}\nspstring{"/Makefile"})\nspoperator{;}
+\nspcomment{// 8-3/ link it to scilab (see link help page)}
+link(clibname,names,\nspstring{"c"})
+\nspcomment{// 8-4/ ready for the leastsq call}
+[f,xopt,gropt]=leastsq(list(\nspstring{"myfunc"},m,tm,ym,wm),\nspstring{"mydfunc"},x0)
+\end{Verbatim}

@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// simple plot using z=f(x,y)}
+t=[\nspnumber{0}\nspoperator{:}\nspnumber{0.3}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}z=sin(t)\nspoperator{*}cos(t\nspoperator{'})\nspoperator{;}
+plot3d(t,t,z)
+\nspcomment{// same plot using facets computed by genfac3d}
+[xx,yy,zz]=genfac3d(t,t,z)\nspoperator{;}
+xbasc()
+plot3d(xx,yy,zz)
+\nspcomment{// multiple plots}
+xbasc()
+plot3d([xx\nspoperator{,}xx],[yy\nspoperator{,}yy],[zz\nspoperator{,}\nspnumber{4}\nspoperator{+}zz])
+\nspcomment{// multiple plots using colors}
+xbasc()
+plot3d([xx\nspoperator{,}xx],[yy\nspoperator{,}yy],list([zz\nspoperator{,}zz\nspoperator{+}\nspnumber{4}],[\nspnumber{4}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})\nspoperator{,}\nspnumber{5}\nspoperator{*}ones(\nspnumber{1},\nspnumber{400})]))
+\nspcomment{// simple plot with viewpoint and captions}
+xbasc()
+plot3d(\nspnumber{1}\nspoperator{:}\nspnumber{10},\nspnumber{1}\nspoperator{:}\nspnumber{20},\nspnumber{10}\nspoperator{*}rand(\nspnumber{10},\nspnumber{20}),\nspnumber{35},\nspnumber{45},\nspstring{"X@Y@Z"},[\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}])
+\nspcomment{// plot of a sphere using facets computed by eval3dp}
+deff(\nspstring{"[x,y,z]=sph(alp,tet)"}, ...
+     [\nspstring{"x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)"}\nspoperator{;}
+      \nspstring{"y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)"}\nspoperator{;}\nspstring{"z=r*sin(alp)+orig(3)*ones(tet)"}])\nspoperator{;}
+r=\nspnumber{1}\nspoperator{;}orig=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+[xx,yy,zz]=eval3dp(sph,linspace(\nspoperator{-}%pi\nspoperator{/}\nspnumber{2},%pi\nspoperator{/}\nspnumber{2},\nspnumber{40}),linspace(\nspnumber{0},%pi\nspoperator{*}\nspnumber{2},\nspnumber{20}))\nspoperator{;}
+xbasc()\nspoperator{;}plot3d(xx,yy,zz)
+xbasc()\nspoperator{;}xset(\nspstring{'colormap'},hotcolormap(\nspnumber{128}))\nspoperator{;}
+r=\nspnumber{0.3}\nspoperator{;}orig=[\nspnumber{1.5}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+[xx1,yy1,zz1]=eval3dp(sph,linspace(\nspoperator{-}%pi\nspoperator{/}\nspnumber{2},%pi\nspoperator{/}\nspnumber{2},\nspnumber{40}),linspace(\nspnumber{0},%pi\nspoperator{*}\nspnumber{2},\nspnumber{20}))\nspoperator{;}
+cc=(xx\nspoperator{+}zz\nspoperator{+}\nspnumber{2})\nspoperator{*}\nspnumber{32}\nspoperator{;}cc1=(xx1\nspoperator{-}orig(\nspnumber{1})\nspoperator{+}zz1\nspoperator{/}r\nspoperator{+}\nspnumber{2})\nspoperator{*}\nspnumber{32}\nspoperator{;}
+xbasc()\nspoperator{;}plot3d1([xx\nspoperator{,}xx1],[yy\nspoperator{,}yy1],list([zz\nspoperator{,}zz1],[cc\nspoperator{,}cc1]),\nspnumber{70},\nspnumber{80})
+xbasc()\nspoperator{;}
+plot3d1([xx\nspoperator{,}xx1],[yy\nspoperator{,}yy1],list([zz\nspoperator{,}zz1],[cc\nspoperator{,}cc1]),theta = \nspnumber{70},alpha = \nspnumber{80},flag = [\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{3}])
+\end{Verbatim}

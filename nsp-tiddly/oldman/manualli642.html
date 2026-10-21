@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>luget</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli643.html" >next</a>] [<a 
+href="manualli641.html" >prev</a>] [<a 
+href="manualli641.html#tailmanualli641.html" >prev-tail</a>] [<a 
+href="#tailmanualli642.html">tail</a>] [<a 
+href="manualli607.html#manualli642.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x643-3824000"></a>luget</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx643-3824001"></a><a 
+ id="luget"></a><span 
+class="cmtt-10x-x-109">luget </span>&#x2013;                                                                   extraction of sparse LU factors<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x643-3825000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-791">
+&#x00A0;&#x00A0;[P,L,U,Q]=luget(hand)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x643-3826000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">hand</span>: handle, output of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lufact</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P</span>: sparse permutation matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">L</span>: sparse matrix, lower triangular if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hand</span></span></span> is obtained from a non singular matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">U</span>: square non singular upper triangular sparse matrix with ones along the main diagonal
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q</span>: sparse permutation matrix</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x643-3827000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[P,L,U,Q]=luget(hand)</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hand</span></span></span> obtained by the command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[hand,rk]=lufact(A)</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> a
+sparse matrix returns four sparse matrices such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P*L*U*Q=A</span></span></span>. The A matrix needs
+not be full rank but must be square (since A is assumed sparse one may add zeros if
+necessary to squaring down A). If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is singular, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">L</span></span></span> matrix is column compressed (with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span>
+independent nonzero columns): the nonsingular sparse matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q&#x0027;*inv(U)</span></span></span> column compresses <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>.
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x643-3828000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb500"><a 
+ id="x643-3828007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A=sparse(a)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x643-3828009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[hand,rk]=lufact(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[P,L,U,Q]=luget(hand)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x643-3828011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;full(L)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">P</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">L</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">A</span><br class="fancyvrb" /><a 
+ id="x643-3828013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(P</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">L</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">U</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">A)</span><br class="fancyvrb" /><a 
+ id="x643-3828015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ludel(hand)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x643-3829000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli238.html#sparse">sparse</a>    <a 
+href="manualli643.html#lusolve">lusolve</a>    <a 
+href="#luget">luget</a>    <a 
+href="manualli896.html#clean">clean</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli643.html" >next</a>] [<a 
+href="manualli641.html" >prev</a>] [<a 
+href="manualli641.html#tailmanualli641.html" >prev-tail</a>] [<a 
+href="manualli642.html" >front</a>] [<a 
+href="manualli607.html#manualli642.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli642.html"></a>  </p> 
+</body></html> 

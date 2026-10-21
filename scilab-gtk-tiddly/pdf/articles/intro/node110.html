@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.4.1 Argument functions</TITLE>
+<META NAME="description" CONTENT="6.4.1 Argument functions">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node109.html">
+<LINK REL="up" HREF="node109.html">
+<LINK REL="next" HREF="node111.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1715"
+ HREF="node111.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1711"
+ HREF="node109.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1707"
+ HREF="node109.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1713"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1714"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1716"
+ HREF="node111.html">6.5 Maple to Scilab</A>
+<B> Up:</B> <A NAME="tex2html1712"
+ HREF="node109.html">6.4 The routines/default directory</A>
+<B> Previous:</B> <A NAME="tex2html1708"
+ HREF="node109.html">6.4 The routines/default directory</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00741000000000000000">
+6.4.1 Argument functions</A>
+</H2><FONT SIZE="-2">
+Some built-in nonlinear solvers, such as <TT>ode</TT> or <TT>optim</TT>, require a 
+specific function as argument. For instance in the Scilab command
+<TT>ode(x0,t0,t,fydot)</TT>, <TT>fydot</TT> is the specific argument function
+for the <TT>ode</TT> primitive.
+This function can be a either Scilab function or an external
+function written in C or Fortran.
+In both cases, the argument function must obey a specific
+syntax. In the following we will consider, as running example, using 
+the <TT>ode</TT> primitive with a rhs function written in Fortran. The
+same steps should be followed for all primitives which require
+a function as argument.
+</FONT>
+<P>
+<FONT SIZE="-2">If the argument function is written in C or Fortran, there
+are two ways to call it:
+</FONT><UL>
+<LI>-Use dynamic link
+<PRE>
+--&gt;link('myfydot.o','myfydot')  //or --&gt;link('myfydot.o','myfydot','C')
+--&gt;ode(x0,t0,t,'myfydot')
+</PRE>
+<LI>-Use the <TT>Ex-ode.f</TT> interface in the <TT>routines/default</TT>
+directory (and <TT>make all</TT> in Scilab directory).
+The call to the <TT>ode</TT> function is as above:
+<PRE>
+--&gt;ode(x0,t0,t,'myfydot')
+</PRE></UL><FONT SIZE="-2">In this latter case, to add a new function, two files should be updated:
+</FONT><UL>
+<LI>The <TT>Flist</TT> file: Flist is list of entry points. Just add the 
+name of your function at in the appropriate list of functions.
+<PRE>
+ode_list= ... myfydot
+</PRE>
+<LI>The <TT>Ex-ode.f</TT> (or <TT>Ex-ode-more.f</TT>) file: this file contains the 
+source code for argument functions. Add your function here.
+</UL>
+<P>
+<FONT SIZE="-2">Many exemples are provided in the <TT>default</TT> directory.
+More complex examples are also given. For instance it is shown 
+how to use Scilab variables as optional parameters of <TT>fydot</TT>.
+</FONT>
+<P><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1715"
+ HREF="node111.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1711"
+ HREF="node109.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1707"
+ HREF="node109.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1713"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1714"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1716"
+ HREF="node111.html">6.5 Maple to Scilab</A>
+<B> Up:</B> <A NAME="tex2html1712"
+ HREF="node109.html">6.4 The routines/default directory</A>
+<B> Previous:</B> <A NAME="tex2html1708"
+ HREF="node109.html">6.4 The routines/default directory</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

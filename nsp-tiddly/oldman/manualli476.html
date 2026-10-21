@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>plot3d3</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli477.html" >next</a>] [<a 
+href="manualli475.html" >prev</a>] [<a 
+href="manualli475.html#tailmanualli475.html" >prev-tail</a>] [<a 
+href="#tailmanualli476.html">tail</a>] [<a 
+href="manualli370.html#manualli476.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x477-2826000"></a>plot3d3</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx477-2826001"></a><a 
+ id="plot3d3"></a><span 
+class="cmtt-10x-x-109">plot3d3 </span>&#x2013;                                           mesh plot surface defined by rectangular facets<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x477-2827000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-600">
+&#x00A0;&#x00A0;plot3d3(X,Y,Z
+&#x00A0;<br />&#x00A0;&#x00A0;[,vect,theta,alpha,leg,flag,ebox])
+&#x00A0;<br />&#x00A0;&#x00A0;plot3d3(X,Y,Z,
+&#x00A0;<br />&#x00A0;&#x00A0;$&#x003C;$opt_args$&#x003E;$)
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x477-2828000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X, Y, Z: </span>3 real matrices defining a data structure.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">vect</span>: a real vector.
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">opt</span><span 
+class="cmtt-10x-x-109">_args</span><span 
+class="cmmi-10x-x-109">&#x003E;</span>: This represents a sequence of statements <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1=value1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;key2=value2</span></span></span>,...
+     where  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1</span></span></span>,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key2,...</span></span></span> can  be  one  of  the  following:  theta,  alpha  ,leg,flag,ebox  (see
+     definition below).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">theta, alpha</span>: real values giving in degree the spherical coordinates of the observation
+     point.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">leg</span>: string defining the labels for each axis with @ as a field separator, for example
+     &#x201D;X@Y@Z&#x201D;.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: a real vector of size three. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=[mode,type,box]</span></span></span>.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span>: an integer (surface color).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span><span 
+class="cmmi-10x-x-109">&#x003E;</span><span 
+class="cmtt-10x-x-109">0</span>: the surface is painted with color <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;mode&#x0022;</span></span></span> ; the boundary of the facet
+              is drawn with current line style and color.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode=0:  </span>a mesh of the surface is drawn.
+                                                                                    
+
+                                                                                    
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">mode</span><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">0: </span>the surface is painted with color <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;-mode&#x0022;</span></span></span> ; the boundary of the
+              facet is not drawn.Note that the surface color treatement can be done using
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_mode</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_flag</span></span></span> options through the surface entity properties
+              (see <a 
+href="#surface-properties">surface_properties</a>    ).</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">type</span>: an integer (scaling).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=0: </span>the plot is made using the current 3D scaling (set by a previous call
+              to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">param3d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d1</span></span></span>).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=1: </span>rescales  automatically  3d  boxes  with  extreme  aspect  ratios,  the
+              boundaries are specified by the value of the optional argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=2: </span>rescales  automatically  3d  boxes  with  extreme  aspect  ratios,  the
+              boundaries are computed using the given data.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=3: </span>3d isometric with box bounds given by optional <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>, similarily to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=1</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=4: </span>3d isometric bounds derived from the data, to similarily<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=2</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=5: </span>3d expanded isometric bounds with box bounds given by optional
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span>, similarily to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=1</span></span></span>.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">type=6: </span>3d expanded isometric bounds derived from the data, similarily to
+              <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type=2</span></span></span>.Note that axes boundaries can be customized through the axes entity
+              properties (see <a 
+href="#axes-properties">axes_properties</a>    ).</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">box</span>: an integer (frame around the plot).
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=0: </span>nothing is drawn around the plot.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=1: </span>unimplemented (like box=0).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=2: </span>only the axes behind the surface are drawn.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=3: </span>a box surrounding the surface is drawn and captions are added.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">box=4: </span>a  box  surrounding  the  surface  is  drawn,  captions  and  axes  are
+              added.Note that axes aspect can also be customized through the axes entity
+              properties (see <a 
+href="#axes-properties">axes_properties</a>    ).</li></ul>
+          </li></ul>
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ebox</span>: It specifies the boundaries of the plot as the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xmin,xmax,ymin,ymax,zmin,zmax]</span></span></span>.
+     This argument is used together with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">type</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span>: if it is set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">5</span></span></span> (see above
+     to see the corresponding behaviour). If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is missing, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span> is not taken into
+     acoount. Note that, when specified, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ebox</span></span></span> argument acts on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data_bounds</span></span></span>
+     field that can also be reset through the axes entity properties (see <a 
+href="#axes-properties">axes_properties</a>
+     ).</li></ul>
+<!--l. 108--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x477-2829000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 108--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d3</span></span></span> performs a mesh plot of a surface defined by rectangular facets. (X,Y,Z) are three matrices
+which describe a surface. The surface is composed of four sided polygons.The X-coordinates of a
+facet are given by X(i,j),X(i+1,j),X(i,j+1),X(i+1,j+1). And similarly Y and Z are Y and Z
+coordinates.The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vect</span></span></span> vector is used when multiple surfaces are coded in the same (X,Y,Z) matrices.
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vect(j)</span></span></span> gives the line at which the coding of the jth surface begins. See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d2</span></span></span> for a full
+description. As a mesh plot, the only available property you can edit is the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">visible</span></span></span> option (see
+<a 
+href="#axes-properties">axes_properties</a>    ).
+</p>
+<!--l. 120--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x477-2830000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb373"><a 
+ id="x477-2830012r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=linspace(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x477-2830014r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;v=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x477-2830016r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=cos(u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">cos(v)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x477-2830018r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y=cos(u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sin(v)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x477-2830020r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Z=sin(u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(v)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x477-2830022r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot3d3(X,Y,Z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x477-2830024r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;New</span><span 
+class="cmitt-10x-x-109">&#x00A0;Graphic</span><span 
+class="cmitt-10x-x-109">&#x00A0;mode</span><span 
+class="cmitt-10x-x-109">&#x00A0;only</span></span>
+<br class="fancyvrb" /><a 
+ id="x477-2830026r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e=gce()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;current</span><span 
+class="cmitt-10x-x-109">&#x00A0;entity</span></span><br class="fancyvrb" /><a 
+ id="x477-2830028r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.visible=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;off&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x477-2830030r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e.visible=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;on&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;back</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;mesh</span><span 
+class="cmitt-10x-x-109">&#x00A0;view</span></span></div>
+<!--l. 135--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x477-2831000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli475.html#plot3d2">plot3d2</a>    <a 
+href="manualli478.html#plot3d">plot3d</a>    <a 
+href="manualli466.html#param3d">param3d</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli477.html" >next</a>] [<a 
+href="manualli475.html" >prev</a>] [<a 
+href="manualli475.html#tailmanualli475.html" >prev-tail</a>] [<a 
+href="manualli476.html" >front</a>] [<a 
+href="manualli370.html#manualli476.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli476.html"></a>  </p> 
+</body></html> 

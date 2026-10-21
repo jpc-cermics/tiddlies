@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_eval</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli790.html" >next</a>] [<a 
+href="manualli788.html" >prev</a>] [<a 
+href="manualli788.html#tailmanualli788.html" >prev-tail</a>] [<a 
+href="#tailmanualli789.html">tail</a>] [<a 
+href="manualli756.html#manualli789.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x790-4659000"></a>mtlb_eval</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx790-4659001"></a><a 
+ id="mtlb_eval"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_eval </span>&#x2013;                                                            Matlab eval emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x790-4660000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Scilab equivalent for Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eval</span></span></span> is different according to its inputs and outputs The function
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_eval(str1,str2)</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">eval</span></span></span> because it was not possible to know
+what were the inputs while porting Matlab code to Scilab. This function will determine the correct
+semantic at run time. If you want to have a more efficient code it is possible to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_eval</span></span></span>
+calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> When called with one input and no output, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_eval(str1)</span></span></span> may be replaced
+          by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">evstr(str1)</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str1</span></span></span> is a valid Scilab expression or by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">execstr(str1)</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str1</span></span></span>
+          is a valid Scilab instruction.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>  When  called  with  one  input  and  one  output,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">val=mtlb_eval(str1)</span></span></span> may  be
+          replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">val=evstr(str1)</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str1</span></span></span> is a valid Scilab instruction.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with two inputs and no output, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_eval(str1,str2)</span></span></span> may be
+          replaced by: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">if</span><span 
+class="cmtt-10x-x-109">&#x00A0;execstr(str1,&#x0022;errcatch&#x0022;)$&#x003C;$$&#x003E;$0</span><span 
+class="cmtt-10x-x-109">&#x00A0;then</span><span 
+class="cmtt-10x-x-109">&#x00A0;execstr(str2);end</span></span></span>
+          if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str2</span></span></span> are valid Scilab instructions.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>               When               called               with               more               than
+          one output and one input, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[val1,val2,...]=mtlb_eval(str1)</span></span></span> may be replaced
+          by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">execstr(&#x0022;[val1,val2,...]&#x0022;+str1)</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str1</span></span></span> is a valid Scilab instruction.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with two inputs and more than one output, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[val1,val2,...]=mtlb_eval(str1,str2)</span></span></span>
+          may be replaced by:
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-925">
+          &#x00A0;&#x00A0;if&#x00A0;execstr(&#x0022;[val1,val2,...]&#x0022;+str1,&#x0022;errcatch&#x0022;)$&#x003C;$$&#x003E;$0&#x00A0;then
+          &#x00A0;<br />&#x00A0;&#x00A0;execstr(&#x0022;[val1,val2,...]&#x0022;+str2);
+          &#x00A0;<br />&#x00A0;&#x00A0;end
+</div>
+          <!--l. 58--><p class="nopar" >if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str2</span></span></span> are valid Scilab instructions.</p></li></ul>
+     </ul>
+<!--l. 62--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_eval</span></span></span> has not to be used for hand coded functions.
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x790-4661000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli961.html#evstr">evstr</a>    <a 
+href="manualli962.html#execstr">execstr</a>
+</p>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x790-4662000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 70--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x790-4663000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli790.html" >next</a>] [<a 
+href="manualli788.html" >prev</a>] [<a 
+href="manualli788.html#tailmanualli788.html" >prev-tail</a>] [<a 
+href="manualli789.html" >front</a>] [<a 
+href="manualli756.html#manualli789.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli789.html"></a>  </p> 
+</body></html> 

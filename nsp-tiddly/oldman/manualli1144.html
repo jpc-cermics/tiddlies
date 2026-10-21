@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>convol</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1145.html" >next</a>] [<a 
+href="manualli1143.html" >prev</a>] [<a 
+href="manualli1143.html#tailmanualli1143.html" >prev-tail</a>] [<a 
+href="#tailmanualli1144.html">tail</a>] [<a 
+href="manualli1135.html#manualli1144.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1145-6473000"></a>convol</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1145-6473001"></a><a 
+ id="convol"></a><span 
+class="cmtt-10x-x-109">convol </span>&#x2013;                                                                                           convolution<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1145-6474000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1291">
+&#x00A0;&#x00A0;[y]=convol(h,x)
+&#x00A0;<br />&#x00A0;&#x00A0;[y,e1]=convol(h,x,e0)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1145-6475000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,h</span>:input sequences (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">h</span></span></span> is a &#x201D;short&#x201D; sequence, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> a &#x201D;long&#x201D; one)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">e0</span>: old tail to overlap add (not used in first call)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: output of convolution
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">e1</span>: new tail to overlap add (not used in last call)</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1145-6476000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > calculates the convolution <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y=</span><span 
+class="cmtt-10x-x-109">&#x00A0;h*x</span></span></span> of two discrete sequences by using the fft. Overlap add method
+can be used. USE OF OVERLAP ADD METHOD: For x=[x1,x2,...,xNm1,xN] First
+call is [y1,e1]=convol(h,x1); Subsequent calls: [yk,ek]=convol(h,xk,ekm1); Final call:
+[yN]=convol(h,xN,eNm1); Finally y=[y1,y2,...,yNm1,yN]
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1145-6477000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb766"><a 
+ id="x1145-6477009r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1145-6477011r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h1=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">h2=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">h3=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1145-6477013r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x1=convol(h1,x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">x2=convol(h2,x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">x3=convol(h3,x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span>
+<br class="fancyvrb" /><a 
+ id="x1145-6477015r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;convol(h1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">h2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">h3,x)</span><br class="fancyvrb" /><a 
+ id="x1145-6477017r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p1=poly(x,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;coeff&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1145-6477019r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p2=poly(h1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">h2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">h3,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;coeff&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1145-6477021r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">p2</span></div>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1145-6478000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1145.html#corr">corr</a>    <a 
+href="manualli1155.html#fft">fft</a>    <a 
+href="manualli1182.html#pspect">pspect</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1145-6479000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F. D , C. Bunks Date 3 Oct. 1988; ;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1145.html" >next</a>] [<a 
+href="manualli1143.html" >prev</a>] [<a 
+href="manualli1143.html#tailmanualli1143.html" >prev-tail</a>] [<a 
+href="manualli1144.html" >front</a>] [<a 
+href="manualli1135.html#manualli1144.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1144.html"></a>  </p> 
+</body></html> 

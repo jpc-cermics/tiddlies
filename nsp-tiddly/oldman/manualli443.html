@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>histplot</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli444.html" >next</a>] [<a 
+href="manualli442.html" >prev</a>] [<a 
+href="manualli442.html#tailmanualli442.html" >prev-tail</a>] [<a 
+href="#tailmanualli443.html">tail</a>] [<a 
+href="manualli370.html#manualli443.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x444-2615000"></a>histplot</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx444-2615001"></a><a 
+ id="histplot"></a><span 
+class="cmtt-10x-x-109">histplot </span>&#x2013;                                                                                 plot a histogram<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x444-2616000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-569">
+&#x00A0;&#x00A0;histplot(n,&#x00A0;data,&#x00A0;$&#x003C;$opt_args$&#x003E;$)
+&#x00A0;<br />&#x00A0;&#x00A0;histplot(x,&#x00A0;data,&#x00A0;$&#x003C;$opt_args$&#x003E;$)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x444-2617000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: positive integer (number of classes)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: increasing vector defining the classes (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> may have at least 2 components)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">data</span>: vector (datas to be analysed)
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">opt</span><span 
+class="cmtt-10x-x-109">_args</span><span 
+class="cmmi-10x-x-109">&#x003E;</span>: This represents a sequence of statements <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1=value1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;key2=value2</span></span></span>,...
+     where  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1</span></span></span>,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key2,...</span></span></span> can  be  any  optional  <a 
+href="manualli473.html#plot2d">plot2d</a>     parameter  (<span 
+class="cmtt-10x-x-109">style,strf,leg,</span>
+     <span 
+class="cmtt-10x-x-109">rect,nax, logflag,frameflag, axesflag</span>) or normalization. For this last one the
+     corresponding value must be a boolean scalar (default value %t).</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x444-2618000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > This function plot an histogram of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data</span></span></span> vector using the classes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. When the number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> of
+classes is provided instead of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, the classes are choosen equally spaced and <span 
+class="cmti-10x-x-109">x(1) = min(data) </span><span 
+class="cmmi-10x-x-109">&#x003C; </span><span 
+class="cmti-10x-x-109">x(2)</span>
+<span 
+class="cmti-10x-x-109">= x(1) + dx </span><span 
+class="cmmi-10x-x-109">&#x003C; </span><span 
+class="cmti-10x-x-109">... </span><span 
+class="cmmi-10x-x-109">&#x003C; </span><span 
+class="cmti-10x-x-109">x(n+1) = max(data) </span>with <span 
+class="cmti-10x-x-109">dx = (x(n+1)-x(1))/n</span>. The classes are defined by C1
+= [x(1), x(2)] and Ci = ( x(i), x(i+1)] for i <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 2. Noting Nmax the total number of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data</span></span></span> (Nmax
+= length(data)) and Ni the number of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data</span></span></span> components falling in Ci, the value of the
+histogram for x in Ci is equal to <span 
+class="cmti-10x-x-109">Ni/(Nmax (x(i+1)-x(i))) </span>when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">normalization</span></span></span> is true
+(default case) and else, simply equal to <span 
+class="cmti-10x-x-109">Ni</span>. When normalization occurs the histogram
+verifies:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-570">
+&#x00A0;&#x00A0;x(n+1)
+&#x00A0;<br />&#x00A0;&#x00A0;/
+&#x00A0;<br />&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;h(x)&#x00A0;dx&#x00A0;=&#x00A0;1,&#x00A0;&#x00A0;when&#x00A0;x(1)$&#x003C;$=min(data)&#x00A0;and&#x00A0;max(data)&#x00A0;$&#x003C;$=&#x00A0;x(n+1))
+&#x00A0;<br />&#x00A0;&#x00A0;/
+&#x00A0;<br />&#x00A0;&#x00A0;x(1)
+</div>
+<!--l. 59--><p class="nopar" >Any <a 
+href="manualli473.html#plot2d">plot2d</a>    (optional) parameter may be provided; for instance to plot an histogram with the
+color number 2 (blue if std colormap is used) and to restrict the plot inside the rectangle
+[-3,3]x[0,0.5], you may use <span 
+class="cmtt-10x-x-109">histplot(n,data, style=2, rect=[-3,0,3,0.5])</span>. Enter the
+command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">histplot()</span></span></span> to see a demo.
+</p>
+<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x444-2619000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb342"><a 
+ id="x444-2619029r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;#1:</span><span 
+class="cmitt-10x-x-109">&#x00A0;variations</span><span 
+class="cmitt-10x-x-109">&#x00A0;around</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;histogram</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;gaussian</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;sample</span></span>
+<br class="fancyvrb" /><a 
+ id="x444-2619031r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;d=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10000</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;gaussian</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;sample</span></span><br class="fancyvrb" /><a 
+ id="x444-2619033r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">histplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">,d)</span>
+<br class="fancyvrb" /><a 
+ id="x444-2619035r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">histplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">,d,normalization</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;%f)</span><br class="fancyvrb" /><a 
+ id="x444-2619037r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">histplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">,d,leg</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rand(1,10000,&#x0027;&#x0027;normal&#x0027;&#x0027;)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x444-2619039r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">histplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">,d,leg</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rand(1,10000,&#x0027;&#x0027;normal&#x0027;&#x0027;)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span 
+class="cmtt-10x-x-109">,rect</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x444-2619041r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;#2:</span><span 
+class="cmitt-10x-x-109">&#x00A0;histogram</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;binomial</span><span 
+class="cmitt-10x-x-109">&#x00A0;(B(6,0.5))</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;sample</span></span><br class="fancyvrb" /><a 
+ id="x444-2619043r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;d=grand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1000</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;bin&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x444-2619045r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;c=linspace(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6.5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x444-2619047r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x444-2619049r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x444-2619051r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;histplot(c,d,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x444-2619053r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;normalized</span><span 
+class="cmtt-10x-x-109">&#x00A0;histogram&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x444-2619055r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x444-2619057r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;histplot(c,d,normalization</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;%f,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x444-2619059r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;non</span><span 
+class="cmtt-10x-x-109">&#x00A0;normalized</span><span 
+class="cmtt-10x-x-109">&#x00A0;histogram&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x444-2619061r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;#3:</span><span 
+class="cmitt-10x-x-109">&#x00A0;histogram</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;exponential</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;sample</span></span>
+<br class="fancyvrb" /><a 
+ id="x444-2619063r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lambda=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x444-2619065r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=grand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100000</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;exp&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">lambda)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x444-2619067r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Xmax=max(X)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x444-2619069r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x444-2619071r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;histplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span 
+class="cmtt-10x-x-109">,X,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x444-2619073r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,max(Xmax),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x444-2619075r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(x,lambda</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">exp(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">lambda</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x),strf</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;000&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x444-2619077r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;legend([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;exponential</span><span 
+class="cmtt-10x-x-109">&#x00A0;random</span><span 
+class="cmtt-10x-x-109">&#x00A0;sample</span><span 
+class="cmtt-10x-x-109">&#x00A0;histogram&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;exact</span><span 
+class="cmtt-10x-x-109">&#x00A0;density</span><span 
+class="cmtt-10x-x-109">&#x00A0;curve&#x0022;</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x444-2619079r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Note:</span><span 
+class="cmitt-10x-x-109">&#x00A0;if</span><span 
+class="cmitt-10x-x-109">&#x00A0;you</span><span 
+class="cmitt-10x-x-109">&#x00A0;use</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;old</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphic</span><span 
+class="cmitt-10x-x-109">&#x00A0;mode</span><span 
+class="cmitt-10x-x-109">&#x00A0;use</span><span 
+class="cmitt-10x-x-109">&#x00A0;instead</span></span>
+<br class="fancyvrb" /><a 
+ id="x444-2619081r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;legends([&#x0022;exponential</span><span 
+class="cmitt-10x-x-109">&#x00A0;random</span><span 
+class="cmitt-10x-x-109">&#x00A0;sample</span><span 
+class="cmitt-10x-x-109">&#x00A0;histogram&#x0022;</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0022;exact</span><span 
+class="cmitt-10x-x-109">&#x00A0;density</span><span 
+class="cmitt-10x-x-109">&#x00A0;curve&#x0022;],[2</span><span 
+class="cmitt-10x-x-109">&#x00A0;5],&#x0022;ur&#x0022;);</span></span></div>
+<!--l. 99--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x444-2620000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli442.html#hist3d">hist3d</a>    <a 
+href="manualli473.html#plot2d">plot2d</a>    <a 
+href="manualli148.html#dsearch">dsearch</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli444.html" >next</a>] [<a 
+href="manualli442.html" >prev</a>] [<a 
+href="manualli442.html#tailmanualli442.html" >prev-tail</a>] [<a 
+href="manualli443.html" >front</a>] [<a 
+href="manualli370.html#manualli443.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli443.html"></a>  </p> 
+</body></html> 

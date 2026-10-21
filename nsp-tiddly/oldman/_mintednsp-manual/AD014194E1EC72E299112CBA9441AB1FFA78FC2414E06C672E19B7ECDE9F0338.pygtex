@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+file1=\nspstring{'test1.bin'}\nspoperator{;}
+file2=\nspstring{'test2.bin'}\nspoperator{;}
+fd1=mopen(file1,\nspstring{'wb'})\nspoperator{;}
+fd2=mopen(file2,\nspstring{'wb'})\nspoperator{;}
+mput(\nspnumber{1996},\nspstring{'ull'},fd1)\nspoperator{;}
+mput(\nspnumber{1996},\nspstring{'ull'},fd2)\nspoperator{;}
+mclose(fd1)\nspoperator{;}
+mclose(fd2)\nspoperator{;}
+fd1=mopen(file1,\nspstring{'rb'})\nspoperator{;}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'ull'},fd1) \nspkeyword{then} write(%io(\nspnumber{2}),\nspstring{'Bug'})\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+fd2=mopen(file2,\nspstring{'rb'})\nspoperator{;}
+\nspkeyword{if} \nspnumber{1996}\nspoperator{ <> }mget(\nspnumber{1},\nspstring{'ull'},fd2) \nspkeyword{then} write(%io(\nspnumber{2}),\nspstring{'Bug'})\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+mclose(fd1)\nspoperator{;}
+mclose(fd2)\nspoperator{;}
+\end{Verbatim}

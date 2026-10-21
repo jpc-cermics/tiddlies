@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ss2ss</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli79.html" >next</a>] [<a 
+href="manualli77.html" >prev</a>] [<a 
+href="manualli77.html#tailmanualli77.html" >prev-tail</a>] [<a 
+href="#tailmanualli78.html">tail</a>] [<a 
+href="manualli12.html#manualli78.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x79-459000"></a>ss2ss</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx79-459001"></a><a 
+ id="ss2ss"></a><span 
+class="cmtt-10x-x-109">ss2ss </span>&#x2013;                                  state-space to state-space conversion, feedback, injection<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x79-460000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-149">
+&#x00A0;&#x00A0;[Sl1,right,left]=ss2ss(Sl,T,&#x00A0;[F,&#x00A0;[G&#x00A0;,&#x00A0;[flag]]])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x79-461000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl</span>: linear system (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list) in state-space form
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">T</span>: square (non-singular) matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl1, right, left</span>: linear systems (syslin lists) in state-space form
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">F</span>: real matrix (state feedback gain)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">G</span>: real matrix (output injection gain)</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x79-462000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > Returns the linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1=[A1,B1,C1,D1]</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A1=inv(T)*A*T,</span><span 
+class="cmtt-10x-x-109">&#x00A0;B1=inv(T)*B,</span><span 
+class="cmtt-10x-x-109">&#x00A0;C1=C*T,</span><span 
+class="cmtt-10x-x-109">&#x00A0;D1=D</span></span></span>.
+Optional parameters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> are state feedback and output injection respectively. For example,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1=ss2ss(Sl,T,F)</span></span></span> returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1</span></span></span> with: and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">right</span></span></span> is a non singular linear system such that
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1=Sl*right</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1*inv(right)</span></span></span> is a factorization of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1=ss2ss(Sl,T,0*F,G)</span></span></span> returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1</span></span></span> with:
+and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">left</span></span></span> is a non singular linear system such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1=left*Sl</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">right=Id</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F=0</span></span></span>). When both <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span>
+and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> are given, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl1=left*Sl*right</span></span></span>.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>When <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is used and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=1</span></span></span> an output injection as follows is used and then a feedback is
+     performed, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span> must be of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(m+p,n)</span></span></span> ( x is in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R^n</span></span></span> , y in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R^p</span></span></span>, u in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R^m</span></span></span> ). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">right</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">left</span></span></span> have
+     the following property:
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-150">
+     &#x00A0;&#x00A0;Sl1&#x00A0;=&#x00A0;&#x00A0;left*sysdiag(sys,eye(p,p))*right
+</div>
+     <!--l. 56--><p class="nopar" >
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>When <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is used and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=2</span></span></span> a feedback (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">F</span></span></span> must be of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(m,n)</span></span></span>) is performed and
+     then the above output injection is applied. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">right</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">left</span></span></span> have the following
+     property:
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-151">
+     &#x00A0;&#x00A0;Sl1&#x00A0;=&#x00A0;left*sysdiag(sys*right,eye(p,p)))
+</div>
+     <!--l. 63--><p class="nopar" ></ul>
+</p>
+<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x79-463000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb60"><a 
+ id="x79-463023r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sl=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">trzeros(Sl)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;zeros</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;invariant:</span></span><br class="fancyvrb" /><a 
+ id="x79-463025r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sl1=ss2ss(Sl,rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">),rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">),rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x79-463027r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;trzeros(Sl1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">trzeros(rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Sl1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x79-463029r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;output</span><span 
+class="cmitt-10x-x-109">&#x00A0;injection</span><span 
+class="cmitt-10x-x-109">&#x00A0;[</span><span 
+class="cmitt-10x-x-109">&#x00A0;A</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;GC,</span><span 
+class="cmitt-10x-x-109">&#x00A0;(B+GD,-G)]</span></span>
+<br class="fancyvrb" /><a 
+ id="x79-463031r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;[</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;,</span><span 
+class="cmitt-10x-x-109">&#x00A0;(D</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;,</span><span 
+class="cmitt-10x-x-109">&#x00A0;0)]</span></span><br class="fancyvrb" /><a 
+ id="x79-463033r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">sys=ssrand(p,m,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x79-463035r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;feedback</span><span 
+class="cmitt-10x-x-109">&#x00A0;(m,n)</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;then</span><span 
+class="cmitt-10x-x-109">&#x00A0;output</span><span 
+class="cmitt-10x-x-109">&#x00A0;injection.</span></span><br class="fancyvrb" /><a 
+ id="x79-463037r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F1=rand(m,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x79-463039r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;G=rand(n,p)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x79-463041r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[sys1,right,left]=ss2ss(sys,rand(n,n),F1,G,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x79-463043r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Sl1</span><span 
+class="cmitt-10x-x-109">&#x00A0;equiv</span><span 
+class="cmitt-10x-x-109">&#x00A0;left*sysdiag(sys*right,eye(p,p)))</span></span>
+<br class="fancyvrb" /><a 
+ id="x79-463045r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;res=clean(ss2tf(sys1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">ss2tf(left</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sysdiag(sys</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">right,eye(p,p))))</span>
+<br class="fancyvrb" /><a 
+ id="x79-463047r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;output</span><span 
+class="cmitt-10x-x-109">&#x00A0;injection</span><span 
+class="cmitt-10x-x-109">&#x00A0;then</span><span 
+class="cmitt-10x-x-109">&#x00A0;feedback</span><span 
+class="cmitt-10x-x-109">&#x00A0;(m+p,n)</span></span><br class="fancyvrb" /><a 
+ id="x79-463049r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F2=rand(p,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">F=[F1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">F2]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x79-463051r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x79-463053r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Sl1</span><span 
+class="cmitt-10x-x-109">&#x00A0;equiv</span><span 
+class="cmitt-10x-x-109">&#x00A0;left*sysdiag(sys,eye(p,p))*right</span></span>
+<br class="fancyvrb" /><a 
+ id="x79-463055r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;res=clean(ss2tf(sys2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">ss2tf(left</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sysdiag(sys,eye(p,p))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">right))</span>
+<br class="fancyvrb" /><a 
+ id="x79-463057r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;when</span><span 
+class="cmitt-10x-x-109">&#x00A0;F2=</span><span 
+class="cmitt-10x-x-109">&#x00A0;0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;sys1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;sys2</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span></span><br class="fancyvrb" /><a 
+ id="x79-463059r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F2=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(p,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">F=[F1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">F2]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x79-463061r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x79-463063r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;res=clean(ss2tf(sys2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">ss2tf(sys1))</span></div>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x79-464000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli68.html#projsl">projsl</a>    <a 
+href="manualli38.html#feedback">feedback</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli79.html" >next</a>] [<a 
+href="manualli77.html" >prev</a>] [<a 
+href="manualli77.html#tailmanualli77.html" >prev-tail</a>] [<a 
+href="manualli78.html" >front</a>] [<a 
+href="manualli12.html#manualli78.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli78.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+G=[\nspnumber{1}\nspoperator{/}(s\nspoperator{+}\nspnumber{1})\nspoperator{,}s\nspoperator{;}\nspnumber{1}\nspoperator{+}s\nspoperator{^}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{*}s\nspoperator{^}\nspnumber{3}]\nspoperator{;}
+Descrip=tf2des(G)\nspoperator{;}Tf1=des2tf(Descrip)
+Descrip2=tf2des(G,\nspstring{"withD"})\nspoperator{;}Tf2=des2tf(Descrip2)
+[A,B,C,D,E]=Descrip2(\nspnumber{2}\nspoperator{:}\nspnumber{6})\nspoperator{;}Tf3=C\nspoperator{*}inv(s\nspoperator{*}E\nspoperator{-}A)\nspoperator{*}B\nspoperator{+}D
+\end{Verbatim}

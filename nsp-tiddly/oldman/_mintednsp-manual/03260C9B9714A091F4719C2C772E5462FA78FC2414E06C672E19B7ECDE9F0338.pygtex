@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//generate data from a given linear system}
+A=[\nspnumber{0.5}\nspoperator{,}\nspnumber{0.1}\nspoperator{,}\nspoperator{-}\nspnumber{0.1}\nspoperator{,}\nspnumber{0.2}\nspoperator{;}\nspnumber{0.1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{0.1}\nspoperator{,}\nspoperator{-}\nspnumber{0.1}\nspoperator{;}\nspoperator{-}\nspnumber{0.4}\nspoperator{,}\nspoperator{-}\nspnumber{0.6}\nspoperator{,}\nspoperator{-}\nspnumber{0.7}\nspoperator{,}\nspoperator{-}\nspnumber{0.1}\nspoperator{;}\nspnumber{0.8}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{0.6}\nspoperator{,}\nspoperator{-}\nspnumber{0.6}]\nspoperator{;}
+B=[\nspnumber{0.8}\nspoperator{;}\nspnumber{0.1}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{1}]\nspoperator{;}
+C=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+SYS=syslin(\nspnumber{0.1},A,B,C)\nspoperator{;}
+nsmp=\nspnumber{100}\nspoperator{;}
+U=prbs_a(nsmp,nsmp\nspoperator{/}\nspnumber{5})\nspoperator{;}
+Y=(flts(U,SYS)\nspoperator{+}\nspnumber{0.3}\nspoperator{*}rand(\nspnumber{1},nsmp,\nspstring{'normal'}))\nspoperator{;}
+\nspcomment{// Compute R}
+S=\nspnumber{15}\nspoperator{;}L=\nspnumber{1}\nspoperator{;}
+[R,N,SVAL]=findR(S,Y\nspoperator{'},U\nspoperator{'})\nspoperator{;}
+N=\nspnumber{3}\nspoperator{;}
+METH=\nspnumber{3}\nspoperator{;}TOL=\nspoperator{-}\nspnumber{1}\nspoperator{;}
+[A,C]=findAC(S,N,L,R,METH,TOL)\nspoperator{;}
+[X0,B,D,V,rcnd]=findx0BD(A,C,Y\nspoperator{'},U\nspoperator{'})\nspoperator{;}
+SYS1=syslin(\nspnumber{1},A,B,C,D,X0)\nspoperator{;}
+Y1=flts(U,SYS1)\nspoperator{;}
+xbasc()\nspoperator{;}plot2d((\nspnumber{1}\nspoperator{:}nsmp)\nspoperator{'},[Y\nspoperator{'}\nspoperator{,}Y1\nspoperator{'}])
+\end{Verbatim}

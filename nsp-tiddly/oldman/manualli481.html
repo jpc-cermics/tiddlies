@@ -1,0 +1,1301 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>plot</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli482.html" >next</a>] [<a 
+href="manualli480.html" >prev</a>] [<a 
+href="manualli480.html#tailmanualli480.html" >prev-tail</a>] [<a 
+href="#tailmanualli481.html">tail</a>] [<a 
+href="manualli370.html#manualli481.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x482-2861000"></a>plot</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx482-2861001"></a><a 
+ id="plot"></a><span 
+class="cmtt-10x-x-109">plot </span>&#x2013;                                                                                                    2D plot<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x482-2862000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-605">
+&#x00A0;&#x00A0;plot(y,$&#x003C;$LineSpec$&#x003E;$,$&#x003C;$GlobalProperty$&#x003E;$)
+&#x00A0;<br />&#x00A0;&#x00A0;plot(x,y,$&#x003C;$LineSpec$&#x003E;$,$&#x003C;$GlobalProperty$&#x003E;$)
+&#x00A0;<br />&#x00A0;&#x00A0;plot(x1,y1,$&#x003C;$LineSpec1$&#x003E;$,x2,y2,$&#x003C;$LineSpec2$&#x003E;$,...xN,yN,$&#x003C;$LineSpecN$&#x003E;$,$&#x003C;$GlobalProperty1$&#x003E;$,$&#x003C;$GlobalProperty2$&#x003E;$,..$&#x003C;$GlobalPropertyM$&#x003E;$)
+&#x00A0;<br />&#x00A0;&#x00A0;plot($&#x003C;$axes_handle$&#x003E;$,...)
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x482-2863000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: a real matrice or vector. If omitted, it is assumed to be the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1:n</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> is the
+     number of curve points given by the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> parameter.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: a real matrice or vector. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> can also be a function defined as a macro or a primitive.
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">LineSpec</span><span 
+class="cmmi-10x-x-109">&#x003E;</span>: This optional argument must be a string that will be used as a shortcut
+     to  specify  a  way  of  drawing  a  line.  We  can  have  one  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LineSpec</span></span></span> per<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;y</span></span></span> or  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">{x,y}</span></span></span>
+     previously entered. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LineSpec</span></span></span> options deals with LineStyle, Marker and Color specifiers
+     (see <a 
+href="manualli451.html#LineSpec">LineSpec</a>    ). Those specifiers determine the line style, mark style and color of the
+     plotted lines.
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">GlobalProperty</span><span 
+class="cmmi-10x-x-109">&#x003E;</span>: This optional argument represents a sequence of couple statements
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">{PropertyName,PropertyValue}</span></span></span> that defines global objects&apos; properties applied to all
+     the curves created by this plot. For a complete view of the available properties (see
+     <a 
+href="manualli432.html#GlobalProperty">GlobalProperty</a>    ).
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">axes</span><span 
+class="cmtt-10x-x-109">_handle</span><span 
+class="cmmi-10x-x-109">&#x003E;</span>: This optional argument forces the plot to appear inside the selected
+     axes given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">axes_handle</span></span></span> rather than the current axes (see <a 
+href="manualli419.html#gca">gca</a>    ).</li></ul>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x482-2864000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 55--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot</span></span></span> plots a set of 2D curves. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot</span></span></span> has been rebuild to better handle Matlab syntax. To improve
+graphical compatibility, Matlab users should use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot</span></span></span> (rather than <a 
+href="manualli473.html#plot2d">plot2d</a>    ).Data entry
+specification:In this paragraph and to be more clear, we won&apos;t mention <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LineSpec</span></span></span> nor
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">GlobalProperty</span></span></span> optional arguments as they do not interfer with entry data (except for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Xdata&#x0022;</span></span></span>,
+                                                                                    
+
+                                                                                    
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Ydata&#x0022;</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Zdata&#x0022;</span></span></span> property, see <a 
+href="manualli432.html#GlobalProperty">GlobalProperty</a>    ). It is assumed that all those
+optional arguments could be present too.If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> is a vector, plot(y) plots vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> versus vector
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1:size(y,&#x0027;*&#x0027;)</span></span></span>.If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> is a matrix, plot(y) plots each columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> versus vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1:size(y,1)</span></span></span>.If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> are vectors, plot(x,y) plots vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> versus vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> vectors should have the same
+number of entries.If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is a vector and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> a matrix plot(x,y) plots each columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> versus
+vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. In this case the number of columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> should be equal to the number of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>
+entries.If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> are matrices, plot(x,y) plots each columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> versus corresponding
+column of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. In this case the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> sizes should be the same.Finally, if only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> is a
+matrix, the vector is plotted versus the rows or columns of the matrix. The choice is made
+depending on whether the vector&apos;s row or column dimension matches the matrix row
+or column dimension. In case of a square matrix (on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> only), priority is given to
+columns rather than lines (see examples below).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> can also be a function defined as a
+macro or a primitive. In this case, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> data must be given (as a vector or matrix) and the
+corresponding computation <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y(x)</span></span></span> is done implicitly.The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LineSpec</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">GlobalProperty</span></span></span>
+arguments sould be used to customize the plot. Here is a complete list of the available
+options.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></ul>
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">LineSpec</span> </span>: This option may be used to specify, in a short and easy manner, how the curves
+     are drawn. It must always be a string containing references to LineStyle, Marker
+     and Color specifiers.These references must be set inside the string (order is not
+     important) in an unambiguous way. For example, to specify a red long-dashed line with
+     the diamond mark enabled, you can write: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;r--d&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;--dire&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;--reddiam&#x0027;</span></span></span>
+     or another unambiguous statement... or to be totally complete <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;diamondred--&#x0027;</span></span></span>
+     (see <a 
+href="manualli451.html#LineSpec">LineSpec</a>    ).Note that the line style and color, marks color (and sizes) can
+     also be (re-)set throught the polyline entity properties (see <a 
+href="#polyline-properties">polyline_properties</a>
+     ).
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">GlobalProperty</span> </span>: This option may be used to specify how all the curves are plotted using more
+     option than via <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">LineSpec</span></span></span>. It must always be a couple statement constituted of a string
+     defining the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PropertyName</span></span></span>, and its associated value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PropertyValue</span></span></span> (which can be a
+     string or an integer or... as well depending on the type of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PropertyName</span></span></span>). Using
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">GlobalProperty</span></span></span>, you can set multiple properties: every properties available via LineSpec
+     and more: the marker color (foreground and background), the visibility, clipping
+     and thickness of the curves. (see <a 
+href="manualli432.html#GlobalProperty">GlobalProperty</a>    )Note that all these properties
+     can be (re-)set throught the polyline entity properties (see <a 
+href="#polyline-properties">polyline_properties</a>
+     ).</ul>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 120--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x482-2865000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   By default, successive plots are superposed. To clear the previous plot, use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">clf()</span></span></span>. To enable
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auto_clear</span></span></span> mode as the default mode, edit your default axes doing:da=gda();da.auto_clear =
+&apos;on&apos;A default color table is used to color plotted curves if you do not specify a color. When drawing
+multiple lines, the plot command automatically cycles through this table. Here are the used colors:
+<!--tex4ht:inline--></p><div class="tabular"> <table id="TBL-43" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-43-1g"><col 
+id="TBL-43-1" /></colgroup><colgroup id="TBL-43-2g"><col 
+id="TBL-43-2" /></colgroup><colgroup id="TBL-43-3g"><col 
+id="TBL-43-3" /></colgroup><colgroup id="TBL-43-4g"><col 
+id="TBL-43-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-1-1"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-1-2"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-1-3"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span> </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-2-1"  
+class="td11"> 0. </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-2-2"  
+class="td11"> 0. </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-2-3"  
+class="td11"> 1.</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-3-1"  
+class="td11"> 0. </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-3-2"  
+class="td11"> 0.5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-3-3"  
+class="td11"> 0. </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-4-1"  
+class="td11"> 1. </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-4-2"  
+class="td11"> 0. </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-4-3"  
+class="td11"> 0.</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-5-1"  
+class="td11"> 0. </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-5-2"  
+class="td11">0.75</td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-5-3"  
+class="td11">0.75</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-6-1"  
+class="td11">0.75</td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-6-2"  
+class="td11"> 0. </td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-6-3"  
+class="td11">0.75</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-7-1"  
+class="td11">0.75</td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-7-2"  
+class="td11">0.75</td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-7-3"  
+class="td11"> 0. </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-8-1"  
+class="td11">0.25</td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-8-2"  
+class="td11">0.25</td><td  style="white-space:nowrap; text-align:center;" id="TBL-43-8-3"  
+class="td11">0.25</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-43-9-1"  
+class="td11">   </td></tr></table>
+</div> Enter the command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot</span></span></span> to see a demo.
+<!--l. 138--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x482-2866000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb378"><a 
+ id="x482-2866107r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;initialisation</span></span><br class="fancyvrb" /><a 
+ id="x482-2866109r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866111r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//simple</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span></span><br class="fancyvrb" /><a 
+ id="x482-2866113r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(sin(x))</span><br class="fancyvrb" /><a 
+ id="x482-2866115r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866117r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,sin(x))</span><br class="fancyvrb" /><a 
+ id="x482-2866119r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//multiple</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span></span><br class="fancyvrb" /><a 
+ id="x482-2866121r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x482-2866123r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,[sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">sin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">sin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x)])</span><br class="fancyvrb" /><a 
+ id="x482-2866125r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866127r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;axis</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;right</span></span><br class="fancyvrb" /><a 
+ id="x482-2866129r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,sin(x))</span><br class="fancyvrb" /><a 
+ id="x482-2866131r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=gca()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;current</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;entity</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866133r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.y_location=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;right&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866135r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x482-2866137r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;axis</span><span 
+class="cmitt-10x-x-109">&#x00A0;centered</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;(0,0)</span></span><br class="fancyvrb" /><a 
+ id="x482-2866139r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">,sin(x),x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,cos(x))</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866141r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=gca()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;entity</span></span><br class="fancyvrb" /><a 
+ id="x482-2866143r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.x_location=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;middle&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866145r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.y_location=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;middle&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866147r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Some</span><span 
+class="cmitt-10x-x-109">&#x00A0;operations</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;entities</span><span 
+class="cmitt-10x-x-109">&#x00A0;created</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;...</span></span><br class="fancyvrb" /><a 
+ id="x482-2866149r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=gca()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866151r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.isoview=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;on&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866153r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866155r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;list</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;children</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes:</span><span 
+class="cmitt-10x-x-109">&#x00A0;here</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;Agregation</span><span 
+class="cmitt-10x-x-109">&#x00A0;child</span><span 
+class="cmitt-10x-x-109">&#x00A0;composed</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;entities</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866157r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;poly1=a.children.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//store</span><span 
+class="cmitt-10x-x-109">&#x00A0;polyline</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;into</span><span 
+class="cmitt-10x-x-109">&#x00A0;poly1</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866159r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;poly1.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;another</span><span 
+class="cmitt-10x-x-109">&#x00A0;way</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;change</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;style...</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866161r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;poly1.thickness=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;...and</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;tickness</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;curve.</span></span><br class="fancyvrb" /><a 
+ id="x482-2866163r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;poly1.clip_state=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;off&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;clipping</span><span 
+class="cmitt-10x-x-109">&#x00A0;control</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866165r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;leg=a.children.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;store</span><span 
+class="cmitt-10x-x-109">&#x00A0;legend</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;into</span><span 
+class="cmitt-10x-x-109">&#x00A0;leg</span></span><br class="fancyvrb" /><a 
+ id="x482-2866167r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;leg.font_style=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866169r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;leg.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866171r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.isoview=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;off&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866173r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//LineSpec</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;GlobalProperty</span><span 
+class="cmitt-10x-x-109">&#x00A0;examples:</span></span><br class="fancyvrb" /><a 
+ id="x482-2866175r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866177r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866179r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t,sin(t),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ro-.&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,t,cos(t),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;cya+&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,t,abs(sin(t)),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;--mo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866181r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;scf(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866183r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot([t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">t],[sin(t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">cos(t)],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;xdat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x482-2866185r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;scf(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866187r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;axfig3=gca()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866189r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;scf(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;should</span><span 
+class="cmitt-10x-x-109">&#x00A0;remain</span><span 
+class="cmitt-10x-x-109">&#x00A0;blank</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866191r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(axfig3,[t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">t],[sin(t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">cos(t)],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;zdat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;marker&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markerfac&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;green&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866193r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markeredg&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;yel&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866195r45"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xdel(winsid())</span><br class="fancyvrb" /><a 
+ id="x482-2866197r46"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Data</span><span 
+class="cmitt-10x-x-109">&#x00A0;specification</span></span><br class="fancyvrb" /><a 
+ id="x482-2866199r47"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866201r48"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;size(t)</span><br class="fancyvrb" /><a 
+ id="x482-2866203r49"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;simply</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;versus</span><span 
+class="cmitt-10x-x-109">&#x00A0;t</span><span 
+class="cmitt-10x-x-109">&#x00A0;vector</span><span 
+class="cmitt-10x-x-109">&#x00A0;size</span></span><br class="fancyvrb" /><a 
+ id="x482-2866205r50"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;clear</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866207r51"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t,sin(t))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span><span 
+class="cmitt-10x-x-109">&#x00A0;sin(t)</span><span 
+class="cmitt-10x-x-109">&#x00A0;versus</span><span 
+class="cmitt-10x-x-109">&#x00A0;t</span></span><br class="fancyvrb" /><a 
+ id="x482-2866209r52"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866211r53"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866213r54"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span><span 
+class="cmitt-10x-x-109">&#x00A0;each</span><span 
+class="cmitt-10x-x-109">&#x00A0;t</span><span 
+class="cmitt-10x-x-109">&#x00A0;column</span><span 
+class="cmitt-10x-x-109">&#x00A0;versus</span><span 
+class="cmitt-10x-x-109">&#x00A0;row</span><span 
+class="cmitt-10x-x-109">&#x00A0;size</span></span><br class="fancyvrb" /><a 
+ id="x482-2866215r55"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866217r56"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">221</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866219r57"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t,sin(t))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span><span 
+class="cmitt-10x-x-109">&#x00A0;sin(t)</span><span 
+class="cmitt-10x-x-109">&#x00A0;versus</span><span 
+class="cmitt-10x-x-109">&#x00A0;t</span><span 
+class="cmitt-10x-x-109">&#x00A0;column</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;column</span><span 
+class="cmitt-10x-x-109">&#x00A0;this</span><span 
+class="cmitt-10x-x-109">&#x00A0;time</span></span><br class="fancyvrb" /><a 
+ id="x482-2866221r58"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;sin(t)</span><span 
+class="cmtt-10x-x-109">&#x00A0;versus</span><span 
+class="cmtt-10x-x-109">&#x00A0;t&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866223r59"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">222</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866225r60"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t,sin(t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866227r61"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;sin(t)&#x0027;&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;versus</span><span 
+class="cmtt-10x-x-109">&#x00A0;t&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866229r62"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">223</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866231r63"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,sin(t))</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866233r64"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=gca()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866235r65"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.data_bounds=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;see</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;vertical</span><span 
+class="cmitt-10x-x-109">&#x00A0;line</span><span 
+class="cmitt-10x-x-109">&#x00A0;hiddden</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;axis</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866237r66"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;sin(t)</span><span 
+class="cmtt-10x-x-109">&#x00A0;versus</span><span 
+class="cmtt-10x-x-109">&#x00A0;t&#x0027;&#x0027;&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866239r67"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">224</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866241r68"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,sin(t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866243r69"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;sin(t)&#x0027;&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;versus</span><span 
+class="cmtt-10x-x-109">&#x00A0;t&#x0027;&#x0027;&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866245r70"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866247r71"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Special</span><span 
+class="cmitt-10x-x-109">&#x00A0;case</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span></span><br class="fancyvrb" /><a 
+ id="x482-2866249r72"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//x:</span><span 
+class="cmitt-10x-x-109">&#x00A0;vector</span><span 
+class="cmitt-10x-x-109">&#x00A0;([5</span><span 
+class="cmitt-10x-x-109">&#x00A0;6</span><span 
+class="cmitt-10x-x-109">&#x00A0;7</span><span 
+class="cmitt-10x-x-109">&#x00A0;8])</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;y:</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix</span><span 
+class="cmitt-10x-x-109">&#x00A0;(t)</span></span><br class="fancyvrb" /><a 
+ id="x482-2866251r73"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">]</span>
+<br class="fancyvrb" /><a 
+ id="x482-2866253r74"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866255r75"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;idem,</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;automatically</span><span 
+class="cmitt-10x-x-109">&#x00A0;transposed</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;match</span><span 
+class="cmitt-10x-x-109">&#x00A0;t</span><span 
+class="cmitt-10x-x-109">&#x00A0;(here</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;columns)</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866257r76"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x482-2866259r77"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Only</span><span 
+class="cmitt-10x-x-109">&#x00A0;one</span><span 
+class="cmitt-10x-x-109">&#x00A0;matching</span><span 
+class="cmitt-10x-x-109">&#x00A0;possibility</span><span 
+class="cmitt-10x-x-109">&#x00A0;case:</span><span 
+class="cmitt-10x-x-109">&#x00A0;how</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;make</span><span 
+class="cmitt-10x-x-109">&#x00A0;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;identical</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;manners...</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866261r78"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;1x4</span><span 
+class="cmitt-10x-x-109">&#x00A0;(vector)</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;4x5</span><span 
+class="cmitt-10x-x-109">&#x00A0;(non</span><span 
+class="cmitt-10x-x-109">&#x00A0;square</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix)</span></span><br class="fancyvrb" /><a 
+ id="x482-2866263r79"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">221</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866265r80"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,[t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span 
+class="cmtt-10x-x-109">]]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866267r81"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">222</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866269r82"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span 
+class="cmtt-10x-x-109">]]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866271r83"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">223</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866273r84"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,[t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span 
+class="cmtt-10x-x-109">]]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866275r85"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">224</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866277r86"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span 
+class="cmtt-10x-x-109">]]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866279r87"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x482-2866281r88"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Special</span><span 
+class="cmitt-10x-x-109">&#x00A0;case</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866283r89"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Case</span><span 
+class="cmitt-10x-x-109">&#x00A0;where</span><span 
+class="cmitt-10x-x-109">&#x00A0;only</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;or</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;square</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix</span></span><br class="fancyvrb" /><a 
+ id="x482-2866285r90"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//x:</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrix</span><span 
+class="cmitt-10x-x-109">&#x00A0;(t)</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;:</span><span 
+class="cmitt-10x-x-109">&#x00A0;vector</span><span 
+class="cmitt-10x-x-109">&#x00A0;([1</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;4])</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866287r91"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;equivalent</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot(t,[1</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span><span 
+class="cmitt-10x-x-109">&#x00A0;1;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;2;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;3;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;4])</span></span>
+                                                                                    
+
+                                                                                    
+<br class="fancyvrb" /><a 
+ id="x482-2866289r92"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span></span><br class="fancyvrb" /><a 
+ id="x482-2866291r93"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866293r94"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;t</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;transposed:</span><span 
+class="cmitt-10x-x-109">&#x00A0;notice</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;priority</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;columns</span><span 
+class="cmitt-10x-x-109">&#x00A0;treatment</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866295r95"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;equivalent</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot(t&#x0027;,[1</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span><span 
+class="cmitt-10x-x-109">&#x00A0;1;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;2;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;3;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;4])</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866297r96"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span></span><br class="fancyvrb" /><a 
+ id="x482-2866299r97"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866301r98"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;defined</span><span 
+class="cmitt-10x-x-109">&#x00A0;by..</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866303r99"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;..a</span><span 
+class="cmitt-10x-x-109">&#x00A0;primitive</span></span><br class="fancyvrb" /><a 
+ id="x482-2866305r100"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,sin)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;equivalent</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot(1:0.1:10,sin(1:0.1:10))</span></span>
+<br class="fancyvrb" /><a 
+ id="x482-2866307r101"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x482-2866309r102"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;..a</span><span 
+class="cmitt-10x-x-109">&#x00A0;macro:</span></span><br class="fancyvrb" /><a 
+ id="x482-2866311r103"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[y]=toto(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=x.*x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x482-2866313r104"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,toto)</span></div>
+<!--l. 248--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x482-2867000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli473.html#plot2d">plot2d</a>    <a 
+href="manualli508.html#surf">surf</a>    <a 
+href="manualli493.html#scf">scf</a>    <a 
+href="manualli385.html#clf">clf</a>    <a 
+href="manualli528.html#xdel">xdel</a>    <a 
+href="manualli395.html#delete">delete</a>    <a 
+href="manualli451.html#LineSpec">LineSpec</a>    <a 
+href="manualli432.html#GlobalProperty">GlobalProperty</a>
+</p>
+<!--l. 252--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x482-2868000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.Leray
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli482.html" >next</a>] [<a 
+href="manualli480.html" >prev</a>] [<a 
+href="manualli480.html#tailmanualli480.html" >prev-tail</a>] [<a 
+href="manualli481.html" >front</a>] [<a 
+href="manualli370.html#manualli481.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli481.html"></a>  </p> 
+</body></html> 

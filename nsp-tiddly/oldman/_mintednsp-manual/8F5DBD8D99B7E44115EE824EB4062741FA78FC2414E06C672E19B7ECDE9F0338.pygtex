@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+w=\nspnumber{0.01}\nspoperator{:}\nspnumber{0.01}\nspoperator{:}\nspnumber{2}\nspoperator{;}s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+G=syslin(\nspstring{'c'},\nspnumber{2}\nspoperator{*}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.1}\nspoperator{*}s\nspoperator{+}\nspnumber{2}),(s\nspoperator{^}\nspnumber{2}\nspoperator{+}s\nspoperator{+}\nspnumber{1})\nspoperator{*}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.3}\nspoperator{*}s\nspoperator{+}\nspnumber{1}))\nspoperator{;}
+fresp=repfreq(G,w)\nspoperator{;}
+Gid=frfit(w,fresp,\nspnumber{4})\nspoperator{;}
+frespfit=repfreq(Gid,w)\nspoperator{;}
+bode(w,[fresp\nspoperator{;}frespfit])
+\end{Verbatim}

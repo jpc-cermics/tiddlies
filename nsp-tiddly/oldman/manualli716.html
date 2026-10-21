@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>knapsack</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli717.html" >next</a>] [<a 
+href="manualli715.html" >prev</a>] [<a 
+href="manualli715.html#tailmanualli715.html" >prev-tail</a>] [<a 
+href="#tailmanualli716.html">tail</a>] [<a 
+href="manualli677.html#manualli716.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x717-4258000"></a>knapsack</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx717-4258001"></a><a 
+ id="knapsack"></a><span 
+class="cmtt-10x-x-109">knapsack </span>&#x2013;                                                    solves a 0-1 multiple knapsack problem<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x717-4259000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-876">
+&#x00A0;&#x00A0;[earn,ind]&#x00A0;=&#x00A0;knapsack(profit,weight,capa,[bck])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x717-4260000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">profit</span>: integer row vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">weight</span>: integer row vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">capa</span>: integer row vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">bck</span>: integer
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">earn</span>: integer
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ind</span>: integer row vector</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x717-4261000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">knapsack</span></span></span> solve a 0-1 multiple knapsack problem with n (n <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 2) items and m knapsacks (m <span 
+class="cmmi-10x-x-109">&#x003E;</span>=
+1). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">profit</span></span></span> is the vector of the (integer) profits of the n items and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">weight</span></span></span> is the vector of the
+corresponding (integer) weights. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">capa</span></span></span> is the vector of the (integer) capacities of the m knapsacks.
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bck</span></span></span> is an optional integer: the maximum number of backtrackings to be performed, if heuristic
+solution is required. If the exact solution is required <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bck</span></span></span> can be omitted or can have a negative
+value. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">earn</span></span></span> is the value of the criterium for the &#x201D;optimal&#x201D; solution and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind</span></span></span> is a vector giving the
+optimal location: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind(i)</span></span></span> gives the number of the knapsack where item i is inserted and this value is
+0 if the item i is not in the optimal solution. We recall that the problem to be solved is
+the following: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p(i)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">w</span></span></span> denote respectively the profit and the weight of the item <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>
+1=1,...,n; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">c(j)</span></span></span> denotes the capacity of the knapsack <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span> j=1,...,m; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">q(j,i)</span></span></span> denotes the
+quantity of item <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> in knapsack <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span> (in fact 0 or 1). We want to maximize the global profit <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span>:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E=p(1)*[x(1,1)+...+x(m,1)]+...+p(n)*[x(1,n)+...+x(m,n)]</span></span></span> under the constraints:
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[w(1)*x(j,1)+...+w(n)*x(j,m)]</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;c(j)</span><span 
+class="cmtt-10x-x-109">&#x00A0;;</span><span 
+class="cmtt-10x-x-109">&#x00A0;j=1,...,m</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[x(1,i)+...+x(m,i)]</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span><span 
+class="cmtt-10x-x-109">&#x00A0;;</span><span 
+class="cmtt-10x-x-109">&#x00A0;i=1,...,n</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(j,i)=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span><span 
+class="cmtt-10x-x-109">&#x00A0;or</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p(),w(),c()</span></span></span>
+are positive integers.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x717-4262000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb565"><a 
+ id="x717-4262006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;weight=ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*.</span></span><span 
+class="cmtt-10x-x-109">[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x717-4262008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;profit=ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">60</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x717-4262010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;capa=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">45</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">30</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">60</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x717-4262012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[earn,ind]=knapsack(profit,weight,capa)</span></div>
+<!--l. 73--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x717-4263000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli742.html#qassign">qassign</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli717.html" >next</a>] [<a 
+href="manualli715.html" >prev</a>] [<a 
+href="manualli715.html#tailmanualli715.html" >prev-tail</a>] [<a 
+href="manualli716.html" >front</a>] [<a 
+href="manualli677.html#manualli716.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli716.html"></a>  </p> 
+</body></html> 

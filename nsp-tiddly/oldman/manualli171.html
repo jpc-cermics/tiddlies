@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>interp</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli172.html" >next</a>] [<a 
+href="manualli170.html" >prev</a>] [<a 
+href="manualli170.html#tailmanualli170.html" >prev-tail</a>] [<a 
+href="#tailmanualli171.html">tail</a>] [<a 
+href="manualli104.html#manualli171.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x172-1013000"></a>interp</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx172-1013001"></a><a 
+ id="interp"></a><span 
+class="cmtt-10x-x-109">interp </span>&#x2013;                                                                 cubic spline evaluation function<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x172-1014000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-278">
+&#x00A0;&#x00A0;[yp&#x00A0;[,yp1&#x00A0;[,yp2&#x00A0;[,yp3]]]]=interp(xp,&#x00A0;x,&#x00A0;y,&#x00A0;d&#x00A0;[,&#x00A0;out_mode])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x172-1015000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xp</span>: real vector or matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,y,d</span>: real vectors of the same size defining a cubic spline or sub-spline function (called
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> in the following)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">out</span><span 
+class="cmtt-10x-x-109">_mode</span>: (optional) string defining the evaluation of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> outside the [x1,xn] interval
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">yp</span>:  vector  or  matrix  of  same  size  than  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span>,  elementwise  evaluation  of  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> on  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span>
+     (yp(i)=s(xp(i) or yp(i,j)=s(xp(i,j))
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">yp1, yp2, yp3</span>: vectors (or matrices) of same size than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span>, elementwise evaluation of
+     the successive derivatives of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span></li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x172-1016000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > Given three vectors <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(x,y,d)</span></span></span> defining a spline or sub-spline function (see <a 
+href="manualli244.html#splin">splin</a>    ) with
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yi=s(xi),</span><span 
+class="cmtt-10x-x-109">&#x00A0;di</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;s&#x0027;(xi)</span></span></span> this function evaluates <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> (and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;s&#x0027;&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;s&#x0027;&#x0027;&#x0027;</span></span></span> if needed) at
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp(i)</span></span></span>:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-279">
+&#x00A0;&#x00A0;yp(i)&#x00A0;=&#x00A0;s(xp(i))&#x00A0;&#x00A0;&#x00A0;&#x00A0;or&#x00A0;&#x00A0;yp(i,j)&#x00A0;=&#x00A0;s(xp(i,j))
+&#x00A0;<br />&#x00A0;&#x00A0;yp1(i)&#x00A0;=&#x00A0;s&#x0027;(xp(i))&#x00A0;&#x00A0;&#x00A0;or&#x00A0;&#x00A0;yp1(i,j)&#x00A0;=&#x00A0;s&#x0027;(xp(i,j))
+&#x00A0;<br />&#x00A0;&#x00A0;yp2(i)&#x00A0;=&#x00A0;s&#x0027;&#x0027;(xp(i))&#x00A0;&#x00A0;&#x00A0;or&#x00A0;&#x00A0;yp2(i,j)&#x00A0;=&#x00A0;s&#x0027;&#x0027;(xp(i,j))
+&#x00A0;<br />&#x00A0;&#x00A0;yp3(i)&#x00A0;=&#x00A0;s&#x0027;&#x0027;&#x0027;(xp(i))&#x00A0;&#x00A0;&#x00A0;or&#x00A0;&#x00A0;yp3(i,j)&#x00A0;=&#x00A0;s&#x0027;&#x0027;&#x0027;(xp(i,j))
+</div>
+<!--l. 49--><p class="nopar" >The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">out_mode</span></span></span> parameter set the evaluation rule for extrapolation, i.e. for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp(i)</span></span></span> not in [x1,xn]:
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">&#x201D;by_zero&#x201D;</div>: an extrapolation by zero is done
+     </li>
+     <li class="itemize"><div class="itemdesc">&#x201D;by_nan&#x201D;</div>: extrapolation by Nan
+     </li>
+     <li class="itemize"><div class="itemdesc">&#x201D;C0&#x201D;</div>: the extrapolation is defined as follows:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-280">
+     &#x00A0;&#x00A0;s(x)&#x00A0;=&#x00A0;y1&#x00A0;&#x00A0;for&#x00A0;&#x00A0;x&#x00A0;$&#x003C;$&#x00A0;x1
+     &#x00A0;<br />&#x00A0;&#x00A0;s(x)&#x00A0;=&#x00A0;yn&#x00A0;&#x00A0;for&#x00A0;&#x00A0;x&#x00A0;$&#x003E;$&#x00A0;xn
+</div>
+     <!--l. 59--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;natural&#x201D;</div>: the extrapolation is defined as follows (<span 
+class="cmti-10x-x-109">p</span><span 
+class="cmti-10x-x-109">_i </span>being the polynomial defining <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> on
+     [x_i,x_i+1]):
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-281">
+     &#x00A0;&#x00A0;s(x)&#x00A0;=&#x00A0;p_1(x)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;for&#x00A0;&#x00A0;x&#x00A0;$&#x003C;$&#x00A0;x1
+     &#x00A0;<br />&#x00A0;&#x00A0;s(x)&#x00A0;=&#x00A0;p_{n-1}(x)&#x00A0;&#x00A0;for&#x00A0;&#x00A0;x&#x00A0;$&#x003E;$&#x00A0;xn
+</div>
+     <!--l. 65--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;linear&#x201D;</div>: the extrapolation is defined as follows:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-282">
+     &#x00A0;&#x00A0;s(x)&#x00A0;=&#x00A0;y1&#x00A0;+&#x00A0;s&#x0027;(x1)(x-x1)&#x00A0;&#x00A0;for&#x00A0;&#x00A0;x&#x00A0;$&#x003C;$&#x00A0;x1
+     &#x00A0;<br />&#x00A0;&#x00A0;s(x)&#x00A0;=&#x00A0;yn&#x00A0;+&#x00A0;s&#x0027;(xn)(x-xn)&#x00A0;&#x00A0;for&#x00A0;&#x00A0;x&#x00A0;$&#x003E;$&#x00A0;xn
+</div>
+     <!--l. 70--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">&#x201D;periodic&#x201D;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> is extended by periodicity.</li></ul>
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x172-1017000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb129"><a 
+ id="x172-1017039r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;see</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;examples</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;splin</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;lsq_splin</span></span>
+<br class="fancyvrb" /><a 
+ id="x172-1017041r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;showing</span><span 
+class="cmitt-10x-x-109">&#x00A0;C2</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;C1</span><span 
+class="cmitt-10x-x-109">&#x00A0;continuity</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;spline</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;subspline</span></span><br class="fancyvrb" /><a 
+ id="x172-1017043r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">b=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x172-1017045r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(a,b,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017047r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=sinc(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017049r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;dk=splin(x,y)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;not_a_knot</span></span><br class="fancyvrb" /><a 
+ id="x172-1017051r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;df=splin(x,y,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;fast&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x172-1017053r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xx=linspace(a,b,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">800</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017055r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[yyk,yy1k,yy2k]=interp(xx,x,y,dk)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017057r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[yyf,yy1f,yy2f]=interp(xx,x,y,df)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x172-1017059r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x172-1017061r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x172-1017063r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(xx,[yyk</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yyf])</span><br class="fancyvrb" /><a 
+ id="x172-1017065r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(x,y,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x172-1017067r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;legends([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;not_a_knot</span><span 
+class="cmtt-10x-x-109">&#x00A0;spline&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;fast</span><span 
+class="cmtt-10x-x-109">&#x00A0;sub-spline&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;interpolation</span><span 
+class="cmtt-10x-x-109">&#x00A0;points&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;ur&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,%f)</span>
+<br class="fancyvrb" /><a 
+ id="x172-1017069r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;spline</span><span 
+class="cmtt-10x-x-109">&#x00A0;interpolation&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x172-1017071r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x172-1017073r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(xx,[yy1k</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy1f])</span>
+<br class="fancyvrb" /><a 
+ id="x172-1017075r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;legends([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;not_a_knot</span><span 
+class="cmtt-10x-x-109">&#x00A0;spline&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;fast</span><span 
+class="cmtt-10x-x-109">&#x00A0;sub-spline&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;ur&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,%f)</span>
+<br class="fancyvrb" /><a 
+ id="x172-1017077r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;spline</span><span 
+class="cmtt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmtt-10x-x-109">&#x00A0;(derivatives)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x172-1017079r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x172-1017081r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(xx,[yy2k</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy2f])</span>
+<br class="fancyvrb" /><a 
+ id="x172-1017083r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;legends([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;not_a_knot</span><span 
+class="cmtt-10x-x-109">&#x00A0;spline&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;fast</span><span 
+class="cmtt-10x-x-109">&#x00A0;sub-spline&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;lr&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,%f)</span>
+<br class="fancyvrb" /><a 
+ id="x172-1017085r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;spline</span><span 
+class="cmtt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmtt-10x-x-109">&#x00A0;(second</span><span 
+class="cmtt-10x-x-109">&#x00A0;derivatives)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x172-1017087r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;here</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;showing</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;different</span><span 
+class="cmitt-10x-x-109">&#x00A0;extrapolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;possibilities</span></span><br class="fancyvrb" /><a 
+ id="x172-1017089r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x172-1017091r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=cosh(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017093r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;d=splin(x,y)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017095r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xx=linspace(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">401</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017097r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yy0=interp(xx,x,y,d,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;C0&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x172-1017099r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yy1=interp(xx,x,y,d,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;linear&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017101r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yy2=interp(xx,x,y,d,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;natural&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x172-1017103r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yy3=interp(xx,x,y,d,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;periodic&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x172-1017105r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x172-1017107r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(xx,[yy0</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">yy3],style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,frameflag</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,leg</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;C0@linear@natural@periodic&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x172-1017109r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;different</span><span 
+class="cmtt-10x-x-109">&#x00A0;way</span><span 
+class="cmtt-10x-x-109">&#x00A0;to</span><span 
+class="cmtt-10x-x-109">&#x00A0;evaluate</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span><span 
+class="cmtt-10x-x-109">&#x00A0;spline</span><span 
+class="cmtt-10x-x-109">&#x00A0;outside</span><span 
+class="cmtt-10x-x-109">&#x00A0;its</span><span 
+class="cmtt-10x-x-109">&#x00A0;domain&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 117--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x172-1018000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli244.html#splin">splin</a>    <a 
+href="#lsq-splin">lsq_splin</a>
+</p>
+<!--l. 121--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x172-1019000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   B. Pincon
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli172.html" >next</a>] [<a 
+href="manualli170.html" >prev</a>] [<a 
+href="manualli170.html#tailmanualli170.html" >prev-tail</a>] [<a 
+href="manualli171.html" >front</a>] [<a 
+href="manualli104.html#manualli171.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli171.html"></a>  </p> 
+</body></html> 

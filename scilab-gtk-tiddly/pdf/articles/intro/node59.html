@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.3.0.1 Graphics Context</TITLE>
+<META NAME="description" CONTENT="5.3.0.1 Graphics Context">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node60.html">
+<LINK REL="previous" HREF="node58.html">
+<LINK REL="up" HREF="node58.html">
+<LINK REL="next" HREF="node60.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1028"
+ HREF="node60.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1024"
+ HREF="node58.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1018"
+ HREF="node58.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1026"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1027"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1029"
+ HREF="node60.html">5.3.0.2 Some Manipulations</A>
+<B> Up:</B> <A NAME="tex2html1025"
+ HREF="node58.html">5.3 Global Parameters of</A>
+<B> Previous:</B> <A NAME="tex2html1019"
+ HREF="node58.html">5.3 Global Parameters of</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00630100000000000000">
+5.3.0.1 Graphics Context</A>
+</H3>
+
+<P>
+Some parameters of the graphics are controlled by a graphic context 
+( for example the line thickness) and others are controlled through
+graphics arguments of a plotting command.
+The graphics context has a default definition and can be change by the
+command <TT>xset</TT> : the command without argument i.e. <TT>xset()</TT>
+opens the <TT>Scilab Toggles Panel</TT> and the user can changes the
+parameters by simple mouse clickings. We give here different
+parameters controlled by this command :
+<UL>
+<LI><TT>xset</TT>		: set graphic context values.
+
+<P>
+(i)-<TT>xset("font",fontid,fontsize)</TT> 	: fix the current font and 
+its current size.
+
+<P>
+(ii)-<TT>xset("mark",markid,marksize)</TT>	: set the current mark 
+and current mark size.
+
+<P>
+(iii)-<TT>xset("use color",flag)</TT> 	: change to color or gray plot according to 
+the values (1 or 0) of <TT>flag</TT>.
+
+<P>
+(iv)-<TT>xset("colormap",cmap)</TT> 	: set the colormap as a m x 3
+matrix. m is the number of colors.  Color number i is given as a
+3-uple cmap[i,1],cmap[i,2], cmap[i,3] corresponding respectively to Red,
+Green and Blue intensity between 0 and 1. Calling again <TT>xset()</TT> 
+shows the colormap with the indices of the colors.
+
+<P>
+(v)-<TT>xset("window",window-number)</TT>	: sets the current window to the window 
+<TT>window-number</TT> and creates the window if it doesn't exist.
+
+<P>
+(vi)-<TT>xset("wpos",x,y)</TT>	: fixes the position of the upper left point of 
+the graphic window.
+
+<P>
+Many other choices are done by <TT>xset</TT> :
+ 
+-use of a pixmap : the plot can be directly displayed on the screen or
+executed on a pixmap and then expose by the command 
+<TT>xset("wshow")</TT>; this is the usual way for animation effect.
+
+<P>
+-logical function for drawing : this parameter can be changed for 
+specific effects (superposition or adding or substracting of colors).
+Looking at the successive plots of the following simple commands give
+an example of 2 possible effects of this parameter :
+
+<P>
+<PRE>
+xset('default');
+plot3d();
+plot3d();
+xset('alufunction',7);
+xset('window',0);
+plot3d();
+xset('default');
+plot3d();
+xset('alufunction',6);
+xset('window',0);
+plot3d();
+</PRE> 
+
+<P>
+We have seen that some choices exist for the fonts and this choice can
+be extended by the command:
+<LI><TT>xlfont</TT>	: to load a new family of fonts from
+the XWindow Manager
+
+<P>
+There exists the function ``reciprocal'' to <TT>xset</TT> :
+
+<P>
+<LI><TT>xget</TT>	: to get informations about the
+	current graphic context.
+
+<P>
+All the values of the parameters fixed by <TT>xset</TT> can be obtained by 
+<TT>xget</TT>. An example :
+
+<P>
+<PRE>
+--&gt;pos=xget("wpos")
+ pos  =
+ 
+!   105.    121. !
+</PRE>
+<P>
+<TT>pos</TT> is the position of the upper left point of the graphic window.
+</UL>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1028"
+ HREF="node60.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1024"
+ HREF="node58.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1018"
+ HREF="node58.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1026"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1027"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1029"
+ HREF="node60.html">5.3.0.2 Some Manipulations</A>
+<B> Up:</B> <A NAME="tex2html1025"
+ HREF="node58.html">5.3 Global Parameters of</A>
+<B> Previous:</B> <A NAME="tex2html1019"
+ HREF="node58.html">5.3 Global Parameters of</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

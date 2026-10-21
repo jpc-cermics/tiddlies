@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// first example}
+n=\nspnumber{10}\nspoperator{;}p=\nspnumber{0.3}\nspoperator{;}xbasc()\nspoperator{;}plot2d3(\nspnumber{0}\nspoperator{:}n,binomial(p,n))\nspoperator{;}
+\nspcomment{// second example}
+n=\nspnumber{50}\nspoperator{;}p=\nspnumber{0.4}\nspoperator{;}
+mea=n\nspoperator{*}p\nspoperator{;}sigma=sqrt(n\nspoperator{*}p\nspoperator{*}(\nspnumber{1}\nspoperator{-}p))\nspoperator{;}
+x=((\nspnumber{0}\nspoperator{:}n)\nspoperator{-}mea)\nspoperator{/}sigma\nspoperator{;}
+xbasc()
+plot2d(x,sigma\nspoperator{*}binomial(p,n))\nspoperator{;}
+deff(\nspstring{'y=Gauss(x)'},\nspstring{'y=1/sqrt(2*\nsppc{}pi)*exp(-(x.^2)/2)'})
+plot2d(x,Gauss(x),style = \nspnumber{2})\nspoperator{;}
+\nspcomment{// by binomial formula (Caution if big n)}
+\nspkeyword{function} pr=\nspfunction{binomial2}(p,n)
+  x=poly(\nspnumber{0},\nspstring{'x'})\nspoperator{;}pr=coeff((\nspnumber{1}\nspoperator{-}p\nspoperator{+}x)\nspoperator{^}n)\nspoperator{ .*}horner(x\nspoperator{^}(\nspnumber{0}\nspoperator{:}n),p)\nspoperator{;}
+\nspkeyword{endfunction}
+p=\nspnumber{1}\nspoperator{/}\nspnumber{3}\nspoperator{;}n=\nspnumber{5}\nspoperator{;}
+binomial(p,n)\nspoperator{-}binomial2(p,n)
+\nspcomment{// by Gamma function: gamma(n+1)=n! (Caution if big n)}
+p=\nspnumber{1}\nspoperator{/}\nspnumber{3}\nspoperator{;}n=\nspnumber{5}\nspoperator{;}
+Cnks=gamma(n\nspoperator{+}\nspnumber{1})\nspoperator{ ./}(gamma(\nspnumber{1}\nspoperator{:}n\nspoperator{+}\nspnumber{1})\nspoperator{ .*}gamma(n\nspoperator{+}\nspnumber{1}\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1}))\nspoperator{;}
+x=poly(\nspnumber{0},\nspstring{'x'})\nspoperator{;}
+pr=Cnks\nspoperator{ .*}horner(x\nspoperator{ .^}(\nspnumber{0}\nspoperator{:}n)\nspoperator{ .*}(\nspnumber{1}\nspoperator{-}x)\nspoperator{^}(n\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{0}),p)\nspoperator{;}
+pr\nspoperator{-}binomial(p,n)
+\end{Verbatim}

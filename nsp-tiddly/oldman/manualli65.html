@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>phasemag</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli66.html" >next</a>] [<a 
+href="manualli64.html" >prev</a>] [<a 
+href="manualli64.html#tailmanualli64.html" >prev-tail</a>] [<a 
+href="#tailmanualli65.html">tail</a>] [<a 
+href="manualli12.html#manualli65.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x66-377000"></a>phasemag</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx66-377001"></a><a 
+ id="phasemag"></a><span 
+class="cmtt-10x-x-109">phasemag </span>&#x2013;                                                          phase and magnitude computation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x66-378000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-119">
+&#x00A0;&#x00A0;[phi,db]=phasemag(z&#x00A0;[,mod])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x66-379000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">z</span>: matrix or row vector of complex numbers.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mod</span>: character string
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">mod=&apos;c&apos; </span>:  &#x201D;continuous&#x201D;  representation  between  -infinity  and  +360  degrees
+          (default)
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">mod=&apos;m&apos; </span>: representation between -360 and 0 degrees</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">phi</span>: phases (in degree) of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">db</span>: magnitude (in Db)</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x66-380000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phasemag</span></span></span> computes the phases and magnitudes of the entries of a complex matrix. For
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mod=&#x0027;c&#x0027;</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phasemag</span></span></span> computes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phi(:,i+1)</span></span></span> to minimize the distance with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phi(:,i)</span></span></span>, i.e. it tries to
+obtain a &#x201D;continuous representation&#x201D; of the phase. To obtain the phase between -%pi and %pi use
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phi=atan(imag(z),real(z))</span></span></span>
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x66-381000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb50"><a 
+ id="x66-381009r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x66-381011r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">((s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.3</span></span><span 
+class="cmtt-10x-x-109">)))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x66-381013r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[frq,rf]=repfreq(h,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.005</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x66-381015r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x66-381017r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(frq</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,phasemag(rf,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x66-381019r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x66-381021r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(frq</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,phasemag(rf,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;m&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x66-382000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli69.html#repfreq">repfreq</a>    <a 
+href="manualli418.html#gainplot">gainplot</a>    <a 
+href="manualli121.html#atan">atan</a>    <a 
+href="manualli379.html#bode">bode</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli66.html" >next</a>] [<a 
+href="manualli64.html" >prev</a>] [<a 
+href="manualli64.html#tailmanualli64.html" >prev-tail</a>] [<a 
+href="manualli65.html" >front</a>] [<a 
+href="manualli12.html#manualli65.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli65.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Find diagonal matrix X (i.e. X=diag(diag(X), p=1) such that}
+\nspcomment{//A1'*X+X*A1+Q1 $<$ 0, A2'*X+X*A2+Q2 $<$ 0 (q=2) and trace(X) is maximized}
+n=\nspnumber{2}\nspoperator{;}A1=rand(n,n)\nspoperator{;}A2=rand(n,n)\nspoperator{;}
+Xs=diag(\nspnumber{1}\nspoperator{:}n)\nspoperator{;}Q1=\nspoperator{-}(A1\nspoperator{'}\nspoperator{*}Xs\nspoperator{+}Xs\nspoperator{*}A1\nspoperator{+}\nspnumber{0.1}\nspoperator{*}eye())\nspoperator{;}
+Q2=\nspoperator{-}(A2\nspoperator{'}\nspoperator{*}Xs\nspoperator{+}Xs\nspoperator{*}A2\nspoperator{+}\nspnumber{0.2}\nspoperator{*}eye())\nspoperator{;}
+deff(\nspstring{'[LME,LMI,OBJ]=evalf(Xlist)'}, ...
+     \nspstring{'X=Xlist(1),LME=X-diag(diag(X));    LMI=list(-(A1''*X+X*A1+Q1),-(A2''*X+X*A2+Q2)),OBJ= -sum(diag(X))  '})\nspoperator{;}
+X=lmisolver(list(zeros(A1)),evalf)\nspoperator{;}X=X(\nspnumber{1})
+[Y,Z,c]=evalf(X)
+\end{Verbatim}

@@ -1,0 +1,714 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Simulation de syst&egrave;mes dynamiques</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <H1 ALIGN="center">Simulation de
+syst&egrave;mes dynamiques</H1>
+<H3 ALIGN="center">Claude Gomez<BR>
+<BR>
+</H3>
+<BR>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+<BR>
+<!--TOC section Systèmes dynamiques-->
+<H2>1&nbsp;&nbsp; Syst&egrave;mes dynamiques</H2>
+L'&eacute;volution de son compte d'&eacute;pargne logement, la gestion de ses
+actions ou la trajectoire de la fus&eacute;e Ariane sont des exemples de
+syst&egrave;mes dynamiques. Un tel syst&egrave;me &eacute;volue avec le temps
+<I>t</I>. On part d'un instant <I>t</I>=<I>t</I><SUB><FONT
+SIZE="2">0</FONT></SUB> et on se demande comment le syst&egrave;me va se
+comporter dans le futur : combien j'aurai d'argent sur mon compte, mes actions
+vont-elles monter ou baisser, la fus&eacute;e va-t'elle poursuivre la
+trajectoire pr&eacute;vue et le virus va-t'il se d&eacute;velopper ou
+dispara&icirc;tre ? Et tout cela en fonction d'un certain nombre de
+param&egrave;tres. C'est ce qu'on appelle la <EM>simulation</EM> du
+syst&egrave;me dynamique.<BR>
+<BR>
+Pour r&eacute;soudre ces probl&egrave;mes, on utilise un <EM>mod&egrave;le
+math&eacute;matique</EM> qui va repr&eacute;senter au mieux le
+ph&eacute;nom&egrave;ne que l'on veut simuler. Les <EM>&eacute;quations
+diff&eacute;rentielles</EM> sont un des mod&egrave;les les plus courants pour
+repr&eacute;senter les syst&egrave;mes dynamiques. Nous sommes donc
+amen&eacute;s &agrave; la r&eacute;solution de celles-ci. Le premier
+r&eacute;flexe est d'utiliser un syst&egrave;me de calcul formel pour cela (ces
+syst&egrave;mes, comme Maple ou MuPAD par exemple, permettent de
+r&eacute;aliser des calculs math&eacute;matiques symboliques et exacts). On
+obtiendrait ainsi la fonction solution de l'&eacute;quation et il n'y aurait
+plus qu'&agrave; l'utiliser pour trouver la solution. Par exemple, la masse
+<I>y</I>(<I>t</I>) d'une substance radioactive qui se d&eacute;compose avec un
+taux <FONT FACE="symbol">a</FONT> par unit&eacute; de masse est
+mod&eacute;lis&eacute;e par l'&eacute;quation diff&eacute;rentielle
+lin&eacute;aire : { <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>y</I>'(<I>t</I>)=<FONT
+FACE="symbol">a</FONT>&nbsp; <I>y</I>(<I>t</I>)</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>y</I>(<I>t</I><SUB><FONT
+SIZE="2">0</FONT></SUB>)=<I>y</I><SUB><FONT SIZE="2">0</FONT></SUB></TD>
+</TR>
+</TABLE>
+. o&ugrave; <I>y</I><SUB><FONT SIZE="2">0</FONT></SUB> repr&eacute;sente la
+masse &agrave; l'instant <I>t</I><SUB><FONT SIZE="2">0</FONT></SUB>. Ici et
+dans toute la suite <I>y</I>'(<I>t</I>) repr&eacute;sentera la
+d&eacute;riv&eacute;e de <I>y</I> par rapport au temps <I>t</I>. On peut
+r&eacute;soudre explicitement cette &eacute;quation diff&eacute;rentielle dont
+la solution est <I>y</I>(<I>t</I>)=<I>y</I><SUB><FONT
+SIZE="2">0</FONT></SUB>exp(<FONT
+FACE="symbol">a</FONT>(<I>t</I>-<I>t</I><SUB><FONT SIZE="2">0</FONT></SUB>)).
+Il est alors facile de conna&icirc;tre l'&eacute;volution de la masse
+<I>y</I>(<I>t</I>) puisque l'on a son expression.<BR>
+<BR>
+Malheureusement, dans la majorit&eacute; des cas, on n'aura pas cette chance et
+il sera impossible de trouver une fonction solution de l'&eacute;quation
+diff&eacute;rentielle. C'est le cas pour la simple &eacute;quation
+diff&eacute;rentielle suivante : <DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"><A NAME="e:ode1"></A></TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &igrave;<BR>
+&iacute;<BR>
+&icirc;</FONT></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>y</I>'(<I>t</I>)=<I>y</I><SUP><FONT
+SIZE="2">2</FONT></SUP>(<I>t</I>)-<I>t</I></TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>y</I>(<I>t</I><SUB><FONT
+SIZE="2">0</FONT></SUB>)=<I>y</I><SUB><FONT SIZE="2">0</FONT></SUB></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP">&nbsp;&nbsp;&nbsp;&nbsp;(1)</TD>
+</TR>
+</TABLE>
+</DIV>
+que nous &eacute;tudierons plus loin. Dans ce cas, seule une r&eacute;solution
+num&eacute;rique (&agrave; opposer avec une r&eacute;solution purement
+symbolique) est possible. Et il faut avoir une grande efficacit&eacute; pour
+obtenir la solution en un temps le plus court possible pour traiter des
+probl&egrave;mes de grande taille : en effet on aura la plupart du temps non
+pas une &eacute;quation diff&eacute;rentielle &agrave; r&eacute;soudre, mais un
+<EM>syst&egrave;me d'&eacute;quations diff&eacute;rentielles</EM>
+(c'est-&agrave;-dire plusieurs &eacute;quations diff&eacute;rentielles
+coupl&eacute;es, voir le paragraphe <A HREF="#volterra">2.2</A>) sur un grand
+nombre de pas de temps. En g&eacute;n&eacute;ral, cela est difficile voire
+impossible &agrave; r&eacute;aliser dans un syst&egrave;me de calcul formel. De
+plus, il faut pouvoir r&eacute;soudre la plus grande classe de probl&egrave;mes
+possibles : c'est l&agrave; qu'un syst&egrave;me comme Scilab avec ses
+<EM>solveurs</EM> est indispensable.<BR>
+<BR>
+De plus, apr&egrave;s la r&eacute;solution num&eacute;rique, c'est
+g&eacute;n&eacute;ralement en tra&ccedil;ant des courbes que l'on va
+r&eacute;ellement <EM>voir</EM> l'&eacute;volution avec le temps du
+r&eacute;sultat : Scilab est parfaitement &eacute;quip&eacute; pour &ccedil;a
+et c'est ce que nous allons voir dans les paragraphes suivants.<BR>
+<BR>
+<!--TOC section Le solveur ODE-->
+<H2>2&nbsp;&nbsp; Le solveur ODE</H2>
+La fonction <B><TT>ode</TT></B> est la fonction principale de r&eacute;solution
+de syst&egrave;mes d'&eacute;quations diff&eacute;rentielles. C'est en fait une
+interface &agrave; une famille de solveurs appel&eacute;s ODEPACK. Nous allons
+voir deux exemples d'utilisation.<BR>
+<BR>
+<!--TOC subsection Un système dynamique en dimension 1-->
+<H3>2.1&nbsp;&nbsp; Un syst&egrave;me dynamique en dimension 1</H3>
+On ne peut pas trouver de solution d'un syst&egrave;me tel que (<A
+HREF="#e:ode1">1</A>) &agrave; l'aide d'une formule explicite. On va donc
+calculer une solution num&eacute;rique et tracer dans le plan
+(<I>t</I>,<I>y</I>) l'&eacute;volution des trajectoires <I>y</I>(<I>t</I>)
+passant par le point initial donn&eacute; (<I>t</I><SUB><FONT
+SIZE="2">0</FONT></SUB>,<I>y</I><SUB><FONT SIZE="2">0</FONT></SUB>).
+Usuellement pour avoir une premi&egrave;re id&eacute;e de la forme des
+trajectoires on trace les lignes de champ : ce sont les tangentes aux
+trajectoires pour tous les points d'une grille. Pour cela, on n'a pas besoin de
+r&eacute;soudre l'&eacute;quation et on utilise la fonction <B><TT>champ 
+</TT></B>.<BR>
+<BR>
+D'abord, on d&eacute;finit la fonction qui repr&eacute;sente le syst&egrave;me,
+soit <I>f</I>(<I>t</I>,<I>y</I>)=<I>y</I><SUP><FONT
+SIZE="2">2</FONT></SUP>-<I>t</I>, en Scilab. Comme cette fonction est
+tr&egrave;s simple, on utilise : <PRE>
+deff(&quot;yprim=f(t,y)&quot;,&quot;yprim=y^2-t&quot;)
+</PRE>
+puis on d&eacute;finit le cadre en (<I>t</I>,<I>y</I>), c'est-&agrave;-dire les
+valeurs min et max de <I>t</I> et <I>y</I>, dans lequel on va tracer les lignes
+de champ : 
+<PRE>
+tmin=-3; tmax=5; ymin=-3; ymax=3;
+t=tmin:tmax; y=ymin:ymax;
+</PRE>
+et enfin on trace les lignes de champ : 
+<PRE>
+nt=size(t,&quot;*&quot;); ny=size(y,&quot;*&quot;);
+ft=ones(nt,ny);
+fy=feval(t,y,f);
+xset(&quot;font&quot;,2,12)
+champ(t,y,ft,fy)
+xtitle(&quot;&quot;,&quot;t&quot;,&quot;y&quot;)
+</PRE>
+Ici <B><TT>feval</TT></B> est utilis&eacute; pour &eacute;valuer la fonction
+<I>f</I> aux points de la grille.<BR>
+<BR>
+Cela donne la figure <A HREF="#f:ode1">1</A>(a). 
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="champ1.jpg" ALT="{short description of image}" WIDTH="600"
+ HEIGHT="424" BORDER="0"> 
+</DIV>
+<P ALIGN="CENTER"><IMG SRC="ode1.jpg" ALT="{short description of image}"
+WIDTH="500" HEIGHT="360" BORDER="0"><A NAME="f:ode1"></A> </P>
+<BR>
+<DIV ALIGN="center">
+Figure 1: 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+On va ensuite r&eacute;soudre le syst&egrave;me sur un intervalle de temps de 0
+&agrave; 5, c'est-&agrave;-dire en partant du point <I>t</I>=0,<I>y</I>(0)=0
+jusqu'&agrave; <I>t</I>=5 par pas de temps de 0,1 (noter que ce pas de temps
+d&eacute;termine les instants o&ugrave; la solution est calcul&eacute;e, mais
+qu'en fait le solveur calcule de fa&ccedil;on interne un pas variable optimal).
+Cela se fait simplement par : <PRE>
+t0=0; y0=0; tfin=5; dt=0.1; T=t0:dt:tfin;
+sol=ode(y0,t0,T,f);
+</PRE>
+o&ugrave; <B><TT>f</TT></B> est la fonction d&eacute;finie plus haut et en
+retour <B><TT>sol</TT></B> est la valeur de <I>y</I>(<I>t</I>) pour toutes les
+valeurs de <I>t</I> entre 0 et 5 par pas de 0,1, soit un vecteur de 51
+&eacute;l&eacute;ments. Tracer la trajectoire correspondante peut se faire avec
+: 
+<PRE>
+xset(&quot;thickness&quot;,2); plot2d(T,sol,1,&quot;000&quot;)
+</PRE>
+o&ugrave; <B><TT>&quot;000&quot;</TT></B> sert &agrave; utiliser le cadre et
+les &eacute;chelles graphiques pr&eacute;c&eacute;dentes (voir le help de <B> 
+<TT>plot2d</TT></B>).<BR>
+<BR>
+Mais il est plus amusant de cliquer sur un point du cadre et de voir se tracer
+la trajectoire passant par ce point. Cela peut se faire en utilisant <B> 
+<TT>xclick</TT></B>. Cette fonction retourne le num&eacute;ro du bouton
+cliqu&eacute; ainsi que les coordonn&eacute;es du point cliqu&eacute;. Il
+suffit alors de r&eacute;aliser une boucle infinie jusqu'&agrave; ce que l'on
+clique par exemple sur le bouton de droite de la souris (dans ce cas <B><TT>c_i
+</TT></B> dans le programme ci-dessous est &eacute;gal &agrave; <B><TT>2 
+</TT></B>). &Agrave; partir de chaque point cliqu&eacute;, on r&eacute;sout
+l'&eacute;quation diff&eacute;rentielle une fois dans le sens des <I>t</I>
+croissants jusqu'&agrave; <B><TT>tmax</TT></B> et une fois dans le sens des
+<I>t</I> d&eacute;croissants jusqu'&agrave; <B><TT>tmin</TT></B>. Cela donne le
+code suivant : 
+<PRE>
+while(%t)
+  [c_i,t0,y0]=xclick();
+  if c_i==2 then break end;
+  if t0&gt;=tmin &amp; t0&lt;=tmax &amp; y0&gt;=ymin &amp; y0&lt;=ymax then
+    T=t0:dt:tmax; sol=ode(y0,t0,T,f);
+    plot2d(T(1:size(sol,&quot;*&quot;)),sol,1,&quot;000&quot;)
+    T=t0:-dt:tmin; sol=ode(y0,t0,T,f);
+    plot2d(T(1:size(sol,&quot;*&quot;)),sol,1,&quot;000&quot;)
+  end
+end
+</PRE>
+o&ugrave; l'on a utilis&eacute; <B><TT>T(1:size(sol,&quot;*&quot;))</TT></B>
+car parfois la solution part &agrave; l'infini et donc le solveur
+s'arr&ecirc;te avant la fin.<BR>
+<BR>
+Cela donne la figure <A HREF="#f:ode1">1</A>(b).<BR>
+<BR>
+<!--TOC subsection Des requins et des sardines ou la dure vie des prédateurs-->
+
+<H3>2.2&nbsp;&nbsp; Des requins et des sardines ou la dure vie des
+pr&eacute;dateurs</H3>
+<A NAME="volterra"></A>Nous allons traiter ici le cas des syst&egrave;mes de
+deux &eacute;quations diff&eacute;rentielles. On a un syst&egrave;me dont les
+fonctions inconnues sont maintenant <I>x</I>(<I>t</I>) et <I>y</I>(<I>t</I>).
+L'exemple le plus classique, qui est d'ailleurs &agrave; l'origine des
+&eacute;quations diff&eacute;rentielles, est celui de la trajectoire des
+plan&egrave;tes autour du soleil. Maintenant pour <EM>voir</EM> les solutions,
+on va les placer dans ce que l'on appelle le <EM>plan de phase</EM>,
+c'est-&agrave;-dire le plan (<I>x</I>,<I>y</I>) et les solutions se
+prom&egrave;neront, lorsque le temps <I>t</I> varie, le long de ces
+trajectoires : penser aux plan&egrave;tes.<BR>
+<BR>
+D'abord une petite histoire.<BR>
+<BR>
+&Agrave; Trieste, pendant la premi&egrave;re guerre mondiale, la p&ecirc;che
+avait bien s&ucirc;r diminu&eacute; &agrave; cause des
+&eacute;v&eacute;nements. La p&ecirc;che consistait &agrave; lancer des filets
+et &agrave; r&eacute;cup&eacute;rer tous les poissons. Le bureau des
+p&ecirc;ches avait constat&eacute; qu'alors la proportion de poissons du style
+requins, peu int&eacute;ressants pour la consommation, avait
+consid&eacute;rablement augment&eacute; par rapport aux poissons
+int&eacute;ressants du style sardines. Ils demand&egrave;rent l'aide de
+Volterra qui mod&eacute;lisa le syst&egrave;me requins-sardines par le
+syst&egrave;me des deux &eacute;quations diff&eacute;rentielles suivantes
+o&ugrave; <I>x</I>(<I>t</I>) repr&eacute;sente le nombre de sardines et
+<I>y</I>(<I>t</I>) repr&eacute;sente le nombre de requins : { 
+<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left"
+ NOWRAP="NOWRAP"><I>x</I>'(<I>t</I>)=<I>a</I>&nbsp;<I>x</I>(<I>t</I>)-<I>b</I>&nbsp;<I>x</I>(<I>t</I>)<I>y</I>(<I>t</I>)
+&nbsp;&nbsp;&nbsp;&nbsp; <I>a</I>,<I>b</I> &gt; 0</TD>
+</TR>
+<TR>
+<TD ALIGN="left"
+ NOWRAP="NOWRAP"><I>y</I>'(<I>t</I>)=<I>c</I>&nbsp;<I>x</I>(<I>t</I>)<I>y</I>(<I>t</I>)-<I>d</I>&nbsp;<I>y</I>(<I>t</I>)
+&nbsp;&nbsp;&nbsp;&nbsp; <I>c</I>,<I>d</I> &gt; 0</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>x</I>(0)=<I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>, &nbsp;&nbsp; <I>y</I>(0)=<I>y</I><SUB><FONT
+SIZE="2">0</FONT></SUB></TD>
+</TR>
+</TABLE>
+. Ce mod&egrave;le approch&eacute;, appel&eacute; aussi syst&egrave;me de
+Lotka-Volterra, signifie qu'en l'absence de requins les sardines
+prolif&egrave;rent <I>x</I>'(<I>t</I>)=<I>a</I>&nbsp;<I>x</I>(<I>t</I>), qu'en
+l'absence de sardines les requins disparaissent
+<I>y</I>'(<I>t</I>)=-<I>d</I>&nbsp;<I>y</I>(<I>t</I>) et le terme en
+<I>x</I>(<I>t</I>)<I>y</I>(<I>t</I>), qui repr&eacute;sente la rencontre des
+requins et des sardines, augmente le nombre de requins et diminue le nombre de
+sardines (car ces derni&egrave;res sont mang&eacute;es par les requins).<BR>
+<BR>
+&Agrave; partir de ce mod&egrave;le Volterra en d&eacute;duit, sans pouvoir
+faire les calculs num&eacute;riques &agrave; l'&eacute;poque, que plus on
+p&ecirc;che de poissons, plus la proportion de sardines, donc de poissons
+int&eacute;ressants, est importante ! C'est ce que nous allons essayer de
+retrouver par le calcul.<BR>
+<BR>
+On prendra par exemple pour l'application num&eacute;rique <I>a</I>=3,
+<I>b</I>=1, <I>c</I>=1 et <I>d</I>=2.<BR>
+<BR>
+On cr&eacute;e d'abord un fichier <B><TT>volterra.sci</TT></B> dans lequel on
+d&eacute;finit le syst&egrave;me pr&eacute;c&eacute;dent sous la forme d'une
+fonction vectorielle <I>f</I>(<I>t</I>,<I>Y</I>) o&ugrave; <I>Y</I>
+repr&eacute;sente le vecteur (<I>x</I>,<I>y</I>) (on rappelle que les fichiers
+lus par Scilab doivent toujours &ecirc;tre termin&eacute;s par un retour
+chariot) : <PRE>
+function Yprim=f(t,Y)
+x=Y(1); y=Y(2);
+xprim=a*x-b*x*y;
+yprim=c*x*y-d*y;
+Yprim=[xprim;yprim]
+</PRE>
+et que l'on charge par <B><TT>getf(&quot;volterra.sci&quot;)</TT></B>.<BR>
+<BR>
+On va d'abord tracer les lignes de champ dans le plan de phase, ce qui permet
+encore d'avoir une id&eacute;e des trajectoires sans r&eacute;soudre le
+syst&egrave;me : cela revient &agrave; tracer le vecteur
+(<I>x</I>'(<I>t</I>),<I>y</I>'(<I>t</I>)) en chaque point d'une grille. On
+utilise ici la fonction <B><TT>fchamp</TT></B> faite expr&egrave;s pour
+&ccedil;a : 
+<PRE>
+a=3; b=1; c=1; d=2; 
+xmin=0; xmax=6; ymin=0; ymax=6;
+xr=xmin:0.5:xmax; yr=ymin:0.5:ymax;
+xset(&quot;font&quot;,2,12)
+fchamp(f,0,xr,yr)
+xtitle(&quot;&quot;,&quot;x&quot;,&quot;y&quot;)
+</PRE>
+o&ugrave; la fonction <B><TT>f</TT></B> est celle d&eacute;finie dans <B> 
+<TT>volterra.sci</TT></B>. On voit le champ de vecteurs sur la figure
+<A HREF="#f:volterra">2</A>(a).<BR>
+<BR>
+On va faire comme au paragraphe pr&eacute;c&eacute;dant et tracer des
+trajectoires qui passent par le point cliqu&eacute;. Cela se fait de la
+m&ecirc;me fa&ccedil;on par : 
+<PRE>
+xset(&quot;thickness&quot;,2)
+t0=0; tmax=5; dt=0.05;
+T=t0:dt:tmax;
+while(%t)
+  [c_i,x0,y0]=xclick();
+  if c_i==2 then break end;
+  if x0&gt;=xmin &amp; x0&lt;=xmax &amp; y0&gt;=ymin &amp; y0&lt;=ymax then
+    sol=ode([x0;y0],t0,T,f);
+    plot2d(sol(1,:),sol(2,:),1,&quot;000&quot;)
+  end
+end
+</PRE>
+La seule diff&eacute;rence est qu'ici il faut donner un vecteur (<I>x</I> 
+<SUB><FONT SIZE="2">0</FONT></SUB>,<I>y</I><SUB><FONT SIZE="2">0</FONT></SUB>)
+comme condition initiale et que le tableau <B><TT>sol</TT></B> en sortie de <B>
+<TT>ode</TT></B> est maintenant une matrice &agrave; deux lignes correspondant
+&agrave; <I>x</I>(<I>t</I>) (nombre de sardines) et <I>y</I>(<I>t</I>) (nombre
+de requins).<BR>
+<BR>
+Les trajectoires tournent autour du point d'&eacute;quilibre
+(<I>x</I>=<I>d</I>/<I>c</I>=2,<I>y</I>=<I>a</I>/<I>b</I>=3) et on peut en voir
+sur la figure <A HREF="#f:volterra">2</A>(a). <BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="CENTER">
+<IMG SRC="volterra1.jpg" ALT="{short description of image}" WIDTH="531"
+ HEIGHT="405" BORDER="0"><IMG SRC="volterra2.jpg"
+ALT="{short description of image}" WIDTH="523" HEIGHT="405" BORDER="0"> 
+</DIV>
+<BR>
+<DIV ALIGN="center">
+Figure 2: 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+On peut v&eacute;rifier que lorsqu'on augmente la fr&eacute;quence de
+p&ecirc;che, c'est-&agrave;-dire <I>a</I> <FONT FACE="symbol">&THORN;</FONT>
+<I>a</I>-<FONT FACE="symbol">a</FONT> et <I>d</I> <FONT
+FACE="symbol">&THORN;</FONT> <I>d</I>+<FONT FACE="symbol">d</FONT>, le point
+d'&eacute;quilibre se d&eacute;place vers un lieu o&ugrave; il y a moins de
+requins et plus de sardines. C'est ce que l'on voit sur la figure
+<A HREF="#f:volterra">2</A>(b) en prenant <FONT FACE="symbol">a</FONT>=2 et
+<FONT FACE="symbol">d</FONT>=2 et en refaisant les calculs dans Scilab. Le
+point d'&eacute;quilibre passe du point (2,3) au point (4,1). On retrouve donc
+bien les r&eacute;sultats de Volterra.<BR>
+<BR>
+<!--TOC section Le solveur DASSL-->
+<H2>3&nbsp;&nbsp; Le solveur DASSL</H2>
+Les syst&egrave;mes dynamiques du paragraphe pr&eacute;c&eacute;dent
+&eacute;taient des <EM>syst&egrave;mes explicites</EM>, c'est-&agrave;-dire que
+les d&eacute;riv&eacute;es <I>y</I>'(<I>t</I>) pouvaient s'&eacute;crire
+explicitement en fonctions de <I>y</I>(<I>t</I>) et de <I>t</I>. Ce n'est
+malheureusement pas toujours le cas et alors les probl&egrave;mes deviennent
+tr&egrave;s difficiles voire impossibles &agrave; r&eacute;soudre. C'est
+l&agrave; qu'intervient le deuxi&egrave;me solveur de Scilab appel&eacute;
+DASSL ; il permet de r&eacute;soudre une grande classe de probl&egrave;mes
+implicites.<BR>
+<BR>
+<!--TOC subsection Le pendule qui glisse-->
+<H3>3.1&nbsp;&nbsp; Le pendule qui glisse</H3>
+Il est difficile de trouver des probl&egrave;mes implicites simples que l'on
+peut r&eacute;soudre sans trop de calculs. Un exemple encore pas trop
+compliqu&eacute; est celui du pendule qui glisse avec frottement le long d'une
+courbe dans un plan.<BR>
+<BR>
+La courbe sur laquelle va glisser le pendule, dans le plan (<I>x</I>,<I>y</I>),
+est <I>y</I>=<I>x</I><SUP><FONT SIZE="2">2</FONT></SUP>-cos(<FONT
+FACE="symbol">w</FONT> <I>x</I>)/3, ce qui correspond &agrave; un magnifique
+dos de chameau &agrave; l'envers. <BR>
+<BR>
+Nous donnons ci-dessous les &eacute;quations du mouvement du pendule qui vont
+nous donner le syst&egrave;me diff&eacute;rentiel &agrave; r&eacute;soudre : { 
+<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>x</I>'=<I>u</I><SUB><FONT
+SIZE="2">1</FONT></SUB> &nbsp;&nbsp;&nbsp;&nbsp; <I>y</I>'=<I>u</I><SUB><FONT
+SIZE="2">2</FONT></SUB> &nbsp;&nbsp;&nbsp;&nbsp; <FONT
+FACE="symbol">q</FONT>'=<I>u</I><SUB><FONT SIZE="2">3</FONT></SUB></TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">(<I>M</I>+<I>m</I>)&nbsp;<I>u</I>'<SUB><FONT
+SIZE="2">1</FONT></SUB>+<I>m</I> <I>l</I> cos(<FONT
+FACE="symbol">q</FONT>)&nbsp;<I>u</I>'<SUB><FONT
+SIZE="2">3</FONT></SUB>=<I>m</I> <I>l</I> sin(<FONT FACE="symbol">q</FONT>)
+<I>u</I><SUB><FONT SIZE="2">3</FONT></SUB><SUP><FONT SIZE="2">2</FONT></SUP>
+-<FONT FACE="symbol">l</FONT>(-2 <I>x</I>+<FONT FACE="symbol">w</FONT>
+sin(<FONT FACE="symbol">w</FONT> <I>x</I>)/3)-<I>k</I> <I>u</I><SUB><FONT
+SIZE="2">1</FONT></SUB></TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">(<I>M</I>+<I>m</I>)&nbsp;<I>u</I>'<SUB><FONT
+SIZE="2">2</FONT></SUB>+<I>m</I> <I>l</I> sin(<FONT
+FACE="symbol">q</FONT>)&nbsp;<I>u</I>'<SUB><FONT
+SIZE="2">3</FONT></SUB>=-<I>m</I> <I>l</I> cos(<FONT
+FACE="symbol">q</FONT>)<I>u</I><SUB><FONT SIZE="2">3</FONT></SUB><SUP><FONT
+SIZE="2">2</FONT></SUP> -(<I>M</I>+<I>m</I>)<I>g</I>-<FONT
+FACE="symbol">l</FONT>-<I>k</I> <I>u</I><SUB><FONT SIZE="2">2</FONT></SUB></TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>m</I> <I>l</I> cos(<FONT
+FACE="symbol">q</FONT>)&nbsp;<I>u</I>'<SUB><FONT
+SIZE="2">1</FONT></SUB>+<I>m</I> <I>l</I> sin(<FONT
+FACE="symbol">q</FONT>)&nbsp;<I>u</I>'<SUB><FONT
+SIZE="2">2</FONT></SUB>+<I>m</I> <I>l</I><SUP><FONT
+SIZE="2">2</FONT></SUP>&nbsp;<I>u</I>'<SUB><FONT
+SIZE="2">3</FONT></SUB>=-<I>m</I> <I>g</I> sin(<FONT FACE="symbol">q</FONT>) 
+</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP">0=(-2 <I>x</I>+<FONT
+FACE="symbol">w</FONT>sin(<FONT FACE="symbol">w</FONT> <I>x</I>)/3)
+<I>u</I><SUB><FONT SIZE="2">1</FONT></SUB>+<I>u</I><SUB><FONT
+SIZE="2">2</FONT></SUB></TD>
+</TR>
+</TABLE>
+. o&ugrave; <I>x</I> et <I>y</I> sont les coordonn&eacute;es du bout
+sup&eacute;rieur du pendule, <FONT FACE="symbol">q</FONT> est l'angle que fait
+le pendule avec la verticale, <I>M</I> est la masse du bout sup&eacute;rieur du
+pendule, <I>m</I> celle du bout inf&eacute;rieur, <I>l</I> est la longueur du
+pendule, <I>g</I> est l'acc&eacute;l&eacute;ration de la pesanteur et <I>k</I>
+est le coefficient de frottement.<BR>
+<BR>
+Pour les curieux, sachez que l'on a utilis&eacute; une formulation de Lagrange
+avec la contrainte pour le bout sup&eacute;rieur du pendule de suivre la
+courbe, que l'on a diff&eacute;renti&eacute; cette contrainte et que l'on a
+ensuite rajout&eacute; les frottements (<FONT FACE="symbol">l</FONT> est un
+multiplicateur de Lagrange). <BR>
+<BR>
+La fonction <B><TT>dassl</TT></B> s'utilise presque de la m&ecirc;me
+fa&ccedil;on que <B><TT>ode</TT></B>. On d&eacute;finit d'abord le
+syst&egrave;me diff&eacute;rentiel pr&eacute;c&eacute;dent sous la forme
+<I>f</I>(<I>t</I>,<I>Y</I>(<I>t</I>),<I>Y</I>'(<I>t</I>))=0. La fonction <B> 
+<TT>f</TT></B> correspondante est d&eacute;finie dans le fichier <B> 
+<TT>pendule.sci</TT></B> : <PRE>
+function [res,ires]=f(t,Y,Yprim)
+x=Y(1); y=Y(2); theta=Y(3); u=Y(4:6); lambda=Y(7);
+xprim=Yprim(1); yprim=Yprim(2); thetaprim=Yprim(3); 
+uprim=Yprim(4:6);
+res(1)=xprim-u(1);
+res(2)=yprim-u(2);
+res(3)=thetaprim-u(3);
+res(4)=(M+m)*uprim(1)+m*l*cos(theta)*uprim(3)-m*l*sin(theta)*u(3)^2..
++lambda*(-2*x+omega*sin(omega*x)/3)+k*u(1);
+res(5)=(M+m)*uprim(2)+m*l*sin(theta)*uprim(3)+m*l*cos(theta)*u(3)^2..
++(M+m)*g+lambda+k*u(2);
+res(6)=m*l*cos(theta)*uprim(1)+m*l*sin(theta)*uprim(2)+m*l^2*uprim(3)..
++m*g*sin(theta);
+res(7)=-((-2*x+omega*sin(omega*x)/3)*u(1)+u(2));
+ires=0;
+</PRE>
+o&ugrave; <B><TT>Y</TT></B> est ici un vecteur de 7 &eacute;l&eacute;ments :
+par exemple <B><TT>Y(1)</TT></B> et <B><TT>Y(2)</TT></B> sont les
+coordonn&eacute;es <I>x</I> et <I>y</I> du bout sup&eacute;rieur du pendule et
+<B><TT>Y(3)</TT></B> est l'angle 
+<FONT FACE="symbol">q</FONT> qu'il fait avec la verticale. On charge &agrave;
+nouveau ce fichier dans Scilab par <B><TT>getf(&quot;pendule.sci&quot;) 
+</TT></B>. On appelle ensuite <B><TT>dassl</TT></B> de la fa&ccedil;on suivante
+: <PRE>
+// les donnees numeriques
+omega=3.3;
+g=10; l=1; m=1; M=1; k=0.5;
+// les valeurs initiales
+x0=1; y0=1+cos(omega)/3; theta0=0; u0=[0;0;0];
+Y0=[x0;y0;theta0;u0;0];
+uprim0=[0;-g;0]; Yprim0=[u0;uprim0;0];
+// instants ou l'on calcule
+t0=0; T=t0:0.05:20;
+// parametres de dassl
+info=list([],0,[],[],[],0,0);
+atol=[0.0001;0.0001;0.0001;0.0001;0.0001;0.0001;0.001];
+rtol=atol;
+// appel de dassl
+sol=dassl([Y0,Yprim0],t0,T,rtol,atol,f,info);
+</PRE>
+Sans rentrer dans les d&eacute;tails, disons que <B><TT>info</TT></B> est une
+liste de param&egrave;tres &agrave; donner &agrave; DASSL (on a pris ici la
+valeur par d&eacute;faut) et <B><TT>atol</TT></B> et <B><TT>rtol</TT></B>
+correspondent &agrave; tests de convergence que l'on affaiblit ici pour que
+DASSL puisse r&eacute;aliser les calculs en un temps raisonnable.<BR>
+<BR>
+Le r&eacute;sultat se retrouve dans <B><TT>sol</TT></B> et il faut savoir que
+l'on retrouve la position du bout sup&eacute;rieur du pendule
+(<I>x</I>(<I>t</I>),<I>y</I>(<I>t</I>)) dans <B><TT>sol(2,:)</TT></B> et <B> 
+<TT>sol(3,:)</TT></B> et l'angle 
+<FONT FACE="symbol">q</FONT> que fait le pendule avec la verticale se retrouve
+dans <B><TT>sol(4,:)</TT></B>. On peut alors tracer la courbe ainsi que
+quelques positions du pendule sur la courbe par : <PRE>
+// extraction de x, y et theta de la solution
+x=sol(2,:); y=sol(3,:); teta=sol(4,:); n=size(x,&quot;*&quot;);
+r=0.05; // rayon de la boule du pendule
+// coordonnees du bout inferieur du pendule
+xp=x+l*sin(teta); yp=y-l*cos(teta);
+xp1=x+(l-r)*sin(teta); yp1=y-(l-r)*cos(teta);
+// definition du cadre et trace de la courbe
+xmin=-1.5; xmax=1.5; ymin=-1.1; ymax=0.9;
+vx=[xmin:0.01:xmax]'; vy=vx.*vx+cos(omega*vx)/3;
+xset(&quot;thickness&quot;,2)
+plot2d(vx,vy,1,&quot;032&quot;,&quot; &quot;,[xmin,ymin,xmax,ymax])
+// trace du pendule en divers instants
+T=[1,100,110,120,200,401];
+for i=T
+  plot2d([x(i);xp1(i)],[y(i);yp1(i)],1,&quot;000&quot;)
+  xfarc(xp(i)-r,yp(i)+r,2*r,2*r,0,360*64)
+end
+</PRE>
+La figure <A HREF="#f:pendule">3</A> montre le r&eacute;sultat. 
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="pendule.jpg" ALT="{short description of image}" WIDTH="578"
+ HEIGHT="409" BORDER="0"><A NAME="f:pendule"></A> 
+</DIV>
+<BR>
+<DIV ALIGN="center">
+Figure 3: 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+En fait, on aurait pu, apr&egrave;s avoir calcul&eacute; la solution,
+r&eacute;aliser une animation du comportement du pendule, mais cela aurait
+&eacute;t&eacute; difficile &agrave; montrer sur une figure...<BR>
+<BR>
+Enfin, pour ceux qui br&ucirc;lent de savoir vers quelle bosse (ou trou ?) du
+chameau invers&eacute; le pendule va tendre, la r&eacute;ponse donn&eacute;e
+par le calcul num&eacute;rique est : celui de droite.<BR>
+<BR>
+<!--TOC subsection Amélioration du temps de calcul-->
+<H3>3.2&nbsp;&nbsp; Am&eacute;lioration du temps de calcul</H3>
+En fait, on se rend compte que le calcul pr&eacute;c&eacute;dent,
+c'est-&agrave;-dire l'appel de DASSL, pour calculer la solution est lent. Sur
+un Pentium II 450, le temps de calcul est (en secondes) : <PRE>
+--&gt;timer();sol=dassl([Y0,Yprim0],t0,T,rtol,atol,f,info);timer() 
+ ans  =
+ 
+    4.13  
+</PRE>
+ce qui de nos jours est insupportablement long...<BR>
+<BR>
+On a vu dans un article pr&eacute;c&eacute;dent qu'il &eacute;tait possible
+d'interfacer directement du C ou du fortran avec Scilab. L'id&eacute;e est donc
+de r&eacute;aliser &agrave; l'aide d'un programme compil&eacute; le calcul de
+la fonction <I>f</I>. Afin de rappeler de vieux souvenirs &agrave; certains et
+de montrer un langage qui r&eacute;siste au temps &agrave; d'autres, nous
+allons &eacute;crire la fonction <I>f</I> en fortran dans le fichier <B> 
+<TT>pendule.f</TT></B> : 
+<PRE>
+      subroutine f(t,yy,yyprim,res,ires,rpar,ipar)
+      doubleprecision t,yy(*),yyprim(*),res(*),rpar(*)
+      doubleprecision x,y,theta,xprim,yprim,thetaprim
+      doubleprecision u(3),uprim(3),lambda
+      doubleprecision g,k,l,gm,m,omega
+      logical creadmat
+
+      parameter (g=10,k=0.5,l=1,gm=1,m=1,omega=3.3)
+
+      x=yy(1)
+      y=yy(2)
+      theta=yy(3)
+      u(1)=yy(4)
+      u(2)=yy(5)
+      u(3)=yy(6)
+      lambda=yy(7)
+      xprim=yyprim(1)
+      yprim=yyprim(2)
+      thetaprim=yyprim(3)
+      uprim(1)=yyprim(4)
+      uprim(2)=yyprim(5)
+      uprim(3)=yyprim(6)
+      res(1)=xprim-u(1)
+      res(2)=yprim-u(2)
+      res(3)=thetaprim-u(3)
+      res(4)=(gm+m)*uprim(1)+m*l*cos(theta)*uprim(3)-m*l*sin(theta)
+
+     &amp;*u(3)**2+lambda*(-2*x+omega*sin(omega*x)/3)+k*u(1)
+      res(5)=(gm+m)*uprim(2)+m*l*sin(theta)*uprim(3)+m*l*cos(theta)
+     &amp;*u(3)**2+(gm+m)*g+lambda+k*u(2)
+      res(6)=m*l*cos(theta)*uprim(1)+m*l*sin(theta)*uprim(2)+
+     &amp;m*l**2*uprim(3)+m*g*sin(theta)
+      res(7)=-((-2*x+omega*sin(omega*x)/3)*u(1)+u(2))
+      ires=0
+      end
+</PRE>
+Le programme ci-dessus n'est que la traduction des &eacute;quations du
+mouvement que l'ont avait &eacute;crites en Scilab dans le fichier <B> 
+<TT>pendule.sci</TT></B>. On a donn&eacute; les valeurs des param&egrave;tres
+<I>g</I>, <I>k</I>,...en dur pour optimiser le temps de calcul. On aurait pu
+les r&eacute;cup&eacute;rer &agrave; partir de l'environnement Scilab. Par
+exemple 
+<PRE>
+      if (.not.creadmat('M'//char(0),mm,nn,gm)) return
+</PRE>
+met dans la variable double pr&eacute;cision fortran <B><TT>gm</TT></B> la
+valeur de la variable Scilab <B><TT>M</TT></B>, mais il y a un surco&ucirc;t
+d&ucirc; &agrave; l'appel de <B><TT>creadmat</TT></B>.<BR>
+<BR>
+Bien s&ucirc;r on aurait pu r&eacute;aliser la m&ecirc;me chose en C.<BR>
+<BR>
+On compile alors et on linke facilement ce programme &agrave; Scilab par : 
+<PRE>
+unix(&quot;f77 -O -c pendule.f&quot;)
+link(&quot;pendule.o&quot;,&quot;f&quot;);
+</PRE>
+Il n'y a plus qu'&agrave; appeler &agrave; nouveau <B><TT>dassl</TT></B> en
+prenant soin de remplacer <B><TT>f</TT></B> par <B><TT>&quot;f&quot;</TT></B>
+car c'est une fonction compil&eacute;e et non plus une fonction Scilab que l'on
+utilise : 
+<PRE>
+--&gt;timer();sol=dassl([Y0,Yprim0],t0,T,rtol,atol,&quot;f&quot;,info);timer()
+ ans  =
+ 
+    0.09
+</PRE>
+On va tout de m&ecirc;me environ 50 fois plus vite ! Et rassurez-vous, j'ai
+v&eacute;rifi&eacute; que le r&eacute;sultat &eacute;tait le m&ecirc;me que
+tout &agrave; l'heure.<BR>
+<BR>
+Lorsque l'on utilise des algorithmes it&eacute;ratifs du style des solveurs
+comme <B><TT>ode</TT></B>, il est donc tr&egrave;s profitable d'utiliser des
+programmes C ou fortran compil&eacute;s et link&eacute;s &agrave; Scilab.<BR>
+<BR>
+<!--TOC section Conclusion-->
+
+<H2>4&nbsp;&nbsp; Conclusion</H2>
+Nous avons vu dans cet article le fonctionnement des deux principaux solveurs
+de syst&egrave;mes dynamiques repr&eacute;sent&eacute;s par des
+&eacute;quations diff&eacute;rentielles <B><TT>ode</TT></B> et <B><TT>dassl 
+</TT></B>. Bien s&ucirc;r, un grand nombre de r&eacute;glages ainsi que
+d'autres fonctionnalit&eacute;s existent pour ces solveurs. Apr&egrave;s
+mod&eacute;lisation, Scilab permet ainsi rapidement de r&eacute;aliser la
+simulation du syst&egrave;me.<BR>
+<BR>
+Il existe une autre possibilit&eacute; pour simuler un syst&egrave;me dynamique
+: c'est d'utiliser Scicos, le simulateur graphique de syst&egrave;mes hybrides.
+Il sera d&eacute;crit dans un article prochain, alors soyez patient car comme
+le dit l'Eccl&eacute;siaste (3,1) : &lt;&lt; Il y a un temps pout tout, un
+temps pour toute chose sous le ciel &gt;&gt;.<BR>
+<BR>
+<!--TOC section Contacts-->
+<H2>Contacts</H2>
+Site Web de Scilab : <B><TT><A
+HREF="http://www-rocq.inria.fr/scilab">http://www-rocq.inria.fr/scilab</A> 
+</TT></B><BR>
+<BR>
+Serveur ftp : <B><TT><A
+HREF="ftp://ftp.inria.fr/INRIA/Scilab">ftp://ftp.inria.fr/INRIA/Scilab</A> 
+</TT></B><BR>
+<BR>
+Adresse email : <B><TT><A HREF="mailto:scilab@inria.fr">Scilab@inria.fr</A> 
+</TT></B><BR>
+<BR>
+Newsgroup : <B><TT><A
+HREF="news:comp.soft-sys.math.scilab">comp.soft-sys.math.scilab</A> 
+</TT></B><BR>
+<BR>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ta=[\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{8}]\nspoperator{;}
+he=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{4}]\nspoperator{;}
+g=make_graph(\nspstring{'foo'},\nspnumber{1},\nspnumber{8},ta,he)\nspoperator{;}
+g(\nspstring{'node_x'})=[\nspnumber{129}\nspoperator{,}\nspnumber{200}\nspoperator{,}\nspnumber{283}\nspoperator{,}\nspnumber{281}\nspoperator{,}\nspnumber{128}\nspoperator{,}\nspnumber{366}\nspoperator{,}\nspnumber{122}\nspoperator{,}\nspnumber{333}]\nspoperator{;}
+g(\nspstring{'node_y'})=[\nspnumber{61}\nspoperator{,}\nspnumber{125}\nspoperator{,}\nspnumber{129}\nspoperator{,}\nspnumber{189}\nspoperator{,}\nspnumber{173}\nspoperator{,}\nspnumber{135}\nspoperator{,}\nspnumber{236}\nspoperator{,}\nspnumber{249}]\nspoperator{;}
+show_graph(g)\nspoperator{;}
+g1=trans_closure(g)\nspoperator{;}
+vv=\nspnumber{1}\nspoperator{*}ones(ta)\nspoperator{;}aa=sparse([ta\nspoperator{'}\nspoperator{,}he\nspoperator{'}],vv\nspoperator{'})\nspoperator{;}
+ta1=g1(\nspstring{'tail'})\nspoperator{;}he1=g1(\nspstring{'head'})\nspoperator{;}
+ww=\nspnumber{1}\nspoperator{*}ones(ta1)\nspoperator{;}bb=sparse([ta1\nspoperator{'}\nspoperator{,}he1\nspoperator{'}],ww\nspoperator{'})\nspoperator{;}
+dif=bb\nspoperator{-}aa\nspoperator{;}lim=size(ta1)\nspoperator{;}edgecolor=\nspnumber{0}\nspoperator{*}ones(ta1)\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}lim(\nspnumber{2}) \nspkeyword{do}
+  \nspkeyword{if} dif(ta1(i),he1(i))\nspoperator{==}\nspnumber{1} \nspkeyword{then} edgecolor(i)=\nspnumber{11}\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+\nspkeyword{end}\nspoperator{;}
+g1(\nspstring{'edge_color'})=edgecolor\nspoperator{;}
+x_message(\nspstring{'Transitive closure of the graph'})\nspoperator{;}
+show_graph(g1)\nspoperator{;}
+\end{Verbatim}

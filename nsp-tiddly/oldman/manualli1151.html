@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>eqiir</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1152.html" >next</a>] [<a 
+href="manualli1150.html" >prev</a>] [<a 
+href="manualli1150.html#tailmanualli1150.html" >prev-tail</a>] [<a 
+href="#tailmanualli1151.html">tail</a>] [<a 
+href="manualli1135.html#manualli1151.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1152-6518000"></a>eqiir</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1152-6518001"></a><a 
+ id="eqiir"></a><span 
+class="cmtt-10x-x-109">eqiir </span>&#x2013;                                                                                   Design of iir filters<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1152-6519000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1301">
+&#x00A0;&#x00A0;[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1152-6520000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ftype</span>: filter type (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;lp&#x0027;,&#x0027;hp&#x0027;,&#x0027;sb&#x0027;,&#x0027;bp&#x0027;</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">approx</span>: design approximation (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;butt&#x0027;,&#x0027;cheb1&#x0027;,&#x0027;cheb2&#x0027;,&#x0027;ellip&#x0027;</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">om</span>:          4-vector          of          cutoff          frequencies          (in          radians)
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">om=[om1,om2,om3,om4]</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;om1</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;om2</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;om3</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;om4</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;pi</span></span></span>. When
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ftype</span></span></span>=&apos;lp&apos; or &apos;hp&apos;, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">om3</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">om4</span></span></span> are not used and may be set to 0.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">deltap</span>: ripple in the passband. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;deltap</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=1</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">deltas</span>: ripple in the stopband. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;deltas</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=1</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">cells</span>: realization of the filter as second order cells
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fact</span>: normalization constant
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">zzeros</span>: zeros in the z-domain
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">zpoles</span>: poles in the z-domain</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1152-6521000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > Design of iir filter interface with eqiir (syredi) The filter obtained is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">h(z)=fact</span></span></span>*product of the
+elements of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cells</span></span></span>. That is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hz=fact*prod(cells(2))./prod(cells(3))</span></span></span>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1152-6522000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb773"><a 
+ id="x1152-6522005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[cells,fact,zzeros,zpoles]=eqiir(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;lp&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ellip&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.02</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.001</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x1152-6522007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;transfer=fact</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">poly(zzeros,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">poly(zpoles,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 56--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1152-6523000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1150.html#eqfir">eqfir</a>    <a 
+href="manualli1168.html#iir">iir</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1152.html" >next</a>] [<a 
+href="manualli1150.html" >prev</a>] [<a 
+href="manualli1150.html#tailmanualli1150.html" >prev-tail</a>] [<a 
+href="manualli1151.html" >front</a>] [<a 
+href="manualli1135.html#manualli1151.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1151.html"></a>  </p> 
+</body></html> 

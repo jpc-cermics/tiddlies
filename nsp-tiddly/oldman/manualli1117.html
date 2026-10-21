@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>linfn</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1118.html" >next</a>] [<a 
+href="manualli1116.html" >prev</a>] [<a 
+href="manualli1116.html#tailmanualli1116.html" >prev-tail</a>] [<a 
+href="#tailmanualli1117.html">tail</a>] [<a 
+href="manualli1089.html#manualli1117.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1118-6326000"></a>linfn</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1118-6326001"></a><a 
+ id="linfn"></a><span 
+class="cmtt-10x-x-109">linfn </span>&#x2013;                                                                                           infinity norm<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1118-6327000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1249">
+&#x00A0;&#x00A0;[x,freq]=linfn(G,PREC,RELTOL,options);
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1118-6328000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">G</span>: is a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">PREC</span>: desired relative accuracy on the norm
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">RELTOL</span>:  relative  threshold  to  decide  when  an  eigenvalue  can  be  considered  on  the
+     imaginary axis.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">options</span>: available options are <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;trace&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;cond&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x </span>is the computed norm.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">freq</span>: vector</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1118-6329000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > Computes the Linf (or Hinf) norm of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> This norm is well-defined as soon as the realization
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G=(A,B,C,D)</span></span></span> has no imaginary eigenvalue which is both controllable and observable.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">freq</span></span></span> is a list of
+the frequencies for which <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">||G||</span></span></span> is attained,i.e., such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">||G</span><span 
+class="cmtt-10x-x-109">&#x00A0;(j</span><span 
+class="cmtt-10x-x-109">&#x00A0;om)||</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;||G||</span></span></span>. If -1 is in the
+list, the norm is attained at infinity. If -2 is in the list, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> is all-pass in some direction so
+that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">||G</span><span 
+class="cmtt-10x-x-109">&#x00A0;(j</span><span 
+class="cmtt-10x-x-109">&#x00A0;omega)||</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;||G||</span></span></span> for all frequencies omega. The algorithm follows the
+paper by G. Robel (AC-34 pp. 882-884, 1989). The case <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D=0</span></span></span> is not treated separately due
+to superior accuracy of the general method when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(A,B,C)</span></span></span> is nearly non minimal. The
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;trace&#x0027;</span></span></span> option traces each bisection step, i.e., displays the lower and upper bounds and the
+current test point. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;cond&#x0027;</span></span></span> option estimates a confidence index on the computed value
+and issues a warning if computations are ill-conditioned In the general case (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> neither
+stable nor anti-stable), no upper bound is prespecified. If by contrast <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is stable or anti
+stable, lower and upper bounds are computed using the associated Lyapunov solutions.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1118-6330000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#h-norm">h_norm</a>
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1118-6331000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   P. Gahinet
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1118.html" >next</a>] [<a 
+href="manualli1116.html" >prev</a>] [<a 
+href="manualli1116.html#tailmanualli1116.html" >prev-tail</a>] [<a 
+href="manualli1117.html" >front</a>] [<a 
+href="manualli1089.html#manualli1117.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1117.html"></a>  </p> 
+</body></html> 

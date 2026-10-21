@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pspect</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1183.html" >next</a>] [<a 
+href="manualli1181.html" >prev</a>] [<a 
+href="manualli1181.html#tailmanualli1181.html" >prev-tail</a>] [<a 
+href="#tailmanualli1182.html">tail</a>] [<a 
+href="manualli1135.html#manualli1182.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1183-6689000"></a>pspect</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1183-6689001"></a><a 
+ id="pspect"></a><span 
+class="cmtt-10x-x-109">pspect </span>&#x2013;                                                       cross-spectral estimate between 2 series<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1183-6690000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1337">
+&#x00A0;&#x00A0;[sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1183-6691000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: data if vector, amount of input data if scalar
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y</span>: data if vector, amount of input data if scalar
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sec</span><span 
+class="cmtt-10x-x-109">_step</span>: offset of each data window
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sec</span><span 
+class="cmtt-10x-x-109">_leng</span>: length of each data window
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">wtype</span>: window type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(re,tr,hm,hn,kr,ch)</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">wpar</span>:         optional         parameters         for         <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wtype=&#x0027;kr&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;wpar$&#x003E;$0</span></span></span>     for
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">wtype=&#x0027;ch&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;0$&#x003C;$wpar(1)$&#x003C;$.5,</span><span 
+class="cmtt-10x-x-109">&#x00A0;wpar(2)$&#x003E;$0</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sm</span>: power spectral estimate in the interval <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[0,1]</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">cwp</span>: unspecified Chebyshev window parameter</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1183-6692000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > Cross-spectral estimate between <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> if both are given and auto-spectral estimate of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>
+otherwise. Spectral estimate obtained using the modified periodogram method.
+</p>
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1183-6693000"></a><span 
+class="cmbx-10x-x-109">Reference</span></span>
+   Digital Signal Processing by Oppenheim and Schafer
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1183-6694000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb786"><a 
+ id="x1183-6694018r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rand(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;normal&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;seed&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694020r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1024</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">33</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694022r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//make</span><span 
+class="cmitt-10x-x-109">&#x00A0;low-pass</span><span 
+class="cmitt-10x-x-109">&#x00A0;filter</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;eqfir</span></span>
+<br class="fancyvrb" /><a 
+ id="x1183-6694024r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nf=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">33</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">bedge=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.125</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.5</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">des=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">wate=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694026r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=eqfir(nf,bedge,des,wate)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1183-6694028r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//filter</span><span 
+class="cmitt-10x-x-109">&#x00A0;white</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;obtain</span><span 
+class="cmitt-10x-x-109">&#x00A0;colored</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694030r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h1=[h</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">maxi(size(x))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1183-6694032r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x1=[x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">maxi(size(h))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694034r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;hf=fft(h1,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">xf=fft(x1,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yf=hf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">xf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y=real(fft(yf,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1183-6694036r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;magnitude</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;filter</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694038r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//h2=[h</span><span 
+class="cmitt-10x-x-109">&#x00A0;0*ones(1:968)];hf2=fft(h2,-1);hf2=real(hf2.*conj(hf2));</span></span>
+<br class="fancyvrb" /><a 
+ id="x1183-6694040r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//hsize=maxi(size(hf2));fr=(1:hsize)/hsize;plot(fr,log(hf2));</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694042r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//pspect</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span></span>
+<br class="fancyvrb" /><a 
+ id="x1183-6694044r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sm=pspect(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">200</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;tr&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,y)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">smsize=maxi(size(sm))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">fr=(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">smsize)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">smsize</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694046r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(fr,log(sm))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1183-6694048r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;rand(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;unif&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 70--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1183-6695000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1146.html#cspect">cspect</a>
+</p>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1183-6696000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   C. B.
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1183.html" >next</a>] [<a 
+href="manualli1181.html" >prev</a>] [<a 
+href="manualli1181.html#tailmanualli1181.html" >prev-tail</a>] [<a 
+href="manualli1182.html" >front</a>] [<a 
+href="manualli1135.html#manualli1182.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1182.html"></a>  </p> 
+</body></html> 

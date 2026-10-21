@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>sysconv</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli257.html" >next</a>] [<a 
+href="manualli255.html" >prev</a>] [<a 
+href="manualli255.html#tailmanualli255.html" >prev-tail</a>] [<a 
+href="#tailmanualli256.html">tail</a>] [<a 
+href="manualli104.html#manualli256.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x257-1529000"></a>sysconv</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx257-1529001"></a><a 
+ id="sysconv"></a><span 
+class="cmtt-10x-x-109">sysconv </span>&#x2013;                                                                                 system conversion<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x257-1530000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-390">
+&#x00A0;&#x00A0;[s1,s2]=sysconv(s1,s2)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x257-1531000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">s1,s2</span>: list (linear <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> systems)</li></ul>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x257-1532000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 33--><p class="noindent" > Converts <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s2</span></span></span> into common representation in order that system interconnexion operations
+can be applied. Utility function for experts. The conversion rules in given in the following
+table.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;c&#x201D;</span> </span>: continuous time system
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;d&#x201D;</span> </span>: discrete time system
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">n</span> </span>: sampled system with sampling period n
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">[</span> </span>]: system with undefined time domain For mixed systems <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s2</span></span></span> are put in state-space
+     representation.</ul>
+                                                                                    
+
+                                                                                    
+</p>
+<div class="verbatim" id="verbatim-391">
+&#x00A0;&#x00A0;s1&#x005C;s2|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x0022;c&#x0022;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x0022;d&#x0022;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;n2&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;---------------------------------------------------------------
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0022;c&#x0022;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;nothing&#x00A0;&#x00A0;&#x00A0;&#x00A0;|uncompatible&#x00A0;|&#x00A0;c2e(s1,n2)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;c(s2)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;---------------------------------------------------------------
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0022;d&#x0022;&#x00A0;&#x00A0;&#x00A0;|uncompatible|&#x00A0;nothing&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;e(s1,n2)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;d(s2)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;---------------------------------------------------------------
+&#x00A0;<br />&#x00A0;&#x00A0;n1&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;c2e(s2,n1)&#x00A0;|&#x00A0;e(s2,n1)&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;n1$&#x003C;$$&#x003E;$n2&#x00A0;uncomp&#x00A0;&#x00A0;|&#x00A0;&#x00A0;e(s2,n1)&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;n1=n2&#x00A0;&#x00A0;nothing&#x00A0;|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;---------------------------------------------------------------
+&#x00A0;<br />&#x00A0;&#x00A0;[]&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;c(s1)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;d(s1)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;e(s1,n2)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|&#x00A0;&#x00A0;nothing&#x00A0;&#x00A0;&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;---------------------------------------------------------------
+</div>
+<!--l. 55--><p class="nopar" >With the following meaning:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">n1,n2</span> </span>: sampling period
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">c2e(s,n)</span> </span>: the continuous-time system s is transformed into a sampled system with sampling
+     period n.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">c(s)</span> </span>: conversion to continuous (time domain is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;c&#x0022;</span></span></span>)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">d(s)</span> </span>: conversion to discrete (time domain is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;d&#x0022;</span></span></span>)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">e(s,n)</span> </span>: conversion to samples system with period <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span></ul>
+</p>
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x257-1533000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb211"><a 
+ id="x257-1533005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s1=ssrand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x257-1533007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s2=ss2tf(s1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x257-1533009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[s1,s2]=sysconv(s1,s2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x257-1534000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli258.html#syslin">syslin</a>    <a 
+href="manualli79.html#ss2tf">ss2tf</a>    <a 
+href="manualli85.html#tf2ss">tf2ss</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli257.html" >next</a>] [<a 
+href="manualli255.html" >prev</a>] [<a 
+href="manualli255.html#tailmanualli255.html" >prev-tail</a>] [<a 
+href="manualli256.html" >front</a>] [<a 
+href="manualli104.html#manualli256.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli256.html"></a>  </p> 
+</body></html> 

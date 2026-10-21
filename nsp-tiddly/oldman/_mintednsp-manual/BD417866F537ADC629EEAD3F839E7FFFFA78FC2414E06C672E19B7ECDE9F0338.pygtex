@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//new style}
+\nspcomment{// set figure_style new}
+t=\nspnumber{0}\nspoperator{:}\nspnumber{0.01}\nspoperator{:}\nspnumber{10}\nspoperator{;}
+subplot(\nspnumber{211})\nspoperator{,}plot2d(t,sin(t))
+subplot(\nspnumber{212})\nspoperator{,}plot2d(t,sin(\nspnumber{3}\nspoperator{*}t))
+save(TMPDIR\nspoperator{+}\nspstring{'/foo.scg'},gcf())
+clf()
+load(TMPDIR\nspoperator{+}\nspstring{'/foo.scg'})
+a=gca()\nspoperator{;}
+curve=a.children.children\nspoperator{;}\nspcomment{//handle on the curve}
+save(TMPDIR\nspoperator{+}\nspstring{'/foo.scg'},curve)
+delete(curve)
+load(TMPDIR\nspoperator{+}\nspstring{'/foo.scg'})
+\nspcomment{//old style}
+\nspcomment{// set figure_style old}
+t=\nspnumber{0}\nspoperator{:}\nspnumber{0.01}\nspoperator{:}\nspnumber{10}\nspoperator{;}
+subplot(\nspnumber{211})\nspoperator{,}plot2d(t,sin(t))
+subplot(\nspnumber{212})\nspoperator{,}plot2d(t,sin(\nspnumber{3}\nspoperator{*}t))
+xsave(TMPDIR\nspoperator{+}\nspstring{'/foo.scg'})
+xbasc()
+\nspcomment{// set figure_style old}
+xload(TMPDIR\nspoperator{+}\nspstring{'/foo.scg'})
+\end{Verbatim}

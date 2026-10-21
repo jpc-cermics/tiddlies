@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspkeyword{if} MSDOS \nspkeyword{then}
+  \nspcomment{// winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\nspbs{}DESCRIPTION\nspbs{}System\nspbs{}CentralProcessor\nspbs{}0\nspbs{}' 'ProcessorNameString'}
+  lines(\nspoperator{-}\nspnumber{1})\nspoperator{;}
+  mousechar=winqueryreg(\nspstring{'name'},\nspstring{'HKEY_CURRENT_USER'},\nspstring{'control panel\nspbs{}mouse'})\nspoperator{;}
+  len=size(mousechar)\nspoperator{;}
+  \nspkeyword{for} k=\nspnumber{1}\nspoperator{:}len(\nspnumber{1}) \nspkeyword{do}
+    setting=winqueryreg(\nspstring{'HKEY_CURRENT_USER'},\nspstring{'control panel\nspbs{}mouse'},mousechar(k))\nspoperator{;}
+    \nspkeyword{if} (mousechar(k)\nspoperator{==}\nspstring{''}) \nspkeyword{then} mousechar(k)=\nspstring{'default'}\nspoperator{;}\nspkeyword{end}
+    str=sprintf(\nspstring{'\nsppc{}s = \nsppc{}s'},mousechar(k),string(setting))\nspoperator{;}
+    disp(str)\nspoperator{;}
+  \nspkeyword{end}
+\nspkeyword{end}
+\end{Verbatim}

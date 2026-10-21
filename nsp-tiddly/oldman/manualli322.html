@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>read</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli323.html" >next</a>] [<a 
+href="manualli321.html" >prev</a>] [<a 
+href="manualli321.html#tailmanualli321.html" >prev-tail</a>] [<a 
+href="#tailmanualli322.html">tail</a>] [<a 
+href="manualli274.html#manualli322.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x323-1906000"></a>read</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx323-1906001"></a><a 
+ id="read"></a><span 
+class="cmtt-10x-x-109">read </span>&#x2013;                                                                                            matrices read<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x323-1907000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-457">
+&#x00A0;&#x00A0;[x]=read(file-desc,m,n,[format])
+&#x00A0;<br />&#x00A0;&#x00A0;[x]=read(file-desc,m,n,k,format)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x323-1908000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">file-desc</span>: character string specifying the file name or integer value specifying logical
+     unit (see file).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">m, n</span>: integers (dimensions of the matrix x). Set m=-1 if you do not know the numbers
+     of rows, so the whole file is read.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">format: character string, specifies a &#x0022;Fortran&#x0022;</span>
+     <span 
+class="cmtt-10x-x-109">format. This </span>character string must begin with a right parenthesis and end with a left
+     parenthesis. Formats cannot mix floating point or character edition modes.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">k</span>: integer or vector of integer</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x323-1909000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > reads row after row the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mxn</span></span></span> matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n=1</span></span></span> for character chain) in the file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">file-desc</span></span></span> (string or
+integer). Each row of the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> begin in a new line of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">file-desc</span></span></span> file. Depending on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">format</span></span></span>, a
+given row of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> matrix may be read from more than one line of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">file-desc</span></span></span> file. The type
+of the result will depend on the specified format. If format contains only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(d,e,f,g)</span></span></span>
+descriptors the function tries to read numerical data (the result is matrix of real numbers).
+If format contains only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> descriptors the function tries to read character strings (the
+result is a character string column vector). In this case n must be equal to 1. Warning:
+The character strings are truncated when they are longuer than 4093. Examples for
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">format</span></span></span>:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-458">
+&#x00A0;&#x00A0;(1x,e10.3,5x,3(f3.0))
+&#x00A0;<br />&#x00A0;&#x00A0;(10x,a20)
+</div>
+<!--l. 55--><p class="nopar" >When format is omitted datas are read using numerical free format: blank, comma and slash may be
+used as data separators, n*v may be use to represent n occurrences of value n. A direct access file
+can be used if using the parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> which is is the vector of record numbers to be read (one record
+per row), thus <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> must be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m=prod(size(k))</span></span></span>. To read on the keyboard use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">read(%io(1),...)</span></span></span>.
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x323-1910000"></a><span 
+class="cmbx-10x-x-109">Remark</span></span>
+   Last line of data files must be terminated by a newline to be taken into account.
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x323-1911000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb255"><a 
+ id="x323-1911008r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">if</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;MSDOS</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">then</span></span><br class="fancyvrb" /><a 
+ id="x323-1911010r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;unix(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;del</span><span 
+class="cmtt-10x-x-109">&#x00A0;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x323-1911012r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">else</span></span><br class="fancyvrb" /><a 
+ id="x323-1911014r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;unix(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rm</span><span 
+class="cmtt-10x-x-109">&#x00A0;-f</span><span 
+class="cmtt-10x-x-109">&#x00A0;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><br class="fancyvrb" /><a 
+ id="x323-1911016r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">write(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x323-1911018r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=read(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x323-1911020r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=read(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x323-1911022r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;read(%io(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;(a)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;waits</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;user&#x0027;s</span><span 
+class="cmitt-10x-x-109">&#x00A0;input</span></span></div>
+<!--l. 79--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x323-1912000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli281.html#file">file</a>    <a 
+href="manualli319.html#readb">readb</a>    <a 
+href="manualli337.html#write">write</a>    <a 
+href="#x-dialog">x_dialog</a>    <a 
+href="manualli301.html#mscanf">mscanf</a>    <a 
+href="manualli301.html#mfscanf">mfscanf</a>    <a 
+href="manualli301.html#msscanf">msscanf</a>    <a 
+href="manualli284.html#fscanfMat">fscanfMat</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli323.html" >next</a>] [<a 
+href="manualli321.html" >prev</a>] [<a 
+href="manualli321.html#tailmanualli321.html" >prev-tail</a>] [<a 
+href="manualli322.html" >front</a>] [<a 
+href="manualli274.html#manualli322.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli322.html"></a>  </p> 
+</body></html> 

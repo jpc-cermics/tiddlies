@@ -1,0 +1,718 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab : un logiciel libre pour le calcul scientifique9e Partie -
+L'interface utilisateur</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 --><BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <H1 ALIGN="center">Scilab&nbsp;: un
+logiciel libre pour le calcul scientifique<BR>
+9<SUP><FONT SIZE="2"><I>e</I></FONT></SUP> Partie - L'interface utilisateur 
+</H1>
+<H3 ALIGN="center">Matthieu PHILIPPE (Saphir Control)<BR>
+</H3>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+<BR>
+<BR>
+<EM>Vous avez eu dans les deux pr&eacute;c&eacute;dents num&eacute;ros une
+description de la toolbox Scicos. Scicos a &eacute;t&eacute; enti&egrave;rement
+&eacute;crit en langage Scilab, aussi bien les calculs, que la gestion
+graphique des blocs et des menus. Nous allons voir dans cet article les
+primitives n&eacute;cessaires pour construire une interface
+utilisateur.</EM><BR>
+<BR>
+<!--TOC section Les primitives graphiques-->
+<H2>1&nbsp;&nbsp; Les primitives graphiques</H2>
+Scilab permet de tracer toutes sortes de graphiques. Bien qu'il existe des
+fonctions de haut niveau et tr&egrave;s puissantes, nous ne verrons dans cet
+article que les primitives de base.<BR>
+<BR>
+Dans cette section, vous apprendrez &agrave; d&eacute;terminer des zones de
+travail, dessiner un rectangle, des lignes, des fl&egrave;ches, des arcs et des
+ellipses. Rappelons que pour une aide sur une fonction, par exemple
+<EM>xclick</EM>, vous pouvez taper dans la fen&ecirc;tre Scilab l'une des
+commandes suivantes&nbsp;: <PRE>
+--&gt;apropos xclick
+ 
+--&gt;help xclick
+</PRE>
+<!--TOC subsection Fenêtre graphique et changement d'origine-->
+
+<H3>1.1&nbsp;&nbsp; Fen&ecirc;tre graphique et changement d'origine</H3>
+<A NAME="xsetech"></A> Avant tout regardons comment obtenir les dimensions
+d'une fen&ecirc;tre graphique donn&eacute;e. Il suffit de taper&nbsp;: <PRE>
+--&gt;[wrect,frect]=xgetech()
+ frect  =
+ 
+!   0.    0.    1.    1. !
+ wrect  =
+ 
+!   0.    0.    1.    1. !
+</PRE>
+qui renvoit dans wrect (Working RECTangle) un quadruplet [x,y,w,h] contenant
+les coordonn&eacute;es (x,y) du coin sup&eacute;rieur gauche et les proportions
+(w,h) de la zone de travail (w est la largeur et h la hauteur). Ce sont les
+proportions relatives &agrave; la taille courante de la fen&ecirc;tre.
+L'&eacute;chelle de proportion dans cette zone de travail est donn&eacute;e par
+frect (Frame RECTangle), un quadruplet [xmin, ymin, xmin, xmax].<BR>
+<BR>
+Pour red&eacute;finir la zone par d&eacute;faut, nous utilisons l'instruction
+<EM>xsetech( wrect, [frect[, logflag]])</EM> qui permet de red&eacute;finir
+l'&eacute;chelle de la fen&ecirc;tre graphique, ainsi que son origine. Par
+exemple&nbsp;: 
+<PRE>
+--&gt; wrect=[0.5,0,0.5,1]
+--&gt; xsetech(wrect);
+</PRE>
+signifie que seule la moit&eacute; droite de la fen&ecirc;tre sera
+affect&eacute;e. <BR>
+Pour d&eacute;finir l'&eacute;chelle entre (-10 ; 10) pour l'axe des
+ordonn&eacute;es et (-10 ; 10) pour les abscisses sur toute la fen&ecirc;tre
+entrons la suite d'instructions&nbsp;: 
+<PRE>
+--&gt; wrect=[0,0,1,1];       // on selectionne toute la fenetre
+
+--&gt; frect=[-10 -10 10 10]; // definition de l'\'echelle 
+
+--&gt; xsetech(wrect,frect) ;
+</PRE>
+<!--TOC subsection Dessiner un rectangle-->
+
+<H3>1.2&nbsp;&nbsp; Dessiner un rectangle</H3>
+<A NAME="xrect"></A> Nous pouvons alors dessiner un rectangle dans un
+rep&egrave;re orient&eacute; gr&acirc;ce &agrave; l'instruction <EM>xrect(x, y,
+w, h)</EM>, par exemple le rectangle d'origine (0,0) et de dimension (7,7),
+apr&egrave;s changement de l'&eacute;chelle de la fen&ecirc;tre courante&nbsp;:
+<PRE>
+--&gt;wrect=[0 0 1 1];
+
+--&gt;frect=[-10 -10 10 10];
+
+--&gt;xsetech(wrect,frect); // definition de l'\'echelle
+
+--&gt;xarrows([0 0],[-10 10],0.5); 
+     // dessine les axes sous forme de fleches
+ 
+--&gt;xarrows([-10 10],[-0 0],0.5);
+
+--&gt;xrect(0 ,0 ,7 ,7);
+
+</PRE>
+Affichons un rectangle de coins sup&eacute;rieur gauche (x0=0,y0=6) et
+inf&eacute;rieur droit (x1=5, y1=0)&nbsp;: 
+<PRE>
+--&gt;green = 3;xset(&quot;foreground&quot;,green);xrect(0, 6, 5,6);//w=x1-x0 et h=y1-y0
+</PRE>
+La variante <EM>xfrect</EM> dessine un rectangle plein (<EM>f comme
+filled</EM>) en utilisant la couleur d&eacute;finie par xset. <EM>xrects</EM>
+dessine un ensemble de n rectangles (<EM>s pour plusieurs rectangles</EM>),
+dont les quadruplets sont sous la forme d'une matrice 4 lignes et n colonnes
+(4xn). Devinez ce que fait <EM>xfrects</EM>&nbsp;!<BR>
+<BR>
+
+<PRE>
+--&gt;xrects([[0 ;0 ;7 ;7], [0; 6; 5;6]], [-1 2])
+</PRE>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="xrects.jpg" ALT="{short description of image}" WIDTH="450"
+ HEIGHT="320" BORDER="0"> <A NAME="rects"></A> 
+</DIV>
+<BR>
+<DIV ALIGN="center">
+Figure 1: 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Remarquez qu'un indice de couleur positif rempli le rectangle, un indice
+n&eacute;gatif dessine le contour.<BR>
+<BR>
+<!--TOC subsection Dessiner des lignes et flèches-->
+<H3>1.3&nbsp;&nbsp; Dessiner des lignes et fl&egrave;ches</H3>
+<A NAME="xpoly"></A> La syntaxe g&eacute;n&eacute;rale de la fonction
+<EM>xarrows</EM> que nous avons utilis&eacute;e dans l'exemple
+pr&eacute;c&eacute;dent est <EM>xarrows( nx, ny, [ size, style])</EM>. Les
+param&egrave;tres <EM>nx</EM> est une matrice 2xn contenant les abscisses des
+points de d&eacute;part et d'arriv&eacute;e, <EM>ny</EM> les ordonn&eacute;es.
+Ainsi, l'affichage des deux axes s'effectue par une seule instruction.<BR>
+<BR>
+<PRE>
+--&gt;xarrows([0 -10; 0 10], [-10 0; 10 0],...
+      0.5, [3 4]);
+</PRE>
+Pour dessiner une ligne bris&eacute;e (un ensemble de segments reli&eacute;s),
+Scilab propose l'intruction&nbsp;: <BR>
+<BR>
+<EM>xpoly(xv, yv, dtype, [closeflag])</EM> o&ugrave; <EM>xv</EM> et <EM>yv</EM>
+sont respectivement les n-uplets des abscisses et des ordonn&eacute;es, la
+cha&icirc;ne de caract&egrave;res <EM>dtype</EM> est soit ``<EM>lines</EM>''
+soit ``<EM>marks</EM>'', et <EM>closeflag</EM> est un entier positionn&eacute;
+&agrave; 1 pour obtenir une forme ferm&eacute;e, et diff&eacute;rente de 1 pour
+une forme ouverte&nbsp;: 
+<PRE>
+--&gt;  xpoly([1 4 8],[ 1 2 10],&quot;lines&quot;,0); // polygone ouvert
+ 
+--&gt;  xpoly([-1 -4 -8],[ -1 -2 -10],&quot;lines&quot;,1); // polygone ferme
+</PRE>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="xpoly.jpg" ALT="{short description of image}" WIDTH="400"
+ HEIGHT="400" BORDER="0"> 
+</DIV>
+<A NAME="poly"></A> <BR>
+<DIV ALIGN="center">
+Figure 2: Polyline. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+<!--TOC subsection Dessiner des Arcs et des Cercles-->
+<H3>1.4&nbsp;&nbsp; Dessiner des Arcs et des Cercles</H3>
+<A NAME="xarc"></A> L'instruction
+<EM>xarc(x,y,w,h,angle_debut,angle_de_rotation)</EM> dessine un arc contenu
+dans le rectangle d&eacute;fini par (x,y,w,h). La fonction <EM>xarc</EM>
+utilise des angles exprim&eacute;s en 64<SUP><FONT
+SIZE="2">i&egrave;me</FONT></SUP> de degr&eacute;. Les instructions suivantes
+dessinent un quart de cercle (un arc de 90<SUP><FONT
+SIZE="2"><I>o</I></FONT></SUP> &agrave; partir de 90<SUP><FONT
+SIZE="2"><I>o</I></FONT></SUP>) inscrit dans le rectangle&nbsp;: <PRE>
+--&gt;xrect(0,0,5,5);
+
+--&gt;xset(&quot;pattern&quot;,2)
+ 
+--&gt;xfarc(-8,8,16,16,90*64,90*64);
+</PRE>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="xfarc.jpg" ALT="{short description of image}" WIDTH="400"
+ HEIGHT="300" BORDER="0"> 
+</DIV>
+<A NAME="xfarc"></A> <BR>
+<DIV ALIGN="center">
+Figure 3: Arc plein. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Il existe les m&ecirc;mes variantes que pour <EM>xrect</EM>&nbsp;:
+<EM>xfarc</EM>, <EM>xarcs</EM> et <EM>xfarcs</EM>. Par exemple&nbsp;: <PRE>
+--&gt;arcs=[-8 0 0.5;               // coin superieur gauche x
+--&gt;         8 0.0 0.5;           // coin superieur gauche y
+--&gt;         0.5 1.0 0.5;         // largeur
+--&gt;         0.5 0.5 1.0;         // hauteur
+--&gt;         0.0 0.0 0.0;         // angle de depart
+--&gt;         180*64 360*64 90*64];// angle de rotation
+--&gt;xarcs(arcs,[1,2,3]);// trois arcs de trois couleurs differentes
+</PRE>
+<!--TOC section Interfaces utilisateur-->
+
+<H2>2&nbsp;&nbsp; Interfaces utilisateur</H2>
+Pour permettre le d&eacute;veloppement d'outils graphiques interactif, Scilab
+propose quelques fonctions de base. Ces fonctions permettent &agrave;
+l'utilisateur de d&eacute;tecter des &eacute;v&egrave;nements, de
+d&eacute;finir des fen&ecirc;tres de dialogue et de g&eacute;rer des menus.<BR>
+<BR>
+<!--TOC subsection Détection des évènements souris et du clavier-->
+<H3>2.1&nbsp;&nbsp; D&eacute;tection des &eacute;v&egrave;nements souris et du
+clavier</H3>
+<A NAME="xclick"></A> Les trois fonctions <EM>xclick</EM>, <EM>xgetmouse</EM>
+et <EM>locate</EM> permettent de conna&icirc;tre la position de la souris dans
+une fen&ecirc;tre graphique et de d&eacute;tecter les &eacute;v&egrave;nements
+de la souris et du clavier. Ce sont des fonctions bloquantes.
+C'est-&agrave;-dire que leur appel bloque l'interpr&eacute;teur Scilab,
+jusqu'&agrave; ce qu'une action de la souris ait &eacute;t&eacute;
+r&eacute;alis&eacute;e.<BR>
+<BR>
+La fonction <EM>xclick</EM> attend un clic de la souris ou l'appui d'une touche
+du clavier. Sa syntaxe est <EM>[mouse_button, x_coordinate, y_coordinate,
+gwin_num, callback_string]=xclick([flag])</EM> . Les variables renvoy&eacute;es
+sont&nbsp;: <UL>
+<LI> <EM>mouse_button</EM>&nbsp;: num&eacute;ro du bouton de la souris qui a
+&eacute;t&eacute; cliqu&eacute;, ou code ASCII de la touche de clavier qui a
+&eacute;t&eacute; appuy&eacute;e. </LI>
+<LI><EM>x_coordinate</EM>&nbsp;: abscisse de la position de souris. </LI>
+<LI><EM>y_coordinate</EM>&nbsp;: ordonn&eacute;e de la position de souris. 
+</LI>
+<LI><EM>gwin_num</EM>&nbsp;: num&eacute;ro de fen&ecirc;tre. </LI>
+<LI><EM>callback_string</EM>&nbsp;: cha&icirc;ne de caract&egrave;res
+correspondant au code du callback associ&eacute; au menu s'il s'agit d'un click
+sur un menu, ou ``<EM>void</EM>'' sinon. </LI>
+</UL>
+<PRE>
+--&gt;[button, x, y, gwin, str]=xclick();
+    //j'appuie sur le bouton gauche de la souris
+    //dans la fenetre graphique 0
+ str  =
+ 
+ void   
+ gwin  =
+ 
+    0.  
+ y  =
+ 
+  - 1.4615385  
+ x  =
+ 
+  - 12.138085  
+ button  =
+ 
+    0.  
+--&gt; [button, x, y, gwin, str] = xclick();
+     // j appuie sur a dans la fenetre 
+     // graphique 0    
+ str  =
+ 
+ void
+ gwin  =
+    0.
+ y  =
+  - 12.923077
+ x  =
+  - 11.113586
+ button  =
+    97.
+</PRE>
+L'instruction <EM>rep=xgetmouse([flag])</EM>, renvoit la position de la souris
+dans la fen&ecirc;tre courante. Si <EM>flag</EM> est pr&eacute;sent les clics
+sont m&eacute;moris&eacute;s dans la queue d'&eacute;v&egrave;nements et ne
+sont pas effac&eacute;s lors de l'appel &agrave; <EM>xgetmouse</EM>. Cette
+fonction renvoit un vecteur <EM>rep=[x y bouton]</EM>, dans lequel <EM>x</EM>
+et <EM>y</EM> repr&eacute;sentent la position de la souris en
+coordonn&eacute;es utilisateurs (cf. xsetech), et <EM>bouton</EM> est un entier
+&eacute;gal &agrave; 0, 1 ou 2 selon le bouton de souris cliqu&eacute;, -1 s'il
+s'agit d'un mouvement de souris. Contrairement &agrave; <EM>xclick</EM>,
+<EM>xgetmouse</EM> n'attend pas de clic de souris ou de touche clavier. Il
+permet ainsi de conna&icirc;tre &agrave; tout moment la position de la souris. 
+<PRE>
+--&gt;a=xgetmouse();//je place la souris sur la fenetre
+ a  =
+ 
+! - 8.5746102  - 8.6923077  - 1. !
+
+--&gt;a=xgetmouse();//je clic sur le bouton gauche
+ a  =
+ 
+! - 1.8040089    1.3846154    0. !
+
+--&gt;while(1)
+
+--&gt;rep=xgetmouse() 
+       //renvoit dans la fenetre courante 
+       //la position de la souris
+       // lors de son deplacement
+--&gt;end;
+</PRE>
+L'instruction <EM>locate([n[,flag]])</EM> renvoit la matrice des points
+selectionn&eacute;s par un clic. Si <EM>n</EM> est sup&eacute;rieur &agrave; 0,
+alors <EM>n</EM> points devront &ecirc;tre imp&eacute;rativement
+selectionn&eacute;s. Si <EM>n</EM> est &eacute;gal &agrave; -1, les points sont
+selectionn&eacute;s par le bouton droit ou milieu jusqu'&agrave; ce que le
+<B>bouton gauche</B> ait &eacute;t&eacute; cliqu&eacute;. Si <EM>flag</EM>est
+&eacute;gal &agrave; 1, alors une croix est plac&eacute;e &agrave; chaque
+coordonn&eacute;e selectionn&eacute;e. 
+<PRE>
+--&gt;a=locate(3,1);//je clic 3 fois et dessine 3 croix
+ a  =
+ 
+! - 5.2783964  - 1.3585746  - 5.6347439 !
+!   10.615385    10.153846    6.7692308 !
+</PRE> 
+ <!--TOC subsection Boîtes de dialogues-->
+
+<H3>2.2&nbsp;&nbsp; Bo&icirc;tes de dialogues</H3>
+<!--TOC subsubsection x_dialog-->
+<H4>2.2.1&nbsp;&nbsp; x_dialog</H4>
+L'instruction <EM>result=x_dialog(labels,valueini)</EM> cr&eacute;e une
+bo&icirc;te de dialogue utilisateur. Le param&egrave;tre <EM>labels</EM>est un
+vecteur de cha&icirc;ne de caract&egrave;res qui sp&eacute;cifit le titre de la
+fen&ecirc;tre puis le titre de la saisie, et <EM>valueini</EM> initialise la
+valeur par d&eacute;faut. La fonction renvoit la valeur saisie qui peut
+&ecirc;tre un scalaire ou une cha&icirc;ne de caract&egrave;res, ou alors la
+matrice vide <EM>[]</EM> si le bouton <EM>Cancel</EM> est appuy&eacute;.<BR>
+<BR>
+<PRE>
+--&gt;x_dialog(['Taille';'entrez la taille';'un autre commentaire'],'1')
+ ans  =
+ 
+ 1
+</PRE>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="x_dialog.jpg" ALT="{short description of image}" WIDTH="172"
+ HEIGHT="161" BORDER="0"> 
+</DIV>
+<A NAME="x_dialog"></A> <BR>
+<DIV ALIGN="center">
+Figure 4: Bo&icirc;te de dialogue. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+<!--TOC subsubsection x_mdialog-->
+<H4>2.2.2&nbsp;&nbsp; x_mdialog</H4>
+Les instructions <EM>result=x_mdialog(titre, labels, valeur_initiale)</EM> ou
+<EM>result=x_mdialog(titre,label_vertical,label_horizontal,matrice_valeur_initiale)</EM>
+permettent de saisir des matrices de cha&icirc;nes de caract&egrave;res. <PRE>
+ --&gt;x_mdialog('matrice',['L 1'; 'L 2'],['C 1' ;'C 2'],['a','b';'c', 'd'])
+ ans  =
+ 
+!a  b  !
+!      !
+!c  d  !
+
+</PRE>
+Pour convertir les cha&icirc;nes de caract&egrave;res en valeurs
+num&eacute;riques vous pouvez utiliser la fonction <EM>evstr</EM> sur les
+&eacute;l&eacute;ments de la matrice. 
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="x_mdialog.jpg" ALT="{short description of image}" WIDTH="174"
+ HEIGHT="240" BORDER="0"> 
+</DIV>
+<A NAME="x_mdialog"></A> <BR>
+<DIV ALIGN="center">
+Figure 5: Bo&icirc;te de dialogues multiples. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+<!--TOC subsubsection x_choose-->
+<H4>2.2.3&nbsp;&nbsp; x_choose</H4>
+L'instruction <EM>num=x_choose(labels, titre [,bouton])</EM> permet de choisir
+un item parmi les <EM>labels</EM>. La fonction renvoit le num&eacute;ro de
+l'item choisi, 0 si <EM>Cancel</EM>. <PRE>
+--&gt;  n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire'])
+ n  =        
+ 
+    2.  
+</PRE>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="x_choose.jpg" ALT="{short description of image}" WIDTH="193"
+ HEIGHT="165" BORDER="0"> 
+</DIV>
+<A NAME="x_choose"></A> <BR>
+<DIV ALIGN="center">
+Figure 6: Boite de choix. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+<!--TOC subsubsection getvalue-->
+<H4>2.2.4&nbsp;&nbsp; getvalue</H4>
+La fonction de haut niveau <EM>getvalue</EM> encapsule <EM>x_dialog</EM> et
+petrmet de saisir des valeurs avec d&eacute;tection d'erreurs,
+&eacute;valuation de la r&eacute;ponse.... Sa syntaxe est
+<EM>[ok,x1,..,x14]=getvalue(titre, labels, type, init)</EM> o&ugrave; la
+cha&icirc;ne de caract&egrave;re <EM>titre</EM> contient le nom de la
+bo&icirc;te , <EM>labels</EM> correspond aux noms des champs &agrave; saisir,
+<EM>type</EM> est une <EM>list</EM> Scilab qui d&eacute;finit le type et le
+nombre d'&eacute;l&eacute;ments de chaque champs par
+<EM>list(typ1,dim1,..,typn,dimn)</EM> o&ugrave; <EM>typn</EM> est l'une des ces
+cha&icirc;nes de caract&egrave;res&nbsp;: <UL>
+<LI> 'mat'&nbsp;: matrice </LI>
+<LI>'col'&nbsp;: vecteur colonne </LI>
+<LI>'row'&nbsp;: vecteur ligne </LI>
+<LI>'vec'&nbsp;: vecteur </LI>
+<LI>'str'&nbsp;: string </LI>
+<LI>'lis'&nbsp;: list. </LI>
+</UL>
+<EM>dim</EM> un scalaire sup&eacute;rieur &agrave; z&eacute;ro, ou &eacute;gal
+&agrave; -1 si la dimension est ind&eacute;finie. <EM>init</EM> est le vecteur
+de valeurs initiales. <EM>ok</EM> vaut %t (true) si le bouton <EM>Ok</EM> a
+&eacute;t&eacute; appuy&eacute; ou %f (false) si <EM>Cancel</EM> a
+&eacute;t&eacute; appuy&eacute;. <EM>xi</EM> contient la valeur de retour de
+chacun des champs. <PRE>
+--&gt;  labels=[&quot;magnitude&quot;;&quot;frequence&quot;;&quot;phase    &quot;];
+--&gt;  [ok,mag,freq,ph]=getvalue(&quot;definit le signal sinus&quot;,labels,...
+--&gt;       list(&quot;vec&quot;,1,&quot;vec&quot;,1,&quot;vec&quot;,1),[&quot;0.85&quot;;&quot;10^2&quot;;&quot;%pi/3&quot;])
+ ph  =
+ 
+    1.0471976  
+
+ freq  =
+ 
+    100.  
+ mag  =
+ 
+    0.85  
+ ok  =
+ 
+  T  
+</PRE>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="xgetvalue.jpg" ALT="{short description of image}" WIDTH="248"
+ HEIGHT="242" BORDER="0"> 
+</DIV>
+<A NAME="xgetvalue"></A> <BR>
+<DIV ALIGN="center">
+Figure 7: Boite de dialogue &eacute;volu&eacute;e. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+<!--TOC subsection La gestion des menus-->
+<H3>2.3&nbsp;&nbsp; La gestion des menus</H3>
+Dans cette section nous allons construire des exemples de menus simples.<BR>
+<BR>
+<!--TOC subsubsection Ajouter un menu-->
+<H4>2.3.1&nbsp;&nbsp; Ajouter un menu</H4>
+Pour cr&eacute;er un menu nous utilisons l'instruction&nbsp;:
+<EM>addmenu(gwin,menu_name [,submenus] [,action])</EM>. Cette intruction permet
+d'ajouter un menu dans une fen&ecirc;tre Scilab, d&eacute;sign&eacute;e par son
+num&eacute;ro <EM>gwin</EM>. Signalons que <EM>gwin=-1</EM> d&eacute;signe la
+fen&ecirc;tre principale (comme le racourci <EM>addmenu(menu_name [,submenus]
+[,action])</EM>). Le paramtre <EM>menu_name</EM> est une cha&icirc;ne de
+caract&egrave;res repr&eacute;sentant le label du bouton. Par exemple&nbsp;: <PRE>
+--&gt; menu_name = 'Dessin';
+</PRE>
+<EM>submenus</EM> est un vecteur de cha&icirc;ne de caract&egrave;res
+d&eacute;signant les labels des sous-menus. Par exemple&nbsp;: 
+<PRE> 
+--&gt; submenus = ['Rectangle';'Ligne';'Cercle']
+</PRE>
+<EM>action</EM>est une <EM>liste</EM>(cf. Linux Magazine num&eacute;ro 14) de
+deux &eacute;l&eacute;ments&nbsp;: <EM>action=list(flag,proc_name)</EM>,
+o&ugrave; <EM>flag</EM> est un entier. Lorsqu'il est mis &agrave; 0, sa valeur
+par d&eacute;faut, <EM>action</EM> est une cha&icirc;ne de caract&egrave;re
+nommant soit une variable (qui contient une suite d'instructions Scilab) soit
+une fonction Scilab. Le cas <EM>flag=1</EM> est r&eacute;serv&eacute; &agrave;
+l'appel d'une routine externe C ou FORTRAN. Par exemple&nbsp;: 
+<PRE> 
+--&gt; action = list(0,'Dessin');
+</PRE>
+<EM>proc_name</EM> est la cha&icirc;ne de caract&egrave;res d&eacute;signant
+``<EM>Dessin</EM>'' tel que les callbacks du menu <EM>Dessin</EM> soient des
+cha&icirc;nes de caract&egrave;res ordonn&eacute;es dans un tableau <BR>
+<EM>proc_name_numero_de_fen&ecirc;tre_graphique(num&eacute;ro_de_sous-menu)</EM>,
+pour un bouton dans la fen&ecirc;tre de command la syntaxe est
+proc_name(num&eacute;ro_de_sous-menu). Remarquez le <B>_0</B> &agrave; la fin
+du nom de la proc&eacute;dure <EM>Dessin</EM>. Il s'agit du num&eacute;ro de
+fen&ecirc;tre graphique (gwin) &agrave; laquelle est associ&eacute; le bouton.
+Si le bouton appartient &agrave; la fen&ecirc;tre principale, il n'y a pas de
+postfixe &agrave; ajouter.&nbsp;: 
+<PRE> 
+--&gt;Dessin_0(1) = 'xrects([-1; 1 ;3; 3])';
+    //premier sous-menu de la fenetre 0
+
+--&gt;addmenu(0, menu_name, submenus, action);
+</PRE>
+Remarquez le <B>_0</B> &agrave; la fin du nom de la proc&eacute;dure
+<EM>Dessin</EM>. Il s'agit du num&eacute;ro de fen&ecirc;tre graphique (gwin)
+&agrave; laquelle est associ&eacute; le bouton.<BR>
+<BR>
+<!--TOC subsubsection Désactiver et réactiver un menu-->
+
+<H4>2.3.2&nbsp;&nbsp; D&eacute;sactiver et r&eacute;activer un menu</H4>
+Il est parfois n&eacute;cessaire de bloquer l'utilisation d'un menu ou d'un
+sous-menu. Ces fonctionnalit&eacute;s sont accessibles par les instructions
+<EM>unsetmenu(gwin,menu_name,[nsub])</EM> et
+<EM>setmenu(gwin,menu_name,[nsub])</EM>. Dans ces instructions, le
+param&egrave;tre <EM>nsub</EM> identifie le <I>n</I><SUP><FONT
+SIZE="2">i&egrave;me</FONT></SUP> label du sous-menu qui doit &ecirc;tre
+d&eacute;sactiv&eacute;. Ainsi l'instruction <PRE> 
+--&gt; unsetmenu(0,'Dessin');
+</PRE>
+d&eacute;sactive le menu Dessin, alors que 
+<PRE> 
+--&gt; unsetmenu(0,'Dessin',1)
+</PRE>
+ne d&eacute;sactive que le menu Dessin/Rectangle en laissant actifs
+Dessin/Ligne et Dessin/Cercle.<BR>
+<BR>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="unsetmenu.jpg" ALT="{short description of image}" WIDTH="100"
+ HEIGHT="60" BORDER="3"> 
+</DIV>
+<A NAME="unsetmenu"></A> <BR>
+<DIV ALIGN="center">
+Figure 8: D&eacute;sactivation de Dessin/Rectangle. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+Bien s&ucirc;r on peut les r&eacute;activer par la fonction <EM>setmenu</EM>.
+Les param&egrave;tres d'appel de cette fonction sont identiques &agrave; celle
+de <EM>unsetmenu</EM>. L'exemple suivant&nbsp;: <PRE> 
+--&gt; setmenu(0,menu_name);
+</PRE>
+active le menu Dessin, alors que 
+<PRE> 
+--&gt; setmenu(0,menu_name,1)
+</PRE>
+active de nouveau le menu Dessin/Rectangle.<BR>
+<BR>
+<!--TOC subsubsection Supprimer un menu-->
+
+<H4>2.3.3&nbsp;&nbsp; Supprimer un menu</H4>
+La suppression de n'importe quel menu, m&ecirc;me ceux existant par
+d&eacute;faut, se fait par l'instruction <EM>delmenu(menu_name)</EM> et
+<EM>delmenu(gwin,menu_name)</EM>. <PRE> 
+--&gt; delmenu(menu_name);
+</PRE>
+<!--TOC subsection Interface avec TCL/TK-->
+
+<H3>2.4&nbsp;&nbsp; Interface avec TCL/TK</H3>
+Enfin vous pouvez d&eacute;velopper vos propres interfaces en langage TK
+gr&acirc;ce aux fonctions <EM>TK_EvalStr</EM>, <EM>TK_EvalFile</EM>,
+<EM>TK_GetVar</EM>, <EM>TK_Setvar</EM>. La fonction <EM>TK_EvalStr</EM>
+&eacute;value une cha&icirc;ne de caract&egrave;res contenant une instruction
+TK; <EM>TK_EvalFile</EM> ex&eacute;cute un fichier TK; <EM>TK_GetVar</EM>,
+<EM>TK_Setvar</EM> permettent de positionner les valeurs de variables TK.<BR>
+<BR>
+<!--TOC section Une petite application-->
+<H2>3&nbsp;&nbsp; Une petite application</H2>
+Nous allons r&eacute;aliser une petite application qui affichera des
+rectangles, des cercles, des lignes bris&eacute;e ou des fl&egrave;ches dans
+une fen&ecirc;tre graphique, par l'interm&eacute;diaire d'un menu. Vous
+trouverez sur le CD de login le code complet de l'exemple, ou
+<A HREF="code.sci">en cliquant ici sources</A>.<BR>
+<BR>
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="code.jpg" ALT="{short description of image}" WIDTH="612" HEIGHT="435"
+ BORDER="0"> 
+</DIV>
+<A NAME="code"></A> <BR>
+<DIV ALIGN="center">
+Figure 9: Un petit programme. 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+<PRE>
+function [a]=graph()
+
+STOP = 0; // variable me permettant de boucler dessus
+
+//affichage d'une nouvelle fenetre
+disp('creation d''une nouvelle fenetre') ;
+gwin = (max(winsid())+1);// genere un nouveau numero de fenetre
+xset('window',gwin);// affiche la nouvelle fenetre
+
+// nouveaux coordonnees utilisateur
+xsetech([0 0 1 1],[-10 -10 10 10]);
+
+// ajout des menus de dessins
+
+// definition du nom du menu
+Nom_de_Menu = 'Dessin';
+
+// definition des sous-menus
+Sub_Menu    = ['Rectangle';'Polyline';'Fleche';'Cercle'];
+
+// definition du type de fonctions associees au menu Dessin
+Action      = list(0,'Dessin');
+
+// definition du vecteur de callbacks
+execstr('Dessin_' + string(gwin) + '= [''Rec()''; ''Poly()''; ...
+           ''Fleche()''; ''Cercle()'']');
+
+addmenu(gwin, Nom_de_Menu, Sub_Menu,Action);
+
+//ajout de menu d'arret
+addmenu(gwin,'Stop');
+execstr('Stop_' + string(gwin) + '= ''STOP = 1''');
+
+//boucle infinie
+while (STOP == 0)
+end;
+a= 0;
+
+// fonction de dessin du rectangle
+function Rec()
+  xset(&quot;alufunction&quot;,6);//nous passons en mode xor
+  xinfo(&quot; drawing a rectangle &quot;);//nous affichons de l'information
+  [b,x0,y0]=xclick(); 
+  rep=[x0,y0,-1]; 
+  x=x0; // au depart les coordonnees
+  y=y0; // sont confondues
+  xrect(x0,y0,x-x0,y-y0); // on affiche une premiere fois
+                          // un rectangle
+  while rep(3)==-1 then
+      rep=xgetmouse(0);
+      if (rep(3) ~= 2) then 
+        xrect(min(x,x0),max(y,y0),abs(x-x0),abs(y0-y));
+                // on efface l'acien rectangle
+        x=rep(1); y=rep(2); // on affiche le nouveau
+        xrect(min(x,x0),max(y,y0),abs(x-x0),abs(y0-y));
+      else
+        xrect(min(x,x0),max(y,y0),abs(x-x0),abs(y0-y));
+      end;
+  end;
+  xset(&quot;alufunction&quot;,3);//nous repassons en mode normale
+
+// fonction de dessin de la ligne bris\'ee
+function Poly()
+  xset(&quot;alufunction&quot;,6);//nous passons en mode xor
+  xinfo(&quot; cliquez avec le bouton droite ou du milieu...
+  Bouton de gauche pour arreter &quot;);//nous affichons de l'information
+  a=locate(-1,1);// nous definissons les points a relier
+    xpoly(a(1,:),a(2,:),&quot;lines&quot;)
+  xset(&quot;alufunction&quot;,3);
+</PRE>
+Pour pouvoir manipuler ult&egrave;rieurement les objets graphiques que vous
+venez de construire, vous pouvez sauvegarder leurs caract&eacute;ristiques et
+leurs coordonn&eacute;es en utilisant des <EM>list</EM> (cf lm14).<BR>
+<BR>
+Voila, vous avez maintenant tout loisir de d&eacute;velopper toutes sortes
+d'interfaces utilisateurs Scilab, pour faciliter la saisie de vos futurs
+programmes, ou peut-&ecirc;tre de nouvelles contributions que nous nous ferons
+le plaisir d'h&eacute;berger sur le site Web de Scilab. <BR>
+<BR>
+<BR>
+<BR>
+<A HREF="mailto:matthieu.philippe@saphir-contol.fr">Matthieu PHILIPPE</A><BR>
+<A HREF="http://www.saphir-control.fr">www.saphir-control.fr</A><BR>
+<A HREF="mailto:scilab@saphir-control.fr">scilab@saphir-control.fr</A><BR>
+Scilab Group<BR>
+<A HREF="mailto:scilab@inria.fr">scilab@inria.fr</A><BR>
+<A
+ HREF="http://www-rocq.inria.fr/scilab/">http://www-rocq.inria.fr/scilab/</A><BR>
+<A HREF="news:comp.soft-sys.math.scilab">Newsgroups:
+comp.soft-sys.math.scilab</A><BR>
+<BR>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

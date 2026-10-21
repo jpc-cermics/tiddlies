@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>des2ss</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1097.html" >next</a>] [<a 
+href="manualli1095.html" >prev</a>] [<a 
+href="manualli1095.html#tailmanualli1095.html" >prev-tail</a>] [<a 
+href="#tailmanualli1096.html">tail</a>] [<a 
+href="manualli1089.html#manualli1096.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1097-6210000"></a>des2ss</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1097-6210001"></a><a 
+ id="des2ss"></a><span 
+class="cmtt-10x-x-109">des2ss </span>&#x2013;                                                                          descriptor to state-space<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1097-6211000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1211">
+&#x00A0;&#x00A0;[Sl]=des2ss(A,B,C,D,E&#x00A0;[,tol])
+&#x00A0;<br />&#x00A0;&#x00A0;[Sl]=des2ss(Des)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1097-6212000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A,B,C,D,E</span>: real matrices of appropriate dimensions
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Des</span>: list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sl</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol</span>: real parameter (threshold) (default value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">100*%eps</span></span></span>).</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1097-6213000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > Descriptor to state-space transform.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl=des2ss(A,B,C,D,E)</span></span></span> returns a linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> equivalent
+to the descriptor system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(E,A,B,C,D)</span></span></span>. For index one <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(E,A)</span></span></span> pencil, explicit formula is used and for
+higher index pencils <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rowshuff</span></span></span> is used.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl=des2ss(Des)</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Des=list(&#x0027;des&#x0027;,A,B,C,D,E)</span></span></span> returns
+a linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sl</span></span></span> in state-space form with possibly a polynomial <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> matrix. A generalized Leverrier
+algorithm is used.
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1097-6214000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb749"><a 
+ id="x1097-6214007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">G=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1097-6214009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;S1=tf2des(G)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">S2=tf2des(G,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;withD&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1097-6214011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;W1=des2ss(S1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">W2=des2ss(S2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1097-6214013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(ss2tf(W1))</span><br class="fancyvrb" /><a 
+ id="x1097-6214015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clean(ss2tf(W2))</span></div>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1097-6215000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli32.html#des2tf">des2tf</a>    <a 
+href="manualli629.html#glever">glever</a>    <a 
+href="manualli664.html#rowshuff">rowshuff</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1097.html" >next</a>] [<a 
+href="manualli1095.html" >prev</a>] [<a 
+href="manualli1095.html#tailmanualli1095.html" >prev-tail</a>] [<a 
+href="manualli1096.html" >front</a>] [<a 
+href="manualli1089.html#manualli1096.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1096.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>sp2adj</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli238.html" >next</a>] [<a 
+href="manualli236.html" >prev</a>] [<a 
+href="manualli236.html#tailmanualli236.html" >prev-tail</a>] [<a 
+href="#tailmanualli237.html">tail</a>] [<a 
+href="manualli104.html#manualli237.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x238-1406000"></a>sp2adj</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx238-1406001"></a><a 
+ id="sp2adj"></a><span 
+class="cmtt-10x-x-109">sp2adj </span>&#x2013;                                                  converts sparse matrix into adjacency form<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x238-1407000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: real or complex sparse matrix (nz non-zero entries)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xadj</span>: integer vector of length (n+1).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">adjncy</span>: integer vector of length nz containing the row indices for the corresponding
+     elements in anz
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">anz</span>: column vector of length nz, containing the non-zero elements of A</li></ul>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x238-1408000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 30--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-363">
+&#x00A0;&#x00A0;sp2adj&#x00A0;converts&#x00A0;a&#x00A0;sparse&#x00A0;matrix&#x00A0;into&#x00A0;its&#x00A0;adjacency&#x00A0;form&#x00A0;(utility
+&#x00A0;<br />&#x00A0;&#x00A0;fonction).
+&#x00A0;<br />&#x00A0;&#x00A0;A&#x00A0;=&#x00A0;&#x00A0;n&#x00A0;x&#x00A0;m&#x00A0;sparse&#x00A0;matrix.&#x00A0;xadj,&#x00A0;adjncy,&#x00A0;anz&#x00A0;=&#x00A0;adjacency
+&#x00A0;<br />&#x00A0;&#x00A0;representation&#x00A0;of&#x00A0;A&#x00A0;i.e:
+</div>
+<!--l. 36--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xadj(j+1)-xadj(j)</span></span></span> = number of non zero entries in row j. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">adjncy</span></span></span> = column index of the non zeros
+entries in row 1, row 2,..., row n. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">anz</span></span></span> = values of non zero entries in row 1, row 2,..., row n. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xadj</span></span></span> is
+a (column) vector of size n+1 and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">adjncy</span></span></span> is an integer (column) vector of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz=nnz(A)</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">anz</span></span></span> is a
+real vector of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz=nnz(A)</span></span></span>.
+</p>
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x238-1409000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb192"><a 
+ id="x238-1409007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=sprand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.05</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x238-1409009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xadj,adjncy,anz]=sp2adj(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x238-1409011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[n,m]=size(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x238-1409013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=adj2sp(xadj,adjncy,anz,[n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">m])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x238-1409015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">p</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span></div>
+<!--l. 56--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x238-1410000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli111.html#adj2sp">adj2sp</a>    <a 
+href="manualli238.html#sparse">sparse</a>    <a 
+href="manualli239.html#spcompack">spcompack</a>    <a 
+href="manualli241.html#spget">spget</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli238.html" >next</a>] [<a 
+href="manualli236.html" >prev</a>] [<a 
+href="manualli236.html#tailmanualli236.html" >prev-tail</a>] [<a 
+href="manualli237.html" >front</a>] [<a 
+href="manualli104.html#manualli237.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli237.html"></a>  </p> 
+</body></html> 

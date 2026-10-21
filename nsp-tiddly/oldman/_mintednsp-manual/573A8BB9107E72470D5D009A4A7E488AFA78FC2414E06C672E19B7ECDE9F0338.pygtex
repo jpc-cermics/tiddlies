@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//GENERATE SIGNAL}
+x=%pi\nspoperator{/}\nspnumber{10}\nspoperator{:}%pi\nspoperator{/}\nspnumber{10}\nspoperator{:}\nspnumber{102.4}\nspoperator{*}%pi\nspoperator{;}
+rand(\nspstring{'seed'},\nspnumber{0})\nspoperator{;}rand(\nspstring{'normal'})\nspoperator{;}
+y=[\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{*}sin(x)\nspoperator{+}[sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{;}sin(\nspnumber{1.9}\nspoperator{*}x)]\nspoperator{+}rand(\nspnumber{2},\nspnumber{1024})\nspoperator{;}
+\nspcomment{//COMPUTE CORRELATIONS}
+c=[]\nspoperator{;}\nspkeyword{for} j=\nspnumber{1}\nspoperator{:}\nspnumber{2} \nspkeyword{do} \nspkeyword{for} k=\nspnumber{1}\nspoperator{:}\nspnumber{2} \nspkeyword{do} c=[c\nspoperator{;}corr(y(k,\nspoperator{:}),y(j,\nspoperator{:}),\nspnumber{64})]\nspoperator{;}\nspkeyword{end}\nspoperator{;}\nspkeyword{end}
+c=matrix(c,\nspnumber{2},\nspnumber{128})\nspoperator{;}
+\nspcomment{//FINDING H,F,G with 6 states}
+hk=hank(\nspnumber{20},\nspnumber{20},c)\nspoperator{;}
+[H,F,G]=phc(hk,\nspnumber{2},\nspnumber{6})\nspoperator{;}
+\nspcomment{//SOLVING RICCATI EQN}
+r0=c(\nspnumber{1}\nspoperator{:}\nspnumber{2},\nspnumber{1}\nspoperator{:}\nspnumber{2})\nspoperator{;}
+[P,s,t,l,Rt,Tt]=srfaur(H,F,G,r0,\nspnumber{200})\nspoperator{;}
+\nspcomment{//Make covariance matrix exactly symetric}
+Rt=(Rt\nspoperator{+}Rt\nspoperator{'})\nspoperator{/}\nspnumber{2}
+\end{Verbatim}

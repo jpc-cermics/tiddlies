@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure}
+a=get(\nspstring{"current_axes"})\nspoperator{;}\nspcomment{//get the handle of the newly created axes}
+a.data_bounds=[\nspoperator{-}\nspnumber{10}\nspoperator{,}\nspoperator{-}\nspnumber{10}\nspoperator{;}\nspnumber{10}\nspoperator{,}\nspnumber{10}]\nspoperator{;}
+x=\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}(\nspnumber{0}\nspoperator{:}\nspnumber{7})\nspoperator{/}\nspnumber{8}\nspoperator{;}
+xv=[\nspnumber{2}\nspoperator{*}sin(x)\nspoperator{;}\nspnumber{9}\nspoperator{*}sin(x)]\nspoperator{;}
+yv=[\nspnumber{2}\nspoperator{*}cos(x)\nspoperator{;}\nspnumber{9}\nspoperator{*}cos(x)]\nspoperator{;}
+xsegs(xv,yv,\nspnumber{1}\nspoperator{:}\nspnumber{8})
+s=a.children
+s.arrow_size=\nspnumber{1}\nspoperator{;}
+s.segs_color=\nspnumber{15}\nspoperator{:}\nspnumber{22}\nspoperator{;}
+\nspkeyword{for} j=\nspnumber{1}\nspoperator{:}\nspnumber{2} \nspkeyword{do}
+  \nspkeyword{for} i=\nspnumber{1}\nspoperator{:}\nspnumber{8} \nspkeyword{do}
+    h=s.data(i\nspoperator{*}\nspnumber{2},j)\nspoperator{;}
+    s.data(i\nspoperator{*}\nspnumber{2},j)=s.data(i\nspoperator{*}\nspnumber{2}\nspoperator{-}\nspnumber{1},j)\nspoperator{;}
+    s.data(i\nspoperator{*}\nspnumber{2}\nspoperator{-}\nspnumber{1},j)=h\nspoperator{;}
+  \nspkeyword{end}
+\nspkeyword{end}
+s.segs_color=\nspnumber{5}\nspoperator{;}\nspcomment{//set all the colors to 5}
+s.clip_box=[\nspoperator{-}\nspnumber{4}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{8}]\nspoperator{;}
+a.thickness=\nspnumber{4}\nspoperator{;}
+xrect(s.clip_box)\nspoperator{;}
+\end{Verbatim}

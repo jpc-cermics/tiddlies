@@ -1,0 +1,1515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab : un logiciel libre pour le calcul scientifique9e Partie -
+L'interface utilisateur</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 --><BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <H1 ALIGN="center">Scilab&nbsp;: un
+logiciel libre pour le calcul scientifique<BR>
+R&eacute;soudre et optimiser avec Scilab </H1>
+<H3 ALIGN="center">Maurice GOURSAT (INRIA)<BR>
+</H3>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<H3 ALIGN="center"> </H3>
+De nombreux probl&egrave;mes se formulent de la mani&egrave;re suivante :
+trouver le z&eacute;ro d'une fonction ou son minimum, c'est-&agrave;-dire (la
+valeur num&eacute;rique de) <I>x</I> tel que <I>F</I>(<I>x</I>)=0 ou trouver
+<I>x</I> qui donne <I>Min</I> (<I>F</I>(<I>x</I>)). Pour les formulations les
+plus simples les deux probl&egrave;mes sont &eacute;quivalents. Les
+classifications se font ensuite selon que <I>F</I> est lin&eacute;aire ou non
+et que <I>x</I> est ou non soumis &agrave; des contraintes. Nous allons prendre
+quelques exemples et voir comment on les r&eacute;sout avec Scilab. Ces
+exemples n&eacute;cessitent la connaissance de quelques notions de base et une
+lecture attentive pour ceux qui ont oubli&eacute; leurs cours. <BR>
+<BR>
+<!--TOC section Exemple 1 : problème de trafic automobile.-->
+<H2>1&nbsp;&nbsp; Exemple 1 : probl&egrave;me de trafic automobile.</H2>
+De nombreux syst&egrave;mes sont mod&eacute;lis&eacute;s par un syst&egrave;me
+lin&eacute;aire, c'est-&agrave;-dire par une relation :<BR>
+<BR>
+<I>A</I> <I>x</I>=<I>b</I> <BR>
+<BR>
+o&ugrave; <I>A</I> est une matrice (mxn) connue, <I>b</I> un vecteur de taille
+n connu et <I>x</I> est le vecteur que l'on cherche.<BR>
+<BR>
+Consid&eacute;rons le double carrefour suivant :<BR>
+<CENTER>
+<IMG SRC="croixfig1.jpg" ALT="carrefour" WIDTH="284" HEIGHT="154" BORDER="0"> 
+</CENTER>
+<BR>
+Les chiffres repr&eacute;sentent le trafic c'est-&agrave;-dire le nombre de
+v&eacute;hicules par heure. On suppose &eacute;videmment que pour chaque
+carrefour toutes les voitures qui arrivent en repartent : ceci est une des lois
+de base des r&eacute;seaux. C'est la loi dite des noeuds ou premi&egrave;re loi
+de Kirchhoff. Elle est valable pour les r&eacute;seaux &eacute;lectriques,
+d'eau, de t&eacute;l&eacute;communications... <BR>
+<BR>
+Dans notre cas on s'int&eacute;resse au d&eacute;bit en v&eacute;hicules par
+heure et pour les 2 trafics manquants on obtient :<BR>
+<BR>
+<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>=1200 + 200 pour la premi&egrave;re
+intersection et<BR>
+<BR>
+<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB> + <I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB>=1600 + 700 pour la deuxi&egrave;me intersection.<BR>
+<BR>
+On a donc comme ci-dessus <I>A</I> <I>x</I>=<I>b</I> avec <BR>
+<BR>
+<I>A</I>=(1 &nbsp; 0; 1 &nbsp; 1) et <I>b</I>=(1400 &nbsp; 2300) .<BR>
+<BR>
+<PRE>
+
+--&gt;A=[1 0;1 1]
+ A  =
+ 
+!   1.    0. !
+!   1.    1. !
+ 
+--&gt;b=[1400 ; 2300]
+ b  =
+ 
+!   1400. !
+!   2300. !
+ 
+--&gt;x=A\b //on cherche la solution x de A.x=b
+ x  =
+ 
+!   1400. !
+!   900.  !
+
+</PRE>
+L'op&eacute;rateur emph de Scilab r&eacute;sout donc le probl&egrave;me. Dans
+le cas pr&eacute;sent le r&eacute;sultat se fait sans calcul mais son
+utilit&eacute; peut s'imaginer lorsque <I>A</I> est la matrice
+origines-destinations d'une ville et que l'on a quelques milliers de routes et
+de carrefours et que l'on cherche les trafics sur les tron&ccedil;ons.<BR>
+<BR>
+<!--TOC section Exemple 2 : le zapping à la télévision-->
+
+<H2>2&nbsp;&nbsp; Exemple 2 : le zapping &agrave; la t&eacute;l&eacute;vision 
+</H2>
+Un sondage rapide sur l'&eacute;coute des chaines de t&eacute;l&eacute;vision
+montre que lors d'une soir&eacute;e pour les 4 chaines TF1, A2, FR3, M6 et CA
+(autres chaines du cable) les pourcentages de t&eacute;l&eacute;spectateurs
+sont respectivement de 30, 20, 15, 15, 20 (ces chiffres sont pure fiction et
+toute ressemblance avec la r&eacute;alit&eacute; n'est que pure
+co&iuml;ncidence ! ). Chaque jour, au cours de la soir&eacute;e les
+t&eacute;l&eacute;spectateurs zappent d'une chaine vers les autres avec les
+pourcentages suivants :<BR>
+<BR>
+<PRE>
+
+70      15     10       10       5
+10      70     10        5       5
+ 5       5     60        5       5
+ 5       5     10       70       5
+10       5     10       10      80
+
+</PRE>
+Pr&eacute;cisons ce que signifie le tableau : sur la premi&egrave;re colonne
+figurent les pourcentages de ``zapping'' des t&eacute;l&eacute;spectateurs de
+TF1. Il y a donc chaque jour 70% de ces t&eacute;l&eacute;spectateurs qui
+restent sur TF1, 10% qui passent sur A2, 5% sur FR3, 5% sur M6 et 10% vers les
+autres chaines. Les colonnes suivantes correspondent au ``zapping'' des
+t&eacute;l&eacute;spectateurs des autres chaines. La diagonale du tableau,
+c'est-&agrave;-dire 70 &nbsp; 70 &nbsp; 60 &nbsp; 70 &nbsp; 80
+repr&eacute;sentent donc la fid&eacute;lit&eacute; &agrave; la chaine.<BR>
+<BR>
+On souhaite conna&icirc;tre l'&eacute;volution du nombre de
+t&eacute;l&eacute;spectateurs par chaine avec ces informations. Plus
+pr&eacute;cis&egrave;ment on souhaite savoir si la r&eacute;partition entre les
+cha&icirc;nes va se stabiliser et si oui quelle sera la r&eacute;partition
+d'&eacute;quilibre. Le vecteurs des pourcentages initiaux est :<BR>
+<BR>
+<I>p</I>0=[30 &nbsp; 20 &nbsp; 15 &nbsp; 15 &nbsp; 20] <BR>
+<BR>
+
+<PRE>
+
+--&gt;A
+ A  =
+ 
+!   0.7     0.15    0.1    0.1     0.05 !
+!   0.1     0.7     0.1    0.05    0.05 !
+!   0.05    0.05    0.6    0.05    0.05 !
+!   0.05    0.05    0.1    0.7     0.05 !
+!   0.1     0.05    0.1    0.1     0.8  !
+ 
+--&gt;p
+ p  =
+ 
+!   30. !
+!   20. !
+!   15. !
+!   15. !
+!   20. !
+ 
+--&gt;A*p
+ ans  =
+ 
+!   28.   !
+!   20.25 !
+!   13.25 !
+!   15.5  !
+!   23.   !
+ 
+</PRE>
+Au bout d'un jour les proportions par chaine sont donc donn&eacute;es par
+<I>p</I>(1)=<I>A</I> <I>p</I> ; puis le jour suivant par <I>p</I>(2)=<I>A</I>
+<I>p</I>(1) et ainsi de suite et finalement la r&eacute;partition stable est
+telle que <I>A</I> <I>p</I> 
+<SUB><FONT SIZE="2"><I>s</I></FONT></SUB>=<I>p</I><SUB><FONT
+SIZE="2"><I>s</I></FONT></SUB>
+soit (<I>A</I>- <I>I</I>)<I>p</I><SUB><FONT SIZE="2"><I>s</I></FONT></SUB>=0
+(avec la contrainte de somme &eacute;gale &agrave; 100 pour les termes de p).
+La r&eacute;partition stable est telle que les t&eacute;l&eacute;spectateurs
+qui quittent une chaine sont compens&eacute;s par ceux des autres chaines qui
+arrivent.<BR>
+<BR>
+La premi&egrave;re m&eacute;thode consiste donc &agrave; trouver la solution
+&agrave; notre probl&egrave;me en it&eacute;rant la formule <I>p</I><SUB><FONT
+SIZE="2"><I>i</I>+1</FONT></SUB>=<I>A</I> <I>p</I><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB> soit <I>p</I><SUB><FONT
+SIZE="2"><I>n</I></FONT></SUB>=<I>A</I><SUP><FONT
+SIZE="2"><I>n</I></FONT></SUP> <I>p</I><SUB><FONT SIZE="2">0</FONT></SUB> :<BR>
+<BR>
+<PRE>
+
+--&gt;B=A-eye(A) //on fabrique A-I
+ B  =
+ 
+! - 0.3     0.15    0.1    0.1     0.05 !
+!   0.1   - 0.3     0.1    0.05    0.05 !
+!   0.05    0.05  - 0.4    0.05    0.05 !
+!   0.05    0.05    0.1  - 0.3     0.05 !
+!   0.1     0.05    0.1    0.1   - 0.2  !
+ 
+--&gt;(A**30)*p //A*A*A*...*A*p 
+ ans  =
+ 
+!   23.640942 !
+!   19.25045  !
+!   11.111111 !
+!   15.873018 !
+!   30.124479 !
+</PRE>
+l'op&eacute;rateur ``&eacute;l&eacute;vation &agrave; la puissance''
+not&eacute; <EM>**</EM> s'applique donc &agrave; une matrice et il est donc
+facile de trouver la r&eacute;partition apr&egrave;s 30 jours (on va voir avec
+le r&eacute;sultat ci-dessous que pour 30 on a la r&eacute;partition stable
+avec beaucoup de pr&eacute;cision).<BR>
+<BR>
+L'autre m&eacute;thode consiste &agrave; r&eacute;soudre (avec
+<I>B</I>=<I>A</I>-<I>I</I>) <I>B</I> . <I>p</I>=0. Ceci correspond &agrave;
+trouver le ``noyau'' de <I>B</I> qui est donn&eacute; par la commande
+<EM>kernel</EM><BR>
+<BR>
+
+<PRE>
+
+--&gt;pp=kernel(B) //le noyau de B est la solution
+ pp  =
+ 
+!   0.5026089 !
+!   0.4092673 !
+!   0.2362262 !
+!   0.3374660 !
+!   0.6404674 !
+ 
+--&gt;pp=100*pp/sum(pp) //on transforme la solution en pourcentages
+ pp  =
+ 
+!   23.640662 !
+!   19.250253 !
+!   11.111111 !
+!   15.873016 !
+!   30.124958 !
+ 
+--&gt;B*pp //on v&eacute;rifie que ce produit est bien zero
+ ans  =
+ 
+   1.0E-14 *
+ 
+!   0.0990852 !
+!   0.1425075 !
+!   0.0710586 !
+!   &#175;.2032012 !
+!   0.1138846 !
+
+</PRE>
+Cet exemple montre quelques manipulations simples et performantes de Scilab
+avec du calcul vectoriel.<BR>
+<BR>
+Cet exemple simple montre cependant un point important (et bien connu !) : pour
+une chaine de t&eacute;l&eacute;vision le point dominant est pour le long terme
+le pourcentage de fid&eacute;lit&eacute; des t&eacute;l&eacute;spectateurs
+plut&ocirc;t que la performance absolue instantan&eacute;e.<BR>
+<BR>
+<!--TOC section Systèmes dynamiques-->
+
+<H2>3&nbsp;&nbsp; Syst&egrave;mes dynamiques</H2>
+On a vu dans un article pr&eacute;c&eacute;dent comment simuler des
+syst&egrave;mes dynamiques avec l'exemple des requins qui mangent les sardines
+et celui du pendule qui glisse le long d'une courbe (article de mai 2000).<BR>
+<BR>
+Les syst&egrave;mes lin&eacute;aires d&eacute;finis ci-dessus forment l'outil
+de base pour l'&eacute;tude des syst&egrave;mes dynamiques, m&ecirc;me si la
+simulation se fait finalement avec des int&eacute;grateurs (ou solveurs de
+syst&egrave;mes diff&eacute;rentiels,
+alg&eacute;bro-diff&eacute;rentiels...).<BR>
+<BR>
+On peut &eacute;crire le mod&egrave;le classique suivant :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &igrave;<BR>
+&iacute;<BR>
+&icirc;</FONT></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>x</I>'(<I>t</I>)</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">=</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>A</I> <I>x</I>(<I>t</I>)</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">+</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>b</I>(<I>u</I>(<I>t</I>))</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>y</I>(<I>t</I>)</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">=</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP"><I>c</I><SUP><FONT
+SIZE="2"><I>T</I></FONT></SUP> <I>x</I>(<I>t</I>)</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP">&nbsp;&nbsp;&nbsp;&nbsp;(1)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+avec <I>x</I>(0)=<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB><BR>
+<BR>
+La premi&egrave;re &eacute;quation donne l'&eacute;volution du syst&egrave;me
+et la seconde la partie des variables que l'on observe; <I>x</I> est
+l'&eacute;tat du syst&egrave;me et <I>u</I> la commande qu'on applique pour
+faire &eacute;voluer le syst&egrave;me.<BR>
+<BR>
+Dans le cas des requins et des sardines <I>x</I> serait un vecteur de deux
+termes : le nombre de requins et le nombre de sardines. Le contr&ocirc;le
+<I>u</I> serait le nombre de sardines et de requins p&ecirc;ch&eacute;s; on
+peut imaginer le cas o&ugrave; l'observation est r&eacute;duite &agrave; une
+seule composante de <I>x</I>, par exemple le nombre de requins. En fait le
+mod&egrave;le de Lotka-Volterra n'est pas lin&eacute;aire et n'entre donc pas
+dans la classe de mod&egrave;les que nous regardons ici.<BR>
+<BR>
+Dans un autre cas, par exemple un syst&egrave;me m&eacute;canique de type avion
+le mod&egrave;le comporte la position, la vitesse,
+l'acc&eacute;l&eacute;ration. On peut donc avoir un mod&egrave;le d'ordre
+sup&eacute;rieur tel que :<BR>
+<BR>
+<DIV ALIGN="center">
+<I>y</I><SUP><FONT SIZE="2"><I>n</I></FONT></SUP>(<I>t</I>) +
+<I>a</I><SUB><FONT SIZE="2">1</FONT></SUB> <I>y</I><SUP><FONT
+SIZE="2"><I>n</I>-1</FONT></SUP>(<I>t</I>) + ... + <I>a</I><SUB><FONT
+SIZE="2"><I>n</I></FONT></SUB><I>y</I>(<I>t</I>)=<I>q</I><SUB><FONT
+SIZE="2">0</FONT></SUB> <I>u</I>(<I>t</I>) &nbsp;&nbsp;&nbsp;&nbsp;(2) 
+</DIV>
+<BR>
+avec les conditions initiales :<BR>
+<BR>
+<DIV ALIGN="center">
+<I>y</I>(0)=<I>y</I><SUB><FONT SIZE="2">0</FONT></SUB>,
+<I>y</I>'(0)=<I>y</I><SUB><FONT SIZE="2">1</FONT></SUB>, ...
+&nbsp;&nbsp;&nbsp;&nbsp;(3) 
+</DIV>
+<BR>
+En posant simplement (on dit qu'on prend un &eacute;tat augment&eacute;) :<BR>
+<BR>
+<I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>(<I>t</I>)=<I>y</I>(<I>t</I>),<I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB>(<I>t</I>)=<I>y</I>'(<I>t</I>), ...<BR>
+<BR>
+on peut &eacute;crire le mod&egrave;le sous la forme :<BR>
+<BR>
+<I>x</I>'(<I>t</I>)=<I>A</I> <I>x</I>(<I>t</I>) + <I>b</I> <I>u</I>(<I>t</I>);
+<I>x</I>(0)=<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB><BR>
+<BR>
+avec : <DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>A</I>=</TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &eacute;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&euml;</FONT></TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">-<I>a</I><SUB><FONT
+SIZE="2"><I>n</I></FONT></SUB></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">-<I>a</I><SUB><FONT
+SIZE="2"><I>n</I>-1</FONT></SUB></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">-<I>a</I><SUB><FONT
+SIZE="2"><I>n</I>-2</FONT></SUB></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">-<I>a</I><SUB><FONT SIZE="2">1</FONT></SUB> 
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &ugrave;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&ucirc;</FONT></TD>
+<TD NOWRAP="NOWRAP">&nbsp;&nbsp;&nbsp;&nbsp;(4)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+et <BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>b</I>=</TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &eacute;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&euml;</FONT></TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>q</I><SUB><FONT SIZE="2">0</FONT></SUB> 
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &ugrave;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&ucirc;</FONT></TD>
+<TD NOWRAP="NOWRAP">&nbsp;&nbsp;&nbsp;&nbsp;(5)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+La solution libre ( c'est-&agrave;-dire avec <I>b</I>=0) du syst&egrave;me
+diff&eacute;rentiel est :<BR>
+<BR>
+<DIV ALIGN="center">
+<I>x</I>(<I>t</I>)=<I>e</I><SUP><FONT SIZE="2"><I>At</I></FONT></SUP>
+<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB> &nbsp;&nbsp;&nbsp;&nbsp;(6) 
+</DIV>
+<BR>
+o&ugrave; <I>e</I><SUP><FONT SIZE="2"><I>At</I></FONT></SUP> est
+l'exponentielle de matrice, c'est-&agrave;-dire :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>e</I><SUP><FONT SIZE="2"><I>At</I></FONT></SUP>=</TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD ALIGN="center"><FONT SIZE="2"><FONT FACE="symbol">&#165;</FONT></FONT></TD>
+</TR>
+<TR>
+<TD ALIGN="center"><FONT SIZE="7"><FONT FACE="symbol">&aring;</FONT></FONT> 
+</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><FONT SIZE="2">0</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>A</I><SUP><FONT
+SIZE="2"><I>n</I></FONT></SUP><I>t</I><SUP><FONT SIZE="2"><I>n</I></FONT></SUP>
+</TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>n</I>!</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> &nbsp;&nbsp;&nbsp;&nbsp;(7)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+avec les propri&eacute;t&eacute;s suivantes :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>d</I></TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>dt</I></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> <I>e</I><SUP><FONT
+SIZE="2"><I>At</I></FONT></SUP>=<I>A</I> <I>e</I><SUP><FONT
+SIZE="2"><I>At</I></FONT></SUP> ; <I>e</I><SUP><FONT
+SIZE="2"><I>A</I>(<I>t</I>+<I>s</I>)</FONT></SUP>=<I>e</I><SUP><FONT
+SIZE="2"><I>At</I></FONT></SUP> <I>e</I><SUP><FONT
+SIZE="2"><I>As</I></FONT></SUP>; (<I>e</I><SUP><FONT
+SIZE="2"><I>At</I></FONT></SUP>)<SUP><FONT
+SIZE="2">-1</FONT></SUP>=<I>e</I><SUP><FONT SIZE="2">-<I>At</I></FONT></SUP> ;
+<I>e</I><SUP><FONT SIZE="2"><I>A</I> 0</FONT></SUP>=1
+&nbsp;&nbsp;&nbsp;&nbsp;(8)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<PRE>
+
+
+--&gt;A=rand(4,4) //matrice aleatoire 
+ A  =
+ 
+!   0.2922267    0.5935095    0.6325745    0.4818509 !
+!   0.5664249    0.5015342    0.4051954    0.2639556 !
+!   0.4826472    0.4368588    0.9184708    0.4148104 !
+!   0.3321719    0.2693125    0.0437334    0.2806498 !
+
+--&gt;expm(A) //l'exponentielle de la matrice A
+ ans  =
+ 
+!   2.1501546    1.477585     1.6726308    1.1853378 !
+!   1.3102627    2.320914     1.3517984    0.9077929 !
+!   1.4668403    1.4775185    3.2282155    1.264257  !
+!   0.6898985    0.6707707    0.4436347    1.5931327 !
+
+
+</PRE>
+La fonction Scilab <EM>expm</EM> (la commande <EM>exp</EM> calcule
+l'exponentielle ``simple'' c'est-&agrave;-dire terme &agrave; terme pour une
+matrice, le m final signifie matricielle) n'est pas tr&egrave;s utile pour
+int&eacute;grer des syst&egrave;mes diff&eacute;rentiels car les
+int&eacute;grateurs donnent de meilleurs r&eacute;sultats. Il est cependant
+possible d'utiliser une forme simplifi&eacute;e de la matrice (forme de Jordan
+par exemple) et d'&eacute;tudier certaines propri&eacute;t&eacute;s du
+syst&egrave;me diff&eacute;rentiel, en particulier sa stabilit&eacute;.<BR>
+<BR>
+Notons que l'on a :<BR>
+<BR>
+
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>e</I></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP"><FONT SIZE="2">(<I>U</I></FONT><SUP><FONT
+SIZE="2">-1</FONT></SUP><FONT SIZE="2"><I>AU</I>)<I>t</I></FONT></TD>
+</TR>
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP">=<I>U</I><SUP><FONT SIZE="2">-1</FONT></SUP>.
+<I>e</I><SUP><FONT SIZE="2">-<I>At</I></FONT></SUP>.<I>U</I>
+&nbsp;&nbsp;&nbsp;&nbsp;(9)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+si <I>U</I> est une matrice de changement de base.<BR>
+<BR>
+On peut voir que si <I>A</I> est une matrice diagonale, son exponentielle est
+simplement la matrice diagonale dont les termes sont les exponentielles des
+&eacute;l&eacute;ments de la diagonale de <I>A</I>. Il est alors facile de voir
+si le syst&egrave;me explose ou non. Si les termes sont &agrave; partie
+r&eacute;elle n&eacute;gative le syt&egrave;me est stable :
+<I>exp</I>(<I>z</I>*<I>t</I>) tend vers 0 lorsque <I>t</I> cro&icirc;t pourvu
+que <I>Re</I>(<I>z</I>) &lt; 0. C'est cette &eacute;tude que permet la forme de
+Jordan de la matrice.<BR>
+<BR>
+<!--TOC section Forme de Jordan et stabilité-->
+<H2>4&nbsp;&nbsp; Forme de Jordan et stabilit&eacute;</H2>
+Le r&eacute;sultat de base est : pour toute matrice carr&eacute;e <I>A</I> il
+existe une matrice de changement de base <I>U</I> qui transforme <I>A</I> sous
+sa forme canonique de Jordan c'est-&agrave;-dire :<BR>
+<BR>
+<DIV ALIGN="center">
+<I>U</I><SUP><FONT SIZE="2">-1</FONT></SUP>. <I>A</I>
+.<I>U</I>=<I>J</I>=<I>diag</I>(<I>J</I><SUB><FONT
+SIZE="2">1</FONT></SUB>,<I>J</I><SUB><FONT
+SIZE="2">2</FONT></SUB>,...,<I>J</I><SUB><FONT SIZE="2"><I>p</I></FONT></SUB>)
+&nbsp;&nbsp;&nbsp;&nbsp;(10) 
+</DIV>
+<BR>
+o&ugrave; les <I>J</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB> sont les blocs
+de Jordan; un bloc <I>J</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB> est
+associ&eacute; &agrave; la valeur propre <I>l</I><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB> et sa taille est l'ordre de multiplicit&eacute;
+de cette valeur propre; il est de la forme :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>J</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB>=</TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &eacute;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&euml;</FONT></TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><FONT FACE="symbol">l</FONT><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><FONT FACE="symbol">l</FONT><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><FONT FACE="symbol">l</FONT><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><FONT FACE="symbol">l</FONT><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &ugrave;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&ucirc;</FONT></TD>
+<TD NOWRAP="NOWRAP">&nbsp;&nbsp;&nbsp;&nbsp;(11)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+Nous pouvons donc reprendre la formule ci-dessus pour obtenir :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>e</I><SUP><FONT
+SIZE="2"><I>At</I></FONT></SUP>=<I>U</I><SUP><FONT SIZE="2">-1</FONT></SUP>.
+<I>e</I><SUP><FONT SIZE="2"><I>Jt</I></FONT></SUP> .<I>U</I>=<I>U</I><SUP><FONT
+SIZE="2">-1</FONT></SUP> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &eacute;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&euml;</FONT></TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"><I>e</I></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP"><FONT SIZE="2"><I>J</I></FONT><SUB><FONT
+SIZE="2">1</FONT></SUB><FONT SIZE="2"><I>t</I></FONT></TD>
+</TR>
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"><I>e</I></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP"><FONT SIZE="2"><I>J</I></FONT><SUB><FONT
+SIZE="2">2</FONT></SUB><FONT SIZE="2"><I>t</I></FONT></TD>
+</TR>
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"><I>e</I></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP"><FONT SIZE="2"><I>J</I></FONT><SUB><FONT
+SIZE="2">3</FONT></SUB><FONT SIZE="2"><I>t</I></FONT></TD>
+</TR>
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">...</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"><I>e</I></TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP"><FONT SIZE="2"><I>J</I></FONT><SUB><FONT
+SIZE="2">1</FONT></SUB><FONT SIZE="2"><I>t</I></FONT></TD>
+</TR>
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &ugrave;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&ucirc;</FONT></TD>
+<TD NOWRAP="NOWRAP">&nbsp;&nbsp;&nbsp;&nbsp;(12)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+On peut expliciter chaque terme de cette matrice. Un cas particulier important
+est celui o&ugrave; chaque bloc de Jordan est de dimension 1,
+c'est-&agrave;-dire que la matrice est diagonalisable.<BR>
+<BR>
+Un syst&egrave;me <I>x</I>'(<I>t</I>)=<I>A</I> <I>x</I>(<I>t</I>);
+<I>x</I>(0)=<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB> est asymptotiquement
+stable si || <I>x</I>(<I>t</I>) || <FONT FACE="symbol">&reg;</FONT> 0 lorsque
+<I>t</I> <FONT FACE="symbol">&reg;</FONT> <FONT FACE="symbol">&#165;</FONT> .
+Il est stable si <I>x</I>(<I>t</I>) reste born&eacute; et instable sinon.<BR>
+<BR>
+Il est donc tr&egrave;s facile de voir avec la mise sous forme de Jordan qu'un
+syst&egrave;me est stable si toutes les valeurs propres sont &agrave; partie
+r&eacute;elle n&eacute;gative et instable s'il existe une valeur propre
+&agrave; partie r&eacute;elle positive.<BR>
+<BR>
+<PRE>
+
+--&gt;A
+ A  =
+ 
+! - 1.    2.    3.    4.    5. !
+! - 2.  - 3.    4.    5.    1. !
+! - 3.  - 4.  - 5.    1.    2. !
+! - 4.  - 5.    1.  - 2.    3. !
+! - 5.  - 1.  - 2.  - 3.  - 4. !
+ 
+--&gt;spec(A) //donne les valeurs propres de A
+ ans  =
+ 
+
+! - 2.3085744 + 9.7098818i !
+! - 2.3085744 - 9.7098818i !
+! - 2.7463994 + 3.3236617i !
+! - 2.7463994 - 3.3236617i !
+! - 4.8900525              !
+ 
+--&gt;[J, U, jj]=bdiag(A) //on fait une diagonalisation par blocs
+ jj  =
+ 
+!   2. !
+!   2. !
+!   1. !
+ U  =
+ 
+!   0.1464163    0.6610705    0.6303059  - 0.2895151  - 0.0504537 !
+!   0.3614366    0.5356768  - 0.4367886    0.6566914    0.2082125 !
+!   0.4907292  - 0.2012461  - 0.1359894  - 0.2563754  - 0.8555927 !
+!   0.7376988  - 0.0981921  - 0.3357698  - 0.2802899    0.5853825 !
+!   0.2508209  - 0.4752837    0.5802959    0.5849911    0.0010181 !
+ J  =
+ 
+! - 2.2334457  - 9.4719406    0.           0.           0.        !
+!   9.9543962  - 2.383703     0.           0.           0.        !
+!   0.           0.         - 2.4115925    2.7693088    0.        !
+!   0.           0.         - 4.0294614  - 3.0812063    0.        !
+!   0.           0.           0.           0.         - 4.8900525 !
+
+</PRE>
+Le r&eacute;sultat est donc form&eacute; d'un vecteur <I>jj</I> donnant les
+tailles des blocs, de la matrice <I>J</I> avec les blocs sur la diagonale et la
+matrice <I>U</I> de passage de <I>A</I> &agrave; <I>U</I>. Dans le cas
+pr&eacute;c&eacute;dent 2 blocs de Jordan sont de dimension 2 car <I>A</I> est
+consid&eacute;r&eacute;e comme r&eacute;elle et les valeurs propres sont
+complexes conjugu&eacute;es. Cette ambiguit&eacute; est lev&eacute;e si on fait
+l'op&eacute;ration sur les complexes :<BR>
+<BR>
+
+<PRE>
+
+--&gt;A=A+%i*0; //on rend complexe la matrice A
+
+--&gt;[J, U, jj]=bdiag(A);
+ 
+--&gt;jj
+ jj  =
+ 
+!   1. !
+!   1. !
+!   1. !
+!   1. !
+!   1. !
+ 
+--&gt;J
+ J  =
+ 
+ 
+         column 1 to 2
+ 
+! - 2.3085744 - 9.7098818i    0                      !
+!   0                       - 2.3085744 + 9.7098818i !
+!   0                         0                      !
+!   0                         0                      !
+!   0                         0                      !
+ 
+         column 3 to 5
+ 
+!   0                         0                         0         !
+!   0                         0                         0         !
+! - 2.7463994 + 3.3236617i    0                         0         !
+!   0                       - 2.7463994 - 3.3236617i    0         !
+!   0                         0                       - 4.8900525 !
+ 
+
+</PRE>
+Partant d'un matrice dont on ne connait pas les propri&eacute;t&eacute;s on
+peut donc voir si cette matrice est celle d'un syst&egrave;me stable et on va
+pouvoir simuler con comportement en sachant que nous ne devons pas avoir
+d'explosion num&eacute;rique.<BR>
+<BR>
+<!--TOC section Systèmes non linéaires - Cas monovariable-->
+
+<H2>5&nbsp;&nbsp; Syst&egrave;mes non lin&eacute;aires - Cas monovariable</H2>
+On cherche donc &agrave; r&eacute;soudre <I>f</I>(<I>x</I>)=0 ou encore
+minimmiser <I>f</I>(<I>x</I>) sous la contrainte <I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB> &lt; <I>x</I> &lt; <I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB>.<BR>
+<BR>
+On peut r&eacute;soudre une &eacute;quation <I>f</I>(<I>x</I>)=0 par une
+m&eacute;thode de type s&eacute;cante si on sait encadrer le z&eacute;ro par
+l'algorithme simple suivant :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>y</I> - <I>f</I>(<I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>)=(<I>x</I><SUB><FONT SIZE="2">2</FONT></SUB> -
+<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>) </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>f</I>(<I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB> - <I>f</I>(<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>) 
+</TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>x</I><SUB><FONT SIZE="2">2</FONT></SUB> -
+<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB> </TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> &nbsp;&nbsp;&nbsp;&nbsp;(13)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+est l'&eacute;quation de la droite joignant les points <I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>,<I>f</I>(<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>) et
+<I>x</I><SUB><FONT SIZE="2">2</FONT></SUB>,<I>f</I>(<I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB>). On trouve ainsi une valeur de <I>x</I>
+am&eacute;liorant l'encadrement du z&eacute;ro par :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>x</I><SUB><FONT
+SIZE="2">3</FONT></SUB>=<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB> -
+<I>f</I>(<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>) </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>x</I><SUB><FONT SIZE="2">2</FONT></SUB> -
+<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB></TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><I>f</I>(<I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB> - <I>f</I>(<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB> 
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> &nbsp;&nbsp;&nbsp;&nbsp;(14)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<!--TOC section Systèmes non linéaires - Cas général-->
+<H2>6&nbsp;&nbsp; Syst&egrave;mes non lin&eacute;aires - Cas
+g&eacute;n&eacute;ral</H2>
+On veut maintenant r&eacute;soudre un syst&egrave;me non lin&eacute;aire de
+<I>n</I> &eacute;quations &agrave; <I>n</I> inconnues, c'est-&agrave;-dire le
+syst&egrave;me suivant :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>F</I>(<I>x</I>)=</TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &eacute;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&euml;</FONT></TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>f</I><SUB><FONT SIZE="2">1</FONT></SUB>
+(<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>,<I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB>,...,<I>x</I><SUB><FONT SIZE="2"><I>n</I></FONT></SUB>) 
+</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>f</I><SUB><FONT SIZE="2">2</FONT></SUB>
+(<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>,<I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB>,...,<I>x</I><SUB><FONT SIZE="2"><I>n</I></FONT></SUB>) 
+</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">... <I>f</I><SUB><FONT
+SIZE="2"><I>n</I></FONT></SUB> (<I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB>,<I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB>,...,<I>x</I><SUB><FONT SIZE="2"><I>n</I></FONT></SUB>) 
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &ugrave;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&ucirc;</FONT></TD>
+<TD NOWRAP="NOWRAP">=0 &nbsp;&nbsp;&nbsp;&nbsp;(15)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+Diff&eacute;rentes m&eacute;thodes existent pour r&eacute;soudre ce
+probl&egrave;me : la plus simple est la m&eacute;thode de Newton qui
+proc&egrave;de par lin&eacute;arisation et r&eacute;solution du syst&egrave;me
+lin&eacute;aris&eacute; de mani&egrave;re it&eacute;rative; c'est la simple
+g&eacute;n&eacute;ralisation de la s&eacute;cante du cas monovariable.<BR>
+<BR>
+Du d&eacute;veloppement autour d'un point :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>f</I>(<I>x</I>)=<I>f</I>(<I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>) + (<I>x</I> - <I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>) <I>f</I>'(<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB>)
++ </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center">(<I>x</I> - <I>x</I><SUB><FONT
+SIZE="2">0</FONT></SUB>)<SUP><FONT SIZE="2">2</FONT></SUP></TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center">2!</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> <I>f</I>''(<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB>) +
+... &nbsp;&nbsp;&nbsp;&nbsp;(16)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+on conserve seulement les 2 premiers termes et le syst&egrave;me
+lin&eacute;aris&eacute; s'&eacute;crit :<BR>
+<BR>
+<DIV ALIGN="center">
+<I>F</I>(<I>x</I>)=<I>F</I>(<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB>) +
+(<I>x</I> - <I>x</I><SUB><FONT SIZE="2">0</FONT></SUB>)
+<I>J</I>(<I>x</I><SUB><FONT SIZE="2">0</FONT></SUB>)
+&nbsp;&nbsp;&nbsp;&nbsp;(17) 
+</DIV>
+<BR>
+o&ugrave; J est le jacobien :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>J</I><SUB><FONT
+SIZE="2"><I>i</I>,<I>j</I></FONT></SUB>=</TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><FONT FACE="symbol">&#182;</FONT>
+<I>F</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB></TD>
+</TR>
+<TR>
+<TD><HR NOSHADE="NOSHADE" SIZE="2">
+</TD>
+</TR>
+<TR>
+<TD NOWRAP="NOWRAP" ALIGN="center"><FONT FACE="symbol">&#182;</FONT>
+<I>x</I><SUB><FONT SIZE="2"><I>j</I></FONT></SUB></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> &nbsp;&nbsp;&nbsp;&nbsp;(18)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+Exemple :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>F</I>(<I>x</I>)=</TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &eacute;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&euml;</FONT></TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">-<I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB><SUP><FONT SIZE="2">2</FONT></SUP> - <I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB><I>x</I><SUB><FONT SIZE="2">2</FONT></SUB> + 2</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">3 <I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB><SUP><FONT SIZE="2">2</FONT></SUP> + <I>x</I><SUB><FONT
+SIZE="2">2</FONT></SUB> <I>x</I><SUB><FONT SIZE="2">3</FONT></SUB> -4</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>x</I><SUB><FONT
+SIZE="2">3</FONT></SUB><SUP><FONT SIZE="2">3</FONT></SUP> + <I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB><SUP><FONT SIZE="2">2</FONT></SUP> -6</TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &ugrave;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&ucirc;</FONT></TD>
+<TD NOWRAP="NOWRAP">=0 &nbsp;&nbsp;&nbsp;&nbsp;(19)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+Le jacobien est :<BR>
+<BR>
+<DIV ALIGN="center">
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR VALIGN="middle">
+<TD NOWRAP="NOWRAP"> <I>J</I>=</TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &eacute;<BR>
+&ecirc;<BR>
+&ecirc;<BR>
+&euml;</FONT></TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"> <TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">-2 <I>x</I><SUB><FONT
+SIZE="2">1</FONT></SUB> - <I>x</I><SUB><FONT SIZE="2">2</FONT></SUB></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">-<I>x</I><SUB><FONT SIZE="2">1</FONT></SUB> 
+</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">6 <I>x</I><SUB><FONT SIZE="2">2</FONT></SUB>
++ <I>x</I><SUB><FONT SIZE="2">3</FONT></SUB></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>x</I><SUB><FONT SIZE="2">2</FONT></SUB> 
+</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">2 <I>x</I><SUB><FONT SIZE="2">1</FONT></SUB>
+</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">3 <I>x</I><SUB><FONT
+SIZE="2">3</FONT></SUB><SUP><FONT SIZE="2">2</FONT></SUP></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP="NOWRAP"> </TD>
+<TD NOWRAP="NOWRAP"><FONT FACE="symbol"> &ugrave;<BR>
+&uacute;<BR>
+&uacute;<BR>
+&ucirc;</FONT></TD>
+<TD NOWRAP="NOWRAP">&nbsp;&nbsp;&nbsp;&nbsp;(20)</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+Dans Scilab la fonction <EM>fsolve</EM> r&eacute;sout le probl&egrave;me; on
+lui fournit un programme (en C, fortran ou langage Scilab) qui calcule la
+valeur de la fonction pour une valeur d'argument donn&eacute;e (ici
+<EM>valeur</EM>).<BR>
+<BR>
+On fournit si possible une fonction calculant le jacobien (ici <EM>jaco</EM>).
+<BR>
+<BR>
+<PRE>
+
+--&gt;getf(&quot;valeur.sci&quot;);
+
+--&gt;getf(&quot;jaco.sci&quot;);
+
+--&gt;[x,v,info]=fsolve([0 0 0]',valeur,jaco)
+ info  =
+ 
+    1.  
+ v  =
+ 
+   1.0E-12 *
+ 
+! - 0.4463097 !
+!   0.0710543 !
+! - 4.7251092 !
+ x  =
+ 
+! - 1.9739351 !
+!   0.9607306 !
+!   1.2813065 !
+ 
+</PRE>
+Les essais ci-dessous montre l'int&eacute;r&ecirc;t de fournir le jacobien : un
+appel simple ne converge pas si on part de (0 0 0); la convergence de l'appel
+simple d&eacute;pend fortement de la valeur initiale.<BR>
+<BR>
+Dans ce cas les fonctions valeurs et jaco sont les suivantes :<BR>
+<BR>
+
+<PRE>
+function [v]=valeur(x)
+
+x1=x(1);x2=x(2);x3=x(3);
+v=zeros(3,1);
+v(1)=-x1*x1-x1*x2 + 2;
+v(2)=3*x2*x2+x2*x3 - 4;
+v(3)=x3*x3*x3+x1*x1 - 6;
+
+</PRE>
+
+<PRE>
+
+function [J]=jaco(x)
+
+x1=x(1);x2=x(2);x3=x(3);
+J=zeros(3,3);
+J(1,1)=-2*x1-x2;J(1,2)=-x1;
+J(2,2)=6*x2+x3;J(2,3)=x2;
+J(3,1)=2*x1;J(3,3)=3*x3*x3;
+</PRE>
+
+<PRE>
+
+ --&gt;[x,v,info]=fsolve([0 0 0]',valeur)
+ info  =
+ 
+    4.  
+ v  =
+ 
+!   1.9693403 !
+! - 3.9999228 !
+! - 5.9691468 !
+ x  =
+ 
+!   0.1758927 !
+! - 0.0015834 !
+! - 0.0439760 !
+ 
+--&gt;[x,v,info]=fsolve([1 -2 -2]',valeur)
+ info  =
+ 
+    1.  
+ v  =
+ 
+   1.0E-14 *
+ 
+! - 0.0444089 !
+! - 0.0444089 !
+! - 0.2664535 !
+ x  =
+ 
+!   2.2311307 !
+! - 1.3347242 !
+!   1.0072986 !
+
+</PRE>
+<!--TOC section Approximation polynomiale-->
+
+<H2>7&nbsp;&nbsp; Approximation polynomiale</H2>
+Tout le monde se souvient de l'exp&eacute;rience de physique qui donne une
+s&eacute;rie de points dans le plan (par exemple des mesures y pour
+diff&eacute;rentes valeurs de la variable x) et on trace la droite (de
+r&eacute;gression) qui ``approxime'' le nuage de points : il s'agit simplement
+de trouver la d&eacute;pendance lin&eacute;aire et de r&eacute;sumer
+l'exp&eacute;rience par les 2 valeurs qui caract&eacute;risent la droite. Dans
+notre cas on veut traiter le cas g&eacute;n&eacute;ral : ne pas se restreindre
+&agrave; une droite mais calculer le polyn&ocirc;me d'ordre donn&eacute; qui en
+est la meilleure approximation du nuage de points.<BR>
+<BR>
+L'&eacute;nonc&eacute; est donc : pour l'ensemble de points (<I>x</I><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB> &nbsp; <I>y</I><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB>) on cherche un polyn&ocirc;me
+<I>p</I>(<I>x</I>)=<I>p</I><SUB><FONT SIZE="2">0</FONT></SUB> +
+<I>p</I><SUB><FONT SIZE="2">1</FONT></SUB> <I>x</I> + <I>p</I><SUB><FONT
+SIZE="2">2</FONT></SUB> <I>x</I><SUP><FONT SIZE="2">2</FONT></SUP> + ... +
+<I>p</I><SUB><FONT SIZE="2"><I>n</I></FONT></SUB> <I>x</I><SUP><FONT
+SIZE="2"><I>n</I></FONT></SUP> de degr&eacute; <I>n</I> donn&eacute; qui
+r&eacute;alise :<BR>
+<BR>
+min<SUB><FONT SIZE="2"><I>p</I></FONT></SUB><SUB><SUB><FONT
+SIZE="2">0</FONT></SUB></SUB><SUB><FONT SIZE="2">,
+<I>p</I></FONT></SUB><SUB><SUB><FONT SIZE="2">1</FONT></SUB></SUB><SUB><FONT
+SIZE="2">, ... , <I>p</I></FONT></SUB><SUB><SUB><FONT
+SIZE="2"><I>n</I></FONT></SUB></SUB> <FONT FACE="symbol">&aring;</FONT>
+(<I>y</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB> -
+<I>p</I>(<I>x</I><SUB><FONT SIZE="2"><I>i</I></FONT></SUB>))<SUP><FONT
+SIZE="2">2</FONT></SUP><BR>
+<BR>
+Ceci se formule sous forme matricielle en &eacute;crivant :<BR>
+<BR>
+<I>X</I>=( <I>x</I><SUP><FONT SIZE="2"><I>n</I></FONT></SUP> &nbsp;
+<I>x</I><SUP><FONT SIZE="2"><I>n</I>-1</FONT></SUP> &nbsp; ... &nbsp;
+<I>x</I><SUP><FONT SIZE="2">2</FONT></SUP> &nbsp; <I>x</I> &nbsp; 1)<BR>
+<BR>
+<I>P</I>=( <I>p</I><SUB><FONT SIZE="2"><I>n</I></FONT></SUB> &nbsp;
+<I>p</I><SUB><FONT SIZE="2"><I>n</I>-1</FONT></SUB> &nbsp; ... &nbsp;
+<I>p</I><SUB><FONT SIZE="2">2</FONT></SUB> &nbsp; <I>p</I><SUB><FONT
+SIZE="2">1</FONT></SUB> &nbsp; <I>p</I><SUB><FONT SIZE="2">0</FONT></SUB>)<BR>
+<BR>
+<I>Y</I>=<I>V</I> * <I>P</I><SUP><FONT SIZE="2"><I>t</I></FONT></SUP><BR>
+<BR>
+on construit ensuite la matrice de Vandermonde (la ligne <I>i</I> est
+form&eacute;e des puissances successives de <I>i</I>) et on fait une
+r&eacute;solution aux moindres carr&eacute;s, ce qui donne en Scilab :<BR>
+<BR>
+<PRE>
+--&gt;x=[1 2 3 4 5 6 7 8 9 10]'; //points equidistants
+
+--&gt;n=6;
+ 
+--&gt;y=[1 3 2 0 4 5 9 3 1 -5]';
+ 
+--&gt;V=zeros(length(x),n+1); //matrice nulle
+ 
+--&gt;V(:,n+1) = ones(length(x),1); //on ajoute une colonne de 1
+ 
+--&gt;for j = n:-1:1
+--&gt;    V(:,j) = x.*V(:,j+1);
+--&gt;end
+ 
+--&gt;[Q,R] = qr(V,0); //Decomposition (Q,R), R triangulaire
+ 
+--&gt;p = R\(Q'*y);
+ 
+--&gt;r = y - V*p;
+ 
+</PRE>
+L'op&eacute;rateur <EM> </EM> est l'op&eacute;rateur de r&eacute;solution d'un
+syst&egrave;me lin&eacute;aire suivant : <I>x</I>=<I>A</I> \ <I>b</I> est en
+fait la solution de <I>A</I>.<I>x</I>=<I>b</I>; Dans le cas ou la matrice est
+singuli&egrave;re (ce qui est le cas ici) la r&eacute;solution est faite aux
+moindres carr&eacute;s c'est-&agrave;-dire qu'on obtient <I>x</I> qui minimise
+| <I>Ax</I> -<I>b</I> | 
+<SUP><FONT SIZE="2">2</FONT></SUP>. Nous avons &agrave; r&eacute;soudre
+<I>p</I>=<I>V</I> \ <I>y</I> que l'on remplace par une proc&eacute;dure plus
+performante avec une d&eacute;composition QR de la matrice de Vandermonde.<BR>
+<BR>
+La figure suivante repr&eacute;sente l'approximation de 10 valeurs par des
+polyn&ocirc;mes de degr&eacute; 4 et 6; la pr&eacute;cision s'am&eacute;liore
+&eacute;videmment avec la croissance du degr&eacute;.<BR>
+<CENTER>
+<IMG SRC="approx.jpg" ALT="croissance" WIDTH="578" HEIGHT="409" BORDER="0"> 
+</CENTER>
+<BR>
+<!--TOC section Conclusion-->
+<H2>8&nbsp;&nbsp; Conclusion</H2>
+Il aurait fallu commencer par avouer que le seul cas que l'on sait traiter
+correctement est le cas lin&eacute;aire; dans le cas non lin&eacute;aire on se
+ram&egrave;ne par diff&eacute;rents moyens &agrave; une approximation (locale)
+lin&eacute;aire. C'est pour cette raison que l'utilisation des matrices est
+g&eacute;n&eacute;ralis&eacute;e et que Scilab qui est construit sur la
+manipulation et les calculs matriciels est tr&egrave;s utile. Dans ce qui
+pr&eacute;c&egrave;de l'optimisation n'est que sous-jacente. Nous verrons plus
+tard qu'elle devient explicite avec ses propres techniques lorsqu'il faut
+r&eacute;soudre des probl&egrave;mes sous contraintes.<BR>
+<BR>
+<!--TOC section Contacts-->
+<H2>9&nbsp;&nbsp; Contacts</H2>
+Site Web de Scilab : http://www-rocq.inria.fr/scilab <BR>
+<BR>
+Serveur ftp : ftp://ftp.inria.fr/INRIA/Scilab <BR>
+<BR>
+Adresse email : Scilab@inria.fr <BR>
+<BR>
+Newsgroup : comp.soft-sys.math.scilab <BR>
+<BR>
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example 1:}
+beta(\nspnumber{5},\nspnumber{2})\nspoperator{-}beta(\nspnumber{2},\nspnumber{5})\nspoperator{,}\nspcomment{// symetry (must be exactly 0)}
+beta(\nspnumber{0.5},\nspnumber{0.5})\nspoperator{,}\nspcomment{// exact value is pi}
+\nspcomment{// example 2: an error study based on the relation  B(1,x) = 1/x}
+\nspcomment{// (computing 1/x must lead to only a relative error of eps_m, so}
+\nspcomment{//  it may be used near as a reference to evaluate the error in B(1,x))}
+x=logspace(\nspoperator{-}\nspnumber{8},\nspnumber{8},\nspnumber{20000})\nspoperator{'}\nspoperator{;}
+e=beta(ones(x),x)\nspoperator{-}(\nspnumber{1})\nspoperator{ ./}x\nspoperator{;}
+er=abs(e)\nspoperator{ .*}x\nspoperator{;}
+ind=find(er\nspoperator{ <> }\nspnumber{0})\nspoperator{;}
+eps=ones(x(ind))\nspoperator{*}number_properties(\nspstring{"eps"})\nspoperator{;}
+xbasc()
+plot2d(x(ind),[er(ind)\nspoperator{,}eps\nspoperator{,}\nspnumber{2}\nspoperator{*}eps],style = [\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}],logflag = \nspstring{"ll"},leg = \nspstring{"er@eps_m@2 eps_m"})
+xtitle(\nspstring{"approximate relative error in computing beta(1,x)"})
+xselect()
+\nspcomment{// example 3: plotting the beta function}
+t=linspace(\nspnumber{0.2},\nspnumber{10},\nspnumber{60})\nspoperator{;}
+X=t\nspoperator{'}\nspoperator{*}ones(t)\nspoperator{;}Y=ones(t\nspoperator{'})\nspoperator{*}t\nspoperator{;}
+Z=beta(X,Y)\nspoperator{;}
+xbasc()
+plot3d(t,t,Z,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}],leg = \nspstring{"x@y@z"},alpha = \nspnumber{75},theta = \nspnumber{30})
+xtitle(\nspstring{"The beta function on [0.2,10]x[0.2,10]"})
+xselect()
+\end{Verbatim}

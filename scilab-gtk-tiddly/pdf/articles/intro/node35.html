@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.1.2 Loops</TITLE>
+<META NAME="description" CONTENT="3.1.2 Loops">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node36.html">
+<LINK REL="previous" HREF="node34.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node36.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html704"
+ HREF="node36.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html700"
+ HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html694"
+ HREF="node34.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html702"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html703"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html705"
+ HREF="node36.html">3.1.3 Conditionals</A>
+<B> Up:</B> <A NAME="tex2html701"
+ HREF="node33.html">3.1 Programming Tools</A>
+<B> Previous:</B> <A NAME="tex2html695"
+ HREF="node34.html">3.1.1 Comparison Operators</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00412000000000000000">&#160;</A><A NAME="2082">&#160;</A>
+<BR>
+3.1.2 Loops
+</H2>
+Two types of loops exist in Scilab: the 
+<TT>for</TT><A NAME="2273">&#160;</A> loop
+and the 
+<TT>while</TT><A NAME="2274">&#160;</A> loop.  The <TT>for</TT> loop
+steps through a vector of indices performing each time the
+commands delimited by <TT>end</TT>.  
+<PRE>
+ 
+--&gt; x=1;for k=1:4,x=x*k,end
+ x         =
+ 
+    1.  
+ x         =
+ 
+    2.  
+ x         =
+ 
+    6.  
+ x         =
+ 
+    24.
+</PRE>The <TT>for</TT> loop can iterate on any vector or matrix taking for values
+the elements of the vector or the columns of the matrix.
+<PRE>
+ 
+--&gt; x=1;for k=[-1 3 0],x=x+k,end
+ x         =
+ 
+    0.  
+ x         =
+ 
+    3.  
+ x         =
+ 
+    3.
+</PRE>The <TT>for</TT> loop can also iterate on lists. The syntax is the same as for
+matrices. The index takes as values the entries of the list.
+
+<P>
+<PRE>
+--&gt;l=list(1,[1,2;3,4],'str')
+
+--&gt;for k=l, disp(k),end
+ 
+    1.  
+ 
+!   1.    2. !
+!   3.    4. !
+ 
+ str
+</PRE>
+<P>
+The <TT>while</TT> loop repeatedly performs a sequence of commands 
+until a condition is satisfied.
+<PRE>
+--&gt; x=1; while x&lt;14,x=2*x,end
+ x         =
+ 
+    2.  
+ x         =
+ 
+    4.  
+ x         =
+ 
+    8.  
+ x         =
+ 
+    16.
+</PRE>
+<P>
+A <TT>for</TT> or <TT>while</TT> loop can be ended by the command <TT>break</TT> :
+<PRE>
+--&gt;a=0;for i=1:5:100,a=a+1;if i &gt; 10  then  break,end; end
+ 
+--&gt;a
+ a  =
+ 
+    3.
+</PRE>In nested loops, <TT>break</TT> exits from the innermost loop.
+
+<P>
+<PRE>
+--&gt;for k=1:3; for j=1:4; if k+j&gt;4 then break;else disp(k);end;end;end
+ 
+    1.  
+ 
+    1.  
+ 
+    1.  
+ 
+    2.  
+ 
+    2.  
+ 
+    3.
+</PRE><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html704"
+ HREF="node36.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html700"
+ HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html694"
+ HREF="node34.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html702"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html703"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html705"
+ HREF="node36.html">3.1.3 Conditionals</A>
+<B> Up:</B> <A NAME="tex2html701"
+ HREF="node33.html">3.1 Programming Tools</A>
+<B> Previous:</B> <A NAME="tex2html695"
+ HREF="node34.html">3.1.1 Comparison Operators</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

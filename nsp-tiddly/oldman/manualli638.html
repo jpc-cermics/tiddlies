@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>linsolve</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli639.html" >next</a>] [<a 
+href="manualli637.html" >prev</a>] [<a 
+href="manualli637.html#tailmanualli637.html" >prev-tail</a>] [<a 
+href="#tailmanualli638.html">tail</a>] [<a 
+href="manualli607.html#manualli638.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x639-3800000"></a>linsolve</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx639-3800001"></a><a 
+ id="linsolve"></a><span 
+class="cmtt-10x-x-109">linsolve </span>&#x2013;                                                                           linear equation solver<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x639-3801000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-787">
+&#x00A0;&#x00A0;[x0,kerA]=linsolve(A,b&#x00A0;[,x0])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x639-3802000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">na</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;ma</span></span></span> real matrix (possibly sparse)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">b</span>: a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">na</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span></span></span> vector (same row dimension as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: a real vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">kerA</span>: a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ma</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span></span></span> real matrix</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x639-3803000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">linsolve</span></span></span> computes all the solutions to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;A*x+b=0</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span> is a particular solution (if any)
+and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;kerA=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>nullspace of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>. Any <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x=x0+kerA*w</span></span></span> with arbitrary <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">w</span></span></span> satisfies <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;A*x+b=0</span></span></span>. If
+compatible <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span> is given on entry, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span> is returned. If not a compatible <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span>, if any, is returned.
+</p>
+<!--l. 44--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x639-3804000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb497"><a 
+ id="x639-3804006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x639-3804008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b=A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[x,kerA]=linsolve(A,b)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">b</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//compatible</span><span 
+class="cmitt-10x-x-109">&#x00A0;b</span></span>
+<br class="fancyvrb" /><a 
+ id="x639-3804010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b=ones(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[x,kerA]=linsolve(A,b)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">b</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//uncompatible</span><span 
+class="cmitt-10x-x-109">&#x00A0;b</span></span>
+<br class="fancyvrb" /><a 
+ id="x639-3804012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[x,kerA]=linsolve(A,b)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">inv(A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">b</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//x</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;unique</span></span></div>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x639-3805000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli635.html#inv">inv</a>    <a 
+href="manualli651.html#pinv">pinv</a>    <a 
+href="manualli616.html#colcomp">colcomp</a>    <a 
+href="#im-inv">im_inv</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli639.html" >next</a>] [<a 
+href="manualli637.html" >prev</a>] [<a 
+href="manualli637.html#tailmanualli637.html" >prev-tail</a>] [<a 
+href="manualli638.html" >front</a>] [<a 
+href="manualli607.html#manualli638.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli638.html"></a>  </p> 
+</body></html> 

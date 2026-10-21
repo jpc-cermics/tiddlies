@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+txt=[\nspstring{'magnitude'}\nspoperator{;}\nspstring{'frequency'}\nspoperator{;}\nspstring{'phase    '}]\nspoperator{;}
+sig=x_mdialog(\nspstring{'enter sine signal'},txt,[\nspstring{'1'}\nspoperator{;}\nspstring{'10'}\nspoperator{;}\nspstring{'0'}])
+mag=evstr(sig(\nspnumber{1}))
+frq=evstr(sig(\nspnumber{2}))
+ph=evstr(sig(\nspnumber{3}))
+rep=x_mdialog([\nspstring{'System Simulation'}\nspoperator{;}\nspstring{'with PI regulator'}],[\nspstring{'P gain'}\nspoperator{;}\nspstring{'I gain '}],[\nspstring{' '}\nspoperator{;}\nspstring{' '}])
+n=\nspnumber{5}\nspoperator{;}m=\nspnumber{4}\nspoperator{;}mat=rand(n,m)\nspoperator{;}
+row=\nspstring{'row'}\nspoperator{;}labelv=row(ones(\nspnumber{1},n))\nspoperator{+}string(\nspnumber{1}\nspoperator{:}n)
+col=\nspstring{'col'}\nspoperator{;}labelh=col(ones(\nspnumber{1},m))\nspoperator{+}string(\nspnumber{1}\nspoperator{:}m)
+new=evstr(x_mdialog(\nspstring{'Matrix to edit'},labelv,labelh,string(mat)))
+\end{Verbatim}

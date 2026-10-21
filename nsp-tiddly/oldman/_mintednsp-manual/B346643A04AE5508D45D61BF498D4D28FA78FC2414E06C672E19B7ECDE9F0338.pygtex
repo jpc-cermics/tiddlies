@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+deff(\nspstring{"v=f(x,y,z)"},\nspstring{"v=cos(x).*sin(y).*cos(z)"})\nspoperator{;}
+deff(\nspstring{"v=fx(x,y,z)"},\nspstring{"v=-sin(x).*sin(y).*cos(z)"})\nspoperator{;}
+deff(\nspstring{"v=fxy(x,y,z)"},\nspstring{"v=-sin(x).*cos(y).*cos(z)"})\nspoperator{;}
+deff(\nspstring{"v=fxyz(x,y,z)"},\nspstring{"v=sin(x).*cos(y).*sin(z)"})\nspoperator{;}
+deff(\nspstring{"v=fxxyz(x,y,z)"},\nspstring{"v=cos(x).*cos(y).*sin(z)"})\nspoperator{;}
+n=\nspnumber{20}\nspoperator{;}\nspcomment{// n x n x n  interpolation points}
+x=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,n)\nspoperator{;}y=x\nspoperator{;}z=x\nspoperator{;}\nspcomment{// interpolation grid}
+[X,Y,Z]=ndgrid(x,y,z)\nspoperator{;}V=f(X,Y,Z)\nspoperator{;}
+tl=splin3d(x,y,z,V,[\nspnumber{5}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{5}])\nspoperator{;}
+\nspcomment{// compute f and some derivates on a point}
+\nspcomment{// and compare with the spline interpolant}
+xp=grand(\nspnumber{1},\nspnumber{1},\nspstring{"unf"},\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi)\nspoperator{;}
+yp=grand(\nspnumber{1},\nspnumber{1},\nspstring{"unf"},\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi)\nspoperator{;}
+zp=grand(\nspnumber{1},\nspnumber{1},\nspstring{"unf"},\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi)\nspoperator{;}
+f_e=f(xp,yp,zp)
+f_i=bsplin3val(xp,yp,zp,tl,[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}])
+fx_e=fx(xp,yp,zp)
+fx_i=bsplin3val(xp,yp,zp,tl,[\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}])
+fxy_e=fxy(xp,yp,zp)
+fxy_i=bsplin3val(xp,yp,zp,tl,[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}])
+fxyz_e=fxyz(xp,yp,zp)
+fxyz_i=bsplin3val(xp,yp,zp,tl,[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}])
+fxxyz_e=fxxyz(xp,yp,zp)
+fxxyz_i=bsplin3val(xp,yp,zp,tl,[\nspnumber{2}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}])
+\end{Verbatim}

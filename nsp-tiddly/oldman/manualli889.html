@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>ode_root</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli890.html" >next</a>] [<a 
+href="manualli888.html" >prev</a>] [<a 
+href="manualli888.html#tailmanualli888.html" >prev-tail</a>] [<a 
+href="#tailmanualli889.html">tail</a>] [<a 
+href="manualli863.html#manualli889.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x890-5153000"></a>ode_root</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx890-5153001"></a><a 
+ id="ode_root"></a><span 
+class="cmtt-10x-x-109">ode</span><span 
+class="cmtt-10x-x-109">_root </span>&#x2013;                                 ordinary differential equation solver with root finding<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x890-5154000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1002">
+&#x00A0;&#x00A0;y,rd[,w,iw]=ode(&#x0022;root&#x0022;,y0,t0,t&#x00A0;[,rtol&#x00A0;&#x00A0;[,atol]],f&#x00A0;&#x00A0;[,jac],ng,g&#x00A0;[,w,iw])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x890-5155000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">y0</span>: real vector or matrix (initial conditions).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">t0</span>: real scalar (initial time).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">t</span>: real vector (times at which the solution is computed).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f</span>: external i.e. function or character string or list.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rtol,atol</span>: real constants or real vectors of the same size as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">jac</span>: external i.e. function or character string or list.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">w,iw</span>: real vectors.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ng</span>: integer.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">g</span>: external i.e. function or character string or list.</li></ul>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x890-5156000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > With this syntax (first argument equal to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;root&#x0022;</span></span></span>) <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span> computes the solution of the differential
+equation <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dy/dt=f(t,y)</span></span></span> until the state <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y(t)</span></span></span> crosses the surface <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g(t,y)=0</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> should give the equation
+of the surface. It is an external i.e. a function with specified syntax, or the name of a Fortran
+subroutine or a C function (character string) with specified calling sequence or a list. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> is a
+function the syntax should be as follows:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1003">
+&#x00A0;&#x00A0;z=g(t,y)
+</div>
+<!--l. 53--><p class="nopar" >where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t</span></span></span> is a real scalar (time) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> a real vector (state). It returns a vector of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ng</span></span></span> which
+corresponds to the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ng</span></span></span> constraints. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> is a character string it refers to the name of a Fortran
+subroutine or a C function, with the following calling sequence: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g(n,t,y,ng,gout)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ng</span></span></span> is the
+number of constraints and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">gout</span></span></span> is the value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> (output of the program). If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> is a list the same
+conventions as for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> apply (see ode help). Ouput <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rd</span></span></span> is a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span></span></span> vector. The first entry contains the
+stopping time. Other entries indicate which components of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> have changed sign. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> larger
+than 2 indicates that more than one surface (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(k-1)</span></span></span> surfaces) have been simultaneously
+traversed. Other arguments and other options are the same as for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span>, see the ode help.
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x890-5157000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb622"><a 
+ id="x890-5157010r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Integration</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;differential</span><span 
+class="cmitt-10x-x-109">&#x00A0;equation</span></span>
+<br class="fancyvrb" /><a 
+ id="x890-5157012r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;dy/dt=y</span><span 
+class="cmitt-10x-x-109">&#x00A0;,</span><span 
+class="cmitt-10x-x-109">&#x00A0;y(0)=1,</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;finds</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;minimum</span><span 
+class="cmitt-10x-x-109">&#x00A0;time</span><span 
+class="cmitt-10x-x-109">&#x00A0;t</span><span 
+class="cmitt-10x-x-109">&#x00A0;such</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span><span 
+class="cmitt-10x-x-109">&#x00A0;y(t)=2</span></span><br class="fancyvrb" /><a 
+ id="x890-5157014r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;[ydot]=f(t,y)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;ydot=y&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x890-5157016r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;[z]=g(t,y)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z=y-2&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x890-5157018r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y0=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ng=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x890-5157020r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[y,rd]=ode(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;roots&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,y0,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,f,ng,g)</span>
+<br class="fancyvrb" /><a 
+ id="x890-5157022r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;[z]=g(t,y)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;z=y-[2;2;33]&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x890-5157024r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[y,rd]=ode(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;roots&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,f,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,g)</span></div>
+<!--l. 85--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x890-5158000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli865.html#dasrt">dasrt</a>    <a 
+href="manualli890.html#ode">ode</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli890.html" >next</a>] [<a 
+href="manualli888.html" >prev</a>] [<a 
+href="manualli888.html#tailmanualli888.html" >prev-tail</a>] [<a 
+href="manualli889.html" >front</a>] [<a 
+href="manualli863.html#manualli889.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli889.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// To get a graphical explanation of xsetech parameters enter:}
+exec(\nspstring{'SCI/demos/graphics/xsetechfig.sce'})\nspoperator{;}
+\nspcomment{// Here xsetech is used to split the graphics window in two parts}
+\nspcomment{// first xsetech is used to set the first sub-window}
+\nspcomment{// and the graphics scale}
+xsetech([\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1.0}\nspoperator{,}\nspnumber{0.5}],[\nspoperator{-}\nspnumber{5}\nspoperator{,}\nspoperator{-}\nspnumber{3}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{3}])
+\nspcomment{// we call plot2d with the "001" option to use the graphics scale}
+\nspcomment{// set by xsetech}
+plot2d([\nspnumber{1}\nspoperator{:}\nspnumber{10}]\nspoperator{'},[\nspnumber{1}\nspoperator{:}\nspnumber{10}]\nspoperator{'},\nspnumber{1},\nspstring{"001"},\nspstring{" "})
+\nspcomment{// then xsetech is used to set the second sub-window}
+xsetech([\nspnumber{0}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{1.0}\nspoperator{,}\nspnumber{0.5}])
+\nspcomment{// the graphics scale is set by xsetech to [0,0,1,1] by default}
+\nspcomment{// and we change it with the use of the rect argument in plot2d}
+plot2d([\nspnumber{1}\nspoperator{:}\nspnumber{10}]\nspoperator{'},[\nspnumber{1}\nspoperator{:}\nspnumber{10}]\nspoperator{'},\nspnumber{1},\nspstring{"011"},\nspstring{" "},[\nspoperator{-}\nspnumber{6}\nspoperator{,}\nspoperator{-}\nspnumber{6}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{6}])
+\nspcomment{// Four plots on a single graphics window}
+xbasc()
+xset(\nspstring{"font"},\nspnumber{2},\nspnumber{0})
+xsetech([\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}])\nspoperator{;}plot3d()
+xsetech([\nspnumber{0.5}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}])\nspoperator{;}plot2d()
+xsetech([\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}])\nspoperator{;}grayplot()
+xsetech([\nspnumber{0}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{0.5}])\nspoperator{;}histplot()
+\nspcomment{// back to default values for the sub-window}
+xsetech([\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}])
+\nspcomment{// One plot with changed arect}
+xbasc()
+xset(\nspstring{"default"})
+xsetech(arect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}])
+x=\nspnumber{1}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{10}\nspoperator{;}plot2d(x\nspoperator{'},sin(x)\nspoperator{'})
+xbasc()
+xsetech(arect = [\nspnumber{1}\nspoperator{/}\nspnumber{8}\nspoperator{,}\nspnumber{1}\nspoperator{/}\nspnumber{8}\nspoperator{,}\nspnumber{1}\nspoperator{/}\nspnumber{16}\nspoperator{,}\nspnumber{1}\nspoperator{/}\nspnumber{4}])
+x=\nspnumber{1}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{10}\nspoperator{;}plot2d(x\nspoperator{'},sin(x)\nspoperator{'})
+xbasc()
+xset(\nspstring{"default"})
+\end{Verbatim}

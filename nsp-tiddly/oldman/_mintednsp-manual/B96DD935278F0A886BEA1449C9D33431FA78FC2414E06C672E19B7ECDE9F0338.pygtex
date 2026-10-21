@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=[\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}B=[\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}C=[\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+S1=syslin(\nspstring{'c'},A,B,C)\nspoperator{,}\nspcomment{//Linear system definition}
+S1(\nspstring{"A"})\nspoperator{,}\nspcomment{//Display of A-matrix}
+S1(\nspstring{"X0"})\nspoperator{,}S1(\nspstring{"dt"})\nspoperator{,}\nspcomment{// Display of X0 and time domain}
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+D=s\nspoperator{;}
+S2=syslin(\nspstring{'c'},A,B,C,D)
+H1=(\nspnumber{1}\nspoperator{+}\nspnumber{2}\nspoperator{*}s)\nspoperator{/}s\nspoperator{^}\nspnumber{2}\nspoperator{,}S1bis=syslin(\nspstring{'c'},H1)
+H2=(\nspnumber{1}\nspoperator{+}\nspnumber{2}\nspoperator{*}s\nspoperator{+}s\nspoperator{^}\nspnumber{3})\nspoperator{/}s\nspoperator{^}\nspnumber{2}\nspoperator{,}S2bis=syslin(\nspstring{'c'},H2)
+S1\nspoperator{+}S2
+[S1\nspoperator{,}S2]
+ss2tf(S1)\nspoperator{-}S1bis
+S1bis\nspoperator{+}S2bis
+S1\nspoperator{*}S2bis
+size(S1)
+\end{Verbatim}

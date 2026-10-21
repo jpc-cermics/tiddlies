@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+set(\nspstring{'figure_style'},\nspstring{'new'})
+a=gca()\nspoperator{;}a.data_bounds=[\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{10}\nspoperator{;}\nspnumber{210}\nspoperator{,}\nspnumber{40}]\nspoperator{;}a.foreground=color(\nspstring{'red'})\nspoperator{;}
+x1=[\nspnumber{0}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{20}\nspoperator{,}\nspnumber{30}\nspoperator{,}\nspnumber{20}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{0}]\nspoperator{'}\nspoperator{;}
+y1=[\nspnumber{15}\nspoperator{,}\nspnumber{30}\nspoperator{,}\nspnumber{30}\nspoperator{,}\nspnumber{15}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{15}]\nspoperator{'}\nspoperator{;}
+xpols=[x1\nspoperator{,}x1\nspoperator{,}x1\nspoperator{,}x1]\nspoperator{;}xpols=xpols\nspoperator{+}[\nspnumber{0}\nspoperator{,}\nspnumber{60}\nspoperator{,}\nspnumber{120}\nspoperator{,}\nspnumber{180}]\nspoperator{ .*.}ones(x1)\nspoperator{;}
+ypols=[y1\nspoperator{,}y1\nspoperator{,}y1\nspoperator{,}y1]\nspoperator{;}
+xfpolys(xpols,ypols,[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}])
+\nspcomment{// interpolated colors}
+clf()
+f=gcf()\nspoperator{;}
+a=gca()\nspoperator{;}a.data_bounds=[\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{10}\nspoperator{;}\nspnumber{40}\nspoperator{,}\nspnumber{30}]\nspoperator{;}a.isoview=\nspstring{'on'}\nspoperator{;}
+x1=[\nspnumber{0}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{20}\nspoperator{,}\nspnumber{10}]\nspoperator{'}\nspoperator{;}
+y1=[\nspnumber{10}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{20}]\nspoperator{'}\nspoperator{;}
+c=linspace(\nspnumber{2},\nspnumber{100},\nspnumber{4})\nspoperator{'}\nspoperator{;}
+xpols=[x1\nspoperator{,}x1\nspoperator{+}\nspnumber{20}\nspoperator{,}x1\nspoperator{+}\nspnumber{10}\nspoperator{,}x1\nspoperator{+}\nspnumber{10}]\nspoperator{;}
+ypols=[y1\nspoperator{,}y1\nspoperator{,}y1\nspoperator{+}\nspnumber{10}\nspoperator{,}y1\nspoperator{-}\nspnumber{10}]\nspoperator{;}
+cols=[c\nspoperator{,}c($\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1})\nspoperator{,}c([\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}])\nspoperator{,}c]
+f.color_map=jetcolormap(max(cols))\nspoperator{;}
+xfpolys(xpols,ypols,cols)
+\nspcomment{// interpolated colors}
+clf()
+f=gcf()\nspoperator{;}
+x11=[\nspnumber{0}\nspoperator{;}\nspnumber{20}\nspoperator{;}\nspnumber{20}\nspoperator{;}\nspnumber{0}]\nspoperator{;}y11=[\nspnumber{10}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{30}]\nspoperator{;}c11=[\nspnumber{10}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{30}]\nspoperator{;}
+x12=x11\nspoperator{;}y12=y11\nspoperator{+}\nspnumber{20}\nspoperator{;}c12=[\nspnumber{20}\nspoperator{;}\nspnumber{20}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}c12=[\nspnumber{30}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{10}]\nspoperator{;}
+x21=[\nspnumber{0}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{0}]\nspoperator{+}\nspnumber{22}\nspoperator{;}y21=[\nspnumber{20}\nspoperator{;}\nspnumber{20}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{30}]\nspoperator{;}c21=[\nspnumber{20}\nspoperator{;}\nspnumber{20}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{30}]\nspoperator{;}
+x22=x21\nspoperator{;}y22=y21\nspoperator{+}\nspnumber{10}\nspoperator{;}c22=[\nspnumber{30}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{20}\nspoperator{;}\nspnumber{20}]\nspoperator{;}
+x31=[\nspnumber{0}\nspoperator{;}\nspnumber{40}\nspoperator{;}\nspnumber{40}\nspoperator{;}\nspnumber{0}]\nspoperator{+}\nspnumber{55}\nspoperator{;}y31=[\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{30}]\nspoperator{;}c31=[\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{30}]\nspoperator{;}
+x32=x31\nspoperator{;}y32=y31\nspoperator{+}\nspnumber{30}\nspoperator{;}c32=[\nspnumber{30}\nspoperator{;}\nspnumber{30}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{0}]\nspoperator{;}
+X=[x11\nspoperator{,}x12\nspoperator{,}x21\nspoperator{,}x22\nspoperator{,}x31\nspoperator{,}x32]\nspoperator{;}Y=[y11\nspoperator{,}y12\nspoperator{,}y21\nspoperator{,}y22\nspoperator{,}y31\nspoperator{,}y32]\nspoperator{;}C=([c11\nspoperator{,}c12\nspoperator{,}c21\nspoperator{,}c22\nspoperator{,}c31\nspoperator{,}c32]\nspoperator{+}\nspnumber{1})\nspoperator{*}\nspnumber{5}\nspoperator{;}
+a=gca()\nspoperator{;}a.isoview=\nspstring{'on'}\nspoperator{;}
+a.data_bounds=[min(X)\nspoperator{,}min(Y)\nspoperator{;}max(X)\nspoperator{,}max(Y)]\nspoperator{;}
+f=gcf()\nspoperator{;}f.color_map=graycolormap(max(C))\nspoperator{;}
+xfpolys(X,Y,C)
+\end{Verbatim}

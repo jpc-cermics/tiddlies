@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>execstr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli963.html" >next</a>] [<a 
+href="manualli961.html" >prev</a>] [<a 
+href="manualli961.html#tailmanualli961.html" >prev-tail</a>] [<a 
+href="#tailmanualli962.html">tail</a>] [<a 
+href="manualli931.html#manualli962.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x963-5527000"></a>execstr</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx963-5527001"></a><a 
+ id="execstr"></a><span 
+class="cmtt-10x-x-109">execstr </span>&#x2013;                                                                  execute Scilab code in strings<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x963-5528000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1076">
+&#x00A0;&#x00A0;execstr(instr)
+&#x00A0;<br />&#x00A0;&#x00A0;ierr=execstr(instr,&#x0027;errcatch&#x0027;&#x00A0;[,msg])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x963-5529000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">instr</span>: vector of character strings, Scilab instruction to be executed.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ierr</span>: integer, 0 or error number.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">msg</span>: character string with values <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;m&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;n&#x0027;</span></span></span>. Default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;n&#x0027;</span></span></span>.</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x963-5530000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Executes the Scilab instructions given in argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instr</span></span></span>. If the &apos;errcatch&apos; flag is not present, error
+handling works as usual. If the &apos;errcatch&apos; flag is set, and an error is encountered while executing the
+instructions defined in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instr</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">execstr</span></span></span> issues no error message, but aborts execution of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">instr</span></span></span>
+instructions (at the point where the error occurred), and resumes with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ierr</span></span></span> equal to
+the error number. In this case the display of the error message is controlled by the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msg</span></span></span>
+option:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;m&#x201D;</span> </span>: error message is displayed and recorded.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;n&#x201D;</span> </span>: no error message is displayed, but the error message is recorded (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lasterror</span></span></span>). This
+     is the default.</ul>
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x963-5531000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb666"><a 
+ id="x963-5531012r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;execstr(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a=1&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;sets</span><span 
+class="cmitt-10x-x-109">&#x00A0;a=1.</span></span><br class="fancyvrb" /><a 
+ id="x963-5531014r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;execstr(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;1+1&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;does</span><span 
+class="cmitt-10x-x-109">&#x00A0;nothing</span><span 
+class="cmitt-10x-x-109">&#x00A0;(while</span><span 
+class="cmitt-10x-x-109">&#x00A0;evstr(&#x0027;1+1&#x0027;)</span><span 
+class="cmitt-10x-x-109">&#x00A0;returns</span><span 
+class="cmitt-10x-x-109">&#x00A0;2)</span></span>
+<br class="fancyvrb" /><a 
+ id="x963-5531016r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;execstr([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;%t</span><span 
+class="cmtt-10x-x-109">&#x00A0;then&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b=a+1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;else&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;b=0&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;end&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x963-5531018r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;execstr(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a=zzzzzzz&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;errcatch&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x963-5531020r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;execstr(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a=zzzzzzz&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;errcatch&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;m&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x963-5532000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli961.html#evstr">evstr</a>    <a 
+href="manualli995.html#lasterror">lasterror</a>    <a 
+href="manualli959.html#error">error</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli963.html" >next</a>] [<a 
+href="manualli961.html" >prev</a>] [<a 
+href="manualli961.html#tailmanualli961.html" >prev-tail</a>] [<a 
+href="manualli962.html" >front</a>] [<a 
+href="manualli931.html#manualli962.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli962.html"></a>  </p> 
+</body></html> 

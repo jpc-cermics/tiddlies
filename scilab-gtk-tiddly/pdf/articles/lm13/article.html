@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab: un logiciel libre pour le calcul scientifiquedeuxi&egrave;me
+partie</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <H1 ALIGN="center">Scilab: un logiciel
+libre pour le calcul scientifique<BR>
+deuxi&egrave;me partie</H1>
+<H3 ALIGN="center"> </H3>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+<EM>Des centaines de fonctions math&eacute;matiques
+pr&eacute;programm&eacute;es, un langage de programmation de haut niveau,
+simple et puissant, des fonctionnalit&eacute;s d'imports-exports de
+donn&eacute;es en formats vari&eacute;s et des outils graphiques puissants font
+de Scilab la super calculatrice incontournable sous Linux.</EM><BR>
+<BR>
+Dans Scilab, la plupart du temps on manipule des vecteurs et des matrices. Les
+op&eacute;rateurs et les fonctions &eacute;l&eacute;mentaires sont
+con&ccedil;us pour favoriser ce type de manipulation et de mani&egrave;re plus
+g&eacute;n&eacute;rale, de permettre la vectorisation des programmes. Certes le
+langage Scilab contient des op&eacute;rations conditionnelles ( 
+<TT>if-then-else-elseif</TT>), des boucles (<TT>while</TT>, <TT>for</TT>) et la
+programmation r&eacute;cursive, mais la vectorisation permet de limiter le
+recours &agrave; ces fonctionnalit&eacute;s qui ne sont jamais tr&egrave;s
+efficaces dans le cas d'un langage interpr&eacute;t&eacute;. Par exemple, pour
+tracer la fonction cos(2<I>x</I><SUP><FONT SIZE="2">2</FONT></SUP>) entre 0 et
+5, on peut d&eacute;finir sans boucle le vecteur contenant les points &agrave;
+afficher, de la mani&egrave;re suivante&nbsp;: <PRE>
+
+--&gt;x=[0:999]*5/1000;
+
+</PRE>
+On peut, par la suite, utiliser ce vecteur pour &eacute;valuer la fonction et
+tracer la courbe (Fig.&nbsp;<A HREF="#fig1">1</A>)&nbsp;: 
+<PRE>
+
+--&gt;y=cos(2*x^2);  
+ 
+--&gt;plot2d(x,y) 
+  
+
+
+</PRE>
+
+<BLOCKQUOTE><HR SIZE="2">
+<CENTER>
+<IMG SRC="articlefig1.jpg" WIDTH="268" HEIGHT="212" BORDER="0"> <A
+NAME="fig1"></A> 
+</CENTER>
+<BR>
+<DIV ALIGN="center">
+Figure 1: Exemple d'un plot2d 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+L'op&eacute;rateur &lt;&lt;<TT>:</TT>&gt;&gt; dans <TT>[0:999]</TT> permet de
+d&eacute;finir un vecteur d'entiers allant de 0 &agrave; 999. <BR>
+<BR>
+On peut trouver, sans aucune boucle, les points o&ugrave; la fonction
+cos(2<I>x</I><SUP><FONT SIZE="2">2</FONT></SUP>) est extr&eacute;male en
+utilisant le fait que la d&eacute;riv&eacute;e aux points extr&ecirc;mes change
+de signe. On calcule d'abord le vecteur <TT>dy</TT> dont les composantes sont
+<I>y</I><SUB><FONT SIZE="2"><I>i</I>+1</FONT></SUB>-<I>y</I><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB>, puis le vecteur <TT>p</TT> contenant
+(<I>y</I><SUB><FONT SIZE="2"><I>i</I>+1</FONT></SUB>-<I>y</I><SUB><FONT
+SIZE="2"><I>i</I></FONT></SUB>)(<I>y</I><SUB><FONT
+SIZE="2"><I>i</I>+2</FONT></SUB>-<I>y</I><SUB><FONT
+SIZE="2"><I>i</I>+1</FONT></SUB>) et enfin on cherche les composantes
+n&eacute;gatives de <TT>p</TT>&nbsp;: <PRE>
+
+--&gt;dy=y(2:$)-y(1:$-1);
+
+--&gt;p=dy(1:$-1).*dy(2:$);  
+ 
+--&gt;x_ext=x(find(p&lt;=0)) 
+ x_ext  =
+         column 1 to 8 
+! 1.25  1.765  2.165  2.5  2.795  3.065  3.31  3.54 !
+ 
+         column  9 to 15 
+! 3.755  3.96  4.15  4.335  4.515  4.685  4.85 !
+
+</PRE>
+L'op&eacute;rateur &lt;&lt;<TT>$</TT>&gt;&gt; d&eacute;signe l'indice du
+dernier &eacute;l&eacute;ment (1000 dans le cas de <TT>y</TT> et 999 dans le
+cas de <TT>dy</TT>) et l'op&eacute;rateur &lt;&lt;<TT>.*</TT>&gt;&gt;
+d&eacute;signe le produit &eacute;l&eacute;ment par &eacute;l&eacute;ment. Le
+r&eacute;sultat de <TT>p&lt;=0</TT> est un vecteur de bool&eacute;ens dont les
+indices correpondant aux &eacute;l&eacute;ments ayant la valeur <EM>vraie</EM>
+(<TT>%t</TT> en Scilab) sont determin&eacute;s par la fonction <TT>find 
+</TT>.<BR>
+<BR>
+L'absence de &lt;&lt;<TT>;</TT>&gt;&gt; &agrave; la fin de la derni&egrave;re
+instruction actionne l'affichage du r&eacute;sultat.<BR>
+Les graphiques 3D sont aussi souvent r&eacute;alis&eacute;s en utilisant des
+op&eacute;rations matricielles. Par exemple pour tracer la surface
+<I>f</I>(<I>x</I>,<I>y</I>)=10sin(<I>x</I>)cos(<I>y</I>), 0 
+<FONT FACE="symbol">&#163;</FONT> <I>x</I> &lt; <FONT FACE="symbol">p</FONT>,
+0<FONT FACE="symbol">&#163;</FONT> <I>y</I> &lt; 2<FONT FACE="symbol">p</FONT>,
+on peut faire: <PRE>
+
+--&gt;x=[0:99]*%pi/100;y=[0:99]*2*%pi/100;
+ 
+--&gt;M=10*sin(x)'*cos(y);plot3d(x,y,M)
+
+</PRE>
+
+<BLOCKQUOTE><HR SIZE="2">
+<DIV ALIGN="center">
+<IMG SRC="articlefig2.jpg" ALT="{short description of image}" WIDTH="268"
+ HEIGHT="212" BORDER="0"> 
+</DIV>
+<A NAME="fig2"></A> <BR>
+<DIV ALIGN="center">
+Figure 2: plot3d de la fonction 10sin(<I>x</I>)cos(<I>y</I>) 
+</DIV>
+<HR SIZE="2">
+</BLOCKQUOTE>
+L'op&eacute;rateur &lt;&lt;<TT>'</TT>&gt;&gt; correspond &agrave; la
+transposition donc <TT>sin(x)'*cos(y)</TT> est le produit d'un vecteur colonne
+de taille 100 par un vecteur ligne de taille 100, ce qui est une matrices
+&agrave; 10000 &eacute;l&eacute;ments.<BR>
+<BR>
+Par des op&eacute;rations de souris et en utilisant les menus de la
+fen&ecirc;tre graphique, on peut faire tourner le plot 3D (Fig.&nbsp;<A
+HREF="#fig2">2</A>) dans l'espace pour obtenir un point de vue optimal et
+sauver le r&eacute;sultat en divers formats (Postscript, xfig, gif, ...).<BR>
+<BR>
+<!--TOC paragraph La programmation-->
+<H5> La programmation</H5>
+Un programme Scilab correpond &agrave; l'encha&icirc;nement d'une suite
+d'instructions. Ces instructions peuvent &ecirc;tre plac&eacute;es dans un
+fichier (qu'on appelle un <EM>script</EM>) &agrave; l'aide d'un &eacute;diteur
+de texte comme emacs ou vi. Si on nomme par exemple le fichier <TT>toto.sce 
+</TT>, on peut alors ex&eacute;cuter le script avec l'instruction&nbsp;: <PRE>
+
+--&gt;exec toto.sce
+
+</PRE>
+Le langage Scilab permet aussi de d&eacute;finir de nouvelles fonctions. Le
+mot-cl&eacute; <TT>function</TT> est utilis&eacute; pour d&eacute;clarer le
+d&eacute;but d'une fonction dans un fichier texte. 
+<PRE>
+
+function v=mafonc(v,op)
+// cette fonction recoit un vecteur v
+// et une chaine de caracteres indiquant
+// l'operation a effectuer sur v
+if v==[] then return;end
+select op
+case &quot;aleatoire&quot; then
+// dans ce cas on melange de maniere 
+// aleatoire les elements de v
+  vrand=rand(v);  // rand est un generateur
+                  // de nombre aleatoire
+  [junk,ind]=sort(vrand);
+  v=v(ind);
+case &quot;decroissant&quot; then
+// dans ce cas on trie les elements de v
+// dans l'ordre decroissant
+  v=sort(v);
+case &quot;croissant&quot; then
+  v=-sort(-v);
+else
+  error(&quot;operation non prevue !&quot;);
+end
+
+</PRE>
+Noter l'utilisation de &lt;&lt;<TT>//</TT>&gt;&gt; pour indiquer les
+commentaires. La fonction <TT>mafonc</TT>, d&eacute;finie dans le fichier 
+<TT>mafonc.sci</TT> peut alors &ecirc;tre &lt;&lt;charg&eacute;e&gt;&gt; et
+utilis&eacute;e dans Scilab comme suit&nbsp;: 
+<PRE>
+
+--&gt;getf mafonc.sci
+
+--&gt;y=mafonc([2,5,4],&quot;aleatoire&quot;)
+ y  = 
+!   5.    2.    4. !
+
+</PRE>
+Il existe aussi la possibilit&eacute; de d&eacute;finir des fonctions
+&lt;&lt;en-ligne&gt;&gt;. Par exemple l'instruction <TT>sort(x)</TT> trie les
+&eacute;lements de <TT>x</TT> dans l'ordre d&eacute;croissant. On peut alors
+facilement d&eacute;finir en ligne la fonction <TT>trie</TT> qui trie dans
+l'ordre croissant: 
+<PRE>
+
+--&gt;deff(&quot;y=trie(x)&quot;,&quot;y=-sort(-x)&quot;)
+
+</PRE>
+Une fonction est un objet dans Scilab au m&ecirc;me titre qu'un vecteur ou une
+matrice de cha&icirc;ne de caract&egrave;res. Dans l'exemple suivant, on passe
+une fonction comme argument d'une autre fonction&nbsp;: 
+<PRE>
+
+function x=bubble(x,fun)
+// cette fonction realise un bubble sort
+// x est un vecteur de nombres complexes
+// fun est une fonction definissant
+// la relation d'ordre a utiliser
+n=size(x,&quot;*&quot;); // n est le produit des
+               // 2 dimensions de x
+fini=%f;
+while ~fini
+
+  fini=%t
+  for i=1:n-1
+    if fun(x(i),x(i+1)) then
+      tmp=x(i);
+      x(i)=x(i+1);
+      x(i+1)=tmp;
+      fini=%f
+    end
+  end
+end
+
+</PRE>
+Pour utiliser cette fonction, il faut d'abord d&eacute;finir une fonction
+d&eacute;finissant la relation d'ordre choisie, par exemple la relation d'ordre
+correspondant &agrave; la norme&nbsp;: 
+<PRE>
+
+function test=cmp_nrm(a,b)
+test=norm(a)&gt;norm(b); // test est booleen
+</PRE>
+Alors pour trier un vecteur de nombres complexes suivant leurs normes, il
+suffit de charger les deux fonctions et de faire par exemple&nbsp;: 
+<PRE>
+--&gt;bubble([1+%i,2,4*%i],cmp_nrm)
+ ans  =
+! 1.+ i   2.  4.i !
+
+</PRE>
+La fonction <TT>bubble</TT> a peu d'int&eacute;r&ecirc;t dans ce cas car le tri
+des vecteurs peut en g&eacute;n&eacute;ral se faire de mani&egrave;re plus
+efficace par vectorisation. Mais si la structure &agrave; trier contient des
+&eacute;l&eacute;ments autres que des simples scalaires, elle peut &ecirc;tre
+tr&egrave;s utile. Mais pour cela il faut modifier <TT>bubble</TT> pour qu'il
+accepte des structures. Une fa&ccedil;on de coder des structures dans Scilab
+est d'utiliser la commande <TT>list</TT>. Une structure peut contenir des
+objets h&eacute;t&eacute;rog&egrave;nes&nbsp;: des matrices, des cha&icirc;nes
+de caract&egrave;res, des bool&eacute;ens, des polyn&ocirc;mes, et m&ecirc;me
+d'autres structures. Les &eacute;l&eacute;ments d'une structure peuvent
+&ecirc;tre manipul&eacute;s presque comme ceux d'un vecteur, donc les
+modifications &agrave; faire dans <TT>bubble</TT> sont minimes&nbsp;; en
+particulier il suffit de remplacer <TT>size(x,&quot;*&quot;)</TT> par 
+<TT>size(x)</TT> car contrairement aux vecteurs, qui ne sont que des matrices
+particuli&egrave;res, les structures n'ont qu'une seule dimension. En utilisant
+la m&ecirc;me fonction <TT>cmp_nrm</TT>, on peut maintenant (ayant fait la
+modification dans <TT>bubble</TT>), trier des matrices selon leur norme comme
+suit&nbsp;: 
+<PRE>
+
+--&gt;ll=list(rand(2,3),[1,2;5,4],eye(2,2));
+
+--&gt;ln=bubble(ll,cmp_nrm)      
+ ln  = 
+       ln(1)
+ 
+!   1.    0. !
+!   0.    1. !
+ 
+       ln(2)
+ 
+!   0.84974    0.87821    0.56084 !
+!   0.68573    0.06837    0.66235 !
+ 
+       ln(3)
+ 
+!   1.    2. !
+!   5.    4. !
+
+ </PRE>
+<BR>
+Scilab contient des centaines de fonctions pr&eacute;programm&eacute;es pour
+r&eacute;soudre des probl&egrave;mes math&eacute;matiques sp&eacute;cifiques.
+Mais toutes les fonctions ne sont pas &eacute;crites en langage Scilab. Les
+fonctions tr&egrave;s &eacute;l&eacute;mentaires et les fonctions pour
+lesquelles la vitesse d'ex&eacute;cution est un facteur crucial (par exemple
+l'inversion d'une matrice) sont cod&eacute;es en dur (en C ou fortran). On
+appelle ces fonctions des primitives. <BR>
+<BR>
+L'utilisateur peut aussi &eacute;crire ses programmes en dur et les interfacer
+avec Scilab. Cela peut se faire en utilisant les fonctions <TT>link</TT> ou 
+<TT>addinter</TT> pour d&eacute;finir de nouvelles primitives.<BR>
+<BR>
+<!--TOC paragraph L'interface utilisateur-->
+
+<H5> L'interface utilisateur</H5>
+Scilab permet de d&eacute;velopper des applications interactives
+compl&egrave;tes. Pour cela, il propose des bo&icirc;tes de dialogues
+programmables. Par exemple&nbsp;: <PRE>
+
+--&gt;age=x_dialog([&quot;Quel est votre age ?&quot;],&quot;18&quot;)
+
+</PRE>
+
+<DIV ALIGN="center">
+<IMG SRC="dia.jpg" ALT="{short description of image}" WIDTH="195" HEIGHT="127"
+ BORDER="0"> 
+</DIV>
+et d'autres fonctions de ce type comme <TT>x_message</TT>, <TT>x_choose</TT>,
+etc...<BR>
+<BR>
+On peut aussi, de mani&egrave;re dynamique, rajouter des boutons et des menus
+aussi bien &agrave; la fen&ecirc;tre principale Scilab qu'aux fen&ecirc;tres
+graphiques. Dans les fen&ecirc;tres graphiques, on a acc&egrave;s aux
+&eacute;v&eacute;nements souris (position de la souris, bouton press&eacute;,
+etc...). Pour mieux comprendre l'&eacute;tendue de ces fonctionnalit&eacute;s,
+il suffit de lancer la d&eacute;mo Scicos qui est un &eacute;diteur
+sch&eacute;ma-bloc et un simulateur de syst&egrave;mes dynamiques dont
+l'&eacute;diteur est &eacute;crit enti&egrave;rement en Scilab.<BR>
+<BR>
+Il existe aussi une interface Tcl/Tk dans Scilab. Elle permet de
+d&eacute;velopper des GUIs en Tcl/Tk utilisables dans Scilab.<BR>
+<BR>
+<!--TOC paragraph Comment obtenir de l'aide-->
+<H5> Comment obtenir de l'aide</H5>
+Scilab contient un manuel en ligne. Pour obtenir de l'aide sur une fonction
+dont on conna&icirc;t le nom, par exemple <TT>plot2d</TT>, il suffit de
+faire&nbsp;: <PRE>
+
+--&gt;help plot2d 
+
+</PRE>
+La page du manuel correspondant &agrave; <TT>plot2d</TT> s'ouvre alors dans une
+fen&ecirc;tre. Si on ne conna&icirc;t pas le nom de la fonction, on peut faire
+une recherche par mots-cl&eacute;s, par exemple&nbsp;: 
+<PRE>
+
+--&gt;apropos plot
+
+</PRE>
+On obtient alors la liste des fonctions contenant <TT>plot</TT> comme
+mot-cl&eacute; (les mots-cl&eacute;s sont bien-entendu en anglais). On peut
+aussi acc&eacute;der &agrave; ces fonctionnalit&eacute;s en cliquant sur le
+bouton <TT>help</TT> de la fen&ecirc;tre principale de Scilab. Dans ce cas, on
+obtient, en plus, une liste souvent tr&egrave;s utile des fonctions
+class&eacute;es par th&egrave;me. Il existe aussi un ensemble de d&eacute;mos
+des applications types disponibles depuis les menus de la fen&ecirc;tre
+principale.<BR>
+<BR>
+Il existe aussi des manuels (en anglais) disponibles par ftp anonyme qui
+d&eacute;crivent diff&eacute;rentes applications de Scilab. <BR>
+<BR>
+<!--TOC paragraph Conclusion-->
+
+<H5> Conclusion</H5>
+Il est difficile de faire ici une pr&eacute;sentation compl&egrave;te de toutes
+les potentialit&eacute;s de Scilab. Certaines potentialit&eacute;s seront
+d&eacute;crites dans des articles futurs, en particulier le prochain article
+abordera la notion d'objet et de surcharge d'op&eacute;rateurs. <BR>
+<BR>
+Ramine NIKOUKHAH.<BR>
+<A HREF="mailto:scilab@inria.fr">scilab@inria.fr</A><BR>
+<A
+ HREF="http://www-rocq.inria.fr/scilab/">http://www-rocq.inria.fr/scilab/</A><BR>
+<A
+ HREF="ftp://ftp.inria.fr/INRIA/Projects/Meta2/Scilab/">ftp://ftp.inria.fr/INRIA/Projects/Meta2/Scilab/</A><BR>
+
+
+
+
+
+
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

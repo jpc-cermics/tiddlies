@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>penlaur</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli651.html" >next</a>] [<a 
+href="manualli649.html" >prev</a>] [<a 
+href="manualli649.html#tailmanualli649.html" >prev-tail</a>] [<a 
+href="#tailmanualli650.html">tail</a>] [<a 
+href="manualli607.html#manualli650.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x651-3875000"></a>penlaur</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx651-3875001"></a><a 
+ id="penlaur"></a><span 
+class="cmtt-10x-x-109">penlaur </span>&#x2013;                                                         Laurent coefficients of matrix pencil<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x651-3876000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-802">
+&#x00A0;&#x00A0;[Si,Pi,Di,order]=penlaur(Fs)
+&#x00A0;<br />&#x00A0;&#x00A0;[Si,Pi,Di,order]=penlaur(E,A)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x651-3877000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Fs</span>: a regular pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s*E-A</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">E, A</span>: two real square matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Si,Pi,Di</span>: three real square matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">order</span>: integer</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x651-3878000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">penlaur</span></span></span> computes the first Laurent coefficients of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(s*E-A)^-1</span></span></span> at
+infinity.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(s*E-A)^-1</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;Si/s</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;Pi</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;s*Di</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span></span></span> at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> = infinity.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">order</span></span></span> = order of the
+singularity (order=index-1). The matrix pencil <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Fs=s*E-A</span></span></span> should be invertible. For a index-zero
+pencil, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Pi,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Di,...</span></span></span> are zero and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Si=inv(E)</span></span></span>. For a index-one pencil (order=0),<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Di</span></span></span> =0. For
+higher-index pencils, the terms <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;-s^2</span><span 
+class="cmtt-10x-x-109">&#x00A0;Di(2),</span><span 
+class="cmtt-10x-x-109">&#x00A0;-s^3</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Di(3),...</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> are given by:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Di(2)=Di*A*Di</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Di(3)=Di*A*Di*A*Di</span></span></span> (up to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Di(order)</span></span></span>).
+</p>
+<!--l. 47--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x651-3879000"></a><span 
+class="cmbx-10x-x-109">Remark</span></span>
+   Experimental version: troubles when bad conditioning of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">so*E-A</span></span></span>
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x651-3880000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb508"><a 
+ id="x651-3880007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F=randpencil([],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">],[])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x651-3880009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">F</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[E,A]=pen2ea(F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x651-3880011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Si,Pi,Di]=penlaur(F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x651-3880013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Bfs,Bis,chis]=glever(F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x651-3880015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(coeff(Bis,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">Di,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x651-3881000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli629.html#glever">glever</a>    <a 
+href="manualli649.html#pencan">pencan</a>    <a 
+href="manualli664.html#rowshuff">rowshuff</a>
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x651-3882000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F. Delebecque INRIA(1988,1990) ;
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli651.html" >next</a>] [<a 
+href="manualli649.html" >prev</a>] [<a 
+href="manualli649.html#tailmanualli649.html" >prev-tail</a>] [<a 
+href="manualli650.html" >front</a>] [<a 
+href="manualli607.html#manualli650.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli650.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,267 @@
+-nsp->//----------
+-nsp->function [At,b,c,K]=rls(P,q)
+==>  [m,n]=size(P)
+==>  b = -sparse([1;1;zeros(n,1)]);
+==>  
+==>  At = [-1,zeros(1,n+1);
+==>	zeros(m,2),P];
+==>  c=[0;q];
+==>  K.q = 1+m;
+==>  At=[At; 0,-1,zeros(1,n);
+==>      zeros(1,n+2);
+==>      zeros(n,2),-eye(n,n)];
+==>  At= sparse(At);
+==>  c = sparse([c;0;1;zeros(n,1)]);
+==>  K.q = [K.q,2+n];
+==>endfunction;
+-nsp->P=[3,1,4;0,1,1;-2,5,3;1,4,5];
+-nsp->q=[0;2;1;3];
+-nsp->[At,b,c,K]=rls(P,q);
+-nsp->[x,y,info]=sedumi(At,b,c,K);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 5, order n = 5, dim = 11, blocks = 3
+nnz(A) = 16 + 0, nnz(ADA) = 23, nnz(L) = 14
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            4.00E+00 0.000
+  1 :  -3.10E+00 3.01E-01 0.000 0.0751 0.9900 0.9900   1.55  1  1  3.4E-01
+  2 :  -3.33E+00 6.02E-03 0.000 0.0200 0.9900 0.9900   1.03  1  1  6.2E-03
+  3 :  -3.33E+00 1.31E-05 0.000 0.0022 0.9990 0.9990   1.00  1  1  1.3E-05
+  4 :  -3.33E+00 1.26E-06 0.367 0.0958 0.9900 0.9900   1.00  1  1  1.3E-06
+  5 :  -3.33E+00 3.81E-08 0.000 0.0303 0.9900 0.9900   1.00  1  1  3.8E-08
+  6 :  -3.33E+00 2.24E-09 0.425 0.0588 0.9902 0.9900   1.00  1  1  2.3E-09
+
+iter seconds digits       c*x               b*y
+  6      0.0   9.4 -3.3329085951e+00 -3.3329085963e+00
+|Ax-b| =   9.5e-10, [Ay-c]_+ =   2.1E-09, |x|=  2.0e+00, |y|=  2.5e+00
+
+Detailed timing (sec)
+   Pre          IPM          Post
+8.000E-03    2.800E-02    4.000E-03    
+Max-norms: ||b||=1, ||c|| = 3,
+Cholesky |add|=0, |skip| = 0, ||L.L|| = 1.
+-nsp->if norm(eigK(x,K) - [0;1.4142;0;1.4142]) > 1.e-4 then pause;end 
+-nsp->if norm(eigK(c + (-At*y),K) - [0;3.2307;0;1.4827]) > 1.e-4 then pause;end 
+-nsp->//----------
+-nsp->a1 = zeros(1,length(y)); a1(3)=1;
+-nsp->c=[sparse(-0.1);c];
+-nsp->A1t=[sparse(a1);At];
+-nsp->K.l=1;
+-nsp->[x,y,info]=sedumi(A1t,b,c,K);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 5, order n = 6, dim = 12, blocks = 3
+nnz(A) = 17 + 0, nnz(ADA) = 23, nnz(L) = 14
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            3.32E+00 0.000
+  1 :  -3.04E+00 6.24E-01 0.000 0.1877 0.9000 0.9000   1.54  1  1  7.8E-01
+  2 :  -3.26E+00 1.22E-01 0.000 0.1961 0.9000 0.9000   1.23  1  1  1.4E-01
+  3 :  -3.35E+00 1.16E-02 0.000 0.0947 0.9900 0.9900   1.09  1  1  1.2E-02
+  4 :  -3.34E+00 3.59E-03 0.000 0.3101 0.9000 0.9000   1.04  1  1  3.7E-03
+  5 :  -3.34E+00 6.57E-04 0.000 0.1831 0.9000 0.9000   1.02  1  1  6.7E-04
+  6 :  -3.34E+00 1.54E-05 0.000 0.0235 0.9900 0.9903   1.01  1  1  1.8E-05
+  7 :  -3.34E+00 1.21E-06 0.262 0.0784 0.6644 0.9450   1.00  1  1  4.2E-06
+  8 :  -3.34E+00 3.16E-08 0.000 0.0261 0.9900 0.9805   1.00  1  1  1.1E-07
+  9 :  -3.34E+00 9.38E-09 0.000 0.2973 0.9000 0.9000   1.00  1  1  3.3E-08
+ 10 :  -3.34E+00 1.73E-09 0.000 0.1847 0.9000 0.9000   1.00  1  1  6.0E-09
+
+iter seconds digits       c*x               b*y
+ 10      0.0   inf -3.3382652145e+00 -3.3382652122e+00
+|Ax-b| =   8.4e-09, [Ay-c]_+ =   3.4E-10, |x|=  2.0e+00, |y|=  2.5e+00
+
+Detailed timing (sec)
+   Pre          IPM          Post
+0.000E+00    3.600E-02    0.000E+00    
+Max-norms: ||b||=1, ||c|| = 3,
+Cholesky |add|=0, |skip| = 0, ||L.L|| = 1.
+-nsp->if norm(eigK(c +(-A1t*y),K) -[0;0;3.2307;0;1.4904])> 1.e-4 then pause;end 
+-nsp->//----------
+-nsp->clear K;
+-nsp->c=[0,1,0];
+-nsp->b=sqrt(2);
+-nsp->A=[0,0,1];
+-nsp->K.r = 3;
+-nsp->[x,y,info]=sedumi(A,b,c,K);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 1, order n = 3, dim = 4, blocks = 2
+nnz(A) = 1 + 0, nnz(ADA) = 1, nnz(L) = 1
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            7.62E+00 0.000
+  1 :   7.25E-01 6.19E-01 0.000 0.0812 0.9900 0.9900   0.88  1  1  5.5E-01
+  2 :   2.75E-01 5.56E-02 0.000 0.0898 0.9900 0.9900   0.32  1  1  5.3E-02
+  3 :   9.61E-02 4.19E-03 0.000 0.0755 0.9900 0.9900   0.72  1  1  4.7E-03
+  4 :   6.54E-02 1.36E-03 0.000 0.3235 0.9000 0.9000   0.34  1  1  2.7E-03
+  5 :   3.92E-02 3.34E-04 0.000 0.2463 0.9000 0.9000   0.58  1  1  8.5E-04
+  6 :   2.63E-02 9.79E-05 0.000 0.2929 0.9000 0.9000   0.51  1  1  3.5E-04
+  7 :   1.74E-02 2.74E-05 0.000 0.2803 0.9000 0.9000   0.34  1  1  1.8E-04
+  8 :   1.11E-02 7.59E-06 0.000 0.2767 0.9000 0.9000   0.52  1  1  6.5E-05
+  9 :   7.02E-03 1.84E-06 0.000 0.2427 0.9000 0.9000   0.41  1  1  2.6E-05
+ 10 :   4.45E-03 4.60E-07 0.000 0.2499 0.9000 0.9000   0.41  1  1  1.0E-05
+ 11 :   2.82E-03 1.18E-07 0.000 0.2568 0.9000 0.9000   0.43  1  1  4.1E-06
+ 12 :   1.80E-03 3.11E-08 0.000 0.2631 0.9000 0.9000   0.45  1  1  1.7E-06
+ 13 :   1.15E-03 8.22E-09 0.000 0.2643 0.9000 0.9000   0.47  1  1  6.8E-07
+ 14 :   7.46E-04 2.25E-09 0.000 0.2736 0.9000 0.9000   0.47  1  1  2.9E-07
+ 15 :   4.87E-04 6.29E-10 0.000 0.2799 0.9000 0.9000   0.50  1  1  1.2E-07
+ 16 :   3.29E-04 1.92E-10 0.000 0.3052 0.9000 0.9000   0.40  1  1  6.1E-08
+ 17 :   2.18E-04 5.86E-11 0.000 0.3052 0.9000 0.9000   0.55  1  1  2.4E-08
+ 18 :   1.45E-04 1.69E-11 0.000 0.2887 0.9000 0.9000   0.38  1  1  1.2E-08
+ 19 :   9.61E-05 5.03E-12 0.000 0.2975 0.9000 0.9000   0.52  1  1  4.7E-09
+
+iter seconds digits       c*x               b*y
+ 19      0.1   inf  6.5277715255e-05  9.6054366733e-05
+|Ax-b| =   2.1e-09, [Ay-c]_+ =   2.3E-09, |x|=  1.6e+04, |y|=  6.8e-05
+
+Detailed timing (sec)
+   Pre          IPM          Post
+4.001E-03    5.600E-02    0.000E+00    
+Max-norms: ||b||=1, ||c|| = 0,
+Cholesky |add|=0, |skip| = 0, ||L.L|| = 1.
+-nsp->//---------
+-nsp->clear K;
+-nsp->c=[0,0,1,0];
+-nsp->b=[sqrt(2);1.e7];
+-nsp->A=[0,0,0,1;1,1,0,0];
+-nsp->K.l = 1; K.r = 3;
+-nsp->[x,y,info]=sedumi(A,b,c,K);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 2, order n = 4, dim = 5, blocks = 2
+nnz(A) = 4 + 0, nnz(ADA) = 4, nnz(L) = 3
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            1.07E+07 0.000
+  1 :  -1.70E+05 6.51E+05 0.000 0.0607 0.9900 0.9900   1.81  1  1  1.1E+00
+  2 :  -6.43E+01 2.36E+02 0.189 0.0004 0.9999 0.9999   1.04  1  1  7.1E-01
+  3 :   5.24E-01 8.06E-01 0.000 0.0034 0.9990 0.9990   1.00  1  1  4.2E-01
+  4 :   5.94E-07 6.03E-07 0.221 0.0000 1.0000 1.0000   1.00  1  1  4.8E-04
+  5 :   6.64E-08 4.70E-08 0.000 0.0779 0.9900 0.9900   1.00  4  4  3.6E-05
+  6 :   1.05E-07 8.50E-09 0.000 0.1810 0.9108 0.9000   1.00  5  4  5.9E-06
+  7 :   1.05E-07 3.22E-09 0.000 0.3789 0.9000 0.7688   1.00  4  4  2.3E-06
+  8 :   1.05E-07 3.18E-09 0.000 0.9860 0.9000 0.0432   1.00  4  4  2.3E-06
+  9 :   1.05E-07 1.78E-09 0.000 0.5614 0.9000 0.4425   1.00  4  4  1.3E-06
+Run into numerical problems.
+
+iter seconds digits       c*x               b*y
+  9      0.1   inf  9.8736248764e-08  1.0487077475e-07
+|Ax-b| =   1.1e-05, [Ay-c]_+ =   4.1E-16, |x|=  9.9e+06, |y|=  1.5e-07
+
+Detailed timing (sec)
+   Pre          IPM          Post
+4.000E-03    6.000E-02    0.000E+00    
+Max-norms: ||b||=10000000, ||c|| = 0,
+Cholesky |add|=1, |skip| = 0, ||L.L|| = 500000.
+-nsp->//----------
+-nsp->function [At,b,c,K]=specfac(b)
+==>  m=length(b);
+==>  c= diag([m-1:-1:0]);
+==>  c= sparse(c(:));
+==>  e =ones(m,1);
+==>  At = sparse([],[],[m^2,m]);
+==>  for k=1:m 
+==>    xx= diag(e,k-1);
+==>    xx=xx(1:m,1:m)
+==>    At(:,k)= sparse(xx(:));
+==>  end
+==>  K.s=m
+==>endfunction;
+-nsp->b=[2;0.2;-0.3];
+-nsp->[At,b,c,K]=specfac(b);
+-nsp->[x,y,info]=sedumi(At,b,c,K);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 3, order n = 4, dim = 10, blocks = 2
+nnz(A) = 6 + 0, nnz(ADA) = 9, nnz(L) = 6
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            1.69E+01 0.000
+  1 :  -2.44E-01 3.91E+00 0.000 0.2312 0.9000 0.9000   1.39  1  1  2.0E+00
+  2 :   1.86E-01 3.22E-01 0.000 0.0824 0.9900 0.9900   1.31  1  1  4.0E-01
+  3 :   1.23E-01 1.12E-04 0.000 0.0003 0.9999 0.9999   0.99  1  1  2.6E-04
+  4 :   1.23E-01 5.18E-06 0.000 0.0463 0.9900 0.9900   1.00  1  1  1.2E-05
+  5 :   1.23E-01 2.36E-07 0.000 0.0455 0.9900 0.9900   1.00  1  1  6.8E-07
+  6 :   1.23E-01 1.90E-08 0.327 0.0806 0.9900 0.9900   1.00  2  2  5.5E-08
+  7 :   1.23E-01 8.16E-10 0.000 0.0429 0.9906 0.9900   0.99  2  2  2.2E-09
+
+iter seconds digits       c*x               b*y
+  7      0.0   8.5  1.2273256559e-01  1.2273256524e-01
+|Ax-b| =   1.1e-10, [Ay-c]_+ =   1.4E-10, |x|=  2.0e+00, |y|=  7.6e-01
+
+Detailed timing (sec)
+   Pre          IPM          Post
+4.000E-03    2.000E-02    0.000E+00    
+Max-norms: ||b||=2, ||c|| = 2,
+Cholesky |add|=0, |skip| = 0, ||L.L|| = 1.
+-nsp->[m,n]=size(At);
+-nsp->[spec(matrix(x,n,n)), eigK(x,K)];
+-nsp->//-----------------------------
+-nsp->function [At,b,c,K] = toepest(P)
+==>// [At,b,c,K] = toepest(P)
+==>// Creates dual standard form for Toeplitz-covariance estimation
+==>  m = size(P,1);
+==>  // ---------- maximize y(m+1) ----------
+==>  b = [spcol_create(m,1); sparse(1)];
+==>  // ----- Let e be all-1, and allocate space for the A-matrix -----
+==>  e = ones(m,1);
+==>  K.q = [1 + m*(m+1)/2];
+==>  K.xcomplex = 2:K.q(1);      //Norm-bound entries are complex valued
+==>  At = sparse([],[],[K.q(1) + m^2,m+1]);
+==>  // ---------- constraints ----------
+==>  // -y(m+1) >= norm( vec(P) - sum(y_i * Ti) )     (Qcone)
+==>  // sum(y_i * Ti) is psd                          (Scone)
+==>  // ---------------------------------
+==>  xx=(2:(m+1))';
+==>  At(:,1) = [sparse([xx,ones(size(xx))],ones(size(xx)),[K.q(1),1]); sparse(- eye(m,m)(:))];
+==>  c = [0; diag(P)];
+==>  firstk = m+2;
+==>  for k = 1:(m-1)
+==>    lastk = firstk + m-k-1;
+==>    // Ti = spdiags(e,k,m,m);
+==>    Ti = diag(e,k);Ti=Ti(1:m,1:m);Ti=Ti(:);
+==>    xx=(firstk:lastk)';
+==>    At(:,k+1) = [sqrt(2) * sparse([xx,ones(size(xx))],ones(size(xx)),[K.q(1),1]);sparse( -2*(Ti))];
+==>    c = [c; sqrt(2) * diag(P,k)];
+==>    firstk = lastk + 1;
+==>  end
+==>  At(:,m+1) = [sparse(1); spcol_create(K.q(1) + m^2-1,1)];   // "objective" variable y(m+1)
+==>  c = [c; zeros(m^2,1)];              // all-0 in the psd-part
+==>  K.s = [m];
+==>  K.scomplex=1;                       
+==>  //Complex Hermitian PSD
+==>  // ---------- y(2:m) complex, y(1) and y(m+1) real ----------
+==>  K.ycomplex = 2:m;
+==>endfunction;
+-nsp->P=[4, 1+2*%i, 3-%i; 1-2*%i, 3.5, 0.8+ 2.3*%i; 3+%i, 0.8-2.3*%i,4];
+-nsp->[At,b,c,K] = toepest(P);
+-nsp->[x,y,info]= sedumi(At,b,c,K);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 6, order n = 6, dim = 32, blocks = 3
+nnz(A) = 19 + 0, nnz(ADA) = 36, nnz(L) = 21
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            5.93E+00 0.000
+  1 :  -3.42E+00 1.12E+00 0.000 0.1895 0.9000 0.9000   0.99  1  1  1.8E+00
+  2 :  -1.38E+00 1.12E-01 0.000 0.0998 0.9900 0.9900   1.23  1  1  1.8E-01
+  3 :  -1.45E+00 2.96E-03 0.000 0.0264 0.9900 0.9900   0.98  1  1  4.6E-03
+  4 :  -1.45E+00 7.72E-04 0.000 0.2607 0.9000 0.9000   1.00  1  1  1.2E-03
+  5 :  -1.45E+00 6.34E-05 0.000 0.0820 0.9900 0.9900   1.00  1  1  8.8E-05
+  6 :  -1.45E+00 8.46E-06 0.005 0.1336 0.9000 0.9076   1.00  1  1  1.5E-05
+  7 :  -1.45E+00 7.67E-07 0.203 0.0907 0.9000 0.9264   1.00  1  1  3.3E-06
+  8 :  -1.45E+00 1.27E-07 0.000 0.1650 0.9000 0.8523   1.00  1  1  6.0E-07
+  9 :  -1.45E+00 4.32E-09 0.000 0.0341 0.9900 0.9900   1.00  1  1  2.0E-08
+ 10 :  -1.45E+00 9.16E-10 0.000 0.2119 0.9000 0.9000   1.00  2  2  4.3E-09
+
+iter seconds digits       c*x               b*y
+ 10      0.0   inf -1.4508035251e+00 -1.4508035218e+00
+|Ax-b| =   4.3e-09, [Ay-c]_+ =   0.0E+00, |x|=  1.7e+00, |y|=  5.6e+00
+
+Detailed timing (sec)
+   Pre          IPM          Post
+4.001E-03    4.000E-02    0.000E+00    
+Max-norms: ||b||=1, ||c|| = 4,
+Cholesky |add|=0, |skip| = 0, ||L.L|| = 1170.96.
+-nsp->z= c+ (-At*y);
+-nsp->Z=mat(z(K.q+1:length(z)));
+-nsp->Z=(Z+Z')/2;
+-nsp->Zex=[4.2827,0.8079+1.7342*%i, 2.5574 - 0.7938*%i; 
+==>     0.8079-1.7342*%i, 4.2827, 0.8079+1.7342*%i;
+==>     2.5574 + 0.7938*%i, 0.8079-1.7342*%i,4.2827];
+-nsp->if norm(Zex-Z) > 1.e-3 then pause;end 

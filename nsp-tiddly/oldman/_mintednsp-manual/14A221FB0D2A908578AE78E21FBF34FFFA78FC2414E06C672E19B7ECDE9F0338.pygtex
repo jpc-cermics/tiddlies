@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=diag([\nspnumber{3}\nspoperator{,}\nspoperator{-}\nspnumber{3}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspoperator{-}\nspnumber{4}\nspoperator{,}\nspnumber{8}])\nspoperator{;}
+B=[eye(\nspnumber{3},\nspnumber{3})\nspoperator{;}zeros(\nspnumber{3},\nspnumber{3})]\nspoperator{;}
+C=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+D=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+rand(\nspstring{'seed'},\nspnumber{0})\nspoperator{;}w=ss2ss(syslin(\nspstring{'c'},A,B,C,D),rand(\nspnumber{6},\nspnumber{6}))\nspoperator{;}
+[A,B,C,D]=abcd(w)\nspoperator{;}
+B=[B\nspoperator{,}matrix(\nspnumber{1}\nspoperator{:}\nspnumber{18},\nspnumber{6},\nspnumber{3})]\nspoperator{;}D=[D\nspoperator{,}matrix(\nspoperator{-}(\nspnumber{1}\nspoperator{:}\nspnumber{6}),\nspnumber{2},\nspnumber{3})]\nspoperator{;}
+reject=\nspnumber{1}\nspoperator{:}\nspnumber{3}\nspoperator{;}
+Sys=syslin(\nspstring{'c'},A,B,C,D)\nspoperator{;}
+N1=[\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{3}]\nspoperator{;}C1=\nspoperator{-}N1\nspoperator{*}C\nspoperator{;}D1=\nspoperator{-}N1\nspoperator{*}D\nspoperator{;}
+nw=length(reject)\nspoperator{;}nu=size(Sys(\nspstring{'B'}),\nspnumber{2})\nspoperator{-}nw\nspoperator{;}
+ny=size(Sys(\nspstring{'C'}),\nspnumber{1})\nspoperator{;}nz=size(C1,\nspnumber{1})\nspoperator{;}
+[UIobs,J,N]=ui_observer(Sys,reject,C1,D1)\nspoperator{;}
+W=[zeros(nu,nw)\nspoperator{,}eye(nu,nu)\nspoperator{;}Sys]\nspoperator{;}UIobsW=UIobs\nspoperator{*}W\nspoperator{;}
+\nspcomment{//(w,u) --$>$ z=UIobs*[0,I;Sys](w,u)}
+clean(ss2tf(UIobsW))\nspoperator{;}
+wu_to_z=syslin(\nspstring{'c'},A,B,C1,D1)\nspoperator{;}clean(ss2tf(wu_to_z))\nspoperator{;}
+clean(ss2tf(wu_to_z)\nspoperator{-}ss2tf(UIobsW),\nspnumber{1.E-7})
+\nspcomment{/////2nd example//////}
+nx=\nspnumber{2}\nspoperator{;}ny=\nspnumber{3}\nspoperator{;}nwu=\nspnumber{2}\nspoperator{;}Sys=ssrand(ny,nwu,nx)\nspoperator{;}
+C1=rand(\nspnumber{1},nx)\nspoperator{;}D1=[\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+UIobs=ui_observer(Sys,\nspnumber{1},C1,D1)\nspoperator{;}
+\end{Verbatim}

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.2.3 Global and Local Variables</TITLE>
+<META NAME="description" CONTENT="3.2.3 Global and Local Variables">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node41.html">
+<LINK REL="previous" HREF="node39.html">
+<LINK REL="up" HREF="node37.html">
+<LINK REL="next" HREF="node41.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html766"
+ HREF="node41.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html762"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html756"
+ HREF="node39.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html764"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html765"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html767"
+ HREF="node41.html">3.2.4 Special Function Commands</A>
+<B> Up:</B> <A NAME="tex2html763"
+ HREF="node37.html">3.2 Defining and Using</A>
+<B> Previous:</B> <A NAME="tex2html757"
+ HREF="node39.html">3.2.2 Loading Functions</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00423000000000000000">
+3.2.3 Global and Local Variables</A>
+</H2>
+If a variable in a function is not defined (and is not among the input
+parameters) then it takes the value of a variable having the same name in the
+calling environment. This variable however remains local in the sense that
+modifying it within the function does not alter the variable in the calling
+environment unless <TT>resume</TT> is used (see below). Functions
+can be invoked with less input or output parameters. Here is an example:
+<PRE>
+function [y1,y2]=f(x1,x2)
+y1=x1+x2
+y2=x1-x2
+</PRE><PRE>
+--&gt;[y1,y2]=f(1,1)
+ y2  =
+    0.  
+ y1  =
+    2.  
+
+--&gt;f(1,1)
+ ans  =
+    2.
+
+--&gt;f(1)
+y1=x1+x2;
+        !--error     4 
+undefined variable : x2                      
+at line       2 of function f
+
+--&gt;x2=1;
+
+--&gt;[y1,y2]=f(1)
+ y2  =
+    0.  
+ y1  =
+    2.  
+ 
+--&gt;f(1)
+ ans  =
+ 
+    2.
+</PRE>
+<P>
+Note that it is not possible to call a function if one of the
+parameter of the calling sequence is not defined:
+
+<P>
+<PRE>
+function [y]=f(x1,x2)
+if x1&lt;0 then y=x1, else y=x2;end
+</PRE><PRE>
+--&gt;f(-1)
+ ans  =
+ 
+  - 1.  
+ 
+--&gt;f(-1,x2)
+       !--error     4 
+undefined variable : x2  
+
+--&gt;f(1)
+ undefined variable : x2                      
+at line       2 of function    f     called by :  
+f(1)
+
+--&gt;x2=3;f(1)
+
+--&gt;f(1)
+ ans  =
+ 
+    3
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html766"
+ HREF="node41.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html762"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html756"
+ HREF="node39.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html764"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html765"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html767"
+ HREF="node41.html">3.2.4 Special Function Commands</A>
+<B> Up:</B> <A NAME="tex2html763"
+ HREF="node37.html">3.2 Defining and Using</A>
+<B> Previous:</B> <A NAME="tex2html757"
+ HREF="node39.html">3.2.2 Loading Functions</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

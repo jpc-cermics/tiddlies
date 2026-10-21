@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// A simple example with fsolve}
+a=[\nspnumber{1}\nspoperator{,}\nspnumber{7}\nspoperator{;}\nspnumber{2}\nspoperator{,}\nspnumber{8}]\nspoperator{;}b=[\nspnumber{10}\nspoperator{;}\nspnumber{11}]\nspoperator{;}
+deff(\nspstring{'[y]=fsol1(x)'},\nspstring{'y=a*x+b'})\nspoperator{;}
+deff(\nspstring{'[y]=fsolj1(x)'},\nspstring{'y=a'})\nspoperator{;}
+xres=fsolve([\nspnumber{100}\nspoperator{;}\nspnumber{100}],fsol1)\nspoperator{;}
+a\nspoperator{*}xres\nspoperator{+}b
+xres=fsolve([\nspnumber{100}\nspoperator{;}\nspnumber{100}],fsol1,fsolj1)\nspoperator{;}
+a\nspoperator{*}xres\nspoperator{+}b
+\nspcomment{// See routines/default/Ex-fsolve.f}
+xres=fsolve([\nspnumber{100}\nspoperator{;}\nspnumber{100}],\nspstring{'fsol1'},\nspstring{'fsolj1'},\nspnumber{1.E-7})\nspoperator{;}
+a\nspoperator{*}xres\nspoperator{+}b
+\end{Verbatim}

@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// interpolation of cos(x)cos(y) with randomly choosen interpolation points}
+n=\nspnumber{150}\nspoperator{;}\nspcomment{// nb of interpolation points}
+xy=grand(n,\nspnumber{2},\nspstring{"unf"},\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi)\nspoperator{;}
+z=cos(xy(\nspoperator{:},\nspnumber{1}))\nspoperator{ .*}cos(xy(\nspoperator{:},\nspnumber{2}))\nspoperator{;}
+xyz=[xy\nspoperator{,}z]\nspoperator{;}
+tl_coef=cshep2d(xyz)\nspoperator{;}
+\nspcomment{// evaluation on a grid}
+m=\nspnumber{30}\nspoperator{;}
+xx=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,m)\nspoperator{;}
+[X,Y]=ndgrid(xx,xx)\nspoperator{;}
+Z=eval_cshep2d(X,Y,tl_coef)\nspoperator{;}
+xbasc()
+plot3d(xx,xx,Z,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{4}])
+param3d1(xy(\nspoperator{:},\nspnumber{1}),xy(\nspoperator{:},\nspnumber{2}),list(z,\nspoperator{-}\nspnumber{9}),flag = [\nspnumber{0}\nspoperator{,}\nspnumber{0}])
+xtitle(\nspstring{"Cubic Shepard Interpolation of cos(x)cos(y) with randomly choosen interpolation points"})
+legends(\nspstring{"interpolation points"},\nspoperator{-}\nspnumber{9},\nspnumber{1})
+xselect()
+\end{Verbatim}

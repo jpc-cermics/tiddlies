@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example 1: plot of the 6 first Legendre polynomials on (-1,1)}
+l=nearfloat(\nspstring{"pred"},\nspnumber{1})\nspoperator{;}
+x=linspace(\nspoperator{-}l,l,\nspnumber{200})\nspoperator{'}\nspoperator{;}
+y=legendre(\nspnumber{0}\nspoperator{:}\nspnumber{5},\nspnumber{0},x)\nspoperator{;}
+xbasc()
+plot2d(x,y\nspoperator{'},leg = \nspstring{"p0@p1@p2@p3@p4@p5@p6"})
+xtitle(\nspstring{"the 6 th first Legendre polynomials"})
+\nspcomment{// example 2: plot of the associated Legendre functions of degree 5}
+l=nearfloat(\nspstring{"pred"},\nspnumber{1})\nspoperator{;}
+x=linspace(\nspoperator{-}l,l,\nspnumber{200})\nspoperator{'}\nspoperator{;}
+y=legendre(\nspnumber{5},\nspnumber{0}\nspoperator{:}\nspnumber{5},x,\nspstring{"norm"})\nspoperator{;}
+xbasc()
+plot2d(x,y\nspoperator{'},leg = \nspstring{"p5,0@p5,1@p5,2@p5,3@p5,4@p5,5"})
+xtitle(\nspstring{"the (normalised) associated Legendre functions of degree 5"})
+\nspcomment{// example 3: define then plot a spherical harmonic}
+\nspcomment{// 3-1: define the function Ylm}
+\nspkeyword{function} y=\nspfunction{Y}(l,m,theta,phi)
+  \nspcomment{// theta may be a scalar or a row vector}
+  \nspcomment{// phi may be a scalar or a column vector}
+  \nspkeyword{if} m\nspoperator{ >= }\nspnumber{0} \nspkeyword{then}
+    y=(\nspoperator{-}\nspnumber{1})\nspoperator{^}m\nspoperator{/}(sqrt(\nspnumber{2}\nspoperator{*}%pi))\nspoperator{*}exp(%i\nspoperator{*}m\nspoperator{*}phi)\nspoperator{*}legendre(l,m,cos(theta),\nspstring{"norm"})
+  \nspkeyword{else}
+    y=\nspnumber{1}\nspoperator{/}(sqrt(\nspnumber{2}\nspoperator{*}%pi))\nspoperator{*}exp(%i\nspoperator{*}m\nspoperator{*}phi)\nspoperator{*}legendre(l,\nspoperator{-}m,cos(theta),\nspstring{"norm"})
+  \nspkeyword{end}
+\nspkeyword{endfunction}
+\nspcomment{// 3.2: define another useful function}
+\nspkeyword{function} [x,y,z]=\nspfunction{sph2cart}(theta,phi,r)
+  \nspcomment{// theta row vector      1 x nt}
+  \nspcomment{// phi   column vector  np x 1}
+  \nspcomment{// r     scalar or np x nt matrix (r(i,j) the length at phi(i) theta(j))}
+  x=r\nspoperator{ .*}(cos(phi)\nspoperator{*}sin(theta))\nspoperator{;}
+  y=r\nspoperator{ .*}(sin(phi)\nspoperator{*}sin(theta))\nspoperator{;}
+  z=r\nspoperator{ .*}(ones(phi)\nspoperator{*}cos(theta))\nspoperator{;}
+\nspkeyword{endfunction}
+\nspcomment{// 3-3 plot Y31(theta,phi)}
+l=\nspnumber{3}\nspoperator{;}m=\nspnumber{1}\nspoperator{;}
+theta=linspace(\nspnumber{0.1},%pi\nspoperator{-}\nspnumber{0.1},\nspnumber{60})\nspoperator{;}
+phi=linspace(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,\nspnumber{120})\nspoperator{'}\nspoperator{;}
+f=Y(l,m,theta,phi)\nspoperator{;}
+[x1,y1,z1]=sph2cart(theta,phi,abs(f))\nspoperator{;}[xf1,yf1,zf1]=nf3d(x1,y1,z1)\nspoperator{;}
+[x2,y2,z2]=sph2cart(theta,phi,abs(real(f)))\nspoperator{;}[xf2,yf2,zf2]=nf3d(x2,y2,z2)\nspoperator{;}
+[x3,y3,z3]=sph2cart(theta,phi,abs(imag(f)))\nspoperator{;}[xf3,yf3,zf3]=nf3d(x3,y3,z3)\nspoperator{;}
+xbasc()
+subplot(\nspnumber{1},\nspnumber{3},\nspnumber{1})
+plot3d(xf1,yf1,zf1,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])\nspoperator{;}xtitle(\nspstring{"|Y31(theta,phi)|"})
+subplot(\nspnumber{1},\nspnumber{3},\nspnumber{2})
+plot3d(xf2,yf2,zf2,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])\nspoperator{;}xtitle(\nspstring{"|Real(Y31(theta,phi))|"})
+subplot(\nspnumber{1},\nspnumber{3},\nspnumber{3})
+plot3d(xf3,yf3,zf3,flag = [\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}])\nspoperator{;}xtitle(\nspstring{"|Imag(Y31(theta,phi))|"})
+\end{Verbatim}

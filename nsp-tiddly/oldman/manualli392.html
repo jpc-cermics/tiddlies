@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>contourf</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli393.html" >next</a>] [<a 
+href="manualli391.html" >prev</a>] [<a 
+href="manualli391.html#tailmanualli391.html" >prev-tail</a>] [<a 
+href="#tailmanualli392.html">tail</a>] [<a 
+href="manualli370.html#manualli392.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x393-2288000"></a>contourf</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx393-2288001"></a><a 
+ id="contourf"></a><span 
+class="cmtt-10x-x-109">contourf </span>&#x2013;                                               filled level curves of a surface on a 2D plot<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x393-2289000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-518">
+&#x00A0;&#x00A0;contourf(x,y,z,nz,[style,strf,leg,rect,nax])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x393-2290000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,y</span>: two real row vectors of size n1 and n2: the grid.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">z</span>: real matrix of size (n1,n2), the values of the function.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nz</span>: the level values or the number of levels.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz</span></span></span> is an integer, its value gives the number of level curves equally spaced from zmin
+          to zmax as follows:
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-519">
+          &#x00A0;&#x00A0;z=&#x00A0;zmin&#x00A0;+&#x00A0;(1:nz)*(zmax-zmin)/(nz+1)
+</div>
+          <!--l. 37--><p class="nopar" >Note that the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zmin</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zmax</span></span></span> levels are not drawn (generically they are reduced to
+          points) but they can be added with
+                                                                                    
+
+                                                                                    
+</p>
+          <div class="verbatim" id="verbatim-520">
+          &#x00A0;&#x00A0;[im,jm]&#x00A0;=&#x00A0;find(z&#x00A0;==&#x00A0;zmin);&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;//&#x00A0;or&#x00A0;zmax
+          &#x00A0;<br />&#x00A0;&#x00A0;plot2d(x(im)&#x0027;,y(jm)&#x0027;,-9,&#x0022;000&#x0022;)
+</div>
+          <!--l. 42--><p class="nopar" >
+          </p></li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz</span></span></span> is a vector, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz(i)</span></span></span> gives the value of the ith level curve.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">style,strf,leg,rect,nax</span>: see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot2d</span></span></span>. The argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">style</span></span></span> gives the colors
+     which are to be used for level curves. It must have the same size as the number of
+     levels.</li></ul>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x393-2291000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 48--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contourf</span></span></span> paints surface between two consecutives level curves of a surface <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z=f(x,y)</span></span></span> on a 2D plot.
+The values of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f(x,y)</span></span></span> are given by the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z</span></span></span> at the grid points defined by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>. You can
+change the format of the floating point number printed on the levels by using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;fpf&#x0022;,string)</span></span></span>
+where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string</span></span></span> gives the format in C format syntax (for example <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;%.3f&#x0022;</span></span></span>). Use
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;&#x0022;</span></span></span> to switch back to default format. Enter the command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour2d()</span></span></span> to see a demo.
+</p>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x393-2292000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb301"><a 
+ id="x393-2292003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;contourf(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;011&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x393-2293000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli393.html#contour">contour</a>    <a 
+href="manualli410.html#fcontour">fcontour</a>    <a 
+href="manualli409.html#fcontour2d">fcontour2d</a>    <a 
+href="manualli390.html#contour2di">contour2di</a>    <a 
+href="manualli473.html#plot2d">plot2d</a>    <a 
+href="manualli561.html#xset">xset</a>
+</p>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x393-2294000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli393.html" >next</a>] [<a 
+href="manualli391.html" >prev</a>] [<a 
+href="manualli391.html#tailmanualli391.html" >prev-tail</a>] [<a 
+href="manualli392.html" >front</a>] [<a 
+href="manualli370.html#manualli392.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli392.html"></a>  </p> 
+</body></html> 

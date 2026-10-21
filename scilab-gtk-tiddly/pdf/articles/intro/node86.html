@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.1.2 Calling a dynamically linked program</TITLE>
+<META NAME="description" CONTENT="6.1.2 Calling a dynamically linked program">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node85.html">
+<LINK REL="up" HREF="node84.html">
+<LINK REL="next" HREF="node87.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1399"
+ HREF="node87.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1395"
+ HREF="node84.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1391"
+ HREF="node85.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1397"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1398"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1400"
+ HREF="node87.html">6.2 Interface programs</A>
+<B> Up:</B> <A NAME="tex2html1396"
+ HREF="node84.html">6.1 Using dynamic link</A>
+<B> Previous:</B> <A NAME="tex2html1392"
+ HREF="node85.html">6.1.1 Dynamic link</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00712000000000000000">
+6.1.2 Calling a dynamically linked program</A>
+</H2>
+
+<P>
+The <TT>fort</TT> function can be used to call a dynamically linked
+program. Consider for example the <TT>daxpy</TT> Fortran routine. It performs 
+the simple vector operation <TT>y=y+a*x</TT> or, to be more specific,
+<TT>y(1)=y(1)+a*x(1), y(1+incy)=y(1+incy)+a*x(1+incx),...
+y(1+n*incy)=y(1+n*incy)+a*x(1+n*incx)</TT> 
+where <TT>y</TT> and <TT>x</TT> are two real vectors.
+The calling sequence for <TT>daxpy</TT> is as follows:
+<PRE>
+      subroutine daxpy(n,a,x,incx,y,incy)
+</PRE>To call <TT>daxpy</TT> from Scilab we must use a syntax as follows: 
+<PRE>
+[y1,y2,y3,...]=fort('daxpy', inputs description, 'out', outputs description)
+</PRE>
+Here <TT>inputs description</TT> is a set of parameters
+ 
+<TT>x1,p1,t1</TT>, <TT>x2,p2,t2</TT>, <TT>x3,p3,t3</TT> ... 
+
+<P>
+where <TT>xi</TT> is the Scilab variable (real vector or matrix) sent to 
+<TT>daxpy</TT>,
+<TT>pi</TT> is the position number of this variable in the calling
+sequence of <TT>daxpy</TT> and <TT>ti</TT> is the type of <TT>xi</TT> in <TT>daxpy</TT>
+(<TT>t='i'  t='r'  t='d'</TT> stands for integer, real or double).
+
+<P>
+
+<TT>outputs description</TT> is a set of parameters
+ 
+<TT>[r1,c1],p1,t1</TT>, <TT>[r2,c2],p2,t2</TT>, <TT>[r3,c3],p3,t3</TT>,..
+
+<P>
+which describes each output variable. <TT>[ri,ci]</TT> is the
+2 x 1 integer vector giving the number of rows and columns of the
+ith output variable <TT>yi</TT>. <TT>pi</TT> and <TT>ti</TT> are as for
+input variables (they can be omitted if a variable is both input and
+output). 
+
+<P>
+We see that the arguments of <TT>fort</TT>  divided into four groups.
+The first argument <TT>'daxpy'</TT> is the name of the called subroutine.
+The argument <TT>'out'</TT> divides the remaining arguments into two 
+groups.  The group of arguments between <TT>'daxpy'</TT> and <TT>'out'</TT>
+is the list of input arguments, their positions in the call to <TT>daxpy</TT>,
+and their data type.  The group of arguments to the right of <TT>'out'</TT>
+are the dimensions of the output variables, their positions in the call
+to <TT>daxpy</TT>, and their data type.
+The possible data types are real, integer, and double precision which
+are indicated, respectively, by the strings <TT>'r'</TT>, <TT>'i'</TT>, and
+<TT>'d'</TT>.  
+Here we calculate <TT>y=y+a*x</TT> by a call to <TT>daxpy</TT> (assuming
+that the <TT>link</TT> command has been done).
+We have six input variables 
+<TT>x1=n, x2=a, x3=x, x4=incx, x5=y, x6=incy</TT>.
+Variables <TT>x1, x4</TT> and <TT>x6</TT> are integers and variables
+<TT>x2, x3, x5</TT> are double. There is one output variable <TT>y1=y</TT>
+at position <TT>p1=5</TT>. To simplify, we assume here that <TT>x</TT> and
+<TT>y</TT> have the same length and we take <TT>incx=incy=1</TT>.
+<PRE>
+--&gt;a=3;
+ 
+--&gt;x=[1,2,3,4];
+ 
+--&gt;y=[1,1,1,1];
+ 
+--&gt;incx=1;incy=1;
+
+--&gt;n=size(x,'*');
+
+--&gt;y=fort('daxpy',...
+        n,1,'i',...
+        a,2,'d',...
+        x,3,'d',...
+        incx,4,'i',...
+        y,5,'d',...
+        incy,6,'i',...
+'out',...
+        [1,n],5,'d');
+
+ y  =
+ 
+!   4.    7.    10.    13. !
+</PRE>(Since <TT>y</TT> is both input and output parameter, we could also use
+the simplified syntax 
+<TT>fort(...,'out',5)</TT> instead of <TT>fort(...,'out'[1,n],5,'d')</TT>). 
+
+<P>
+The same example with the C function <TT>daxpy</TT> (from CBLAS):
+<PRE>
+int daxpy(int *n, double *da, double *dx, int *incx, double *dy, int *incy)
+...
+</PRE>
+<P>
+<PRE>
+--&gt;link('daxpy.o','daxpy','C')
+linking files daxpy.o  to create a shared executable
+Linking daxpy (in fact daxpy)
+Link done
+ ans  =
+ 
+    1.  
+
+--&gt;y=fort('daxpy',...
+        n,1,'i',...
+        a,2,'d',...
+        x,3,'d',...
+        incx,4,'i',...
+        y,5,'d',...
+        incy,6,'i',...
+'out',...
+        [1,n],5,'d');
+ 
+--&gt;y
+ y  =
+ 
+!   4.    7.    10.    13. !
+</PRE>
+<P>
+The routines which are linked to Scilab can also access internal 
+Scilab variables: see the examples in given in the <TT>examples/links</TT>
+directory.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1399"
+ HREF="node87.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1395"
+ HREF="node84.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1391"
+ HREF="node85.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1397"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1398"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1400"
+ HREF="node87.html">6.2 Interface programs</A>
+<B> Up:</B> <A NAME="tex2html1396"
+ HREF="node84.html">6.1 Using dynamic link</A>
+<B> Previous:</B> <A NAME="tex2html1392"
+ HREF="node85.html">6.1.1 Dynamic link</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

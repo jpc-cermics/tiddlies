@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>simp</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli929.html" >next</a>] [<a 
+href="manualli927.html" >prev</a>] [<a 
+href="manualli927.html#tailmanualli927.html" >prev-tail</a>] [<a 
+href="#tailmanualli928.html">tail</a>] [<a 
+href="manualli894.html#manualli928.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x929-5381000"></a>simp</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx929-5381001"></a><a 
+ id="simp"></a><span 
+class="cmtt-10x-x-109">simp </span>&#x2013;                                                                                 rational simplification<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x929-5382000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1051">
+&#x00A0;&#x00A0;[N1,D1]=simp(N,D)
+&#x00A0;<br />&#x00A0;&#x00A0;H1=simp(H)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x929-5383000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">N,D</span>: real polynomials or real matrix polynomials
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">H</span>: rational matrix (i.e matrix with entries <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n/d</span></span></span> ,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d</span></span></span> real polynomials)</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x929-5384000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[n1,d1]=simp(n,d)</span></span></span> calculates two polynomials <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d1</span></span></span> such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n1/d1</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;n/d</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">D</span></span></span> are
+polynomial matrices the calculation is performed element-wise.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H1=simp(H)</span></span></span> is also valid (each
+entry of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H</span></span></span> is simplified in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H1</span></span></span>). Caution: -no threshold is given i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">simp</span></span></span> cannot forces a
+simplification. -For linear dynamic systems which include integrator(s) simplification changes the
+static gain. (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H(0)</span></span></span> for continuous systems or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">H(1)</span></span></span> for discrete systems) -for complex data,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">simp</span></span></span> returns its input(s). -rational simplification is called after nearly each operations
+on rationals. It is possible to toggle simplification on or off using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">simp_mode</span></span></span> function.
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x929-5385000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb650"><a 
+ id="x929-5385006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x929-5385008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[n,d]=simp((s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">),(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x929-5385010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;simp_mode(%F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">hns=s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s</span><br class="fancyvrb" /><a 
+ id="x929-5385012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;simp_mode(%T)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">hns=s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s</span></div>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x929-5386000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli923.html#roots">roots</a>    <a 
+href="manualli264.html#trfmod">trfmod</a>    <a 
+href="manualli1014.html#poly">poly</a>    <a 
+href="manualli896.html#clean">clean</a>    <a 
+href="#simp-mode">simp_mode</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli929.html" >next</a>] [<a 
+href="manualli927.html" >prev</a>] [<a 
+href="manualli927.html#tailmanualli927.html" >prev-tail</a>] [<a 
+href="manualli928.html" >front</a>] [<a 
+href="manualli894.html#manualli928.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli928.html"></a>  </p> 
+</body></html> 

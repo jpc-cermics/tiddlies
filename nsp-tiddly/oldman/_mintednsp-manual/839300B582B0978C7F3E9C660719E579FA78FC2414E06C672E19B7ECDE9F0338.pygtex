@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{// select entity based graphics}
+subplot(\nspnumber{211})\nspoperator{;}
+t=\nspnumber{1}\nspoperator{:}\nspnumber{10}\nspoperator{;}plot2d(t,t\nspoperator{ .^}\nspnumber{2})\nspoperator{,}
+subplot(\nspnumber{223})\nspoperator{;}
+plot3d()\nspoperator{;}
+subplot(\nspnumber{224})\nspoperator{;}
+plot2d()\nspoperator{;}
+xfrect(\nspnumber{1},\nspnumber{0},\nspnumber{3},\nspnumber{1})\nspoperator{;}
+a=get(\nspstring{"current_axes"})
+delete()\nspoperator{;}\nspcomment{//delete the graphics object newly created}
+delete(a.children)\nspoperator{;}\nspcomment{//delete all children of the current axes}
+delete(a)\nspoperator{;}\nspcomment{//delete the axes}
+delete(\nspstring{"all"})\nspoperator{;}\nspcomment{//delete all the graphics objects of the figure}
+\end{Verbatim}

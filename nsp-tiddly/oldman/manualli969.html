@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>find</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli970.html" >next</a>] [<a 
+href="manualli968.html" >prev</a>] [<a 
+href="manualli968.html#tailmanualli968.html" >prev-tail</a>] [<a 
+href="#tailmanualli969.html">tail</a>] [<a 
+href="manualli931.html#manualli969.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x970-5565000"></a>find</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx970-5565001"></a><a 
+ id="find"></a><span 
+class="cmtt-10x-x-109">find </span>&#x2013;                                       find indices of boolean vector or matrix true elements<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x970-5566000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1084">
+&#x00A0;&#x00A0;[ii]=find(x&#x00A0;[,nmax])
+&#x00A0;<br />&#x00A0;&#x00A0;[i1,i2,..]=find(x&#x00A0;[,nmax])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x970-5567000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: may be a boolean vector, a boolean matrix, a boolean hypermatrix, a &#x201D;standard&#x201D;
+     matrix or hypermatrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nmax</span>: an integer giving the maximum number of indices to return. The default value is
+     -1 which stands for &#x201D;all&#x201D;. This option can be used for efficiency, to avoid searching all
+     indices.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ii, i1, i2, .. </span>: integer vectors of indices or empty matrices</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x970-5568000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is a boolean matrix,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ii=find(x)</span></span></span> returns the vector of indices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> for which <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i)</span></span></span> is &#x201D;true&#x201D;. If no
+true element found find returns an empty matrix.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[i1,i2,..]=find(x)</span></span></span> returns vectors of
+indices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i1</span></span></span> (for rows) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i2</span></span></span> (for columns),.. such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x(i1(n),i2(n),..)</span></span></span> is &#x201D;true&#x201D;.
+If no true element found find returns empty matrices in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i1</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i2</span></span></span>, ... if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> is a standard
+matrix or hypermatrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">find(x)</span></span></span> is interpreted as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">find(x$&#x003C;$$&#x003E;$0)</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">find([])</span></span></span> returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[]</span></span></span>
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x970-5569000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb671"><a 
+ id="x970-5569011r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x970-5569013r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;w=find(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x970-5569015r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A(w)</span><br class="fancyvrb" /><a 
+ id="x970-5569017r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;w=find(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x970-5569019r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x970-5569021r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;w=find(B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//at</span><span 
+class="cmitt-10x-x-109">&#x00A0;most</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;returned</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span></span><br class="fancyvrb" /><a 
+ id="x970-5569023r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//an</span><span 
+class="cmitt-10x-x-109">&#x00A0;hypermatrix</span></span>
+<br class="fancyvrb" /><a 
+ id="x970-5569025r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[i,j,k]=find(H</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.9</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x970-5569027r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;H(i(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),j(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),k(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x970-5570000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli936.html#boolean">boolean</a>    <a 
+href="manualli967.html#extraction">extraction</a>    <a 
+href="manualli988.html#insertion">insertion</a>    <a 
+href="manualli272.html#vectorfind">vectorfind</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli970.html" >next</a>] [<a 
+href="manualli968.html" >prev</a>] [<a 
+href="manualli968.html#tailmanualli968.html" >prev-tail</a>] [<a 
+href="manualli969.html" >front</a>] [<a 
+href="manualli931.html#manualli969.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli969.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_s</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli844.html" >next</a>] [<a 
+href="manualli842.html" >prev</a>] [<a 
+href="manualli842.html#tailmanualli842.html" >prev-tail</a>] [<a 
+href="#tailmanualli843.html">tail</a>] [<a 
+href="manualli756.html#manualli843.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x844-4900000"></a>mtlb_s</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx844-4900001"></a><a 
+ id="mtlb_s"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_s </span>&#x2013;                                                      Matlab substraction emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x844-4901000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Matlab and Scilab substraction behave differently in some particular cases:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> With character string operands: The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-</span></span></span> operator can not be used into Scilab with
+          character strings, while Matlab realizes the substraction of the operands ASCII
+          codes.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> With empty matrix: In Scilab, if one of the operands is an empty matrix the result
+          of the substraction is the other operand. In Matlab if one of the operand is an
+          empty matrix the result of the substraction should be an error or an empty matrix.</li></ul>
+     </ul>
+<!--l. 38--><p class="noindent" >The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_s(A,B)</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A-B</span></span></span> when it was not possible to know what
+were the operands while porting Matlab code to Scilab. This function will determine the correct
+semantic at run time. If you want to have a more efficient code it is possible to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_s</span></span></span>
+calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div>   If   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>  and   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span>  are   character   strings,   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_s(A,B)</span></span></span>  may   be   replaced   by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">asciimat(A)-asciimat(B)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If both <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span> are not empty matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_s(A,B)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A-B</span></span></span>,
+          else <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_s(A,B)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[]</span></span></span>.
+                                                                                    
+
+                                                                                    
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If mtlb_mode()==%T, then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_s(A,B)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A-B</span></span></span> in any case
+          where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span> are not character string matrices.</li></ul>
+     </ul>
+<!--l. 60--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_s</span></span></span> has not to be used for hand coded functions.
+</p>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x844-4902000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#mtlb-mode">mtlb_mode</a>
+</p>
+<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x844-4903000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x844-4904000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli844.html" >next</a>] [<a 
+href="manualli842.html" >prev</a>] [<a 
+href="manualli842.html#tailmanualli842.html" >prev-tail</a>] [<a 
+href="manualli843.html" >front</a>] [<a 
+href="manualli756.html#manualli843.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli843.html"></a>  </p> 
+</body></html> 

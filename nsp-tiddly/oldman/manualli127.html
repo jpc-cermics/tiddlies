@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>bsplin3val</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli128.html" >next</a>] [<a 
+href="manualli126.html" >prev</a>] [<a 
+href="manualli126.html#tailmanualli126.html" >prev-tail</a>] [<a 
+href="#tailmanualli127.html">tail</a>] [<a 
+href="manualli104.html#manualli127.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x128-734000"></a>bsplin3val</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx128-734001"></a><a 
+ id="bsplin3val"></a><span 
+class="cmtt-10x-x-109">bsplin3val </span>&#x2013;                                    3d spline arbitrary derivative evaluation function<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x128-735000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-222">
+&#x00A0;&#x00A0;[dfp]=bsplin3val(xp,yp,zp,tl,der)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x128-736000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xp, yp, zp</span>: real vectors or matrices of same size
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tl</span>: tlist of type &#x201D;splin3d&#x201D;, defining a 3d tensor spline (called <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> in the following)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">der</span>: vector with 3 components <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[ox,oy,oz]</span></span></span> defining which derivative of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> to compute.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dfp</span>: vector or matrix of same format than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zp</span></span></span>, elementwise evaluation of the
+     specified derivative of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> on these points.</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x128-737000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > While the function <a 
+href="manualli169.html#interp3d">interp3d</a>    may compute only the spline <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> and its first derivatives, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bsplin3val</span></span></span>
+may compute any derivative of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span>. The derivative to compute is specified by the argument
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">der=[ox,oy,oz]</span></span></span>:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-223">
+&#x00A0;&#x00A0;ox&#x00A0;&#x00A0;&#x00A0;oy&#x00A0;&#x00A0;&#x00A0;oz
+&#x00A0;<br />&#x00A0;&#x00A0;d&#x00A0;&#x00A0;&#x00A0;&#x00A0;d&#x00A0;&#x00A0;&#x00A0;&#x00A0;d
+&#x00A0;<br />&#x00A0;&#x00A0;dfp(i)&#x00A0;=&#x00A0;&#x00A0;---&#x00A0;&#x00A0;---&#x00A0;&#x00A0;---&#x00A0;&#x00A0;&#x00A0;s&#x00A0;(xp(i),yp(i),zp(i))
+&#x00A0;<br />&#x00A0;&#x00A0;ox&#x00A0;&#x00A0;&#x00A0;oy&#x00A0;&#x00A0;&#x00A0;oz
+&#x00A0;<br />&#x00A0;&#x00A0;dx&#x00A0;&#x00A0;&#x00A0;dy&#x00A0;&#x00A0;&#x00A0;dz
+</div>
+<!--l. 49--><p class="nopar" >So <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">der=[0</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span><span 
+class="cmtt-10x-x-109">&#x00A0;0]</span></span></span> corresponds to <span 
+class="cmti-10x-x-109">s</span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">der=[1</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span><span 
+class="cmtt-10x-x-109">&#x00A0;0]</span></span></span> to <span 
+class="cmti-10x-x-109">ds/dx</span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">der=[0</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span><span 
+class="cmtt-10x-x-109">&#x00A0;0]</span></span></span> to <span 
+class="cmti-10x-x-109">ds/dy</span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">der=[1</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span><span 
+class="cmtt-10x-x-109">&#x00A0;0]</span></span></span> to
+<span 
+class="cmti-10x-x-109">d2s/dxdy</span>, etc... For a point with coordinates <span 
+class="cmti-10x-x-109">(xp(i),yp(i),zp(i)) </span>outside the grid, the function returns
+0.
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x128-738000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb89"><a 
+ id="x128-738026r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=f(x,y,z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=cos(x).*sin(y).*cos(z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x128-738028r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=fx(x,y,z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=-sin(x).*sin(y).*cos(z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x128-738030r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=fxy(x,y,z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=-sin(x).*cos(y).*cos(z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x128-738032r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=fxyz(x,y,z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=sin(x).*cos(y).*sin(z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x128-738034r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=fxxyz(x,y,z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;v=cos(x).*cos(y).*sin(z)&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x128-738036r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;n</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;n</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;n</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;points</span></span>
+<br class="fancyvrb" /><a 
+ id="x128-738038r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi,n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">y=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">z=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolation</span><span 
+class="cmitt-10x-x-109">&#x00A0;grid</span></span><br class="fancyvrb" /><a 
+ id="x128-738040r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X,Y,Z]=ndgrid(x,y,z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">V=f(X,Y,Z)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x128-738042r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tl=splin3d(x,y,z,V,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x128-738044r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;compute</span><span 
+class="cmitt-10x-x-109">&#x00A0;f</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;some</span><span 
+class="cmitt-10x-x-109">&#x00A0;derivates</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;point</span></span>
+<br class="fancyvrb" /><a 
+ id="x128-738046r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;compare</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;spline</span><span 
+class="cmitt-10x-x-109">&#x00A0;interpolant</span></span><br class="fancyvrb" /><a 
+ id="x128-738048r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xp=grand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;unf&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x128-738050r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yp=grand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;unf&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x128-738052r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;zp=grand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;unf&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x128-738054r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f_e=f(xp,yp,zp)</span>
+<br class="fancyvrb" /><a 
+ id="x128-738056r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f_i=bsplin3val(xp,yp,zp,tl,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x128-738058r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fx_e=fx(xp,yp,zp)</span><br class="fancyvrb" /><a 
+ id="x128-738060r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fx_i=bsplin3val(xp,yp,zp,tl,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x128-738062r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fxy_e=fxy(xp,yp,zp)</span><br class="fancyvrb" /><a 
+ id="x128-738064r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fxy_i=bsplin3val(xp,yp,zp,tl,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x128-738066r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fxyz_e=fxyz(xp,yp,zp)</span>
+<br class="fancyvrb" /><a 
+ id="x128-738068r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fxyz_i=bsplin3val(xp,yp,zp,tl,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x128-738070r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fxxyz_e=fxxyz(xp,yp,zp)</span><br class="fancyvrb" /><a 
+ id="x128-738072r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fxxyz_i=bsplin3val(xp,yp,zp,tl,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+<!--l. 86--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x128-739000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli243.html#splin3d">splin3d</a>    <a 
+href="manualli169.html#interp3d">interp3d</a>
+</p>
+<!--l. 90--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x128-740000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 91--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x128-741000"></a></span>
+   R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 92--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x128-742000"></a></span>
+   B. Pincon (scilab interface)
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli128.html" >next</a>] [<a 
+href="manualli126.html" >prev</a>] [<a 
+href="manualli126.html#tailmanualli126.html" >prev-tail</a>] [<a 
+href="manualli127.html" >front</a>] [<a 
+href="manualli104.html#manualli127.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli127.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>bdiag</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli611.html" >next</a>] [<a 
+href="manualli609.html" >prev</a>] [<a 
+href="manualli609.html#tailmanualli609.html" >prev-tail</a>] [<a 
+href="#tailmanualli610.html">tail</a>] [<a 
+href="manualli607.html#manualli610.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x611-3625000"></a>bdiag</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx611-3625001"></a><a 
+ id="bdiag"></a><span 
+class="cmtt-10x-x-109">bdiag </span>&#x2013;                                               block diagonalization, generalized eigenvectors<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x611-3626000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-751">
+&#x00A0;&#x00A0;[Ab&#x00A0;[,X&#x00A0;[,bs]]]=bdiag(A&#x00A0;[,rmax])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x611-3627000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: real or complex square matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rmax</span>: real number
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Ab</span>: real or complex square matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: real or complex non-singular matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">bs</span>: vector of integers</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x611-3628000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-752">
+&#x00A0;&#x00A0;[Ab&#x00A0;[,X&#x00A0;[,bs]]]=bdiag(A&#x00A0;[,rmax])
+</div>
+<!--l. 40--><p class="nopar" >performs the block-diagonalization of matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>. bs gives the structure of the blocks (respective
+sizes of the blocks). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is the change of basis i.e <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ab</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;inv(X)*A*X</span></span></span>is block diagonal.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rmax</span></span></span>
+controls the conditioning of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>; the default value is the l1 norm of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>. To get a diagonal
+form (if it exists) choose a large value for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rmax</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rmax=1/%eps</span></span></span> for example). Generically
+(for real random A) the blocks are (1x1) and (2x2) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is the matrix of eigenvectors.
+</p>
+<!--l. 52--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x611-3629000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb474"><a 
+ id="x611-3629006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Real</span><span 
+class="cmitt-10x-x-109">&#x00A0;case:</span><span 
+class="cmitt-10x-x-109">&#x00A0;1x1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;2x2</span><span 
+class="cmitt-10x-x-109">&#x00A0;blocks</span></span><br class="fancyvrb" /><a 
+ id="x611-3629008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[ab,x,bs]=bdiag(a)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ab</span>
+<br class="fancyvrb" /><a 
+ id="x611-3629010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Complex</span><span 
+class="cmitt-10x-x-109">&#x00A0;case:</span><span 
+class="cmitt-10x-x-109">&#x00A0;complex</span><span 
+class="cmitt-10x-x-109">&#x00A0;1x1</span><span 
+class="cmitt-10x-x-109">&#x00A0;blocks</span></span><br class="fancyvrb" /><a 
+ id="x611-3629012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[ab,x,bs]=bdiag(a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ab</span></div>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x611-3630000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli666.html#schur">schur</a>    <a 
+href="manualli675.html#sylv">sylv</a>    <a 
+href="manualli671.html#spec">spec</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli611.html" >next</a>] [<a 
+href="manualli609.html" >prev</a>] [<a 
+href="manualli609.html#tailmanualli609.html" >prev-tail</a>] [<a 
+href="manualli610.html" >front</a>] [<a 
+href="manualli607.html#manualli610.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli610.html"></a>  </p> 
+</body></html> 

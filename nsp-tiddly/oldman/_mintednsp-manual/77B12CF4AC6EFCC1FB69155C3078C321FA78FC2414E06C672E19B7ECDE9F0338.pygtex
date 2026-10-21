@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example 1}
+deff(\nspstring{"y=runge(x)"},\nspstring{"y=1 ./(1 + x.^2)"})
+a=\nspoperator{-}\nspnumber{5}\nspoperator{;}b=\nspnumber{5}\nspoperator{;}n=\nspnumber{11}\nspoperator{;}m=\nspnumber{400}\nspoperator{;}
+x=linspace(a,b,n)\nspoperator{'}\nspoperator{;}
+y=runge(x)\nspoperator{;}
+d=splin(x,y)\nspoperator{;}
+xx=linspace(a,b,m)\nspoperator{'}\nspoperator{;}
+yyi=interp(xx,x,y,d)\nspoperator{;}
+yye=runge(xx)\nspoperator{;}
+xbasc()
+plot2d(xx,[yyi\nspoperator{,}yye],style = [\nspnumber{2}\nspoperator{,}\nspnumber{5}],leg = \nspstring{"interpolation spline@exact function"})
+plot2d(x,y,\nspoperator{-}\nspnumber{9})
+xtitle(\nspstring{"interpolation of the Runge function"})
+\nspcomment{// example 2: show behavior of different splines on random datas}
+a=\nspnumber{0}\nspoperator{;}b=\nspnumber{1}\nspoperator{;}\nspcomment{// interval of interpolation}
+n=\nspnumber{10}\nspoperator{;}\nspcomment{// nb of interpolation  points}
+m=\nspnumber{800}\nspoperator{;}\nspcomment{// discretisation for evaluation}
+x=linspace(a,b,n)\nspoperator{'}\nspoperator{;}\nspcomment{// abscissae of interpolation points}
+y=rand(x)\nspoperator{;}\nspcomment{// ordinates of interpolation points}
+xx=linspace(a,b,m)\nspoperator{'}\nspoperator{;}
+yk=interp(xx,x,y,splin(x,y,\nspstring{"not_a_knot"}))\nspoperator{;}
+yf=interp(xx,x,y,splin(x,y,\nspstring{"fast"}))\nspoperator{;}
+ym=interp(xx,x,y,splin(x,y,\nspstring{"monotone"}))\nspoperator{;}
+xbasc()
+plot2d(xx,[yf\nspoperator{,}ym\nspoperator{,}yk],style = [\nspnumber{5}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}],strf = \nspstring{"121"},leg = \nspstring{"fast@monotone@not a knot spline"})
+plot2d(x,y,\nspoperator{-}\nspnumber{9},strf = \nspstring{"000"})\nspoperator{,}\nspcomment{// to show interpolation points}
+xtitle(\nspstring{"Various spline and sub-splines on random datas"})
+xselect()
+\end{Verbatim}

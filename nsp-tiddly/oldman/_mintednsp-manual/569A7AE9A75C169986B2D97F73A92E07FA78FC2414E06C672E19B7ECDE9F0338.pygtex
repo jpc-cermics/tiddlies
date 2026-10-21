@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// MATRIX EIGENVALUES}
+A=diag([\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}])\nspoperator{;}X=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}A=inv(X)\nspoperator{*}A\nspoperator{*}X\nspoperator{;}
+spec(A)
+\nspcomment{//}
+x=poly(\nspnumber{0},\nspstring{'x'})\nspoperator{;}
+pol=det(x\nspoperator{*}eye()\nspoperator{-}A)
+roots(pol)
+\nspcomment{//}
+[S,X]=bdiag(A)\nspoperator{;}
+clean(inv(X)\nspoperator{*}A\nspoperator{*}X)
+\nspcomment{// PENCIL EIGENVALUES}
+A=rand(\nspnumber{3},\nspnumber{3})\nspoperator{;}
+[al,be,Z]=spec(A,eye(A))\nspoperator{;}al\nspoperator{ ./}be
+clean(inv(Z)\nspoperator{*}A\nspoperator{*}Z)\nspoperator{,}\nspcomment{//displaying the eigenvalues (generic matrix)}
+A=A\nspoperator{+}%i\nspoperator{*}rand(A)\nspoperator{;}E=rand(A)\nspoperator{;}
+roots(det(%s\nspoperator{*}E\nspoperator{-}A))\nspoperator{,}\nspcomment{//complex case}
+\end{Verbatim}

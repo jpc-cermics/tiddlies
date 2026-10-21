@@ -1,0 +1,86 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//We use the 'levin' macro for solving the normal equations}
+\nspcomment{//on two examples: a one-dimensional and a two-dimensional process.}
+\nspcomment{//We need the covariance sequence of the stochastic process.}
+\nspcomment{//This example may usefully be compared with the results from}
+\nspcomment{//the 'phc' macro (see the corresponding help and example in it)}
+\nspcomment{//}
+\nspcomment{//}
+\nspcomment{//1) A one-dimensional process}
+\nspcomment{//   -------------------------}
+\nspcomment{//}
+\nspcomment{//We generate the process defined by two sinusoids (1Hz and 2 Hz)}
+\nspcomment{//in additive Gaussian noise (this is the observed process);}
+\nspcomment{//the simulated process is sampled at 10 Hz (step 0.1 in t, underafter).}
+\nspcomment{//}
+t1=\nspnumber{0}\nspoperator{:}\nspnumber{.1}\nspoperator{:}\nspnumber{100}\nspoperator{;}rand(\nspstring{'normal'})\nspoperator{;}
+y1=sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}t1)\nspoperator{+}sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}\nspnumber{2}\nspoperator{*}t1)\nspoperator{;}y1=y1\nspoperator{+}rand(y1)\nspoperator{;}plot(t1,y1)\nspoperator{;}
+\nspcomment{//}
+\nspcomment{//covariance of y1}
+\nspcomment{//}
+nlag=\nspnumber{128}\nspoperator{;}
+c1=corr(y1,nlag)\nspoperator{;}
+c1=c1\nspoperator{'}\nspoperator{;}\nspcomment{//c1 needs to be given columnwise (see the section PARAMETERS of this help)}
+\nspcomment{//}
+\nspcomment{//compute the filter for a maximum order of n=10}
+\nspcomment{//la is a list-type variable each element of which}
+\nspcomment{//containing the filters of order ranging from 1 to n; (try varying n)}
+\nspcomment{//in the d-dimensional case this is a matrix polynomial (square, d X d)}
+\nspcomment{//sig gives, the same way, the mean-square error}
+\nspcomment{//}
+n=\nspnumber{15}\nspoperator{;}
+[la1,sig1]=levin(n,c1)\nspoperator{;}
+\nspcomment{//}
+\nspcomment{//verify that the roots of 'la' contain the}
+\nspcomment{//frequency spectrum of the observed process y}
+\nspcomment{//(remember that y is sampled -in our example}
+\nspcomment{//at 10Hz (T=0.1s) so that we need to retrieve}
+\nspcomment{//the original frequencies (1Hz and 2 Hz) through}
+\nspcomment{//the log and correct scaling by the frequency sampling)}
+\nspcomment{//we verify this for each filter order}
+\nspcomment{//}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}n \nspkeyword{do}
+  s1=roots(la1(i))\nspoperator{;}s1=log(s1)\nspoperator{/}\nspnumber{2}\nspoperator{/}%pi\nspoperator{/}\nspnumber{.1}\nspoperator{;}
+  \nspcomment{//}
+  \nspcomment{//now we get the estimated poles (sorted, positive ones only !)}
+  \nspcomment{//}
+  s1=sort(imag(s1))\nspoperator{;}s1=s1(\nspnumber{1}\nspoperator{:}i\nspoperator{/}\nspnumber{2})\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+\nspcomment{//}
+\nspcomment{//the last two frequencies are the ones really present in the observed}
+\nspcomment{//process ---$>$ the others are "artifacts" coming from the used model size.}
+\nspcomment{//This is related to the rather difficult problem of order estimation.}
+\nspcomment{//}
+\nspcomment{//2) A 2-dimensional process}
+\nspcomment{//   -----------------------}
+\nspcomment{//(4 frequencies 1, 2, 3, and 4 Hz, sampled at 0.1 Hz:}
+\nspcomment{//   |y_1|        y_1=sin(2*Pi*t)+sin(2*Pi*2*t)+Gaussian noise}
+\nspcomment{// y=|   | with:}
+\nspcomment{//   |y_2|        y_2=sin(2*Pi*3*t)+sin(2*Pi*4*t)+Gaussian noise}
+\nspcomment{//}
+\nspcomment{//}
+d=\nspnumber{2}\nspoperator{;}dt=\nspnumber{0.1}\nspoperator{;}
+nlag=\nspnumber{64}\nspoperator{;}
+t2=\nspnumber{0}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}dt\nspoperator{:}\nspnumber{100}\nspoperator{;}
+y2=[sin(t2)\nspoperator{+}sin(\nspnumber{2}\nspoperator{*}t2)\nspoperator{+}rand(t2)\nspoperator{;}sin(\nspnumber{3}\nspoperator{*}t2)\nspoperator{+}sin(\nspnumber{4}\nspoperator{*}t2)\nspoperator{+}rand(t2)]\nspoperator{;}
+c2=[]\nspoperator{;}
+\nspkeyword{for} j=\nspnumber{1}\nspoperator{:}\nspnumber{2} \nspkeyword{do} \nspkeyword{for} k=\nspnumber{1}\nspoperator{:}\nspnumber{2} \nspkeyword{do} c2=[c2\nspoperator{;}corr(y2(k,\nspoperator{:}),y2(j,\nspoperator{:}),nlag)]\nspoperator{;}\nspkeyword{end}\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+c2=matrix(c2,\nspnumber{2},\nspnumber{128})\nspoperator{;}cov=[]\nspoperator{;}
+\nspkeyword{for} j=\nspnumber{1}\nspoperator{:}\nspnumber{64} \nspkeyword{do} cov=[cov\nspoperator{;}c2(\nspoperator{:},(j\nspoperator{-}\nspnumber{1})\nspoperator{*}d\nspoperator{+}\nspnumber{1}\nspoperator{:}j\nspoperator{*}d)]\nspoperator{;}\nspkeyword{end}\nspoperator{;}\nspcomment{//covar. columnwise}
+c2=cov\nspoperator{;}
+\nspcomment{//}
+\nspcomment{//in the multidimensional case, we have to compute the}
+\nspcomment{//roots of the determinant of the matrix polynomial}
+\nspcomment{//(easy in the 2-dimensional case but tricky if d$>$=3 !).}
+\nspcomment{//We just do that here for the maximum desired}
+\nspcomment{//filter order (n); mp is the matrix polynomial of degree n}
+\nspcomment{//}
+[la2,sig2]=levin(n,c2)\nspoperator{;}
+mp=la2(n)\nspoperator{;}determinant=mp(\nspnumber{1},\nspnumber{1})\nspoperator{*}mp(\nspnumber{2},\nspnumber{2})\nspoperator{-}mp(\nspnumber{1},\nspnumber{2})\nspoperator{*}mp(\nspnumber{2},\nspnumber{1})\nspoperator{;}
+s2=roots(determinant)\nspoperator{;}s2=log(s2)\nspoperator{/}\nspnumber{2}\nspoperator{/}%pi\nspoperator{/}\nspnumber{0.1}\nspoperator{;}\nspcomment{//same trick as above for 1D process}
+s2=sort(imag(s2))\nspoperator{;}s2=s2(\nspnumber{1}\nspoperator{:}d\nspoperator{*}n\nspoperator{/}\nspnumber{2})\nspoperator{;}\nspcomment{//just the positive ones !}
+\nspcomment{//}
+\nspcomment{//There the order estimation problem is seen to be much more difficult !}
+\nspcomment{//many artifacts ! The 4 frequencies are in the estimated spectrum}
+\nspcomment{//but beneath many non relevant others.}
+\nspcomment{//}
+\end{Verbatim}

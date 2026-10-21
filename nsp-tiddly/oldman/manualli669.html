@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>spantwo</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli670.html" >next</a>] [<a 
+href="manualli668.html" >prev</a>] [<a 
+href="manualli668.html#tailmanualli668.html" >prev-tail</a>] [<a 
+href="#tailmanualli669.html">tail</a>] [<a 
+href="manualli607.html#manualli669.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x670-4000000"></a>spantwo</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx670-4000001"></a><a 
+ id="spantwo"></a><span 
+class="cmtt-10x-x-109">spantwo </span>&#x2013;                                                            sum and intersection of subspaces<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x670-4001000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-824">
+&#x00A0;&#x00A0;[Xp,dima,dimb,dim]=spantwo(A,B,&#x00A0;[tol])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x670-4002000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A, B</span>: two real or complex matrices with equal number of rows
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Xp</span>: square non-singular matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dima, dimb, dim</span>: integers, dimension of subspaces
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol</span>: nonnegative real number</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x670-4003000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Given two matrices <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span> with same number of rows, returns a square matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Xp</span></span></span> (non singular
+but not necessarily orthogonal) such that:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-825">
+&#x00A0;&#x00A0;[A1,&#x00A0;0]&#x00A0;&#x00A0;&#x00A0;&#x00A0;(dim-dimb&#x00A0;rows)
+&#x00A0;<br />&#x00A0;&#x00A0;Xp*[A,B]=[A2,B2]&#x00A0;&#x00A0;&#x00A0;&#x00A0;(dima+dimb-dim&#x00A0;rows)
+&#x00A0;<br />&#x00A0;&#x00A0;[0,&#x00A0;B3]&#x00A0;&#x00A0;&#x00A0;&#x00A0;(dim-dima&#x00A0;rows)
+&#x00A0;<br />&#x00A0;&#x00A0;[0&#x00A0;,&#x00A0;0]
+</div>
+<!--l. 45--><p class="nopar" >The first <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dima</span></span></span> columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">inv(Xp)</span></span></span> span range(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>). Columns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim-dimb+1</span></span></span> to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dima</span></span></span> of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">inv(Xp)</span></span></span>
+span the intersection of range(A) and range(B). The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">inv(Xp)</span></span></span> span
+range(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>)+range(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span>). Columns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim-dimb+1</span></span></span> to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">inv(Xp)</span></span></span> span range(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span>). Matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A1;A2]</span></span></span> has full
+row rank (=rank(A)). Matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[B2;B3]</span></span></span> has full row rank (=rank(B)). Matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A2,B2]</span></span></span> has full row
+rank (=rank(A inter B)). Matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[A1,0;A2,B2;0,B3]</span></span></span> has full row rank (=rank(A+B)).
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x670-4004000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb525"><a 
+ id="x670-4004012r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x670-4004014r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x670-4004016r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sl=ss2ss(syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C),rand(A))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x670-4004018r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[no,X]=contr(Sl(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;A&#x0027;</span></span><span 
+class="cmtt-10x-x-109">),Sl(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;B&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">CO=X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">no)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Controllable</span><span 
+class="cmitt-10x-x-109">&#x00A0;part</span></span>
+<br class="fancyvrb" /><a 
+ id="x670-4004020r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[uo,Y]=unobs(Sl(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;A&#x0027;</span></span><span 
+class="cmtt-10x-x-109">),Sl(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;C&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">UO=Y(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">uo)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Unobservable</span><span 
+class="cmitt-10x-x-109">&#x00A0;part</span></span>
+<br class="fancyvrb" /><a 
+ id="x670-4004022r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Xp,dimc,dimu,dim]=spantwo(CO,UO)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Kalman</span><span 
+class="cmitt-10x-x-109">&#x00A0;decomposition</span></span><br class="fancyvrb" /><a 
+ id="x670-4004024r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Slcan=ss2ss(Sl,inv(Xp))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x670-4005000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli668.html#spanplus">spanplus</a>    <a 
+href="manualli667.html#spaninter">spaninter</a>
+</p>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x670-4006000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F. D.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli670.html" >next</a>] [<a 
+href="manualli668.html" >prev</a>] [<a 
+href="manualli668.html#tailmanualli668.html" >prev-tail</a>] [<a 
+href="manualli669.html" >front</a>] [<a 
+href="manualli607.html#manualli669.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli669.html"></a>  </p> 
+</body></html> 

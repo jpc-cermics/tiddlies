@@ -1,0 +1,79 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example \nspsh{}1 (a simple one)}
+\nspcomment{//function to minimize}
+\nspkeyword{function} f=\nspfunction{rosenbrock}(x,varargin)
+  p=varargin(\nspnumber{1})
+  f=\nspnumber{1}\nspoperator{+}sum(p\nspoperator{*}(x(\nspnumber{2}\nspoperator{:}$)\nspoperator{-}x(\nspnumber{1}\nspoperator{:}$\nspoperator{-}\nspnumber{1})\nspoperator{^}\nspnumber{2})\nspoperator{^}\nspnumber{2}\nspoperator{+}(\nspnumber{1}\nspoperator{-}x(\nspnumber{2}\nspoperator{:}$))\nspoperator{^}\nspnumber{2})
+\nspkeyword{endfunction}
+x0=[\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{;}\nspnumber{3}\nspoperator{;}\nspnumber{4}]\nspoperator{;}
+[f,xopt,gopt]=optim(list(NDcost,rosenbrock,\nspnumber{200}),x0)
+\nspcomment{// example \nspsh{}2: This example (by Rainer von Seggern) shows a quick (*) way to}
+\nspcomment{//             identify the parameters of a linear differential equation with}
+\nspcomment{//             the help of scilab.}
+\nspcomment{//             The model is a simple damped (linear) oscillator:}
+\nspcomment{//}
+\nspcomment{//               x''(t) + c x'(t) + k x(t) = 0 ,}
+\nspcomment{//}
+\nspcomment{// and we write it as a system of two differential equations of first}
+\nspcomment{// order with y(1) = x, and y(2) = x':}
+\nspcomment{//}
+\nspcomment{//     dy1/dt = y(2)}
+\nspcomment{//     dy2/dt = -c*y(2) -k*y(1).}
+\nspcomment{//}
+\nspcomment{// We suppose to have m measurements of x (that is y(1)) at different times}
+\nspcomment{// t_obs(1), ..., t_obs(m) called x_obs(1), ..., x_obs(m)  (in this example}
+\nspcomment{// these measuresments will be simulated), and we want to identify the parameters}
+\nspcomment{// c and k by minimizing the sum of squared errors between x_obs and y1(t_obs,p).}
+\nspcomment{//}
+\nspcomment{// (*) This method is not the most efficient but it is easy to implement.}
+\nspcomment{//}
+\nspkeyword{function} dy=\nspfunction{DEQ}(t,y,p)
+  \nspcomment{// The rhs of our first order differential equation system.}
+  c=p(\nspnumber{1})\nspoperator{;}k=p(\nspnumber{2})
+  dy=[y(\nspnumber{2})\nspoperator{;}\nspoperator{-}c\nspoperator{*}y(\nspnumber{2})\nspoperator{-}k\nspoperator{*}y(\nspnumber{1})]
+\nspkeyword{endfunction}
+\nspkeyword{function} y=\nspfunction{uN}(p,t,t0,y0)
+  \nspcomment{// Numerical solution obtained with ode. (In this linear case an exact analytic}
+  \nspcomment{// solution can easily be found, but ode would also work for "any" system.)}
+  \nspcomment{// Note: the ode output must be an approximation of the solution at}
+  \nspcomment{//       times given in the vector t=[t(1),...,t($)]}
+  y=ode(y0,t0,t,list(DEQ,p))
+\nspkeyword{endfunction}
+\nspkeyword{function} r=\nspfunction{cost_func}(p,t_obs,x_obs,t0,y0)
+  \nspcomment{// This is the function to be minimized, that is the sum of the squared}
+  \nspcomment{// errors between what gives the model and the measuments.}
+  sol=uN(p,t_obs,t0,y0)
+  e=sol(\nspnumber{1},\nspoperator{:})\nspoperator{-}x_obs
+  r=sum(e\nspoperator{ .*}e)
+\nspkeyword{endfunction}
+\nspcomment{// Data}
+y0=[\nspnumber{10}\nspoperator{;}\nspnumber{0}]\nspoperator{;}t0=\nspnumber{0}\nspoperator{;}\nspcomment{// Initial conditions y0 for initial time t0.}
+T=\nspnumber{30}\nspoperator{;}\nspcomment{// Final time for the measurements.}
+\nspcomment{// Here we simulate experimental data, (from which the parameters}
+\nspcomment{// should be identified).}
+pe=[\nspnumber{0.2}\nspoperator{;}\nspnumber{3}]\nspoperator{;}\nspcomment{// Exact parameters}
+m=\nspnumber{80}\nspoperator{;}t_obs=linspace(t0\nspoperator{+}\nspnumber{2},T,m)\nspoperator{;}\nspcomment{// Observation times}
+\nspcomment{// Noise: each measurement is supposed to have a (gaussian) random error}
+\nspcomment{// of mean 0 and std deviation proportional to the magnitude}
+\nspcomment{// of the value (sigma*|x_exact(t_obs(i))|).}
+sigma=\nspnumber{0.1}\nspoperator{;}
+y_exact=uN(pe,t_obs,t0,y0)\nspoperator{;}
+x_obs=y_exact(\nspnumber{1},\nspoperator{:})\nspoperator{+}grand(\nspnumber{1},m,\nspstring{"nor"},\nspnumber{0},sigma)\nspoperator{ .*}abs(y_exact(\nspnumber{1},\nspoperator{:}))\nspoperator{;}
+\nspcomment{// Initial guess parameters}
+p0=[\nspnumber{0.5}\nspoperator{;}\nspnumber{5}]\nspoperator{;}
+\nspcomment{// The value of the cost function before optimization:}
+cost0=cost_func(p0,t_obs,x_obs,t0,y0)\nspoperator{;}
+mprintf(\nspstring{"\nspbs{}n\nspbs{}r The value of the cost function before optimization = \nsppc{}g \nspbs{}n\nspbs{}r"},cost0)
+\nspcomment{// Solution with optim}
+[costopt,popt]=optim(list(NDcost,cost_func,t_obs,x_obs,t0,y0),p0,\nspstring{'ar'},\nspnumber{40},\nspnumber{40},\nspnumber{1E-3})\nspoperator{;}
+mprintf(\nspstring{"\nspbs{}n\nspbs{}r The value of the cost function after optimization  = \nsppc{}g"},costopt)
+mprintf(\nspstring{"\nspbs{}n\nspbs{}r The identified values of the parameters: c = \nsppc{}g, k = \nsppc{}g \nspbs{}n\nspbs{}r"},popt(\nspnumber{1}),popt(\nspnumber{2}))
+\nspcomment{// A small plot:}
+t=linspace(\nspnumber{0},T,\nspnumber{400})\nspoperator{;}
+y=uN(popt,t,t0,y0)\nspoperator{;}
+clf()\nspoperator{;}
+plot2d(t\nspoperator{'},y(\nspnumber{1},\nspoperator{:})\nspoperator{'},style = \nspnumber{5})
+plot2d(t_obs\nspoperator{'},x_obs(\nspnumber{1},\nspoperator{:})\nspoperator{'},style = \nspoperator{-}\nspnumber{5})
+legend([\nspstring{"model"}\nspoperator{,}\nspstring{"measurements"}])\nspoperator{;}
+xtitle(\nspstring{"Least square fit to identify ode parameters"})
+\end{Verbatim}

@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Scilab function case}
+\nspkeyword{function} y=\nspfunction{f}(x) y=x\nspoperator{*}sin(\nspnumber{30}\nspoperator{*}x)\nspoperator{/}sqrt(\nspnumber{1}\nspoperator{-}((x\nspoperator{/}(\nspnumber{2}\nspoperator{*}%pi))\nspoperator{^}\nspnumber{2}))\nspoperator{,}\nspkeyword{endfunction}
+exact=\nspoperator{-}\nspnumber{2.5432596188}\nspoperator{;}
+I=intg(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,f)
+abs(exact\nspoperator{-}I)
+\nspcomment{//Scilab function case with parameter}
+\nspkeyword{function} y=\nspfunction{f1}(x,w) y=x\nspoperator{*}sin(w\nspoperator{*}x)\nspoperator{/}sqrt(\nspnumber{1}\nspoperator{-}((x\nspoperator{/}(\nspnumber{2}\nspoperator{*}%pi))\nspoperator{^}\nspnumber{2}))\nspoperator{,}\nspkeyword{endfunction}
+I=intg(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,list(f1,\nspnumber{30}))
+abs(exact\nspoperator{-}I)
+\nspcomment{// Fortran code case (Fortran compiler required)}
+\nspcomment{// write down the fortran code}
+F=[\nspstring{'      double precision function ffun(x)'}\nspoperator{;}\nspstring{'      double precision x,pi'}\nspoperator{;}
+   \nspstring{'      pi=3.14159265358979312d+0'}\nspoperator{;}
+   \nspstring{'      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'}\nspoperator{;}\nspstring{'      return'}\nspoperator{;}
+   \nspstring{'      end'}]\nspoperator{;}
+mputl(F,TMPDIR\nspoperator{+}\nspstring{'/ffun.f'})
+\nspcomment{// compile the fortran code}
+l=ilib_for_link(\nspstring{'ffun'},\nspstring{'ffun.o'},[],\nspstring{'f'},TMPDIR\nspoperator{+}\nspstring{'/Makefile'})\nspoperator{;}
+\nspcomment{// incremental linking}
+link(l,\nspstring{'ffun'},\nspstring{'f'})
+\nspcomment{//integrate the function}
+I=intg(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,\nspstring{'ffun'})
+abs(exact\nspoperator{-}I)
+\nspcomment{// C code case (C compiler required)}
+\nspcomment{// write down the C code}
+C=[\nspstring{'\nspsh{}include $&lt;$math.h$&gt;$'}\nspoperator{;}\nspstring{'double cfun(double *x)'}\nspoperator{;}\nspstring{'\nspob{}'}\nspoperator{;}
+   \nspstring{'  double y,pi=3.14159265358979312;'}\nspoperator{;}\nspstring{'  y=*x/(2.0e0*pi);'}\nspoperator{;}
+   \nspstring{'  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'}\nspoperator{;}\nspstring{'\nspcb{}'}]\nspoperator{;}
+mputl(C,TMPDIR\nspoperator{+}\nspstring{'/cfun.c'})
+\nspcomment{// compile the C code}
+l=ilib_for_link(\nspstring{'cfun'},\nspstring{'cfun.o'},[],\nspstring{'c'},TMPDIR\nspoperator{+}\nspstring{'/Makefile'})\nspoperator{;}
+\nspcomment{// incremental linking}
+link(l,\nspstring{'cfun'},\nspstring{'c'})
+\nspcomment{//integrate the function}
+I=intg(\nspnumber{0},\nspnumber{2}\nspoperator{*}%pi,\nspstring{'cfun'})
+abs(exact\nspoperator{-}I)
+\end{Verbatim}

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>call</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli940.html" >next</a>] [<a 
+href="manualli938.html" >prev</a>] [<a 
+href="manualli938.html#tailmanualli938.html" >prev-tail</a>] [<a 
+href="#tailmanualli939.html">tail</a>] [<a 
+href="manualli931.html#manualli939.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x940-5427000"></a>call</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx940-5427001"></a><a 
+ id="call"></a><span 
+class="cmtt-10x-x-109">call </span>&#x2013;                                                                     Fortran or C user routines call<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x940-5428000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1060">
+&#x00A0;&#x00A0;//&#x00A0;long&#x00A0;form&#x00A0;&#x0027;out&#x0027;&#x00A0;is&#x00A0;present
+&#x00A0;<br />&#x00A0;&#x00A0;[y1,...,yk]=call(&#x0022;ident&#x0022;,x1,px1,&#x0022;tx1&#x0022;,...,xn,pxn,&#x0022;txn&#x0022;,
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0022;out&#x0022;,[ny1,my1],py1,&#x0022;ty1&#x0022;,...,[nyl,myl],pyl,&#x0022;tyl&#x0022;)
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;short&#x00A0;form:&#x00A0;no&#x00A0;&#x0027;out&#x0027;&#x00A0;parameter
+&#x00A0;<br />&#x00A0;&#x00A0;[y1,....,yk]=call(&#x0022;ident&#x0022;,x1,...,xn)
+</div>
+<!--l. 29--><p class="nopar" >
+</p>
+<!--l. 32--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x940-5429000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;ident&#x0022; </span>: string.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xi</span>: real matrix or string
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">pxi, pyi</span>: integers
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">txi, tyi</span>: character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;d&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;r&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;i&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;c&#x0022;</span></span></span>.</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x940-5430000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > Interactive call of Fortran (or C) user program from Scilab. The routine must be previously linked
+with Scilab. This link may be done:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>with Scilab &#x201D;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span>&#x201D; command (incremental &#x201D;soft&#x201D; linking) during the Scilab session.(see
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span>)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>by &#x201D;hard&#x201D; re-linking. Writing the routine call within Scilab routine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">default/Ex-fort.f</span></span></span>,
+     adding the entry point in the file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">default/Flist</span></span></span> and then re_linking Scilab with the
+     command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">make</span><span 
+class="cmtt-10x-x-109">&#x00A0;bin/scilex</span></span></span> in main Scilab directory.</ul>
+</p><!--l. 47--><p class="noindent" >There are two forms of calling syntax, a short one and a long one. The short one will give
+faster code and an easier calling syntax but one has to write a small (C or Fortran)
+interface in order to make the short form possible. The long one make it possible to call a
+Fortran routine (or a C one) whitout modification of the code but the syntax is more
+complex and the interpreted code slower. The meaning of each parameter is described
+now:
+                                                                                    
+
+                                                                                    
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;ident&#x201D;</span> </span>is the name of the called subroutine.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">x1,...,xn</span> </span>are input variables (real matrices or strings) sent to the routine,
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">px1,...,pxn</span> </span>are the respective positions of these variables in the calling sequence of the
+     routine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;ident&#x0022;</span></span></span> and
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">tx1,...,txn</span> </span>are their types (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;r&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;i&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;d&#x0022;</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;c&#x0022;</span></span></span> for real (float) , integer, double precision
+     and strings)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;out&#x201D;</span> </span>is a keyword used to separate input variables from output variables. when this key
+     word is present it is assumes that the long form will be used and when it is not prsent,
+     the short form is used.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">[ny1, my1</span> </span>] are the size (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> of rows and columns. For &apos;c&apos; arguments,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m1*n1</span></span></span> is the number of
+     charaters ) of output variables and
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">py1, ...</span> </span>are the positions of output variables (possibly equal to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pxi</span></span></span> ) in the calling sequence
+     of the routine. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pyi</span></span></span>&apos;s integers must be in increasing order.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;ty1&#x201D;, ...</span> </span>are the Fortran types of output variables. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> first output variables are put in
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y1,...,</span><span 
+class="cmtt-10x-x-109">&#x00A0;yk</span></span></span>.</ul>
+</p><!--l. 64--><p class="noindent" >If an output variable coincides with an input variable (i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pyi=pxj</span></span></span> ) one can pass only its position <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pyi</span></span></span>
+. The size and type of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yi</span></span></span> are then the same as those of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xi</span></span></span>. If an output variable coincides with an
+input variable and one specify the dimensions of the output variable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[myl,nyl]</span></span></span> must
+follow the compatibility condition <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mxk*nxk</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003E;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;myl*nyl</span></span></span>. In the case of short syntax ,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[y1,....,yk]=call(&#x0022;ident&#x0022;,x1,...,xn)</span></span></span>, the input parameters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xi</span></span></span>&apos;s and the name <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;ident&#x0022;</span></span></span> are
+sent to the interface routine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Ex-fort</span></span></span>. This interface routine is then very similar to an interface (see
+the source code in the directory <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SCIDIR/default/Ex-fort.f</span></span></span>). For example the following
+program:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1061">
+&#x00A0;&#x00A0;subroutine&#x00A0;foof(c,a,b,n,m)
+&#x00A0;<br />&#x00A0;&#x00A0;integer&#x00A0;n,m
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;precision&#x00A0;a(*),b,c(*)
+&#x00A0;<br />&#x00A0;&#x00A0;do&#x00A0;10&#x00A0;i=1,m*n
+&#x00A0;<br />&#x00A0;&#x00A0;c(i)&#x00A0;=&#x00A0;sin(a(i))+b
+&#x00A0;<br />&#x00A0;&#x00A0;10&#x00A0;continue
+&#x00A0;<br />&#x00A0;&#x00A0;end
+&#x00A0;<br />&#x00A0;&#x00A0;link(&#x0022;foof.o&#x0022;,&#x0022;foof&#x0022;)
+&#x00A0;<br />&#x00A0;&#x00A0;a=[1,2,3;4,5,6];b=&#x00A0;%pi;
+&#x00A0;<br />&#x00A0;&#x00A0;[m,n]=size(a);
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;Inputs:
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;a&#x00A0;is&#x00A0;in&#x00A0;position&#x00A0;2&#x00A0;and&#x00A0;double
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;b&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;double
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;n&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;4&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;integer
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;m&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;5&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;integer
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;Outputs:
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;c&#x00A0;is&#x00A0;in&#x00A0;position&#x00A0;1&#x00A0;and&#x00A0;double&#x00A0;with&#x00A0;size&#x00A0;[m,n]
+&#x00A0;<br />&#x00A0;&#x00A0;c=call(&#x0022;foof&#x0022;,a,2,&#x0022;d&#x0022;,b,3,&#x0022;d&#x0022;,n,4,&#x0022;i&#x0022;,m,5,&#x0022;i&#x0022;,&#x0022;out&#x0022;,[m,n],1,&#x0022;d&#x0022;);
+</div>
+<!--l. 94--><p class="nopar" >returns the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">c=2*a+b</span></span></span>. If your machine is a DEC Alpha, SUN Solaris or SGI you
+may have to change the previous command line <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link(&#x0022;foo.o&#x0022;,&#x0022;foo&#x0022;)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> by one of the
+followings:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1062">
+&#x00A0;&#x00A0;link(&#x0027;foof.o&#x00A0;-lfor&#x00A0;-lm&#x00A0;-lc&#x0027;,&#x0027;foof&#x0027;).
+&#x00A0;<br />&#x00A0;&#x00A0;link(&#x0027;foof.o&#x00A0;-lftn&#x00A0;-lm&#x00A0;-lc&#x0027;,&#x0027;foof&#x0027;).
+&#x00A0;<br />&#x00A0;&#x00A0;link(&#x0027;foof.o&#x00A0;-L/opt/SUNWspro/SC3.0/lib/lib77&#x00A0;-lm&#x00A0;-lc&#x0027;,&#x0027;foof&#x0027;).
+</div>
+<!--l. 102--><p class="nopar" >The same example coded in C:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1063">
+&#x00A0;&#x00A0;void&#x00A0;fooc(c,a,b,m,n)
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;a[],*b,c[];
+&#x00A0;<br />&#x00A0;&#x00A0;int&#x00A0;*m,*n;
+&#x00A0;<br />&#x00A0;&#x00A0;{double&#x00A0;sin();
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;int&#x00A0;i;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;for&#x00A0;(&#x00A0;i&#x00A0;=0&#x00A0;;&#x00A0;i&#x00A0;$&#x003C;$&#x00A0;(*m)*(*n)&#x00A0;;&#x00A0;i++)
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;c[i]&#x00A0;=&#x00A0;sin(a[i])&#x00A0;+&#x00A0;*b;
+&#x00A0;<br />&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;link(&#x0022;fooc.o&#x0022;,&#x0022;fooc&#x0022;,&#x0022;C&#x0022;)&#x00A0;//&#x00A0;note&#x00A0;the&#x00A0;third&#x00A0;argument
+&#x00A0;<br />&#x00A0;&#x00A0;a=[1,2,3;4,5,6];b=&#x00A0;%pi;
+&#x00A0;<br />&#x00A0;&#x00A0;[m,n]=size(a);
+&#x00A0;<br />&#x00A0;&#x00A0;c=call(&#x0022;fooc&#x0022;,a,2,&#x0022;d&#x0022;,b,3,&#x0022;d&#x0022;,m,4,&#x0022;i&#x0022;,n,5,&#x0022;i&#x0022;,&#x0022;out&#x0022;,[m,n],1,&#x0022;d&#x0022;);
+</div>
+<!--l. 117--><p class="nopar" >
+</p>
+<!--l. 120--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x940-5431000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1368.html#link">link</a>    <a 
+href="#c-link">c_link</a>    <a 
+href="manualli1366.html#intersci">intersci</a>    <a 
+href="manualli342.html#addinter">addinter</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli940.html" >next</a>] [<a 
+href="manualli938.html" >prev</a>] [<a 
+href="manualli938.html#tailmanualli938.html" >prev-tail</a>] [<a 
+href="manualli939.html" >front</a>] [<a 
+href="manualli931.html#manualli939.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli939.html"></a>  </p> 
+</body></html> 

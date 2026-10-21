@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Evaluate magnitude response of continuous-time system}
+hs=analpf(\nspnumber{4},\nspstring{'cheb1'},[\nspnumber{.1}\nspoperator{,}\nspnumber{0}],\nspnumber{5})
+fr=\nspnumber{0}\nspoperator{:}\nspnumber{.1}\nspoperator{:}\nspnumber{15}\nspoperator{;}
+hf=freq(hs(\nspnumber{2}),hs(\nspnumber{3}),%i\nspoperator{*}fr)\nspoperator{;}
+hm=abs(hf)\nspoperator{;}
+plot(fr,hm)
+\end{Verbatim}

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>nyquist</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli462.html" >next</a>] [<a 
+href="manualli460.html" >prev</a>] [<a 
+href="manualli460.html#tailmanualli460.html" >prev-tail</a>] [<a 
+href="#tailmanualli461.html">tail</a>] [<a 
+href="manualli370.html#manualli461.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x462-2727000"></a>nyquist</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx462-2727001"></a><a 
+ id="nyquist"></a><span 
+class="cmtt-10x-x-109">nyquist </span>&#x2013;                                                                                         nyquist plot<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x462-2728000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-587">
+&#x00A0;&#x00A0;nyquist(&#x00A0;sl,[fmin,fmax]&#x00A0;[,step]&#x00A0;[,comments]
+&#x00A0;<br />&#x00A0;&#x00A0;)
+&#x00A0;<br />&#x00A0;&#x00A0;nyquist(&#x00A0;sl,&#x00A0;frq&#x00A0;[,comments]
+&#x00A0;<br />&#x00A0;&#x00A0;)
+&#x00A0;<br />&#x00A0;&#x00A0;nyquist(frq,db,phi
+&#x00A0;<br />&#x00A0;&#x00A0;[,comments])
+&#x00A0;<br />&#x00A0;&#x00A0;nyquist(frq,&#x00A0;repf
+&#x00A0;<br />&#x00A0;&#x00A0;[,comments])
+</div>
+<!--l. 32--><p class="nopar" >
+</p>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x462-2729000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sl</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (SIMO linear system in continuous or discrete time )
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fmin,fmax</span>: real scalars (frequency bounds (in Hz))
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">step</span>: real (logarithmic discretization step)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">comments</span>: string vector (captions).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">frq</span>: vector or matrix of frequencies (in Hz) (one row for each output of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span>).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">db,phi</span>: real matrices of modulus (in Db) and phases (in degree) (one row for each
+     output of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span>).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">repf</span>: matrix of complex numbers. Frequency response (one row for aech output of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span>)</li></ul>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x462-2730000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+                                                                                    
+
+                                                                                    
+</p><!--l. 50--><p class="noindent" > Nyquist plot i.e Imaginary part versus Real part of the frequency response of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span>.For continous time
+systems <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl(2*%i*%pi*w)</span></span></span> is plotted. For discrete time system or discretized systems
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl(exp(2*%i*%pi*w*fd)</span></span></span> is used ( <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd=1</span></span></span> for discrete time systems and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd=sl(&#x0027;dt&#x0027;)</span></span></span> for discretized
+systems )<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> can be a continuous-time or discrete-time SIMO system (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span>). In case of
+multi-output the outputs are plotted with different symbols.The frequencies are given by the bounds
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fmin,fmax</span></span></span> (in Hz) or by a row-vector (or a matrix for multi-output) <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">step</span></span></span> is the ( logarithmic )
+discretization step. (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">calfrq</span></span></span> for the choice of default value).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">comments</span></span></span> is a vector of character
+strings (captions).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">db,phi</span></span></span> are the matrices of modulus (in Db) and phases (in degrees).
+(One row for each response).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">repf</span></span></span> is a matrix of complex numbers. One row for each
+response.Default values for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fmin</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fmax</span></span></span> are <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1.d-3</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1.d+3</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> is continuous-time or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1.d-3</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0.5</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sl</span></span></span> is discrete-time.Automatic discretization of frequencies is made by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">calfrq</span></span></span>.
+</p>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x462-2731000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb358"><a 
+ id="x462-2731011r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x462-2731013r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x462-2731015r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">102.01</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x462-2731017r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;comm=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x462-2731019r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nyquist(h,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.01</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">,comm)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x462-2731021r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;h1=h</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">228.01</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">(s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">225</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x462-2731023r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x462-2731025r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;nyquist([h1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">h],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.01</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;h1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;h&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x462-2731027r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">nyquist([h1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">h])</span></div>
+<!--l. 83--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x462-2732000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli379.html#bode">bode</a>    <a 
+href="manualli378.html#black">black</a>    <a 
+href="manualli20.html#calfrq">calfrq</a>    <a 
+href="manualli41.html#freq">freq</a>    <a 
+href="manualli69.html#repfreq">repfreq</a>    <a 
+href="manualli65.html#phasemag">phasemag</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli462.html" >next</a>] [<a 
+href="manualli460.html" >prev</a>] [<a 
+href="manualli460.html#tailmanualli460.html" >prev-tail</a>] [<a 
+href="manualli461.html" >front</a>] [<a 
+href="manualli370.html#manualli461.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli461.html"></a>  </p> 
+</body></html> 

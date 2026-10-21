@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example \nspsh{}1: variations around an histogram of a gaussian random sample}
+d=rand(\nspnumber{1},\nspnumber{10000},\nspstring{'normal'})\nspoperator{;}\nspcomment{// the gaussian random sample}
+clf()\nspoperator{;}histplot(\nspnumber{20},d)
+clf()\nspoperator{;}histplot(\nspnumber{20},d,normalization = %f)
+clf()\nspoperator{;}histplot(\nspnumber{20},d,leg = \nspstring{'rand(1,10000,''normal'')'},style = \nspnumber{5})
+clf()\nspoperator{;}histplot(\nspnumber{20},d,leg = \nspstring{'rand(1,10000,''normal'')'},style = \nspnumber{16},rect = [\nspoperator{-}\nspnumber{3}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{0.5}])\nspoperator{;}
+\nspcomment{// example \nspsh{}2: histogram of a binomial (B(6,0.5)) random sample}
+d=grand(\nspnumber{1000},\nspnumber{1},\nspstring{"bin"},\nspnumber{6},\nspnumber{0.5})\nspoperator{;}
+c=linspace(\nspoperator{-}\nspnumber{0.5},\nspnumber{6.5},\nspnumber{8})\nspoperator{;}
+xbasc()
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{1})
+histplot(c,d,style = \nspnumber{2})
+xtitle(\nspstring{"normalized histogram"})
+subplot(\nspnumber{2},\nspnumber{1},\nspnumber{2})
+histplot(c,d,normalization = %f,style = \nspnumber{5})
+xtitle(\nspstring{"non normalized histogram"})
+\nspcomment{// example \nspsh{}3: histogram of an exponential random sample}
+lambda=\nspnumber{2}\nspoperator{;}
+X=grand(\nspnumber{100000},\nspnumber{1},\nspstring{"exp"},\nspnumber{1}\nspoperator{/}lambda)\nspoperator{;}
+Xmax=max(X)\nspoperator{;}
+xbasc()
+histplot(\nspnumber{40},X,style = \nspnumber{2})
+x=linspace(\nspnumber{0},max(Xmax),\nspnumber{100})\nspoperator{'}\nspoperator{;}
+plot2d(x,lambda\nspoperator{*}exp(\nspoperator{-}lambda\nspoperator{*}x),strf = \nspstring{"000"},style = \nspnumber{5})
+legend([\nspstring{"exponential random sample histogram"}\nspoperator{,}\nspstring{"exact density curve"}])\nspoperator{;}
+\nspcomment{// Note: if you use the old graphic mode use instead}
+\nspcomment{// legends(["exponential random sample histogram" "exact density curve"],[2 5],"ur");}
+\end{Verbatim}

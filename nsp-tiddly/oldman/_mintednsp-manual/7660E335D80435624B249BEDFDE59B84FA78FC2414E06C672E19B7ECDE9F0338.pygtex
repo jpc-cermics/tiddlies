@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// x initialisation}
+x=[\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi]\nspoperator{'}\nspoperator{;}
+\nspcomment{//simple plot}
+plot2d(sin(x))
+clf()
+plot2d(x,sin(x))
+\nspcomment{//multiple plot}
+clf()
+plot2d(x,[sin(x)\nspoperator{,}sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{,}sin(\nspnumber{3}\nspoperator{*}x)])
+\nspcomment{// multiple plot giving the dimensions of the frame}
+clf()
+plot2d(x,[sin(x)\nspoperator{,}sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{,}sin(\nspnumber{3}\nspoperator{*}x)],rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{0.5}])
+\nspcomment{//multiple plot with captions and given tics + style}
+clf()
+plot2d(x,[sin(x)\nspoperator{,}sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{,}sin(\nspnumber{3}\nspoperator{*}x)],[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}],leg = \nspstring{"L1@L2@L3"},nax = [\nspnumber{2}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{10}], ...
+       rect = [\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{*}%pi\nspoperator{,}\nspnumber{2}])
+\nspcomment{// isoview}
+clf()
+plot2d(x,sin(x),\nspnumber{1},frameflag = \nspnumber{4})
+\nspcomment{// scale}
+clf()
+plot2d(x,sin(x),\nspnumber{1},frameflag = \nspnumber{6})
+\nspcomment{// auto scaling with previous plots + style}
+clf()
+plot2d(x,sin(x),\nspoperator{-}\nspnumber{1})
+plot2d(x,\nspnumber{2}\nspoperator{*}sin(x),\nspnumber{12})
+plot2d(\nspnumber{2}\nspoperator{*}x,cos(x),\nspnumber{3})
+\nspcomment{// axis on the right}
+clf()
+plot2d(x,sin(x),leg = \nspstring{"sin(x)"})
+a=gca()\nspoperator{;}\nspcomment{// Handle on axes entity}
+a.y_location=\nspstring{"right"}\nspoperator{;}
+\nspcomment{// axis centered at (0,0)}
+clf()
+plot2d(x\nspoperator{-}\nspnumber{4},sin(x),\nspnumber{1},leg = \nspstring{"sin(x)"})
+a=gca()\nspoperator{,}\nspcomment{// Handle on axes entity}
+a.x_location=\nspstring{"middle"}\nspoperator{;}
+a.y_location=\nspstring{"middle"}\nspoperator{;}
+\nspcomment{// Some operations on entities created by plot2d ...}
+a=gca()\nspoperator{;}
+a.isoview=\nspstring{'on'}\nspoperator{;}
+a.children\nspoperator{,}
+\nspcomment{// list the children of the axes: here it is an Agregation child composed of 2 entities}
+poly1=a.children.children(\nspnumber{2})\nspoperator{;}\nspcomment{//store polyline handle into poly1}
+poly1.foreground=\nspnumber{4}\nspoperator{;}\nspcomment{// another way to change the style...}
+poly1.thickness=\nspnumber{3}\nspoperator{;}\nspcomment{// ...and the tickness of a curve.}
+poly1.clip_state=\nspstring{'off'}\nspoperator{,}\nspcomment{// clipping control}
+leg=a.children.children(\nspnumber{1})\nspoperator{;}\nspcomment{// store legend handle into leg}
+leg.font_style=\nspnumber{9}\nspoperator{;}
+leg.foreground=\nspnumber{6}\nspoperator{;}
+a.isoview=\nspstring{'off'}\nspoperator{;}
+\end{Verbatim}

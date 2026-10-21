@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Callbacks and "seq" option usage}
+\nspcomment{//create tcl instructions}
+tcl_script=[\nspstring{'toplevel .w1'}\nspoperator{;}
+            \nspstring{'button .w1.b -text ""Click here to execute without seq option""  -command WithoutSeq'}\nspoperator{;}
+            \nspstring{'button .w1.b1 -text ""Click here to execute with seq option""  -command  WithSeq'}\nspoperator{;}
+            \nspstring{'pack .w1.b .w1.b1'}\nspoperator{;}\nspstring{'proc  WithoutSeq \nspob{}\nspcb{} \nspob{}'}\nspoperator{;}
+            \nspstring{'  ScilabEval ""cont=\nsppc{}f;;cont=\nsppc{}t;"" '}\nspoperator{;}
+            \nspstring{'  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=\nsppc{}f;"" '}\nspoperator{;}\nspstring{'\nspcb{}'}\nspoperator{;}
+            \nspstring{'proc WithSeq \nspob{}\nspcb{} \nspob{}'}\nspoperator{;}\nspstring{'  ScilabEval ""cont=\nsppc{}f;;cont=\nsppc{}t;""  ""seq""'}\nspoperator{;}
+            \nspstring{'  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=\nsppc{}f;"" '}\nspoperator{;}\nspstring{'\nspcb{}'}]\nspoperator{;}
+mputl(tcl_script,TMPDIR\nspoperator{+}\nspstring{'/test.tcl'})\nspoperator{,}\nspcomment{//write them to a file}
+\nspcomment{// Execute the tcl script}
+cont=%f\nspoperator{;}
+TK_EvalFile(TMPDIR\nspoperator{+}\nspstring{'/test.tcl'})\nspoperator{;}
+\nspcomment{//scripts and "sync" option usage}
+\nspcomment{//----------------without "sync"----------------}
+tcl_script=[\nspstring{'  set t ""0""'}\nspoperator{;}\nspstring{'  while \nspob{}$t != ""10""\nspcb{} \nspob{}'}\nspoperator{;}
+            \nspstring{'     ScilabEval ""a=$t;mprintf(''\nsppc{}d '',a);""'}\nspoperator{;}\nspstring{'     incr t'}\nspoperator{;}\nspstring{'  \nspcb{}'}]\nspoperator{;}
+mputl(tcl_script,TMPDIR\nspoperator{+}\nspstring{'/test.tcl'})\nspoperator{,}\nspcomment{//write them to a file}
+\nspcomment{// Execute the tcl script}
+TK_EvalFile(TMPDIR\nspoperator{+}\nspstring{'/test.tcl'})\nspoperator{;}mprintf(\nspstring{'TK_EvalFile finished\nspbs{}n'})\nspoperator{;}
+\nspcomment{// The ScilabEval are executed  after the and of TK_EvalFile}
+\nspcomment{//----------------with "sync"----------------}
+tcl_script=[\nspstring{'  set t ""0""'}\nspoperator{;}\nspstring{'  while \nspob{}$t != ""10""\nspcb{} \nspob{}'}\nspoperator{;}
+            \nspstring{'     ScilabEval ""a=$t;mprintf(''\nsppc{}d '',a);"" ""sync""'}\nspoperator{;}\nspstring{'     incr t'}\nspoperator{;}\nspstring{'  \nspcb{}'}]\nspoperator{;}
+mputl(tcl_script,TMPDIR\nspoperator{+}\nspstring{'/test.tcl'})\nspoperator{,}\nspcomment{//write them to a file}
+\nspcomment{// Execute the tcl script}
+TK_EvalFile(TMPDIR\nspoperator{+}\nspstring{'/test.tcl'})\nspoperator{;}mprintf(\nspstring{'TK_EvalFile finished\nspbs{}n'})\nspoperator{;}
+\nspcomment{// The ScilabEval are executed  synchronously with TK_EvalFile}
+\end{Verbatim}

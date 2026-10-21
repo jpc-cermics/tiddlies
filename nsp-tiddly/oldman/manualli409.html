@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>fcontour2d</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli410.html" >next</a>] [<a 
+href="manualli408.html" >prev</a>] [<a 
+href="manualli408.html#tailmanualli408.html" >prev-tail</a>] [<a 
+href="#tailmanualli409.html">tail</a>] [<a 
+href="manualli370.html#manualli409.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x410-2395000"></a>fcontour2d</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx410-2395001"></a><a 
+ id="fcontour2d"></a><span 
+class="cmtt-10x-x-109">fcontour2d </span>&#x2013;                       level curves of a surface defined by a function on a 2D plot<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x410-2396000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-540">
+&#x00A0;&#x00A0;fcontour2d(xr,yr,f,nz,[style,strf,leg,rect,nax])
+&#x00A0;<br />&#x00A0;&#x00A0;fcontour2d(xr,yr,f,nz,$&#x003C;$opt_args$&#x003E;$)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x410-2397000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xr,yr</span>: two real row vectors of size n1 and n2.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f</span>: is an external which defines the surface <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z=f(x,y)</span></span></span>. It is first computed on the grid
+     specified by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xr,yr</span></span></span>. Then, control is passed to the routine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour2d</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nz</span>: the level values or the number of levels.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz</span></span></span> is an integer, its value gives the number of level curves equally spaced
+          from zmin to zmax.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz</span></span></span> is a vector, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz(i)</span></span></span> gives the value of the ith level curve.</li></ul>
+     <!--l. 38--><p class="noindent" ><span 
+class="cmmi-10x-x-109">&#x003C;</span>opt_args<span 
+class="cmmi-10x-x-109">&#x003E;</span>: This represents a sequence of statements <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1=value1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;key2=value2</span></span></span>,... where
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key1</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">key2,...</span></span></span> can be one of the following: style, leg, rect, nax, strf or axesflag and frameflag
+     (see plot2d)
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">[style,strf,leg,rect,nax] </span>: see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour2d</span></span></span>.</li></ul>
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x410-2398000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 42--><p class="noindent" > Draws level curves of a surface <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z=f(x,y)</span></span></span>. The level curves are drawn on a 2D plot. The surface is
+given by the external function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span>. See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour2d</span></span></span>. You can change the format of the floating point
+number printed on the levels by using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xset(&#x0022;fpf&#x0022;,string)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string</span></span></span> gives the format in C
+format syntax (for example <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;%.3f&#x0022;</span></span></span>). Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;&#x0022;</span></span></span> to switch back to default format and
+Use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">string=&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span></span> to suppress printing. Enter the command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fcontour2d()</span></span></span> to see a demo.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x410-2399000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb314"><a 
+ id="x410-2399006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z=surf(x,y)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z=x^4-y^4&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x410-2399008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x410-2399010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x410-2399012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fcontour2d(x,y,surf,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x410-2400000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli393.html#contour">contour</a>    <a 
+href="manualli391.html#contour2d">contour2d</a>    <a 
+href="manualli410.html#fcontour">fcontour</a>
+</p>
+<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x410-2401000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli410.html" >next</a>] [<a 
+href="manualli408.html" >prev</a>] [<a 
+href="manualli408.html#tailmanualli408.html" >prev-tail</a>] [<a 
+href="manualli409.html" >front</a>] [<a 
+href="manualli370.html#manualli409.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli409.html"></a>  </p> 
+</body></html> 

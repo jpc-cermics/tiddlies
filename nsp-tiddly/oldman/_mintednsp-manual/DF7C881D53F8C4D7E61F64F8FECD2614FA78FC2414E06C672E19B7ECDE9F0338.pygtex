@@ -1,0 +1,47 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+x=%pi\nspoperator{/}\nspnumber{10}\nspoperator{:}%pi\nspoperator{/}\nspnumber{10}\nspoperator{:}\nspnumber{102.4}\nspoperator{*}%pi\nspoperator{;}
+rand(\nspstring{'seed'})\nspoperator{;}rand(\nspstring{'normal'})\nspoperator{;}
+y=[\nspnumber{.8}\nspoperator{*}sin(x)\nspoperator{+}\nspnumber{.8}\nspoperator{*}sin(\nspnumber{2}\nspoperator{*}x)\nspoperator{+}rand(x)\nspoperator{;}\nspnumber{.8}\nspoperator{*}sin(x)\nspoperator{+}\nspnumber{.8}\nspoperator{*}sin(\nspnumber{1.99}\nspoperator{*}x)\nspoperator{+}rand(x)]\nspoperator{;}
+c=[]\nspoperator{;}
+\nspkeyword{for} j=\nspnumber{1}\nspoperator{:}\nspnumber{2} \nspkeyword{do} \nspkeyword{for} k=\nspnumber{1}\nspoperator{:}\nspnumber{2} \nspkeyword{do} c=[c\nspoperator{;}corr(y(k,\nspoperator{:}),y(j,\nspoperator{:}),\nspnumber{64})]\nspoperator{;}\nspkeyword{end}\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+c=matrix(c,\nspnumber{2},\nspnumber{128})\nspoperator{;}cov=[]\nspoperator{;}
+\nspkeyword{for} j=\nspnumber{1}\nspoperator{:}\nspnumber{64} \nspkeyword{do} cov=[cov\nspoperator{;}c(\nspoperator{:},(j\nspoperator{-}\nspnumber{1})\nspoperator{*}\nspnumber{2}\nspoperator{+}\nspnumber{1}\nspoperator{:}\nspnumber{2}\nspoperator{*}j)]\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+rand(\nspstring{'unif'})
+\nspcomment{//}
+rand(\nspstring{'normal'})\nspoperator{;}x=rand(\nspnumber{1},\nspnumber{256})\nspoperator{;}y=\nspoperator{-}x\nspoperator{;}
+deff(\nspstring{'[z]=xx(inc,is)'},\nspstring{'z=x(is:is+inc-1)'})\nspoperator{;}
+deff(\nspstring{'[z]=yy(inc,is)'},\nspstring{'z=y(is:is+inc-1)'})\nspoperator{;}
+[c,mxy]=corr(x,y,\nspnumber{32})\nspoperator{;}
+x=x\nspoperator{-}mxy(\nspnumber{1})\nspoperator{*}ones(x)\nspoperator{;}y=y\nspoperator{-}mxy(\nspnumber{2})\nspoperator{*}ones(y)\nspoperator{;}\nspcomment{//centring}
+c1=corr(x,y,\nspnumber{32})\nspoperator{;}c2=corr(x,\nspnumber{32})\nspoperator{;}
+norm(c1\nspoperator{+}c2,\nspnumber{1})
+[c3,m3]=corr(\nspstring{'fft'},xx,yy,\nspnumber{256},\nspnumber{32})\nspoperator{;}
+norm(c1\nspoperator{-}c3,\nspnumber{1})
+[c4,m4]=corr(\nspstring{'fft'},xx,\nspnumber{256},\nspnumber{32})\nspoperator{;}
+norm(m3,\nspnumber{1})\nspoperator{,}norm(m4,\nspnumber{1})
+norm(c3\nspoperator{-}c1,\nspnumber{1})\nspoperator{,}norm(c4\nspoperator{-}c2,\nspnumber{1})
+x1=x(\nspnumber{1}\nspoperator{:}\nspnumber{128})\nspoperator{;}x2=x(\nspnumber{129}\nspoperator{:}\nspnumber{256})\nspoperator{;}
+y1=y(\nspnumber{1}\nspoperator{:}\nspnumber{128})\nspoperator{;}y2=y(\nspnumber{129}\nspoperator{:}\nspnumber{256})\nspoperator{;}
+w0=\nspnumber{0}\nspoperator{*}ones(\nspnumber{1}\nspoperator{:}\nspnumber{64})\nspoperator{;}\nspcomment{//32 coeffs}
+[w1,xu]=corr(\nspstring{'u'},x1,y1,w0)\nspoperator{;}w2=corr(\nspstring{'u'},x2,y2,w1,xu)\nspoperator{;}
+zz=real(fft(w2,\nspnumber{1}))\nspoperator{/}\nspnumber{256}\nspoperator{;}c5=zz(\nspnumber{1}\nspoperator{:}\nspnumber{32})\nspoperator{;}
+norm(c5\nspoperator{-}c1,\nspnumber{1})
+[w1,xu]=corr(\nspstring{'u'},x1,w0)\nspoperator{;}w2=corr(\nspstring{'u'},x2,w1,xu)\nspoperator{;}
+zz=real(fft(w2,\nspnumber{1}))\nspoperator{/}\nspnumber{256}\nspoperator{;}c6=zz(\nspnumber{1}\nspoperator{:}\nspnumber{32})\nspoperator{;}
+norm(c6\nspoperator{-}c2,\nspnumber{1})
+rand(\nspstring{'unif'})
+\nspcomment{// test for Fortran or C external}
+\nspcomment{//}
+deff(\nspstring{'[y]=xmacro(sec,ist)'},\nspstring{'y=sin(ist:(ist+sec-1))'})\nspoperator{;}
+x=xmacro(\nspnumber{100},\nspnumber{1})\nspoperator{;}
+[cc1,mm1]=corr(x,\nspnumber{2}\nspoperator{^}\nspnumber{3})\nspoperator{;}
+[cc,mm]=corr(\nspstring{'fft'},xmacro,\nspnumber{100},\nspnumber{2}\nspoperator{^}\nspnumber{3})\nspoperator{;}
+[cc2,mm2]=corr(\nspstring{'fft'},\nspstring{'corexx'},\nspnumber{100},\nspnumber{2}\nspoperator{^}\nspnumber{3})\nspoperator{;}
+[maxi(abs(cc\nspoperator{-}cc1))\nspoperator{,}maxi(abs(mm\nspoperator{-}mm1))\nspoperator{,}maxi(abs(cc\nspoperator{-}cc2))\nspoperator{,}maxi(abs(mm\nspoperator{-}mm2))]
+deff(\nspstring{'[y]=ymacro(sec,ist)'},\nspstring{'y=cos(ist:(ist+sec-1))'})\nspoperator{;}
+y=ymacro(\nspnumber{100},\nspnumber{1})\nspoperator{;}
+[cc1,mm1]=corr(x,y,\nspnumber{2}\nspoperator{^}\nspnumber{3})\nspoperator{;}
+[cc,mm]=corr(\nspstring{'fft'},xmacro,ymacro,\nspnumber{100},\nspnumber{2}\nspoperator{^}\nspnumber{3})\nspoperator{;}
+[cc2,mm2]=corr(\nspstring{'fft'},\nspstring{'corexx'},\nspstring{'corexy'},\nspnumber{100},\nspnumber{2}\nspoperator{^}\nspnumber{3})\nspoperator{;}
+[maxi(abs(cc\nspoperator{-}cc1))\nspoperator{,}maxi(abs(mm\nspoperator{-}mm1))\nspoperator{,}maxi(abs(cc\nspoperator{-}cc2))\nspoperator{,}maxi(abs(mm\nspoperator{-}mm2))]
+\end{Verbatim}

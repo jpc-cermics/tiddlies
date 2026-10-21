@@ -1,0 +1,1252 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>optim</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli892.html" >next</a>] [<a 
+href="manualli890.html" >prev</a>] [<a 
+href="manualli890.html#tailmanualli890.html" >prev-tail</a>] [<a 
+href="#tailmanualli891.html">tail</a>] [<a 
+href="manualli863.html#manualli891.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x892-5168000"></a>optim</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx892-5168001"></a><a 
+ id="optim"></a><span 
+class="cmtt-10x-x-109">optim </span>&#x2013;                                                                   non-linear optimization routine<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x892-5169000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1007">
+&#x00A0;&#x00A0;[f,xopt]=optim(costf,x0)
+&#x00A0;<br />&#x00A0;&#x00A0;[f&#x00A0;[,xopt&#x00A0;[,gradopt&#x00A0;[,work]]]]=optim(costf&#x00A0;[,$&#x003C;$contr$&#x003E;$],x0
+&#x00A0;<br />&#x00A0;&#x00A0;[,algo]&#x00A0;[,df0&#x00A0;[,mem]]&#x00A0;[,work]&#x00A0;[,$&#x003C;$stop$&#x003E;$]&#x00A0;[,$&#x003C;$params$&#x003E;$]&#x00A0;[,imp=iflag])
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x892-5170000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">costf</span>: external, i.e Scilab function list or string (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> is the cost function: see below
+     its calling sequence (Scilab or Fortran)). See also external for details about external
+     functions.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: real vector (initial value of variable to be minimized).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f</span>: value of optimal cost (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f=costf(xopt)</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xopt</span>: best value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> found.
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">contr</span><span 
+class="cmmi-10x-x-109">&#x003E;</span>: keyword representing the following sequence of arguments: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;,binf,bsup</span></span></span>
+     with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">binf</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bsup</span></span></span> are real vectors with same dimension as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">binf</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bsup</span></span></span> are
+     lower and upper bounds on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">algo</span>: Character string used to sprecify the algorithm to use. The possible values are <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;qn&#x0027;</span></span></span>
+     for quasi-Newton (default) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;gc&#x0027;</span></span></span> for conjugate gradient or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;nd&#x0027;</span></span></span> for non-differentiable.
+     Note that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;nd&#x0027;</span></span></span> does not accept bounds on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">df0</span>: real scalar. Guessed decreasing of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> at first iteration. (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">df0=1</span></span></span> is the default value).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mem:   </span>integer,    number    of    variables    used    to    approximate    the    Hessian,
+     (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">algo=&#x0027;gc&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;or</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;nd&#x0027;</span></span></span>). Default value is around 6.
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">stop</span><span 
+class="cmmi-10x-x-109">&#x003E;</span>: keyword representing the sequence of optional parameters controlling the
+     convergence of the algorithm. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ar&#x0027;,nap</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,iter</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,epsg</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,epsf</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,epsx]]]]</span></span></span>
+                                                                                    
+
+                                                                                    
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;ar&#x0022; </span>: reserved keyword for stopping rule selection defined as follows:
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">nap</span>: maximum number of calls to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> allowed (default is 100).
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">iter</span>: maximum number of iterations allowed (default is 100).
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">epsg</span>: threshold on gradient norm.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">epsf</span>: threshold controlling decreasing of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">epsx</span>: threshold controlling variation of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. This vector (possibly matrix) of same
+          size as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span> can be used to scale <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">&#x003C;</span><span 
+class="cmtt-10x-x-109">params</span><span 
+class="cmmi-10x-x-109">&#x003E; </span>: keyword representing the sequence of arguments: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ti&#x0027;,valti</span><span 
+class="cmtt-10x-x-109">&#x00A0;,&#x0027;td&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;valtd</span></span></span>
+     which can be used to pass argument to an external written in C or Fortran (see
+     below).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;imp=iflag&#x0022; </span>: named argument used to set the trace mode. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">iflag=0</span></span></span> nothing (execpt errors)
+     is reported, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">iflag=1</span></span></span> initial and final reports, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">iflag=2</span></span></span> adds a report per iteration, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">iflag$&#x003E;$2</span></span></span>
+     add reports on linear search. Warning, most of these reports are written on the Scilab
+     standard output.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">gradopt</span>: gradient of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xopt</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">work</span>: working array for hot restart for quasi-Newton method. This array is automatically
+     initialized by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span> when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span> is invoked. It can be used as input parameter to speed-up the
+     calculations.</li></ul>
+<!--l. 83--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x892-5171000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 83--><p class="noindent" > Non-linear optimization routine for programs without constraints or with bound constraints:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1008">
+&#x00A0;&#x00A0;min&#x00A0;costf(x)&#x00A0;w.r.t&#x00A0;x.
+</div>
+<!--l. 88--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> is an &#x201D;external&#x201D; i.e a Scilab function, a list or a string giving the name of a C or Fortran
+routine (see &#x201D;external&#x201D;). This external must return the value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> of the cost function at the point <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>
+and the gradient <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> of the cost function at the point <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">- Scilab function case</span> </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> is a Scilab function, the calling sequence for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> must
+     be: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[f,g,ind]=costf(x,ind)</span></span></span>Here, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> is a function which returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span>, value (real
+     number) of cost function at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>, gradient vector of cost function at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. The variable
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind</span></span></span> is described below.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">- List case</span> </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> is a list, it should be of the form: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list(real_costf,</span><span 
+class="cmtt-10x-x-109">&#x00A0;arg1,...,argn)</span></span></span>
+     with       <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">real_costf</span></span></span>    a       Scilab       function       with       calling       sequence:
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[f,g,ind]=costf(x,ind,arg1,...</span><span 
+class="cmtt-10x-x-109">&#x00A0;argn)</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind</span></span></span> arguments have the same
+     meaning that above. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">argi</span></span></span> arguments can be used to pass function parameters.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">- String case</span> </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> is a character string, it refers to the name of a C or Fortran routine which
+     must be linked to Scilab
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">* Fortran case</span> </span>The generic calling sequence for the Fortran subroutine is:
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">subroutine</span><span 
+class="cmtt-10x-x-109">&#x00A0;costf(ind,n,x,f,g,ti,tr,td)</span></span></span> with the following declarations:
+                                                                                    
+
+                                                                                    
+</p>
+          <div class="verbatim" id="verbatim-1009">
+          &#x00A0;&#x00A0;integer&#x00A0;ind,n&#x00A0;ti(*)
+          &#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;precision&#x00A0;x(n),f,g(n),td(*)
+          &#x00A0;<br />&#x00A0;&#x00A0;real&#x00A0;tr(*)
+</div>
+          <!--l. 119--><p class="nopar" >The argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind</span></span></span> is described below.The Fortran subroutine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> must return <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> and
+          the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>, given <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x,</span><span 
+class="cmtt-10x-x-109">&#x00A0;ind,</span><span 
+class="cmtt-10x-x-109">&#x00A0;n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;ti,</span><span 
+class="cmtt-10x-x-109">&#x00A0;tr,td</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ti,tr,td</span></span></span> can be used to initialize
+          parameters. In the calling sequence of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span>, the keyword <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$params$&#x003E;$&#x0027;</span></span></span> can be
+          replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ti&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;valti</span><span 
+class="cmtt-10x-x-109">&#x00A0;,&#x0027;td&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;valtd</span></span></span> . Then, the routine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> is evaluated
+          with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ti=valti</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">td=valtd</span></span></span> whatever the value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind</span></span></span>. Thus, the Scilab
+          variables <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">valti</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">valtd</span></span></span> (integer vector and real vector) are sent to the routine
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span>.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">* C case</span> </span>The generic calling sequence for the C procedure is:
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">void</span><span 
+class="cmtt-10x-x-109">&#x00A0;costf(int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*ind,</span><span 
+class="cmtt-10x-x-109">&#x00A0;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*x,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*f,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*g,</span><span 
+class="cmtt-10x-x-109">&#x00A0;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*ti,</span><span 
+class="cmtt-10x-x-109">&#x00A0;float</span><span 
+class="cmtt-10x-x-109">&#x00A0;*tr,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*td)</span></span></span>
+          with the following declarations:The argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind</span></span></span> is described below.The C procedure
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> must return <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> and the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>, given <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x,</span><span 
+class="cmtt-10x-x-109">&#x00A0;ind,</span><span 
+class="cmtt-10x-x-109">&#x00A0;n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;ti,</span><span 
+class="cmtt-10x-x-109">&#x00A0;tr,</span><span 
+class="cmtt-10x-x-109">&#x00A0;td</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ti,tr,td</span></span></span> can be
+          used to initialize parameters. In the calling sequence of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span>, the string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;in&#x0027;</span></span></span> can be
+          replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ti&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;valti</span><span 
+class="cmtt-10x-x-109">&#x00A0;,&#x0027;td&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;valtd</span></span></span>. Then, the procedure <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> is evaluated with
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ti=valti</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">td=valtd</span></span></span> whatever the value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind</span></span></span>. Thus, the Scilab variables
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">valti</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">valtd</span></span></span> (integer vector and real vector) are sent to the procedure
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span>.</ul>
+     </ul>
+</p><!--l. 144--><p class="noindent" >If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind=2</span></span></span> (resp. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3,</span><span 
+class="cmtt-10x-x-109">&#x00A0;4</span></span></span>), <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">costf</span></span></span> must provide <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> (resp. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g,</span><span 
+class="cmtt-10x-x-109">&#x00A0;f</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>).If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind=1</span></span></span> nothing is computed (used for
+display purposes only). On output, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind$&#x003C;$0</span></span></span> means that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> cannot be evaluated at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ind=0</span></span></span>
+interrupts the optimization.
+</p>
+<!--l. 152--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x892-5172000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb624"><a 
+ id="x892-5172079r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;External</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;written</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;Scilab</span></span><br class="fancyvrb" /><a 
+ id="x892-5172081r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xref=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">x0=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span>
+<br class="fancyvrb" /><a 
+ id="x892-5172083r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[f,g,ind]=cost(x,ind)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;f=0.5*norm(x-xref)^2,g=x-xref&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172085r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt]=optim(cost,x0)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Simplest</span><span 
+class="cmitt-10x-x-109">&#x00A0;call</span></span><br class="fancyvrb" /><a 
+ id="x892-5172087r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gopt]=optim(cost,x0,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gc&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;By</span><span 
+class="cmitt-10x-x-109">&#x00A0;conjugate</span><span 
+class="cmitt-10x-x-109">&#x00A0;gradient</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172089r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gopt]=optim(cost,x0,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;nd&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Seen</span><span 
+class="cmitt-10x-x-109">&#x00A0;as</span><span 
+class="cmitt-10x-x-109">&#x00A0;non</span><span 
+class="cmitt-10x-x-109">&#x00A0;differentiable</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172091r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gopt]=optim(cost,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">],x0)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;Bounds</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172093r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gopt]=optim(cost,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">],x0,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gc&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;Bounds</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172095r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gopt]=optim(cost,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">],x0,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gc&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ar&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x892-5172097r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;External</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;written</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span><span 
+class="cmitt-10x-x-109">&#x00A0;(C</span><span 
+class="cmitt-10x-x-109">&#x00A0;compiler</span><span 
+class="cmitt-10x-x-109">&#x00A0;required)</span></span><br class="fancyvrb" /><a 
+ id="x892-5172099r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;write</span><span 
+class="cmitt-10x-x-109">&#x00A0;down</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span><span 
+class="cmitt-10x-x-109">&#x00A0;code</span><span 
+class="cmitt-10x-x-109">&#x00A0;(Rosenbrock</span><span 
+class="cmitt-10x-x-109">&#x00A0;problem)</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172101r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;#include</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x0026;lt;$math.h$&#x0026;gt;$&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;sq(double</span><span 
+class="cmtt-10x-x-109">&#x00A0;x)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;{return</span><span 
+class="cmtt-10x-x-109">&#x00A0;x*x;}&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172103r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;void</span><span 
+class="cmtt-10x-x-109">&#x00A0;rosenc(int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*ind,</span><span 
+class="cmtt-10x-x-109">&#x00A0;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*x,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*f,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*g,</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+                                                                                    
+
+                                                                                    
+<br class="fancyvrb" /><a 
+ id="x892-5172105r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*ti,</span><span 
+class="cmtt-10x-x-109">&#x00A0;float</span><span 
+class="cmtt-10x-x-109">&#x00A0;*tr,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*td)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;{&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;p;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172107r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;i;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=td[0];&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;(*ind==2||*ind==4)</span><span 
+class="cmtt-10x-x-109">&#x00A0;{&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;*f=1.0;&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172109r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;for</span><span 
+class="cmtt-10x-x-109">&#x00A0;(i=1;i$&#x0026;lt;$*n;i++)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;*f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;}&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172111r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;(*ind==3||*ind==4)</span><span 
+class="cmtt-10x-x-109">&#x00A0;{&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x892-5172113r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;for</span><span 
+class="cmtt-10x-x-109">&#x00A0;(i=1;i$&#x0026;lt;$*n-1;i++)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172115r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172117r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;}&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;}&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x892-5172119r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(C,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/rosenc.c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x892-5172121r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;compile</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span><span 
+class="cmitt-10x-x-109">&#x00A0;code</span></span><br class="fancyvrb" /><a 
+ id="x892-5172123r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l=ilib_for_link(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rosenc&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rosenc.o&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/Makefile&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172125r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;incremental</span><span 
+class="cmitt-10x-x-109">&#x00A0;linking</span></span><br class="fancyvrb" /><a 
+ id="x892-5172127r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;link(l,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rosenc&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x892-5172129r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//solve</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;problem</span></span><br class="fancyvrb" /><a 
+ id="x892-5172131r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x0=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x892-5172133r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172135r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xo,go]=optim(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rosenc&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,x0,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;td&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,p)</span><br class="fancyvrb" /><a 
+ id="x892-5172137r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;External</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;written</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;Fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;(Fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;compiler</span><span 
+class="cmitt-10x-x-109">&#x00A0;required)</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172139r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;write</span><span 
+class="cmitt-10x-x-109">&#x00A0;down</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;code</span><span 
+class="cmitt-10x-x-109">&#x00A0;(Rosenbrock</span><span 
+class="cmitt-10x-x-109">&#x00A0;problem)</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172141r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;F=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subroutine</span><span 
+class="cmtt-10x-x-109">&#x00A0;rosenf(ind,</span><span 
+class="cmtt-10x-x-109">&#x00A0;n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;x,</span><span 
+class="cmtt-10x-x-109">&#x00A0;f,</span><span 
+class="cmtt-10x-x-109">&#x00A0;g,</span><span 
+class="cmtt-10x-x-109">&#x00A0;ti,</span><span 
+class="cmtt-10x-x-109">&#x00A0;tr,</span><span 
+class="cmtt-10x-x-109">&#x00A0;td)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;integer</span><span 
+class="cmtt-10x-x-109">&#x00A0;ind,n,ti(*)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172143r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;precision</span><span 
+class="cmtt-10x-x-109">&#x00A0;x(n),f,g(n),td(*)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;real</span><span 
+class="cmtt-10x-x-109">&#x00A0;tr(*)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172145r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;precision</span><span 
+class="cmtt-10x-x-109">&#x00A0;y,p&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=td(1)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;(ind.eq.2.or.ind.eq.4)</span><span 
+class="cmtt-10x-x-109">&#x00A0;then&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172147r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=1.0d0&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;do</span><span 
+class="cmtt-10x-x-109">&#x00A0;i=2,n&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172149r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=f+p*(x(i)-x(i-1)**2)**2+(1.0d0-x(i))**2&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;enddo&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;endif&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172151r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;(ind.eq.3.or.ind.eq.4)</span><span 
+class="cmtt-10x-x-109">&#x00A0;then&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(1)=-4.0d0*p*(x(2)-x(1)**2)*x(1)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172153r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;if(n.gt.2)</span><span 
+class="cmtt-10x-x-109">&#x00A0;then&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;do</span><span 
+class="cmtt-10x-x-109">&#x00A0;i=2,n-1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172155r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172157r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x005C;&#x0026;amp;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;-2.0d0*(1.0d0-x(i))&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;enddo&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;endif&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172159r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;endif&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;return&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172161r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;end&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x892-5172163r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(F,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/rosenf.f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x892-5172165r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;compile</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;code</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172167r45"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l=ilib_for_link(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rosenf&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rosenf.o&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/Makefile&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x892-5172169r46"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;incremental</span><span 
+class="cmitt-10x-x-109">&#x00A0;linking</span></span>
+<br class="fancyvrb" /><a 
+ id="x892-5172171r47"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;link(l,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rosenf&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x892-5172173r48"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//solve</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;problem</span></span><br class="fancyvrb" /><a 
+ id="x892-5172175r49"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x0=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x892-5172177r50"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;p=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x892-5172179r51"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xo,go]=optim(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;rosenf&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,x0,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;td&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,p)</span></div>
+<!--l. 234--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x892-5173000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli966.html#external">external</a>    <a 
+href="manualli892.html#quapro">quapro</a>    <a 
+href="manualli879.html#linpro">linpro</a>    <a 
+href="manualli867.html#datafit">datafit</a>    <a 
+href="manualli878.html#leastsq">leastsq</a>    <a 
+href="manualli884.html#numdiff">numdiff</a>    <a 
+href="manualli868.html#derivative">derivative</a>    <a 
+href="manualli883.html#NDcost">NDcost</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli892.html" >next</a>] [<a 
+href="manualli890.html" >prev</a>] [<a 
+href="manualli890.html#tailmanualli890.html" >prev-tail</a>] [<a 
+href="manualli891.html" >front</a>] [<a 
+href="manualli863.html#manualli891.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli891.html"></a>  </p> 
+</body></html> 

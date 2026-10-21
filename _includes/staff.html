@@ -1,0 +1,27 @@
+
+{% if staff_member.team contains team %}
+{% if staff_member.position contains position %}
+{% if staff_member.function contains function %}
+<span id="{{staff_member.sur| downcase}}"></span>
+<div class="flex-container">
+  {% assign staff_member_image =  '/assets/staff_images/' | append: staff_member.image |  relative_url %}
+    <img src="{{ staff_member_image  }}" alt="Description de l'image" class="side-image">
+    <div class="text-content">
+      <a href="{{ staff_member.homepage }}" > {{ staff_member.name }} {{ staff_member.sur }}</a>
+      {% if staff_member.function != "member" %}, <strong>{{ staff_member.function }}</strong> {% endif %}
+      <br> 
+		{% if staff_member.position %}{{ staff_member.position  }}, {% endif %}
+      {% if staff_member.team == "OPTIM" %}<a href="{% link optimization.md %}">{{ staff_member.team }}</a>,{% endif %}
+      {% if staff_member.team == "PROBA" %}<a href="{% link applied-probability.md %}">{{ staff_member.team }}</a>,{% endif %}
+      {% if staff_member.team == "MAS" %}<a href="{% link mas.md %}">{{ staff_member.team }}</a>,{% endif %}
+      {{ staff_member.place }}
+      <a href="mailto:{{ staff_member.mail }}" title="Email me">
+	<img src="{{ '/assets/images/email.png' | relative_url }}" width="20" />
+      </a>	
+      {% if staff_member.tel %}<a class="social-btn" href="tel:{{ staff_member.tel }}" target="_blank" rel="noopener noreferrer">
+	<i class="fa fa-fw fa-phone"></i></a>{% endif %}
+    </div>
+</div>
+
+----------------------
+{% endif %}{% endif %}{% endif %}

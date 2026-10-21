@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+f4=scf(\nspnumber{4})\nspoperator{;}\nspcomment{//creates figure with id==4 and make it the current one}
+f4.color_map=jetcolormap(\nspnumber{64})\nspoperator{;}
+f4.figure_size=[\nspnumber{400}\nspoperator{,}\nspnumber{200}]\nspoperator{;}
+plot2d()
+clf(f4,\nspstring{'reset'})
+f0=scf(\nspnumber{0})\nspoperator{;}\nspcomment{//creates figure with id==0 and make it the current one}
+f0.color_map=hotcolormap(\nspnumber{128})\nspoperator{;}
+plot3d1()\nspoperator{;}
+clf()\nspoperator{,}\nspcomment{// equivalent to clf(gcf(),'clear')}
+plot3d1()\nspoperator{;}\nspcomment{// color_map unchanged}
+clf(gcf(),\nspstring{'reset'})
+plot3d1()\nspoperator{;}\nspcomment{// color_map changed (back to the default one with 32 colors)}
+\end{Verbatim}

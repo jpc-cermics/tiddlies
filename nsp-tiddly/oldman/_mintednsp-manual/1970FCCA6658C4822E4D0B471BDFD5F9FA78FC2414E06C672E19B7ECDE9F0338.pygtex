@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+x=\nspnumber{0}\nspoperator{:}\nspnumber{0.2}\nspoperator{:}\nspnumber{2}\nspoperator{*}%pi\nspoperator{;}
+x1=[sin(x)\nspoperator{;}\nspnumber{100}\nspoperator{*}sin(x)]\nspoperator{;}
+y1=[cos(x)\nspoperator{;}\nspnumber{100}\nspoperator{*}cos(x)]\nspoperator{;}
+y1=y1\nspoperator{+}\nspnumber{20}\nspoperator{*}ones(y1)\nspoperator{;}
+\nspcomment{// No clip}
+plot2d([\nspoperator{-}\nspnumber{100}\nspoperator{,}\nspnumber{500}],[\nspoperator{-}\nspnumber{100}\nspoperator{,}\nspnumber{600}],[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}],\nspstring{"022"})
+xsegs(\nspnumber{10}\nspoperator{*}x1\nspoperator{+}\nspnumber{200}\nspoperator{*}ones(x1),\nspnumber{10}\nspoperator{*}y1\nspoperator{+}\nspnumber{200}\nspoperator{*}ones(y1))
+\nspcomment{// rectangle clipping zone}
+xbasc()\nspoperator{;}plot2d([\nspoperator{-}\nspnumber{100}\nspoperator{,}\nspnumber{500}],[\nspoperator{-}\nspnumber{100}\nspoperator{,}\nspnumber{600}],[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}],\nspstring{"022"})
+xrect(\nspnumber{150},\nspnumber{460},\nspnumber{100},\nspnumber{150})
+xclip(\nspnumber{150},\nspnumber{460},\nspnumber{100},\nspnumber{150})
+xsegs(\nspnumber{10}\nspoperator{*}x1\nspoperator{+}\nspnumber{200}\nspoperator{*}ones(x1),\nspnumber{10}\nspoperator{*}y1\nspoperator{+}\nspnumber{200}\nspoperator{*}ones(y1))
+\nspcomment{// usual rectangle boundaries clipping zone}
+xbasc()\nspoperator{;}plot2d([\nspoperator{-}\nspnumber{100}\nspoperator{,}\nspnumber{500}],[\nspoperator{-}\nspnumber{100}\nspoperator{,}\nspnumber{600}],[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}],\nspstring{"022"})
+xclip(\nspstring{"clipgrf"})
+xsegs(\nspnumber{10}\nspoperator{*}x1\nspoperator{+}\nspnumber{200}\nspoperator{*}ones(x1),\nspnumber{10}\nspoperator{*}y1\nspoperator{+}\nspnumber{200}\nspoperator{*}ones(y1))\nspoperator{;}
+\nspcomment{// clipping of}
+xclip()
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1$<$=t$<$=6}
+\nspcomment{//g1 = ((2*log(y)+8)/t - 5)*y}
+\nspcomment{//g2 = log(y) - 2.2491}
+y0=\nspnumber{1}\nspoperator{;}t=\nspnumber{2}\nspoperator{:}\nspnumber{6}\nspoperator{;}t0=\nspnumber{1}\nspoperator{;}y0d=\nspnumber{3}\nspoperator{;}
+atol=\nspnumber{1.E-6}\nspoperator{;}rtol=\nspnumber{0}\nspoperator{;}ng=\nspnumber{2}\nspoperator{;}
+deff(\nspstring{'[delta,ires]=res1(t,y,ydot)'},\nspstring{'ires=0;delta=ydot-((2*log(y)+8)/t-5)*y'})
+deff(\nspstring{'[rts]=gr1(t,y)'},\nspstring{'rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]'})
+[yy,nn]=dasrt([y0\nspoperator{,}y0d],t0,t,atol,rtol,res1,ng,gr1)\nspoperator{;}
+\nspcomment{//(Should return nn=[2.4698972 2])}
+\end{Verbatim}

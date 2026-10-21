@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>xls_read</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli341.html" >next</a>] [<a 
+href="manualli339.html" >prev</a>] [<a 
+href="manualli339.html#tailmanualli339.html" >prev-tail</a>] [<a 
+href="#tailmanualli340.html">tail</a>] [<a 
+href="manualli274.html#manualli340.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x341-2013000"></a>xls_read</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx341-2013001"></a><a 
+ id="xls_read"></a><span 
+class="cmtt-10x-x-109">xls</span><span 
+class="cmtt-10x-x-109">_read </span>&#x2013;                                                                   read a sheet in an Excel file<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2014000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-474">
+&#x00A0;&#x00A0;[Value,TextInd]&#x00A0;=&#x00A0;xls_read(fd,Sheetpos)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2015000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fd </span>: a number, the logical unit on the Excel stream returned by <a 
+href="#xls-open">xls_open</a>    .
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sheetpos </span>: a number: the position of the beginning of the sheet in the Excel stream.
+     This position is one of those returned by <a 
+href="#xls-open">xls_open</a>    .
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Value </span>: a matrix of numbers, the numerical data found in the sheet. The cell without
+     numerical data are represented by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">NaN</span></span></span> values.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">TextInd </span>: a matrix of indices with the same size as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Value</span></span></span>. The 0 indices indicates that
+     no string exists in the correspondin Excel cell. a positive index <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> points to the string
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SST(i)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SST</span></span></span> is given by <a 
+href="#xls-open">xls_open</a>    .</li></ul>
+<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2016000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 45--><p class="noindent" > This function reads an Excel sheet given a logical unit on an Excel stream ant the position of the
+beginning of the sheet within this stream. It returns the numerical data and the strings contained
+by the Excel cells. The <a 
+href="manualli323.html#readxls">readxls</a>    function can be used to read all an Excel file in one function with
+a single function call. Warning only BIFF8 Excel files (last Excel file version) are handled
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2017000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb265"><a 
+ id="x341-2017008r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Decode</span><span 
+class="cmitt-10x-x-109">&#x00A0;ole</span><span 
+class="cmitt-10x-x-109">&#x00A0;file,</span><span 
+class="cmitt-10x-x-109">&#x00A0;extract</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;open</span><span 
+class="cmitt-10x-x-109">&#x00A0;Excel</span><span 
+class="cmitt-10x-x-109">&#x00A0;stream</span></span>
+<br class="fancyvrb" /><a 
+ id="x341-2017010r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[fd,SST,Sheetnames,Sheetpos]=xls_open(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/demos/excel/Test1.xls&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x341-2017012r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Read</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span><span 
+class="cmitt-10x-x-109">&#x00A0;sheet</span></span>
+<br class="fancyvrb" /><a 
+ id="x341-2017014r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Value,TextInd]=xls_read(fd,Sheetpos(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x341-2017016r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//close</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;excel</span><span 
+class="cmitt-10x-x-109">&#x00A0;stream</span></span><br class="fancyvrb" /><a 
+ id="x341-2017018r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(fd)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2018000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#xls-open">xls_open</a>    <a 
+href="manualli323.html#readxls">readxls</a>
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2019000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2020000"></a><span 
+class="cmbx-10x-x-109">Pierrick Mode</span></span>
+   INRIA
+</p>
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2021000"></a><span 
+class="cmbx-10x-x-109">Serge Steer</span></span>
+   INRIA
+</p>
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x341-2022000"></a><span 
+class="cmbx-10x-x-109">Bibliography</span></span>
+   This function is based on Excel stream description from OpenOffice
+(http://sc.openoffice.org/excelfileformat.pdf).
+This unction uses the xls.c file which can be found in a Scilab source version in the directory
+SCIDIR/routines/sound
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli341.html" >next</a>] [<a 
+href="manualli339.html" >prev</a>] [<a 
+href="manualli339.html#tailmanualli339.html" >prev-tail</a>] [<a 
+href="manualli340.html" >front</a>] [<a 
+href="manualli274.html#manualli340.html" >up</a>] </p></div>
+<!--l. 3--><p class="indent" >   <a 
+ id="tailmanualli340.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// make a figure with a specific shape}
+f=scf(\nspnumber{0})\nspoperator{;}f.figure_size=[\nspnumber{800}\nspoperator{,}\nspnumber{300}]\nspoperator{;}
+plot2d()
+set_posfig_dim(f.figure_size(\nspnumber{1}),f.figure_size(\nspnumber{2}))
+filename=\nspstring{'foo'}\nspoperator{;}\nspcomment{// ! no extension}
+xs2ps(\nspnumber{0},filename)
+\nspcomment{//add the Postscript file header and create $<$filename$>$.eps file}
+\nspkeyword{if} MSDOS \nspkeyword{then}
+  unix_s(pathconvert(\nspstring{'""'}\nspoperator{+}WSCI\nspoperator{+}\nspstring{'/bin/BEpsf'}\nspoperator{+}\nspstring{'""'},%f)\nspoperator{+}\nspstring{' -p '}\nspoperator{+}filename)
+\nspkeyword{else}
+  unix_s(pathconvert(\nspstring{'SCI/bin/BEpsf'},%f)\nspoperator{+}\nspstring{' -p '}\nspoperator{+}filename)
+\nspkeyword{end}
+\end{Verbatim}

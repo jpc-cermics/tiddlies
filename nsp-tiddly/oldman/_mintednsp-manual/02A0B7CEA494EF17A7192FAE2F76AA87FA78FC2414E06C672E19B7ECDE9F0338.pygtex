@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=\nspstring{'1 1.3'}
+[n,a,b]=msscanf(s,\nspstring{"\nsppc{}i \nsppc{}e"})
+msscanf(s,\nspstring{"\nsppc{}i \nsppc{}e"})
+msscanf(\nspstring{" 12\nspbs{}n"},\nspstring{'\nsppc{}c\nsppc{}c\nsppc{}c\nsppc{}c'})\nspoperator{,}\nspcomment{//scan characters}
+msscanf(\nspstring{'0xabc'},\nspstring{'\nsppc{}x'})\nspoperator{,}\nspcomment{//scan with hexadecimal format}
+msscanf(\nspstring{'012345abczoo'},\nspstring{'\nsppc{}[0-9abc]\nsppc{}s'})\nspoperator{,}\nspcomment{//[] notation}
+\nspcomment{//create a file with data}
+u=mopen(TMPDIR\nspoperator{+}\nspstring{'/foo'},\nspstring{'w'})\nspoperator{;}
+t=(\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}%pi)\nspoperator{'}\nspoperator{;}mfprintf(u,\nspstring{"\nsppc{}6.3f \nsppc{}6.3f\nspbs{}n"},t,sin(t))
+mclose(u)\nspoperator{;}
+\nspcomment{//read the file line by line}
+u=mopen(TMPDIR\nspoperator{+}\nspstring{'/foo'},\nspstring{'r'})\nspoperator{;}
+[n,a,b]=mfscanf(u,\nspstring{'\nsppc{}e \nsppc{}e'})
+l=mfscanf(u,\nspstring{'\nsppc{}e \nsppc{}e'})
+mclose(u)\nspoperator{;}
+\nspcomment{//use niter}
+[n,Names,Ages]=msscanf(\nspoperator{-}\nspnumber{1},[\nspstring{"Alain 19"}\nspoperator{;}\nspstring{"Pierre 15"}\nspoperator{;}\nspstring{"Tom 12"}],\nspstring{'\nsppc{}s \nsppc{}d'})
+D=msscanf(\nspoperator{-}\nspnumber{1},[\nspstring{"Alain 19"}\nspoperator{;}\nspstring{"Pierre 15"}\nspoperator{;}\nspstring{"Tom 12"}],\nspstring{'\nsppc{}s \nsppc{}d'})
+typeof(D)
+Names=D(\nspoperator{:},\nspnumber{1})\nspoperator{,}\nspcomment{//strings}
+Age=D(\nspoperator{:},\nspnumber{2})\nspoperator{,}\nspcomment{//numerical values}
+u=mopen(TMPDIR\nspoperator{+}\nspstring{'/foo'},\nspstring{'w'})\nspoperator{;}
+mfprintf(u,\nspstring{"\nsppc{}s\nspbs{}n"},[\nspstring{"Alain 19"}\nspoperator{;}\nspstring{"Pierre 15"}\nspoperator{;}\nspstring{"Tom 12"}])
+mclose(u)\nspoperator{;}
+u=mopen(TMPDIR\nspoperator{+}\nspstring{'/foo'},\nspstring{'r'})\nspoperator{;}
+[n,Names,Ages]=mfscanf(\nspnumber{2},u,\nspstring{'\nsppc{}s \nsppc{}d'})
+mclose(u)\nspoperator{;}
+\end{Verbatim}

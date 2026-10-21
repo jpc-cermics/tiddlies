@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Here with give a complete example on adding new primitive to Scilab}
+\nspcomment{//create the procedure files}
+f1=[\nspstring{'extern double fun2();'}\nspoperator{;}\nspstring{'void fun1(x,y)'}\nspoperator{;}\nspstring{'double *x, *y;'}\nspoperator{;}\nspstring{'\nspob{}*y=fun2(*x)/(*x);\nspcb{}'}]\nspoperator{;}
+mputl(f1,\nspstring{'fun1.c'})
+f2=[\nspstring{'\nspsh{}include $&lt;$math.h$&gt;$'}\nspoperator{;}\nspstring{'double fun2(x)'}\nspoperator{;}\nspstring{'double x;'}\nspoperator{;}\nspstring{'\nspob{}return( sin(x+1.));\nspcb{}'}]\nspoperator{;}
+mputl(f2,\nspstring{'fun2.c'})\nspoperator{;}
+\nspcomment{//creating the interface file}
+i=[\nspstring{'\nspsh{}include ""stack-c.h""'}\nspoperator{;}\nspstring{'extern int fun1 _PARAMS(( double *x, double *y));'}\nspoperator{;}
+   \nspstring{'int intfun1(fname)'}\nspoperator{;}\nspstring{'char * fname;'}\nspoperator{;}\nspstring{'\nspob{}'}\nspoperator{;}\nspstring{'  int m1,n1,l1;'}\nspoperator{;}\nspstring{'  CheckRhs(1,1);'}\nspoperator{;}
+   \nspstring{'  CheckLhs(1,1);'}\nspoperator{;}\nspstring{'  GetRhsVar(1, ""d"", &m1, &n1, &l1);'}\nspoperator{;}\nspstring{'  fun1(stk(l1),stk(l1));'}\nspoperator{;}
+   \nspstring{'  LhsVar(1) = 1;'}\nspoperator{;}\nspstring{'  return 0;'}\nspoperator{;}\nspstring{'\nspcb{}'}]\nspoperator{;}
+mputl(i,\nspstring{'intfun1.c'})
+\nspcomment{//creating the shared library (a gateway, a Makefile and a loader are}
+\nspcomment{//generated.}
+files=[\nspstring{'fun1.o'}\nspoperator{,}\nspstring{'fun2.o'}\nspoperator{,}\nspstring{'intfun1.o'}]\nspoperator{;}
+ilib_build(\nspstring{'foo'},[\nspstring{'scifun1'}\nspoperator{,}\nspstring{'intfun1'}],files,[])\nspoperator{;}
+\nspcomment{// load the shared library}
+\nspkeyword{exec} loader.sce
+\nspcomment{//using the new primitive}
+scifun1(\nspnumber{33})
+\end{Verbatim}

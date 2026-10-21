@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>driver</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli402.html" >next</a>] [<a 
+href="manualli400.html" >prev</a>] [<a 
+href="manualli400.html#tailmanualli400.html" >prev-tail</a>] [<a 
+href="#tailmanualli401.html">tail</a>] [<a 
+href="manualli370.html#manualli401.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x402-2346000"></a>driver</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx402-2346001"></a><a 
+ id="driver"></a><span 
+class="cmtt-10x-x-109">driver </span>&#x2013;                                                                            select a graphics driver<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x402-2347000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-531">
+&#x00A0;&#x00A0;driver(driver_name)
+&#x00A0;<br />&#x00A0;&#x00A0;current_driver=driver()
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x402-2348000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">driver</span><span 
+class="cmtt-10x-x-109">_name</span>: string, driver to be selected.</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x402-2349000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > This function is used to select a graphics driver, or with no arguments to get the current graphics
+driver name. Most of the time, a user can ignore this function and change the driver by calling
+high level functions such as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xbasc</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xbasimp</span></span></span>. The selected driver can be one of the
+followings:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;X11&#x201D;</span> </span>: output to the screen of the computer.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;Pos&#x201D;</span> </span>: output into Postscript format.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;Rec&#x201D;</span> </span>: output to the screen of the computer with recording of all the graphics commands.
+     This is the default driver.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;Fig&#x201D;</span> </span>: output into XFig format. Clipping of objects is not provided in XFig.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;GIF&#x201D;</span> </span>: output into Gif format based on gd (http://www.boutell.com/gd)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;PPM&#x201D;</span> </span>: output into PPM format based on gd (http://www.boutell.com/gd)</ul>
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x402-2350000"></a><span 
+class="cmbx-10x-x-109">Remark</span></span>
+   To convert &#x201D;GIF&#x201D; or &#x201D;PPM&#x201D; files to other image format or for building animation one can use
+the &#x201D;convert&#x201D; program for ImageMagic (http://www.imagemagick.org/) For example if one has
+generated a sequence of Gif files named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">img*.gif</span></span></span> it is possible to build an animated Gif file (named
+anim.gif) by
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-532">
+&#x00A0;&#x00A0;convert&#x00A0;-delay&#x00A0;10&#x00A0;&#x00A0;img*.gif&#x00A0;anim.gif
+</div>
+<!--l. 55--><p class="nopar" >
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x402-2351000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli565.html#xtape">xtape</a>    <a 
+href="manualli520.html#xbasc">xbasc</a>    <a 
+href="manualli521.html#xbasimp">xbasimp</a>
+</p>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x402-2352000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli402.html" >next</a>] [<a 
+href="manualli400.html" >prev</a>] [<a 
+href="manualli400.html#tailmanualli400.html" >prev-tail</a>] [<a 
+href="manualli401.html" >front</a>] [<a 
+href="manualli370.html#manualli401.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli401.html"></a>  </p> 
+</body></html> 

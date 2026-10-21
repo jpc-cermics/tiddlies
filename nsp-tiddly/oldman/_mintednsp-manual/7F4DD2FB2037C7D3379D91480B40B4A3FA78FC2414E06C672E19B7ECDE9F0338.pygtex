@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Find x in R^6 such that:}
+\nspcomment{//C1*x = b1  (3 equality constraints i.e me=3)}
+C1=[\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{3}\nspoperator{,}\nspoperator{-}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{;}\nspnumber{2}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+b1=[\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{;}\nspnumber{3}]\nspoperator{;}
+\nspcomment{//C2*x $<$= b2  (2 inequality constraints)}
+C2=[\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+b2=[\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{2.5}]\nspoperator{;}
+\nspcomment{//with  x between ci and cs:}
+ci=[\nspoperator{-}\nspnumber{1000}\nspoperator{;}\nspoperator{-}\nspnumber{10000}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspoperator{-}\nspnumber{1000}\nspoperator{;}\nspoperator{-}\nspnumber{1000}\nspoperator{;}\nspoperator{-}\nspnumber{1000}]\nspoperator{;}cs=[\nspnumber{10000}\nspoperator{;}\nspnumber{100}\nspoperator{;}\nspnumber{1.5}\nspoperator{;}\nspnumber{100}\nspoperator{;}\nspnumber{100}\nspoperator{;}\nspnumber{1000}]\nspoperator{;}
+\nspcomment{//and minimize p'*x with}
+p=[\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{;}\nspnumber{3}\nspoperator{;}\nspnumber{4}\nspoperator{;}\nspnumber{5}\nspoperator{;}\nspnumber{6}]
+\nspcomment{//No initial point is given: x0='v';}
+C=[C1\nspoperator{;}C2]\nspoperator{;}b=[b1\nspoperator{;}b2]\nspoperator{;}me=\nspnumber{3}\nspoperator{;}x0=\nspstring{'v'}\nspoperator{;}
+[x,lagr,f]=linpro(p,C,b,ci,cs,me,x0)
+\nspcomment{// Lower bound constraints 3 and 4 are active and upper bound}
+\nspcomment{// constraint 5 is active --$>$ lagr(3:4) $<$ 0 and lagr(5) $>$ 0.}
+\nspcomment{// Linear (equality) constraints 1 to 3 are active --$>$ lagr(7:9) $<$$>$ 0}
+\end{Verbatim}

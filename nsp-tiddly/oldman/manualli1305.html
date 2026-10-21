@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>TCL_EvalFile</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1306.html" >next</a>] [<a 
+href="manualli1304.html" >prev</a>] [<a 
+href="manualli1304.html#tailmanualli1304.html" >prev-tail</a>] [<a 
+href="#tailmanualli1305.html">tail</a>] [<a 
+href="manualli1296.html#manualli1305.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1306-7357000"></a>TCL_EvalFile</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1306-7357001"></a><a 
+ id="TCL_EvalFile"></a><span 
+class="cmtt-10x-x-109">TCL</span><span 
+class="cmtt-10x-x-109">_EvalFile </span>&#x2013;                                                       Reads and evaluate a tcl/tk file<br />
+<a 
+ id="dx1306-7357002"></a>
+<a 
+ id="TK_EvalFile"></a><span 
+class="cmtt-10x-x-109">TK</span><span 
+class="cmtt-10x-x-109">_EvalFile </span>&#x2013;                                             Reads and evaluate a tcl/tk file (obsolete)<br />
+</div></p></div>
+<!--l. 23--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1306-7358000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1474">
+&#x00A0;&#x00A0;TK_EvalFile(filename)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1306-7359000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">filename</span>: string character Contains the name of the file to read and evaluate.</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1306-7360000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > With this routine, one can read and evaluate the content of a file containing tcl/tk scripts.
+This allows to create powerful tk interfaces. The filename might be relative or absolute.
+</p>
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1306-7361000"></a><span 
+class="cmbx-10x-x-109">Advantages and drawbacks of this functionality</span></span>
+   This routines allows to use directly tcl/tk scripts. This thus allows, for instance to use Interface
+Builders such as SpecTcl to design the interface. The interfaces built directly with tcl/tk
+scripts are much faster than th ones built with the Scilab Graphic Object library provided
+with tksci (see uicontrol for example). Indeed, those Objects are warpings around tk
+graphic widgets. Nevertheless, this way of creating graphic user interface sould only be
+used when one aims at adressing directly specific tk/tcl features. There are two main
+reasons for this. First of all, there is no simple way to manipulate scilab objects from
+within a tcl/tk script. Thus, the interface designer has to write two sets of callbacks
+routines. One to describe the changes occuring in the interface when the user acts on the
+widgets. The second set of call routines will perform the (pure) scilab reactions to the user
+actions. Here is an example: Suppose you design a scrollbar corresponding to a spline
+tension value. You want the spline to be displayed in a graphic windows and updated
+each time the user moves the scrollbar. At the same time, you want the value of this
+tension parameter to be displayed within the Interface. You will have to write a first tcl/tk
+(callback) function which will be automatically called by the tk scrollbar (&apos;-command&apos;
+option). This callback function will update the displayed value of the parameter in the
+interface and will then call the scilab routine (&apos;ScilabEval&apos; command) to update the
+graph.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1306-7362000"></a><span 
+class="cmbx-10x-x-109">Remarks on the tcl/tk script style</span></span>
+   Because Scilab manages the tcl/tk events, it creates the root window &#x201D;.&#x201D;, this window should
+not be destroyed nor directly used by your tcl/tk scripts. You should thus always create
+your own toplevel windows. Moreover, since this module was written at a time when
+namespaces didn&apos;t exist, some variables defined by scilab tcl/tk scripts could bother your
+code.
+</p>
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1306-7363000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb848"><a 
+ id="x1306-7363003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;TK_EvalFile(SCI</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/demos/tk/puzzle&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1306-7364000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1300.html#ScilabEval">ScilabEval</a>    <a 
+href="#TK-EvalStr">TK_EvalStr</a>    <a 
+href="#TK-GetVar">TK_GetVar</a>    <a 
+href="#TK-SetVar">TK_SetVar</a>
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1306-7365000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Bertrand Guiheneuf
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1306.html" >next</a>] [<a 
+href="manualli1304.html" >prev</a>] [<a 
+href="manualli1304.html#tailmanualli1304.html" >prev-tail</a>] [<a 
+href="manualli1305.html" >front</a>] [<a 
+href="manualli1296.html#manualli1305.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1305.html"></a>  </p> 
+</body></html> 

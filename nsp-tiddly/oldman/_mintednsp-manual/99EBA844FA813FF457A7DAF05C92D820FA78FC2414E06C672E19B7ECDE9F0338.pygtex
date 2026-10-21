@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+u=file(\nspstring{'open'},TMPDIR\nspoperator{+}\nspstring{'/foo'},\nspstring{'unknown'})
+\nspkeyword{for} k=\nspnumber{1}\nspoperator{:}\nspnumber{4} \nspkeyword{do}
+  a=rand(\nspnumber{1},\nspnumber{4})
+  write(u,a)
+\nspkeyword{end}
+file(\nspstring{'rewind'},u)
+x=read(u,\nspnumber{2},\nspnumber{4})
+file(\nspstring{'close'},u)
+\nspcomment{//}
+u1=file(\nspstring{'open'},TMPDIR\nspoperator{+}\nspstring{'/foo'},\nspstring{'unknown'})
+u2=mopen(TMPDIR\nspoperator{+}\nspstring{'/foo1'},\nspstring{'wb'})
+[units,typs,nams]=file()
+file(\nspstring{'close'},u1)\nspoperator{;}
+mclose(u2)\nspoperator{;}
+\end{Verbatim}

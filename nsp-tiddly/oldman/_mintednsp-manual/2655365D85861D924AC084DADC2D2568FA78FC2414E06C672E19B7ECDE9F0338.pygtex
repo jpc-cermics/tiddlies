@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})
+h=syslin(\nspstring{'c'},(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{*}\nspnumber{0.9}\nspoperator{*}\nspnumber{10}\nspoperator{*}s\nspoperator{+}\nspnumber{100})\nspoperator{/}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{*}\nspnumber{0.3}\nspoperator{*}\nspnumber{10.1}\nspoperator{*}s\nspoperator{+}\nspnumber{102.01}))
+title=\nspstring{'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)'}\nspoperator{;}
+bode(h,\nspnumber{0.01},\nspnumber{100},title)\nspoperator{;}
+h1=h\nspoperator{*}syslin(\nspstring{'c'},(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{*}\nspnumber{0.1}\nspoperator{*}\nspnumber{15.1}\nspoperator{*}s\nspoperator{+}\nspnumber{228.01})\nspoperator{/}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{*}\nspnumber{0.9}\nspoperator{*}\nspnumber{15}\nspoperator{*}s\nspoperator{+}\nspnumber{225}))
+clf()
+bode([h1\nspoperator{;}h],\nspnumber{0.01},\nspnumber{100},[\nspstring{'h1'}\nspoperator{;}\nspstring{'h'}])
+\end{Verbatim}

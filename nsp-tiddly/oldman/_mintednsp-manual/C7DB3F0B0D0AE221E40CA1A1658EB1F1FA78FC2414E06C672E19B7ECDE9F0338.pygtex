@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ta=[\nspnumber{2}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{12}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{15}\nspoperator{,}\nspnumber{16}\nspoperator{,}\nspnumber{16}\nspoperator{,}\nspnumber{17}\nspoperator{,}\nspnumber{17}]\nspoperator{;}
+he=[\nspnumber{1}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{15}\nspoperator{,}\nspnumber{12}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{16}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{17}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{15}]\nspoperator{;}
+g=make_graph(\nspstring{'foo'},\nspnumber{0},\nspnumber{17},ta,he)\nspoperator{;}
+g(\nspstring{'node_x'})=[\nspnumber{283}\nspoperator{,}\nspnumber{163}\nspoperator{,}\nspnumber{63}\nspoperator{,}\nspnumber{57}\nspoperator{,}\nspnumber{164}\nspoperator{,}\nspnumber{164}\nspoperator{,}\nspnumber{273}\nspoperator{,}\nspnumber{271}\nspoperator{,}\nspnumber{339}\nspoperator{,}\nspnumber{384}\nspoperator{,}\nspnumber{504}\nspoperator{,}\nspnumber{513}\nspoperator{,}\nspnumber{439}\nspoperator{,}\nspnumber{623}\nspoperator{,}\nspnumber{631}\nspoperator{,}\nspnumber{757}\nspoperator{,}\nspnumber{642}]\nspoperator{;}
+g(\nspstring{'node_y'})=[\nspnumber{59}\nspoperator{,}\nspnumber{133}\nspoperator{,}\nspnumber{223}\nspoperator{,}\nspnumber{318}\nspoperator{,}\nspnumber{227}\nspoperator{,}\nspnumber{319}\nspoperator{,}\nspnumber{221}\nspoperator{,}\nspnumber{324}\nspoperator{,}\nspnumber{432}\nspoperator{,}\nspnumber{141}\nspoperator{,}\nspnumber{209}\nspoperator{,}\nspnumber{319}\nspoperator{,}\nspnumber{428}\nspoperator{,}\nspnumber{443}\nspoperator{,}\nspnumber{187}\nspoperator{,}\nspnumber{151}\nspoperator{,}\nspnumber{301}]\nspoperator{;}
+\nspcomment{// THE GRAPH}
+show_graph(g)\nspoperator{;}
+a=graph_2_mat(g,\nspstring{'node-node'})\nspoperator{;}
+ww=tril(a)\nspoperator{'}\nspoperator{+}eye()\nspoperator{;}
+ww1=full(ww)\nspoperator{;}
+xset(\nspstring{'window'},\nspnumber{1})
+hist3d((ww1\nspoperator{+}tril(ww1\nspoperator{'},\nspoperator{-}\nspnumber{1})\nspoperator{+}tril(ww1,\nspoperator{-}\nspnumber{1})\nspoperator{'}),\nspnumber{52},\nspnumber{85})\nspoperator{;}
+\nspcomment{// BANDWIDTH REDUCTION FOR THE MATRIX}
+[iperm,mrepi,prof,ierr]=bandwr(ww)\nspoperator{;}
+max(prof(\nspnumber{2}\nspoperator{:}$)\nspoperator{-}prof(\nspnumber{1}\nspoperator{:}($\nspoperator{-}\nspnumber{1})))
+\nspcomment{// GRAPH WITH THE NEW NUMBERING}
+g2=g\nspoperator{;}g2(\nspstring{'node_name'})=string(iperm)\nspoperator{;}
+show_graph(g2,\nspstring{'new'})
+\nspcomment{// NEW MATRIX}
+n=g(\nspstring{'node_number'})\nspoperator{;}
+yy=ww1(mrepi,mrepi)\nspoperator{;}
+xset(\nspstring{'window'},\nspnumber{3})
+hist3d((yy\nspoperator{+}tril(yy\nspoperator{'},\nspoperator{-}\nspnumber{1})\nspoperator{+}tril(yy,\nspoperator{-}\nspnumber{1})\nspoperator{'}),\nspnumber{52},\nspnumber{85})\nspoperator{;}
+\nspcomment{// STARTING WITH THE SAME MATRIX}
+[ij,v,mn]=spget(ww)\nspoperator{;}
+g1=make_graph(\nspstring{'foo'},\nspnumber{0},n,ij(\nspoperator{:},\nspnumber{1})\nspoperator{'},ij(\nspoperator{:},\nspnumber{2})\nspoperator{'})\nspoperator{;}
+g1(\nspstring{'node_x'})=g(\nspstring{'node_x'})\nspoperator{;}g1(\nspstring{'node_y'})=g(\nspstring{'node_y'})\nspoperator{;}
+\nspcomment{// GRAPH}
+\nspcomment{//show_graph(g1,'rep');}
+[lp,la,lls]=adj_lists(\nspnumber{1},n,g1(\nspstring{'tail'}),g1(\nspstring{'head'}))\nspoperator{;}
+[iperm,mrepi,prof,ierr]=bandwr(lp,lls,n,\nspnumber{0})\nspoperator{;}
+g2=g\nspoperator{;}g2(\nspstring{'node_name'})=string(iperm)\nspoperator{;}
+show_graph(g2,\nspstring{'new'})\nspoperator{;}
+\end{Verbatim}

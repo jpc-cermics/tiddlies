@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>bloc2exp</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli126.html" >next</a>] [<a 
+href="manualli124.html" >prev</a>] [<a 
+href="manualli124.html#tailmanualli124.html" >prev-tail</a>] [<a 
+href="#tailmanualli125.html">tail</a>] [<a 
+href="manualli104.html#manualli125.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x126-722000"></a>bloc2exp</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx126-722001"></a><a 
+ id="bloc2exp"></a><span 
+class="cmtt-10x-x-109">bloc2exp </span>&#x2013;                                                      block-diagram to symbolic expression<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x126-723000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-211">
+&#x00A0;&#x00A0;[str]=bloc2exp(blocd)
+&#x00A0;<br />&#x00A0;&#x00A0;[str,names]=bloc2exp(blocd)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x126-724000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">blocd</span>: list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">str</span>: string
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">names</span>: string</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x126-725000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > given a block-diagram representation of a linear system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bloc2exp</span></span></span> returns its symbolic evaluation.
+The first element of the list <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">blocd</span></span></span> must be the string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;blocd&#x0027;</span></span></span>. Each other element of this list
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(blocd(2),blocd(3),...)</span></span></span> is itself a list of one the following types:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-212">
+&#x00A0;&#x00A0;list(&#x0027;transfer&#x0027;,&#x0027;name_of_linear_system&#x0027;)
+</div>
+<!--l. 44--><p class="nopar" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-213">
+&#x00A0;&#x00A0;list(&#x0027;link&#x0027;,&#x0027;name_of_link&#x0027;,
+&#x00A0;<br />&#x00A0;&#x00A0;[number_of_upstream_box,upstream_box_port],
+&#x00A0;<br />&#x00A0;&#x00A0;[downstream_box_1,downstream_box_1_portnumber],
+&#x00A0;<br />&#x00A0;&#x00A0;[downstream_box_2,downstream_box_2_portnumber],
+&#x00A0;<br />&#x00A0;&#x00A0;...)
+</div>
+<!--l. 51--><p class="nopar" >The strings <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;transfer&#x0027;</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;links&#x0027;</span></span></span> are keywords which indicate the type of element in the
+block diagram. Case 1: the second parameter of the list is a character string which may
+refer (for a possible further evaluation) to the Scilab name of a linear system given in
+state-space representation (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list) or in transfer form (matrix of rationals). To each
+transfer block is associated an integer. To each input and output of a transfer block is also
+associated its number, an integer (see examples) Case 2: the second kind of element in a
+block-diagram representation is a link. A link links one output of a block represented by the pair
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[number_of_upstream_box,upstream_box_port]</span></span></span>, to different inputs of other blocks. Each such
+input is represented by the pair <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[downstream_box_i,downstream_box_i_portnumber]</span></span></span>. The
+different elements of a block-diagram can be defined in an arbitrary order. For example [1] <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S1*S2</span></span></span>
+with unit feedback. There are 3 transfers <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S1</span></span></span> (number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n_s1=2</span></span></span>) , <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S2</span></span></span> (number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n_s2=3</span></span></span>) and an adder
+(number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n_add=4</span></span></span>) with symbolic transfer function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[&#x0027;1&#x0027;,&#x0027;1&#x0027;]</span></span></span>. There are 4 links. The first one
+(named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;U&#x0027;</span></span></span>) links the input (port 0 of fictitious block -1, omitted) to port 1 of the adder. The
+second and third one link respectively (output)port 1 of the adder to (input)port 1 of system <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S1</span></span></span>,
+and (output)port 1 of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S1</span></span></span> to (input)port 1 of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S2</span></span></span>. The fourth link (named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;Y&#x0027;</span></span></span>) links (output)port 1
+of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S2</span></span></span> to the output (port 0 of fictitious block -1, omitted) and to (input)port 2 of the
+adder.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-214">
+&#x00A0;&#x00A0;//Initialization
+&#x00A0;<br />&#x00A0;&#x00A0;syst=list(&#x0027;blocd&#x0027;);&#x00A0;l=1;
+&#x00A0;<br />&#x00A0;&#x00A0;//
+&#x00A0;<br />&#x00A0;&#x00A0;//Systems
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;n_s1=l;syst(l)=list(&#x0027;transfer&#x0027;,&#x0027;S1&#x0027;);&#x00A0;&#x00A0;//System&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;n_s2=l;syst(l)=list(&#x0027;transfer&#x0027;,&#x0027;S2&#x0027;);&#x00A0;&#x00A0;//System&#x00A0;2
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;n_adder=l;syst(l)=list(&#x0027;transfer&#x0027;,[&#x0027;1&#x0027;,&#x0027;1&#x0027;]);&#x00A0;&#x00A0;//adder
+&#x00A0;<br />&#x00A0;&#x00A0;//
+&#x00A0;<br />&#x00A0;&#x00A0;//Links
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;Inputs&#x00A0;&#x00A0;-1&#x00A0;--$&#x003E;$&#x00A0;input&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;syst(l)=list(&#x0027;link&#x0027;,&#x0027;U&#x0027;,[-1],[n_adder,1]);
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;Internal
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;syst(l)=list(&#x0027;link&#x0027;,&#x0027;&#x00A0;&#x0027;,[n_adder,1],[n_s1,1]);
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;syst(l)=list(&#x0027;link&#x0027;,&#x0027;&#x00A0;&#x0027;,[n_s1,1],[n_s2,1]);
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;Outputs&#x00A0;//&#x00A0;-1&#x00A0;-$&#x003E;$&#x00A0;output&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;syst(l)=list(&#x0027;link&#x0027;,&#x0027;Y&#x0027;,[n_s2,1],[-1],[n_adder,2]);
+&#x00A0;<br />&#x00A0;&#x00A0;//Evaluation&#x00A0;call
+&#x00A0;<br />&#x00A0;&#x00A0;w=bloc2exp(syst);
+</div>
+<!--l. 102--><p class="nopar" >The result is the character string: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">w=-(s2*s1-eye())&#x005C;s2*s1</span></span></span>. Note that invoked with two
+output arguments, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[str,names]=</span><span 
+class="cmtt-10x-x-109">&#x00A0;blocd(syst)</span></span></span> returns in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">names</span></span></span> the list of symbolic
+names of named links. This is useful to set names to inputs and outputs. [2] second
+example
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-215">
+&#x00A0;&#x00A0;//Initialization
+&#x00A0;<br />&#x00A0;&#x00A0;syst=list(&#x0027;blocd&#x0027;);&#x00A0;l=1;
+&#x00A0;<br />&#x00A0;&#x00A0;//
+&#x00A0;<br />&#x00A0;&#x00A0;//System&#x00A0;(2x2&#x00A0;blocks&#x00A0;plant)
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;n_s=l;syst(l)=list(&#x0027;transfer&#x0027;,[&#x0027;P11&#x0027;,&#x0027;P12&#x0027;;&#x0027;P21&#x0027;,&#x0027;P22&#x0027;]);
+&#x00A0;<br />&#x00A0;&#x00A0;//
+&#x00A0;<br />&#x00A0;&#x00A0;//Controller
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;n_k=l;syst(l)=list(&#x0027;transfer&#x0027;,&#x0027;k&#x0027;);
+&#x00A0;<br />&#x00A0;&#x00A0;//
+&#x00A0;<br />&#x00A0;&#x00A0;//Links
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;syst(l)=list(&#x0027;link&#x0027;,&#x0027;w&#x0027;,[-1],[n_s,1]);
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;syst(l)=list(&#x0027;link&#x0027;,&#x0027;z&#x0027;,[n_s,1],[-1]);
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;syst(l)=list(&#x0027;link&#x0027;,&#x0027;u&#x0027;,[n_k,1],[n_s,2]);
+&#x00A0;<br />&#x00A0;&#x00A0;l=l+1;syst(l)=list(&#x0027;link&#x0027;,&#x0027;y&#x0027;,[n_s,2],[n_k,1]);
+&#x00A0;<br />&#x00A0;&#x00A0;//Evaluation&#x00A0;call
+&#x00A0;<br />&#x00A0;&#x00A0;w=bloc2exp(syst);
+</div>
+<!--l. 127--><p class="nopar" >In this case the result is a formula equivalent to the usual one:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P11+P12*invr(eye()-K*P22)*K*P21;</span></span></span>
+</p>
+<!--l. 131--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x126-726000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli126.html#bloc2ss">bloc2ss</a>
+</p>
+<!--l. 135--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x126-727000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   S. S., F. D. (INRIA)
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli126.html" >next</a>] [<a 
+href="manualli124.html" >prev</a>] [<a 
+href="manualli124.html#tailmanualli124.html" >prev-tail</a>] [<a 
+href="manualli125.html" >front</a>] [<a 
+href="manualli104.html#manualli125.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli125.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>noisegen</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli9.html" >next</a>] [<a 
+href="manualli7.html" >prev</a>] [<a 
+href="manualli7.html#tailmanualli7.html" >prev-tail</a>] [<a 
+href="#tailmanualli8.html">tail</a>] [<a 
+href="manualli1.html#manualli8.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x9-38000"></a>noisegen</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx9-38001"></a><a 
+ id="noisegen"></a><span 
+class="cmtt-10x-x-109">noisegen </span>&#x2013;                                                                                  noise generation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x9-39000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-15">
+&#x00A0;&#x00A0;[]=noisegen(pas,Tmax,sig)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 27--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x9-40000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 27--><p class="noindent" > generates a Scilab function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[b]=Noise(t)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Noise(t)</span></span></span> is a piecewise constant function (
+constant on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[k*pas,(k+1)*pas]</span></span></span> ). The value on each constant interval are random values from i.i.d
+Gaussian variables of standard deviation sig. The function is constant for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t$&#x003C;$=0</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">t$&#x003E;$=Tmax</span></span></span>.
+</p>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x9-41000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb4"><a 
+ id="x9-41006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;noisegen(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">30</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x9-41008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.01</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">35</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x9-41010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=feval(x,Noise)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x9-41012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,y)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli9.html" >next</a>] [<a 
+href="manualli7.html" >prev</a>] [<a 
+href="manualli7.html#tailmanualli7.html" >prev-tail</a>] [<a 
+href="manualli8.html" >front</a>] [<a 
+href="manualli1.html#manualli8.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli8.html"></a>   </p> 
+</body></html> 

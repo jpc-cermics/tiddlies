@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>GlobalProperty</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli433.html" >next</a>] [<a 
+href="manualli431.html" >prev</a>] [<a 
+href="manualli431.html#tailmanualli431.html" >prev-tail</a>] [<a 
+href="#tailmanualli432.html">tail</a>] [<a 
+href="manualli370.html#manualli432.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x433-2541000"></a>GlobalProperty</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx433-2541001"></a><a 
+ id="GlobalProperty"></a><span 
+class="cmtt-10x-x-109">GlobalProperty </span>&#x2013;    to customize the objects appearance (curves, surfaces...) in a plot or
+surf command.<br />
+</div></p></div>
+<!--l. 23--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x433-2542000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-561">
+&#x00A0;&#x00A0;None.&#x00A0;The&#x00A0;GlobalProperty&#x00A0;is&#x00A0;an&#x00A0;optional&#x00A0;argument
+&#x00A0;<br />&#x00A0;&#x00A0;that&#x00A0;can&#x00A0;be&#x00A0;used&#x00A0;inside&#x00A0;a&#x00A0;plot&#x00A0;or&#x00A0;surf&#x00A0;command.&#x00A0;It&#x00A0;allows&#x00A0;a&#x00A0;global
+&#x00A0;<br />&#x00A0;&#x00A0;customization&#x00A0;of&#x00A0;all&#x00A0;the&#x00A0;new&#x00A0;plotted&#x00A0;lines&#x00A0;(respectivly&#x00A0;surfaces).&#x00A0;It&#x00A0;has
+&#x00A0;<br />&#x00A0;&#x00A0;to&#x00A0;be&#x00A0;given&#x00A0;as&#x00A0;a&#x00A0;couple&#x00A0;{PropertyName,&#x00A0;PropertyValue}.&#x00A0;Several&#x00A0;couples&#x00A0;can
+&#x00A0;<br />&#x00A0;&#x00A0;be&#x00A0;set&#x00A0;at&#x00A0;the&#x00A0;same&#x00A0;time&#x00A0;in&#x00A0;a&#x00A0;plot&#x00A0;or&#x00A0;surf&#x00A0;call.
+&#x00A0;<br />&#x00A0;&#x00A0;PropertyName&#x00A0;must&#x00A0;be&#x00A0;a&#x00A0;string&#x00A0;defining&#x00A0;the&#x00A0;property
+&#x00A0;<br />&#x00A0;&#x00A0;to&#x00A0;set.The&#x00A0;PropertyValue&#x00A0;can&#x00A0;be&#x00A0;a&#x00A0;real,&#x00A0;integer&#x00A0;or&#x00A0;string&#x00A0;(scalar&#x00A0;or
+&#x00A0;<br />&#x00A0;&#x00A0;matrix)&#x00A0;depending&#x00A0;on&#x00A0;the&#x00A0;type&#x00A0;of&#x00A0;property&#x00A0;used.&#x00A0;For&#x00A0;example,&#x00A0;to&#x00A0;specify&#x00A0;a
+&#x00A0;<br />&#x00A0;&#x00A0;red&#x00A0;(color)&#x00A0;longdash-dot&#x00A0;(line&#x00A0;style)&#x00A0;with&#x00A0;diamond&#x00A0;marker&#x00A0;(marker),&#x00A0;the
+&#x00A0;<br />&#x00A0;&#x00A0;sequence&#x00A0;should&#x00A0;be:
+&#x00A0;<br />&#x00A0;&#x00A0;&#x0027;Colo&#x0027;,&#x0027;red&#x0027;,&#x0027;LineSt&#x0027;,&#x0027;-.&#x0027;,&#x0027;Marker&#x0027;,&#x0027;diam&#x0027;.
+&#x00A0;<br />&#x00A0;&#x00A0;As&#x00A0;you&#x00A0;can&#x00A0;see,&#x00A0;a&#x00A0;full&#x00A0;complete&#x00A0;spelling&#x00A0;of&#x00A0;each
+&#x00A0;<br />&#x00A0;&#x00A0;property&#x00A0;name&#x00A0;and&#x00A0;value&#x00A0;is&#x00A0;not&#x00A0;required&#x00A0;but&#x00A0;those&#x00A0;arguments,&#x00A0;specified&#x00A0;in
+&#x00A0;<br />&#x00A0;&#x00A0;any&#x00A0;order,&#x00A0;must&#x00A0;remain&#x00A0;unambiguous.&#x00A0;Furthermore,&#x00A0;the&#x00A0;string&#x00A0;specification
+&#x00A0;<br />&#x00A0;&#x00A0;is&#x00A0;not&#x00A0;case&#x00A0;sensitive.&#x00A0;GlobalProperty&#x00A0;is&#x00A0;predominant&#x00A0;on&#x00A0;all&#x00A0;LineSpec
+&#x00A0;<br />&#x00A0;&#x00A0;previously&#x00A0;stated.
+</div>
+<!--l. 41--><p class="nopar" >
+</p>
+<!--l. 43--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x433-2543000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 43--><p class="noindent" > Here is a complete list of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PropertyName</span></span></span> you can specify (using <a 
+href="manualli480.html#plot">plot</a>    or <a 
+href="manualli508.html#surf">surf</a>    ) and their
+available associated <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PropertyValue</span></span></span>. If not specified, those properties are available for both
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Polyline</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Fac3d</span></span></span> objects (created respectivly by plot or surf) and, as previously said, they are
+applied to the new created objects (lines or surfaces).Sometimes, you may have two PropertyName
+correponding to one property: the first one is the equivalent default Matlab name, the
+second is the default name used by Scilab (i.e.: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Color</span><span 
+class="cmtt-10x-x-109">&#x00A0;or</span><span 
+class="cmtt-10x-x-109">&#x00A0;Foreground</span></span></span> for a line, see
+below).
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></ul>
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">CData or ColorData:</span>  </span>a real matrix specifiying the color at every points defined by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Z</span></span></span> matrix.
+     This property is linked to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data.color</span></span></span> property (see <a 
+href="#surface-properties">surface_properties</a>    ). Note
+     that this property is available for surfaces only.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">CDataMapping or ColorDataMapping:</span>  </span>a string with value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;scaled&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;direct&#x0027;</span></span></span>. If a
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data.color</span></span></span> is set, each index color data specifies a single value for each vertex.
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cdata_mapping</span></span></span> determines wether those indices are scaled to map linearly into the current
+     colormap (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;scaled&#x0027;</span></span></span> mode) or point directly into this colormap (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;direct</span></span></span>&apos; mode). This
+     property is usefull when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_flag</span></span></span> equals <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2</span></span></span>,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">4</span></span></span>. Note that this property exists only with
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Fac3d</span></span></span> entities. Note also that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d</span></span></span> has <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;direct&#x0027;</span></span></span> mode by default and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">surf</span></span></span> has <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;scaled&#x0027;</span></span></span>
+     mode by default.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Clipping:</span>  </span>a string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> defining the clipping mode (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> by default). It is
+     equivalent to the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">clip_state</span></span></span> property. This field contains the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">visible</span></span></span> property (see
+     <a 
+href="#polyline-properties">polyline_properties</a>    ). Note that this property is not yet available for surface
+     entities.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Color or Foreground:</span>  </span>a string defining a known color (see <a 
+href="#color-list">color_list</a>    ) or a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1x3</span></span></span> (or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3x1</span></span></span>) RGB
+     vector defining a color number. Color number is given as a 3-uple <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span> corresponding
+     respectively to red, green and blue intensity between 0 and 1. This property is linked to
+     the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foreground</span></span></span> property (see <a 
+href="#polyline-properties">polyline_properties</a>    ). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Warning</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">:</span></span></span> Color is
+     not available for surfaces objects. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Foreground</span></span></span> property exists for surfaces
+     objects but is linked to the Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">EdgeColor</span></span></span> property (see <a 
+href="#surface-properties">surface_properties</a>
+     ).
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">EdgeColor or Foreground:</span>  </span>a string defining a known color (see <a 
+href="#color-list">color_list</a>    ) or a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>x<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span> (or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span>x<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>)
+     RGB vector defining a color number. Color number is given as a 3-uple <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span> corresponding
+     respectively to red, green and blue intensity between 0 and 1. This property is linked to the
+     surface <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foreground</span></span></span> property (see <a 
+href="#surface-properties">surface_properties</a>    ). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Warning</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">:</span></span></span> For polyline objects, the
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Foreground</span></span></span> property exists with a different meaning (see above) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">EdgeColor</span></span></span> does not
+     exist at all.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">FaceColor:</span>  </span>a string with value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;none&#x0027;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;flat&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;interp&#x0027;</span></span></span> specifying the way the facet&apos;s color
+     are rendered. When<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;none&#x0027;</span></span></span> is selected, a mesh of the surface is drawn; if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;flat&#x0027;</span></span></span> (deault
+     mode) is set, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Fac3d</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color.data</span></span></span> values determine one color per facet using the color of
+     the first vertex of the facet. If the value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;interp&#x0027;</span></span></span>, an interpolated shading is
+     done on the surface using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color.data</span></span></span> to determine a color at each vertex of each
+                                                                                    
+
+                                                                                    
+     facet.
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">LineStyle:</span>  </span>This property value should be a string defining a line style. This property is linked to
+     tje object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">line_style</span></span></span> property (see <a 
+href="#polyline-properties">polyline_properties</a>    or <a 
+href="#surface-properties">surface_properties</a>    ).
+     <!--tex4ht:inline--></p><div class="tabular"> <table id="TBL-36" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-36-1g"><col 
+id="TBL-36-1" /></colgroup><colgroup id="TBL-36-2g"><col 
+id="TBL-36-2" /></colgroup><colgroup id="TBL-36-3g"><col 
+id="TBL-36-3" /></colgroup><colgroup id="TBL-36-4g"><col 
+id="TBL-36-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-36-1-1"  
+class="td11"><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Specifier</span></span></span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-36-1-2"  
+class="td11">   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Line</span><span 
+class="cmtt-10x-x-109">&#x00A0;Style</span></span></span>   </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-36-2-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-36-2-2"  
+class="td11">Solid line (default)</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-36-3-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">--</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-36-3-2"  
+class="td11">   Dashed line     </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-36-4-1"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">:</span></span></span> </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-36-4-2"  
+class="td11"> Dotted line</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-36-5-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-.</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-36-5-2"  
+class="td11"> Dash-dotted line </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-36-6-1"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">none</span></span></span> </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-36-6-2"  
+class="td11"> No line</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-36-7-1"  
+class="td11">          </td></tr></table>
+     </div>
+     <li class="nbitemize"><span class="bitem">
+ </span>
+     <li class="nbitemize"><span class="bitem">
+ </span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Marker or MarkStyle:</span>  </span>A string defining the marker type. Note that if you specify
+     a marker wihtout a line style, both line (with default solid mode enabled) and
+     marker are drawn.This property is linked to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_style</span></span></span> and
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_mode</span></span></span> properties (see <a 
+href="#polyline-properties">polyline_properties</a>    or <a 
+href="#surface-properties">surface_properties</a>    ).
+     <!--tex4ht:inline--><div class="tabular"> <table id="TBL-37" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-37-1g"><col 
+id="TBL-37-1" /></colgroup><colgroup id="TBL-37-2g"><col 
+id="TBL-37-2" /></colgroup><colgroup id="TBL-37-3g"><col 
+id="TBL-37-3" /></colgroup><colgroup id="TBL-37-4g"><col 
+id="TBL-37-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-1-1"  
+class="td11">   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Specifier</span></span></span>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-1-2"  
+class="td11">       <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Marker</span><span 
+class="cmtt-10x-x-109">&#x00A0;Type</span></span></span>       </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-2-1"  
+class="td11">       <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">+</span></span></span>       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-2-2"  
+class="td11">         Plus sign              </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-3-1"  
+class="td11">       <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">o</span></span></span>       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-3-2"  
+class="td11">          Circle                </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-4-1"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">*</span></span></span> </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-37-4-2"  
+class="td11"> Asterisk</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-5-1"  
+class="td11">       <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.</span></span></span>       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-5-2"  
+class="td11">          Point                </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-6-1"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-37-6-2"  
+class="td11"> Cross</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-7-1"  
+class="td11"><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;square&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span></span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-7-2"  
+class="td11">          Square               </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-8-1"  
+class="td11"><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;diamond&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span></span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-8-2"  
+class="td11">         Diamond              </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-9-1"  
+class="td11"> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">^</span></span></span> </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-37-9-2"  
+class="td11"> Upward-pointing triangle</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-10-1"  
+class="td11">       <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v</span></span></span>       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-10-2"  
+class="td11"> Downward-pointing triangle  </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-11-1"  
+class="td11">      <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003E;$</span></span></span>      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-11-2"  
+class="td11">   Right-pointing triangle     </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-12-1"  
+class="td11">      <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">$&#x003C;$</span></span></span>      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-12-2"  
+class="td11">    Left-pointing triangle      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-13-1"  
+class="td11">  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;pentagram&#x0027;</span></span></span>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-13-2"  
+class="td11">Five-pointed star (pentagram)</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-14-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-14-1"  
+class="td11">    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;none&#x0027;</span></span></span>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-37-14-2"  
+class="td11">    No marker (default)       </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-15-"><td  style="white-space:nowrap; text-align:center;" id="TBL-37-15-1"  
+class="td11">               </td></tr></table>
+     </div>
+     <li class="nbitemize"><span class="bitem">
+ </span>
+     <li class="nbitemize"><span class="bitem">
+ </span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">MarkerEdgeColor or MarkForeground:</span>  </span>a string defining a known color (see color_list) or a
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>x<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span> (or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span>x<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>) RGB vector defining a color number. Color number is given as a 3-uple <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span>
+     corresponding respectively to red, green and blue intensity between 0 and 1. This property is
+     linked to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_foreground</span></span></span> property (see <a 
+href="#polyline-properties">polyline_properties</a>    or
+     <a 
+href="#surface-properties">surface_properties</a>    ).
+                                                                                    
+
+                                                                                    
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">MarkerFaceColor or MarkBackground:</span>  </span>a string defining a known color (see color_list) or a
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>x<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span> (or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span>x<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>) RGB vector defining a color number. Color number is given as a 3-uple <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span>
+     corresponding respectively to red, green and blue intensity between 0 and 1. This property is
+     linked to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_background</span></span></span> property (see <a 
+href="#polyline-properties">polyline_properties</a>    or
+     <a 
+href="#surface-properties">surface_properties</a>    ).
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">MarkerSize or MarkSize:</span>  </span>a scalar defining the marker size in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">point</span></span></span> unit. This property is
+     linked to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size</span></span></span> property with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size_unit</span></span></span> enabled to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;point&#x0022;</span></span></span> (see
+     <a 
+href="#polyline-properties">polyline_properties</a>    or <a 
+href="#surface-properties">surface_properties</a>    ).
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Visible:</span>  </span>a string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> defining the visibility mode (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> by default). This property is
+     linked to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">visible</span></span></span> property (see <a 
+href="#polyline-properties">polyline_properties</a>    or <a 
+href="#surface-properties">surface_properties</a>
+     ).
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">X data:</span>  </span>a real vector or matrix (re-)defining the given data for all the plotted lines or surfaces.
+     Concerning dimensions, note that this new data must match all the previous specified <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> data:
+     that is to say all those data matrices must be of the same dimensions. This property is linked
+     to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data.x</span></span></span> property (see <a 
+href="#polyline-properties">polyline_properties</a>    or <a 
+href="#surface-properties">surface_properties</a>
+     ).
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Y data:</span>  </span>a real vector or matrix (re-)defining the given data for all the plotted lines or surfaces.
+     Concerning dimensions, note that this new data must match all the previous specified <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> data:
+     that is to say all those data matrices must be of the same dimensions. This property is linked
+     to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data.y</span></span></span> property (see <a 
+href="#polyline-properties">polyline_properties</a>    or <a 
+href="#surface-properties">surface_properties</a>
+     ).
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Z data:</span>  </span>when used with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot</span></span></span>, a real vector or matrix adding a<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Z</span></span></span> data for all the plotted lines ;
+     with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">surf</span></span></span>, a real matrix (re-)defining the given data for all the surfaces. Concerning
+     dimensions, note that this new data must match all the previous specified <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> data. This
+     property is linked to the object&apos;s <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data.z</span></span></span> property (see <a 
+href="#polyline-properties">polyline_properties</a>    or
+     <a 
+href="#surface-properties">surface_properties</a>    ).
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+      </span></ul>
+     </ul>
+<!--l. 237--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x433-2544000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb335"><a 
+ id="x433-2544038r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;--------------------</span></span><br class="fancyvrb" /><a 
+ id="x433-2544040r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;With</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span><span 
+class="cmitt-10x-x-109">&#x00A0;command:</span></span><br class="fancyvrb" /><a 
+ id="x433-2544042r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;--------------------</span></span><br class="fancyvrb" /><a 
+ id="x433-2544044r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Init.</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544046r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,sin(x),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;colo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;red&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;linest&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;-.&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;marker&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;$&#x0026;gt;$&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markeredg&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;cyan&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markerFace&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span>
+<br class="fancyvrb" /><a 
+ id="x433-2544048r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;yellow&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markersize&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x433-2544050r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x433-2544052r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;combinations&#x0027;</span><span 
+class="cmitt-10x-x-109">&#x00A0;order</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;{PropertyName,PropertyValue}</span><span 
+class="cmitt-10x-x-109">&#x00A0;does</span><span 
+class="cmitt-10x-x-109">&#x00A0;not</span><span 
+class="cmitt-10x-x-109">&#x00A0;matter</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544054r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,sin(x),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;marker&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;p&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markerfac&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;cyan&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markersiz&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x433-2544056r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544058r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;combination</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;LineSpec</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;GlobalProperty</span><span 
+class="cmitt-10x-x-109">&#x00A0;shows</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;GlobalProperty</span><span 
+class="cmitt-10x-x-109">&#x00A0;predominance</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544060r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(x,x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">x,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;*cya--&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;color&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;gr&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;linestyle&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;-&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;marker&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;sq&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markersize&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span>
+<br class="fancyvrb" /><a 
+ id="x433-2544062r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markforegroun&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;red&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markbackgro&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x433-2544064r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544066r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//multiple</span><span 
+class="cmitt-10x-x-109">&#x00A0;plots</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;different</span><span 
+class="cmitt-10x-x-109">&#x00A0;LineSpecs</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;finally</span><span 
+class="cmitt-10x-x-109">&#x00A0;some</span><span 
+class="cmitt-10x-x-109">&#x00A0;global</span><span 
+class="cmitt-10x-x-109">&#x00A0;GlobalProperty</span></span><br class="fancyvrb" /><a 
+ id="x433-2544068r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544070r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x433-2544072r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(t,sin(t),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ro-.&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,t,cos(t),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;cya+&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,t,abs(sin(t)),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;--mo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markstyl&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;diam&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x433-2544074r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;--------------------</span></span><br class="fancyvrb" /><a 
+ id="x433-2544076r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;With</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;surf</span><span 
+class="cmitt-10x-x-109">&#x00A0;command:</span></span><br class="fancyvrb" /><a 
+ id="x433-2544078r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;--------------------</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544080r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Z=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0001</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0013</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0053</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0299</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1809</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2465</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0168</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0008</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0000</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544082r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0005</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0089</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0259</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3673</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.8670</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.4736</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0866</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1602</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0067</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0000</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544084r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0004</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0214</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1739</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3147</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4.0919</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6.4101</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.7589</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2779</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0131</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0020</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544086r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0088</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0871</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0364</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.8559</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.4995</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.2171</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2729</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8368</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2016</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0130</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544088r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0308</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4313</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.7334</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1148</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3.0731</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4444</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.6145</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.4410</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4877</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0301</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544090r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0336</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4990</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.3552</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.1722</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8856</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0531</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.6416</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.4064</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.4771</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0294</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544092r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0137</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1967</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8083</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2289</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3.3983</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3.1955</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.4338</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.2129</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2108</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0125</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544094r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0014</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0017</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.3189</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.7414</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7.1622</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7.1361</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3.1242</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6633</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0674</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0030</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544096r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0002</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0104</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1733</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0852</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.6741</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.6725</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.1119</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1973</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0152</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0005</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544098r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0000</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0012</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0183</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1099</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2684</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.2683</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1107</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0190</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0014</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.0000</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x433-2544100r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x433-2544102r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=gcf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x433-2544104r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f.figure_size=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">610</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">724</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x433-2544106r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">211</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x433-2544108r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;surf(Z,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;facecol&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;interp&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ydat&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">101</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">110</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;edgecol&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;mage&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x433-2544110r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subplot(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">212</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x433-2544112r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;surf(Z,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;edgeco&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;marker&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markersiz&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">9</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;markerfac&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;k&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;xdata&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">41</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 278--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x433-2545000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli451.html#LineSpec">LineSpec</a>    <a 
+href="manualli480.html#plot">plot</a>    <a 
+href="manualli508.html#surf">surf</a>    <a 
+href="manualli385.html#clf">clf</a>    <a 
+href="#polyline-properties">polyline_properties</a>    <a 
+href="#surface-properties">surface_properties</a>
+</p>
+<!--l. 282--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x433-2546000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.Leray
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli433.html" >next</a>] [<a 
+href="manualli431.html" >prev</a>] [<a 
+href="manualli431.html#tailmanualli431.html" >prev-tail</a>] [<a 
+href="manualli432.html" >front</a>] [<a 
+href="manualli370.html#manualli432.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli432.html"></a>  </p> 
+</body></html> 

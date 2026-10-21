@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+G=ssrand(\nspnumber{2},\nspnumber{3},\nspnumber{2})\nspoperator{;}\nspcomment{//Plant}
+K=ssrand(\nspnumber{3},\nspnumber{2},\nspnumber{2})\nspoperator{;}\nspcomment{//Compensator}
+[P,r]=augment(G,\nspstring{'T'})\nspoperator{;}
+T=lft(P,r,K)\nspoperator{;}\nspcomment{//Complementary sensitivity function}
+Ktf=ss2tf(K)\nspoperator{;}Gtf=ss2tf(G)\nspoperator{;}
+Ttf=ss2tf(T)\nspoperator{;}T11=Ttf(\nspnumber{1},\nspnumber{1})\nspoperator{;}
+Oloop=Gtf\nspoperator{*}Ktf\nspoperator{;}
+Tn=Oloop\nspoperator{*}inv(eye(Oloop)\nspoperator{+}Oloop)\nspoperator{;}
+clean(T11\nspoperator{-}Tn(\nspnumber{1},\nspnumber{1}))\nspoperator{;}
+\nspcomment{//}
+[Pi,r]=augment(G,\nspstring{'T'},\nspstring{'i'})\nspoperator{;}
+T1=lft(Pi,r,K)\nspoperator{;}T1tf=ss2tf(T1)\nspoperator{;}\nspcomment{//Input Complementary sensitivity function}
+Oloop=Ktf\nspoperator{*}Gtf\nspoperator{;}
+T1n=Oloop\nspoperator{*}inv(eye(Oloop)\nspoperator{+}Oloop)\nspoperator{;}
+clean(T1tf(\nspnumber{1},\nspnumber{1})\nspoperator{-}T1n(\nspnumber{1},\nspnumber{1}))
+\end{Verbatim}

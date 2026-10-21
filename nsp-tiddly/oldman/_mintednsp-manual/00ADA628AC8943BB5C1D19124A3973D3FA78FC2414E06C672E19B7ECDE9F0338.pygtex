@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+Sl=ssrand(\nspnumber{2},\nspnumber{2},\nspnumber{5})\nspoperator{;}trzeros(Sl)\nspoperator{,}\nspcomment{// zeros are invariant:}
+Sl1=ss2ss(Sl,rand(\nspnumber{5},\nspnumber{5}),rand(\nspnumber{2},\nspnumber{5}),rand(\nspnumber{5},\nspnumber{2}))\nspoperator{;}
+trzeros(Sl1)\nspoperator{,}trzeros(rand(\nspnumber{2},\nspnumber{2})\nspoperator{*}Sl1\nspoperator{*}rand(\nspnumber{2},\nspnumber{2}))
+\nspcomment{// output injection [ A + GC, (B+GD,-G)]}
+\nspcomment{//                  [   C   , (D   , 0)]}
+p=\nspnumber{1}\nspoperator{,}m=\nspnumber{2}\nspoperator{,}n=\nspnumber{2}\nspoperator{;}sys=ssrand(p,m,n)\nspoperator{;}
+\nspcomment{// feedback (m,n)  first and then output injection.}
+F1=rand(m,n)\nspoperator{;}
+G=rand(n,p)\nspoperator{;}
+[sys1,right,left]=ss2ss(sys,rand(n,n),F1,G,\nspnumber{2})\nspoperator{;}
+\nspcomment{// Sl1 equiv left*sysdiag(sys*right,eye(p,p)))}
+res=clean(ss2tf(sys1)\nspoperator{-}ss2tf(left\nspoperator{*}sysdiag(sys\nspoperator{*}right,eye(p,p))))
+\nspcomment{// output injection then feedback (m+p,n)}
+F2=rand(p,n)\nspoperator{;}F=[F1\nspoperator{;}F2]\nspoperator{;}
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,\nspnumber{1})\nspoperator{;}
+\nspcomment{// Sl1 equiv left*sysdiag(sys,eye(p,p))*right}
+res=clean(ss2tf(sys2)\nspoperator{-}ss2tf(left\nspoperator{*}sysdiag(sys,eye(p,p))\nspoperator{*}right))
+\nspcomment{// when F2= 0; sys1 and sys2 are the same}
+F2=\nspnumber{0}\nspoperator{*}rand(p,n)\nspoperator{;}F=[F1\nspoperator{;}F2]\nspoperator{;}
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,\nspnumber{1})\nspoperator{;}
+res=clean(ss2tf(sys2)\nspoperator{-}ss2tf(sys1))
+\end{Verbatim}

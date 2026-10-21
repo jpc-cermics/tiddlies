@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>integrate</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli167.html" >next</a>] [<a 
+href="manualli165.html" >prev</a>] [<a 
+href="manualli165.html#tailmanualli165.html" >prev-tail</a>] [<a 
+href="#tailmanualli166.html">tail</a>] [<a 
+href="manualli104.html#manualli166.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x167-978000"></a>integrate</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx167-978001"></a><a 
+ id="integrate"></a><span 
+class="cmtt-10x-x-109">integrate </span>&#x2013;                                                                    integration by quadrature<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x167-979000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-268">
+&#x00A0;&#x00A0;[x]=integrate(expr,v,x0,x1&#x00A0;[,ea&#x00A0;[,er]])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x167-980000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">expr</span>: external Scilab
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">v</span>: string (integration variable)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0,x1</span>: real numbers (bounds of integration)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ea,er</span>: real numbers (absolute error bound) Default value: 0
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">er</span>: real number, (relative error bound) Default value: 1.d-8</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x167-981000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > computes:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-269">
+&#x00A0;&#x00A0;/x1
+&#x00A0;<br />&#x00A0;&#x00A0;[
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;x&#x00A0;=&#x00A0;I&#x00A0;&#x00A0;f(v)dv
+&#x00A0;<br />&#x00A0;&#x00A0;]
+&#x00A0;<br />&#x00A0;&#x00A0;/x0
+</div>
+<!--l. 45--><p class="nopar" >The evaluation hopefully satisfies following claim for accuracy: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">abs(I-x)$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;max(ea,er*abs(I))</span></span></span>
+where I stands for the exact value of the integral.
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x167-982000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb124"><a 
+ id="x167-982005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;integrate(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;sin(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,%pi)</span><br class="fancyvrb" /><a 
+ id="x167-982007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;integrate([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;if</span><span 
+class="cmtt-10x-x-109">&#x00A0;x==0</span><span 
+class="cmtt-10x-x-109">&#x00A0;then</span><span 
+class="cmtt-10x-x-109">&#x00A0;1,&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;else</span><span 
+class="cmtt-10x-x-109">&#x00A0;sin(x)/x,end&#x0027;</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,%pi)</span></div>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x167-983000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli875.html#intg">intg</a>    <a 
+href="manualli175.html#inttrap">inttrap</a>    <a 
+href="manualli173.html#intsplin">intsplin</a>    <a 
+href="manualli890.html#ode">ode</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli167.html" >next</a>] [<a 
+href="manualli165.html" >prev</a>] [<a 
+href="manualli165.html#tailmanualli165.html" >prev-tail</a>] [<a 
+href="manualli166.html" >front</a>] [<a 
+href="manualli104.html#manualli166.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli166.html"></a>  </p> 
+</body></html> 

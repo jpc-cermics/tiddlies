@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>cdfnor</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli101.html" >next</a>] [<a 
+href="manualli99.html" >prev</a>] [<a 
+href="manualli99.html#tailmanualli99.html" >prev-tail</a>] [<a 
+href="#tailmanualli100.html">tail</a>] [<a 
+href="manualli91.html#manualli100.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x101-572000"></a>cdfnor</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx101-572001"></a><a 
+ id="cdfnor"></a><span 
+class="cmtt-10x-x-109">cdfnor </span>&#x2013;                                     cumulative distribution function normal distribution<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x101-573000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-180">
+&#x00A0;&#x00A0;[P,Q]=cdfnor(&#x0022;PQ&#x0022;,X,Mean,Std)
+&#x00A0;<br />&#x00A0;&#x00A0;[X]=cdfnor(&#x0022;X&#x0022;,Mean,Std,P,Q)
+&#x00A0;<br />&#x00A0;&#x00A0;[Mean]=cdfnor(&#x0022;Mean&#x0022;,Std,P,Q,X)
+&#x00A0;<br />&#x00A0;&#x00A0;[Std]=cdfnor(&#x0022;Std&#x0022;,P,Q,X,Mean)
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x101-574000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P,Q,X,Mean,Std</span>: six real vectors of the same size.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P,Q (Q=1-P) </span>: The integral from -infinity to X of the normal density. Input range: (0,1].
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>:Upper limit of integration of the normal-density. Input range: ( -infinity, +infinity)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Mean</span>: The mean of the normal density. Input range: (-infinity, +infinity)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Sd</span>: Standard Deviation of the normal density. Input range: (0, +infinity).</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x101-575000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > Calculates any one parameter of the normal distribution given values for the others. A slightly
+modified version of ANORM from Cody, W.D. (1993). &#x201D;ALGORITHM 715: SPECFUN - A
+Portabel FORTRAN Package of Special Function Routines and Test Drivers&#x201D; acm Transactions on
+Mathematical Software. 19, 22-32. is used to calulate the cumulative standard normal distribution.
+The rational functions from pages 90-95 of Kennedy and Gentle, Statistical Computing, Marcel
+Dekker, NY, 1980 are used as starting values to Newton&apos;s Iterations which compute the inverse
+standard normal. Therefore no searches are necessary for any parameter. For X <span 
+class="cmmi-10x-x-109">&#x003C; </span>-15,
+the asymptotic expansion for the normal is used as the starting value in finding the
+inverse standard normal. This is formula 26.2.12 of Abramowitz and Stegun. The normal
+density is proportional to exp( - 0.5 * (( X - MEAN)/SD)**2) From DCDFLIB: Library of
+Fortran Routines for Cumulative Distribution Functions, Inverses, and Other Parameters
+(February, 1994) Barry W. Brown, James Lovato and Kathy Russell. The University of Texas.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli101.html" >next</a>] [<a 
+href="manualli99.html" >prev</a>] [<a 
+href="manualli99.html#tailmanualli99.html" >prev-tail</a>] [<a 
+href="manualli100.html" >front</a>] [<a 
+href="manualli91.html#manualli100.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli100.html"></a>  </p> 
+</body></html> 

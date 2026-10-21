@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lqr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli55.html" >next</a>] [<a 
+href="manualli53.html" >prev</a>] [<a 
+href="manualli53.html#tailmanualli53.html" >prev-tail</a>] [<a 
+href="#tailmanualli54.html">tail</a>] [<a 
+href="manualli12.html#manualli54.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x55-308000"></a>lqr</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx55-308001"></a><a 
+ id="lqr"></a><span 
+class="cmtt-10x-x-109">lqr </span>&#x2013;                                                                         LQ compensator (full state) <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x55-309000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-95">
+&#x00A0;&#x00A0;[K,X]=lqr(P12)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x55-310000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P12</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (state-space linear system)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">K,X</span>: two real matrices</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x55-311000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lqr</span></span></span> computes the linear optimal LQ full-state gain for the plant <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P12=[A,B2,C1,D12]</span></span></span> in
+continuous or discrete time.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P12</span></span></span> is a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (e.g. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P12=syslin(&#x0027;c&#x0027;,A,B2,C1,D12)</span></span></span>). The
+cost function is l2-norm of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z&#x0027;*z</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z=C1</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;D12</span><span 
+class="cmtt-10x-x-109">&#x00A0;u</span></span></span> i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[x,u]&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;*</span><span 
+class="cmtt-10x-x-109">&#x00A0;BigQ</span><span 
+class="cmtt-10x-x-109">&#x00A0;*</span><span 
+class="cmtt-10x-x-109">&#x00A0;[x;u]</span></span></span>
+where
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-96">
+&#x00A0;&#x00A0;[C1&#x0027;&#x00A0;]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[Q&#x00A0;&#x00A0;S]
+&#x00A0;<br />&#x00A0;&#x00A0;BigQ=&#x00A0;[&#x00A0;&#x00A0;&#x00A0;&#x00A0;]&#x00A0;&#x00A0;*&#x00A0;[C1&#x00A0;D12]&#x00A0;=&#x00A0;[&#x00A0;&#x00A0;&#x00A0;&#x00A0;]
+&#x00A0;<br />&#x00A0;&#x00A0;[D12&#x0027;]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[S&#x0027;&#x00A0;R]
+</div>
+<!--l. 44--><p class="nopar" >The gain <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span> is such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;B2*K</span></span></span> is stable.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is the stabilizing solution of the Riccati equation. For a
+continuous plant:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-97">
+&#x00A0;&#x00A0;(A-B2*inv(R)*S&#x0027;)&#x0027;*X+X*(A-B2*inv(R)*S&#x0027;)-X*B2*inv(R)*B2&#x0027;*X+Q-S*inv(R)*S&#x0027;=0
+</div>
+<!--l. 49--><p class="nopar" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-98">
+&#x00A0;&#x00A0;K=-inv(R)*(B2&#x0027;*X+S)
+</div>
+<!--l. 52--><p class="nopar" >For a discrete plant:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-99">
+&#x00A0;&#x00A0;X=A&#x0027;*X*A-(A&#x0027;*X*B2+C1&#x0027;*D12)*pinv(B2&#x0027;*X*B2+D12&#x0027;*D12)*(B2&#x0027;*X*A+D12&#x0027;*C1)+C1&#x0027;*C1;
+</div>
+<!--l. 56--><p class="nopar" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-100">
+&#x00A0;&#x00A0;K=-pinv(B2&#x0027;*X*B2+D12&#x0027;*D12)*(B2&#x0027;*X*A+D12&#x0027;*C1)
+</div>
+<!--l. 59--><p class="nopar" >An equivalent form for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-101">
+&#x00A0;&#x00A0;X=Abar&#x0027;*inv(inv(X)+B2*inv(r)*B2&#x0027;)*Abar+Qbar
+</div>
+<!--l. 63--><p class="nopar" >with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Abar=A-B2*inv(R)*S&#x0027;</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Qbar=Q-S*inv(R)*S&#x0027;</span></span></span> The 3-blocks matrix pencils associated with
+these Riccati equations are:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-102">
+&#x00A0;&#x00A0;discrete&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;continuous
+&#x00A0;<br />&#x00A0;&#x00A0;|I&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;0|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;A&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;B2|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|I&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;0|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;A&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;B2|
+&#x00A0;<br />&#x00A0;&#x00A0;z|0&#x00A0;&#x00A0;&#x00A0;A&#x0027;&#x00A0;&#x00A0;&#x00A0;0|&#x00A0;-&#x00A0;|-Q&#x00A0;&#x00A0;&#x00A0;&#x00A0;I&#x00A0;&#x00A0;&#x00A0;&#x00A0;-S|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;s|0&#x00A0;&#x00A0;&#x00A0;I&#x00A0;&#x00A0;&#x00A0;0|&#x00A0;-&#x00A0;|-Q&#x00A0;&#x00A0;&#x00A0;-A&#x0027;&#x00A0;&#x00A0;&#x00A0;-S|
+&#x00A0;<br />&#x00A0;&#x00A0;|0&#x00A0;&#x00A0;&#x00A0;B2&#x0027;&#x00A0;&#x00A0;0|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;S&#x0027;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;R|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|0&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;0|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;S&#x0027;&#x00A0;&#x00A0;-B2&#x0027;&#x00A0;&#x00A0;&#x00A0;R|
+</div>
+<!--l. 71--><p class="nopar" >Caution: It is assumed that matrix R is non singular. In particular, the plant must be tall (number
+of outputs <span 
+class="cmmi-10x-x-109">&#x003E;</span>= number of inputs).
+</p>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x55-312000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb41"><a 
+ id="x55-312014r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//two</span><span 
+class="cmitt-10x-x-109">&#x00A0;states,</span><span 
+class="cmitt-10x-x-109">&#x00A0;one</span><span 
+class="cmitt-10x-x-109">&#x00A0;input</span></span>
+<br class="fancyvrb" /><a 
+ id="x55-312016r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q=diag([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">R=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Usual</span><span 
+class="cmitt-10x-x-109">&#x00A0;notations</span><span 
+class="cmitt-10x-x-109">&#x00A0;x&#x0027;Qx</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;u&#x0027;Ru</span></span><br class="fancyvrb" /><a 
+ id="x55-312018r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Big=sysdiag(Q,R)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Now</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;calculate</span><span 
+class="cmitt-10x-x-109">&#x00A0;C1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;D12</span></span>
+<br class="fancyvrb" /><a 
+ id="x55-312020r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[w,wp]=fullrf(Big)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">C1=wp(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D12=wp(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">$)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//[C1,D12]&#x0027;*[C1,D12]=Big</span></span>
+<br class="fancyvrb" /><a 
+ id="x55-312022r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;P=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C1,D12)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//The</span><span 
+class="cmitt-10x-x-109">&#x00A0;plant</span><span 
+class="cmitt-10x-x-109">&#x00A0;(continuous-time)</span></span><br class="fancyvrb" /><a 
+ id="x55-312024r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[K,X]=lqr(P)</span>
+<br class="fancyvrb" /><a 
+ id="x55-312026r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">K)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//check</span><span 
+class="cmitt-10x-x-109">&#x00A0;stability</span></span><br class="fancyvrb" /><a 
+ id="x55-312028r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">inv(R)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Q,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Riccati</span><span 
+class="cmitt-10x-x-109">&#x00A0;check</span></span>
+<br class="fancyvrb" /><a 
+ id="x55-312030r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;P=syslin(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A,B,C1,D12)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Discrete</span><span 
+class="cmitt-10x-x-109">&#x00A0;time</span><span 
+class="cmitt-10x-x-109">&#x00A0;plant</span></span><br class="fancyvrb" /><a 
+ id="x55-312032r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[K,X]=lqr(P)</span><br class="fancyvrb" /><a 
+ id="x55-312034r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;spec(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">K)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//check</span><span 
+class="cmitt-10x-x-109">&#x00A0;stability</span></span>
+<br class="fancyvrb" /><a 
+ id="x55-312036r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">(A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">pinv(B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">R)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(B</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">X,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Riccati</span><span 
+class="cmitt-10x-x-109">&#x00A0;check</span></span></div>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x55-313000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli51.html#lqe">lqe</a>    <a 
+href="manualli1104.html#gcare">gcare</a>    <a 
+href="manualli1115.html#leqr">leqr</a>
+</p>
+<!--l. 97--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x55-314000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.D.;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli55.html" >next</a>] [<a 
+href="manualli53.html" >prev</a>] [<a 
+href="manualli53.html#tailmanualli53.html" >prev-tail</a>] [<a 
+href="manualli54.html" >front</a>] [<a 
+href="manualli12.html#manualli54.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli54.html"></a>  </p> 
+</body></html> 

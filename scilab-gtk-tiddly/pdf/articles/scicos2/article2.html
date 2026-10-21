@@ -1,0 +1,1241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>De la compilation &agrave; la simulation</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+<META NAME="GENERATOR" CONTENT="hevea 1.05"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HEVEA command line is: hevea article2.tex -->
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<H1 ALIGN="CENTER"><B>De la compilation &agrave; la simulation</B></H1>
+<BR>
+<BR>
+<B>Dans l'article paru dans le num&eacute;ro pr&eacute;c&eacute;dent nous
+avions vu comment fonctionne l'&eacute;diteur graphique de Scicos, dont
+l'utilisation permet, par de simples clics de souris, la construction de
+syst&egrave;mes dynamiques sous forme de sch&eacute;ma-blocs. L'article
+pr&eacute;sent&eacute; ici d&eacute;taille les diff&eacute;rentes &eacute;tapes
+nec&eacute;ssaires, de la compilation &agrave; la simulation des
+sch&eacute;ma-blocs. Nous verrons dans un prochain article, le lien entre les
+&eacute;tapes de la compilation et la g&eacute;n&eacute;ration automatique de
+code.</B>
+
+
+
+<!--TOC section Introduction-->
+<H2>1&nbsp;&nbsp; Introduction</H2>
+<!--SEC END -->
+Dans <EM>Scicos</EM> la mod&eacute;lisation se traduit par la
+repr&eacute;sention sous forme de sch&eacute;ma-blocs de mod&egrave;les de
+syst&egrave;mes dynamiques. Le fonctionnement de ces mod&egrave;les est obtenu
+par l'ex&eacute;cution de <TT> la simulation</TT>. Celle-ci permet, bien
+s&ucirc;r, de calculer la solution du syst&egrave;me dynamique
+mod&eacute;lis&eacute;, mais aussi d'autres op&eacute;rations, comme par
+exemple la visualisation de signaux (<TT>bloc Scope</TT> ou <TT>MScope</TT>) ou
+l'enregistrement de leurs valeurs dans un fichier (<TT>bloc Writef</TT>). Ces
+valeurs pouvant ensuite &ecirc;tre lues (<TT> bloc Readf</TT>) ou
+r&eacute;-utilis&eacute;es en post-processing dans Scilab. De la
+mod&eacute;lisation &agrave; la simulation il y a une phase importante que l'on
+appelle la <TT>compilation</TT> (cf. figure&nbsp;<A HREF="#edit01">1</A>). La
+compilation consiste &agrave; coder les informations graphiques,
+architecturales et param&eacute;triques d'un sch&eacute;ma-bloc et surtout
+&agrave; calculer l'ordre d'appel des blocs (<TT>ordonnancement</TT>) pendant
+la simulation. La compilation d'un sch&eacute;ma-bloc s'ex&eacute;cute, la
+premi&egrave;re fois d'une mani&egrave;re compl&egrave;te, en deux
+&eacute;tapes par les fonctions Scilab <TT>c_pass1</TT> et <TT>c_pass2</TT>.
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="edit01.png" BORDER="0" WIDTH="177" HEIGHT="132"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 1: De la mod&eacute;lisation &agrave; la simulation 
+</DIV>
+<BR>
+<A NAME="edit01"></A> Nous verrons par la suite que lorsque des modifications
+sont apport&eacute;es &agrave; post&eacute;riori au sch&eacute;ma-bloc, selon
+le cas, la compilation peut &ecirc;tre optimis&eacute;e.
+
+<!--TOC section La compilation complète-->
+<H2>2&nbsp;&nbsp; La compilation compl&egrave;te</H2>
+<!--SEC END -->
+Lorsqu'un un sch&eacute;ma-bloc est compil&eacute; pour la premi&egrave;re
+fois, ce sont les fonctions <TT>c_pass1</TT> et <TT>c_pass2</TT> qui sont
+ex&eacute;cut&eacute;es. Afin d'illustrer leur fonctionnement, nous
+consid&eacute;rons l'exemple de la figure&nbsp;<A HREF="#010">2</A>, contenant
+7 blocs. <BR>
+<BR>
+<CENTER>
+<IMG SRC="01.png" BORDER="0" WIDTH="598" HEIGHT="621"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 2: Un syst&egrave;me hybride. 
+</DIV>
+<BR>
+<A NAME="010"></A>
+<!--TOC subsection La première étape de compilation-->
+<H3>2.1&nbsp;&nbsp; La premi&egrave;re &eacute;tape de compilation</H3>
+<!--SEC END -->
+<A NAME="cpass1"></A> La fonction <TT>c_pass1</TT> r&eacute;alise la
+premi&egrave;re &eacute;tape de compilation compl&egrave;te, elle se trouve
+dans le fichier <TT> /macros/scicos/c_pass1.sci</TT>. Son r&ocirc;le est
+d'assurer : <UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la
+v&eacute;rification de la coh&eacute;rence entre les param&egrave;tres des
+ports des blocs reli&eacute;s (type, taille, ...) ; </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la mise &agrave;
+plat de la hi&eacute;rarchie des super-blocs, pour n'obtenir qu'un seul niveau
+dans l'arborescence des connections ; </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la d&eacute;finition
+d'une liste des blocs, le r&eacute;sultat obtenu &eacute;tablit une nouvelle
+num&eacute;rotation des blocs ; </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la construction des
+tables de connections (r&eacute;guli&egrave;res et d'activations) entre les
+blocs. </LI>
+</UL>
+La syntaxe de la fonction <TT>c_pass1</TT> est :
+[blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup). Ses entr&eacute;es sont
+: <UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la structure
+principale de donn&eacute;es du sch&eacute;ma bloc <TT>scs_m</TT>, qui contient
+la succession des structures de donn&eacute;es des blocs et des liens
+d&eacute;finis par l'&eacute;diteur. Si <TT> scs_m(k)</TT> est un bloc, 
+<TT>scs_m(k)(2)</TT> est la structure de donn&eacute;e <TT>graphics</TT> du
+bloc et <TT>scs_m(k)(3)</TT> est la structure de donn&eacute;e <TT>model</TT>
+(cf. num&eacute;ro 34 de Linux Magazine). </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>le param&egrave;tre 
+<TT>ksup</TT>, qui donne l'information sur les &eacute;ventuels niveaux de
+connections existants, en fonction des super-blocs. Par exemple, dans le cas
+o&ugrave; un sch&eacute;ma-bloc ne contient aucun super-bloc, il y a un seul
+niveau : <TT>ksup=0</TT>. </LI>
+</UL>
+Le r&eacute;sultat de la compilation est donn&eacute; par les sorties de la
+fonction c_pass1 : ce sont la liste <TT>blklst</TT>, les matrices de
+connections des ports r&eacute;guliers <TT>cmat</TT> et des ports d'activations
+<TT>ccmat</TT>, ainsi que les listes <TT>cor</TT> et <TT> corinv</TT>. <TT>cor 
+</TT> est une liste dont la structure est identique &agrave; la liste <TT>scs_m
+</TT>. Chaque composante contient l'indice du bloc associ&eacute; dans la liste
+<TT>blklst</TT>. La liste <TT>cor</TT> contient le chemin d'acc&egrave;s
+&agrave; la structure contenue dans <TT>scs_m</TT>, pour chaque num&eacute;ro
+de bloc de la liste <TT>blklst</TT>. La liste <TT>corinv</TT> permet
+l'op&eacute;ration inverse de <TT>cor</TT> : &agrave; partir du num&eacute;ro
+d'un bloc, on obtient son indice dans la structure principale <TT>scs_m</TT>.
+
+<!--TOC subsubsection La liste <TT>blklst</TT>-->
+<H4>2.1.1&nbsp;&nbsp; La liste <TT>blklst</TT></H4>
+<!--SEC END -->
+<A NAME="bllst"></A> <TT>blklst</TT> est la liste contenant des donn&eacute;es
+sur chaque bloc, <TT>blklst</TT> repr&eacute;sente une liste de sous-listes.
+Dans notre sch&eacute;ma de 7 blocs, <TT>blklst</TT> contient 7 sous-listes.
+Chaque sous-liste correspond au champ <TT>model</TT> du bloc associ&eacute;. A
+partir des renseignements contenus dans <TT>blklst</TT>, nous en
+d&eacute;duisons la num&eacute;rotation des blocs dans la figure&nbsp;<A
+HREF="#010">2</A>.
+
+
+<!--TOC subsubsection La matrice <TT>cmat</TT>-->
+<H4>2.1.2&nbsp;&nbsp; La matrice <TT>cmat</TT></H4>
+<!--SEC END -->
+<TT>cmat</TT> est la matrice de connections des ports r&eacute;guliers. La
+premi&egrave;re colonne indique le num&eacute;ro de bloc dont le port de sortie
+r&eacute;gulier (num&eacute;rot&eacute; dans la deuxi&egrave;me colonne) est
+connect&eacute; au bloc num&eacute;rot&eacute; dans la troisi&egrave;me
+colonne, par son port d'entr&eacute;e r&eacute;gulier (num&eacute;rot&eacute;
+dans la quatri&egrave;me colonne). Dans notre exemple nous avons : 
+<DIV ALIGN="center">
+<I>cmat</I>=[<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>Bloc</I> <I>amont</I></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>Port</I> <I>sortie</I></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>Bloc</I> <I>aval</I></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>Port</I> <I>entree</I></TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">5</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">4</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">5</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">2</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">7</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">6</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">2</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1 </TD>
+</TR>
+</TABLE>
+] 
+</DIV> o&ugrave; la deuxi&egrave;me ligne de la matrice indique que le port de
+sortie r&eacute;gulier num&eacute;ro 1 du bloc num&eacute;ro 5 est reli&eacute;
+au port d'entr&eacute;e r&eacute;gulier num&eacute;ro 1 du bloc num&eacute;ro
+2.
+
+<!--TOC subsubsection La matrice <TT>ccmat</TT>-->
+<H4>2.1.3&nbsp;&nbsp; La matrice <TT>ccmat</TT></H4>
+<!--SEC END -->
+<TT>ccmat</TT> est la matrice de connections des ports d'activations, la
+premi&egrave;re colonne indique le num&eacute;ro de bloc dont le port de sortie
+d'activations (num&eacute;rot&eacute; dans la deuxi&egrave;me colonne) est
+connect&eacute; au bloc num&eacute;rot&eacute; dans la troisi&egrave;me
+colonne, par son port d'entr&eacute;e d'activations (num&eacute;rot&eacute;
+dans la quatri&egrave;me colonne). Ce qui donne dans notre exemple : 
+<DIV ALIGN="center">
+<I>ccmat</I>=[<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> <I>Bloc</I> <I>amont</I></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>Port</I> <I>sortie</I></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>Bloc</I> <I>aval</I></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"><I>Port</I> <I>entree</I></TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> 3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">4</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> 3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> 4</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">2</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">6</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> 6</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">2</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1 </TD>
+</TR>
+</TABLE>
+] 
+</DIV>
+La premi&egrave;re ligne, de la matrice indique que le port de sortie
+d'activation num&eacute;ro 1 du bloc num&eacute;ro 3 est reli&eacute; &agrave;
+lui m&ecirc;me. Il s'agit du bloc <TT>Clock</TT> qui, en r&eacute;alit&eacute;,
+est un super-bloc compil&eacute;, constitu&eacute; d'un bloc <TT>Delay</TT>
+boucl&eacute; sur lui-m&ecirc;me (cf. fig&nbsp;<A HREF="#02">3</A>). C'est par
+une activation initialement programm&eacute;e qui auto-active le bloc <TT>Delay
+</TT> d&egrave;s qu'elle est g&eacute;n&eacute;r&eacute;e, r&eacute;alisant
+ainsi un g&eacute;n&eacute;rateur d'activations. <BR>
+<BR>
+<CENTER>
+<IMG SRC="supclock.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="390" HEIGHT="300"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 3: Le bloc Clock. 
+</DIV>
+<BR>
+<A NAME="02"></A>
+<!--TOC subsection La deuxième étape de compilation-->
+<H3>2.2&nbsp;&nbsp; La deuxi&egrave;me &eacute;tape de compilation</H3>
+<!--SEC END -->
+<A NAME="cpass2"></A> L'architecture du sch&eacute;ma bloc &eacute;tant
+cod&eacute;e, il s'agit maintenant, pour l'ex&eacute;cution de la simulation,
+de d&eacute;finir un ordonnancement des blocs en fonction de leurs
+interactions. Cette t&acirc;che est r&eacute;alis&eacute;e par la fonction 
+<TT>c_pass2</TT>, dans le fichier <TT> /macros/scicos/c_pass2.sci</TT>. Pour
+d&eacute;finir l'ordonnancement <TT> c_pass2</TT> ex&eacute;cute principalement
+quatres actions.
+<!--TOC subsubsection Garantir le traitement des blocs continus-->
+<H4>2.2.1&nbsp;&nbsp; Garantir le traitement des blocs continus</H4>
+<!--SEC END -->
+Dans Scicos, l'activation des blocs continus est assur&eacute;e par un unique
+bloc fictif g&eacute;n&eacute;rant un signal d'activation permanente.
+Cependant, comme nous le verrons par la suite (cf. proc&eacute;dure <TT>cossim 
+</TT>), dans la simulation l'aspect continu et discret ne sont pas
+trait&eacute;s de mani&egrave;re parall&egrave;le mais s&eacute;quentielle.
+Ceci signifie que le bloc fictif g&eacute;n&egrave;re un signal d'activation
+qui est toujours actif sauf aux instants d'occurrence des activations
+discr&egrave;tes. Autrement dit, aux instants pr&eacute;cis d'activations
+discr&egrave;tes, pour lesquelles l'on traite la simulation du fonctionnement
+discret, le fonctionnement continu n'est pas assur&eacute;. Ceci pose donc un
+probl&egrave;me de garantie du fonctionnement des blocs activ&eacute;s en
+continu, pendant la phase d'activation des blocs discrets. C'est la raison pour
+laquelle la matrice <TT>ccmat</TT> doit &ecirc;tre modifi&eacute;e, puisque les
+blocs continus sont tous activ&eacute;s par chacune des sources d'activations
+discr&egrave;tes pr&eacute;sentes, ce qui correspond &agrave; des connections
+d'activations suppl&eacute;mentaires (cf. exemple de la figure&nbsp;<A
+HREF="#bugsync1">4</A>). <BR>
+<BR>
+<CENTER>
+<IMG SRC="bugsync1.png" BORDER="0" WIDTH="295" HEIGHT="306"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 4: Les modifications apport&eacute;es &agrave; la figure 2 
+</DIV>
+<BR>
+<A NAME="bugsync1"></A> Cette &eacute;tape garantissant le fonctionnement
+continu pendant les activations discr&egrave;tes est assur&eacute;e par la
+fonction Scilab <TT> pak_ersi</TT> qui se trouve dans le fichier 
+<TT>c_pass2.sci</TT>.
+
+<!--TOC subsubsection Définir l'<EM>héritage</EM> des activations-->
+<H4>2.2.2&nbsp;&nbsp; D&eacute;finir l'<EM>h&eacute;ritage</EM> des activations
+</H4>
+<!--SEC END -->
+Dans Scicos, lorsqu'un bloc ne poss&egrave;de pas de port d'entr&eacute;e
+d'activation, il <EM>h&eacute;rite</EM> de l'activation des signaux sur ses
+ports d'entr&eacute;e r&eacute;guli&egrave;re. L'<EM>h&eacute;ritage</EM> des
+activations est une facilit&eacute; graphique dans Scicos qui &eacute;vite de
+surcharger un sch&eacute;ma en liens d'activations : ils sont implicites.
+Cependant, pour la compilation, il faut que ces liens soient clairement
+d&eacute;finis, y compris ceux concernant l'activation du bloc fictif et
+g&eacute;r&eacute;s comme pour les autres blocs. L'<EM>h&eacute;ritage</EM> des
+activations est assur&eacute;, dans la fonction Scilab <TT>pak_ersi</TT>, en
+partie par la proc&eacute;dure <TT>tree4</TT>, qui d&eacute;termine le graphe
+de d&eacute;pendance des blocs <EM>h&eacute;ritants</EM>, de mani&egrave;re
+verticale (pour chaque liaison d'activation existante). Ces graphes de
+d&eacute;pendance servent, dans la fonction <TT>pak_ersi</TT> (dans le fichier 
+<TT>c_pass2.sci</TT>), &agrave; rajouter la liaison d'activation manquante sur
+chaque bloc <EM> h&eacute;ritant</EM>. Dans l'exemple de la figure&nbsp;<A HREF="#bugsync2">5</A>,
+le <TT>bloc 4</TT> est activ&eacute; par <EM>h&eacute;ritage</EM>, c'est comme
+si on l'avait reli&eacute; directement par une connection au <TT>bloc 1</TT>.
+<!--TOC subsubsection Uniformiser les types de blocs-->
+<H4>2.2.3&nbsp;&nbsp; Uniformiser les types de blocs</H4>
+<!--SEC END -->
+Dans Scicos il existe quatre types de blocs (<TT>Standard</TT>, <TT> Synchro 
+</TT>, <TT>Zcross</TT>, <TT>Memo</TT>), diff&eacute;rents de par leur
+fonctionnement. La diff&eacute;rence principale dans le conditionnement de ces
+types de blocs, concerne les blocs de type <TT>Synchro</TT>, pour lesquels les
+activations g&eacute;n&eacute;r&eacute;es sont synchrones avec celles
+re&ccedil;ues. Un des aspect important de l'ordonnancement est la
+d&eacute;termination, pour chaque activation (sur un port de sortie), de la
+liste des blocs &agrave; activer. Afin que la simulation soit performante en
+temps, cette liste doit &ecirc;tre d&eacute;termin&eacute;e au moment de la
+compilation (<EM>une s&eacute;quence fixe</EM> de num&eacute;ro des blocs
+&agrave; activer), plut&ocirc;t que pendant la phase de simulation <EM>une
+s&eacute;quence variable</EM> de num&eacute;ro des blocs &agrave; activer).
+Dans l'exemple de la figure&nbsp;<A HREF="#bugsync2">5</A>, les activations
+sont g&eacute;n&eacute;r&eacute;es uniquement par le port de sortie du bloc 1,
+et donne lieu &agrave; la s&eacute;quence de mise &agrave; jour des blocs
+suivants : <TT> (bloc 2, bloc 3 et bloc 4)</TT>. <BR>
+<BR>
+<CENTER>
+<IMG SRC="bugsync2.png" BORDER="0" WIDTH="300" HEIGHT="212"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 5: Un exemple sans bloc <TT>Synchro</TT> 
+</DIV>
+<BR>
+<A NAME="bugsync2"></A> Pendant la compilation, on ne prend pas en compte la
+valeur du signal r&eacute;gulier &agrave; l'entr&eacute;e du bloc. Pourtant, la
+s&eacute;quence d'activation des blocs <TT>Synchro</TT> n'est pas fixe
+puisqu'elle d&eacute;pend de la valeur du signal r&eacute;gulier de leur
+entr&eacute;e. Dans l'exemple de la figure&nbsp;<A HREF="#010">2</A>,
+lorsqu'une activation est g&eacute;n&eacute;r&eacute;e par le bloc 3, les
+s&eacute;quences li&eacute;es &agrave; son port de sortie d'activations peuvent
+&ecirc;tre <TT>(bloc 5, bloc 7, bloc 4, bloc 1)</TT>, <TT>(bloc 5, bloc 7, bloc
+4, bloc 6, bloc 1)</TT> ou <TT>(bloc 5, bloc 7, bloc 4, bloc 6, bloc 2, bloc 1)
+</TT>. Pour obtenir, pour chaque sortie d'activations, des s&eacute;quences
+fixes de blocs &agrave; activer, nous devons transformer, pendant la phase de
+compilation, les blocs <TT> Synchro</TT> en blocs de type <TT>Standard</TT>,
+ceci dans le strict respect du conditionnement d'origine. Les activations en
+sortie d'un bloc <TT> Synchro</TT> &eacute;tant exclusives, la modification est
+bas&eacute;e sur le principe que, pour un bloc <TT>Synchro</TT>, l'activation
+en entr&eacute;e est &eacute;quivalente &agrave; l'union des activations de
+sortie. La modification consiste &agrave; faire la somme (en guise d'union) des
+signaux d'activation de tous les ports de sortie du bloc <TT>Synchroif then
+else</TT> (cf. fig&nbsp;6 et fig&nbsp;7). <BR>
+<BR>
+<CENTER>
+<IMG SRC="sync1.png" BORDER="0" WIDTH="105" HEIGHT="133"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 6: Avant modifications 
+</DIV>
+<BR>
+<A NAME="sync1"></A> <BR>
+<BR>
+<CENTER>
+<IMG SRC="sync2.png" BORDER="0" WIDTH="94" HEIGHT="145"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 7: Apr&egrave;s modifications 
+</DIV>
+<BR>
+<A NAME="sync2"></A> Cette transformation est illustr&eacute;e, pour notre
+exemple de la figure&nbsp;2, par le sch&eacute;ma de la figure&nbsp;8 o&ugrave;
+tous les blocs sont de type <TT>Standard</TT>. On peut constater que pour
+chaque sortie d'activations il y a une s&eacute;quence fixe unique : <UL>
+<LI> pour le port de sortie d'activations du bloc 3 : <TT>(bloc 4, bloc 5, bloc
+7)</TT> ; </LI>
+<LI> pour le port de sortie d'activations <TT>Then</TT> du bloc 4 : <TT> (bloc
+1)</TT> ; </LI>
+<LI> pour le port de sortie d'activations <TT>Else</TT> du bloc 4 : <TT> bloc
+6)</TT> ; </LI>
+<LI> pour le port de sortie d'activations <TT>Then</TT> du bloc 6 : <TT> (bloc
+2, bloc 1)</TT> ; </LI>
+<LI> pour le port de sortie d'activations <TT>Else</TT> du bloc 6 : <TT> (bloc
+1)</TT>. </LI>
+</UL>
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="bugsync3.png" BORDER="0" WIDTH="295" HEIGHT="306"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 8: Les modifications sur les blocs Synchro pour la figure 4 
+</DIV>
+<BR>
+<A NAME="bugsync3"></A> Signalons n&eacute;anmoins que la transformation des
+blocs <TT>Synchro</TT> en blocs <TT>Standard</TT> ne se r&eacute;sume pas
+simplement &agrave; faire des modifications sur les connections d'activations.
+En effet, dans le cas o&ugrave; un bloc <TT>Synchro</TT> est activ&eacute; par
+la somme de plusieurs activations d'origine diff&eacute;rente (cf.
+figure&nbsp;9), il faut dupliquer le bloc pour permettre un nouveau routage des
+liens d'activations. Sur la figure&nbsp;10, on peut voir que si l'on se
+contente de remplacer les connections comme nous l'avons vu
+pr&eacute;c&eacute;demment, pour une activation g&eacute;n&eacute;r&eacute;e
+via la connection ``B'', le bloc ``FOO'' est activ&eacute;, contrairement
+&agrave; la configuration de la figure&nbsp;9 ; le conditionnement qui
+r&eacute;sulte de cette transformation est diff&eacute;rent du conditionnement
+initial. La solution pour r&eacute;soudre ce probl&egrave;me consiste &agrave;
+dupliquer le bloc <TT>Synchro</TT> autant de fois que de connections
+d'activations (cf. figure&nbsp;11). <BR>
+<BR>
+<CENTER>
+<IMG SRC="syncpis1.png" BORDER="0" WIDTH="188" HEIGHT="179"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 9: Avant modifications des connections 
+</DIV>
+<BR>
+<A NAME="syncpis1"></A> <BR>
+<BR>
+<CENTER>
+<IMG SRC="syncpis2.png" BORDER="0" WIDTH="180" HEIGHT="179"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 10: Apr&egrave;s modifications des connections 
+</DIV>
+<BR>
+<A NAME="syncpis2"></A> <BR>
+<BR>
+<CENTER>
+<IMG SRC="syncpis3.png" BORDER="0" WIDTH="180" HEIGHT="149"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 11: Apr&egrave;s duplication du bloc et modifications des connections 
+</DIV>
+<BR>
+<A NAME="syncpis3"></A> Sans pour autant expliquer plus en d&eacute;tail la
+r&eacute;elle complexit&eacute; de la m&eacute;thode it&eacute;rative pour
+dupliquer les blocs <TT>Synchro</TT>, nous allons juste en donner un
+aper&ccedil;u. Prenons, par exemple, le cas o&ugrave; le bloc ``FOO'' est lui
+aussi un bloc <TT>Synchro</TT> ... on voit bien la n&eacute;cessit&eacute; de
+le dupliquer, car il est conditionn&eacute; par la somme de deux activations.
+Il faut donc effectuer une recherche dans l'arborescence du conditionnement des
+blocs <TT>Synchro</TT> pour d&eacute;terminer quels sont les blocs &agrave;
+dupliquer ainsi que le routage des liens d'activations que cela implique. Ces
+&eacute;tapes de transformation sont assur&eacute;es par la fonction Scilab 
+<TT>paksazi</TT>, dans le fichier <TT>c_pass2.sci</TT>.
+
+<!--TOC subsubsection Détermination des graphes de dépendance-->
+<H4>2.2.4&nbsp;&nbsp; D&eacute;termination des graphes de d&eacute;pendance 
+</H4>
+<!--SEC END -->
+Il s'agit de d&eacute;terminer le <EM>graphe de d&eacute;pendance des blocs
+associ&eacute;s &agrave; chaque sortie d'activation</EM>. En effet, un
+sch&eacute;ma bloc constitue un graphe d'ordre total, dans lequel la
+d&eacute;pendance de conditionnement s'exprime suivant la nature des blocs, par
+des graphes d'ordre partiel. Ces graphes d'ordre partiel traduisent des arbres
+de d&eacute;pendances et sont obtenus par des proc&eacute;dures (fortran), qui
+ex&eacute;cutent des algorithmes de calcul pour diff&eacute;rents types
+d'informations : <UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la proc&eacute;dure
+<TT>tree2</TT>, pour les blocs activ&eacute;s en continu (par le bloc fictif),
+d&eacute;termine l'arbre de d&eacute;pendance pour : <UL>
+<LI> les blocs <TT>g&eacute;n&eacute;rateur de constante</TT>, &agrave; activer
+une seule fois &agrave; l'initialisation (leur valeur de sortie restant
+constante) ; </LI>
+<LI> les blocs continu, sans &eacute;tat continu ; </LI>
+<LI> les blocs continu, avec &eacute;tat continu ; </LI>
+<LI> les blocs continu, de type <TT>Zcross</TT>. </LI>
+</UL>
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la proc&eacute;dure 
+<TT>tree3</TT>, d&eacute;termine l'arbre de d&eacute;pendance pour les blocs de
+type <TT>Synchro</TT> et <TT>Memo</TT>, dans le but de d&eacute;tecter
+d'&eacute;ventuelles boucles alg&eacute;briques. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la proc&eacute;dure 
+<TT>tree4</TT>, d&eacute;termine l'arbre de d&eacute;pendance pour les blocs
+h&eacute;ritants des activations de leur(s) entr&eacute;e(s). </LI>
+</UL>
+Bien entendu, ces arbres de d&eacute;pendance prennent en compte (s'il y a
+lieu) de la <EM>d&eacute;pendance directe de l'entr&eacute;e des blocs sur leur
+sortie</EM> pour d&eacute;terminer un ordre dans le conditionnement des blocs,
+en fonction de chaque sortie d'activation associ&eacute;e. <BR>
+<BR>
+<CENTER>
+<IMG SRC="voila.png" BORDER="0" WIDTH="210" HEIGHT="196"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 12: Un exemple simple de relation d'ordre entre les blocs 
+</DIV>
+<BR>
+<A NAME="voila"></A> L'exemple simple de la figure&nbsp;12 montre bien que le
+bloc ``D'' h&eacute;rite (proc&eacute;dure <TT>tree4</TT>) de l'activation
+continue conditionnant le bloc ``A''. <EM>Pour une activation
+g&eacute;n&eacute;r&eacute;e par le bloc fictif</EM>, la relation d'ordre des
+blocs associ&eacute;s (``A'' et ``D''), impose que le bloc ``A'' soit mis
+&agrave; jour avant (proc&eacute;dure <TT>tree2</TT>) le bloc ``D''. En
+revanche, pour une activation g&eacute;n&eacute;r&eacute;e par le bloc ``H 1'',
+il n'y a pas de relation d'ordre stricte pour les blocs associ&eacute;s (``B''
+et ``C''). La fonction <TT>scheduler</TT> &eacute;tablie, &agrave; l'aide des
+proc&eacute;dures <TT>tree2</TT> et <TT>tree3</TT> les tables d'ordonnancement
+des blocs : <TT>ordptr, ordclk, cord, iord, oord, zord</TT> (cf.
+tableau&nbsp;1), qui d&eacute;finissent la relation d'ordre entre les blocs,
+associ&eacute;s &agrave; chaque sortie d'activation. <BLOCKQUOTE>
+<DIV ALIGN="center">
+<HR WIDTH="80%" SIZE="2">
+</DIV>
+<DIV ALIGN="center">
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">Noms</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">Type</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">des </TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">de</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">Descriptif</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">tables</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">fonctionnement</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><TT>iord</TT></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> activ&eacute; &agrave;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">matrice &agrave; deux colonnes, la
+premi&egrave;re indiquant les blocs</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">l'initialisation</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">g&eacute;n&eacute;rant une valeur constante,
+d&eacute;pendant de cette constante</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">(cf. Note) ou activ&eacute;s par le bloc
+fictif, la deuxi&egrave;me indiquant,</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">par un codage binaire, le port par lequel le
+bloc est activ&eacute;</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><TT>cord</TT></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">continu</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> matrice &agrave; deux colonnes, la
+premi&egrave;re indiquant les blocs</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> activ&eacute;s en continu par le bloc
+fictif, la deuxi&egrave;me indiquant,</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> </TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">par un codage binaire, le port par lequel le
+bloc est activ&eacute;</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><TT>oord</TT></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">continu</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">sous-ensemble de cord, c'est une matrice
+&agrave; deux colonnes :</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">la premi&egrave;re indiquant les blocs pour
+lesquels est calcul&eacute;e</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">la d&eacute;riv&eacute;e de l'&eacute;tat
+continu, la deuxi&egrave;me indiquant</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">par un codage binaire, le port par lequel le
+bloc est activ&eacute;</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><TT>zord</TT></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">continu</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">sous-ensemble de cord, c'est une matrice
+&agrave; deux colonnes :</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">la premi&egrave;re indiquant les blocs dont
+la sortie affecte le calcul</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">des surfaces travers&eacute;e par
+z&eacute;ro, la deuxi&egrave;me indiquant</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">par un codage binaire, le port par lequel le
+bloc est activ&eacute;</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><TT>ordptr</TT></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">par activation</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">vecteur de pointeurs vers la matrice 
+<TT>ordclk</TT>, indiquant la partie</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> de la matrice <TT>ordclk</TT> correspondant
+&agrave; chaque source d'activation</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"><TT>ordclk</TT></TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">par activation</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">matrice &agrave; deux colonnes, la
+premi&egrave;re indiquant les blocs &agrave; mettre</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP"> &agrave; jour, selon l'activation
+point&eacute;e par <TT>ordptr</TT>, la deuxi&egrave;me indiquant,</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">&nbsp;</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">par un codage binaire, le port par lequel le
+bloc est activ&eacute;.</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> </TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Table 1: Les tables d'ordonnancement pour la mise &agrave; jour des blocs 
+</DIV>
+<BR>
+<A NAME="schedutabl"></A> 
+</DIV>
+<DIV ALIGN="center">
+<HR WIDTH="80%" SIZE="2">
+</DIV>
+</BLOCKQUOTE>
+
+<!--TOC paragraph Note concernant <EM>iord</EM> (dans le tableau 1) :-->
+<H5> Note concernant <EM>iord</EM> (dans le tableau 1) :</H5>
+<!--SEC END -->
+<EM>Les blocs qui g&eacute;n&egrave;rent une valeur constante sont
+d&eacute;finis comme n'ayant ni entr&eacute;e r&eacute;guli&egrave;re, ni
+entr&eacute;e d'activation, ni sortie d'activation, et ne sont pas
+d&eacute;clar&eacute;s activ&eacute;s en continu. On consid&egrave;re que ces
+blocs sont activ&eacute;s par un seul &eacute;v&eacute;nement fictif lors de
+l'initialisation ou au re-d&eacute;marrage de la phase de simulation. Un statut
+particulier &agrave; &eacute;t&eacute; d&eacute;fini pour ces blocs, pour
+&eacute;viter de re-calculer leurs mises &agrave; jour inutilement pendant la
+simulation. Il en va de m&ecirc;me pour les blocs qui d&eacute;pendent de
+g&eacute;n&eacute;rateur de constante (cf. figure&nbsp;</EM><A
+HREF="#constant"><EM>13</EM></A><EM>) : ce qui met en &eacute;vidence un
+certain nombre de blocs &agrave; activer et dans un ordre pr&eacute;cis.</EM>
+<BR>
+<BR>
+<CENTER>
+<IMG SRC="constant.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="365" HEIGHT="280"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 13: Le bloc <TT>sin</TT> d&eacute;pend d'une valeur constante. 
+</DIV>
+<BR>
+<A NAME="constant"></A> <BR>
+<BR>
+<CENTER>
+<IMG SRC="01bien.png" BORDER="0" WIDTH="300" HEIGHT="212"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 14: Un autre syst&egrave;me hybride. 
+</DIV>
+<BR>
+<A NAME="01bien"></A> Concr&egrave;tement, avec l'exemple du sch&eacute;ma de
+la figure&nbsp;14, les informations contenues dans ces tables indiquent : 
+<DIV ALIGN="center">
+<I>iord</I>=[<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">4</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">6</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">2 </TD>
+</TR>
+</TABLE>
+] 
+</DIV>
+Les blocs 3 et 4 sont activ&eacute;s en permanence (par le bloc fictif). Le
+port d'entr&eacute;e num&eacute;ro 2 du bloc 6 h&eacute;rite de la sortie du
+bloc 3. Et pour les m&ecirc;mes raisons, nous avons : <DIV ALIGN="center">
+<I>cord</I>=[<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> 4</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> 6</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">2 </TD>
+</TR>
+</TABLE>
+] 
+</DIV>
+<DIV ALIGN="center">
+<I>oord</I>=[<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">4</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">6</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">2 </TD>
+</TR>
+</TABLE>
+] 
+</DIV>
+La matrice <TT>zord</TT> est vide, puisque le sch&eacute;ma bloc ne contient
+pas de bloc de type ``z''. <DIV ALIGN="center">
+<I>ordptr</I>=[<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">7 </TD>
+</TR>
+</TABLE>
+] 
+</DIV>
+Notre exemple contient deux sources d'activation : le bloc fictif (qui active
+les blocs continus <TT>sinusoid generator</TT> et <TT>1/s</TT>) et la source
+d'activation discr&egrave;te. Le vecteur <TT>ordptr</TT> est compos&eacute; de
+deux valeurs qui pointent la zone affect&eacute;e par la source d'activation
+discr&egrave;te de la matrice <TT>ordclk</TT> (de la ligne 1 &agrave; la ligne
+7). Les blocs contenus dans cette zone sont activ&eacute;s par la source
+d'activation discr&egrave;te. <DIV ALIGN="center">
+<I>ordclk</I>=[<TABLE CELLSPACING="2" CELLPADDING="0">
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">2</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">3</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">4</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">0</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">5</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">1</TD>
+</TR>
+<TR>
+<TD ALIGN="center" NOWRAP="NOWRAP"> 6</TD>
+<TD ALIGN="center" NOWRAP="NOWRAP">3 </TD>
+</TR>
+</TABLE>
+] 
+</DIV>
+La premi&egrave;re ligne de <TT>ordclk</TT> indique que la sortie du bloc 2 est
+reli&eacute;e &agrave; son entr&eacute;e. Les deuxi&egrave;me et
+troisi&egrave;me lignes concernent le synchronisme du bloc fictif avec le bloc
+2. Ainsi le bloc 6, h&eacute;ritant des activations de ses entr&eacute;es, la
+derni&egrave;re ligne indique le port 3 (activation des deux entr&eacute;es du
+bloc 6) au lieu d'indiquer le port 1 du bloc 6 (activation de l'entr&eacute;e
+reli&eacute;e au bloc 5).
+
+<!--TOC subsubsection La liste <TT>%cpr</TT>-->
+<H4>2.2.5&nbsp;&nbsp; La liste <TT>%cpr</TT></H4>
+<!--SEC END -->
+La syntaxe de la fonction <TT>c_pass2</TT> est la suivante :
+%<I>cpr</I>=<I>c</I>_<I>pass</I>2(<I>bllst</I>,<I>connectmat</I>,<I>clkconnect</I>,<I>cor</I>,<I>corinv</I>)
+La liste <TT>%cpr</TT> est le r&eacute;sultat de compilation d'un
+sch&eacute;ma-bloc, mais ne contient pas les informations sur la topologie, la
+couleur, la forme etc... des blocs car non utiles pour la simulation. Ces
+informations ne sont donc pas prises en compte dans la fonction <TT>c_pass2 
+</TT>. <TT>%cpr</TT> est constitu&eacute; de quatre structures de
+param&egrave;tres : <TT>state</TT>, <TT>sim</TT>, <TT>cor</TT> et <TT>corinv 
+</TT>. <TT>state</TT> est une liste typ&eacute;e (tlist) qui contient
+l'information sur les &eacute;tats initiaux suivants : <UL>
+<LI> <TT>state(&quot;x&quot;)</TT> : le vecteur d'&eacute;tat continu </LI>
+<LI> <TT>state(&quot;z&quot;)</TT> : le vecteur d'&eacute;tat discret </LI>
+<LI> <TT>state(&quot;outtb&quot;)</TT> : le vecteur des valeurs initiales
+d'entr&eacute;es et sorties </LI>
+<LI> <TT>state(&quot;tevts&quot;)</TT> : cf. l'<TT>agenda</TT> de programmation
+des activations </LI>
+<LI> <TT>state(&quot;evtspt&quot;)</TT> : cf. l'<TT>agenda</TT> de
+programmation des activations </LI>
+<LI> <TT>state(&quot;pointi&quot;)</TT> : cf. l'<TT>agenda</TT> de
+programmation des activations. </LI>
+</UL>
+Le contenu de <TT>state</TT> &eacute;volue pendant la simulation mais &agrave;
+la sortie de la fonction <TT>scicossim</TT> on m&eacute;morise le contenu final
+pour permettre l'exploitation du r&eacute;sultat de la simulation, notamment
+lors d'une &eacute;ventuelle reprise du cours d'une simulation interrompue. 
+<TT>sim</TT> contient des informations fig&eacute;es dans le temps, obtenues
+apr&egrave;s compilation par la fonction <TT>c_pass2</TT> : <UL>
+<LI> <TT>sim(&quot;rpar&quot;)</TT> : le vecteur des param&egrave;tres
+r&eacute;els (double pr&eacute;cision) des blocs </LI>
+<LI> <TT>sim(&quot;funs&quot;)</TT> : le vecteur de chaines de
+caract&egrave;res indiquant le nom de la fonction de simulation pour chaque
+bloc. </LI>
+<LI> <TT>sim(&quot;zptr&quot;)</TT> : le vecteur d'entiers avec
+state(&quot;z&quot;)(zptr(i):(zptr(i+1)-1)) qui indique le vecteur
+d'&eacute;tat discret du i&egrave;me bloc </LI>
+<LI> <TT>sim(&quot;xptr&quot;)</TT> : le vecteur d'entiers avec
+state(&quot;x&quot;)(xptr(i):(xptr(i+1)-1)) qui indique le vecteur
+d'&eacute;tat continu du i&egrave;me bloc. </LI>
+<LI> et autres, comme par exemple, <TT>oord</TT>, <TT>cord</TT>, <TT>zord</TT>,
+etc... </LI>
+</UL>
+La structure de donn&eacute;es <TT>%cpr</TT> est fournie en entr&eacute;e de la
+fonction <TT>scicossim</TT> qui ex&eacute;cute les diff&eacute;rentes
+&eacute;tapes de la simulation.
+
+
+
+<!--TOC paragraph Remarque sur l'optimisation de la compilation-->
+<H5> Remarque sur l'optimisation de la compilation</H5>
+<!--SEC END -->
+Lorsqu'un sch&eacute;ma-bloc a &eacute;t&eacute; pr&eacute;alablement
+compil&eacute;, et si par la suite des modifications mineures sont
+effectu&eacute;es (changements de param&egrave;tres, de la tailles des
+entr&eacute;e et sorties ...), sans induire de modifications sur
+l'ordonnancement, il n'est pas n&eacute;cessaire d'ex&eacute;cuter une
+compilation compl&egrave;te. Dans ce cas, on effectue une compilation
+optimis&eacute;e, &agrave; des degr&eacute;s diff&eacute;rents (cf.
+figure&nbsp;<A HREF="#linuxmag1">15</A>). <BR>
+<BR>
+<CENTER>
+<IMG SRC="linuxmag1.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="612" HEIGHT="577"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 15: Les &eacute;tapes de compilation 
+</DIV>
+<BR>
+<A NAME="linuxmag1"></A> On utilise le param&egrave;tre (bool&eacute;en) 
+<TT>modified</TT>, dont la valeur indique si les modifications concernent
+certaines caract&eacute;ristiques des blocs : <UL>
+<LI> le nom ou le type de la fonction de simulation, </LI>
+<LI> les &eacute;tats continu ou discret, </LI>
+<LI> les param&egrave;tres r&eacute;els et entiers. </LI>
+</UL>
+On utilise aussi le param&egrave;tre <TT>newparameters</TT> dont la valeur
+indique si les modifications concernent des blocs contenus dans un super-bloc
+(compil&eacute; ou non). C'est avec la valeur du param&egrave;tre 
+<TT>needcompile</TT> que l'on d&eacute;termine si les modifications impliquent
+une nouvelle compilation et si l'on doit informer l'utilisateur, d'un message
+pour enregistrer les modifications avant de fermer le fichier contenant le
+sch&eacute;ma. Le lancement d'une simulation (fonction <TT>do_run</TT>) passe
+par une prise en compte d'&eacute;ventuels changements dans le
+sch&eacute;ma-bloc (fonction <TT>do_update</TT>). En fonction de la valeur de 
+<TT> needcompile</TT>, la compilation est optimis&eacute;e ou compl&egrave;te.
+Les param&egrave;tres <TT>needcompile</TT> et <TT>modified</TT> sont nuls et la
+liste <TT>newparameters</TT> est vide. Dans ce cas, il n'y a aucune
+re-compilation et la fonction <TT>scicossim</TT> g&egrave;re les &eacute;tapes
+de simulation (cf. par la suite). Signalons dans la fonction <TT>do_run</TT>,
+le param&egrave;tre <TT> alreadyran</TT> qui est utilis&eacute; pour
+arr&ecirc;ter et reprendre une simulation en cours. Il existe quatre
+<EM>degr&eacute;s de compilation</EM> : <UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT><B>premier
+degr&eacute;</B> : seuls des param&egrave;tres de blocs ont &eacute;t&eacute;
+modifi&eacute;s (fonction <TT>modipar</TT>) </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT><B>second
+degr&eacute;</B> : des param&egrave;tres ont &eacute;t&eacute; modifi&eacute;s
+et/ou la taille des ports de certains blocs a chang&eacute;e (fonctions 
+<TT>modipar</TT> et <TT> adjust</TT>). </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT><B>troisi&egrave;me
+degr&eacute;</B> : suite &agrave; des modifications, la taille effective des
+ports d'entr&eacute;e et sortie des blocs doit &ecirc;tre
+d&eacute;termin&eacute;e, il s'agit d'une compilation partielle (fonction 
+<TT>c_pass3</TT>). </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT><B>quatri&egrave;me
+degr&eacute;</B> : c'est la compilation compl&egrave;te, en deux &eacute;tapes
+(fonctions <TT> c_pass1</TT> et <TT>c_pass2</TT>). </LI>
+</UL>
+<!--TOC section La simulation-->
+<H2>3&nbsp;&nbsp; La simulation</H2>
+<!--SEC END -->
+Le sch&eacute;ma de la figure&nbsp;<A HREF="#figu2">16</A> montre les
+diff&eacute;rentes &eacute;tapes de la simulation. Elles sont
+ex&eacute;cut&eacute;es par des proc&eacute;dures &eacute;crites en Fortran
+(plus rapide qu'en langage Scilab). D&egrave;s que l'utilisateur lance une
+simulation, les deux proc&eacute;dures <TT>intcos</TT> et <TT>scicos</TT> sont
+appel&eacute;es successivement. <TT> intcos</TT> g&egrave;re l'interface entre
+les programmes du simulateur (proc&eacute;dure <TT>scicos</TT>) et la gestion
+de la m&eacute;moire dans Scilab. <TT>scicos</TT> appelle les 3
+proc&eacute;dures : <TT>cosini, cossim, cosend</TT> pour, respectivement,
+initialiser, ex&eacute;cuter et clore la simulation. <BR>
+<BR>
+<CENTER>
+<IMG SRC="figu2bis.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="607" HEIGHT="275"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 16: La simulation dans Scicos 
+</DIV>
+<BR>
+<A NAME="figu2"></A> Pour bien comprendre le fonctionnement de la simulation il
+faut distinguer les <B>activations conditionn&eacute;es</B>
+(g&eacute;n&eacute;r&eacute;es par les blocs de type <TT>Synchro</TT>) et les
+<B>activations originales</B> (g&eacute;n&eacute;r&eacute;es par les autres
+types de bloc). Signalons que, m&ecirc;me si les blocs <TT>Synchro</TT> ont
+&eacute;t&eacute; transform&eacute;s, lors de la compilation, en blocs de type 
+<TT> Standard</TT>, l'information sur le type de bloc subsiste n&eacute;anmoins
+pour la simulation. En effet, c'est pr&eacute;cis&eacute;ment pendant la
+proc&eacute;dure <TT>cossim</TT> que sont g&eacute;r&eacute;es prioritairement,
+dans l'<TT>agenda</TT> de programmation des activations, les <B>activations
+conditionn&eacute;es</B>.
+
+<!--TOC subsection La procédure <TT>cosini</TT>-->
+<H3>3.1&nbsp;&nbsp; La proc&eacute;dure <TT>cosini</TT></H3>
+<!--SEC END -->
+<A NAME="cosini"></A> Cette proc&eacute;dure r&eacute;alise la phase
+d'initialisation de la simulation par un appel &agrave; tous les blocs avec
+flag 4 (cf. num&eacute;ro 19 de Linux Magazine), pour initialiser les
+entr&eacute;es et sorties r&eacute;guli&egrave;res et les registres des temps
+d'activation de sortie (<TT>tvec</TT>). Un appel de <TT>cosini</TT> &agrave;
+tous les blocs avec flag 6 correspond &agrave; une r&eacute;-initialisation.
+Signalons que les activations existantes &agrave; l'initialisation sont
+exclusivement originales.
+
+<!--TOC subsection La procédure <TT>cossim</TT>-->
+<H3>3.2&nbsp;&nbsp; La proc&eacute;dure <TT>cossim</TT></H3>
+<!--SEC END -->
+<A NAME="cossimm"></A> L'essentiel de la simulation est assur&eacute; par la
+proc&eacute;dure <TT> cossim</TT>, dans laquelle le temps &eacute;volue soit en
+fonction du <TT> solveur ODE</TT> (temps continu), soit en fonction des
+&eacute;v&eacute;nements (activations ponctuelles) programm&eacute;s dans 
+<TT>l'agenda</TT> (temps discret). <BR>
+<BR>
+<CENTER>
+<IMG SRC="cossimbas2.png" BORDER="0" ALT="{short description of image}"
+ WIDTH="482" HEIGHT="454"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 17: La proc&eacute;dure <TT>cossim</TT> 
+</DIV>
+<BR>
+<A NAME="cossimbas"></A> Le fonctionnement de la proc&eacute;dure <TT>cossim 
+</TT> est illustr&eacute;e par le sch&eacute;ma de la figure&nbsp;<A
+HREF="#cossimbas">17</A>. <TT>cossim</TT> g&egrave;re les appels &agrave;
+diff&eacute;rentes proc&eacute;dures permettant la mise &agrave; jour des
+blocs, selon que l'activation re&ccedil;ue soit <EM>continue</EM> ou <EM>
+discr&egrave;te</EM> et en fonction du type de bloc : <UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>lorsque une
+activation est g&eacute;n&eacute;r&eacute;e par le bloc fictif, elle est
+<EM>continue</EM> et <UL>
+<LI> soit elle active un bloc avec &eacute;tat continu, <TT>cossim</TT> appelle
+le solveur <TT>ODE</TT> (<TT>E</TT>quations <TT>D</TT>iff&eacute;rentielles 
+<TT>O</TT>rdinaires) pour les calculs d'int&eacute;gration li&eacute;s &agrave;
+l'&eacute;tat continu des blocs (flag 0). En fait pour la simulation, chacun
+des registres d'&eacute;tat continu des blocs constitue une partie d'un unique
+registre d'&eacute;tat continu pour le syst&egrave;me. Ce qui permet de mettre
+&agrave; jour, pendant la simulation, tous les &eacute;tat continus en
+m&ecirc;me temps. </LI>
+<LI> soit elle active un bloc sans &eacute;tat continu, <TT>cossim</TT> appelle
+la proc&eacute;dure <TT>cdoit</TT> qui met &agrave; jour les sorties
+r&eacute;guli&egrave;res et d'activations (respectivement avec flag 1 et 3). Si
+le bloc activ&eacute; est de type <TT>Synchro</TT>, <TT>cdoit</TT> appelle la
+proc&eacute;dure <TT>doit</TT> pour g&eacute;n&eacute;rer les activations
+conditionn&eacute;es, associ&eacute;es &agrave; tous les blocs <TT>Synchro</TT>
+correspondants. A la fin de la proc&eacute;dure <TT>cdoit</TT>, toutes les
+&eacute;ventuelles activations conditionn&eacute;es ont &eacute;t&eacute;
+g&eacute;n&eacute;r&eacute;es avant de retourner dans la proc&eacute;dure 
+<TT>cossim</TT>. </LI>
+</UL>
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>lorsque une
+activation (originale) est g&eacute;n&eacute;r&eacute;e par un bloc discret,
+elle est <EM>discr&egrave;te</EM>. <TT>cossim</TT> appelle la proc&eacute;dure 
+<TT>ddoit</TT> qui met &agrave; jour les blocs discrets avec ou sans
+&eacute;tat discret, en fonction de l'occurrence des activations re&ccedil;ues.
+Les sorties r&eacute;guli&egrave;res et d'activations sont mises &agrave; jour
+(respectivement par flag 1 et 3) avant les &eacute;tats discrets (par flag 2).
+Si le bloc activ&eacute; est de type <TT>Synchro</TT>, <TT>ddoit</TT> appelle
+la proc&eacute;dure <TT>edoit</TT> pour g&eacute;n&eacute;rer les activations
+conditionn&eacute;es, associ&eacute;es &agrave; tous les blocs <TT>Synchro</TT>
+correspondants. A la fin de la proc&eacute;dure <TT>ddoit</TT>, toutes les
+&eacute;ventuelles activations conditionn&eacute;es ont &eacute;t&eacute;
+g&eacute;n&eacute;r&eacute;es avant de retourner dans la proc&eacute;dure 
+<TT>cossim</TT>. </LI>
+</UL>
+<!--TOC subsubsection Le solveur <TT>ODE</TT>-->
+<H4>3.2.1&nbsp;&nbsp; Le solveur <TT>ODE</TT></H4>
+<!--SEC END -->
+Le solveur <TT>ODE</TT> est un programme d'int&eacute;gration num&eacute;rique
+des &eacute;quations diff&eacute;rentielles du sch&eacute;ma, permettant de
+faire progresser le temps continu d'un pas et donnant la valeur de
+l'&eacute;tat &agrave; ce nouvel instant. Le pas est calcul&eacute; de
+mani&egrave;re interne et variable (suivant les calculs d'int&eacute;gration)
+par la proc&eacute;dure <TT> lsodar</TT>. Cette derni&egrave;re est aussi
+utilis&eacute;e pour les calculs li&eacute;s &agrave; <TT>la d&eacute;tection
+de travers&eacute;e de z&eacute;ro</TT>.
+<!--TOC paragraph L'évolution du temps continu-->
+<H5> L'&eacute;volution du temps continu</H5>
+<!--SEC END -->
+Les calculs li&eacute;s &agrave; l'&eacute;volution du temps n&eacute;cessite
+de fournir &agrave; la proc&eacute;dure <TT>lsodar</TT>, la
+d&eacute;riv&eacute;e de l'&eacute;tat continu du syst&egrave;me &agrave;
+simuler. Cette d&eacute;riv&eacute;e est un vecteur fournit par la
+proc&eacute;dure <TT>simblk</TT> et compos&eacute; de la d&eacute;riv&eacute;e
+de chaque bloc concern&eacute;. Cette d&eacute;riv&eacute;e est en fonction de
+l'&eacute;tat continu du bloc et de la valeur du signal en entr&eacute;e du
+bloc. La proc&eacute;dure <TT>simblk</TT> permet de r&eacute;aliser une
+interface entre le format de la proc&eacute;dure <TT>lsodar</TT> et celui de la
+proc&eacute;dure <TT>odoit</TT>. La proc&eacute;dure <TT>odoit</TT> est
+utilis&eacute;e pour calculer la valeur de l'entr&eacute;e des blocs ayant un
+&eacute;tat continu. Cette proc&eacute;dure fait appel &agrave; la
+proc&eacute;dure <TT>oodoit</TT>, qui assure sa r&eacute;cursivit&eacute; pour
+les calculs impliquant des blocs de type <TT> Synchro</TT>.
+
+<!--TOC paragraph La détection de traversée de zéro-->
+<H5> La d&eacute;tection de travers&eacute;e de z&eacute;ro</H5>
+<!--SEC END -->
+Les calculs li&eacute;s &agrave; la d&eacute;tection de travers&eacute;e de
+z&eacute;ro n&eacute;cessite de fournir &agrave; la proc&eacute;dure <TT>lsodar
+</TT>, une fonction (<I>y</I>=<I>f</I>(<I>x</I>,<I>t</I>)) qui retourne les
+valeurs de l'&eacute;tat continu du syst&egrave;me &agrave; simuler. <I>x</I>
+est l'&eacute;tat continu, <I>t</I> est le temps continu et <I>y</I> est un
+vecteur dont le nombre d'&eacute;l&eacute;ments est fonction du nombre de blocs
+de type <TT>Zcross</TT> &agrave; simuler. <I>y</I> est le vecteur des valeurs
+d'&eacute;quations de surface qui indique une position par rapport &agrave; la
+d&eacute;riv&eacute;e de l'&eacute;tat continu. La d&eacute;tection de
+travers&eacute;e de z&eacute;ro pour l'ensemble des blocs de type <TT>Zcross 
+</TT> d'un syst&egrave;me est consid&eacute;r&eacute;e comme un ensemble de
+surfaces. La valeur des &eacute;l&eacute;ments de <I>y</I> varie entre trois
+possibilit&eacute;s : positive au dessus du seuil, n&eacute;gative en dessous
+et nulle sur le seuil. C'est la proc&eacute;dure <TT>grblk</TT> qui fournit
+l'&eacute;quation <I>y</I>=<I>f</I>(<I>x</I>,<I>t</I>) &agrave; la
+proc&eacute;dure <TT>lsodar</TT>. Si l'un des &eacute;l&eacute;ment de la
+fonction <I>y</I>=<I>f</I>(<I>x</I>,<I>t</I>) change de signe, la
+proc&eacute;dure <TT>lsodar</TT> engage une dichotomie du pas de temps avant et
+apr&egrave;s la d&eacute;tection de travers&eacute;e de z&eacute;ro, de
+mani&egrave;re &agrave; d&eacute;tecter le bloc concern&eacute; et
+d&eacute;terminer la date exacte du changement de signe. Il est &agrave; noter
+que dans le cas particulier de d&eacute;tection de travers&eacute;e de
+z&eacute;ro pris &agrave; l'instant ``z&eacute;ro'' m&ecirc;me, la
+proc&eacute;dure <TT>lsodar</TT> se lance dans des calculs d'int&eacute;gration
+particuli&egrave;rement longs, tant et si bien que la simulation s'en trouve
+consid&eacute;rablement ralentie. Pour pallier ce probl&egrave;me il est
+n&eacute;cessaire de faire avancer le temps d'int&eacute;gration &agrave;
+l'instant suivant de mani&egrave;re &agrave; reprendre les calculs
+d'int&eacute;gration, cette fois-ci avec la proc&eacute;dure <TT>lsoda</TT>. La
+proc&eacute;dure <TT>lsoda</TT> est adapt&eacute;e uniquement aux blocs de type
+<TT>Zcross</TT>. Nul besoin est de reprendre plus d'une fois cette tentative de
+d&eacute;calage du temps d'int&eacute;gration, car si elle &eacute;choue : il
+s'agit r&eacute;ellement d'un probl&egrave;me d'int&eacute;gration plus
+complexe. Dans ce cas la simulation est arr&ecirc;t&eacute;e et un message
+d'erreur invite l'utilisateur &agrave; faire des modifications dans le
+sch&eacute;ma-bloc. La proc&eacute;dure <TT>grblk</TT> permet de
+r&eacute;aliser une interface entre le format de la proc&eacute;dure <TT>lsodar
+</TT> et celui de la proc&eacute;dure <TT> zdoit</TT>. La proc&eacute;dure 
+<TT>zdoit</TT> est utilis&eacute;e pour calculer la valeur de l'entr&eacute;e
+des blocs de type <TT>Zcross</TT>. Cette proc&eacute;dure fait appel &agrave;
+la proc&eacute;dure <TT>zzdoit</TT>, qui assure sa r&eacute;cursivit&eacute;
+pour les calculs impliquant des blocs de type <TT> Synchro</TT>.
+
+<!--TOC subsubsection L'<TT>agenda</TT>-->
+<H4>3.2.2&nbsp;&nbsp; L'<TT>agenda</TT></H4>
+<!--SEC END -->
+Pendant la simulation, les &eacute;v&eacute;nements sont programm&eacute;s dans
+un <TT>agenda</TT> d&eacute;finit lors de la phase de compilation. Cet 
+<TT>agenda</TT> est compos&eacute; de deux vecteurs. Le premier (<TT>evtspt 
+</TT>) est un vecteur d'entiers indiquant le num&eacute;ro du port
+g&eacute;n&eacute;rant une activation. Si un &eacute;v&eacute;nement <B>i</B>
+est la prochaine activation &agrave; programmer, <TT>evtspt</TT>(<B>i</B>)
+contient le num&eacute;ro du port de sortie d'activation correspondant (ou
+z&eacute;ro s'il n'y a aucun autre &eacute;v&eacute;nement programm&eacute;).
+La date d'occurrence de cet &eacute;v&eacute;nement est stock&eacute;e dans le
+second vecteur, <TT>tevts</TT>(<B>i</B>) (cf. figure&nbsp;<A
+HREF="#evtspt">18</A>). La taille des vecteurs <TT>evtspt</TT> et <TT>tevts 
+</TT> correspond au nombre de ports de sortie d'activation existants dans le
+sch&eacute;ma bloc. A la fin de la compilation, le vecteur <TT>evtspt</TT>
+contient le num&eacute;ro de port des blocs devant g&eacute;n&eacute;rer les
+activations pr&eacute;-programm&eacute;es. <BR>
+<BR>
+<CENTER>
+<IMG SRC="evtspt.png" BORDER="0" WIDTH="244" HEIGHT="175"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 18: L'<TT>agenda</TT> est compos&eacute; de deux vecteurs. 
+</DIV>
+<BR>
+<A NAME="evtspt"></A> Le num&eacute;ro du port de sortie d'activation du
+prochain &eacute;v&eacute;nement &agrave; g&eacute;n&eacute;rer est
+stock&eacute; dans la variable <TT>pointi</TT>. Pendant la simulation, la
+programmation des activations dans l'<TT> agenda</TT> d&eacute;pend de deux
+proc&eacute;dures : <TT>addevs</TT> et <TT> putevs</TT>. Le r&ocirc;le de 
+<TT>addevs</TT> est sp&eacute;cifique aux blocs discrets (hormis les blocs 
+<TT>Synchro</TT>), il consiste &agrave; rechercher le bon emplacement dans
+l'agenda pour programmer l'activation &agrave; g&eacute;n&eacute;rer (non
+synchrone avec l'activation causale). La proc&eacute;dure <TT>putevs</TT>
+permet de traiter prioritairement (&agrave; l'it&eacute;ration courante)
+l'activation &agrave; g&eacute;n&eacute;rer en sortie des blocs <TT>Synchro 
+</TT> concern&eacute;s. L'activation n'est pas programm&eacute;e dans l'agenda
+car elle doit &ecirc;tre synchrone avec l'activation causale. Il n'existe pas
+dans l'agenda d'activations conditionn&eacute;es qui soient programm&eacute;es.
+
+
+
+
+
+<!--TOC subsection La procédure <TT>cosend</TT>-->
+<H3>3.3&nbsp;&nbsp; La proc&eacute;dure <TT>cosend</TT></H3>
+<!--SEC END -->
+La proc&eacute;dure <TT>cosend</TT> permet de mettre &agrave; z&eacute;ro, avec
+flag 5, le registre des temps d'activations <TT>tvec</TT> de chaque bloc afin
+de terminer la simulation. Ceci correspond &agrave; une proc&eacute;dure
+d'arr&ecirc;t, qui prend toute sa signification par exemple pour les blocs <TT>
+Writef</TT> (&eacute;criture sur fichier) qu'il est n&eacute;cessaire de fermer
+en &eacute;criture, pour valider leur contenu. Rachid Djenidi <BR>
+Scilab Group <BR>
+scilab@inria.fr <BR> http://www-rocq.inria.fr/scilab/
+
+
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://pauillac.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

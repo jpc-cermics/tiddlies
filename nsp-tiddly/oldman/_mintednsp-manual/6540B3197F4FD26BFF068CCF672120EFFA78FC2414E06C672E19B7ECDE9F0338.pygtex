@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{;}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+B=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{2}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+X=rand(\nspnumber{5},\nspnumber{5})\nspoperator{;}A=X\nspoperator{*}A\nspoperator{*}inv(X)\nspoperator{;}B=X\nspoperator{*}B\nspoperator{;}\nspcomment{//Controllable pair}
+[Ac,Bc,U,ind]=canon(A,B)\nspoperator{;}\nspcomment{//Two indices --$>$ ind=[3.2];}
+index=\nspnumber{1}\nspoperator{;}\nspkeyword{for} k=\nspnumber{1}\nspoperator{:}size(ind,\nspstring{'*'})\nspoperator{-}\nspnumber{1} \nspkeyword{do} index=[index\nspoperator{,}\nspnumber{1}\nspoperator{+}sum(ind(\nspnumber{1}\nspoperator{:}k))]\nspoperator{;}\nspkeyword{end}
+Acstar=Ac(index,\nspoperator{:})\nspoperator{;}Bcstar=Bc(index,\nspoperator{:})\nspoperator{;}
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+p1=s\nspoperator{^}\nspnumber{3}\nspoperator{+}\nspnumber{2}\nspoperator{*}s\nspoperator{^}\nspnumber{2}\nspoperator{-}\nspnumber{5}\nspoperator{*}s\nspoperator{+}\nspnumber{3}\nspoperator{;}p2=(s\nspoperator{-}\nspnumber{5})\nspoperator{*}(s\nspoperator{-}\nspnumber{3})\nspoperator{;}
+\nspcomment{//p1 and p2 are desired closed-loop polynomials with degrees 3,2}
+c1=coeff(p1)\nspoperator{;}c1=c1($\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1})\nspoperator{;}c2=coeff(p2)\nspoperator{;}c2=c2($\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1})\nspoperator{;}
+Acstardesired=[\nspoperator{-}c1\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspoperator{-}c2]\nspoperator{;}
+\nspcomment{//Acstardesired(index,:) is companion matrix with char. pol=p1*p2}
+F=Bcstar\nspoperator{\nspbs{}}(Acstardesired\nspoperator{-}Acstar)\nspoperator{;}\nspcomment{//Feedbak gain}
+Ac\nspoperator{+}Bc\nspoperator{*}F\nspoperator{,}\nspcomment{// Companion form}
+spec(A\nspoperator{+}B\nspoperator{*}F\nspoperator{/}U)\nspoperator{,}\nspcomment{// F/U is the gain matrix in original basis.}
+\end{Verbatim}

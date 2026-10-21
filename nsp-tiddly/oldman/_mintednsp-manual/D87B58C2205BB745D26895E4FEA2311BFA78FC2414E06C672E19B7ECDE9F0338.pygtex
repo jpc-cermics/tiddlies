@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+subplot(\nspnumber{212})
+a=gca()\nspoperator{;}
+plot2d
+drawlater
+subplot(\nspnumber{211})
+plot2d1\nspoperator{,}\nspcomment{// default drawing mode}
+e=gce()\nspoperator{;}
+draw(e.children(\nspnumber{2}))\nspoperator{,}\nspcomment{// draw a single polyline of the second axes}
+e.children(\nspnumber{1}).visible=\nspstring{'off'}\nspoperator{;}\nspcomment{// We can choose to make a line invisible}
+draw(e)\nspoperator{,}\nspcomment{// draw agregation and its children $<$=$>$ draw all the visible polylines}
+drawnow\nspoperator{,}\nspcomment{// ...now!}
+e.children(\nspnumber{1}).visible=\nspstring{'on'}\nspoperator{;}
+\end{Verbatim}

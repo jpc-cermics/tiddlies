@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>iir</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1169.html" >next</a>] [<a 
+href="manualli1167.html" >prev</a>] [<a 
+href="manualli1167.html#tailmanualli1167.html" >prev-tail</a>] [<a 
+href="#tailmanualli1168.html">tail</a>] [<a 
+href="manualli1135.html#manualli1168.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1169-6615000"></a>iir</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1169-6615001"></a><a 
+ id="iir"></a><span 
+class="cmtt-10x-x-109">iir </span>&#x2013;                                                                                            iir digital filter<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1169-6616000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1322">
+&#x00A0;&#x00A0;[hz]=iir(n,ftype,fdesign,frq,delta)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1169-6617000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: filter order (pos. integer)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ftype</span>: string specifying the filter type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;lp&#x0027;,&#x0027;hp&#x0027;,&#x0027;bp&#x0027;,&#x0027;sb&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fdesign</span>: string specifying the analog filter design <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">=&#x0027;butt&#x0027;,&#x0027;cheb1&#x0027;,&#x0027;cheb2&#x0027;,&#x0027;ellip&#x0027;</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">frq</span>: 2-vector of discrete cut-off frequencies (i.e., <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$frq$&#x003C;$.5</span></span></span>). For <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lp</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hp</span></span></span> filters
+     only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq(1)</span></span></span> is used. For <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">bp</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sb</span></span></span> filters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq(1)</span></span></span> is the lower cut-off frequency and
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frq(2)</span></span></span> is the upper cut-off frequency
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">delta </span>: 2-vector of error values for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cheb1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;cheb2</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ellip</span></span></span> filters where only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">delta(1)</span></span></span> is
+     used for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cheb1</span></span></span> case, only <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">delta(2)</span></span></span> is used for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cheb2</span></span></span> case, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">delta(1)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">delta(2)</span></span></span> are
+     both used for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ellip</span></span></span> case. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$delta(1),delta(2)$&#x003C;$1</span></span></span>
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cheb1</span></span></span> filters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1-delta(1)$&#x003C;$ripple$&#x003C;$1</span></span></span> in passband
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cheb2</span></span></span> filters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$ripple$&#x003C;$delta(2)</span></span></span> in stopband
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-    </span>for    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ellip</span></span></span>   filters    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1-delta(1)$&#x003C;$ripple$&#x003C;$1</span></span></span>   in    passband    and
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$ripple$&#x003C;$delta(2)</span></span></span> in stopband</li></ul>
+     </li></ul>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1169-6618000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 53--><p class="noindent" > function which designs an iir digital filter using analog filter designs.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1169-6619000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb782"><a 
+ id="x1169-6619008r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;hz=iir(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;bp&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;ellip&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.25</span></span><span 
+class="cmtt-10x-x-109">],[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.08</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.03</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1169-6619010r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[hzm,fr]=frmag(hz,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">256</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1169-6619012r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(fr</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,hzm</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x1169-6619014r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Discrete</span><span 
+class="cmtt-10x-x-109">&#x00A0;IIR</span><span 
+class="cmtt-10x-x-109">&#x00A0;filter</span><span 
+class="cmtt-10x-x-109">&#x00A0;band</span><span 
+class="cmtt-10x-x-109">&#x00A0;pass</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.15$&#x0026;lt;$fr$&#x0026;lt;$0.25</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1169-6619016r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;q=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;q&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//to</span><span 
+class="cmitt-10x-x-109">&#x00A0;express</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;result</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;terms</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;...</span></span><br class="fancyvrb" /><a 
+ id="x1169-6619018r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;hzd=horner(hz,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">q)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//delay</span><span 
+class="cmitt-10x-x-109">&#x00A0;operator</span><span 
+class="cmitt-10x-x-109">&#x00A0;q=z^-1</span></span></div>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1169-6620000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1150.html#eqfir">eqfir</a>    <a 
+href="manualli1151.html#eqiir">eqiir</a>
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1169-6621000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   C. B.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1169.html" >next</a>] [<a 
+href="manualli1167.html" >prev</a>] [<a 
+href="manualli1167.html#tailmanualli1167.html" >prev-tail</a>] [<a 
+href="manualli1168.html" >front</a>] [<a 
+href="manualli1135.html#manualli1168.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1168.html"></a>  </p> 
+</body></html> 

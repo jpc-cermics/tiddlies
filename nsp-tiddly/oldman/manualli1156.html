@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>fft</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1157.html" >next</a>] [<a 
+href="manualli1155.html" >prev</a>] [<a 
+href="manualli1155.html#tailmanualli1155.html" >prev-tail</a>] [<a 
+href="#tailmanualli1156.html">tail</a>] [<a 
+href="manualli1135.html#manualli1156.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1157-6547000"></a>fft</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1157-6547001"></a><a 
+ id="fft"></a><span 
+class="cmtt-10x-x-109">fft </span>&#x2013;                                                                                fast Fourier transform. <br />
+<a 
+ id="dx1157-6547002"></a>
+<a 
+ id="ifft"></a><span 
+class="cmtt-10x-x-109">ifft </span>&#x2013;                                                                                 fast Fourier transform. <br />
+</div></p></div>
+<!--l. 23--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1157-6548000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1309">
+&#x00A0;&#x00A0;x=fft(a&#x00A0;,-1)&#x00A0;or&#x00A0;x=fft(a)
+&#x00A0;<br />&#x00A0;&#x00A0;x=fft(a,1)&#x00A0;&#x00A0;or&#x00A0;x=ifft(a)
+&#x00A0;<br />&#x00A0;&#x00A0;x=fft(a,-1,dim,incr)
+&#x00A0;<br />&#x00A0;&#x00A0;x=fft(a,1,dim,incr)
+</div>
+<!--l. 29--><p class="nopar" >
+</p>
+<!--l. 32--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1157-6549000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: real or complex vector. Real or complex matrix (2-dim fft)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">a</span>: real or complex vector, matrix or multidimensionnal array.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dim</span>: integer
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">incr</span>: integer</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1157-6550000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" >
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Short syntax</span>  </span>
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">direct</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x=fft(a,-1)</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x=fft(a)</span></span></span> gives a direct transform.
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+          <span 
+class="cmbx-10x-x-109">single variate</span> </span>If  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> is  a  vector  a  single  variate  direct  FFT  is  computed  that
+              is:x(k)=sum  over  m  from  1  to  n  of  a(m)*exp(-2i*pi*(m-1)*(k-1)/n)for  k
+              varying from 1 to n (n=size of vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span>).(the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> argument refers to the sign of
+              the exponent..., NOT to &#x201D;inverse&#x201D;),
+              <li class="nbitemize"><span class="bitem">
+          <span 
+class="cmbx-10x-x-109">multivariate</span> </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> is a matrix or or a multidimensionnal array a multivariate direct
+              FFT is performed.</ul>
+                                                                                    
+
+                                                                                    
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">inverse</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a=fft(x,1)</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a=ifft(x)</span></span></span>performs the inverse transform normalized by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1/n</span></span></span>.
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+          <span 
+class="cmbx-10x-x-109">single variate</span> </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> is a vector a single variate inverse FFT is computed
+              <li class="nbitemize"><span class="bitem">
+          <span 
+class="cmbx-10x-x-109">multivariate</span> </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> is a matrix or or a multidimensionnal array a multivariate
+              inverse FFT is performed.</ul>
+          </ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Long syntax for multidimensional FFT</span> </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x=fft(a,-1,dim,incr)</span></span></span> allows to perform an
+     multidimensional fft.If a is a real or complex vector implicitly indexed by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j1,j2,..,jp</span></span></span> i.e.
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a(j1,j2,..,jp)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j1</span></span></span> lies in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1:dim(1),</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j2</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1:dim(2),...</span></span></span> one gets a p-variate FFT by
+     calling p times <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fft</span></span></span> as follows
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-1310">
+     &#x00A0;&#x00A0;incrk=1;
+     &#x00A0;<br />&#x00A0;&#x00A0;x=a;
+     &#x00A0;<br />&#x00A0;&#x00A0;for&#x00A0;k=1:p
+     &#x00A0;<br />&#x00A0;&#x00A0;x=fft(x&#x00A0;,-1,dim(k),incrk)
+     &#x00A0;<br />&#x00A0;&#x00A0;incrk=incrk*dim(k)
+     &#x00A0;<br />&#x00A0;&#x00A0;end
+</div>
+     <!--l. 73--><p class="nopar" >where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimk</span></span></span> is the dimension of the current variable w.r.t which one is integrating and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">incrk</span></span></span> is
+     the increment which separates two successive <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jk</span></span></span> elements in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span>.In particular,if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a</span></span></span> is an nxm
+     matrix, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x=fft(a,-1)</span></span></span> is equivalent to the two instructions:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">a1=fft(a,-1,m,1)</span></span></span> and
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x=fft(a1,-1,n,m)</span></span></span>.</ul>
+</p>
+<!--l. 81--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1157-6551000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb776"><a 
+ id="x1157-6551021r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Comparison</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;explicit</span><span 
+class="cmitt-10x-x-109">&#x00A0;formula</span></span><br class="fancyvrb" /><a 
+ id="x1157-6551023r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//----------------------------------</span></span>
+<br class="fancyvrb" /><a 
+ id="x1157-6551025r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">n=size(a,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;*&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1157-6551027r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">exp(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*.</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">fft(a,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x1157-6551029r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(exp(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*.</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">n)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">fft(a,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">))</span>
+<br class="fancyvrb" /><a 
+ id="x1157-6551031r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Frequency</span><span 
+class="cmitt-10x-x-109">&#x00A0;components</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;signal</span></span><br class="fancyvrb" /><a 
+ id="x1157-6551033r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//----------------------------------</span></span>
+<br class="fancyvrb" /><a 
+ id="x1157-6551035r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;build</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;noides</span><span 
+class="cmitt-10x-x-109">&#x00A0;signal</span><span 
+class="cmitt-10x-x-109">&#x00A0;sampled</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;1000hz</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;containing</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;pure</span><span 
+class="cmitt-10x-x-109">&#x00A0;frequencies</span></span><br class="fancyvrb" /><a 
+ id="x1157-6551037r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;at</span><span 
+class="cmitt-10x-x-109">&#x00A0;50</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;70</span><span 
+class="cmitt-10x-x-109">&#x00A0;Hz</span></span>
+<br class="fancyvrb" /><a 
+ id="x1157-6551039r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sample_rate=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1000</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1157-6551041r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">sample_rate</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1157-6551043r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;N=size(t,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;*&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//number</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;samples</span></span>
+<br class="fancyvrb" /><a 
+ id="x1157-6551045r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=sin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">50</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">t)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">sin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">70</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">t</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">grand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,N,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;nor&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1157-6551047r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=fft(s)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x1157-6551049r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;fft</span><span 
+class="cmitt-10x-x-109">&#x00A0;response</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;symetric</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;retain</span><span 
+class="cmitt-10x-x-109">&#x00A0;only</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;N/2</span><span 
+class="cmitt-10x-x-109">&#x00A0;points</span></span>
+<br class="fancyvrb" /><a 
+ id="x1157-6551051r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f=sample_rate</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">(N</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">N</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//associated</span><span 
+class="cmitt-10x-x-109">&#x00A0;frequency</span><span 
+class="cmitt-10x-x-109">&#x00A0;vector</span></span><br class="fancyvrb" /><a 
+ id="x1157-6551053r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=size(f,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;*&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1157-6551055r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><br class="fancyvrb" /><a 
+ id="x1157-6551057r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(f,abs(y(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n)))</span></div>
+<!--l. 105--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1157-6552000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1145.html#corr">corr</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1157.html" >next</a>] [<a 
+href="manualli1155.html" >prev</a>] [<a 
+href="manualli1155.html#tailmanualli1155.html" >prev-tail</a>] [<a 
+href="manualli1156.html" >front</a>] [<a 
+href="manualli1135.html#manualli1156.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1156.html"></a>  </p> 
+</body></html> 

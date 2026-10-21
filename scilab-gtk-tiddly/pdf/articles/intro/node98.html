@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.3.1.0.6 Fortran variables with external type</TITLE>
+<META NAME="description" CONTENT="6.3.1.0.6 Fortran variables with external type">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node99.html">
+<LINK REL="previous" HREF="node97.html">
+<LINK REL="up" HREF="node92.html">
+<LINK REL="next" HREF="node99.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1575"
+ HREF="node99.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1571"
+ HREF="node92.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1565"
+ HREF="node97.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1573"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1574"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1576"
+ HREF="node99.html">6.3.1.0.7 Using lists as</A>
+<B> Up:</B> <A NAME="tex2html1572"
+ HREF="node92.html">6.3.1 Using Intersci</A>
+<B> Previous:</B> <A NAME="tex2html1566"
+ HREF="node97.html">6.3.1.0.5 Dimensions of non</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H4><A NAME="SECTION00731060000000000000">&#160;</A>
+<A NAME="external">&#160;</A>
+<BR>
+6.3.1.0.6 Fortran variables with external type
+</H4>
+<P>
+<FONT SIZE="-2">External types are used when the dimension of the Fortran variable is
+unknown when calling the Fortran subroutine and when its memory size is
+allocated in this subroutine. This dimension must be an output of the Fortran
+subroutine. In fact, this will typically happen when we want to interface a C
+function in which memory is dynamically allocated.
+</FONT>
+<P>
+<P></P>
+<P>
+<FONT SIZE="-2">Existing external types:
+</FONT><DL>
+<DT><STRONG>cchar</STRONG>
+<DD>character string allocated by a C function to be copied into the
+corresponding Scilab variable.
+<DT><STRONG>ccharf</STRONG>
+<DD>the same as <TT>cchar</TT> but the C character string is freed after
+the copy.
+ <DT><STRONG>cdouble</STRONG>
+<DD>C double array allocated by a C function to be copied into the
+corresponding Scilab variable.
+ <DT><STRONG>cdoublef</STRONG>
+<DD>the same as <TT>cdouble</TT> but the C double array is freed after
+the copy.
+ <DT><STRONG>cint</STRONG>
+<DD>C integer array allocated by a C function to be copied into the
+corresponding Scilab variable.
+ <DT><STRONG>cintf</STRONG>
+<DD>the same as <TT>cint</TT> but the C integer array is freed after
+the copy.
+</DL>
+<P>
+<P>
+<BR>
+<P>
+<FONT SIZE="-2">In fact, the name of an external type corresponds to the name of a C function.
+This C function has three arguments: the dimension of the variable, an input
+pointer and an output pointer.
+</FONT>
+<P>
+<FONT SIZE="-2">For instance, below is the code for external type <TT>cintf</TT>:
+</FONT><PRE>
+#include "../machine.h"   
+
+/* ip is a pointer to a Fortran variable coming from SCILAB
+which is itself a pointer to an array of n integers typically
+coming from a C function
+   cintf converts this integer array into a double array in op 
+   moreover, pointer ip is freed */
+
+void C2F(cintf)(n,ip,op)
+int *n;
+int *ip[];
+double *op;
+{
+  int i;
+  for (i = 0; i &lt; *n; i++)
+    op[i]=(double)(*ip)[i];
+  free((char *)(*ip));
+}
+</PRE>
+<P>
+<FONT SIZE="-2">For the meaning of <code>#include "../machine.h"</code> and <TT>C2F</TT> see <A HREF="node100.html#C">6.3.1</A>.
+</FONT>
+<P>
+<P></P>
+<P>
+<FONT SIZE="-2">Then, the user can create its own external types by creating its own C
+functions with the same arguments. Intersci will generate the call of the
+function. 
+</FONT>
+<P><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1575"
+ HREF="node99.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1571"
+ HREF="node92.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1565"
+ HREF="node97.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1573"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1574"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1576"
+ HREF="node99.html">6.3.1.0.7 Using lists as</A>
+<B> Up:</B> <A NAME="tex2html1572"
+ HREF="node92.html">6.3.1 Using Intersci</A>
+<B> Previous:</B> <A NAME="tex2html1566"
+ HREF="node97.html">6.3.1.0.5 Dimensions of non</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_mytid</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1076.html" >next</a>] [<a 
+href="manualli1074.html" >prev</a>] [<a 
+href="manualli1074.html#tailmanualli1074.html" >prev-tail</a>] [<a 
+href="#tailmanualli1075.html">tail</a>] [<a 
+href="manualli1054.html#manualli1075.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1076-6097000"></a>pvm_mytid</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1076-6097001"></a><a 
+ id="pvm_mytid"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_mytid </span>&#x2013;                                                    returns the tid of the calling process. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1076-6098000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1183">
+&#x00A0;&#x00A0;[tid]&#x00A0;=&#x00A0;pvm_mytid()
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1076-6099000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tid</span>: integer, the task identifier of the calling PVM process. Values less than zero indicate
+     an error.</li></ul>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1076-6100000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 33--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_mytid</span></span></span> enrolls this process into PVM on its first call. It also generates a unique
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tid</span></span></span> if this process was not created by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn</span></span></span>. pvm_mytid returns the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tid</span></span></span> of the
+calling process and can be called multiple times in an application. Any PVM system
+call (not just pvm_mytid) will enroll a task in PVM if the task is not enrolled before
+the call. The tid is a 32 bit positive integer created by the local pvmd. The 32 bits are
+divided into fields that encode various information about this process such as its location
+in the virtual machine (i.e. local pvmd address), the CPU number in the case where
+the process is on a multiprocessor, and a process ID field. This information is used by
+PVM and is not expected to be used by applications. Applications should not attempt to
+predict or interpret the tid with the exception of calling tidtohost() If PVM has not been
+started before an application calls <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_mytid</span></span></span>, the returned value will be will be <span 
+class="cmmi-10x-x-109">&#x003C; </span>0.
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1076-6101000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb738"><a 
+ id="x1076-6101003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tid=pvm_mytid()</span></div>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1076-6102000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-tidtohost">pvm_tidtohost</a>    <a 
+href="#pvm-parent">pvm_parent</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1076.html" >next</a>] [<a 
+href="manualli1074.html" >prev</a>] [<a 
+href="manualli1074.html#tailmanualli1074.html" >prev-tail</a>] [<a 
+href="manualli1075.html" >front</a>] [<a 
+href="manualli1054.html#manualli1075.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1075.html"></a>  </p> 
+</body></html> 

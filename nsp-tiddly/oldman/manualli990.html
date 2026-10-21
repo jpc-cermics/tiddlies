@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>intppty</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli991.html" >next</a>] [<a 
+href="manualli989.html" >prev</a>] [<a 
+href="manualli989.html#tailmanualli989.html" >prev-tail</a>] [<a 
+href="#tailmanualli990.html">tail</a>] [<a 
+href="manualli931.html#manualli990.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x991-5683000"></a>intppty</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx991-5683001"></a><a 
+ id="intppty"></a><span 
+class="cmtt-10x-x-109">intppty </span>&#x2013;                                                   set interface argument passing properties<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x991-5684000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1106">
+&#x00A0;&#x00A0;funs=intppty()
+&#x00A0;<br />&#x00A0;&#x00A0;intppty(fun)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x991-5685000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fun</span>: integer an interface number (see funptr)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">funs</span>: integer vector, vector of interface number (see funptr)</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x991-5686000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > The interface programs may be written in 2 different ways for the mode of function argument
+passing. In the first and default way, the arguments are passed by value. With the following
+syntax:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1107">
+&#x00A0;&#x00A0;foo(A,1+2)
+</div>
+<!--l. 42--><p class="nopar" >the argument associated with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> will be passed by value (a copy of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is made before <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foo</span></span></span> is called,
+and the argument associated with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1+2</span></span></span> will be passed by value. In the second way arguments may be
+passed be reference if there are &#x201D;named arguments&#x201D; (no copy of the variable value is done).
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">intppty(fun)</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun$&#x003E;$0</span></span></span> tells Scilab that the interface with number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> can handle arguments
+passed by reference. With the following syntax:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1108">
+&#x00A0;&#x00A0;foo(A,1+2)
+</div>
+<!--l. 54--><p class="nopar" >the argument associated with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> will be passed by reference, and the argument associated with
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1+2</span></span></span> will be passed by value. Warning, declaring that the interface with number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> can
+handle arguments passed by reference if it is not the case should produce unpredictable
+results.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">intppty(fun)</span></span></span> with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun$&#x003C;$0</span></span></span> suppress this property for the interface <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-fun</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">intppty()</span></span></span> returns
+the vector of interfaces which handle arguments passed by reference. This function may be useful for
+dynamically loaded interface (see addinter).
+</p>
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x991-5687000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli973.html#funptr">funptr</a>    <a 
+href="manualli342.html#addinter">addinter</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli991.html" >next</a>] [<a 
+href="manualli989.html" >prev</a>] [<a 
+href="manualli989.html#tailmanualli989.html" >prev-tail</a>] [<a 
+href="manualli990.html" >front</a>] [<a 
+href="manualli931.html#manualli990.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli990.html"></a>  </p> 
+</body></html> 

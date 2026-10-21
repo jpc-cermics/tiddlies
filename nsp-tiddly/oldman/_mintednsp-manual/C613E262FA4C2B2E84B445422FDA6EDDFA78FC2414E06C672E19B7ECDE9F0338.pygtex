@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{;}\nspnumber{3}\nspoperator{,}\nspnumber{4}]\nspoperator{;}
+cumprod(A)
+cumprod(A,\nspstring{'r'})
+cumprod(A,\nspstring{'c'})
+rand(\nspstring{'seed'},\nspnumber{0})\nspoperator{;}
+a=rand(\nspnumber{3},\nspnumber{4})\nspoperator{;}
+[m,n]=size(a)\nspoperator{;}
+w=zeros(a)\nspoperator{;}
+w(\nspnumber{1},\nspoperator{:})=a(\nspnumber{1},\nspoperator{:})\nspoperator{;}
+\nspkeyword{for} k=\nspnumber{2}\nspoperator{:}m \nspkeyword{do} w(k,\nspoperator{:})=w(k\nspoperator{-}\nspnumber{1},\nspoperator{:})\nspoperator{ .*}a(k,\nspoperator{:})\nspoperator{;}\nspkeyword{end}\nspoperator{;}w\nspoperator{-}cumprod(a,\nspstring{'r'})
+\end{Verbatim}

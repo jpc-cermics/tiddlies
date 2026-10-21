@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>steadycos</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1135.html" >next</a>] [<a 
+href="manualli1133.html" >prev</a>] [<a 
+href="manualli1133.html#tailmanualli1133.html" >prev-tail</a>] [<a 
+href="#tailmanualli1134.html">tail</a>] [<a 
+href="manualli1129.html#manualli1134.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1135-6417000"></a>steadycos</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1135-6417001"></a><a 
+ id="steadycos"></a><span 
+class="cmtt-10x-x-109">steadycos </span>&#x2013;      Finds an equilibrium state of a general dynamical system described by a
+scicos diagram<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1135-6418000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1282">
+&#x00A0;&#x00A0;[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy&#x00A0;[,Indxp&#x00A0;[,param&#x00A0;]&#x00A0;])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1135-6419000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">scs</span><span 
+class="cmtt-10x-x-109">_m</span>: a Scicos data structure
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: column vector. Continuous state. Can be set to [] if zero.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">U</span>: column vector. Input. Can be set to [] if zero.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Y</span>: column vector. Output. Can be set to [] if zero.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Indx</span>: index of entries of X that are not fixed. If all can vary, set to 1:$
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Indu</span>: index of entries of U that are not fixed. If all can vary, set to 1:$
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Indy</span>: index of entries of Y that are not fixed. If all can vary, set to 1:$
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Indxp</span>: index of entries of XP (derivative of x) that need not be zero. If all can vary, set
+     to 1:$. Default [].
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">param</span>:      list      with      two      elements      (default      list(1.d-6,0)).      param(1):
+     scalar. Perturbation level for linearization; the following variation is used del([x;u])_i =
+     param(1)+param(1)*1d-4*abs([x;u])_i. param(2): scalar. Time t.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: steady state X
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">U</span>: stationary input U
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Y</span>: output corresponding to steady state found
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">XP</span>: derivative of the state corresponding to steady state found</li></ul>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1135-6420000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 50--><p class="noindent" >
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span>This function finds the steady state for a given system described by a Scicos diagram. The
+     diagram consists in general of a Super block with input and output port blocks. The
+     steady states concerns only the continuous-time dynamics.</ul>
+</p>
+<!--l. 60--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1135-6421000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1130.html#lincos">lincos</a>    <a 
+href="#scicos-simulate">scicos_simulate</a>    <a 
+href="manualli1133.html#scicos">scicos</a>
+</p>
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1135-6422000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1135-6423000"></a><span 
+class="cmbx-10x-x-109">Ramine Nikoukhah</span></span>
+</p><!--l. 67--><p class="noindent" >optim
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 2--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1135.html" >next</a>] [<a 
+href="manualli1133.html" >prev</a>] [<a 
+href="manualli1133.html#tailmanualli1133.html" >prev-tail</a>] [<a 
+href="manualli1134.html" >front</a>] [<a 
+href="manualli1129.html#manualli1134.html" >up</a>] </p></div>
+<!--l. 2--><p class="indent" >   <a 
+ id="tailmanualli1134.html"></a>  </p> 
+</body></html> 

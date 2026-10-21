@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// MATRIX CASE}
+a=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{;}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{6}]
+a(\nspnumber{1},\nspnumber{2})=\nspnumber{10}
+a([\nspnumber{1}\nspoperator{,}\nspnumber{1}],\nspnumber{2})=[\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{2}]
+a(\nspoperator{:},\nspnumber{1})=[\nspnumber{8}\nspoperator{;}\nspnumber{5}]
+a(\nspnumber{1},\nspnumber{3}\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1})=[\nspnumber{77}\nspoperator{,}\nspnumber{44}\nspoperator{,}\nspnumber{99}]
+a(\nspnumber{1})=%s
+a(\nspnumber{6})=%s\nspoperator{+}\nspnumber{1}
+a(\nspoperator{:})=\nspnumber{1}\nspoperator{:}\nspnumber{6}
+a([%t\nspoperator{,}%f],\nspnumber{1})=\nspnumber{33}
+a(\nspnumber{1}\nspoperator{:}\nspnumber{2},$\nspoperator{-}\nspnumber{1})=[\nspnumber{2}\nspoperator{;}\nspnumber{4}]
+a($\nspoperator{:}\nspoperator{-}\nspnumber{1}\nspoperator{:}\nspnumber{1},\nspnumber{1})=[\nspnumber{8}\nspoperator{;}\nspnumber{7}]
+a($)=\nspnumber{123}
+\nspcomment{//}
+x=\nspstring{'test'}
+x([\nspnumber{4}\nspoperator{,}\nspnumber{5}])=[\nspstring{'4'}\nspoperator{,}\nspstring{'5'}]
+\nspcomment{//}
+b=[\nspnumber{1}\nspoperator{/}%s\nspoperator{,}(%s\nspoperator{+}\nspnumber{1})\nspoperator{/}(%s\nspoperator{-}\nspnumber{1})]
+b(\nspnumber{1},\nspnumber{1})=\nspnumber{0}
+b(\nspnumber{1},$)=b(\nspnumber{1},$)\nspoperator{+}\nspnumber{1}
+b(\nspnumber{2})=[\nspnumber{1}\nspoperator{,}\nspnumber{2}]\nspoperator{,}\nspcomment{// the numerator}
+\nspcomment{// LIST OR TLIST CASE}
+l=list(\nspnumber{1},\nspstring{'qwerw'},%s)
+l(\nspnumber{1})=\nspstring{'Changed'}
+l(\nspnumber{0})=\nspstring{'Added'}
+l(\nspnumber{6})=[\nspstring{'one more'}\nspoperator{;}\nspstring{'added'}]
+\nspcomment{//}
+\nspcomment{//}
+dts=list(\nspnumber{1},tlist([\nspstring{'x'}\nspoperator{;}\nspstring{'a'}\nspoperator{;}\nspstring{'b'}],\nspnumber{10},[\nspnumber{2}\nspoperator{,}\nspnumber{3}]))\nspoperator{;}
+dts(\nspnumber{2}).a=\nspnumber{33}
+dts(\nspnumber{2})(\nspstring{'b'})(\nspnumber{1},\nspnumber{2})=\nspoperator{-}\nspnumber{100}
+\end{Verbatim}

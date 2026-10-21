@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>interp1</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli168.html" >next</a>] [<a 
+href="manualli166.html" >prev</a>] [<a 
+href="manualli166.html#tailmanualli166.html" >prev-tail</a>] [<a 
+href="#tailmanualli167.html">tail</a>] [<a 
+href="manualli104.html#manualli167.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x168-984000"></a>interp1</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx168-984001"></a><a 
+ id="interp1"></a><span 
+class="cmtt-10x-x-109">interp1 </span>&#x2013;                                                         one&#x02D9;dimension interpolation function<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x168-985000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-270">
+&#x00A0;&#x00A0;[yp]=interp1(x,&#x00A0;y,xp&#x00A0;[,
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;method,[extrapolation]])
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x168-986000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xp</span>: reals scalar, vector or matrix (or hypermatrix)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: reals vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">method</span>: (optional) string defining the interpolation method
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">extrapolation</span>: (optional) string, or real value defining the yp(j) components for xp(j)
+     values outside [x1,xn] interval.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">yp</span>: vector, or matrix (or hypermatrix)</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x168-987000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > Given <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(x,y,xp)</span></span></span>, this function performs the yp components corresponding to xp by the
+interpolation(linear by default) defined by x and y.If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp</span></span></span> is a vector then the length of xp is equal to
+the length of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp,</span></span></span> if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp</span></span></span> is a matrix then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span> have the same length than the length of each columns of
+yp, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp</span></span></span> is a hypermatrix then the length of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp</span></span></span> have the same length than the first
+dimension of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yp.</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>If size(y)=[C,M1,M2,M3,...,Mj] and size(xp)=[N1,N2,N3,...,Nk] then
+size(yp)=[N1,N2,..,Nk,M1,M2,...Mj] and length of x must be equal to size(y,1)The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">method</span></span></span>
+parameter sets the evaluation rule for interpolation </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">&#x201D;linear&#x201D;</div>: the interpolation is defined by linear method (see <a 
+href="manualli170.html#interpln">interpln</a>    )
+     </li>
+     <li class="itemize"><div class="itemdesc">&#x201D;spline&#x201D;</div>: the interpolation is defined by cubic spline interpolation ( see <a 
+href="manualli244.html#splin">splin</a>    , <a 
+href="manualli171.html#interp">interp</a>
+     )
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">&#x201D;nearest&#x201D;</div>: for each value xp(j), yp(j) takes the value or y(i) corresponding to x(i) the
+     nearest neighbor of xp(j)</li></ul>
+<!--l. 58--><p class="noindent" >The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">extrapolation</span></span></span> parameter sets the evaluation rule for extrapolation, i.e for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xp(i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>not in [x1,xn]
+interval </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">&#x201D;extrap&#x201D;</div>:     the     extrapolation     is     performed     by     the     defined     method.
+     yp=interp1(x,y,xp,method,&#x201D;extrap&#x201D;)
+     </li>
+     <li class="itemize"><div class="itemdesc">real  value</div>:  you  can  choose  a  real  value  for  extrapolation,  in  this  way  yp(i)  takes
+     this  value  for  xp(i)  not  in  [x1,xn]  interval,  for  example  0  (but  also  nan  or  inf).
+     yi=interp1(x,y,xp,method, 0)
+     </li>
+     <li class="itemize"><div class="itemdesc">by default</div>: the extrapolation is performed by the defined method (for spline method),
+     and by nan for linear and nearest methods. yp=interp1(x,y,xp,method)</li></ul>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x168-988000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb125"><a 
+ id="x168-988011r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x168-988013r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">^</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x168-988015r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xx=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x168-988017r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yy1=interp1(x,y,xx,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;linear&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x168-988019r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yy2=interp1(x,y,xx,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;spline&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x168-988021r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yy3=interp1(x,y,xx,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;nearest&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x168-988023r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot(xx,[yy1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yy2</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yy3],x,y,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;*&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x168-988025r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;interpolation</span><span 
+class="cmtt-10x-x-109">&#x00A0;of</span><span 
+class="cmtt-10x-x-109">&#x00A0;square</span><span 
+class="cmtt-10x-x-109">&#x00A0;function&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x168-988027r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;legend([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;linear&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;spline&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;nearest&#x0027;</span></span><span 
+class="cmtt-10x-x-109">],a</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 86--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x168-989000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli171.html#interp">interp</a>    <a 
+href="manualli170.html#interpln">interpln</a>    <a 
+href="manualli244.html#splin">splin</a>
+</p>
+<!--l. 90--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x168-990000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.B
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli168.html" >next</a>] [<a 
+href="manualli166.html" >prev</a>] [<a 
+href="manualli166.html#tailmanualli166.html" >prev-tail</a>] [<a 
+href="manualli167.html" >front</a>] [<a 
+href="manualli104.html#manualli167.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli167.html"></a>  </p> 
+</body></html> 

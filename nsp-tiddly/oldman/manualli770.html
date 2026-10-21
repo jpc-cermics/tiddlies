@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_all</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli771.html" >next</a>] [<a 
+href="manualli769.html" >prev</a>] [<a 
+href="manualli769.html#tailmanualli769.html" >prev-tail</a>] [<a 
+href="#tailmanualli770.html">tail</a>] [<a 
+href="manualli756.html#manualli770.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x771-4569000"></a>mtlb_all</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx771-4569001"></a><a 
+ id="mtlb_all"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_all </span>&#x2013;                                                                Matlab all emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x771-4570000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">all</span></span></span> and Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">and</span></span></span> behave differently in some particular cases:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> When used with one input (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">all(A)</span></span></span>), Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">all</span></span></span> treats the values along the first
+          non-singleton dimension of A as vectors while Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">and</span></span></span> treats all A values.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When used with two inputs (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">all(A,dim)</span></span></span>), Matlab tolerates <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> to be greater
+          than the number of dimensions of A while Scilab returns an error message in this
+          case.</li></ul>
+     </ul>
+<!--l. 34--><p class="noindent" >The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_all(A[,dim])</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">all(A[,dim])</span></span></span> when it was not
+possible to know what were the inputs while porting Matlab code to Scilab. This function will
+determine the correct semantic at run time. If you want to have a more efficient code it is possible
+to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_all</span></span></span> calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is a scalar or a vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_all(A)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;and(A)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is a matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_all(A)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;and(A,1)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>   If    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>   is    an    hypermatrix    <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_all(A)</span></span></span>   may    be    replaced
+          by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;and(A,firstnonsingleton(A))</span></span></span> or by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;and(A,user_defined_value)</span></span></span>
+          if the first non-singleton dimensions of A is known.
+                                                                                    
+
+                                                                                    
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> is less equal to the number of dimensions of A <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_all(A,dim)</span></span></span> may
+          be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;and(A,dim)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> is greater than then number of dimensions of A <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_all(A,dim)</span></span></span> may
+          be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;A$&#x003C;$$&#x003E;$0</span></span></span> if A is not an empty matrix or by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;A</span></span></span> if A is an
+          empty matrix.</li></ul>
+     </ul>
+<!--l. 60--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_all</span></span></span> has not to be used for hand coded functions.
+</p>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x771-4571000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli762.html#firstnonsingleton">firstnonsingleton</a>
+</p>
+<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x771-4572000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x771-4573000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli771.html" >next</a>] [<a 
+href="manualli769.html" >prev</a>] [<a 
+href="manualli769.html#tailmanualli769.html" >prev-tail</a>] [<a 
+href="manualli770.html" >front</a>] [<a 
+href="manualli756.html#manualli770.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli770.html"></a>  </p> 
+</body></html> 

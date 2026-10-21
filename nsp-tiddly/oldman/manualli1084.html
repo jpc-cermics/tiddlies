@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_spawn</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1085.html" >next</a>] [<a 
+href="manualli1083.html" >prev</a>] [<a 
+href="manualli1083.html#tailmanualli1083.html" >prev-tail</a>] [<a 
+href="#tailmanualli1084.html">tail</a>] [<a 
+href="manualli1054.html#manualli1084.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1085-6150000"></a>pvm_spawn</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1085-6150001"></a><a 
+ id="pvm_spawn"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_spawn </span>&#x2013;                                                                Starts new Scilab processes. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1085-6151000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1194">
+&#x00A0;&#x00A0;[tids,&#x00A0;numt]&#x00A0;=&#x00A0;pvm_spawn(task,&#x00A0;&#x00A0;ntask,&#x00A0;[nw],&#x00A0;[where])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1085-6152000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">task: string, which is the file name of the scilab script (see</span>
+     <span 
+class="cmtt-10x-x-109">exec) to be </span>started. The Scilab script must already reside on the host on which it is
+     to be started. The name must an absolute path.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ntask</span>: integer, specifying the number of copies of the scilab script to start.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">win</span>: string (optional). If win is equal to &#x201C;nw&#x201D; the Scilab process will be spawned in
+     background with out any window coming up.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">where</span>: string (optional), can be a host name such as &#x201C;tequila.ens-lyon.fr&#x201D; or a PVM
+     architecture class such as &#x201C;SUN4&#x201D;.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">numt</span>: integer, the actual number of tasks started. Values less than zero indicate a system
+     error.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tids </span>row of integers, array of the tids of the PVM processes started by this pvm_spawn
+     call.</li></ul>
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1085-6153000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 39--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn</span></span></span> starts <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ntask</span></span></span> copies of the scilab script <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">task</span></span></span>. On systems that support environment,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn</span></span></span> passes selected variables from parent environment to children tasks. If set, the envar
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PVM_EXPORT</span></span></span> is passed. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PVM_EXPORT</span></span></span> contains other names (separated by &apos;:&apos;) they will be passed
+too. This is useful for e.g.:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1195">
+&#x00A0;&#x00A0;setenv&#x00A0;DISPLAY&#x00A0;myworkstation:0.0
+&#x00A0;<br />&#x00A0;&#x00A0;setenv&#x00A0;MYSTERYVAR&#x00A0;13
+&#x00A0;<br />&#x00A0;&#x00A0;setenv&#x00A0;PVM_EXPORT&#x00A0;DISPLAY:MYSTERYVAR
+</div>
+<!--l. 54--><p class="nopar" >The hosts on which the PVM processes are started are determined by the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">where</span></span></span> arguments. On
+return the array <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tids</span></span></span> contains the PVM task identifiers for each process started. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn</span></span></span>
+starts one or more tasks, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numt</span></span></span> will be the actual number of tasks started. If a system error occurs
+then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numt</span></span></span> will be <span 
+class="cmmi-10x-x-109">&#x003C; </span>0. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numt</span></span></span> is less than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ntask</span></span></span> then some executables have failed to start and the
+user should check the last locations in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tids</span></span></span> array which will contain error codes (see below for
+meaning). The first <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numt</span></span></span> tids in the array are always valid. When the argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">where</span></span></span> is
+omitted an heuristic (round-robin assignment) is used to distribute the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ntask</span></span></span> processes
+across the virtual machine. In the special case where a multiprocessor is specified by
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">where</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn</span></span></span> will start all copies on this single machine using the vendor&apos;s underlying routines.
+</p>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1085-6154000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb746"><a 
+ id="x1085-6154007r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;create</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;exec</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span><span 
+class="cmitt-10x-x-109">&#x00A0;(script)</span></span><br class="fancyvrb" /><a 
+ id="x1085-6154009r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;write(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo.sce&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;a=1&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;plot2d()&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x1085-6154011r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;start</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;new</span><span 
+class="cmitt-10x-x-109">&#x00A0;Scilab</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;same</span><span 
+class="cmitt-10x-x-109">&#x00A0;host</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;execute</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;script</span></span>
+<br class="fancyvrb" /><a 
+ id="x1085-6154013r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[tids,numt]=pvm_spawn(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo.sce&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1085-6154015r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;pvm_kill(tids)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//terminate</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;new</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab</span></span></div>
+<!--l. 86--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1085-6155000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1087.html#pvm">pvm</a>    <a 
+href="#pvm-spawn-independent">pvm_spawn_independent</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1085.html" >next</a>] [<a 
+href="manualli1083.html" >prev</a>] [<a 
+href="manualli1083.html#tailmanualli1083.html" >prev-tail</a>] [<a 
+href="manualli1084.html" >front</a>] [<a 
+href="manualli1054.html#manualli1084.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1084.html"></a>  </p> 
+</body></html> 

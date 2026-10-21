@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>aff2ab</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli609.html" >next</a>] [<a 
+href="manualli607.html" >prev</a>] [<a 
+href="manualli607.html#tailmanualli607.html" >prev-tail</a>] [<a 
+href="#tailmanualli608.html">tail</a>] [<a 
+href="manualli607.html#manualli608.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x609-3612000"></a>aff2ab</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx609-3612001"></a><a 
+ id="aff2ab"></a><span 
+class="cmtt-10x-x-109">aff2ab </span>&#x2013;                                                     linear (affine) function to A,b conversion<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x609-3613000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-749">
+&#x00A0;&#x00A0;[A,b]=aff2ab(afunction,dimX,D&#x00A0;[,flag])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x609-3614000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">afunction</span>: a scilab function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Y</span><span 
+class="cmtt-10x-x-109">&#x00A0;=fct(X,D)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X,</span><span 
+class="cmtt-10x-x-109">&#x00A0;D,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y</span></span></span> are <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list</span></span></span> of matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dimX</span>: a p x 2 integer matrix (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> is the number of matrices in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">D</span>: a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list</span></span></span> of real matrices (or any other valid Scilab object).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: optional parameter (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;f&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;sp&#x0027;</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A</span>: a real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">b</span>: a real vector having same row dimension as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span></li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x609-3615000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aff2ab</span></span></span> returns the matrix representation of an affine function (in the canonical basis).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">afunction</span></span></span> is
+a function with imposed syntax: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Y=afunction(X,D)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;X=list(X1,X2,...,Xp)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> is a list of
+p real matrices, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Y=list(Y1,...,Yq)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> is a list of q real real matrices which depend linearly of
+the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;Xi</span></span></span>&apos;s. The (optional) input <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;D</span></span></span> contains parameters needed to compute Y as a function of X.
+(It is generally a list of matrices).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;dimX</span></span></span> is a p x 2 matrix: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dimX(i)=[nri,nci]</span></span></span> is the
+actual number of rows and columns of matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Xi</span></span></span>. These dimensions determine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">na</span></span></span>, the
+column dimension of the resulting matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">na=nr1*nc1</span><span 
+class="cmtt-10x-x-109">&#x00A0;+...+</span><span 
+class="cmtt-10x-x-109">&#x00A0;nrp*ncp</span></span></span>. If the optional
+parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag=&#x0027;sp&#x0027;</span></span></span> the resulting <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> matrix is returned as a sparse matrix. This function is
+useful to solve a system of linear equations where the unknown variables are matrices.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 56--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x609-3616000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb472"><a 
+ id="x609-3616033r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Lyapunov</span><span 
+class="cmitt-10x-x-109">&#x00A0;equation</span><span 
+class="cmitt-10x-x-109">&#x00A0;solver</span><span 
+class="cmitt-10x-x-109">&#x00A0;(one</span><span 
+class="cmitt-10x-x-109">&#x00A0;unknown</span><span 
+class="cmitt-10x-x-109">&#x00A0;variable,</span><span 
+class="cmitt-10x-x-109">&#x00A0;one</span><span 
+class="cmitt-10x-x-109">&#x00A0;constraint)</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616035r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Y=lyapunov(X,D)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[A,Q]=D(:);Xm=X(:);</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y=list(A&#x0027;&#x0027;*Xm+Xm*A-Q)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x609-3616037r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q=Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D=list(A,Q)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">dimX=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x609-3616039r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Aly,bly]=aff2ab(lyapunov,dimX,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616041r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Xl,kerA]=linsolve(Aly,bly)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Xv=vec2list(Xl,dimX)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">lyapunov(Xv,D)</span>
+<br class="fancyvrb" /><a 
+ id="x609-3616043r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Xm=Xv(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">Xm</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Xm</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">Q</span><br class="fancyvrb" /><a 
+ id="x609-3616045r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Lyapunov</span><span 
+class="cmitt-10x-x-109">&#x00A0;equation</span><span 
+class="cmitt-10x-x-109">&#x00A0;solver</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;redundant</span><span 
+class="cmitt-10x-x-109">&#x00A0;constraint</span><span 
+class="cmitt-10x-x-109">&#x00A0;X=X&#x0027;</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616047r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;(one</span><span 
+class="cmitt-10x-x-109">&#x00A0;variable,</span><span 
+class="cmitt-10x-x-109">&#x00A0;two</span><span 
+class="cmitt-10x-x-109">&#x00A0;constraints)</span><span 
+class="cmitt-10x-x-109">&#x00A0;D</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;global</span><span 
+class="cmitt-10x-x-109">&#x00A0;variable</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616049r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Y=ly2(X,D)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[A,Q]=D(:);Xm=X(:);</span><span 
+class="cmtt-10x-x-109">&#x00A0;Y=list(A&#x0027;&#x0027;*Xm+Xm*A-Q,Xm&#x0027;&#x0027;-Xm)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x609-3616051r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Q=Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D=list(A,Q)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">dimX=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x609-3616053r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Aly,bly]=aff2ab(ly2,dimX,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616055r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Xl,kerA]=linsolve(Aly,bly)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Xv=vec2list(Xl,dimX)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ly2(Xv,D)</span>
+<br class="fancyvrb" /><a 
+ id="x609-3616057r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Francis</span><span 
+class="cmitt-10x-x-109">&#x00A0;equations</span></span><br class="fancyvrb" /><a 
+ id="x609-3616059r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Find</span><span 
+class="cmitt-10x-x-109">&#x00A0;matrices</span><span 
+class="cmitt-10x-x-109">&#x00A0;X1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;X2</span><span 
+class="cmitt-10x-x-109">&#x00A0;such</span><span 
+class="cmitt-10x-x-109">&#x00A0;that:</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616061r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;A1*X1</span><span 
+class="cmitt-10x-x-109">&#x00A0;-</span><span 
+class="cmitt-10x-x-109">&#x00A0;X1*A2</span><span 
+class="cmitt-10x-x-109">&#x00A0;+</span><span 
+class="cmitt-10x-x-109">&#x00A0;B*X2</span><span 
+class="cmitt-10x-x-109">&#x00A0;-A3</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;0</span></span><br class="fancyvrb" /><a 
+ id="x609-3616063r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;D1*X1</span><span 
+class="cmitt-10x-x-109">&#x00A0;-D2</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;0</span></span><br class="fancyvrb" /><a 
+ id="x609-3616065r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;Y=bruce(X,D)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span>
+<br class="fancyvrb" /><a 
+ id="x609-3616067r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[A1,A2,A3,B,D1,D2]=D(:),</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[X1,X2]=X(:);Y=list(A1*X1-X1*A2+B*X2-A3,D1*X1-D2)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x609-3616069r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A1=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A3=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">B=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A2=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D1=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">D2=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x609-3616071r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;D=list(A1,A2,A3,B,D1,D2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616073r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[n1,m1]=size(A1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[n2,m2]=size(A2)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[n3,m3]=size(B)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x609-3616075r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;dimX=[[m1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">n2]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[m3</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">m2]]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616077r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Af,bf]=aff2ab(bruce,dimX,D)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x609-3616079r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Xf,KerAf]=linsolve(Af,bf)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">Xsol=vec2list(Xf,dimX)</span><br class="fancyvrb" /><a 
+ id="x609-3616081r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;bruce(Xsol,D)</span>
+<br class="fancyvrb" /><a 
+ id="x609-3616083r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Find</span><span 
+class="cmitt-10x-x-109">&#x00A0;all</span><span 
+class="cmitt-10x-x-109">&#x00A0;X</span><span 
+class="cmitt-10x-x-109">&#x00A0;which</span><span 
+class="cmitt-10x-x-109">&#x00A0;commute</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;A</span></span><br class="fancyvrb" /><a 
+ id="x609-3616085r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=f(X,D)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=list(D(:)*X(:)-X(:)*D(:))&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x609-3616087r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">dimX=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Af,bf]=aff2ab(f,dimX,list(A))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x609-3616089r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Xf,KerAf]=linsolve(Af,bf)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[p,q]=size(KerAf)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x609-3616091r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Xsol=vec2list(Xf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">KerAf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(q,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),dimX)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x609-3616093r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;C=Xsol(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">C</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span></div>
+<!--l. 92--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x609-3617000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli638.html#linsolve">linsolve</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli609.html" >next</a>] [<a 
+href="manualli607.html" >prev</a>] [<a 
+href="manualli607.html#tailmanualli607.html" >prev-tail</a>] [<a 
+href="manualli608.html" >front</a>] [<a 
+href="manualli607.html#manualli608.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli608.html"></a>  </p> 
+</body></html> 

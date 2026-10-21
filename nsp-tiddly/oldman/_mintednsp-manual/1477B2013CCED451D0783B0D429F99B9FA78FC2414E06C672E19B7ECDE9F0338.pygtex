@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure}
+a=get(\nspstring{"current_axes"})\nspoperator{;}\nspcomment{//get the handle of the newly created axes}
+a.data_bounds=[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{10}\nspoperator{,}\nspnumber{10}]\nspoperator{;}
+drawaxis(x = \nspnumber{2}\nspoperator{:}\nspnumber{7},y = \nspnumber{4},dir = \nspstring{'u'})\nspoperator{;}
+a1=a.children(\nspnumber{1})
+a1.xtics_coord=[\nspnumber{1}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{10}]\nspoperator{;}
+a1.tics_color=\nspnumber{2}\nspoperator{;}
+a1.labels_font_size=\nspnumber{3}\nspoperator{;}
+a1.tics_direction=\nspstring{"bottom"}\nspoperator{;}
+a1.tics_labels=[\nspstring{" February"}\nspoperator{,}\nspstring{"May"}\nspoperator{,}\nspstring{"june"}\nspoperator{,}\nspstring{"August"}\nspoperator{,}\nspstring{"October"}]\nspoperator{;}
+drawaxis(x = \nspnumber{1.2}\nspoperator{:}\nspnumber{1}\nspoperator{:}\nspnumber{10},y = \nspnumber{5},dir = \nspstring{'u'},textcolor = \nspnumber{13})\nspoperator{;}
+a2=get(\nspstring{"hdl"})
+a2.sub_tics=\nspnumber{0}\nspoperator{;}
+a2.tics_segments=\nspstring{"off"}\nspoperator{;}
+a2.ytics_coord=\nspnumber{4}\nspoperator{;}
+drawaxis(x = \nspoperator{-}\nspnumber{1},y = \nspnumber{0}\nspoperator{:}\nspnumber{1}\nspoperator{:}\nspnumber{7},dir = \nspstring{'r'},fontsize = \nspnumber{10},textcolor = \nspnumber{5},ticscolor = \nspnumber{6},sub_int = \nspnumber{10})
+a3=get(\nspstring{"hdl"})\nspoperator{;}
+a3.tics_labels=\nspstring{'B'}\nspoperator{+}string(\nspnumber{0}\nspoperator{:}\nspnumber{7})\nspoperator{;}
+a3.tics_direction=\nspstring{"left"}\nspoperator{;}
+\end{Verbatim}

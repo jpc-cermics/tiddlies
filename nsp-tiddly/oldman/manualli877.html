@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>karmarkar</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli878.html" >next</a>] [<a 
+href="manualli876.html" >prev</a>] [<a 
+href="manualli876.html#tailmanualli876.html" >prev-tail</a>] [<a 
+href="#tailmanualli877.html">tail</a>] [<a 
+href="manualli863.html#manualli877.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x878-5084000"></a>karmarkar</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx878-5084001"></a><a 
+ id="karmarkar"></a><span 
+class="cmtt-10x-x-109">karmarkar </span>&#x2013;                                                                           karmarkar algorithm<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x878-5085000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-978">
+&#x00A0;&#x00A0;[x1]=karmarkar(a,b,c,x0)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x878-5086000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">a</span>: matrix (n,p)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">b</span>: n - vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">c</span>: p - vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: initial vector
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">eps</span>: threshold (default value: 1.d-5)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">gamma</span>: descent step <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0$&#x003C;$gamma$&#x003C;$1</span></span></span> , default value: 1/4
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x1</span>: solution
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">crit</span>: value of c&apos;*x1</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x878-5087000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > Computes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> which minimizes
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-979">
+&#x00A0;&#x00A0;c&#x0027;*x
+</div>
+<!--l. 44--><p class="nopar" >under constraints:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-980">
+&#x00A0;&#x00A0;a*x&#x00A0;=&#x00A0;b
+&#x00A0;<br />&#x00A0;&#x00A0;x$&#x003E;$=0
+</div>
+<!--l. 49--><p class="nopar" >
+</p>
+<!--l. 52--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x878-5088000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb613"><a 
+ id="x878-5088004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;n=10;p=20;</span></span><br class="fancyvrb" /><a 
+ id="x878-5088006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;a=rand(n,p);c=rand(p,1);x0=abs(rand(p,1));b=a*x0;x1=karmarkar(a,b,c,x0);</span></span></div>
+<!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli878.html" >next</a>] [<a 
+href="manualli876.html" >prev</a>] [<a 
+href="manualli876.html#tailmanualli876.html" >prev-tail</a>] [<a 
+href="manualli877.html" >front</a>] [<a 
+href="manualli863.html#manualli877.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli877.html"></a>  </p> 
+</body></html> 

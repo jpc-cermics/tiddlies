@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// External function written in Scilab}
+xref=[\nspnumber{1}\nspoperator{;}\nspnumber{2}\nspoperator{;}\nspnumber{3}]\nspoperator{;}x0=[\nspnumber{1}\nspoperator{;}\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{1}]
+deff(\nspstring{'[f,g,ind]=cost(x,ind)'},\nspstring{'f=0.5*norm(x-xref)^2,g=x-xref'})\nspoperator{;}
+[f,xopt]=optim(cost,x0)\nspoperator{,}\nspcomment{//Simplest call}
+[f,xopt,gopt]=optim(cost,x0,\nspstring{'gc'})\nspoperator{,}\nspcomment{// By conjugate gradient}
+[f,xopt,gopt]=optim(cost,x0,\nspstring{'nd'})\nspoperator{,}\nspcomment{//Seen as non differentiable}
+[f,xopt,gopt]=optim(cost,\nspstring{'b'},[\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{2}],[\nspnumber{0.5}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{4}],x0)\nspoperator{,}\nspcomment{//  Bounds on x}
+[f,xopt,gopt]=optim(cost,\nspstring{'b'},[\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{2}],[\nspnumber{0.5}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{4}],x0,\nspstring{'gc'})\nspoperator{,}\nspcomment{//  Bounds on x}
+[f,xopt,gopt]=optim(cost,\nspstring{'b'},[\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{;}\nspnumber{2}],[\nspnumber{0.5}\nspoperator{;}\nspnumber{1}\nspoperator{;}\nspnumber{4}],x0,\nspstring{'gc'},\nspstring{'ar'},\nspnumber{3})
+\nspcomment{// External function written in C (C compiler required)}
+\nspcomment{// write down the C code (Rosenbrock problem)}
+C=[\nspstring{'\nspsh{}include $&lt;$math.h$&gt;$'}\nspoperator{;}\nspstring{'double sq(double x)'}\nspoperator{;}\nspstring{'\nspob{}return x*x;\nspcb{}'}\nspoperator{;}
+   \nspstring{'void rosenc(int *ind, int *n, double *x, double *f, double *g, '}\nspoperator{;}
+   \nspstring{'                                int *ti, float *tr, double *td)'}\nspoperator{;}\nspstring{'\nspob{}'}\nspoperator{;}\nspstring{'  double p;'}\nspoperator{;}
+   \nspstring{'  int i;'}\nspoperator{;}\nspstring{'  p=td[0];'}\nspoperator{;}\nspstring{'  if (*ind==2||*ind==4) \nspob{}'}\nspoperator{;}\nspstring{'    *f=1.0;'}\nspoperator{;}
+   \nspstring{'    for (i=1;i$&lt;$*n;i++)'}\nspoperator{;}\nspstring{'      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'}\nspoperator{;}\nspstring{'  \nspcb{}'}\nspoperator{;}
+   \nspstring{'  if (*ind==3||*ind==4) \nspob{}'}\nspoperator{;}\nspstring{'    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'}\nspoperator{;}
+   \nspstring{'    for (i=1;i$&lt;$*n-1;i++)'}\nspoperator{;}
+   \nspstring{'      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'}\nspoperator{;}
+   \nspstring{'    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'}\nspoperator{;}\nspstring{'  \nspcb{}'}\nspoperator{;}\nspstring{'\nspcb{}'}]\nspoperator{;}
+mputl(C,TMPDIR\nspoperator{+}\nspstring{'/rosenc.c'})
+\nspcomment{// compile the C code}
+l=ilib_for_link(\nspstring{'rosenc'},\nspstring{'rosenc.o'},[],\nspstring{'c'},TMPDIR\nspoperator{+}\nspstring{'/Makefile'})\nspoperator{;}
+\nspcomment{// incremental linking}
+link(l,\nspstring{'rosenc'},\nspstring{'c'})
+\nspcomment{//solve the problem}
+x0=[\nspnumber{40}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{50}]\nspoperator{;}
+p=\nspnumber{100}\nspoperator{;}
+[f,xo,go]=optim(\nspstring{'rosenc'},x0,\nspstring{'td'},p)
+\nspcomment{// External function written in Fortran (Fortran compiler required)}
+\nspcomment{// write down the Fortran  code (Rosenbrock problem)}
+F=[\nspstring{'      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'}\nspoperator{;}\nspstring{'      integer ind,n,ti(*)'}\nspoperator{;}
+   \nspstring{'      double precision x(n),f,g(n),td(*)'}\nspoperator{;}\nspstring{'      real tr(*)'}\nspoperator{;}\nspstring{'c'}\nspoperator{;}
+   \nspstring{'      double precision y,p'}\nspoperator{;}\nspstring{'      p=td(1)'}\nspoperator{;}\nspstring{'      if (ind.eq.2.or.ind.eq.4) then'}\nspoperator{;}
+   \nspstring{'        f=1.0d0'}\nspoperator{;}\nspstring{'        do i=2,n'}\nspoperator{;}
+   \nspstring{'          f=f+p*(x(i)-x(i-1)**2)**2+(1.0d0-x(i))**2'}\nspoperator{;}\nspstring{'        enddo'}\nspoperator{;}\nspstring{'      endif'}\nspoperator{;}
+   \nspstring{'      if (ind.eq.3.or.ind.eq.4) then'}\nspoperator{;}\nspstring{'        g(1)=-4.0d0*p*(x(2)-x(1)**2)*x(1)'}\nspoperator{;}
+   \nspstring{'        if(n.gt.2) then'}\nspoperator{;}\nspstring{'          do i=2,n-1'}\nspoperator{;}
+   \nspstring{'            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'}\nspoperator{;}
+   \nspstring{'     \nspbs{}&amp;           -2.0d0*(1.0d0-x(i))'}\nspoperator{;}\nspstring{'          enddo'}\nspoperator{;}\nspstring{'        endif'}\nspoperator{;}
+   \nspstring{'        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'}\nspoperator{;}\nspstring{'      endif'}\nspoperator{;}\nspstring{'      return'}\nspoperator{;}
+   \nspstring{'      end'}]\nspoperator{;}
+mputl(F,TMPDIR\nspoperator{+}\nspstring{'/rosenf.f'})
+\nspcomment{// compile the Fortran code}
+l=ilib_for_link(\nspstring{'rosenf'},\nspstring{'rosenf.o'},[],\nspstring{'f'},TMPDIR\nspoperator{+}\nspstring{'/Makefile'})\nspoperator{;}
+\nspcomment{// incremental linking}
+link(l,\nspstring{'rosenf'},\nspstring{'f'})
+\nspcomment{//solve the problem}
+x0=[\nspnumber{40}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{50}]\nspoperator{;}
+p=\nspnumber{100}\nspoperator{;}
+[f,xo,go]=optim(\nspstring{'rosenf'},x0,\nspstring{'td'},p)
+\end{Verbatim}

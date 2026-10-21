@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.4 The routines/default directory</TITLE>
+<META NAME="description" CONTENT="6.4 The routines/default directory">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node111.html">
+<LINK REL="previous" HREF="node91.html">
+<LINK REL="up" HREF="node83.html">
+<LINK REL="next" HREF="node110.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1704"
+ HREF="node110.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1700"
+ HREF="node83.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1694"
+ HREF="node108.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1702"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1703"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1705"
+ HREF="node110.html">6.4.1 Argument functions</A>
+<B> Up:</B> <A NAME="tex2html1701"
+ HREF="node83.html">6. Interfacing C or</A>
+<B> Previous:</B> <A NAME="tex2html1695"
+ HREF="node108.html">6.3.1.4 Adding a new</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00740000000000000000">
+6.4 The <TT>routines/default</TT> directory</A>
+</H1>
+<P>
+<FONT SIZE="-2">The <TT>SCIDIR/routines/default</TT> directory contains a set of C and Fortran
+routines which can be customized by the user. When customizing a
+routine in this directory a new executable code for Scilab is made
+by typing <TT>make all</TT> in the main Scilab directory. 
+It is possible to add new primitives by modifying the default files
+given in this directory. The file <TT>Ex-fort.f</TT> contains a example
+of a subroutine (<TT>bidon2</TT>) which can be interactively called
+by the Scilab <TT>fort</TT> command. Thus, it is possible 
+to call a C or Fortran routine by modifying the <TT>Ex-fort.f</TT>
+file, re-making Scilab and then using the <TT>fort</TT> function.
+The <TT>link</TT> operation now made outside Scilab by the <TT>make all</TT>
+command which creates a full new executable code for Scilab 
+(<TT>SCIDIR/bin/scilex</TT>).
+</FONT>
+<P>
+<FONT SIZE="-2">Let us consider again the example of the <TT>daxpy</TT> function.
+We want to call it from Scilab by the following function 
+</FONT><PRE>
+function y=scilabdaxpy(a,x,incx,y,incy)
+y=fort('daxpy1',a,x,incx,y,incy)
+</PRE><FONT SIZE="-2">which performs the following: 
+</FONT>
+<P>
+<FONT SIZE="-2"><code>y(1:incy:n*incy)=y(1:incy:n*incy)+a*x(1:incx:n*incx)</code>
+</FONT>
+<P>
+<FONT SIZE="-2">
+The <TT>fort</TT> 
+function looks for the called program (here <TT>daxpy1</TT>) in the
+interface file <TT>default/Ex-fort.f</TT>: for that, it is necessary
+that the name <TT>daxpy1</TT> appear
+in the file <TT>default/Flist</TT>. (We do not use the <TT>link</TT> command
+here).
+</FONT>
+<P>
+<FONT SIZE="-2">Note that the <TT>fort</TT> function just sends the Scilab variables
+<TT>a,x,incx,y,incy</TT> to the interface program <TT>Ex-fort.f</TT>.
+These variables are associated with the numbers <TT>1,2,3,4,5,6</TT>, 
+respectively in the interface program <TT>Ex-fort.f</TT>.
+
+For our <TT>scilabdaxpy</TT> function, we perform the following steps:
+</FONT><UL>
+<LI>Add the name <TT>daxpy1</TT> to the appropriate list of functions 
+in the file <TT>Flist</TT> in the <TT>routines/default</TT> directory:
+<PRE>
+interf_list= ... daxpy1
+</PRE>
+<LI>Edit the file <TT>routines/default/Ex-fort.f</TT> and
+insert the following code:
+<PRE>
+ subroutine daxpy1()
+ include '../stack.h'
+
+ n=msize(2,mx,nx)
+
+ call alloc(1,1,1,1,'d')
+ call alloc(2,n,mx,nx,'d')
+ call alloc(3,1,1,1,'i')
+ call alloc(4,n,mx,nx,'d')
+ call alloc(5,1,1,1,'i')
+
+ call daxpy(n,stk(ladr(1)),stk(ladr(2)),stk(ladr(3)),
++             stk(ladr(4)),stk(ladr(5)))
+ call back(4)
+ return
+ end
+</PRE></UL>
+<P>
+<FONT SIZE="-2">The interface is done using the functions <TT>msize</TT>, <TT>alloc</TT> and
+<TT>back</TT>. When the command <TT>fort('daxpy1',a,x,incx,y,incy)</TT>
+is issued, each variable <TT>a,x,incx,y,incy</TT> is automatically
+assigned a number in <TT>Ex-fort</TT>, in increasing order.
+Here <TT>a</TT> is assigned number 1, <TT>x</TT> is assigned number 2, etc. 
+Variable # <TT>n</TT> is located in Scilab internal stack <TT>stk</TT> at 
+adress <TT>ladr(n)</TT>. For instance, <TT>x</TT>, (the third variable in <TT>daxpy</TT>
+calling sequence), is associated with the pointer <TT>ladr(2)</TT> in 
+<TT>stk</TT> since <TT>x</TT> is variable # <TT>2</TT>. 
+</FONT>
+<P>
+<FONT SIZE="-2">The statement <TT>n=msize(2,mx,nx)</TT> retrieves the dimensions
+<TT>mx, nx</TT> of variable # 2 i.e. <TT>x</TT> and <code>n=mx*mx</code> i.e. 
+n=number of rows </FONT><IMG
+ WIDTH="39" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img31.gif"
+ ALT="$\times$"><FONT SIZE="-2"> number of columns.
+</FONT>
+<P>
+<FONT SIZE="-2">This function allows to
+know the dimensions of all the variables passed to <TT>fort</TT>.
+At this stage, the user can test that the dimensions of the variables
+are correct; the corresponding error message can be done as follows:
+</FONT><PRE>
+ buf='error message'
+ call error(9999)
+ return
+</PRE>
+<P>
+<FONT SIZE="-2">The function <TT>alloc</TT> defines the type of a variable (integer,
+real, double), sets its
+dimensions and allocate memory for it. 
+For instance <TT>call alloc(4,mx*nx,mx,nx,'d')</TT> is used to define
+the fourth variable (<TT>y</TT>) as a matrix with <TT>mx</TT> rows and <TT>nx</TT>
+columns of type ``double''.
+The last parameter of <TT>alloc</TT> should be <TT>'i'</TT> for integer, 
+<TT>'r'</TT> for real or <TT>'d'</TT> for double.
+</FONT>
+<P>
+<FONT SIZE="-2">When <TT>alloc</TT> is called with a number <TT>n</TT> 
+(as first parameter) which does not correspond to a input of <TT>fort</TT>,
+a valid new adress (pointer) <TT>ladr(n)</TT> is automatically set.
+For instance the statement <TT>call alloc(6,12,4,3,'i')</TT> will 
+return in <TT>ladr(6)</TT>  a pointer for a 6th matrix variable (not in the 
+parameters of <TT>fort</TT>) with dimensions
+<TT>3</TT> </FONT><IMG
+ WIDTH="39" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img31.gif"
+ ALT="$\times$"><FONT SIZE="-2"> <TT>4</TT> and integer type.
+</FONT>
+<P>
+<FONT SIZE="-2">Note that the default type for variables is <TT>'d'</TT> i.e. double.
+For such variables, the call to <TT>alloc</TT> can be omitted: in our example,
+only the statements <TT>call alloc(3,...,'i')</TT> 
+and <TT>call alloc(5,...,'i')</TT> which convert <TT>incx</TT> and 
+<TT>incy</TT> to integers are necessary. However, the call to 
+<TT>alloc</TT> is always necessary for defining a variable which does not 
+appear in the <TT>fort</TT> parameters.
+</FONT>
+<P>
+<FONT SIZE="-2">After the call to <TT>daxpy</TT>, the function <TT>back(i)</TT> returns 
+variable number <TT>i</TT> to Scilab. This variable has the dimensions
+set by the previous call to <TT>alloc</TT> and is converted into a Scilab
+matrix.
+</FONT>
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS">&#160;</A>
+<UL>
+<LI><A NAME="tex2html1706"
+ HREF="node110.html">6.4.1 Argument functions</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1704"
+ HREF="node110.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1700"
+ HREF="node83.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1694"
+ HREF="node108.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1702"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1703"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1705"
+ HREF="node110.html">6.4.1 Argument functions</A>
+<B> Up:</B> <A NAME="tex2html1701"
+ HREF="node83.html">6. Interfacing C or</A>
+<B> Previous:</B> <A NAME="tex2html1695"
+ HREF="node108.html">6.3.1.4 Adding a new</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

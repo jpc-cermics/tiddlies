@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>getvalue</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli580.html" >next</a>] [<a 
+href="manualli578.html" >prev</a>] [<a 
+href="manualli578.html#tailmanualli578.html" >prev-tail</a>] [<a 
+href="#tailmanualli579.html">tail</a>] [<a 
+href="manualli569.html#manualli579.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x580-3452000"></a>getvalue</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx580-3452001"></a><a 
+ id="getvalue"></a><span 
+class="cmtt-10x-x-109">getvalue </span>&#x2013;                                                        xwindow dialog for data acquisition<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x580-3453000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-708">
+&#x00A0;&#x00A0;[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x580-3454000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">desc</span>: column vector of strings, dialog general comment
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">labels</span>: n column vector of strings, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">labels(i)</span></span></span> is the label of the ith required value
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">typ</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">list(typ_1,dim_1,..,typ_n,dim_n)</span></span></span>
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">typ</span><span 
+class="cmtt-10x-x-109">_i</span>: defines the type of the ith value, may have the following values:
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;mat&#x0022; </span>: for constant matrix
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;col&#x0022; </span>: for constant column vector
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;row&#x0022; </span>: for constant row vector
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;vec&#x0022; </span>: for constant vector
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;str&#x0022; </span>: for string
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">&#x0022;lis&#x0022; </span>: for list</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">dim</span><span 
+class="cmtt-10x-x-109">_i</span>: defines the size of the ith value it must be a integer or a 2-vector of integer, -1
+          stands for undefined dimension</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ini</span>: n column vector of strings, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ini(i)</span></span></span> gives the suggested response for the ith required
+     value
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ok</span>: boolean ,%t if ok button pressed, %f if cancel button pressed
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xi</span>: contains the ith value if ok=%t. If left hand side has one more <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xi</span></span></span> than required values the
+     last <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xi</span></span></span> contains the vector of answered strings.</li></ul>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x580-3455000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 50--><p class="noindent" > This function encapsulate <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x_mdialog</span></span></span> function with error checking, evaluation of numerical
+response, ...
+</p>
+<!--l. 55--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x580-3456000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   All valid expressions can be used as answers; for matrices and vectors <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">getvalues</span></span></span> automatically
+adds [ ] around the given answer before numeric evaluation.
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x580-3457000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb451"><a 
+ id="x580-3457005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;labels=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;magnitude&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;frequency&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;phase</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0022;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x580-3457007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[ok,mag,freq,ph]=getvalue(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;define</span><span 
+class="cmtt-10x-x-109">&#x00A0;sine</span><span 
+class="cmtt-10x-x-109">&#x00A0;signal&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,labels,list(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;vec&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;vec&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;vec&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">),</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span>
+<br class="fancyvrb" /><a 
+ id="x580-3457009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;0.85&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;10^2&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;%pi/3&#x0022;</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x580-3458000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#x-mdialog">x_mdialog</a>    <a 
+href="#x-matrix">x_matrix</a>    <a 
+href="#x-dialog">x_dialog</a>
+</p>
+<!--l. 70--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x580-3459000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   S. Steer ; ;
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli580.html" >next</a>] [<a 
+href="manualli578.html" >prev</a>] [<a 
+href="manualli578.html#tailmanualli578.html" >prev-tail</a>] [<a 
+href="manualli579.html" >front</a>] [<a 
+href="manualli569.html#manualli579.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli579.html"></a>  </p> 
+</body></html> 

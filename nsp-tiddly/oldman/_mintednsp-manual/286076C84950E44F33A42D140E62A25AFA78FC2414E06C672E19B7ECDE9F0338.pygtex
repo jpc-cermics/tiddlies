@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure entity}
+a=gca()\nspoperator{,}\nspcomment{//get the handle of the newly created axes}
+a.data_bounds=[\nspnumber{1}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{10}]\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}\nspnumber{5} \nspkeyword{do}
+  xfrect(\nspnumber{7}\nspoperator{-}i,\nspnumber{9}\nspoperator{-}i,\nspnumber{3},\nspnumber{3})\nspoperator{;}
+  e=gce()\nspoperator{;}
+  e.foreground=i\nspoperator{;}
+\nspkeyword{end}
+delete()\nspoperator{;}\nspcomment{// delete current entity}
+delete(gce())\nspoperator{;}\nspcomment{// delete current entity}
+delete(gca())\nspoperator{;}\nspcomment{// delete current axes}
+\end{Verbatim}

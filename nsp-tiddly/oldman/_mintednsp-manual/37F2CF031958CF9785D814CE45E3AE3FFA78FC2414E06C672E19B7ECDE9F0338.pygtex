@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+f1=[\nspstring{'int ext1c(n, a, b, c)'}\nspoperator{;}\nspstring{'int *n;     double *a, *b, *c;'}\nspoperator{;}\nspstring{'\nspob{}int k;'}\nspoperator{;}
+    \nspstring{'  for (k = 0; k $&lt;$ *n; ++k) '}\nspoperator{;}\nspstring{'      c[k] = a[k] + b[k];'}\nspoperator{;}\nspstring{'  return(0);\nspcb{}'}]\nspoperator{;}
+mputl(f1,\nspstring{'fun1.c'})
+\nspcomment{//creating the shared library (a gateway, a Makefile and a loader are}
+\nspcomment{//generated.}
+ilib_for_link(\nspstring{'ext1c'},\nspstring{'fun1.o'},[],\nspstring{"c"})
+\nspcomment{// load the shared library}
+\nspkeyword{exec} loader.sce
+\nspcomment{//using the new primitive}
+a=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}]\nspoperator{;}b=[\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{6}]\nspoperator{;}n=\nspnumber{3}\nspoperator{;}
+c=call(\nspstring{'ext1c'},n,\nspnumber{1},\nspstring{'i'},a,\nspnumber{2},\nspstring{'d'},b,\nspnumber{3},\nspstring{'d'},\nspstring{'out'},[\nspnumber{1}\nspoperator{,}\nspnumber{3}],\nspnumber{4},\nspstring{'d'})\nspoperator{;}
+\nspkeyword{if} norm(c\nspoperator{-}(a\nspoperator{+}b))\nspoperator{ > }%eps \nspkeyword{then} \nspkeyword{pause} \nspoperator{,}\nspkeyword{end}
+\end{Verbatim}

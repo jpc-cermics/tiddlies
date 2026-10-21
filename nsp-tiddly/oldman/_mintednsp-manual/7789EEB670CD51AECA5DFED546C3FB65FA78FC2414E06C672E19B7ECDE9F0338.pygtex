@@ -1,0 +1,43 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// ---------- Simple one dimension ODE (Scilab function external)}
+\nspcomment{// dy/dt=y^2-y sin(t)+cos(t), y(0)=0}
+\nspkeyword{function} ydot=\nspfunction{f}(t,y) ydot=y\nspoperator{^}\nspnumber{2}\nspoperator{-}y\nspoperator{*}sin(t)\nspoperator{+}cos(t)\nspoperator{,}\nspkeyword{endfunction}
+y0=\nspnumber{0}\nspoperator{;}t0=\nspnumber{0}\nspoperator{;}t=\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}%pi\nspoperator{;}
+y=ode(y0,t0,t,f)
+plot(t,y)
+\nspcomment{// ---------- Simple one dimension ODE (C coded external)}
+ccode=[\nspstring{'\nspsh{}include $&lt;$math.h$&gt;$'}\nspoperator{;}\nspstring{'void myode(int *n,double *t,double *y,double *ydot)'}\nspoperator{;}\nspstring{'\nspob{}'}\nspoperator{;}
+       \nspstring{'  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'}\nspoperator{;}\nspstring{'\nspcb{}'}]
+mputl(ccode,TMPDIR\nspoperator{+}\nspstring{'/myode.c'})\nspoperator{,}\nspcomment{//create the C file}
+ilib_for_link(\nspstring{'myode'},\nspstring{'myode.o'},[],\nspstring{'c'},TMPDIR\nspoperator{+}\nspstring{'/Makefile'},TMPDIR\nspoperator{+}\nspstring{'/loader.sce'})\nspoperator{;}\nspcomment{//compile}
+exec(TMPDIR\nspoperator{+}\nspstring{'/loader.sce'})\nspoperator{,}\nspcomment{//incremental linking}
+y0=\nspnumber{0}\nspoperator{;}t0=\nspnumber{0}\nspoperator{;}t=\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}%pi\nspoperator{;}
+y=ode(y0,t0,t,\nspstring{'myode'})\nspoperator{;}
+\nspcomment{// ---------- Simulation of dx/dt = A x(t) + B u(t) with u(t)=sin(omega*t),}
+\nspcomment{// x0=[1;0]}
+\nspcomment{// solution x(t) desired at t=0.1, 0.2, 0.5 ,1.}
+\nspcomment{// A and u function are passed to RHS function in a list.}
+\nspcomment{// B and omega are passed as global variables}
+\nspkeyword{function} xdot=\nspfunction{linear}(t,x,A,u) xdot=A\nspoperator{*}x\nspoperator{+}B\nspoperator{*}u(t)\nspoperator{,}\nspkeyword{endfunction}
+\nspkeyword{function} ut=\nspfunction{u}(t) ut=sin(omega\nspoperator{*}t)\nspoperator{,}\nspkeyword{endfunction}
+A=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{2}]\nspoperator{;}B=[\nspnumber{1}\nspoperator{;}\nspnumber{1}]\nspoperator{;}omega=\nspnumber{5}\nspoperator{;}
+ode([\nspnumber{1}\nspoperator{;}\nspnumber{0}],\nspnumber{0},[\nspnumber{0.1}\nspoperator{,}\nspnumber{0.2}\nspoperator{,}\nspnumber{0.5}\nspoperator{,}\nspnumber{1}],list(linear,A,u))
+\nspcomment{// ---------- Matrix notation Integration of the Riccati differential equation}
+\nspcomment{// Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity}
+\nspcomment{// Solution at t=[1,2]}
+\nspkeyword{function} Xdot=\nspfunction{ric}(t,X) Xdot=A\nspoperator{'}\nspoperator{*}X\nspoperator{+}X\nspoperator{*}A\nspoperator{-}X\nspoperator{'}\nspoperator{*}B\nspoperator{*}X\nspoperator{+}C\nspoperator{,}\nspkeyword{endfunction}
+A=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{2}]\nspoperator{;}B=[\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}C=[\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+t0=\nspnumber{0}\nspoperator{;}t=\nspnumber{0}\nspoperator{:}\nspnumber{0.1}\nspoperator{:}%pi\nspoperator{;}
+X=ode(eye(A),\nspnumber{0},t,ric)
+\nspcomment{//}
+\nspcomment{// ---------- Matrix notation, Computation of exp(A)}
+A=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{2}]\nspoperator{;}
+\nspkeyword{function} xdot=\nspfunction{f}(t,x) xdot=A\nspoperator{*}x\nspoperator{;}\nspkeyword{endfunction}
+ode(eye(A),\nspnumber{0},\nspnumber{1},f)
+ode(\nspstring{"adams"},eye(A),\nspnumber{0},\nspnumber{1},f)
+\nspcomment{// ---------- Matrix notation, Computation of exp(A) with stiff matrix, Jacobian given}
+A=[\nspnumber{10}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspoperator{-}\nspnumber{1}]\nspoperator{;}
+\nspkeyword{function} xdot=\nspfunction{f}(t,x) xdot=A\nspoperator{*}x\nspoperator{,}\nspkeyword{endfunction}
+\nspkeyword{function} J=\nspfunction{Jacobian}(t,y) J=A\nspoperator{,}\nspkeyword{endfunction}
+ode(\nspstring{"stiff"},[\nspnumber{0}\nspoperator{;}\nspnumber{1}],\nspnumber{0},\nspnumber{1},f,Jacobian)
+\end{Verbatim}

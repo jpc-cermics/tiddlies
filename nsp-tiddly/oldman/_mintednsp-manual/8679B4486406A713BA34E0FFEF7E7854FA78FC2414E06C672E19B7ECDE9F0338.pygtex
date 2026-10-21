@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=[rand(\nspnumber{2},\nspnumber{5})\nspoperator{;}[zeros(\nspnumber{3},\nspnumber{4})\nspoperator{,}rand(\nspnumber{3},\nspnumber{1})]]\nspoperator{;}B=[[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{1}\nspoperator{,}\nspnumber{1}]\nspoperator{;}zeros(\nspnumber{3},\nspnumber{2})]\nspoperator{;}
+W=rand(\nspnumber{5},\nspnumber{5})\nspoperator{;}A=W\nspoperator{*}A\nspoperator{;}B=W\nspoperator{*}B\nspoperator{;}
+[X,dim]=im_inv(A,B)
+svd([A\nspoperator{*}X(\nspoperator{:},\nspnumber{1}\nspoperator{:}dim)\nspoperator{,}B])\nspoperator{,}\nspcomment{//vectors A*X(:,1:dim) belong to range(B)}
+[X,dim,Y]=im_inv(A,B)\nspoperator{;}[Y\nspoperator{*}A\nspoperator{*}X\nspoperator{,}Y\nspoperator{*}B]
+\end{Verbatim}

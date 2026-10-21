@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>grand</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli104.html" >next</a>] [<a 
+href="manualli102.html" >prev</a>] [<a 
+href="manualli102.html#tailmanualli102.html" >prev-tail</a>] [<a 
+href="#tailmanualli103.html">tail</a>] [<a 
+href="manualli91.html#manualli103.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x104-584000"></a>grand</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx104-584001"></a><a 
+ id="grand"></a><span 
+class="cmtt-10x-x-109">grand </span>&#x2013;                                                                    Random number generator(s) <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-585000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-183">
+&#x00A0;&#x00A0;Y=grand(m,&#x00A0;n,&#x00A0;dist_type&#x00A0;[,p1,...,pk])
+&#x00A0;<br />&#x00A0;&#x00A0;Y=grand(X,&#x00A0;dist_type&#x00A0;[,p1,...,pk])
+&#x00A0;<br />&#x00A0;&#x00A0;Y=grand(n,&#x00A0;dist_type&#x00A0;[,p1,...,pk])
+&#x00A0;<br />&#x00A0;&#x00A0;S=grand(action&#x00A0;[,q1,....,ql])
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-586000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">m, n</span>: integers, size of the wanted matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: a matrix whom only the dimensions (say <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span>) are used
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dist</span><span 
+class="cmtt-10x-x-109">_type</span>: a string given the distribution which (independants) variates are to be
+     generated (&apos;bin&apos;, &apos;nor&apos;, &apos;poi&apos;, etc ...)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">p1, ..., pk</span>:  the  parameters  (reals  or  integers)  required  to  define  completly  the
+     distribution <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dist_type</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Y</span>: the resulting <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span> random matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">action</span>: a string given the action onto the base generator(s) (&apos;setgen&apos; to change the
+     current base generator, &apos;getgen&apos; to retrieve the current base generator name, &apos;getsd&apos; to
+     retrieve the state (seeds) of the current base generator, etc ...)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">q1, ..., ql</span>: the parameters (generally one string) needed to define the action
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">S</span>: output of the action (generaly a string or a real column vector)</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 47--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-587000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 47--><p class="noindent" > This function may be used to generate random numbers from various distributions. In this case you
+must apply one of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">three</span><span 
+class="cmtt-10x-x-109">&#x00A0;first</span><span 
+class="cmtt-10x-x-109">&#x00A0;forms</span></span></span> of the possible calling sequences to get an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span> matrix.
+The two firsts are equivalent if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span> matrix, and the third form corresponds to &apos;multivalued&apos;
+distributions (e.g. multinomial, multivariate gaussian, etc...) where a sample is a column vector
+(says of dim <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span>) and you get then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> such random vectors (as an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span> matrix). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">The</span><span 
+class="cmtt-10x-x-109">&#x00A0;last</span><span 
+class="cmtt-10x-x-109">&#x00A0;form</span></span></span> is
+used to undertake various manipulations onto the base generators like changing the base
+generator (since v 2.7 you may choose between several base generators), changing or
+retrieving its internal state (seeds), etc ... These base generators give random integers
+following a uniform distribution on a large integer interval (lgi), all the others distributions
+being gotten from it (in general via a scheme lgi -<span 
+class="cmmi-10x-x-109">&#x003E; </span>U([0,1)) -<span 
+class="cmmi-10x-x-109">&#x003E; </span>wanted distribution).
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-588000"></a><span 
+class="cmbx-10x-x-109">Getting random numbers from a given distribution</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">beta</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;bet&#x0027;,A,B)</span></span></span> generates random variates from the beta distribution with
+     parameters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span>. The density of the beta is (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span></span></span>):
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-184">
+     &#x00A0;&#x00A0;A-1&#x00A0;&#x00A0;&#x00A0;&#x00A0;B-1
+     &#x00A0;<br />&#x00A0;&#x00A0;x&#x00A0;&#x00A0;&#x00A0;(1-x)&#x00A0;&#x00A0;&#x00A0;/&#x00A0;beta(A,B)
+</div>
+     <!--l. 70--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span> must be reals <span 
+class="cmmi-10x-x-109">&#x003E;</span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">10^(-37)</span></span></span>. Related function(s): <a 
+href="manualli92.html#cdfbet">cdfbet</a>    .
+     </p></li>
+     <li class="itemize"><div class="itemdesc">binomial</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;bin&#x0027;,N,p)</span></span></span> generates random variates from the binomial
+     distribution with parameters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N</span></span></span> (positive integer) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> (real in [0,1]): number of successes in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N</span></span></span>
+     independant Bernouilli trials with probability <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> of success. Related function(s): <a 
+href="manualli124.html#binomial">binomial</a>    ,
+     <a 
+href="manualli93.html#cdfbin">cdfbin</a>    .
+     </li>
+     <li class="itemize"><div class="itemdesc">negative binomial</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;nbn&#x0027;,N,p)</span></span></span> generates random variates from the negative
+     binomial distribution with parameters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N</span></span></span> (positive integer) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> (real in (0,1)): number of
+     failures occurring before <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N</span></span></span> successes in independant Bernouilli trials with probability <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> of
+     success. Related function(s): <a 
+href="manualli99.html#cdfnbn">cdfnbn</a>    .
+     </li>
+     <li class="itemize"><div class="itemdesc">chisquare</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;chi&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Df)</span></span></span> generates random variates from the chisquare
+     distribution with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Df</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E; </span>0.0) degrees of freedom. Related function(s): <a 
+href="manualli94.html#cdfchi">cdfchi</a>
+     .
+     </li>
+     <li class="itemize"><div class="itemdesc">non central chisquare</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;nch&#x0027;,Df,Xnon)</span></span></span> generates random variates
+     from the non central chisquare distribution with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Df</span></span></span> degrees of freedom (real <span 
+class="cmmi-10x-x-109">&#x003E;</span>=
+     1.0) and noncentrality parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Xnonc</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0.0). Related function(s): <a 
+href="manualli95.html#cdfchn">cdfchn</a>
+     .
+     </li>
+     <li class="itemize"><div class="itemdesc">exponential</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;exp&#x0027;,Av)</span></span></span> generates random variates from the exponential
+     distribution with mean <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Av</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0.0).
+     </li>
+     <li class="itemize"><div class="itemdesc">F variance ratio</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;f&#x0027;,Dfn,Dfd)</span></span></span> generates random variates from the F
+     (variance ratio) distribution with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Dfn</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E; </span>0.0) degrees of freedom in the numerator and
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Dfd</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E; </span>0.0) degrees of freedom in the denominator. Related function(s): <a 
+href="manualli97.html#cdff">cdff</a>
+     .
+     </li>
+     <li class="itemize"><div class="itemdesc">non central F variance ratio</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;nf&#x0027;,Dfn,Dfd,Xnon)</span></span></span> generates random
+     variates from the noncentral F (variance ratio) distribution with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Dfn</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 1)
+     degrees of freedom in the numerator, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Dfd</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E; </span>0) degrees of freedom in the
+     denominator, and noncentrality parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Xnonc</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0). Related function(s): <a 
+href="manualli96.html#cdffnc">cdffnc</a>
+     .
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">gamma</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;gam&#x0027;,shape,scale)</span></span></span> generates random variates from the gamma
+     distribution with parameters <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">shape</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E; </span>0) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">scale</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E; </span>0). The density of the
+     gamma is:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-185">
+     &#x00A0;&#x00A0;shape&#x00A0;&#x00A0;(shape-1)&#x00A0;&#x00A0;&#x00A0;-scale&#x00A0;x
+     &#x00A0;<br />&#x00A0;&#x00A0;scale&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;x&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;e&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;/&#x00A0;&#x00A0;gamma(shape)
+</div>
+     <!--l. 113--><p class="nopar" >Related function(s): <a 
+href="manualli160.html#gamma">gamma</a>    , <a 
+href="manualli98.html#cdfgam">cdfgam</a>    .
+     </p></li>
+     <li class="itemize"><div class="itemdesc">Gauss Laplace (normal)</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;nor&#x0027;,Av,Sd)</span></span></span> generates random variates from the
+     normal distribution with mean <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Av</span></span></span> (real) and standard deviation <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sd</span></span></span> (real <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0). Related
+     function(s): <a 
+href="manualli100.html#cdfnor">cdfnor</a>    .
+     </li>
+     <li class="itemize"><div class="itemdesc">multivariate gaussian (multivariate normal)</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(n,&#x0027;mn&#x0027;,Mean,Cov)</span></span></span> generates <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span>
+     multivariate normal random variates ; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Mean</span></span></span> must be a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span></span></span> matrix and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Cov</span></span></span> a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;m</span></span></span> symetric
+     positive definite matrix (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is then a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span> matrix).
+     </li>
+     <li class="itemize"><div class="itemdesc">geometric</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;geom&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;p)</span></span></span> generates random variates from the geometric
+     distribution with parameter <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span>: number of Bernouilli trials (with probability succes of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span>) until a
+     succes is met. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> must be in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[pmin,1]</span></span></span> (with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pmin</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;1.3</span><span 
+class="cmtt-10x-x-109">&#x00A0;10^(-307)</span></span></span>).
+     </li>
+     <li class="itemize"><div class="itemdesc">markov</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(n,&#x0027;markov&#x0027;,P,x0)</span></span></span> generate <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> successive states of a Markov chain
+     described by the transition matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span>. Initial state is given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span> is a matrix of size
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m=size(x0,&#x0027;*&#x0027;)</span></span></span> then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is a matrix of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y(i,:)</span></span></span> is the sample path obtained from
+     initial state <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0(i)</span></span></span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">multinomial</div> : <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(n,&#x0027;mul&#x0027;,nb,P)</span></span></span> generates <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> observations from the Multinomial
+     distribution: class <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nb</span></span></span> events in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> categories (put <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nb</span></span></span> &#x201D;balls&#x201D; in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> &#x201D;boxes&#x201D;). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P(i)</span></span></span>
+     is the probability that an event will be classified into category i. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span></span></span> the vector of
+     probabilities is of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m-1</span></span></span> (the probability of category <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> being <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1-sum(P)</span></span></span>). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y</span></span></span> is of size
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;n</span></span></span>, each column <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y(:,j)</span></span></span> being an observation from multinomial distribution
+     and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y(i,j)</span></span></span> the number of events falling in category <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> (for the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j</span></span></span> th observation)
+     (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sum(Y(:,j))</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;nb</span></span></span>).
+     </li>
+     <li class="itemize"><div class="itemdesc">Poisson</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;poi&#x0027;,mu)</span></span></span> generates random variates from the Poisson distribution
+     with mean <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mu</span><span 
+class="cmtt-10x-x-109">&#x00A0;(real</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003E;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.0)</span></span></span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">random permutations</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(n,&#x0027;prm&#x0027;,vect)</span></span></span> generate <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> random permutations of the
+     column vector (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span></span></span>) <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">vect</span></span></span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">uniform (def)</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;def&#x0027;)</span></span></span> generates random variates from the uniform distribution
+     over <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[0,1)</span></span></span> (1 is never return).
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">uniform (unf)</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;unf&#x0027;,Low,High)</span></span></span> generates random reals uniformly distributed
+     in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Low,</span><span 
+class="cmtt-10x-x-109">&#x00A0;High)</span></span></span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">uniform (uin)</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;uin&#x0027;,Low,High)</span></span></span> generates random integers uniformly
+     distributed between <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Low</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">High</span></span></span> (included). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">High</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Low</span></span></span> must be integers such that
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(High-Low+1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;2,147,483,561</span></span></span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">uniform (lgi)</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Y=grand(m,n,&#x0027;lgi&#x0027;)</span></span></span> returns the basic output of the current generator: random
+     integers following a uniform distribution over:</li></ul>
+<!--l. 156--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-589000"></a><span 
+class="cmbx-10x-x-109">Set/get the current generator and its state</span></span>
+   Since Scilab-2.7 you have the possibility to choose between different base generators (which
+give random integers following the &apos;lgi&apos; distribution, the others being gotten from it):
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">mt</div>: the Mersenne-Twister of M. Matsumoto and T. Nishimura, period about <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2^19937</span></span></span>,
+     state given by an array of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">624</span></span></span> integers (plus an index onto this array); this is the default
+     generator.
+     </li>
+     <li class="itemize"><div class="itemdesc">kiss</div>: The Keep It Simple Stupid of G. Marsaglia, period about <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2^123</span></span></span>, state given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">4</span></span></span>
+     integers.
+     </li>
+     <li class="itemize"><div class="itemdesc">clcg2</div>: a Combined 2 Linear Congruential Generator of P. L&apos;Ecuyer, period about <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2^61</span></span></span>,
+     state given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2</span></span></span> integers ; this was the only generator previously used by grand (but
+     slightly modified)
+     </li>
+     <li class="itemize"><div class="itemdesc">clcg4</div>: a Combined 4 Linear Congruential Generator of P. L&apos;Ecuyer, period about <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2^121</span></span></span>,
+     state given by 4 integers ; this one is splitted in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">101</span></span></span> different virtual (non over-lapping)
+     generators which may be useful for different tasks (see &apos;Actions specific to clcg4&apos; and
+     &apos;Test example for clcg4&apos;).
+     </li>
+     <li class="itemize"><div class="itemdesc">urand</div>: the generator used by the scilab function <a 
+href="manualli220.html#rand">rand</a>    , state given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span> integer, period
+     of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2^31</span></span></span> (based on theory and suggestions given in d.e. knuth (1969), vol 2. State). This
+     is the faster of this list but a little outdated (don&apos;t use it for serious simulations).
+     </li>
+     <li class="itemize"><div class="itemdesc">fsultra</div>: a Subtract-with-Borrow generator mixing with a congruential generator of Arif
+     Zaman and George Marsaglia, period more than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">10^356</span></span></span>, state given by an array of 37
+     integers (plus an index onto this array, a flag (0 or 1) and another integer).</li></ul>
+<!--l. 184--><p class="noindent" >The differents actions common to all the generators, are: </p>
+                                                                                    
+
+                                                                                    
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">action= &apos;getgen&apos;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S=grand(&#x0027;getgen&#x0027;)</span></span></span> returns the current base generator ( <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S</span></span></span> is a string
+     among &apos;mt&apos;, &apos;kiss&apos;, &apos;clcg2&apos;, &apos;clcg4&apos;, &apos;urand&apos;, &apos;fsultra&apos;.
+     </li>
+     <li class="itemize"><div class="itemdesc">action= &apos;setgen&apos;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">grand(&#x0027;setgen&#x0027;,gen)</span></span></span> sets the current base generator to be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">gen</span></span></span> a
+     string among &apos;mt&apos;, &apos;kiss&apos;, &apos;clcg2&apos;, &apos;clcg4&apos;, &apos;urand&apos;, &apos;fsultra&apos; (notes that this call returns
+     the new current generator, ie gen).
+     </li>
+     <li class="itemize"><div class="itemdesc">action= &apos;getsd&apos;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S=grand(&#x0027;getsd&#x0027;)</span></span></span> gets the current state (the current seeds) of the
+     current base generator ; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S</span></span></span> is given as a column vector (of integers) of dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">625</span></span></span>
+     for mt (the first being an index in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[1,624]</span></span></span>), <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">4</span></span></span> for kiss, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2</span></span></span> for clcg2, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">40</span></span></span> for fsultra, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">4</span></span></span> for
+     clcg4 (for this last one you get the current state of the current virtual generator) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span>
+     for urand.
+     </li>
+     <li class="itemize"><div class="itemdesc">action= &apos;setsd&apos;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">grand(&#x0027;setsd&#x0027;,S),</span><span 
+class="cmtt-10x-x-109">&#x00A0;grand(&#x0027;setsd&#x0027;,s1[,s2,s3,s4])</span></span></span> sets the state
+     of the current base generator (the new seeds):
+     </li>
+     <li class="itemize"><div class="itemdesc">action=  &apos;phr2sd&apos;</div>:  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sd=grand(&#x0027;phr2sd&#x0027;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;phrase)</span></span></span> given  a  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">phrase</span></span></span> (character  string)
+     generates a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;2</span></span></span> vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Sd</span></span></span> which may be used as seeds to change the state of a base
+     generator (initialy suited for clcg2).</li></ul>
+<!--l. 204--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-590000"></a><span 
+class="cmbx-10x-x-109">Options specific to clcg4</span></span>
+   The clcg4 generator may be used as the others generators but it offers the advantage to be
+splitted in several (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">101</span></span></span>) virtual generators with non over-lapping sequences (when you
+use a classic generator you may change the initial state (seeds) in order to get another
+sequence but you are not warranty to get a complete different one). Each virtual generator
+corresponds to a sequence of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2^72</span></span></span> values which is further split into <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">V=2^31</span></span></span> segments (or
+blocks) of length <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">W=2^41</span></span></span>. For a given virtual generator you have the possibility to return
+at the beginning of the sequence or at the beginning of the current segment or to go
+directly at the next segment. You may also change the initial state (seed) of the generator
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span> with the &apos;setall&apos; option which then change also the initial state of the other virtual
+generators so as to get synchronisation (ie in function of the new initial state of gen <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span> the
+initial state of gen <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1..100</span></span></span> are recomputed so as to get <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">101</span></span></span> non over-lapping sequences.
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">action= &apos;setcgn&apos;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">grand(&#x0027;setcgn&#x0027;,G)</span></span></span> sets the current virtual generator for clcg4 (when
+     clcg4 is set, this is the virtual (clcg4) generator number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> which is used); the virtual clcg4
+     generators are numbered from <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0,1,..,100</span></span></span> (and so <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> must be an integer in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[0,100]</span></span></span>) ;
+     by default the current virtual generator is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">action= &apos;getcgn&apos;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">S=grand(&#x0027;getcgn&#x0027;)</span></span></span> returns the number of the current virtual clcg4
+     generator.
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><div class="itemdesc">action=  &apos;initgn&apos;</div>:  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">grand(&#x0027;initgn&#x0027;,I)</span></span></span> reinitializes  the  state  of  the  current  virtual
+     generator
+     </li>
+     <li class="itemize"><div class="itemdesc">action= &apos;setall&apos;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">grand(&#x0027;setall&#x0027;,s1,s2,s3,s4)</span></span></span> sets the initial state of generator <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span>
+     to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s1,s2,s3,s4</span></span></span>. The initial seeds of the other generators are set accordingly to have
+     synchronisation. For constraints on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;s2,</span><span 
+class="cmtt-10x-x-109">&#x00A0;s3,</span><span 
+class="cmtt-10x-x-109">&#x00A0;s4</span></span></span> see the &apos;setsd&apos; action.
+     </li>
+     <li class="itemize"><div class="itemdesc">action= &apos;advnst&apos;</div>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">grand(&#x0027;advnst&#x0027;,K)</span></span></span> advances the state of the current generator by
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">2^K</span></span></span> values and resets the initial seed to that value.</li></ul>
+<!--l. 232--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-591000"></a><span 
+class="cmbx-10x-x-109">Test example for clcg4</span></span>
+   An example of the need of the splitting capabilities of clcg4 is as follows. Two statistical
+techniques are being compared on data of different sizes. The first technique uses bootstrapping and
+is thought to be as accurate using less data than the second method which employs only brute force.
+For the first method, a data set of size uniformly distributed between 25 and 50 will be generated.
+Then the data set of the specified size will be generated and analyzed. The second method will
+choose a data set size between 100 and 200, generate the data and analyze it. This process will be
+repeated 1000 times. For variance reduction, we want the random numbers used in the two methods
+to be the same for each of the 1000 comparisons. But method two will use more random numbers
+than method one and without this package, synchronization might be difficult. With clcg4,
+it is a snap. Use generator 0 to obtain the sample size for method one and generator
+1 to obtain the data. Then reset the state to the beginning of the current block and
+do the same for the second method. This assures that the initial data for method two
+is that used by method one. When both have concluded, advance the block for both
+generators.
+</p>
+<!--l. 248--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-592000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli220.html#rand">rand</a>
+</p>
+<!--l. 252--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-593000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 253--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-594000"></a><span 
+class="cmbx-10x-x-109">randlib</span></span>
+   The codes to generate sequences following other distributions than def, unf, lgi, uin and geom
+are from &#x201D;Library of Fortran Routines for Random Number Generation&#x201D;, by Barry W.
+Brown and James Lovato, Department of Biomathematics, The University of Texas,
+Houston.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 257--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-595000"></a><span 
+class="cmbx-10x-x-109">mt</span></span>
+   The code is the mt19937int.c by M. Matsumoto and T. Nishimura, &#x201D;Mersenne Twister: A
+623-dimensionally equidistributed uniform pseudorandom number generator&#x201D;, ACM Trans. on
+Modeling and Computer Simulation Vol. 8, No. 1, January, pp.3-30 1998.
+</p>
+<!--l. 261--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-596000"></a><span 
+class="cmbx-10x-x-109">kiss</span></span>
+   The code was given by G. Marsaglia at the end of a thread concerning RNG in C in several
+newsgroups (whom sci.math.num-analysis) &#x201D;My offer of RNG&apos;s for C was an invitation to dance...&#x201D;
+only kiss have been included in Scilab (kiss is made of a combinaison of severals others which are
+not visible at the scilab level).
+</p>
+<!--l. 266--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-597000"></a><span 
+class="cmbx-10x-x-109">clcg2</span></span>
+   The method is from P. L&apos;Ecuyer but the C code is provided at the Luc Devroye home page
+(http://cgm.cs.mcgill.ca/&#x00A0;luc/rng.html).
+</p>
+<!--l. 269--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-598000"></a><span 
+class="cmbx-10x-x-109">clcg4</span></span>
+   The code is from P. L&apos;Ecuyer and Terry H.Andres and provided at the P. L&apos;Ecuyer home page (
+http://www.iro.umontreal.ca/&#x00A0;lecuyer/papers.html) A paper is also provided and this new package
+is the logical successor of an old &apos;s one from: P. L&apos;Ecuyer and S. Cote. Implementing a Random
+Number Package with Splitting Facilities. ACM Transactions on Mathematical Software 17:1,pp
+98-111.
+</p>
+<!--l. 275--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-599000"></a><span 
+class="cmbx-10x-x-109">fsultra</span></span>
+   code from Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu)
+</p>
+<!--l. 277--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x104-600000"></a><span 
+class="cmbx-10x-x-109">scilab packaging</span></span>
+   By Jean-Philippe Chancelier and Bruno Pincon
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 2--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli104.html" >next</a>] [<a 
+href="manualli102.html" >prev</a>] [<a 
+href="manualli102.html#tailmanualli102.html" >prev-tail</a>] [<a 
+href="manualli103.html" >front</a>] [<a 
+href="manualli91.html#manualli103.html" >up</a>] </p></div>
+<!--l. 2--><p class="indent" >   <a 
+ id="tailmanualli103.html"></a>  </p> 
+</body></html> 

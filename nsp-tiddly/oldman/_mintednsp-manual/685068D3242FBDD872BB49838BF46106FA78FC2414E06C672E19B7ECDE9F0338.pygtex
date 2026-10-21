@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=rand(\nspnumber{5},\nspnumber{3})\nspoperator{*}rand(\nspnumber{3},\nspnumber{4})\nspoperator{;}\nspcomment{// A is 5 x 4, rank=3}
+B=[A(\nspoperator{:},\nspnumber{2})\nspoperator{,}rand(\nspnumber{5},\nspnumber{1})]\nspoperator{*}rand(\nspnumber{2},\nspnumber{2})\nspoperator{;}
+[X,dim]=spaninter(A,B)\nspoperator{;}
+X1=X(\nspoperator{:},\nspnumber{1}\nspoperator{:}dim)\nspoperator{;}\nspcomment{//The intersection}
+svd(A)\nspoperator{,}svd([X1\nspoperator{,}A])\nspoperator{,}\nspcomment{// X1 in span(A)}
+svd(B)\nspoperator{,}svd([B\nspoperator{,}X1])\nspoperator{,}\nspcomment{// X1 in span(B)}
+\end{Verbatim}

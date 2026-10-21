@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>graph-list</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli710.html" >next</a>] [<a 
+href="manualli708.html" >prev</a>] [<a 
+href="manualli708.html#tailmanualli708.html" >prev-tail</a>] [<a 
+href="#tailmanualli709.html">tail</a>] [<a 
+href="manualli677.html#manualli709.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x710-4221000"></a>graph-list</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx710-4221001"></a><a 
+ id="graph-list"></a><span 
+class="cmtt-10x-x-109">graph-list </span>&#x2013;                                                                     description of graph list<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x710-4222000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > A graph in Scilab is represented by a Scilab typed list. We call it a graph list. You will find below
+the complete description of the list. Each element is described by one or more lines. The first line
+gives the name of the element and its definition. Additional informations, such as the default for
+elements that can have one, are given in the other lines. Indeed, only the 5 first elements must have
+a value in the list, all the others can be given the empty vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[]</span></span></span> as a value, and then the default is
+used when it is needed by functions or by the Metanet window. For instance, you can define a graph
+list by
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-865">
+&#x00A0;&#x00A0;g=make_graph(&#x0027;min&#x0027;,1,1,[1],[1]);
+</div>
+<!--l. 35--><p class="nopar" >which is the simplest graph you can create in Metanet (it is directed, has one node and one loop arc
+on this node). The name of the element in the list is very important because it is used to access the
+elements of the list. For instance, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> is a graph list, to get the name of the graph, you only have to
+do:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-866">
+&#x00A0;&#x00A0;g(&#x0027;name&#x0027;)
+</div>
+<!--l. 43--><p class="nopar" >or
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-867">
+&#x00A0;&#x00A0;g.name
+</div>
+<!--l. 47--><p class="nopar" >and if you want to change the name of the graph to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;toto&#x0027;</span></span></span>, you have to do:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-868">
+&#x00A0;&#x00A0;g(&#x0027;name&#x0027;)=&#x0027;toto&#x0027;;
+</div>
+<!--l. 52--><p class="nopar" >or
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-869">
+&#x00A0;&#x00A0;g.name=&#x0027;toto&#x0027;;
+</div>
+<!--l. 56--><p class="nopar" >Moreover, you can get the number of edges and the number of arcs of the graph by using
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">edge_number(g)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">arc_number(g)</span></span></span> (these names do not correspond to elements of the list). For
+compatibility, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">node_number(g)</span></span></span> can also be used instead of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g(&#x0027;node_number&#x0027;)</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g.node_number</span></span></span>.
+A graph list can be syntactically correct but not represent a good graph. You can use the function
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">check_graph</span></span></span> to check it. Moreover it is a good idea to give nodes different names. In fact, this does
+not give errors in Scilab, but strange behaviour can appear when using the Metanet
+window. This is not checked by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">check_graph</span></span></span> because it is time consuming. It is only
+checked when loading, saving or showing a graph. The elements of a graph list are given
+below:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">name:</span> </span>- the name of the graph
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>it is a string with a maximum of 80 characters
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">directed:</span> </span>- flag giving the type of the graph
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>it is equal to 1 (graph directed) or equal to 0 (graph undirected)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_number:</span> </span>- number of nodes
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">tail:</span> </span>- row vector of the tail node numbers
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">head:</span> </span>- row vector of the head node numbers
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_name:</span> </span>- row vector of node names
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>the names of the nodes must be different
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is the node numbers as node names
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_type:</span> </span>- row vector of the node types
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>the type is an integer from 0 to 2, default is 0 (plain node):
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>0 = plain node
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>1 = sink node
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>2 = source node
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_x:</span> </span>- row vector of the x coordinate of the nodes
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is computed
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_y:</span> </span>- row vector of the y coordinate of the nodes
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is computed
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_color:</span> </span>- row vector of the node colors
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>the color is an integer from 0 to 16, default is 0 (default foreground):
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>0 = default foreground
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>1 = navyblue
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>2 = blue
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>3 = skyblue
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>4 = aquamarine
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>5 = forestgreen
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>6 = green
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>7 = lightcyan
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>8 = cyan
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>9 = orange
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>10 = red
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>11 = magenta
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>12 = violet
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>13 = yellow
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>14 = gold
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>15 = beige
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>16 = background
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_diam:</span> </span>- row vector of the size of the node diameters in pixels
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>a node is drawn as a circle
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is the value of element <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">default_node_diam</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_border:</span> </span>- row vector of the size of the node borders in pixels
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>a node is drawn as a circle
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is the value of element <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">default_node_border</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_font</span><span 
+class="cmbx-10x-x-109">_size:</span> </span>- row vector of the size of the font used to draw the name of the node
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>you can choose 8, 10, 12, 14, 18 or 24
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is the value of element <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">default_font_size</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_demand:</span> </span>- row vector of the node demands
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_name:</span> </span>- row vector of the edge names
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>it is better that the names of the edges are different, but this is not an error
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is the edge numbers as edge names
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_color:</span> </span>- row vector of the edge colors
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>the color is an integer from 0 to 16 (see <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">node_color</span></span></span>)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0 (default foreground)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_width:</span> </span>- row vector of the size of the edge widths in pixels
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is the value of element <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">default_edge_width</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_hi</span><span 
+class="cmbx-10x-x-109">_width:</span> </span>- row vector of the size of the highlighted edge widths in pixels
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is the value of element <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">default_edge_hi_width</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_font</span><span 
+class="cmbx-10x-x-109">_size:</span> </span>- row vector of the size of the fonts used to draw the name of the edge
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>you can choose 8, 10, 12, 14, 18 or 24
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is the value of element <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">default_font_size</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_length:</span> </span>- row vector of the edge lengths
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_cost:</span> </span>- row vector of the edge costs
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_min</span><span 
+class="cmbx-10x-x-109">_cap:</span> </span>- row vector of the edge minimum capacities
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_max</span><span 
+class="cmbx-10x-x-109">_cap:</span> </span>- row vector of the edge maximum capacities
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_q</span><span 
+class="cmbx-10x-x-109">_weight:</span> </span>- row vector of the edge quadratic weights
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_q</span><span 
+class="cmbx-10x-x-109">_orig:</span> </span>- row vector of the edge quadratic origins
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_weight:</span> </span>- row vector of the edge weights
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 0
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">default</span><span 
+class="cmbx-10x-x-109">_node</span><span 
+class="cmbx-10x-x-109">_diam:</span> </span>- default size of the node diameters of the graph
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 20 pixels
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">default</span><span 
+class="cmbx-10x-x-109">_node</span><span 
+class="cmbx-10x-x-109">_border:</span> </span>- default size of the node borders of the graph
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 2 pixels
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">default</span><span 
+class="cmbx-10x-x-109">_edge</span><span 
+class="cmbx-10x-x-109">_width:</span> </span>- default size of the edge widths of the graph
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 1 pixel
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">default</span><span 
+class="cmbx-10x-x-109">_edge</span><span 
+class="cmbx-10x-x-109">_hi</span><span 
+class="cmbx-10x-x-109">_width:</span> </span>- default size of the highlighted edge widths of the graph
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 3 pixels
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">default</span><span 
+class="cmbx-10x-x-109">_font</span><span 
+class="cmbx-10x-x-109">_size:</span> </span>- default size of the font used to draw the names of nodes and edges
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>default is 12
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">node</span><span 
+class="cmbx-10x-x-109">_label:</span> </span>- row vector of node labels
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">edge</span><span 
+class="cmbx-10x-x-109">_label:</span> </span>- row vector of edge labels</ul>
+</p>
+<!--l. 162--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x710-4223000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb558"><a 
+ id="x710-4223006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g=load_graph(SCI</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/demos/metanet/mesh100&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x710-4223008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_color&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=int(rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_number&#x0027;</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x710-4223010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;edge_color&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=int(rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">edge_number(g))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">16</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x710-4223012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;show_graph(g)</span></div>
+<!--l. 171--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x710-4224000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#arc-number">arc_number</a>    <a 
+href="#check-graph">check_graph</a>    <a 
+href="#edge-number">edge_number</a>    <a 
+href="manualli704.html#glist">glist</a>    <a 
+href="#make-graph">make_graph</a>    <a 
+href="#node-number">node_number</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli710.html" >next</a>] [<a 
+href="manualli708.html" >prev</a>] [<a 
+href="manualli708.html#tailmanualli708.html" >prev-tail</a>] [<a 
+href="manualli709.html" >front</a>] [<a 
+href="manualli677.html#manualli709.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli709.html"></a>  </p> 
+</body></html> 

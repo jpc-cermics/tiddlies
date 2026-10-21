@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>leqr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1116.html" >next</a>] [<a 
+href="manualli1114.html" >prev</a>] [<a 
+href="manualli1114.html#tailmanualli1114.html" >prev-tail</a>] [<a 
+href="#tailmanualli1115.html">tail</a>] [<a 
+href="manualli1089.html#manualli1115.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1116-6314000"></a>leqr</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1116-6314001"></a><a 
+ id="leqr"></a><span 
+class="cmtt-10x-x-109">leqr </span>&#x2013;                                                                     H-infinity LQ gain (full state) <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1116-6315000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1241">
+&#x00A0;&#x00A0;[K,X,err]=leqr(P12,Vx)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1116-6316000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P12</span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Vx</span>: symmetric nonnegative matrix (should be small enough)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">K,X</span>: two real matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">err</span>: a real number (l1 norm of LHS of Riccati equation)</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1116-6317000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">leqr</span></span></span> computes the linear suboptimal H-infinity LQ full-state gain for the plant <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P12=[A,B2,C1,D12]</span></span></span> in
+continuous or discrete time.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P12</span></span></span> is a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">syslin</span></span></span> list (e.g. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P12=syslin(&#x0027;c&#x0027;,A,B2,C1,D12)</span></span></span>).
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1242">
+&#x00A0;&#x00A0;[C1&#x0027;&#x00A0;]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[Q&#x00A0;&#x00A0;S]
+&#x00A0;<br />&#x00A0;&#x00A0;[&#x00A0;&#x00A0;&#x00A0;&#x00A0;]&#x00A0;&#x00A0;*&#x00A0;[C1&#x00A0;D12]&#x00A0;=&#x00A0;[&#x00A0;&#x00A0;&#x00A0;&#x00A0;]
+&#x00A0;<br />&#x00A0;&#x00A0;[D12&#x0027;]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;[S&#x0027;&#x00A0;R]
+</div>
+<!--l. 43--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Vx</span></span></span> is related to the variance matrix of the noise <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">w</span></span></span> perturbing <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>; (usually <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Vx=gama^-2*B1*B1&#x0027;</span></span></span>). The
+gain <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">K</span></span></span> is such that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;B2*K</span></span></span> is stable.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is the stabilizing solution of the Riccati equation. For a
+continuous plant:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1243">
+&#x00A0;&#x00A0;(A-B2*inv(R)*S&#x0027;)&#x0027;*X+X*(A-B2*inv(R)*S&#x0027;)-X*(B2*inv(R)*B2&#x0027;-Vx)*X+Q-S*inv(R)*S&#x0027;=0
+</div>
+<!--l. 50--><p class="nopar" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1244">
+&#x00A0;&#x00A0;K=-inv(R)*(B2&#x0027;*X+S)
+</div>
+<!--l. 53--><p class="nopar" >For a discrete time plant:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1245">
+&#x00A0;&#x00A0;X-(Abar&#x0027;*inv((inv(X)+B2*inv(R)*B2&#x0027;-Vx))*Abar+Qbar=0
+</div>
+<!--l. 57--><p class="nopar" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1246">
+&#x00A0;&#x00A0;K=-inv(R)*(B2&#x0027;*inv(inv(X)+B2*inv(R)*B2&#x0027;-Vx)*Abar+S&#x0027;)
+</div>
+<!--l. 60--><p class="nopar" >with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Abar=A-B2*inv(R)*S&#x0027;</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Qbar=Q-S*inv(R)*S&#x0027;</span></span></span> The 3-blocks matrix pencils associated with
+these Riccati equations are:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1247">
+&#x00A0;&#x00A0;discrete&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;continuous
+&#x00A0;<br />&#x00A0;&#x00A0;|I&#x00A0;&#x00A0;-Vx&#x00A0;&#x00A0;0|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;A&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;B2|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|I&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;0|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;A&#x00A0;&#x00A0;&#x00A0;&#x00A0;Vx&#x00A0;&#x00A0;&#x00A0;&#x00A0;B2|
+&#x00A0;<br />&#x00A0;&#x00A0;z|0&#x00A0;&#x00A0;&#x00A0;A&#x0027;&#x00A0;&#x00A0;0|&#x00A0;-&#x00A0;|-Q&#x00A0;&#x00A0;&#x00A0;&#x00A0;I&#x00A0;&#x00A0;&#x00A0;&#x00A0;-S|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;s|0&#x00A0;&#x00A0;&#x00A0;I&#x00A0;&#x00A0;&#x00A0;0|&#x00A0;-&#x00A0;|-Q&#x00A0;&#x00A0;&#x00A0;-A&#x0027;&#x00A0;&#x00A0;&#x00A0;-S&#x00A0;|
+&#x00A0;<br />&#x00A0;&#x00A0;|0&#x00A0;&#x00A0;&#x00A0;B2&#x0027;&#x00A0;0|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;S&#x0027;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;R|&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;|0&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;0|&#x00A0;&#x00A0;&#x00A0;|&#x00A0;S&#x0027;&#x00A0;&#x00A0;&#x00A0;-B2&#x0027;&#x00A0;&#x00A0;&#x00A0;R|
+</div>
+<!--l. 68--><p class="nopar" >
+</p>
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1116-6318000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli54.html#lqr">lqr</a>
+</p>
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1116-6319000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F.D.;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1116.html" >next</a>] [<a 
+href="manualli1114.html" >prev</a>] [<a 
+href="manualli1114.html#tailmanualli1114.html" >prev-tail</a>] [<a 
+href="manualli1115.html" >front</a>] [<a 
+href="manualli1089.html#manualli1115.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1115.html"></a>  </p> 
+</body></html> 

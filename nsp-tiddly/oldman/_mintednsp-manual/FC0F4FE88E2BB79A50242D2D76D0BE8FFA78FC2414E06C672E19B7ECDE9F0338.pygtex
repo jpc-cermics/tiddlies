@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Simple polynomial example}
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+p=(z\nspoperator{-}\nspnumber{1}\nspoperator{/}\nspnumber{2})\nspoperator{*}(\nspnumber{2}\nspoperator{-}z)
+w=sfact(p)\nspoperator{;}
+w\nspoperator{*}numer(horner(w,\nspnumber{1}\nspoperator{/}z))
+\nspcomment{//matrix example}
+F1=[z\nspoperator{-}\nspnumber{1}\nspoperator{/}\nspnumber{2}\nspoperator{,}z\nspoperator{+}\nspnumber{1}\nspoperator{/}\nspnumber{2}\nspoperator{,}z\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{2}\nspoperator{;}\nspnumber{1}\nspoperator{,}z\nspoperator{,}\nspoperator{-}z\nspoperator{;}z\nspoperator{^}\nspnumber{3}\nspoperator{+}\nspnumber{2}\nspoperator{*}z\nspoperator{,}z\nspoperator{,}\nspnumber{1}\nspoperator{/}\nspnumber{2}\nspoperator{-}z]\nspoperator{;}
+P=F1\nspoperator{*}gtild(F1,\nspstring{'d'})\nspoperator{;}\nspcomment{//P is symmetric}
+F=sfact(P)
+roots(det(P))
+roots(det(gtild(F,\nspstring{'d'})))\nspoperator{,}\nspcomment{//The stable roots}
+roots(det(F))\nspoperator{,}\nspcomment{//The antistable roots}
+clean(P\nspoperator{-}F\nspoperator{*}gtild(F,\nspstring{'d'}))
+\nspcomment{//Example of continuous time use}
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+p=\nspoperator{-}\nspnumber{3}\nspoperator{*}(s\nspoperator{+}(\nspnumber{1}\nspoperator{+}%i))\nspoperator{*}(s\nspoperator{+}(\nspnumber{1}\nspoperator{-}%i))\nspoperator{*}(s\nspoperator{+}\nspnumber{0.5})\nspoperator{*}(s\nspoperator{-}\nspnumber{0.5})\nspoperator{*}(s\nspoperator{-}(\nspnumber{1}\nspoperator{+}%i))\nspoperator{*}(s\nspoperator{-}(\nspnumber{1}\nspoperator{-}%i))\nspoperator{;}p=real(p)\nspoperator{;}
+\nspcomment{//p(s) = polynomial in s^2 , looks for stable f such that p=f(s)*f(-s)}
+w=horner(p,(\nspnumber{1}\nspoperator{-}s)\nspoperator{/}(\nspnumber{1}\nspoperator{+}s))\nspoperator{;}\nspcomment{// bilinear transform w=p((1-s)/(1+s))}
+wn=numer(w)\nspoperator{;}\nspcomment{//take the numerator}
+fn=sfact(wn)\nspoperator{;}f=numer(horner(fn,(\nspnumber{1}\nspoperator{-}s)\nspoperator{/}(s\nspoperator{+}\nspnumber{1})))\nspoperator{;}\nspcomment{//Factor and back transform}
+f=f\nspoperator{/}sqrt(horner(f\nspoperator{*}gtild(f,\nspstring{'c'}),\nspnumber{0}))\nspoperator{;}f=f\nspoperator{*}sqrt(horner(p,\nspnumber{0}))\nspoperator{;}\nspcomment{//normalization}
+roots(f)\nspoperator{,}\nspcomment{//f is stable}
+clean(f\nspoperator{*}gtild(f,\nspstring{'c'})\nspoperator{-}p)\nspoperator{,}\nspcomment{//f(s)*f(-s) is p(s)}
+\end{Verbatim}

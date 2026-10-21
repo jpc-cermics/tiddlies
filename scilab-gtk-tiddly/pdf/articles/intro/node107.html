@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.3.1.3.4 Example 4</TITLE>
+<META NAME="description" CONTENT="6.3.1.3.4 Example 4">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node106.html">
+<LINK REL="up" HREF="node103.html">
+<LINK REL="next" HREF="node108.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1682"
+ HREF="node108.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1678"
+ HREF="node103.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1674"
+ HREF="node106.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1680"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1681"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1683"
+ HREF="node108.html">6.3.1.4 Adding a new</A>
+<B> Up:</B> <A NAME="tex2html1679"
+ HREF="node103.html">6.3.1.3 Examples</A>
+<B> Previous:</B> <A NAME="tex2html1675"
+ HREF="node106.html">6.3.1.3.3 Example 3</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H4><A NAME="SECTION00731340000000000000">&#160;</A>
+<A NAME="ex4">&#160;</A>
+<BR>
+6.3.1.3.4 Example 4
+</H4>
+<P>
+<FONT SIZE="-2">The name of the Scilab function is <TT>contr</TT>. Its input is a list representing
+a linear system given by its state representation and a tolerance. Its return
+is a scalar (for instance the dimension of the controllable subspace).
+</FONT>
+<P>
+<FONT SIZE="-2">The name of the corresponding Fortran subroutine is <TT>contr</TT> and its
+arguments are the dimension of the state of the system (used as input), the
+number of inputs of the system (used as input), 
+the state matrix of the system (used as input),
+the input matrix of the system (used as input),
+an integer giving the dimension of the controllable subspace (used as output),
+and the tolerance (used as input).
+</FONT>
+<P>
+<FONT SIZE="-2">The description file is the following:
+</FONT><PRE>
+contr   sys     tol
+tol     scalar
+sys     list    lss
+icontr  scalar
+
+contr   nstate(sys)     nin(sys)     a(sys)  b(sys)  icontr  tol
+a(sys)  double
+b(sys)  double
+tol     double
+nstate(sys)     integer
+nin(sys)        integer
+icontr  integer
+
+out     sequence        icontr
+******************************
+</PRE>
+<P>
+<FONT SIZE="-2">The type of the list is <TT>lss</TT> and a file describing the list <TT>lss.list</TT> is
+needed. It is shown below:
+</FONT>
+<P><PRE>
+1 type
+type    string  3
+******************************
+2 state matrix
+a       matrix  nstate  nstate
+******************************
+3 input matrix
+b       matrix  nstate  nin
+******************************
+4 output matrix
+c       matrix  nout    nstate
+******************************
+5 direct tranfer matrix
+d       matrix  nout    nin
+******************************
+6 initial state
+x0      column  nstate
+******************************
+7 time domain
+t       any
+******************************
+</PRE>
+<P>
+<FONT SIZE="-2">The number of the elements is not compulsory in the comment describing the
+elements of the list but is useful.
+</FONT>
+<P><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1682"
+ HREF="node108.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1678"
+ HREF="node103.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1674"
+ HREF="node106.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1680"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1681"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1683"
+ HREF="node108.html">6.3.1.4 Adding a new</A>
+<B> Up:</B> <A NAME="tex2html1679"
+ HREF="node103.html">6.3.1.3 Examples</A>
+<B> Previous:</B> <A NAME="tex2html1675"
+ HREF="node106.html">6.3.1.3.3 Example 3</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

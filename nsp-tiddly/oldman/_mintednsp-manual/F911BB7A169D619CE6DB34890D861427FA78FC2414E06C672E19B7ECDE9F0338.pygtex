@@ -1,0 +1,55 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// example 1}
+x=linspace(\nspnumber{0},\nspnumber{1},\nspnumber{81})\nspoperator{;}
+z=cos(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}x)\nspoperator{'}\nspoperator{*}sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}x)\nspoperator{;}
+zm=min(z)\nspoperator{;}zM=max(z)\nspoperator{;}
+xbasc()
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{64}))
+colorbar(zm,zM)
+Sgrayplot(x,x,z)
+xtitle(\nspstring{"The function cos(2 pi x)sin(2 pi y)"})
+\nspcomment{// example 2}
+x=linspace(\nspnumber{0},\nspnumber{1},\nspnumber{81})\nspoperator{;}
+z=cos(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}x)\nspoperator{'}\nspoperator{*}sin(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}x)\nspoperator{;}
+zm=min(z)\nspoperator{;}zM=max(z)\nspoperator{;}
+zz=abs(\nspnumber{0.5}\nspoperator{*}cos(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}x)\nspoperator{'}\nspoperator{*}cos(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}x))\nspoperator{;}
+zzm=min(zz)\nspoperator{;}zzM=max(zz)\nspoperator{;}
+xbasc()\nspoperator{;}
+xset(\nspstring{"colormap"},jetcolormap(\nspnumber{64}))
+new_styl=get(\nspstring{"figure_style"})\nspoperator{==}\nspstring{"new"}\nspoperator{;}
+\nspkeyword{if} new_styl \nspkeyword{then} drawlater()\nspoperator{,}\nspkeyword{end}
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{1})
+colorbar(zm,zM)
+Sgrayplot(x,x,z,strf = \nspstring{"031"},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}])
+xtitle(\nspstring{"a Sgrayplot with a colorbar"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{2})
+colorbar(zm,zM)
+plot3d1(x,x,z)
+xtitle(\nspstring{"a plot3d1 with a colorbar"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{3})
+colorbar(zzm,zzM)
+plot3d1(x,x,zz)
+xtitle(\nspstring{"a plot3d1 with a colorbar"})
+subplot(\nspnumber{2},\nspnumber{2},\nspnumber{4})
+colorbar(zzm,zzM)
+Sgrayplot(x,x,zz,strf = \nspstring{"031"},rect = [\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}])
+xtitle(\nspstring{"a Sgrayplot with a colorbar"})
+\nspkeyword{if} new_styl \nspkeyword{then} drawnow()\nspoperator{,}\nspkeyword{end}
+\nspcomment{// example 3}
+x=linspace(\nspnumber{0},\nspnumber{1},\nspnumber{81})\nspoperator{;}
+zz=abs(\nspnumber{0.5}\nspoperator{*}cos(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}x)\nspoperator{'}\nspoperator{*}cos(\nspnumber{2}\nspoperator{*}%pi\nspoperator{*}x))\nspoperator{;}
+zzm=min(zz)\nspoperator{;}zzM=max(zz)\nspoperator{;}
+[xf,yf,zf]=genfac3d(x,x,zz)\nspoperator{;}
+nb_col=\nspnumber{64}\nspoperator{;}
+xbasc()
+xset(\nspstring{"colormap"},hotcolormap(nb_col))
+new_styl=get(\nspstring{"figure_style"})\nspoperator{==}\nspstring{"new"}\nspoperator{;}
+\nspkeyword{if} new_styl \nspkeyword{then} drawlater()\nspoperator{,}\nspkeyword{end}
+colorbar(zzm,zzM)
+nbcol=xget(\nspstring{"lastpattern"})
+zcol=dsearch(zf,linspace(zzm,zzM,nb_col\nspoperator{+}\nspnumber{1}))\nspoperator{;}
+plot3d(xf,yf,list(zf,zcol),flag = [\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{4}])
+xtitle(\nspstring{"a plot3d with shaded interpolated colors"})
+\nspkeyword{if} new_styl \nspkeyword{then} drawnow()\nspoperator{,}\nspkeyword{end}
+xselect()
+\end{Verbatim}

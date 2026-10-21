@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>horner</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli911.html" >next</a>] [<a 
+href="manualli909.html" >prev</a>] [<a 
+href="manualli909.html#tailmanualli909.html" >prev-tail</a>] [<a 
+href="#tailmanualli910.html">tail</a>] [<a 
+href="manualli894.html#manualli910.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x911-5275000"></a>horner</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx911-5275001"></a><a 
+ id="horner"></a><span 
+class="cmtt-10x-x-109">horner </span>&#x2013;                                                                  polynomial/rational evaluation<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x911-5276000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1033">
+&#x00A0;&#x00A0;horner(P,x)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x911-5277000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">P</span>: polynomial or rational matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: real number or polynomial or rational</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x911-5278000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > evaluates the polynomial or rational matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;P(s)</span></span></span> when the variable <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> of the polynomial is
+replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">horner(P,x)</span></span></span>=<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P(x)</span></span></span> Example (Bilinear transform): Assume <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;P(s)</span></span></span> is a rational
+matrix then the rational matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">P((1+s)/(1-s))</span></span></span> is obtained by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">horner(P,(1+s)/(1-s))</span></span></span>.
+To evaluate a rational matrix at given frequencies use preferably the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">freq</span></span></span> primitive.
+</p>
+<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x911-5279000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb637"><a 
+ id="x911-5279006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=poly(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">M=[s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x911-5279008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;horner(M,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x911-5279010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;horner(M,%i)</span><br class="fancyvrb" /><a 
+ id="x911-5279012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;horner(M,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">s)</span></div>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x911-5280000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli41.html#freq">freq</a>    <a 
+href="manualli69.html#repfreq">repfreq</a>    <a 
+href="manualli961.html#evstr">evstr</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli911.html" >next</a>] [<a 
+href="manualli909.html" >prev</a>] [<a 
+href="manualli909.html#tailmanualli909.html" >prev-tail</a>] [<a 
+href="manualli910.html" >front</a>] [<a 
+href="manualli894.html#manualli910.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli910.html"></a>  </p> 
+</body></html> 

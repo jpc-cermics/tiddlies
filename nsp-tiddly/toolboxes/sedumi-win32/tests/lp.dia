@@ -1,0 +1,103 @@
+-nsp->// Linear prog 
+-nsp->// min c'*x 
+-nsp->//  10x1 -7x2 >=5 
+-nsp->//  x1 + x2/2 <=3 
+-nsp->//  x1 >= 0 x2>= 0
+-nsp->// en rajoutant x3 et x4 le pb equivaut a 
+-nsp->// min c'*x
+-nsp->// A*x=b 
+-nsp->// x_i >=0 
+-nsp->c=[1;-1;0;0];
+-nsp->A=[10,-7,-1,0;1,1/2,0,1];
+-nsp->b=[5;3];
+-nsp->x=sedumi(A,b,c);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 2, order n = 5, dim = 5, blocks = 1
+nnz(A) = 6 + 0, nnz(ADA) = 4, nnz(L) = 3
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            6.02E+00 0.000
+  1 :  -1.20E+00 1.84E+00 0.000 0.3055 0.9000 0.9000   1.86  1  1  2.1E+00
+  2 :  -6.94E-02 5.15E-01 0.000 0.2803 0.9000 0.9000   2.14  1  1  8.6E-01
+  3 :  -1.21E-01 2.72E-02 0.000 0.0528 0.9900 0.9900   1.16  1  1  4.2E-02
+  4 :  -1.25E-01 8.69E-06 0.000 0.0003 0.9999 0.9999   1.02  1  1  
+iter seconds digits       c*x               b*y
+  4      0.0   inf -1.2500000000e-01 -1.2500000000e-01
+|Ax-b| =   1.3e-15, [Ay-c]_+ =   0.0E+00, |x|=  2.9e+00, |y|=  2.8e-01
+
+Detailed timing (sec)
+   Pre          IPM          Post
+8.000E-03    1.600E-02    0.000E+00    
+Max-norms: ||b||=5, ||c|| = 1,
+Cholesky |add|=0, |skip| = 0, ||L.L|| = 1.
+-nsp->if norm(full(x)-[1.9583;2.0833;0;0]) > 1.e-4 then pause;end 
+-nsp->[x,y,info]=sedumi(A,b,c);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 2, order n = 5, dim = 5, blocks = 1
+nnz(A) = 6 + 0, nnz(ADA) = 4, nnz(L) = 3
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            6.02E+00 0.000
+  1 :  -1.20E+00 1.84E+00 0.000 0.3055 0.9000 0.9000   1.86  1  1  2.1E+00
+  2 :  -6.94E-02 5.15E-01 0.000 0.2803 0.9000 0.9000   2.14  1  1  8.6E-01
+  3 :  -1.21E-01 2.72E-02 0.000 0.0528 0.9900 0.9900   1.16  1  1  4.2E-02
+  4 :  -1.25E-01 8.69E-06 0.000 0.0003 0.9999 0.9999   1.02  1  1  
+iter seconds digits       c*x               b*y
+  4      0.0   inf -1.2500000000e-01 -1.2500000000e-01
+|Ax-b| =   1.3e-15, [Ay-c]_+ =   0.0E+00, |x|=  2.9e+00, |y|=  2.8e-01
+
+Detailed timing (sec)
+   Pre          IPM          Post
+4.000E-03    8.001E-03    0.000E+00    
+Max-norms: ||b||=5, ||c|| = 1,
+Cholesky |add|=0, |skip| = 0, ||L.L|| = 1.
+-nsp->[x,y,info]=sedumi(A,b,0*c);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 2, order n = 5, dim = 5, blocks = 1
+nnz(A) = 6 + 0, nnz(ADA) = 4, nnz(L) = 3
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            4.80E+00 0.000
+  1 :  -7.04E-01 1.39E+00 0.000 0.2890 0.9000 0.9000   1.84  1  1  1.7E+00
+  2 :   8.15E-03 9.38E-02 0.000 0.0676 0.9900 0.9900   2.02  1  1  4.6E-02
+  3 :  -6.45E-06 2.43E-05 0.000 0.0003 0.9999 0.9999   1.02  1  1  
+iter seconds digits       c*x               b*y
+  3      0.0  10.9  0.0000000000e+00 -3.1328995489e-21
+|Ax-b| =   7.7e-16, [Ay-c]_+ =   3.3E-22, |x|=  3.0e+00, |y|=  1.3e-21
+
+Detailed timing (sec)
+   Pre          IPM          Post
+4.000E-03    8.000E-03    0.000E+00    
+Max-norms: ||b||=5, ||c|| = 0,
+Cholesky |add|=0, |skip| = 0, ||L.L|| = 1.
+-nsp->K.l=1;K.r=3;
+-nsp->A=[0,0,0,1;1,1,0,0];
+-nsp->b=[sqrt(2);1.e7];
+-nsp->c=[0,0,1,0];
+-nsp->[x,y,info]=sedumi(A,b,c,K);
+SeDuMi 1.1 by AdvOL, 2005 and Jos F. Sturm, 1998, 2001-2003.
+Alg = 2: xz-corrector, Adaptive Step-Differentiation, theta = 0.250, beta = 0.500
+eqs m = 2, order n = 4, dim = 5, blocks = 2
+nnz(A) = 4 + 0, nnz(ADA) = 4, nnz(L) = 3
+ it :     b*y       gap    delta  rate   t/tP*  t/tD*   feas cg cg  prec
+  0 :            1.07E+07 0.000
+  1 :  -1.70E+05 6.51E+05 0.000 0.0607 0.9900 0.9900   1.81  1  1  1.1E+00
+  2 :  -6.43E+01 2.36E+02 0.189 0.0004 0.9999 0.9999   1.04  1  1  7.1E-01
+  3 :   5.24E-01 8.06E-01 0.000 0.0034 0.9990 0.9990   1.00  1  1  4.2E-01
+  4 :   5.94E-07 6.03E-07 0.221 0.0000 1.0000 1.0000   1.00  1  1  4.8E-04
+  5 :   6.64E-08 4.70E-08 0.000 0.0779 0.9900 0.9900   1.00  4  4  3.6E-05
+  6 :   1.05E-07 8.50E-09 0.000 0.1810 0.9108 0.9000   1.00  5  4  5.9E-06
+  7 :   1.05E-07 3.22E-09 0.000 0.3789 0.9000 0.7688   1.00  4  4  2.3E-06
+  8 :   1.05E-07 3.18E-09 0.000 0.9860 0.9000 0.0432   1.00  4  4  2.3E-06
+  9 :   1.05E-07 1.78E-09 0.000 0.5614 0.9000 0.4425   1.00  4  4  1.3E-06
+Run into numerical problems.
+
+iter seconds digits       c*x               b*y
+  9      0.1   inf  9.8736248764e-08  1.0487077475e-07
+|Ax-b| =   1.1e-05, [Ay-c]_+ =   4.1E-16, |x|=  9.9e+06, |y|=  1.5e-07
+
+Detailed timing (sec)
+   Pre          IPM          Post
+0.000E+00    6.000E-02    4.000E-03    
+Max-norms: ||b||=10000000, ||c|| = 0,
+Cholesky |add|=1, |skip| = 0, ||L.L|| = 500000.

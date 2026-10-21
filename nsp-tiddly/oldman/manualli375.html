@@ -1,0 +1,1498 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>axes_properties</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli376.html" >next</a>] [<a 
+href="manualli374.html" >prev</a>] [<a 
+href="manualli374.html#tailmanualli374.html" >prev-tail</a>] [<a 
+href="#tailmanualli375.html">tail</a>] [<a 
+href="manualli370.html#manualli375.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x376-2191000"></a>axes_properties</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx376-2191001"></a><a 
+ id="axes_properties"></a><span 
+class="cmtt-10x-x-109">axes</span><span 
+class="cmtt-10x-x-109">_properties </span>&#x2013;                                        description of the axes entity properties<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x376-2192000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > The Axes entity is the second level of the graphics entities hierarchy. This entity defines the
+parameters allowing the change of coordinates and the axes drawing as well as the parameters&apos;
+default values for the children creation.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Axes properties</span> </span>
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">visible:</span>  </span>This field contains the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">visible</span></span></span> property value for axes . Its value should be
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> . By default, axes is visible <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> in case all &#x201D;visible&#x201D; chidren are
+          displayed on the screen, If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> the axes and all its chidren are not drawn.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">axes</span><span 
+class="cmbx-10x-x-109">_visible:</span>  </span>A <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1x3</span></span></span> string vector. This property specifies whether each axis is drawn
+          or not. Its value should be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> for a global setting.To act on a single
+          axis, the syntax is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">axes_visible(N)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1,2</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span> corresponding to the
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;x,y</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z</span></span></span> axis. The scaling data and if required the grids are drawn if the value is
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span>. Note that when creating a simple axes entity using the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">gca()</span></span></span> (shorcut for
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">get&#x0022;current_axes&#x0022;)</span></span></span>) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">gcf()</span></span></span> (shortcut for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">get(current_figure)</span></span></span>) commands,
+          the axes visiblibilty is set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span>.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">view:</span>  </span>This field is related to the graphics universe. It takes <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;3d&#x0022;</span></span></span> as value corresponding
+          to the three-dimensional views. In the other case its value can be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;2d&#x0022;</span></span></span> for initial
+          2d plotting (default value). This flag also depends on the plots the user enters: a
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot3d</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>command, for example, will switch the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">view</span></span></span> flag from <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;2d&#x0022;</span></span></span> to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;3d&#x0022;</span></span></span>.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">rotation</span><span 
+class="cmbx-10x-x-109">_angles:</span>  </span>This field is the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[alpha,theta]</span></span></span>. These two values give the
+          spherical coordinates of the observation points (in degree).
+                                                                                    
+
+                                                                                    
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">isoview:</span>  </span>This  property  is  used  to  have  isometric  scales  on  the  x,  y  and  z  axes
+          (for exemple to make the display of the curve sin(x) versus cos(x) be a circle
+          not  an  ellipse).  Its  value  should  be  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> or  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span>.  If  the  value  is  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span>,  the
+          axes  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data_bounds</span></span></span> automatically  change  according  to  the  corresponding  figure
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">figure_size</span></span></span> property values.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">cube</span><span 
+class="cmbx-10x-x-109">_scaling:</span> </span>This property is used in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3d</span><span 
+class="cmtt-10x-x-109">&#x00A0;mode</span></span></span> to have a rescaling of the x, y and
+          z axes. Indeed, it allows the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data</span></span></span> to fit into a 1x1x1 cube ; the goal is to better
+          display 3d graphics in case axes scales are very different from one to another. Its
+          value should be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> (which is the default value). In most cases, it helps
+          generating Matlab-like 3d view.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">box:</span>  </span>This property specifies whether to enclose the axes in a box. Take as value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>
+          is to not display the box. The default is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">grid:</span>  </span>The field value is a vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[x-grid,y-grid,z-grid]</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x-grid</span></span></span> controls a
+          grid drawning for the x-axis and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y-grid,</span><span 
+class="cmtt-10x-x-109">&#x00A0;z-grid</span></span></span> respecting to the y-axis, z-axis.
+          The default values is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> grids are not drawn, else the grids are drawn using the
+          color given indexed by the grid value.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">log</span><span 
+class="cmbx-10x-x-109">_flags:</span>  </span>Property defines a linear or logarithmic scaling axes. The field value is a
+          2 characters string, each of them can take the value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> for linear (normal) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">l</span></span></span> for
+          logarithmic scales for the respective X and Y axis.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">x</span><span 
+class="cmbx-10x-x-109">_location:</span>  </span>Specify the location of the x-axis. The possible values are:
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;bottom&#x0022;</span></span></span>. In this case the x axis is drawn at the bottom of the axes rectangle.
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;top&#x0022;</span></span></span>. In this case the x axis is drawn at the top of the axes rectangle.
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;middle&#x0022;</span></span></span> . In this case the x axis is drawn at the position nearest to the 0 y
+              coordinates.</ul>
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">y</span><span 
+class="cmbx-10x-x-109">_location:</span>  </span>Specify the location of the y-axis. The possible values are:
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;left&#x0022;</span></span></span>. In this case the y axis is drawn at the left of the axes rectangle.
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;right&#x0022;</span></span></span>. In this case the y axis is drawn at the right of the axes rectangle.
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;middle&#x0022;</span></span></span>. In this case the y axis is drawn at the position nearest to the 0 x
+              coordinates.</ul>
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">tics</span><span 
+class="cmbx-10x-x-109">_color:</span>  </span>The value of this properties is index of the color used to draw axis lines and
+          tics.
+                                                                                    
+
+                                                                                    
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">font</span><span 
+class="cmbx-10x-x-109">_color:</span>  </span>This property determines the color of the tics labels.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">font</span><span 
+class="cmbx-10x-x-109">_size:</span>  </span>An integer specifying the font size used to draw the tics labels.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">sub</span><span 
+class="cmbx-10x-x-109">_ticks:</span>  </span>This field sets the number of tics to draw between two main tics. The field value
+          is the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[nx,ny]</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nx</span></span></span> is the number of sub tics for the x-axis and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ny</span></span></span> respecting
+          to the y-axis.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">tight</span><span 
+class="cmbx-10x-x-109">_limits:</span>  </span>If this property value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> axes adapt to fit exactly with the minima and
+          maxima values of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">data_bounds</span></span></span>. If this field value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span>, axes may enlarge
+          boundaries such as to produce pretty tics labels.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">data</span><span 
+class="cmbx-10x-x-109">_bounds:</span>  </span>This field contains the boundary values for the x,y and z coordinates. It is
+          the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xmin,ymin,zmin;xmax,ymax,zmax]</span></span></span>or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xmin,ymin;xmax,ymax]</span></span></span>
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">zoom</span><span 
+class="cmbx-10x-x-109">_box:</span>  </span>This field contains the current zoom box if any. coordinates. It is an empty
+          matrix (no zoom) or the vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[xmin,ymin,xmax,ymax]</span></span></span> (defines a rectangle given by
+          two opposite corners.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">axes</span><span 
+class="cmbx-10x-x-109">_bounds:</span>  </span>A vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[x_left,y_up,width,height]</span></span></span> specifying the portion of figure used
+          by this axes. Where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x_left</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y_up</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">width</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">height</span></span></span> are numbers in [0 1] give
+          respectively the position of the upper-left corner and the dimension of the axes (these
+          numbers are ratio relative to the corresponding figure <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">figure_size</span></span></span> property
+          values).
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">margins:</span>  </span>A vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[margin_left,margin_right,margin_top,margin_bottom]</span></span></span> specifying
+          the margins portion for this axes. This vector is composed of numbers between [0 1] with
+          default: [0.125 0.125 0.125 0.125] (these numbers are ratio relatives to the corresponding
+          figure <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">figure_size</span></span></span> property values).
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">title:</span>  </span>An object attached to the Axes entity and returning a graphic handle on a Label
+          structure (see <a 
+href="#label-properties">label_properties</a>    ). This field defines a title with options on this
+          label.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">x</span><span 
+class="cmbx-10x-x-109">_label:</span>  </span>An object attached to the Axes entity and returning a graphic handle on a Label
+          structure (see <a 
+href="#label-properties">label_properties</a>    ). This field defines a label on x axis with options on
+          this label.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">y</span><span 
+class="cmbx-10x-x-109">_label:</span>  </span>An object attached to the Axes entity and returning a graphic handle on a Label
+          structure (see <a 
+href="#label-properties">label_properties</a>    ). This field defines a label on y axis with options on
+          this label.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">z</span><span 
+class="cmbx-10x-x-109">_label:</span>  </span>An object attached to the Axes entity and returning a graphic handle on a Label
+                                                                                    
+
+                                                                                    
+          structure (see <a 
+href="#label-properties">label_properties</a>    ). This field defines a label on z axis with options on
+          this label.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">auto</span><span 
+class="cmbx-10x-x-109">_ticks:</span>  </span>A <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1x3</span></span></span> string vector giving the auto_ticks status for each axis. This property
+          specifies whether each axis is graduated using a computational algorithm or not
+          (graduations are set by the user). Its value should be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> for a
+          global setting.To act on a single axis, the syntax is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auto_ticks(N)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N</span></span></span>
+          is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1,2</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">3</span></span></span> corresponding to the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x,y</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z</span></span></span> axis. Note that editing labels via
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x_ticks.labels,</span><span 
+class="cmtt-10x-x-109">&#x00A0;y_ticks.labels</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z_ticks.labels</span></span></span> automatically set <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">auto_ticks</span></span></span>
+          to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> for the corresponding axes.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">x</span><span 
+class="cmbx-10x-x-109">_ticks.locations:</span>  </span>A real vector containing the locations for the graduations on x axis. This
+          property can be edited specifying a new real vector (of the same size). To specify
+          greater or lesser graduations, man can act on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x_ticks</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> defining a
+          corresponding<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;x_ticks.labels</span></span></span> string vector too.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">y</span><span 
+class="cmbx-10x-x-109">_ticks.locations:</span>  </span>A real vector containing the locations for the graduations on y axis. This
+          property can be edited specifying a new real vector (of the same size). To specify
+          greater or lesser graduations, man can act on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y_ticks</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> defining a
+          corresponding<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;y_ticks.labels</span></span></span> string vector too.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">z</span><span 
+class="cmbx-10x-x-109">_ticks.locations:</span>  </span>A real vector containing the locations for the graduations on z axis. This
+          property can be edited specifying a new real vector (of the same size). To specify
+          greater or lesser graduations, man can act on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z_ticks</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> defining a
+          corresponding<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;z_ticks.labels</span></span></span> string vector too.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">x</span><span 
+class="cmbx-10x-x-109">_ticks.labels:</span>  </span>A string vector containing the labels for the graduations on x axis. This
+          property can be edited specifying a new string vector (of the same size). To specify
+          greater or lesser graduations, man can act on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x_ticks</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> defining a
+          corresponding<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;x_ticks.locations</span></span></span> real vector too.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">y</span><span 
+class="cmbx-10x-x-109">_ticks.labels:</span>  </span>A string vector containing the labels for the graduations on y axis. This
+          property can be edited specifying a new string vector (of the same size). To specify
+          greater or lesser graduations, man can act on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y_ticks</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> defining a
+          corresponding<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;y_ticks.locations</span></span></span> real vector too.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">z</span><span 
+class="cmbx-10x-x-109">_ticks.labels:</span>  </span>A string vector containing the labels for the graduations on z axis. This
+          property can be edited specifying a new string vector (of the same size). To specify
+          greater or lesser graduations, man can act on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z_ticks</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tlist</span></span></span> defining a
+          corresponding<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;z_ticks.locations</span></span></span> real vector too.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">children:</span>  </span>A vector containing the handles of all graphics objects children of the axes These
+          graphics objects are of type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Agregation&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Rectangle&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Polyline&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Segs&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Arc&#x0022;</span></span></span>,
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;Grayplot&#x0022;</span></span></span>,.. (see <a 
+href="#agregation-properties">agregation_properties</a>    , <a 
+href="#rectangle-properties">rectangle_properties</a>    , <a 
+href="#champ-properties">champ_properties</a>
+          , <a 
+href="#axis-properties">axis_properties</a>    , <a 
+href="#polyline-properties">polyline_properties</a>    , <a 
+href="#segs-properties">segs_properties</a>    , <a 
+href="#grayplot-properties">grayplot_properties</a>    ,
+                                                                                    
+
+                                                                                    
+          <a 
+href="#surface-properties">surface_properties</a>    , <a 
+href="#param3d-properties">param3d_properties</a>    , <a 
+href="#fec-properties">fec_properties</a>    , <a 
+href="#text-properties">text_properties</a>    ,
+          <a 
+href="#legend-properties">legend_properties</a>    )
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">parent:</span>  </span>This field contains the handle of the parent figure.</ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Properties for high level functions</span> </span>The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">plot</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2dx</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">grayplot</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">matplot</span></span></span> functions use the
+     following properties to decide how to merge consecutive plots if this is not stated by the
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">frameflag</span></span></span> calling argument. The result of the merge is decided through these two following
+     properties:
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">auto</span><span 
+class="cmbx-10x-x-109">_clear:</span>  </span>If this property value is equal to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span>, a call to a high level graphic
+          will re-ininitialize the current axes and erase all its children before preforming the
+          drawing. If the value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> the drawings will be added to current axes according
+          to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;auto_scale&#x0022;</span></span></span> property.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">auto</span><span 
+class="cmbx-10x-x-109">_scale:</span>  </span>A property to update the axes data boundary. If value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span>, a new
+          plot will adapt the current axes properties to fit with previous and current plots.
+          If its value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> the new plot will be drawn in the current axes data boundary.</ul>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">Children s default values:</span>  </span>
+          <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">line</span><span 
+class="cmbx-10x-x-109">_style:</span>  </span>This field contains the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">line_style</span></span></span> property value for Segs, Arcs,
+          Rectangle and Polyline objects. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">line_style</span></span></span> selects the type of line to be used to
+          draw lines . Its value should be an integer in [0 9]. 0 stands for solid, the other
+          values stand for a selection of dashes (see <a 
+href="manualli428.html#getlinestyle">getlinestyle</a>    ).
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">thickness:</span>  </span>This field contains the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">thickness</span></span></span> property value for all objects
+          using line drawing. Its value should be positive integer.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">line</span><span 
+class="cmbx-10x-x-109">_mode:</span>  </span>This  field  contains  the  default  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">line_mode</span></span></span> property  value  for  Segs
+          Rectangle Legend Axis Plot3d Fac3d and Polyline objects. Its value should be
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>(default) or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span>.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">mark</span><span 
+class="cmbx-10x-x-109">_mode:</span>  </span>This  field  contains  the  default  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_mode</span></span></span> property  value  for  Segs
+          Rectangle Legend Axis Plot3d Fac3d and Polyline objects. Its value should be
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> (default).
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">mark</span><span 
+class="cmbx-10x-x-109">_style:</span>  </span>This  field  contains  the  default  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_style</span></span></span> property  value  for  Segs
+          Rectangle Legend Axis Plot3d Fac3d and Polyline objects. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_style</span></span></span> selects the
+          type of mark to be displayed. Its value should be an integer in [0 9] which stands
+          for: dot, plus, cross, star, filled diamond, diamond, triangle up, triangle down, trefle
+          and circle.
+                                                                                    
+
+                                                                                    
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">mark</span><span 
+class="cmbx-10x-x-109">_size</span><span 
+class="cmbx-10x-x-109">_unit:</span>  </span>This field contains the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size_unit</span></span></span> property value for
+          Segs Rectangle Legend Axis Plot3d Fac3d and Polyline objects. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size_unit</span></span></span>
+          is set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;point&#x0022;</span></span></span>, then the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size</span></span></span> value is directly given in points. When
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size_unit</span></span></span> is set to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;tabulated&#x0022;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size</span></span></span> is computed relative to the
+          font size array: therefore, its value should be an integer in [0 5] whith stands for
+          8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that <a 
+href="manualli473.html#plot2d">plot2d</a>    and pure scilab functions
+          use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tabulated</span></span></span> mode as default ; when using <a 
+href="manualli480.html#plot">plot</a>    function, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">point</span></span></span> mode is
+          automatically enabled.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">mark</span><span 
+class="cmbx-10x-x-109">_size:</span>  </span>This  field  contains  the  default  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size</span></span></span> property  value  for  Segs
+          Rectangle Legend Axis Plot3d Fac3d and Polyline objects. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_size</span></span></span> selects the
+          font size of mark to be displayed. Its value should be an integer in [0 5] whith
+          stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see <a 
+href="manualli429.html#getmark">getmark</a>    ).
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">foreground:</span>  </span>This field contains the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foreground</span></span></span> property value for axes and
+          all objects created under this axes. Its value should be a color index (relative to
+          the current color_map). Note that the default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> (default black) and, even
+          if you change the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_map</span></span></span>, this <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> value will always point onto the default black
+          color.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">background:</span>  </span>This property controls the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">background</span></span></span> property value for axes
+          and all objects created under this axes. It takes as value an index relative to the
+          current colormap.Note that the default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-2</span></span></span> (default white) and, even if you
+          change the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_map</span></span></span>, this <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-2</span></span></span> value will always point onto the default white color.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">mark</span><span 
+class="cmbx-10x-x-109">_foreground:</span>  </span>This field contains the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_foreground</span></span></span> property value
+          for all objects created under this axes. Polyline, rectangle, legend, surface, segment
+          and axis objects are using this property to specify a foreground (edge) color for their
+          marks. Its value should be a color index (relative to the current color_map). Note
+          that the default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> (default black) and, even if you change the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_map</span></span></span>,
+          this <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> value will always point onto the default black color.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">mark</span><span 
+class="cmbx-10x-x-109">_background:</span>  </span>This property controls the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mark_background</span></span></span> property
+          value for all objects created under this axes. Polyline, rectangle, legend, surface,
+          segment  and  axis  objects  are  using  this  property  to  specify  a  background
+          (face) color for their marks. It takes as value an index relative to the current
+          colormap.Note that the default value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-2</span></span></span> (default white) and, even if you change
+          the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">color_map</span></span></span>, this <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-2</span></span></span> value will always point onto the default white color.
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">hiddencolor:</span>  </span>This property controls the hidden parts&apos; color. It takes as value an index
+          relative to the current colormap. In another case, if it is a negative value, the
+          hidden parts take the same colors as the surface
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">clip</span><span 
+class="cmbx-10x-x-109">_state:</span>  </span>This field contains the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">clip_state</span></span></span> property value for all objects. Its
+                                                                                    
+
+                                                                                    
+          value should be:
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span> this means that all objects created after that are not clipped (default value).
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;clipgrf&#x0022;</span></span></span> this means that all objects created after that are clipped outside the
+              Axes boundaries.
+              <li class="nbitemize"><span class="bitem">
+           </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span></span> this  means  that  all  objects  created  after  that  are  clipped  outside  the
+              rectangle given by property clip_box.</ul>
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">clip</span><span 
+class="cmbx-10x-x-109">_box:</span>  </span>This field contains the default <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">clip_box</span></span></span> property value for all objects. Its value
+          should be an empty matrix if clip_state is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span></span>. Other case the clipping is given by the
+          vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[x,y,w,h]</span></span></span> (upper-left point width height).
+          <li class="nbitemize"><span class="bitem">
+     <span 
+class="cmbx-10x-x-109">Note on default values:</span> </span>
+              <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+           </span>All these listed properties and fields inherit from default values stored in an
+              axes model. These default values can be seen and changed. To do so, use
+              the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">get(&#x0022;default_axes&#x0022;)</span></span></span> command: it returns a graphic handle on the axes
+              model. Note that no graphic window is created by this command. The next
+              created axes will inherit from this model (see &#x201D;Example on axes model&#x201D; below).</ul>
+          </ul>
+     </ul>
+</p>
+<!--l. 333--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x376-2193000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb286"><a 
+ id="x376-2193091r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;lines(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;disables</span><span 
+class="cmitt-10x-x-109">&#x00A0;vertical</span><span 
+class="cmitt-10x-x-109">&#x00A0;paging</span></span><br class="fancyvrb" /><a 
+ id="x376-2193093r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;set(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;figure_style&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;new&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;figure</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193095r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=get(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;current_axes&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;newly</span><span 
+class="cmitt-10x-x-109">&#x00A0;created</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193097r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.axes_visible=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;makes</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;visible</span></span><br class="fancyvrb" /><a 
+ id="x376-2193099r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.font_size=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//set</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;tics</span><span 
+class="cmitt-10x-x-109">&#x00A0;label</span><span 
+class="cmitt-10x-x-109">&#x00A0;font</span><span 
+class="cmitt-10x-x-109">&#x00A0;size</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193101r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.x_location=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;top&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//set</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;axis</span><span 
+class="cmitt-10x-x-109">&#x00A0;position</span></span><br class="fancyvrb" /><a 
+ id="x376-2193103r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.data_bounds=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193105r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//set</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;boundary</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;x,</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;z</span><span 
+class="cmitt-10x-x-109">&#x00A0;coordinates.</span></span><br class="fancyvrb" /><a 
+ id="x376-2193107r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.sub_tics=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193109r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.labels_font_color=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193111r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.grid=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193113r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.box=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193115r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Example</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;3D</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span></span><br class="fancyvrb" /><a 
+ id="x376-2193117r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clf()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//clear</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphics</span><span 
+class="cmitt-10x-x-109">&#x00A0;window</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193119r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(x</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.3</span></span><span 
+class="cmtt-10x-x-109">,sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193121r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=gca()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;current</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193123r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.grid=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//make</span><span 
+class="cmitt-10x-x-109">&#x00A0;x-grid</span></span><br class="fancyvrb" /><a 
+ id="x376-2193125r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.rotation_angles=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">70</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">250</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//turn</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;giving</span><span 
+class="cmitt-10x-x-109">&#x00A0;angles</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193127r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.grid=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//make</span><span 
+class="cmitt-10x-x-109">&#x00A0;y-grid</span></span><br class="fancyvrb" /><a 
+ id="x376-2193129r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.view=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;2d&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//return</span><span 
+class="cmitt-10x-x-109">&#x00A0;te</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;2d</span><span 
+class="cmitt-10x-x-109">&#x00A0;view</span></span><br class="fancyvrb" /><a 
+ id="x376-2193131r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.box=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193133r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.labels_font_color=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193135r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children.children.thickness=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193137r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children.children.polyline_style=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193139r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.view=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;3d&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//return</span><span 
+class="cmitt-10x-x-109">&#x00A0;te</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;3d</span><span 
+class="cmitt-10x-x-109">&#x00A0;view</span></span><br class="fancyvrb" /><a 
+ id="x376-2193141r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children.children.thickness=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193143r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children.children.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193145r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.grid=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//make</span><span 
+class="cmitt-10x-x-109">&#x00A0;z-grid</span></span><br class="fancyvrb" /><a 
+ id="x376-2193147r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.parent.background=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193149r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.background=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193151r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(cos(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193153r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(cos(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193155r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">).children.polyline_style=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193157r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">).children.polyline_style=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193159r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">).children.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193161r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">).children.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">14</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193163r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.parent.figure_size=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1200</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">800</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193165r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.box=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193167r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.labels_font_size=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193169r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.parent.background=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+                                                                                    
+
+                                                                                    
+<br class="fancyvrb" /><a 
+ id="x376-2193171r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.parent.figure_size=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">400</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">200</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193173r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.rotation_angles=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">260</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193175r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;delete(a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193177r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;delete()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;delete</span><span 
+class="cmitt-10x-x-109">&#x00A0;current</span><span 
+class="cmitt-10x-x-109">&#x00A0;object</span></span><br class="fancyvrb" /><a 
+ id="x376-2193179r45"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.labels_font_size=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193181r46"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.auto_clear=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193183r47"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">plot2d(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">cos(x),sin(x))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193185r48"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=gca()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193187r49"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.rotation_angles=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">45</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">45</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193189r50"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.data_bounds=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">20</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193191r51"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xrect([</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193193r52"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.isoview=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;isoview</span><span 
+class="cmitt-10x-x-109">&#x00A0;mode</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193195r53"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xrect([</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.25</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193197r54"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">).fill_mode=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;on&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193199r55"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.axes_visibles=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;off&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193201r56"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">).data=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.25</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193203r57"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">).data=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193205r58"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193207r59"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xv=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">sin(x)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">yv=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">cos(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">.9</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">cos(x)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193209r60"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xsegs(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">xv,yv,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x376-2193211r61"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=a.children(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193213r62"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s.arrow_size=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193215r63"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s.segs_color=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193217r64"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.data_bounds</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//the</span><span 
+class="cmitt-10x-x-109">&#x00A0;boundary</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;x,y</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;z</span><span 
+class="cmitt-10x-x-109">&#x00A0;coordinates</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193219r65"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.view=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;2d&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193221r66"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a.data_bounds=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;set</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;boundary</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;two-dimensional</span><span 
+class="cmitt-10x-x-109">&#x00A0;views</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193223r67"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;Example</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span></span><br class="fancyvrb" /><a 
+ id="x376-2193225r68"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da=gda()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;handle</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;view</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;edit</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;fields</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193227r69"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;title</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span></span><br class="fancyvrb" /><a 
+ id="x376-2193229r70"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.title.text=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;My</span><span 
+class="cmtt-10x-x-109">&#x00A0;Default@Title&#x0022;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193231r71"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.title.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193233r72"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.title.font_size=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193235r73"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;labels</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span></span><br class="fancyvrb" /><a 
+ id="x376-2193237r74"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.x_label.text=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;x&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193239r75"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.x_label.font_style=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193241r76"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.x_label.font_size=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193243r77"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.x_label.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193245r78"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.x_location=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;middle&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193247r79"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;y</span><span 
+class="cmitt-10x-x-109">&#x00A0;labels</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span></span><br class="fancyvrb" /><a 
+ id="x376-2193249r80"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.y_label.text=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;y&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193251r81"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.y_label.font_style=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193253r82"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.y_label.font_size=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193255r83"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.y_label.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193257r84"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.y_location=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;right&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193259r85"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.thickness=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193261r86"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;da.foreground=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193263r87"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;plot</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193265r88"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x=(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x376-2193267r89"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(x,[sin(x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">sin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">sin(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">x)],style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">],rect</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">%pi</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x376-2193269r90"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;sda()</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;back</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;default</span><span 
+class="cmitt-10x-x-109">&#x00A0;axes</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span></span></div>
+<!--l. 427--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x376-2194000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli290.html#lines">lines</a>    <a 
+href="manualli500.html#set">set</a>    <a 
+href="manualli431.html#get">get</a>    <a 
+href="manualli419.html#gca">gca</a>    <a 
+href="manualli422.html#gda">gda</a>    <a 
+href="manualli421.html#gcf">gcf</a>    <a 
+href="manualli495.html#sda">sda</a>    <a 
+href="manualli496.html#sdf">sdf</a>    <a 
+href="manualli493.html#scf">scf</a>    <a 
+href="#graphics-entities">graphics_entities</a>
+</p>
+<!--l. 431--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x376-2195000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   Djalel ABDEMOUCHE
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli376.html" >next</a>] [<a 
+href="manualli374.html" >prev</a>] [<a 
+href="manualli374.html#tailmanualli374.html" >prev-tail</a>] [<a 
+href="manualli375.html" >front</a>] [<a 
+href="manualli370.html#manualli375.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli375.html"></a>  </p> 
+</body></html> 

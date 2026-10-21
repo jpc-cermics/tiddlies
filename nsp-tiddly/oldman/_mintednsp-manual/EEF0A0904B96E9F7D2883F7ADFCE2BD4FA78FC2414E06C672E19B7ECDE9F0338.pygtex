@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//(1a)}
+n=\nspnumber{40}\nspoperator{;}m=\nspnumber{30}\nspoperator{;}
+A=rand(n,n)\nspoperator{;}C=rand(n,m)\nspoperator{;}B=rand(m,m)\nspoperator{;}
+X=linmeq(\nspnumber{1},A,B,C)\nspoperator{;}
+norm(A\nspoperator{*}X\nspoperator{+}X\nspoperator{*}B\nspoperator{-}C,\nspnumber{1})
+\nspcomment{//(1b)}
+flag=[\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]
+X=linmeq(\nspnumber{1},A,B,C,flag)\nspoperator{;}
+norm(A\nspoperator{*}X\nspoperator{*}B\nspoperator{+}X\nspoperator{-}C,\nspnumber{1})
+\nspcomment{//(2a)}
+A=rand(n,n)\nspoperator{;}C=rand(A)\nspoperator{;}C=C\nspoperator{+}C\nspoperator{'}\nspoperator{;}
+X=linmeq(\nspnumber{2},A,C)\nspoperator{;}
+norm(A\nspoperator{'}\nspoperator{*}X\nspoperator{+}X\nspoperator{*}A\nspoperator{-}C,\nspnumber{1})
+\nspcomment{//(2b)}
+X=linmeq(\nspnumber{2},A,C,[\nspnumber{1}\nspoperator{,}\nspnumber{0}])\nspoperator{;}
+norm(A\nspoperator{'}\nspoperator{*}X\nspoperator{*}A\nspoperator{-}X\nspoperator{-}C,\nspnumber{1})
+\nspcomment{//(3a)}
+A=rand(n,n)\nspoperator{;}
+A=A\nspoperator{-}(max(real(spec(A)))\nspoperator{+}\nspnumber{1})\nspoperator{*}eye()\nspoperator{;}\nspcomment{//shift eigenvalues}
+C=rand(A)\nspoperator{;}
+X=linmeq(\nspnumber{3},A,C)\nspoperator{;}
+norm(A\nspoperator{'}\nspoperator{*}X\nspoperator{'}\nspoperator{*}X\nspoperator{+}X\nspoperator{'}\nspoperator{*}X\nspoperator{*}A\nspoperator{+}C\nspoperator{'}\nspoperator{*}C,\nspnumber{1})
+\nspcomment{//(3b)}
+A=[\nspoperator{-}\nspnumber{0.02}\nspoperator{,}\nspnumber{0.02}\nspoperator{,}\nspoperator{-}\nspnumber{0.10}\nspoperator{,}\nspnumber{0.02}\nspoperator{,}\nspoperator{-}\nspnumber{0.03}\nspoperator{,}\nspnumber{0.12}\nspoperator{;}\nspnumber{0.02}\nspoperator{,}\nspnumber{0.14}\nspoperator{,}\nspnumber{0.12}\nspoperator{,}\nspoperator{-}\nspnumber{0.10}\nspoperator{,}\nspoperator{-}\nspnumber{0.02}\nspoperator{,}\nspoperator{-}\nspnumber{0.14}\nspoperator{;}
+   \nspoperator{-}\nspnumber{0.10}\nspoperator{,}\nspnumber{0.12}\nspoperator{,}\nspnumber{0.05}\nspoperator{,}\nspnumber{0.03}\nspoperator{,}\nspoperator{-}\nspnumber{0.04}\nspoperator{,}\nspoperator{-}\nspnumber{0.04}\nspoperator{;}\nspnumber{0.02}\nspoperator{,}\nspoperator{-}\nspnumber{0.10}\nspoperator{,}\nspnumber{0.03}\nspoperator{,}\nspoperator{-}\nspnumber{0.06}\nspoperator{,}\nspnumber{0.08}\nspoperator{,}\nspnumber{0.11}\nspoperator{;}
+   \nspoperator{-}\nspnumber{0.03}\nspoperator{,}\nspoperator{-}\nspnumber{0.02}\nspoperator{,}\nspoperator{-}\nspnumber{0.04}\nspoperator{,}\nspnumber{0.08}\nspoperator{,}\nspnumber{0.14}\nspoperator{,}\nspoperator{-}\nspnumber{0.07}\nspoperator{;}\nspnumber{0.12}\nspoperator{,}\nspoperator{-}\nspnumber{0.14}\nspoperator{,}\nspoperator{-}\nspnumber{0.04}\nspoperator{,}\nspnumber{0.11}\nspoperator{,}\nspoperator{-}\nspnumber{0.07}\nspoperator{,}\nspnumber{0.04}]
+C=rand(A)\nspoperator{;}
+X=linmeq(\nspnumber{3},A,C,[\nspnumber{1}\nspoperator{,}\nspnumber{0}])\nspoperator{;}
+norm(A\nspoperator{'}\nspoperator{*}X\nspoperator{'}\nspoperator{*}X\nspoperator{*}A\nspoperator{-}X\nspoperator{'}\nspoperator{*}X\nspoperator{+}C\nspoperator{'}\nspoperator{*}C,\nspnumber{1})
+\end{Verbatim}

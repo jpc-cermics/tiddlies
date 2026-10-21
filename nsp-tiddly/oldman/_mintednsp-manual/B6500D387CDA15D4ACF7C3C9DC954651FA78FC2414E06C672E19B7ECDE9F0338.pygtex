@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//create a getdir function based on host}
+\nspkeyword{function} wd=\nspfunction{getdir}()
+  \nspkeyword{if} MSDOS \nspkeyword{then}
+    host(\nspstring{'cd$&gt;$'}\nspoperator{+}TMPDIR\nspoperator{+}\nspstring{'\nspbs{}path'})\nspoperator{;}
+  \nspkeyword{else}
+    host(\nspstring{'pwd$&gt;$'}\nspoperator{+}TMPDIR\nspoperator{+}\nspstring{'/path'})\nspoperator{;}
+  \nspkeyword{end}
+  wd=read(TMPDIR\nspoperator{+}\nspstring{'/path'},\nspnumber{1},\nspnumber{1},\nspstring{'(a)'})
+\nspkeyword{endfunction}
+\nspcomment{//call it}
+wd=getdir()
+\end{Verbatim}

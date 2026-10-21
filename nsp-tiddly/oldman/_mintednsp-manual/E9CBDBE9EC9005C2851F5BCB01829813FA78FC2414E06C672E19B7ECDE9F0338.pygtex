@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ta=[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{12}\nspoperator{,}\nspnumber{12}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{15}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{8}]\nspoperator{;}
+he=[\nspnumber{2}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{5}\nspoperator{,}\nspnumber{8}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{10}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{15}\nspoperator{,}\nspnumber{13}\nspoperator{,}\nspnumber{14}\nspoperator{,}\nspnumber{4}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{9}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{12}\nspoperator{,}\nspnumber{14}]\nspoperator{;}
+g=make_graph(\nspstring{'foo'},\nspnumber{1},\nspnumber{15},ta,he)\nspoperator{;}
+g(\nspstring{'node_x'})=[\nspnumber{194}\nspoperator{,}\nspnumber{191}\nspoperator{,}\nspnumber{106}\nspoperator{,}\nspnumber{194}\nspoperator{,}\nspnumber{296}\nspoperator{,}\nspnumber{305}\nspoperator{,}\nspnumber{305}\nspoperator{,}\nspnumber{418}\nspoperator{,}\nspnumber{422}\nspoperator{,}\nspnumber{432}\nspoperator{,}\nspnumber{552}\nspoperator{,}\nspnumber{550}\nspoperator{,}\nspnumber{549}\nspoperator{,}\nspnumber{416}\nspoperator{,}\nspnumber{548}]\nspoperator{;}
+g(\nspstring{'node_y'})=[\nspnumber{56}\nspoperator{,}\nspnumber{221}\nspoperator{,}\nspnumber{316}\nspoperator{,}\nspnumber{318}\nspoperator{,}\nspnumber{316}\nspoperator{,}\nspnumber{143}\nspoperator{,}\nspnumber{214}\nspoperator{,}\nspnumber{321}\nspoperator{,}\nspnumber{217}\nspoperator{,}\nspnumber{126}\nspoperator{,}\nspnumber{215}\nspoperator{,}\nspnumber{80}\nspoperator{,}\nspnumber{330}\nspoperator{,}\nspnumber{437}\nspoperator{,}\nspnumber{439}]\nspoperator{;}
+show_graph(g)\nspoperator{;}
+g1=g\nspoperator{;}ma=arc_number(g1)\nspoperator{;}
+rand(\nspstring{'uniform'})\nspoperator{;}
+\nspkeyword{while} %T \nspkeyword{do}
+  g1(\nspstring{'edge_min_cap'})=round(\nspnumber{5}\nspoperator{*}rand(\nspnumber{1},ma))\nspoperator{;}
+  g1(\nspstring{'edge_max_cap'})=round(\nspnumber{20}\nspoperator{*}rand(\nspnumber{1},ma))\nspoperator{+}\nspnumber{30}\nspoperator{*}ones(\nspnumber{1},ma)\nspoperator{;}
+  g1(\nspstring{'edge_q_orig'})=\nspnumber{0}\nspoperator{*}ones(\nspnumber{1},ma)\nspoperator{;}
+  g1(\nspstring{'edge_q_weight'})=ones(\nspnumber{1},ma)\nspoperator{;}
+  [c,phi,flag]=min_qcost_flow(\nspnumber{0.001},g1)\nspoperator{;}
+  \nspkeyword{if} flag\nspoperator{==}\nspnumber{1} \nspkeyword{then} \nspkeyword{break}\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+\nspkeyword{end}\nspoperator{;}
+x_message([\nspstring{'The cost is: '}\nspoperator{+}string(c)\nspoperator{;}\nspstring{'Showing the flow on the arcs'}])\nspoperator{;}
+ii=find(phi\nspoperator{ <> }\nspnumber{0})\nspoperator{;}edgecolor=phi\nspoperator{;}edgecolor(ii)=\nspnumber{11}\nspoperator{*}ones(ii)\nspoperator{;}
+g1(\nspstring{'edge_color'})=edgecolor\nspoperator{;}
+edgefontsize=\nspnumber{8}\nspoperator{*}ones(\nspnumber{1},ma)\nspoperator{;}edgefontsize(ii)=\nspnumber{18}\nspoperator{*}ones(ii)\nspoperator{;}
+g1(\nspstring{'edge_font_size'})=edgefontsize\nspoperator{;}
+g1(\nspstring{'edge_label'})=string(phi)\nspoperator{;}
+show_graph(g1)\nspoperator{;}
+\end{Verbatim}

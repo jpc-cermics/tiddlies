@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.4 Polynomials and Polynomial Matrices</TITLE>
+<META NAME="description" CONTENT="2.4 Polynomials and Polynomial Matrices">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node22.html">
+<LINK REL="previous" HREF="node19.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node21.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html513"
+ HREF="node21.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html509"
+ HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html503"
+ HREF="node19.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html511"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html512"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html514"
+ HREF="node21.html">2.4.1 Rational polynomial simplification</A>
+<B> Up:</B> <A NAME="tex2html510"
+ HREF="node13.html">2. Data Types</A>
+<B> Previous:</B> <A NAME="tex2html504"
+ HREF="node19.html">2.3 Matrices of Character</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00340000000000000000">&#160;</A>
+<A NAME="s2.4">&#160;</A><A NAME="1357">&#160;</A>
+<A NAME="1358">&#160;</A>
+<BR>
+2.4 Polynomials and Polynomial Matrices
+</H1>
+
+<P>
+Polynomials are easily created and manipulated in Scilab.
+Manipulation of polynomial matrices is essentially identical
+to that of constant matrices.
+The <TT>poly</TT><A NAME="1425">&#160;</A> 
+primitive in Scilab can be used to specify the coefficients
+of a polynomial or the roots of a polynomial.
+<PRE>
+--&gt;p=poly([1 2],'s')   //polynomial defined by its roots
+ p         =
+ 
+              2  
+    2 - 3s + s   
+ 
+--&gt;q=poly([1 2],'s','c')  //polynomial defined by its coefficients
+ q         =
+ 
+    1 + 2s   
+ 
+--&gt;p+q
+ ans       =
+ 
+             2  
+    3 - s + s   
+ 
+--&gt;p*q
+ ans       =
+ 
+              2    3  
+    2 + s - 5s + 2s   
+ 
+--&gt; q/p
+ ans       =
+ 
+      1 + 2s     
+    -----------  
+              2  
+    2 - 3s + s
+</PRE>Note that the polynomial <TT>p</TT> has the <EM>roots</EM>
+1 and 2 whereas the polynomial <TT>q</TT> has the <EM>coefficients</EM>
+1 and 2.  It is the third argument in the <TT>poly</TT> primitive which
+specifies the coefficient flag option.  
+In the case where the first argument of <TT>poly</TT> is a square matrix
+and the roots option is in effect the result is the characteristic
+polynomial of the matrix.
+<PRE>
+ 
+--&gt; poly([1 2;3 4],'s')
+ ans       =
+ 
+              2  
+  - 2 - 5s + s
+</PRE>Polynomials can be added,
+subtracted, multiplied, and divided, as usual, but only between polynomials
+of same formal variable.
+
+<P>
+Polynomials, like real and complex constants, can be used
+as elements in matrices.  This is a very useful feature of Scilab
+for systems theory.
+<PRE>
+ 
+--&gt;s=poly(0,'s');
+ 
+--&gt;A=[1 s;s 1+s^2]
+ A         =
+ 
+!   1     s      !
+!                !
+!              2 !
+!   s     1 + s  !
+ 
+--&gt; B=[1/s 1/(1+s);1/(1+s) 1/s^2]
+ B         =
+ 
+!   1           1    !
+! ------      ------ !
+!   s         1 + s  !
+!                    !
+!     1       1      !
+!    ---     ---     !
+!              2     !
+!   1 + s     s      !
+</PRE>From the above examples it can be seen that matrices can be constructed
+from polynomials and rationals.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS">&#160;</A>
+<UL>
+<LI><A NAME="tex2html515"
+ HREF="node21.html">2.4.1 Rational polynomial simplification</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html513"
+ HREF="node21.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html509"
+ HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html503"
+ HREF="node19.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html511"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html512"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html514"
+ HREF="node21.html">2.4.1 Rational polynomial simplification</A>
+<B> Up:</B> <A NAME="tex2html510"
+ HREF="node13.html">2. Data Types</A>
+<B> Previous:</B> <A NAME="tex2html504"
+ HREF="node19.html">2.3 Matrices of Character</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

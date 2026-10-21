@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.3.0.2 Some Manipulations</TITLE>
+<META NAME="description" CONTENT="5.3.0.2 Some Manipulations">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node59.html">
+<LINK REL="up" HREF="node58.html">
+<LINK REL="next" HREF="node61.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1038"
+ HREF="node61.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1034"
+ HREF="node58.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1030"
+ HREF="node59.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1036"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1037"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1039"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Up:</B> <A NAME="tex2html1035"
+ HREF="node58.html">5.3 Global Parameters of</A>
+<B> Previous:</B> <A NAME="tex2html1031"
+ HREF="node59.html">5.3.0.1 Graphics Context</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00630200000000000000">
+5.3.0.2 Some Manipulations</A>
+</H3>
+
+<P>
+Coordinates transforms:
+<UL>
+<LI><code>isoview</code>	: isometric scale without window change 
+
+<P>
+allows an isometric scale in the window of previous plots without changing
+the window size:
+
+<P>
+<PRE>
+t=(0:0.1:2*%pi)';
+plot2d(sin(t),cos(t));
+xbasc()
+isoview(-1,1,-1,1);
+plot2d(sin(t),cos(t),-1,'001');
+</PRE>
+<P>
+<LI><code>square</code>	: isometric scale with resizing the window
+
+<P>
+the window is resized according to the parameters of the command.
+
+<P>
+<LI><code>scaling</code>	: scaling on data
+<LI><code>rotate</code>	: rotation
+
+<P>
+<code>scaling</code> and <code>rotate</code> executes respectively an affine transform and
+a geometric rotation of a 2-lines-matrix corresponding to the <TT>(x,y) </TT>
+values of a set of points.
+<LI><code>xgetech, xsetech</code>	: change of scale inside the graphic window
+
+<P>
+The current graphic scale can be fixed by a high level plot command. You may
+want to get this parameter or to fix it directly : this is the role of 
+<code>xgetech, xsetech</code> . <TT>xsetech </TT> is a simple way to cut the
+window in differents parts for different plots :
+
+<P>
+<PRE>
+t=(0:0.1:2*%pi)';
+xsetech([0.,0.,0.6,0.3],[-1,1,-1,1]);
+plot2d(sin(t),cos(t));
+xsetech([0.5,0.3,0.4,0.6],[-1,1,-1,1]);
+plot2d(sin(t),cos(t));
+</PRE>
+<P>
+</UL>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1038"
+ HREF="node61.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1034"
+ HREF="node58.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1030"
+ HREF="node59.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1036"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1037"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1039"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Up:</B> <A NAME="tex2html1035"
+ HREF="node58.html">5.3 Global Parameters of</A>
+<B> Previous:</B> <A NAME="tex2html1031"
+ HREF="node59.html">5.3.0.1 Graphics Context</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

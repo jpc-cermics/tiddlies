@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_repmat</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli840.html" >next</a>] [<a 
+href="manualli838.html" >prev</a>] [<a 
+href="manualli838.html#tailmanualli838.html" >prev-tail</a>] [<a 
+href="#tailmanualli839.html">tail</a>] [<a 
+href="manualli756.html#manualli839.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x840-4882000"></a>mtlb_repmat</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx840-4882001"></a><a 
+ id="mtlb_repmat"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_repmat </span>&#x2013;                                                     Matlab repmat emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x840-4883000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > There is no Scilab equivalent function for Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">repmat</span></span></span> but there are equivalent instructions. The
+function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m[,n])</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">repmat(M,m[,n])</span></span></span> when it was
+not possible to know what were the inputs while porting Matlab code to Scilab. This function will
+determine the correct semantic at run time. If you want to have a more efficient code it is possible
+to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat</span></span></span> calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is of Double type and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is a scalar, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m)</span></span></span> may be replaced by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ones(m,m).*.M</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m,n)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ones(m,n).*.M</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is of Boolean type and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is a scalar, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m)</span></span></span> may be replaced
+          by  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ones(m,m).*.bool2s(M)</span></span></span> and  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m,n)</span></span></span> may  be  replaced  by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ones(m,n).*.bool2s(M)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is  of  String  type  and  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is  a  scalar,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m)</span></span></span> may  be  replaced
+          by  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">asciimat(ones(m,m).*.asciimat(M))</span></span></span> and  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m,n)</span></span></span> may  be
+          replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">asciimat(ones(m,n).*.asciimat(M))</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is of Double type and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is a vector, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m)</span></span></span> may be replaced by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ones(m(1),m(2),...).*.M</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is of Boolean type and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is a vector, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m)</span></span></span> may be replaced by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ones(m(1),m(2),...).*.bool2s(M)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is of String type and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> is a vector, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat(M,m)</span></span></span> may be replaced by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">asciimat(ones(m(1),m(2),...).*.asciimat(M))</span></span></span></li></ul>
+                                                                                    
+
+                                                                                    
+     </ul>
+<!--l. 54--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_repmat</span></span></span> has not to be used for hand coded functions.
+</p>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x840-4884000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli215.html#ones">ones</a>    <a 
+href="manualli182.html#kron">kron</a>
+</p>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x840-4885000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x840-4886000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli840.html" >next</a>] [<a 
+href="manualli838.html" >prev</a>] [<a 
+href="manualli838.html#tailmanualli838.html" >prev-tail</a>] [<a 
+href="manualli839.html" >front</a>] [<a 
+href="manualli756.html#manualli839.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli839.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,535 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <DIV ALIGN="center">
+<FONT SIZE="4"><B>Scilab&nbsp;: un logiciel libre pour le calcul
+scientifique<BR>
+quatri&egrave;me partie&nbsp;:<BR>
+<BR>
+<BR>
+&lt;&lt;Ajout de primitives Scilab&gt;&gt; </B></FONT> 
+</DIV>
+<BR>
+<BR>
+<BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<BR>
+<BR>
+Comme on l'a vu dans les articles pr&eacute;c&eacute;dents, l'utilisateur
+lambda de Scilab passe la plupart de son temps &agrave; &eacute;crire des
+fonctions en langage Scilab. Scilab est en effet un langage
+interpr&eacute;t&eacute;, donc tr&egrave;s commode d'usage mais, c'est le prix
+&agrave; payer, qui n'a pas l'efficacit&eacute; d'un code compil&eacute;. Dans
+certains cas, en particulier quand les boucles ne peuvent pas &ecirc;tre
+&eacute;vit&eacute;es par vectorisation, il peut &ecirc;tre n&eacute;cessaire
+d'avoir recours &agrave; des routines &eacute;crites en C ou Fortran. Scilab
+fournit un m&eacute;canisme simple permettant d'interfacer du code
+compil&eacute;. Cela est particuli&egrave;rement int&eacute;ressant car un
+petit coup d'oeil sur le Web montre qu'il y a une quantit&eacute;
+impressionnante de codes disponible&nbsp;: le free software, &ccedil;a
+marche&nbsp;! Pour s'en convaincre, voil&agrave; par exemple deux bonnes
+adresses &agrave; connaitre&nbsp;: <CODE>http://gams.nist.gov</CODE> qui est le
+Guide to Available Mathematical Software et <CODE>http://www.netlib.org</CODE>,
+le classique Netlib Repository. <BR>
+<BR>
+Dans cet article, nous allons donc nous focaliser sur l'ajout de nouvelles
+fonctions dans Scilab &agrave; partir de code externe (disons du C) et plus
+particuli&egrave;rement sur l'ajout dynamique (plug-in). Ces codes, une fois
+link&eacute;s &agrave; Scilab s'utilisent de la m&ecirc;me mani&egrave;re que
+les fonctions &eacute;crites en langage Scilab. On appellera ces fonctions des
+&lt;&lt;primitives&gt;&gt;, pour les distinguer des fonctions
+interpr&eacute;t&eacute;es.<BR>
+<BR>
+<!--TOC section Écriture d'une interface-->
+<H2>1&nbsp;&nbsp; &Eacute;criture d'une interface</H2>
+Je dispose d'une librairie de fonctions externes &eacute;crites en C. La
+librairie contient par exemple la fonction <CODE>geom</CODE> qui effectue
+<CODE>m*n</CODE> tirages al&eacute;atoires selon une loi
+g&eacute;om&eacute;trique de param&egrave;tre <CODE>p</CODE> et stocke les
+r&eacute;sultats dans un tableau d'entiers <CODE>y</CODE> de taille
+<CODE>m</CODE> x <CODE>n</CODE>. Savoir ce que fait exactement
+<CODE>geom</CODE> n'est pas vraiment utile pour nous ici. Disons simplement
+que, &eacute;tant donn&eacute;s les entiers <CODE>m</CODE> et <CODE>n</CODE> et
+le param&egrave;tre <CODE>p</CODE> cette fonction retourne le tableau
+<CODE>y</CODE>. Voil&agrave; le code de <CODE>geom</CODE> (qui est fort
+simple), la seule chose importante ici &eacute;tant sa liste d'appel&nbsp;:<BR>
+<BR>
+<PRE> 
+static int geom(int m,int n,double p,int y[])
+{
+  int i;
+  if ( p &gt;= 1.0 ) 
+    {
+      cerro(&quot;p doit-etre &lt; 1 &quot;); return 1;
+    }
+  for (i = 0 ; i &lt; m*n ; i++) 
+    {
+      double z = drand48();
+      y[i] = 1;
+      while ( z &lt; 1-p ) { z = drand48(); y[i] ++; }
+    }
+  return 0;
+}
+</PRE>
+Je souhaite donc rajouter dans Scilab une fonction (une
+&lt;&lt;primitive&gt;&gt;) de m&ecirc;me nom <CODE>geom</CODE> dont la syntaxe
+d'appel est <CODE>y=geom(m,n,p)</CODE>. La fonction <CODE>geom</CODE> est
+suppos&eacute;e effectuer <CODE>m*n</CODE> tirages de loi
+g&eacute;om&eacute;trique et renvoyer le r&eacute;sultat sous la forme d'une
+matrice Scilab de taille <CODE>m</CODE> x <CODE>n</CODE>. <BR>
+<BR>
+Pour ce faire, il faut &eacute;crire une interface, c'est-&agrave;-dire un
+programme (disons &agrave; nouveau en C) qui va &ecirc;tre charg&eacute; de
+faire les conversions et le passage des donn&eacute;es entre
+l'interpr&egrave;te Scilab et la fonction C <CODE>geom</CODE>. Nous appellerons
+<CODE>intgeom</CODE> l'interface pour la fonction <CODE>geom</CODE> (il faut
+&eacute;crire une interface pour chaque fonction que l'on veut interfacer).<BR>
+<BR>
+Il existe dans Scilab diverses fa&ccedil;ons d'&eacute;crire une interface.
+Nous allons utiliser ici la m&eacute;thode qui nous semble la plus simple et
+qui consiste &agrave; utiliser la librairie de fonctions illustr&eacute;e par
+de nombreux exemples dans le r&eacute;pertoire
+<CODE>SCI/examples/addinter-examples/</CODE>. <BR>
+<BR>
+Le r&eacute;pertoire <CODE>SCI/examples/addinter-tutorial/</CODE> donne aussi
+un exemple tr&egrave;s simple d'interface, destin&eacute;e aux utilisateurs
+d&eacute;butants, proche de celle d&eacute;crite dans cet article. On pourra
+trouver dans le r&eacute;pertoire <CODE>SCI/examples/</CODE>, d'autres
+m&eacute;thodes d'interfacage (voir les sous r&eacute;pertoires
+<CODE>link-examples</CODE>, <CODE>mex-examples</CODE> et
+<CODE>intersci-examples</CODE>).<BR>
+<BR>
+Pour &eacute;crire cette interface particuli&egrave;re, j'ai utilis&eacute; des
+fonctions de la librairie d'interfa&ccedil;age (<CODE>CheckRhs</CODE>,
+<CODE>CheckLhs</CODE>, <CODE>GetRhsVar</CODE> et <CODE>CreateVar</CODE>), des
+variables de la librairie d'interfa&ccedil;age (<CODE>LhsVar</CODE>) et des
+fonctions internes Scilab (<CODE>cerro</CODE>, aussi utilis&eacute;e dans
+<CODE>geom</CODE>). Pour utiliser les fonctions et les variables
+pr&eacute;c&eacute;dentes, il faut rajouter le fichier d'en-t&ecirc;te
+<CODE>stack-c.h</CODE> dans le fichier <CODE>intgeom.c</CODE>.<BR>
+<BR>
+L'interface de la fonction <CODE>geom</CODE> s'&eacute;crit alors de la
+fa&ccedil;on suivante&nbsp;:<BR>
+<BR>
+
+<PRE>
+#include &quot;stack-c.h&quot;
+
+static int geom(int m, int n, double p, int y[]);
+
+  int intgeom(char *fname)
+
+  int l1, m1, n1, l2, m2, n2, m3, n3, l3;
+  int minlhs=1, maxlhs=1, minrhs=3, maxrhs=3;
+  int m,n,ly;  double p;
+
+  CheckRhs(minrhs,maxrhs);		</PRE>
+
+<FONT FACE="symbol">&#172;</FONT> (1) CheckLhs(minlhs,maxlhs) ;
+GetRhsVar(1,&quot;i&quot;, &amp;m1, &amp;n1, &amp;l1); <FONT
+FACE="symbol">&#172;</FONT> (2) GetRhsVar(2,
+&quot;i&quot;,&amp;m2,&amp;n2,&amp;l2); GetRhsVar(3,&quot;d&quot;, &amp;m3,
+&amp;n3,&amp;l3); if (m1*n1 !=1 || m2*n2 !=1 || m3*n3!=1) cerro(&quot;Erreur:
+les arguments de geom doivent etre scalaires&quot;); return 0; m=*istk(l1);
+n=*istk(l2) ; p=*stk(l3); <FONT FACE="symbol">&#172;</FONT> (3)
+CreateVar(4,&quot;i&quot;,&amp;m,&amp;n,&amp;ly); <FONT
+FACE="symbol">&#172;</FONT> (4) if ( geom(m,n,p,istk(ly))==1 ) return 0;
+LhsVar(1)=4; <FONT FACE="symbol">&#172;</FONT> (5) return 0; A premi&egrave;re
+vue, cette fonction peut paraitre un peu compliqu&eacute;e. En fait on ne va
+pas taper tout ce code, mais plut&ocirc;t partir d'un exemple tout fait qu'on
+va adapter &agrave; notre cas. Puisque tous les programmes d'interface sont
+batis sur le m&ecirc;me moule, les modifications &agrave; faire sont
+tr&egrave;s faciles &agrave; r&eacute;aliser avec quelques retouches &agrave;
+l'&eacute;diteur. L'interface pr&eacute;c&eacute;dente pourrait par exemple
+&ecirc;tre utilis&eacute;e presque telle quelle pour n'importe quelle fonction
+C qui aurait une liste d'appel semblable &agrave; celle de <CODE>geom</CODE>.
+Comment cette interface marche-t-elle ? Quand sous l'interpr&egrave;te Scilab,
+je tape la commande <CODE>y=geom(m,n,p)</CODE>, les arguments sont
+&eacute;valu&eacute;s et leurs valeurs sont stock&eacute;es dans un tableau
+(que l'on appellera pile d'appel) dans l'ordre o&ugrave; ils apparaissent dans
+la liste d'appel. D'autre part le nombre d'arguments de retour attendus (ici
+<CODE>y</CODE>) est connu. La fonction d'interfa&ccedil;age
+<CODE>intgeom</CODE> doit tout d'abord contr&ocirc;ler que le nombre
+d'arguments transmis et attendus au retour sont corrects. Cela est fait en
+utilisant <CODE>CheckLhs</CODE> et <CODE>CheckRhs</CODE> qui effectuent un
+<CODE>return</CODE> si la contrainte qu'ils v&eacute;rifient est non
+v&eacute;rifi&eacute;e (cela est vrai pour toutes les autres fonctions
+d'interfa&ccedil;age que nous verrons). Voir (1). Dans l'interface, chaque
+variable Scilab est rep&eacute;r&eacute;e par un num&eacute;ro. Ici par
+exemple, la fonction Scilab &eacute;tant <CODE>y=geom(m,n,p)</CODE>, les
+variables d'entr&eacute;e <CODE>m,n,p</CODE> ont les num&eacute;ros 1,2,3.<BR>
+<BR>
+Ensuite, il faut v&eacute;rifier que chaque &eacute;l&eacute;ment
+pr&eacute;sent dans la liste d'appel a le bon type (est-ce une matrice, une
+cha&icirc;ne de caract&egrave;res, une fonction ?) et la bonne taille. Enfin il
+faut r&eacute;cup&eacute;rer un pointeur vers les donn&eacute;es pour pouvoir
+les transmettre &agrave; la fonction interfac&eacute;e&nbsp;; c'est ce qui est
+fait en (2).<BR>
+<BR>
+La commande suivante&nbsp;: <PRE> 
+  GetRhsVar(2, &quot;i&quot;, &amp;m2, &amp;n2, &amp;l2);
+</PRE>
+a pour effet de v&eacute;rifier que le deuxi&egrave;me argument de la liste
+d'appel est bien de type entier (<CODE>&quot;i&quot;</CODE>), (une conversion
+des donn&eacute;es en entiers est faite) et de renvoyer dans <CODE>m2</CODE> et
+<CODE>n2</CODE> les dimensions de la matrice et dans <CODE>l2</CODE> une
+adresse pour acc&eacute;der aux donn&eacute;es. <BR>
+<BR>
+Le deuxi&egrave;me argument &eacute;tant de type entier on obtient un pointeur
+d'entiers avec <CODE>istk(l2)</CODE>. Le deuxi&egrave;me argument de
+<CODE>geom</CODE> qui doit &ecirc;tre un entier est donc finalement
+r&eacute;cup&eacute;r&eacute; dans l'interface par <CODE>n=*istk(l2)</CODE>.
+Voir (3).<BR>
+<BR>
+On notera qu'il est prudent de v&eacute;rifier que <CODE>m2*n2</CODE> vaut bien
+1 car une utilisation de <CODE>n=*istk(l2)</CODE> dans un appel
+<CODE>y=geom(10,[],2.5)</CODE> donnera&icirc;t n'importe quoi. Le
+troisi&egrave;me argument est de type double (<CODE>&quot;d&quot;</CODE>) et on
+y acc&egrave;de par <CODE>p=*stk(l3)</CODE>. De mani&egrave;re
+g&eacute;n&eacute;rale, disposant des dimensions des arguments, on doit
+effectuer des v&eacute;rifications et en cas d'erreur on peut utiliser la
+fonction <CODE>cerro</CODE> pour afficher un message puis faire un
+<CODE>return</CODE> (Scilab prend alors le relais). On notera d'ailleurs que
+dans la fonction <CODE>geom</CODE>, j'ai aussi utilis&eacute; la fonction
+<CODE>cerro</CODE> pour imprimer un message d'erreur.<BR>
+<BR>
+Avant d'appeler la fonction <CODE>geom</CODE>, il faut cr&eacute;er une
+variable (r&eacute;server de la place) pour stocker le r&eacute;sultat
+<CODE>y</CODE>. On utilise la position <CODE>4</CODE> qui est la
+premi&egrave;re position libre apr&egrave;s les variables d'entr&eacute;e. La
+variable <CODE>y</CODE> doit &ecirc;tre une matrice d'entiers de taille
+<CODE>m</CODE>&#215;<CODE>n</CODE> et la fonction <CODE>geom</CODE> veut un
+pointeur d'entiers. La commande (4)&nbsp;:
+<CODE>CreateVar(4,&quot;i&quot;,&amp;m,&amp;n,&amp;ly)</CODE> se charge de
+cr&eacute;er dans la pile d'appel un nouvel objet Scilab avec le num&eacute;ro
+<CODE>4</CODE> (une matrice <CODE>m</CODE>&#215;<CODE>n</CODE>) et &agrave;
+nouveau on obtient une adresse pour acc&eacute;der aux donn&eacute;es
+<CODE>ly</CODE> (les donn&eacute;es sont enti&egrave;res et sont donc
+accessibles via <CODE>istk(ly)</CODE>)<BR>
+<BR>
+La syntaxe d'appel de <CODE>CreateVar</CODE> est la m&ecirc;me que celle de
+<CODE>GetRhsVar</CODE> sauf que les 4 premiers arguments sont des
+entr&eacute;es et le dernier une sortie calcul&eacute;e par
+<CODE>CreateVar</CODE>. Apr&egrave;s l'appel de <CODE>geom</CODE>, il ne reste
+plus qu'&agrave; renvoyer &agrave; Scilab le r&eacute;sultat. Voir (5). Le
+nombre de variables attendues par Scilab &agrave; d&eacute;j&agrave;
+&eacute;t&eacute; contr&ocirc;l&eacute; au d&eacute;but de l'interface
+(<CODE>CheckRhs</CODE>) et il ne reste plus qu'&agrave; indiquer par
+l'interm&eacute;diaire de <CODE>LhsVar(i)=j</CODE> les positions des variables
+que l'on veut renvoyer&nbsp;: l'instruction <CODE>LhsVar(1)=4</CODE> signifie
+&lt;&lt;la premi&egrave;re variable de sortie est la variable num&eacute;ro
+4&gt;&gt;. C'est Scilab qui contr&ocirc;le alors tout seul d'&eacute;ventuelles
+conversions de donn&eacute;es &agrave; effectuer. <BR>
+<BR>
+Il n'est bien s&ucirc;r pas question de d&eacute;crire ici toutes les fonctions
+de la biblioth&egrave;que d'interfa&ccedil;age. Le lecteur
+int&eacute;ress&eacute; pourra se reporter au r&eacute;pertoire
+<CODE>SCI/examples/addinter-examples</CODE> pour une description aux travers
+d'exemples de toutes les possibilit&eacute;s de la librairie. La connaissance
+des 4 fonctions d&eacute;crites ici, (<CODE>CheckLhs</CODE>,
+<CODE>CheckRhs</CODE>, <CODE>GetRhsVar</CODE>, <CODE>CreateVar</CODE>) permet
+d'interfacer la plupart des fonctions C. Dans le r&eacute;pertoire <BR>
+<CODE>SCI/examples/addinter-examples</CODE> on montre en particulier comment
+interfacer une fonction C qui a elle-m&ecirc;me une fonction comme
+param&egrave;tre d'entr&eacute;e, ou comment on peut appeler
+l'interpr&egrave;te Scilab &agrave; l'int&eacute;rieur d'une interface. C'est
+&eacute;videmment un peu plus compliqu&eacute;, mais des exemples simples sont
+donn&eacute;s pour r&eacute;aliser ce type d'interface.<BR>
+<BR>
+Les utilisateurs familiers des <CODE>mexfiles</CODE> Matlab pourront se
+reporter au r&eacute;pertoire <CODE>SCI/examples/mex-examples</CODE> pour
+constater que leurs fichiers <CODE>mex</CODE> (librairie d'interfa&ccedil;age
+de Matlab) marchent quasiment tels quels dans Scilab. <BR>
+<BR>
+<!--TOC section Chargement et utilisation-->
+
+<H2>2&nbsp;&nbsp; Chargement et utilisation</H2>
+Il nous reste une deuxi&egrave;me &eacute;tape importante&nbsp;: comment
+charger et utiliser le code pr&eacute;c&eacute;dent dans Scilab.<BR>
+<BR>
+Je suppose avoir mis les codes C pr&eacute;c&eacute;dents (fonctions
+<CODE>geom</CODE> et <CODE>intgeom</CODE>) dans mon r&eacute;pertoire courant.
+Il me faut maintenant charger ces codes dans Scilab pour d&eacute;finir la
+primitive Scilab <CODE>geom</CODE>. <BR>
+<BR>
+Pour cela, il faut compiler le code, le charger dynamiquement (en chargeant une
+librairie partag&eacute;e <CODE>.so</CODE>) et indiquer le nom Scilab (qu'on
+suppose &ecirc;tre aussi <CODE>geom</CODE>) que l'on veut donner &agrave; la
+fonction dont le code est interfac&eacute; par <CODE>intgeom</CODE>. <BR>
+<BR>
+On d&eacute;signe dans Scilab sous le nom de librairie d'interfaces, un
+ensemble de fonctions avec leur fonction d'interfa&ccedil;age
+associ&eacute;e.<BR>
+<BR>
+Je vais donc supposer que je veux rajouter dans Scilab la librairie
+d'interfaces <CODE>libalea</CODE> qui ne contient pour l'instant que
+<CODE>geom</CODE> et son interface <CODE>intgeom</CODE> (sachant que je pourrai
+ensuite enrichir ma librairie en rajoutant d'autres fonctions). <BR>
+<BR>
+Je cr&eacute;e le r&eacute;pertoire <CODE>addinter-linuxmag</CODE> chez moi et
+je copie le fichier <CODE>SCI/examples/addinter-tutorial/Makefile</CODE>
+dedans. Je l'adapte &agrave; mon nouvel interface comme suit (la lecture du
+petit fichier README s'impose)&nbsp;:<BR>
+<BR>
+<PRE> 
+SHELL = /bin/sh
+SCIDIR = /usr/lib/scilab-2.5
+LIBRARY = libalea.a
+OTHERLIBS = 
+############################################
+# To each .o interface (C or Fortran) associate one scilab function
+#    
+
+CINTERFACES = intgeom.o 
+CFUNCTIONS = geom 
+OTHERCOBJS = 
+...... 
+</PRE>
+Je ne reproduis ici que les lignes que j'ai chang&eacute;es. La variable
+<CODE>SCIDIR</CODE> doit contenir le nom du repertoire Scilab. La commande
+<CODE>LIBRARY=libalea.a</CODE> nomme ma lirairie d'interfaces. La variable
+<CODE>OTHERLIBS </CODE> permet d'indiquer d'autres librairies
+n&eacute;cessaires &agrave; l'ex&eacute;cution du code de l'interface. On
+notera par exemple que <CODE>geom</CODE> utilise la fonction
+<CODE>drand48</CODE> de la librairie math&eacute;matique <CODE>-lm</CODE>. On
+pourrait &ecirc;tre tent&eacute; de rajouter cette librairie dans
+<CODE>OTHERLIBS</CODE>. Cela marcherait mais c'est en fait inutile pour
+<CODE>drand48</CODE> car cette fonction est d&eacute;j&agrave;
+r&eacute;f&eacute;renc&eacute;e dans Scilab. <BR>
+<BR>
+La variable <CODE>CINTERFACES</CODE> doit contenir la liste des noms des
+fichiers C qui contiennent des interfaces. On notera que cette liste doit aussi
+donner la liste des interfaces et qu'on aura donc int&eacute;r&ecirc;t &agrave;
+cr&eacute;er un fichier par interface portant le m&ecirc;me nom que
+l'interface. <BR>
+<BR>
+La variable <CODE>CFUNCTIONS</CODE> contient la liste des noms des fonctions
+Scilab interfac&eacute;es. Par exemple la lecture du Makefile
+pr&eacute;c&eacute;dent indique que la fonction Scilab <CODE>geom</CODE> est
+interfac&eacute;e par l'interface <CODE>intgeom</CODE>. <BR>
+<BR>
+Enfin, la variable <CODE>OTHERCOBJS</CODE> contient la liste d'&eacute;ventuels
+autres fichiers objets n&eacute;cessaires pour la r&eacute;alisation de
+l'interface. <BR>
+<BR>
+Je rajoute <CODE>intgeom.c</CODE> dans le m&ecirc;me r&eacute;pertoire et en
+r&eacute;ponse &agrave; la commande Linux <CODE>make</CODE> j'obtiens <BR>
+<BR>
+
+<PRE> 
+lee% make
+rm -f libalea.sce libalea_gateway.c 
+Creation of libalea.a
+-- Generating the C function libalea_gateway.c
+cc -g  -I/s/scilab/routines   -c libalea_gateway.c -o libalea_gateway.o
+
+-- Generating the Scilab script libalea.sce
+
+------------------------------------------
+To load geom  
+        functions, at Scilab prompt, enter:
+--&gt;exec libalea.sce
+------------------------------------------
+</PRE>
+Le <CODE>make</CODE> a cr&eacute;&eacute; pour moi les deux fichiers
+<CODE>libalea.sce</CODE> et <CODE>libalea_gateway.c</CODE> et a compil&eacute;
+les fichiers sources. On suppose bien s&ucirc;r que le compilateur C
+<CODE>gcc</CODE> existe. Le chargement du code objet dans Scilab se fait en
+lan&ccedil;ant le script <CODE>libalea.sce</CODE> comme indiqu&eacute; par le
+<CODE>make</CODE>. <BR>
+<BR>
+Il ne me reste plus qu'a tester ma nouvelle primitive <CODE>geom</CODE> avec le
+petit script qui suit. On compare graphiquement (Figure&nbsp;<A
+HREF="#f:hist">1</A>) l'histogramme empirique obtenu par simulation et celui
+donn&eacute;e par la th&eacute;orie <BR>
+<BR>
+
+<PRE> 
+exec libalea.sce  // chargement de la librairie dynamique
+n=10000; pr=0.2
+y=geom(1,n,pr);   // appel de la nouvelle primitive
+N=20;  i=0:N;
+// tests des resultats 
+z=[]; for i1=i, z=[z,size(find(y==i1),'*')];end
+plot2d3(&quot;onn&quot;,i',z'/n,[1,3],&quot;161&quot;,&quot;Simulation&quot;);
+zt=[0];for i1=1:N; zt=[zt,pr*(1-pr)^(i1-1)];end
+plot2d1(&quot;onn&quot;,i',zt',[-2,6],&quot;100&quot;,&quot;Theorie&quot;);
+</PRE>
+
+<CENTER>
+<IMG SRC="linux-des.jpg" ALT="{short description of image}" WIDTH="500"
+ BORDER="0"> 
+</CENTER>
+Rien n'oblige bien s&ucirc;r &agrave; utiliser l'automatisation propos&eacute;e
+dans l'exemple <CODE>addinter-tutorial</CODE>. On peut construire une interface
+&agrave; la main. Les &eacute;tapes sont alors les suivantes, il faut
+&eacute;crire une fonction de gestion de l'interface (la m&eacute;thode
+pr&eacute;c&eacute;dente nous a fourni un exemple dans
+<CODE>libalea_gateway.c</CODE>), puis, apr&egrave;s compilation, charger le
+code dans Scilab au moyen de la commande <CODE>addinter</CODE>. Il est par
+exemple facile de modifier <CODE>addinter-tutorial</CODE> pour utiliser
+<CODE>libtool</CODE> plut&ocirc;t que de laisser Scilab (par
+l'interm&eacute;diaire de <CODE>addinter</CODE>) construire une librairie
+partag&eacute;e. <BR>
+<BR>
+<!--TOC section Utilisation de la commande link-->
+<H2>3&nbsp;&nbsp; Utilisation de la commande link</H2>
+Pour terminer cet article, il convient de parler d'un cas (encore) plus simple
+o&ugrave; on peut charger des fonctions dynamiquement dans Scilab sans avoir
+&agrave; &eacute;crire une interface. On utilise pour cela les fonctions Scilab
+<CODE>link</CODE> et <CODE>call</CODE>. Dans une premi&egrave;re &eacute;tape,
+je compile ma fonction C, <CODE>geom</CODE>, avec par exemple la commande
+<CODE>make geom.o</CODE>. Une contrainte m'est impos&eacute;e, je dois modifier
+ma fonction C pour que sa liste d'appel ne contienne que des pointeurs. <PRE>
+#include &lt;stdlib.h&gt;
+
+int geom(int *m, int *n, double *p, int y[])
+</PRE>
+Je charge alors dynamiquement cette fonction dans Scilab avec la commande 
+<PRE> 
+--&gt;link(&quot;geom.o&quot;,&quot;geom&quot;,&quot;C&quot;) 
+</PRE>
+Cette instruction signifie&nbsp;: charger le fichier objet <CODE>geom.o</CODE>
+qui contient le point d'entr&eacute;e <CODE>geom</CODE> et du code C. Je peux
+alors appeler la fonction C <CODE>geom</CODE> depuis Scilab et obtenir sa
+sortie comme une variable Scilab. Je dois donc envoyer &agrave;
+<CODE>geom</CODE> les param&egrave;tres d'entr&eacute;e <CODE>m,n</CODE> et
+<CODE>p</CODE> et r&eacute;cup&eacute;rer la matrice de sortie <CODE>y</CODE>.
+C'est la commande <CODE>call</CODE> qui permet de faire cet appel. La syntaxe
+est un peu longue car je dois fournir les valeurs des variables
+d'entr&eacute;es, mais aussi leur type C et leur position dans la liste d'appel
+de <CODE>geom</CODE>. Cela donne par exemple&nbsp;: 
+<PRE>
+--&gt;m=3;n=4;p=0.3;
+--&gt;y=call(&quot;geom&quot;,m,1,&quot;i&quot;,n,2,&quot;i&quot;,p,3,&quot;d&quot;,&quot;out&quot;,[m,n],4,&quot;i&quot;);
+</PRE>
+Dans cette derni&egrave;re instruction, on indique en premier argument le nom
+de la fonction C appel&eacute;e (c'est aussi le point d'entr&eacute;e
+pass&eacute; &agrave; <CODE>link</CODE>), puis entre <CODE>geom</CODE> et la
+chaine <CODE>out</CODE>, l'information relative aux variables d'entr&eacute;e
+et, apr&egrave;s la chaine <CODE>out</CODE>, l'information relative aux
+variables de sortie. &Agrave; chaque variable est associ&eacute; un triplet de
+param&egrave;tres. On interpr&egrave;te par exemple les trois param&egrave;tres
+<CODE>m,1,&quot;i&quot;</CODE> comme&nbsp;: passer la valeur <CODE>m</CODE>
+comme premier argument de <CODE>geom</CODE> de type <CODE>int</CODE>. En
+sortie, on aura&nbsp;: <CODE>y</CODE> (premier argument &agrave; gauche du
+signe &eacute;gal) est une matrice de dimension <CODE>[m,n]</CODE>,
+4i&egrave;me param&egrave;tre de <CODE>geom</CODE>, de type <CODE>int</CODE>.
+&Eacute;videmment, on peut encapsuler l'instruction <CODE>call(...)</CODE> dans
+une fonction Scilab <CODE>y=geom(m,n,p)</CODE> et en profiter pour faire des
+tests (par exemple de dimensions) sur les arguments pass&eacute;s &agrave;
+notre fonction C.<BR>
+<BR>
+Une autre utilisation de la commande link se fait dans le contexte suivant:
+certaines primitives Scilab comme par exemple les fonctions <CODE>ode</CODE>,
+<CODE>fsolve</CODE> ou <CODE>optim</CODE> admettent des arguments de type
+fonction. Par exemple pour chercher les z&eacute;ros de la fonction
+<I>cos</I>(<I>x</I>)*<I>x</I> 
+<SUP><FONT SIZE="2">2</FONT></SUP>-1, il faut construire une fonction Scilab <PRE> 
+function [y]=f(x) 
+y=cos(x)*x^2-1
+</PRE>
+et utiliser ensuite cette fonction <CODE>f</CODE> comme argument de la fonction
+<CODE>fsolve</CODE>&nbsp;: 
+<PRE>
+--&gt;y0=10; y=fsolve(y0,f) 
+</PRE>
+On peut parfois avoir envie de coder la fonction dont on cherche le z&eacute;ro
+dans un autre langage que Scilab. Dans ce cas, il ne faut pas vraiment
+&eacute;crire une interface, car la fonction <CODE>fsolve</CODE> a
+d&eacute;j&agrave; &eacute;t&eacute; pr&eacute;vue pour fonctionner avec des
+fonctions <CODE>f</CODE>externe. <CODE>fsolve</CODE> nous impose par contre une
+contrainte sur la liste d'appel de la fonction <CODE>f</CODE> qu'elle peut
+reconna&icirc;tre (voir le help de <CODE>fsolve</CODE>). L'exemple
+pr&eacute;c&eacute;dent pourrait &ecirc;tre cod&eacute; en C sous la
+forme&nbsp;:<BR>
+<BR>
+
+<PRE> 
+void f(int *n,double *x,double *fval,int *iflag) 
+{
+  *fval = cos(*x)*(*x)*(*x) - 1;
+}
+</PRE>
+Pour charger la fonction <CODE>f</CODE> d&eacute;finie en C dans Scilab on
+utilise la commande link&nbsp;:<BR>
+<BR>
+
+<PRE> 
+--&gt;link(&quot;f.o&quot;,&quot;f&quot;,&quot;C&quot;); 
+</PRE>
+et on indique &agrave; <CODE>fsolve</CODE> que le probl&egrave;me &agrave;
+r&eacute;soudre concerne la fonction <CODE>f</CODE> &eacute;crite en C en lui
+passant en argument la cha&icirc;ne <CODE>&quot;f&quot;</CODE>&nbsp;:<BR>
+<BR>
+
+<PRE> 
+--&gt;y0=10; y=fsolve(y0,&quot;f&quot;)
+</PRE>
+Cela est valable pour la plupart des primitives Scilab admettant des argument
+fonctionnels. <BR>
+<BR>
+Jean-Philippe Chancelier (Enpc, Cereve ) <BR>
+<CODE><A HREF="mailto:Scilab@inria.fr">Scilab@inria.fr</A></CODE> <BR>
+<CODE><A
+HREF="http://www-rocq.inria.fr/scilab/">http://www-rocq.inria.fr/scilab/</A></CODE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>1.2 Software Organization</TITLE>
+<META NAME="description" CONTENT="1.2 Software Organization">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html301"
+ HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html297"
+ HREF="node2.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html291"
+ HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html299"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html300"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html302"
+ HREF="node5.html">1.3 Installing Scilab. System</A>
+<B> Up:</B> <A NAME="tex2html298"
+ HREF="node2.html">1. Introduction</A>
+<B> Previous:</B> <A NAME="tex2html292"
+ HREF="node3.html">1.1 What is Scilab</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00220000000000000000">
+1.2 Software Organization</A>
+</H1>
+
+<P>
+Scilab is divided into a set of directories. The main directory
+<code>SCIDIR</code> contains the files <TT>scilab.star</TT> (startup file), the
+copyright file <TT>notice.tex</TT>, and the <code>configure</code> file
+(see(<A HREF="node5.html#install">1.3</A>)).
+The subdirectories are the following:
+<UL>
+<P>
+<LI><TT>bin</TT> is the directory of the executable files.
+The starting script <TT>scilab</TT> on Unix/Linux systems and <TT>runscilab.exe</TT> on Windows95/NT, The executable code of Scilab: <TT>scilex</TT> on Unix/Linux systems and <TT>scilex.exe</TT> on Windows95/NT are there. 
+This directory also contains Shell scripts 
+for managing or printing Postscript/L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X  files produced by Scilab.
+
+<P>
+<LI><TT>demos</TT> is the directory of demos. The file 
+<TT>alldems.dem</TT> allows to add a new demo which can be run by 
+clicking the ``Demos'' button. 
+This directory contains the codes corresponding
+to various demos. They are often useful for inspiring new users.
+Most of plot commands are illustrated by simple demo examples. 
+Note that running a graphic function without input parameter
+provides an example of use for this function (for instance <TT>plot2d()</TT> displays an example for using <TT>plot2d</TT>  function). 
+
+<P>
+<LI><TT>examples</TT> contains useful examples of how to link
+external programs to scilab, using dynamic link or <TT>intersci</TT>
+
+<P>
+<LI><TT>doc</TT> is the directory of the Scilab documentation: L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X , dvi 
+and Postscript files. 
+This documentation is <TT>SCIDIR/doc/intro/intro.tex</TT>. See 
+also the manual (on-line <TT>help</TT>) in the directory <TT>SCIDIR/man</TT>
+
+<P>
+<LI><TT>geci</TT> contains source code and binaries for GeCI which is an 
+interactive communication manager created in order to
+manage remote executions of softwares and allow exchanges of messages
+beetwen those programs. It offers the possibility to exploit numerous
+machines on a network, as a virtual computer, by creating a
+distributed group of independent softwares 
+(<code>help communications</code> for a detailed description).
+GeCI is used for the link of Xmetanet with Scilab.
+
+<P>
+<LI><TT>pvm3</TT> contains source code and binaries of the PVM version
+3 which is another interactive communication manager. 
+
+<P>
+<LI><TT>imp</TT> is the directory of the routines managing the Postscript files
+for print.
+
+<P>
+<LI><TT>libs</TT> contains the Scilab libraries (compiled code).
+
+<P>
+<LI><TT>macros</TT> contains the libraries of functions
+which are available on-line. New libraries can easily be added 
+(see the Makefile). This directory is divided into a number of subdirectories
+which contain ``Toolboxes'' for control, signal processing, etc... Strictly
+speaking Scilab is not organized in toolboxes : functions of a specific
+subdirectory can call functions of other directories; so, for example, the 
+subdirectory <TT>signal</TT> is not self-contained but its functions are all devoted
+to signal processing.
+
+<P>
+<LI><TT>man</TT> is the directory containing the manual divided 
+into submanuals, corresponding to the on-line help and to 
+a L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X  format of the reference manual. 
+The L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X  code is produced by a 
+translation of the Unix format Scilab manual (see the subdirectory
+<TT>SCIDIR/man</TT>).
+To get information about an item, one should enter 
+<TT>help item</TT><A NAME="245">&#160;</A> 
+in Scilab or use the help window facility obtained with help button.
+To get information corresponding to a key-word, one should  enter 
+<TT>apropos key-word</TT> or use 
+<TT>apropos</TT><A NAME="246">&#160;</A> in the help window. 
+All the <TT>item</TT>s and <TT>key-words</TT> known by the <TT>help</TT> and 
+<TT>apropos</TT> commands are in <TT>.cat</TT> and <TT>whatis</TT> files 
+located in the <TT>man</TT> subdirectories.
+
+<P>
+To add new items to the <code>help</code> and <TT>apropos</TT> commands 
+the user can extend the list of directories available to the help 
+browser by editing the file <TT>SCIDIR/man/Chapters</TT>. See the README file.
+
+<P>
+<LI><TT>maple</TT> is the directory which contains the source code of Maple
+functions which allow the transfer of Maple objects
+into Scilab functions. For efficiency, the transfer
+is made through Fortran code generation which is dynamically linked
+to Scilab.
+
+<P>
+<LI><TT>routines</TT> is a directory which contains the source code of all
+the numerical routines. The subdirectory <TT>default</TT> is important
+since it contains the
+source code of routines which are necessary to customize Scilab.
+In particular user's C or Fortran routines for ODE/DAE simulation 
+or optimization can be included here (they can be also dynamically
+linked).
+
+<P>
+<LI><TT>intersci</TT> contains the program provided for building
+interface programs necessary to add new Fortran or C 
+primitives to Scilab. This program is executed by the <TT>intersci</TT>
+script in the <TT>bin/intersci</TT> directory.
+
+<P>
+<LI><TT>scripts</TT> is the directory which contains the source code of 
+shell scripts files. Note that the list of printers <A NAME="177">&#160;</A> 
+names known by Scilab is defined there by an environment variable.
+
+<P>
+<LI><TT>tests</TT> : this directory contains evaluation programs for testing 
+Scilab's installation on a machine. The file ``demos.tst'' tests all the 
+demos.
+
+<P>
+<LI><TT>tmp</TT> : some examples written by users for courses, etc have been
+added in this directory. 
+
+<P>
+<LI><TT>util</TT> contains some utility functions for calling Scilab as a
+sub-routine or for making the documentation 
+
+<P>
+<LI><TT>xless</TT> is the Berkeley file browsing tool
+
+<P>
+<LI><TT>xmetanet</TT> is the directory which contains <TT>xmetanet</TT>, a 
+graphic display for networks. Type <TT>metanet()</TT> in Scilab to use it.
+
+<P>
+</UL>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html301"
+ HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html297"
+ HREF="node2.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html291"
+ HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html299"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html300"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html302"
+ HREF="node5.html">1.3 Installing Scilab. System</A>
+<B> Up:</B> <A NAME="tex2html298"
+ HREF="node2.html">1. Introduction</A>
+<B> Previous:</B> <A NAME="tex2html292"
+ HREF="node3.html">1.1 What is Scilab</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

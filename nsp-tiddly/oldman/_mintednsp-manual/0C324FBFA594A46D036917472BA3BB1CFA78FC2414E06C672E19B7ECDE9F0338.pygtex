@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// A simple example with lsqrsolve}
+a=[\nspnumber{1}\nspoperator{,}\nspnumber{7}\nspoperator{;}\nspnumber{2}\nspoperator{,}\nspnumber{8}\nspoperator{;}\nspnumber{4}\nspoperator{,}\nspnumber{3}]\nspoperator{;}
+b=[\nspnumber{10}\nspoperator{;}\nspnumber{11}\nspoperator{;}\nspoperator{-}\nspnumber{1}]\nspoperator{;}
+\nspkeyword{function} y=\nspfunction{f1}(x,m) y=a\nspoperator{*}x\nspoperator{+}b\nspoperator{;}\nspkeyword{endfunction}
+[xsol,v]=lsqrsolve([\nspnumber{100}\nspoperator{;}\nspnumber{100}],f1,\nspnumber{3})
+xsol\nspoperator{+}a\nspoperator{\nspbs{}}b
+\nspkeyword{function} y=\nspfunction{fj1}(x,m) y=a\nspoperator{;}\nspkeyword{endfunction}
+[xsol,v]=lsqrsolve([\nspnumber{100}\nspoperator{;}\nspnumber{100}],f1,\nspnumber{3},fj1)
+xsol\nspoperator{+}a\nspoperator{\nspbs{}}b
+\nspcomment{// Data fitting problem}
+\nspcomment{// 1 build the data}
+a=\nspnumber{34}\nspoperator{;}b=\nspnumber{12}\nspoperator{;}c=\nspnumber{14}\nspoperator{;}
+deff(\nspstring{'y=FF(x)'},\nspstring{'y=a*(x-b)+c*x.*x'})\nspoperator{;}
+X=(\nspnumber{0}\nspoperator{:}\nspnumber{.1}\nspoperator{:}\nspnumber{3})\nspoperator{'}\nspoperator{;}Y=FF(X)\nspoperator{+}\nspnumber{100}\nspoperator{*}(rand()\nspoperator{-}\nspnumber{.5})\nspoperator{;}
+\nspcomment{//solve}
+\nspkeyword{function} e=\nspfunction{f1}(abc,m)
+  a=abc(\nspnumber{1})\nspoperator{;}b=abc(\nspnumber{2})\nspoperator{,}c=abc(\nspnumber{3})\nspoperator{,}
+  e=Y\nspoperator{-}(a\nspoperator{*}(X\nspoperator{-}b)\nspoperator{+}c\nspoperator{*}X\nspoperator{ .*}X)\nspoperator{;}
+\nspkeyword{endfunction}
+[abc,v]=lsqrsolve([\nspnumber{10}\nspoperator{;}\nspnumber{10}\nspoperator{;}\nspnumber{10}],f1,size(X,\nspnumber{1}))\nspoperator{;}
+abc
+norm(v)
+\end{Verbatim}

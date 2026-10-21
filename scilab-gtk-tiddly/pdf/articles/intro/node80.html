@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.6.3 Including a Postscript File in LATEX</TITLE>
+<META NAME="description" CONTENT="5.6.3 Including a Postscript File in LATEX">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node81.html">
+<LINK REL="previous" HREF="node79.html">
+<LINK REL="up" HREF="node77.html">
+<LINK REL="next" HREF="node81.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1291"
+ HREF="node81.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1287"
+ HREF="node77.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1281"
+ HREF="node79.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1289"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1290"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1292"
+ HREF="node81.html">5.6.4 Postscript by Using</A>
+<B> Up:</B> <A NAME="tex2html1288"
+ HREF="node77.html">5.6 Printing and Inserting L<SUP>A</SUP>TEX</A>
+<B> Previous:</B> <A NAME="tex2html1282"
+ HREF="node79.html">5.6.2 Creating a Postscript</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00663000000000000000">
+5.6.3 Including a Postscript File in L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</A>
+</H2>
+
+<P>
+The <code>Blatexpr</code> Unix shell and the programs <code>Batexpr2</code> and 
+<code>Blatexprs</code> are provided in order to help inserting Scilab graphics 
+in L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X.
+
+<P>
+Taking the previous file <TT>foo.ps</TT> and  typing the following statement 
+under a Unix shell&nbsp;:
+<PRE>
+Blatexpr 1.0 1.0 foo.ps
+</PRE>creates two files <code>foo.epsf</code> and <code>foo.tex</code>. The original
+Postscript file is left unchanged. 
+To include the figure in a L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X&nbsp; document you should insert the following 
+L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X&nbsp; code in your L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X&nbsp; document&nbsp;:
+
+<P>
+<PRE>
+\input foo.tex
+\dessin{The caption of your picture}{The-label}
+</PRE>
+<P>
+You can also see your figure by using  the  Postscript
+previewer <code>ghostview</code>.
+
+<P>
+The program <code>Blatexprs</code> does the same thing: it is used to insert
+a set of Postscript figures in one L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>Xpicture.
+
+<P>
+In the following example, we begin by using the Postscript driver <TT>Pos</TT>
+and then initialize successively 4 Postscript files 
+<TT>fig1.ps, ..., fig4.ps</TT> for
+4 different plots and at the end return to the driver <TT>Rec</TT> (X11 driver
+with record).
+
+<P>
+<PRE>
+ 
+--&gt;//multiple Postscript files for Latex
+ 
+--&gt;driver('Pos')
+ 
+ 
+--&gt;t=%pi*(-10:10)/10;
+ 
+ 
+ 
+--&gt;plot3d1(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+ 
+--&gt;xend()
+ 
+ 
+ 
+--&gt;contour(1:5,1:10,rand(5,10),5);
+ 
+--&gt;xend()
+ 
+ 
+ 
+--&gt;champ(1:10,1:10,rand(10,10),rand(10,10));
+ 
+--&gt;xend()
+ 
+ 
+ 
+--&gt;t=%pi*(-10:10)/10;
+ 
+--&gt;deff('[z]=surf(x,y)','z=sin(x)*cos(y)');
+ 
+--&gt;rect=[-%pi,%pi,-%pi,%pi,-5,1];
+ 
+--&gt;z=feval(t,t,surf);
+ 
+--&gt;contour(t,t,z,10,35,45,'X@Y@Z',[1,1,0],rect,-5);
+ 
+--&gt;plot3d(t,t,z,35,45,'X@Y@Z',[2,1,3],rect);
+ 
+--&gt;title=['plot3d and contour '];
+ 
+--&gt;xtitle(title,' ',' ');
+ 
+--&gt;xend()
+ 
+ 
+--&gt;driver('Rec')
+</PRE>
+<P>
+Then we execute the command :
+
+<P>
+<PRE>
+  Blatexprs multi fig1.ps fig2.ps fig3.ps fig4.ps
+</PRE>
+<P>
+and we get 2 files <TT>multi.tex</TT> and  <TT>multi.ps</TT> and you can 
+include the result in a L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X&nbsp; source file by :
+
+<P>
+<PRE>
+\input multi.tex
+\dessin{The caption of your picture}{The-label}
+</PRE>
+<P>
+Note that the second line <TT>dessin...</TT> is absolutely necessary and you
+have of course to give the absolute path for the input file if you are 
+working in another directory (see below). The file <TT>multi.tex</TT> is only 
+the definition of the command <TT>dessin</TT> with 2 parameters : the caption 
+and the label; the command <TT>dessin</TT> can be used with one or two
+empty arguments <TT>`` ``</TT> if you want to avoid the caption or the label.   
+
+<P>
+The Postscipt files are inserted in L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X&nbsp; with the help of the
+<code>\special</code> command and with a syntax that works with the
+<code>dvips</code> program.
+
+<P>
+The program <code>Blatexpr2</code> is used when you want two pictures side
+by side.
+<PRE>
+  Blatexpr2 Fileres file1.ps file2.ps
+</PRE>
+<P>
+<BR>
+<DIV ALIGN="CENTER"><A NAME="d7-12">&#160;</A><A NAME="4431">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.14:</STRONG>
+Blatexp2 Example</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img25.gif"
+ ALT="\begin{figure}\begin{center}
+\setlength{\unitlength}{1cm}
+\fbox{\begin{picture}...
+...,5.00)
+\special{psfile=figures/d7.12.ps}
+\end{picture}}\end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+It is sometimes convenient to have a main L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X&nbsp; document in a directory
+and to store all the figures in a subdirectory. The proper way to
+insert a  picture file in the main document, when the picture 
+is stored in the subdirectory <code>figures</code>, is the following&nbsp;:
+
+<P>
+<PRE>
+\def\Figdir{figures/} % My figures are in the {\tt figures/ } subdirectory.
+\input{figures/fig.tex}
+\dessin{The caption of you picture}{The-label}
+</PRE>
+<P>
+The declaration <code>\def\Figdir{figures/}</code> is used twice, first to
+find the file <TT>fig.tex</TT> (when you use <code>latex</code>), and
+ second to produce a correct pathname for the
+<code>special</code> L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X&nbsp; command  found in <code>fig.tex</code>. (used at
+dvips level).
+
+<P>
+-WARNING : the default driver is <TT>Rec</TT>, i.e. all the graphic commands are
+recorded, one record corresponding to one window. The <TT>xbasc()</TT> command
+erases the plot on the active window and all the records corresponding to
+this window. The <TT>clear</TT> button has the same effect; the <TT>xclear</TT>
+command erases the plot but the record is preserved. So you almost never need
+to use the <TT>xbasc()</TT> or <TT>clear</TT> commands. If you use such a command 
+and if you re-do a plot you may have a surprising result (if you forget
+that the environment is wiped out); the scale only is preserved and so you 
+may have the ``window-plot'' and the ``paper-plot'' completely different.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1291"
+ HREF="node81.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1287"
+ HREF="node77.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1281"
+ HREF="node79.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1289"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1290"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1292"
+ HREF="node81.html">5.6.4 Postscript by Using</A>
+<B> Up:</B> <A NAME="tex2html1288"
+ HREF="node77.html">5.6 Printing and Inserting L<SUP>A</SUP>TEX</A>
+<B> Previous:</B> <A NAME="tex2html1282"
+ HREF="node79.html">5.6.2 Creating a Postscript</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

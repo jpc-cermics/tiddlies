@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>riccsl</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli71.html" >next</a>] [<a 
+href="manualli69.html" >prev</a>] [<a 
+href="manualli69.html#tailmanualli69.html" >prev-tail</a>] [<a 
+href="#tailmanualli70.html">tail</a>] [<a 
+href="manualli12.html#manualli70.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x71-410000"></a>riccsl</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx71-410001"></a><a 
+ id="riccsl"></a><span 
+class="cmtt-10x-x-109">riccsl </span>&#x2013;                                                                            Riccati equation solver<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x71-411000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-124">
+&#x00A0;&#x00A0;[X,RCOND,FERR]=riccsl(A,C,D,&#x0027;type&#x0027;,&#x0027;method&#x0027;)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x71-412000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">A,C,D</span>: real square matrices.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">type</span>: &apos;continuous&apos; or &apos;discrete&apos;
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">method</span>: &apos;schr&apos; or &apos;sign&apos; for continuous-time systems and &apos;schr&apos; or &apos;invf&apos; for discrete-tyme
+     systems
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: real matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">RCOND</span>: real number
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">FERR</span>: real number</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x71-413000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > Riccati solver. Continuous time:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-125">
+&#x00A0;&#x00A0;X=riccsl(A,C,D,&#x0027;cont&#x0027;,&#x0027;method&#x0027;)
+</div>
+<!--l. 43--><p class="nopar" >gives a solution to the continuous time ARE
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-126">
+&#x00A0;&#x00A0;A&#x0027;*X&#x00A0;+&#x00A0;X*A&#x00A0;+&#x00A0;C&#x00A0;-&#x00A0;X*D*X&#x00A0;=&#x00A0;0
+</div>
+<!--l. 47--><p class="nopar" >Discrete time:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-127">
+&#x00A0;&#x00A0;X=riccsl(A,C,D,&#x0027;disc&#x0027;,&#x0027;method&#x0027;)
+</div>
+<!--l. 51--><p class="nopar" >gives a solution to the discrete time ARE
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-128">
+&#x00A0;&#x00A0;A&#x0027;*X*inv(I&#x00A0;+&#x00A0;D*X)*A&#x00A0;-&#x00A0;X&#x00A0;+&#x00A0;C&#x00A0;=&#x00A0;0
+</div>
+<!--l. 55--><p class="nopar" >C, D are symmetric .It is assumed that the matrices A, C and D are such that the corresponding
+matrix pencil has N eigenvalues with moduli less than one. Error bound on the solution and a
+condition estimate are also provided. It is assumed that the matrices A, C and D are such
+that the corresponding Hamiltonian matrix has N eigenvalues with negative real parts.
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x71-414000"></a><span 
+class="cmbx-10x-x-109">Reference</span></span>
+   See SCIDIR/routines/control/riccpack. Code written by P. Petkov.
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x71-415000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1124.html#riccati">riccati</a>    <a 
+href="#ric-desc">ric_desc</a>    <a 
+href="manualli666.html#schur">schur</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli71.html" >next</a>] [<a 
+href="manualli69.html" >prev</a>] [<a 
+href="manualli69.html#tailmanualli69.html" >prev-tail</a>] [<a 
+href="manualli70.html" >front</a>] [<a 
+href="manualli12.html#manualli70.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli70.html"></a>  </p> 
+</body></html> 

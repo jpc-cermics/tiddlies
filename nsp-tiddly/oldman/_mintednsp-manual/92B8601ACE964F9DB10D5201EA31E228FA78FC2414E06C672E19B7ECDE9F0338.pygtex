@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+H=[\nspnumber{1}\nspoperator{/}(s\nspoperator{+}\nspnumber{0.5})\nspoperator{;}\nspnumber{2}\nspoperator{/}(s\nspoperator{-}\nspnumber{0.4})]\nspoperator{,}\nspcomment{//strictly proper}
+np=\nspnumber{20}\nspoperator{;}w=ldiv(H(\nspstring{'num'}),H(\nspstring{'den'}),np)\nspoperator{;}
+rep=[w(\nspnumber{1}\nspoperator{:}np)\nspoperator{'}\nspoperator{;}w(np\nspoperator{+}\nspnumber{1}\nspoperator{:}\nspnumber{2}\nspoperator{*}np)\nspoperator{'}]\nspoperator{;}\nspcomment{//The impulse response}
+H1=ss2tf(imrep2ss(rep))
+z=poly(\nspnumber{0},\nspstring{'z'})\nspoperator{;}
+H=(\nspnumber{2}\nspoperator{*}z\nspoperator{^}\nspnumber{2}\nspoperator{-}\nspnumber{3.4}\nspoperator{*}z\nspoperator{+}\nspnumber{1.5})\nspoperator{/}(z\nspoperator{^}\nspnumber{2}\nspoperator{-}\nspnumber{1.6}\nspoperator{*}z\nspoperator{+}\nspnumber{0.8})\nspoperator{,}\nspcomment{//Proper transfer function}
+u=zeros(\nspnumber{1},\nspnumber{20})\nspoperator{;}u(\nspnumber{1})=\nspnumber{1}\nspoperator{;}
+rep=rtitr(H(\nspstring{'num'}),H(\nspstring{'den'}),u)\nspoperator{;}\nspcomment{//Impulse rep.}
+\nspcomment{//   $<$=$>$ rep=ldiv(H('num'),H('den'),20)}
+w=z\nspoperator{*}imrep2ss(rep)\nspoperator{,}\nspcomment{//Realization with shifted impulse response}
+\nspcomment{// i.e strictly proper to proper}
+H2=ss2tf(w)\nspoperator{;}
+\end{Verbatim}

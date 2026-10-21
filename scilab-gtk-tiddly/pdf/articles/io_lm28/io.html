@@ -1,0 +1,541 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Scilab&nbsp;: Programmer les entr&eacute;es sorties</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+<META NAME="GENERATOR" CONTENT="hevea 1.05"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HEVEA command line is: hevea -I . io.tex -->
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<H1 ALIGN="CENTER"><B> Scilab&nbsp;: Programmer les entr&eacute;es sorties</B> 
+</H1>
+<BR>
+<BR>
+
+
+<!--TOC section Introduction-->
+<H2>1&nbsp;&nbsp; Introduction</H2>
+<!--SEC END -->
+La plupart des programmes ont besoin d'acqu&eacute;rir, de stocker et de
+visualiser des donn&eacute;es. Dans le cas des programmes de calcul
+num&eacute;rique, il s'agit essentiellement de pouvoir lire et &eacute;crire
+des nombres entiers ou flottants et des cha&icirc;nes de caract&egrave;res. Ces
+nombres peuvent &ecirc;tre repr&eacute;sent&eacute;s directement par leur
+codage interne en s&eacute;quence de bits, on parlera alors
+d'entr&eacute;e-sortie binaire ou alors comme du texte ASCII. Dans ce dernier
+cas la repr&eacute;sentation interne est convertie sous une forme lisible par
+l'utilisateur, on parlera alors d'entr&eacute;e-sortie format&eacute;e. Notons
+que pour les cha&icirc;nes de caract&egrave;res, il n'y a pas de
+diff&eacute;rence entre ces deux types de repr&eacute;sentations. Les
+entr&eacute;es-sorties format&eacute;es pr&eacute;sentent l'avantage
+d'&ecirc;tre facilement lues ou &eacute;crites par l'utilisateur. Bien
+&eacute;videmment le formatage induit un surco&ucirc;t de calcul. Les
+entr&eacute;es-sorties binaires permettent &eacute;galement de donner la
+repr&eacute;sentation des nombres sans erreur d'arrondi par rapport &agrave;
+leur repr&eacute;sentation interne.
+
+
+<!--TOC section Dialogue avec l'utilisateur-->
+<H2>2&nbsp;&nbsp; Dialogue avec l'utilisateur</H2>
+<!--SEC END -->
+Scilab offre plusieurs modes de dialogue avec l'utilisateur. Cela peut se faire
+par l'interm&eacute;diaire de l'interface graphique pr&eacute;sent&eacute;e
+dans un pr&eacute;c&eacute;dent article ou directement sous forme textuelle
+dans la fen&ecirc;tre d'entr&eacute;e-sortie de Scilab.
+
+
+<!--TOC subsection Affichage textuel avancé-->
+<H3>2.1&nbsp;&nbsp; Affichage textuel avanc&eacute;</H3>
+<!--SEC END -->
+<A NAME="mprintf"></A> Au del&agrave; de la visualisation par d&eacute;faut des
+variables, l'utilisateur peut souhaiter afficher des r&eacute;sultats avec un
+format particulier. Il est alors possible d'utiliser la fonction
+<EM>mprintf</EM> qui &eacute;mule la proc&eacute;dure <EM>printf</EM> du
+langage&nbsp;C. mprintf.dia On notera ici l'usage des formats &lt;&lt; C
+&gt;&gt; <EM>%i</EM> pour afficher des entiers et <EM>%f</EM> pour afficher des
+nombres flottants ainsi que qui d&eacute;note le retour &agrave; la ligne. Une
+solution alternative peut &ecirc;tre d'utiliser les fonctions et
+op&eacute;rations de manipulation de cha&icirc;nes de caract&egrave;res .
+string.dia Dans ce cas c'est la fonction <EM>string</EM> qui se charge du
+formatage des nombres, en utilisant la m&ecirc;me proc&eacute;dure que celle
+utilis&eacute;e pour l'affichage par d&eacute;faut. <BR>
+La fonction <EM>mprintf</EM> permet aussi de visualiser des tableaux de nombres
+et de cha&icirc;nes&nbsp;: mprintf2.dia La fonction <EM>mprintf</EM>
+r&eacute;it&egrave;re le format pour chaque ligne des tableaux de
+donn&eacute;es. Il montre aussi l'usage du format qui produit une tabulation
+ainsi que des formats <EM>%s</EM> qui permet le formattage d'une cha&icirc;ne
+de caract&egrave;res et <EM>%d</EM> qui permet le formattage des entiers.
+
+<!--TOC subsection Lecture de données à l'écran-->
+<H3>2.2&nbsp;&nbsp; Lecture de donn&eacute;es &agrave; l'&eacute;cran</H3>
+<!--SEC END -->
+Dans certains cas, un programme en cours d'ex&eacute;cution peut avoir &agrave;
+demander &agrave; l'utilisateur de fournir des donn&eacute;es
+suppl&eacute;mentaires. La fonction <EM>input</EM> envoie un message &agrave;
+l'utilisateur et se met en attente d'une r&eacute;ponse qui peut &ecirc;tre un
+simple nombre, une s&eacute;quence de nombres ou d'une cha&icirc;ne de
+caract&egrave;res selon l'option sp&eacute;cifi&eacute;e. Le programme
+ci-dessous demande &agrave; l'utilisateur de fournir les
+caract&eacute;ristiques d'un article pour cr&eacute;er une base de
+donn&eacute;es de produits: <A HREF="scilab/io1.sce">scilab/io1.sce</A><PRE>name=input(&quot;Donnez le nom de l&quot;'article&quot;,&quot;string&quot;);
+while %t 
+  data=input(&quot;Donnez son prix, son poids et le nombre en stock&quot;);
+  if size(data,&quot;*&quot;)==3 then break,end
+  mprintf(&quot;Saisie incorrecte !\n&quot;);
+end
+mprintf(&quot;\n%s prix=%.2fF, poids=%.2fkg, stock=%d\n&quot;,name,data)
+</PRE>
+Ici le premier appel &agrave; la fonction <EM>input</EM> avec l'option
+<EM>&quot;string&quot;</EM> attend la saisie d'une cha&icirc;ne de
+caract&egrave;res et le suivant, dans la boucle infinie <EM>while %t</EM>,
+attendent un vecteur de nombres. Le dialogue utilisateur sera alors&nbsp;: 
+<PRE>
+Donnez le nom de l'article--&gt;Chaise
+Donnez son prix, son poids et le nombre en stock--&gt;850.99 5.3 1000
+
+Chaise, prix=850.99F, poids=5.30kg, stock=1000
+</PRE>
+On notera dans cet exemple l'usage du format <EM>%.nf</EM> qui pr&eacute;cise
+le format <EM>%f</EM> en fixant le nombre <EM>n</EM> de d&eacute;cimales
+affich&eacute;es. <BR>
+Le code pr&eacute;c&eacute;dent peut aussi &ecirc;tre &eacute;crit en utilisant
+la fonction <EM>mscanf</EM>, &eacute;mulation de la fonction C <EM>scanf</EM>
+qui est plus souple que la fonction <EM>input</EM> : <A
+HREF="scilab/io2.sce">scilab/io2.sce</A>
+<PRE>
+Donnez le nom de l'article--&gt;Chaise
+Donnez son prix, son poids et le nombre en stock--&gt;850.99 5.3 1000
+
+Chaise, prix=850.99F, poids=5.30kg, stock=1000
+</PRE>
+<!--TOC section Lecture et écriture des fichiers-->
+
+<H2>3&nbsp;&nbsp; Lecture et &eacute;criture des fichiers</H2>
+<!--SEC END -->
+Pour acc&eacute;der &agrave; des quantit&eacute; importantes de donn&eacute;es
+il est en g&eacute;n&eacute;ral n&eacute;cessaire de les stocker dans des
+fichiers. L'utilisation de fichiers pour les entr&eacute;es-sorties est plus
+compliqu&eacute;e que les entr&eacute;es-sorties &agrave; l'&eacute;cran.
+<!--TOC subsection Chemins des fichiers-->
+<H3>3.1&nbsp;&nbsp; Chemins des fichiers</H3>
+<!--SEC END -->
+Dans Scilab les fichiers sont d&eacute;sign&eacute;s par leur chemin, de la
+m&ecirc;me fa&ccedil;on que pour le syst&egrave;me h&ocirc;te. Ces chemins sont
+en g&eacute;n&eacute;ral donn&eacute;s par des cha&icirc;nes de
+caract&egrave;res. Ces chemins peuvent &ecirc;tre absolus ou relatifs au
+r&eacute;pertoire courant. Il est possible de conna&icirc;tre ce
+r&eacute;pertoire courant en utilisant les fonctions <EM>pwd</EM> ou
+<EM>getcwd</EM> et de le modifier avec la fonction <EM>chdir</EM> : <PRE>
+mprintf(&quot;Donnez le nom de l&quot;'article,&quot;+..
+            &quot; son prix, son poids et le nombre en stock\n&quot;)
+while %t
+  [n,name,prix,poids,nombre]=mscanf(&quot;%s %f %f %d&quot;)
+  if n==4 then break,end
+  mprintf(&quot;Saisie incorrecte !\n&quot;);
+end
+mprintf(&quot;\n%s prix=%.2fF, poids=%.2fkg, stock=%d\n&quot;,..
+                          name,prix,poids,nombre)
+		      
+</PRE>
+la s&eacute;quence <EM>&nbsp;/</EM> repr&eacute;sente le &lt;&lt; home
+directory &gt;&gt; de l'utilisateur, tandis que <EM>SCI/</EM> est une
+abreviation pour le chemin du repertoire principal de Scilab.
+ 
+<!--TOC subsection Ouverture et fermeture des fichiers-->
+
+<H3>3.2&nbsp;&nbsp; Ouverture et fermeture des fichiers</H3>
+<!--SEC END -->
+Tout d'abord, avant de pouvoir acc&eacute;der aux donn&eacute;es d'un fichier,
+il faut cr&eacute;er un lien entre le fichier et Scilab. Cela se fait par
+l'interm&eacute;diaire de la fonction <EM>mopen</EM> qui, &eacute;tant
+donn&eacute; une cha&icirc;ne de caract&egrave;res contenant le chemin du
+fichier et quelques options, retourne un nombre, appel&eacute; identificateur
+ou unit&eacute; logique<A NAME="unite_logique"></A> de ce fichier, et
+d&eacute;finit le positionnement initial dans ce fichier<A NAME="text1"
+HREF="#note1"><SUP><FONT SIZE="2">1</FONT></SUP></A>. La fonction
+<EM>mopen</EM> interface la fonction C <EM>fopen</EM> ; sa syntaxe est : <PRE>
+[fd,err]=mopen(file,mode,swap)
+</PRE>
+<EM>file</EM> est une cha&icirc;ne de caract&egrave;res contenant le chemin du
+fichier. Par exemple <EM>&quot;&nbsp;/Scilab/dat01&quot;</EM> Le
+param&egrave;tre <EM>mode</EM> permet de sp&eacute;cifier si le fichier doit
+&ecirc;tre ouvert en lecture seule (<EM>&quot;r&quot;</EM>), en &eacute;criture
+seule (<EM>&quot;w&quot;</EM>), en compl&eacute;tion (&eacute;criture &agrave;
+la fin <EM>&quot;a&quot;</EM>) ou en lecture/&eacute;crirure
+(<EM>&quot;r+&quot;</EM>). La valeur par d&eacute;faut de <EM>mode</EM> est
+(<EM>&quot;rb&quot;</EM>). L'ajout du caract&egrave;re <EM>&quot;b&quot;</EM>
+sp&eacute;cifie que les donn&eacute;es num&eacute;riques stock&eacute;es dans
+le fichier sont repr&eacute;sent&eacute;es par leurs codes binaires. En
+l'abscence de cette option, les donn&eacute;es num&eacute;riques sont
+suppos&eacute;es &ecirc;tre repr&eacute;sent&eacute;es par leur
+repr&eacute;sentation formatt&eacute;e. Par d&eacute;faut, Scilab suppose que
+la repr&eacute;sentation des nombres dans les fichiers binaires correspond au
+format IEEE <I>little endian</I> <A NAME="text2" HREF="#note2"><SUP><FONT
+SIZE="2">2</FONT></SUP></A>, la conversion au format interne du processeur
+&eacute;tant alors faite automatiquement. L'option <EM>swap=0</EM> permet de
+d&eacute;sactiver cette conversion implicite. La fonction <EM>mopen</EM>
+retourne l'identificateur du fichier <EM>fd</EM> et &eacute;ventuellement un
+indicateur d'erreur. 
+<PRE>
+--&gt;fd1=mopen(&quot;SCI/scilab.star&quot;,&quot;r&quot;)
+ fd1  =
+    2. 
+--&gt;[fd2,err]=mopen(TMPDIR+&quot;/out&quot;,&quot;wb&quot;)
+ err  =
+    0.  
+ fd2  =
+    3. 
+</PRE>
+dispfiles.dia La fonction <EM>dispfiles</EM> permet d'examiner les fichiers
+ouverts. On remarque ici que les fichiers peuvent &ecirc;tre de deux types C
+(<EM>C</EM>) ou fortran (<EM>F77</EM>). Ce dernier type existe pour permettre
+de manipuler les fichiers cr&eacute;&eacute;s par ou pour d'autres logiciels
+&eacute;crits en fortran (voir la section <A HREF="#Fortran">4</A>). La
+fonction Scilab <EM>file</EM> permet d'acqu&eacute;rir les chemins des fichiers
+ouverts et leurs propri&eacute;t&eacute;s. Le nombre de fichiers pouvant
+&ecirc;tre ouverts simultan&eacute;ment est limit&eacute;, aussi il faut penser
+&agrave; fermer les fichiers qui ne sont plus utiles. Cela peut &ecirc;tre fait
+par la fonction <EM>mclose</EM> qui doit &ecirc;tre utilis&eacute;e &agrave; la
+fin du traitement du fichier pour d&eacute;connecter le fichier de
+l'environnement Scilab. Si <EM>fd</EM> est une unit&eacute; logique
+associ&eacute;e &agrave; un fichier, <EM>mclose(fd)</EM> ferme ce fichier. Il
+faut noter que les fichiers ouverts ne sont pas ferm&eacute;s automatiquement
+lorsqu'une erreur survient lors de l'ex&eacute;cution d'une instruction Scilab.
+L'instruction <EM>mclose(file())</EM> ferme tous les fichiers ouverts.
+
+<!--TOC subsection Lecture binaire-->
+
+<H3>3.3&nbsp;&nbsp; Lecture binaire</H3>
+<!--SEC END -->
+La lecture et l'&eacute;criture de fichiers binaires de type <EM>C</EM> permet
+d'&eacute;changer des donn&eacute;es avec la plupart des logiciels actuels. Les
+fichiers de sons, au format <EM>wav</EM> ou <EM>au</EM>, les fichiers d'images
+<EM>gif</EM>, <EM>ppm</EM> ou <EM>jpeg</EM>, les fichiers de sauvegarde de
+Scilab, voire m&ecirc;me les fichiers Excel <EM>xls</EM>. Ces fichiers sont
+constitu&eacute;s d'une s&eacute;quence d'octets, il est donc imp&eacute;ratif
+d'en conna&icirc;tre la structure pour pouvoir les lire et les interpreter ! Un
+exemple valant mieux que mille discours, montrons comment on peut &eacute;crire
+en Scilab la fonction <EM>readppm</EM> qui lit les fichiers d'images de la
+famille <EM>PPM</EM> (couleur), <EM>PGM</EM> (niveau de gris) et <EM>PBM</EM>
+(noir et blanc). Ce type de fichier d'image est structur&eacute; en quatre
+parties : <OL TYPE="1">
+<LI> une ligne de texte donnant le type (couleur, niveau de gris ou noir et
+blanc) et le mode de stockage (ASCII ou binaire) ; </LI>
+<LI> des lignes de commentaires d&eacute;butant par le caract&egrave;re
+<CODE>#</CODE> ; </LI>
+<LI> une ligne contenant les dimensions de l'image en pixels et selon les cas
+une ligne contenant le nombre de couleurs ; </LI>
+<LI> la s&eacute;quence des nombres caract&eacute;risant la couleur de chacun
+des pixels selon le type d'image consid&eacute;r&eacute;. </LI>
+</OL>
+Donnons tout d'abord la fonction permettant d'ouvrir le fichier et de tester
+s'il correspond au type d&eacute;sir&eacute;. <A
+HREF="scilab/open_ppm.sci">scilab/open_ppm.sci</A> <PRE>
+unction [ftyp,fd]=open_ppm(fil)
+fd=mopen(fil,&quot;rb&quot;) //ouverture du fichier
+
+
+
+h=mgetl(fd,1) //lecture du type
+//test du type qui doit &ecirc;tre:
+//    P1, P4 : image noir et blanc
+//    P2, P5 : image en niveau de gris
+//    P3, P6 : image couleur
+ftyp=find(h==&quot;P&quot;+string(1:6))
+if ftyp==[] then 
+  error(&quot;Ce n&quot;'est pas un fichier de type PBM, PGM ou PPM&quot;);
+end
+endfunction
+
+</PRE>
+On retrouve ici l'usage de la fonction <EM>mopen</EM> et l'on d&eacute;couvre
+celui de la fonction <EM>mgetl</EM> qui permet de lire une ou plusieurs lignes
+du fichier comme du texte. Les lignes de textes sont suppos&eacute;es
+termin&eacute;es par des marques de fin de ligne (pour lire une cha&icirc;ne de
+caract&egrave;res de longueur donn&eacute;e on peut utiliser la fonction
+<EM>mgetstr</EM>). <BR>
+La fonction <EM>ppm_get_comments</EM> ci-dessous lit les commentaires.
+<A HREF="scilab/ppm_get_comments.sci ">scilab/ppm_get_comments.sci </A>
+<PRE>
+function head=ppm_get_comments(fd)
+head=[];
+while %t
+  pos=mtell(fd);//m&eacute;morise la position courante
+  ligne=mgetl(fd,1) //lit une ligne comme du texte
+  first=part(ligne,1) //le premier caract&egrave;re de la ligne
+  if first ~=&quot;#&quot; then //est une ligne de commentaire
+    mseek(pos,fd) //positionnement au point m&eacute;moris&eacute;
+    break
+  end	
+  head=[head;ligne]
+end
+endfunction
+</PRE>
+Les fonctions <EM>mtell</EM> et <EM>mseek</EM> utilis&eacute;es ci-dessus
+permettent respectivement de m&eacute;moriser la position courante dans un
+fichier et de la (re-)positionner. <BR>
+Ensuite la fonction <EM>ppm_get_size</EM> permet de lire les dimensions de
+l'image et, s'il existe, le nombre de couleurs&nbsp;:
+<A HREF="scilab/ppm_get_size.sci">scilab/ppm_get_size.sci </A>
+<PRE>function [sz,nc]=ppm_get_size(fd,ftyp)
+// Dimensions de l'image
+ligne=mgetl(fd,1);
+execstr(&quot;sz=[&quot;+ligne+&quot;]&quot;);
+// Nombre de couleurs
+if and(ftyp~=[1,4]) then 
+  ligne=mgetl(fd,1);
+  execstr(&quot;nc=&quot;+ligne);
+else
+  nc=[];
+end
+endfunction
+</PRE>
+On observe ici l'usage de la fonction <EM>execstr</EM> qui permet
+d'&eacute;valuer une instruction Scilab donn&eacute;e par une cha&icirc;ne de
+caract&egrave;res. <BR>
+Enfin la fonction <EM>ppm_get_bin</EM> permet de lire la valeur des pixels dans
+le cas d'un stockage en binaire&nbsp;: <A
+HREF="scilab/ppm_get_bin.sci">scilab/ppm_get_bin.sci</A> 
+<PRE>function img=ppm_get_bin(fd,ftyp,sz)
+select ftyp
+case 4 then //blanc et noir
+  t=mgeti((sz(1)*sz(2))/8,'uc',fd);	
+  f=uint8(2.^(0:7))
+  img=matrix([(t&amp;f(8))/f(8);(t&amp;f(7))/f(7);
+            (t&amp;f(6))/f(6);(t&amp;f(5))/f(5);
+	    (t&amp;f(4))/f(4);(t&amp;f(3))/f(3);
+            (t&amp;f(2))/f(2);(t&amp;f(1))/f(1)],sz);
+case 5 then // niveau de gris
+  img=matrix(mgeti(sz(1)*sz(2),'uc',fd),sz)
+case 6 then // couleur
+  img=matrix(mgeti(3*sz(1)*sz(2),'uc',fd),[3,sz])
+end
+endfunction
+</PRE>
+Dans le cas &lt;&lt; noir et blanc &gt;&gt; les pixels sont stock&eacute;s
+&agrave; raison de 8 pixels par octet. l'op&eacute;rateur &amp; appliqu&eacute;
+&agrave; des variables de type entier effectue le &lt;&lt; ET &gt;&gt; bit
+&agrave; bit de ses deux op&eacute;randes. La fonction <EM>mgeti</EM> permet de
+lire des nombres entiers cod&eacute;s sur 1, 2 ou 4 octets dans un fichier
+binaire et de retourner un vecteur d'entiers de type correspondant. La fonction
+<EM>mget</EM> dont la syntaxe et le fonctionnement ressemblent &agrave; celles
+de <EM>mgeti</EM> permet de lire des donn&eacute;es flottantes ou
+enti&egrave;res et les convertit automatiquement en un vecteur Scilab standard.
+Le premier argument de ces fonctions donne le nombre d'entiers &agrave; lire,
+le second le type des donn&eacute;es que l'on souhaite lire&nbsp;: <BR>
+
+<DIV ALIGN="center">
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"> Type</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Code</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Type</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">Code</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"> char (un octet)</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&quot;c&quot;</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">unsigned char</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&quot;uc&quot;</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"> short (deux octets)</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&quot;s&quot;</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">unsigned short</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&quot;us&quot;</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"> int (4 octets)</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&quot;i&quot;</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">unsigned int</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&quot;ui&quot;</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"> float (4 octets)</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&quot;f&quot;</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">double (8 octets)</TD>
+<TD ALIGN="left" NOWRAP="NOWRAP">&quot;d&quot;</TD>
+</TR>
+<TR>
+<TD ALIGN="left" NOWRAP="NOWRAP"> </TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+Ces codes peuvent &ecirc;tre complet&eacute;s par un caract&egrave;re
+suppl&eacute;mentaire &lt;&lt; l &gt;&gt; ou &lt;&lt; b &gt;&gt; pour forcer
+l'interpr&eacute;tation &lt;&lt; little endian &gt;&gt; ou &lt;&lt; big endian
+&gt;&gt;. La visualisation graphique des images cod&eacute;es en niveau de gris
+(PGM) est r&eacute;alis&eacute;e simplement par la fonction&nbsp;:
+<A HREF="scilab/gray_image.sci">scilab/gray_image.sci</A><PRE>function gray_image(img)
+  xset(&quot;colormap&quot;,graycolormap(double(max(img))+1))
+  xset(&quot;wdim&quot;,size(img,1),size(img,2)) //taille de la fen&ecirc;tre
+  xsetech(arect=0*[1 1 1 1]) //suppression des marges
+  Matplot(img',&quot;020&quot;) //affichage
+endfunction</PRE>
+<BR>
+<BR>
+
+<CENTER>
+<P><IMG SRC="singes.png" ALT="bar" BORDER="0" ALIGN="CENTER"
+WIDTH="381" HEIGHT="285"></P>
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 1: L'affichage par gray_image (Le groupe Scilab au travail) 
+</DIV>
+<BR>
+
+
+
+<!--TOC subsection Lecture formattée-->
+<H3>3.4&nbsp;&nbsp; Lecture formatt&eacute;e</H3>
+<!--SEC END -->
+Consid&eacute;rons maintenant l'exemple de la lecture des fichiers PPM ASCII
+pour illustrer la lecture des donn&eacute;es formatt&eacute;es. L'en-t&ecirc;te
+des fichiers est la m&ecirc;me que pr&eacute;c&eacute;demment. La partie
+contenant la valeur des pixels est dans ce cas une s&eacute;quence d'entiers
+format&eacute;s sur 1 ou 3 caract&egrave;res et s&eacute;par&eacute;s par un
+caract&egrave;re blanc. La fonction de lecture s'&eacute;crit alors tr&egrave;s
+simplement. <A HREF="scilab/ppm_get_ascii.sci">scilab/ppm_get_ascii.sci</A> <PRE>function img=ppm_get_ascii(fd,ftyp,sz)
+//Lit les valeurs des pixels pour une image ASCII
+if or(ftyp==[4 5]) then //N&amp;B ou niveau de gris
+  img=matrix(uint8(mfscanf(sz(1)*sz(2),fd,&quot;%i &quot;)),sz)
+else
+  img=matrix(uint8(mfscanf(3*sz(1)*sz(2),fd,&quot;%i &quot;)),[3,sz])
+end
+endfunction
+</PRE>
+Cet exemple montre un usage simple de la fonction <EM>mfscanf</EM> bas&eacute;e
+sur la proc&eacute;dure C <EM>fscanf</EM>. Cette fonction a un comportement
+comparable &agrave; la fonction <EM>mscanf</EM> vue pr&eacute;c&eacute;demment,
+si ce n'est de lire les valeurs dans un fichier d&eacute;sign&eacute; par
+<EM>fd</EM> plut&ocirc;t que sur l'&eacute;cran. Dans cet exemple, il est
+n&eacute;cessaire de lire une grande quantit&eacute; de donn&eacute;es et
+l'usage d'une boucle interpret&eacute;e pour effectuer cette lecture ne serait
+pas efficace. Cette boucle est r&eacute;alis&eacute;e par la fonction elle
+m&ecirc;me. Le premier argument de la fonction <EM>mfscanf</EM> donne le nombre
+de fois ou il faut it&eacute;rer le format de lecture <EM>%i</EM>. Dans cet
+exemple les donn&eacute;es &agrave; lire sont toutes de m&ecirc;me type, mais
+il est &eacute;videmment possible de lire des fichiers contenant des
+donn&eacute;es de types h&eacute;t&eacute;rog&egrave;nes : <BR>
+Soit le fichier <EM>articles.dat</EM>: <BR>
+Table_chene 3999 45.4 59 TC Table_hetre 2071 45 23 TH Chaise_chene 850.99 5.3
+1000 CC Chaise_hetre 649 5 623 CH ... <BR>
+Chaque ligne contient le nom d'un article, son prix, son poids, le nombre en
+stock et un code. La s&eacute;quence d'instructions&nbsp;: 
+<PRE>
+fd=mopen(&quot;articles.dat&quot;,&quot;r&quot;);
+[n,nom,prix,poids,nombre,code]=mfscanf(-1,fd,&quot;%s %f %f %f %d %s&quot;);
+mclose(fd)
+</PRE>
+permet de lire l'ensemble des donn&eacute;es du fichier. La valeur <EM>-1</EM>
+pass&eacute;e comme premier argument de <EM>mfscanf</EM> indique que l'on
+souhaite lire toutes les lignes du fichier. 
+
+<!--TOC subsection Écriture binaire et formattée-->
+
+<H3>3.5&nbsp;&nbsp; &Eacute;criture binaire et formatt&eacute;e</H3>
+<!--SEC END -->
+Les fonctions permettant d'&eacute;crire des donn&eacute;es dans un fichier
+binaire sont similaires &agrave; celles utilis&eacute;es pour la lecture, les
+fonctions <EM>mgetl</EM>, <EM>mget</EM>, <EM>mgetstr</EM> &eacute;tant
+remplac&eacute;es par les fonctions <EM>mputl</EM>, <EM>mput</EM> et
+<EM>mputstr</EM>. <BR>
+Pour l'&eacute;criture formatt&eacute;e, la fonction <EM>mfprintf</EM>
+similaire &agrave; la fonction <EM>mprintf</EM> remplace la fonction
+<EM>mfscanf</EM>. Le script ci-dessous peut par exemple &ecirc;tre
+utilis&eacute; pour g&eacute;n&eacute;rer le fichier <TT>articles.dat</TT> : <PRE>
+nom    = [&quot;Table_chene&quot;;&quot;Table_hetre&quot;;&quot;Chaise_chene&quot;;&quot;Chaise_hetre&quot;];
+prix   = [  3999       ; 2071        ; 850.99       ; 649  ];
+poids  = [  45.4       ; 45          ; 5.3          ; 5    ];
+nombre = [  59         ; 23          ; 1000         ; 623  ] ;
+code   = [&quot;TC&quot;         ;&quot;TH&quot;         ;&quot;CC&quot;          ;&quot;CH&quot;  ] ;
+fd=mopen(&quot;articles.dat&quot;,&quot;w&quot;);
+mfprintf(fd,&quot;%s %.2f %.1f %d %s\n&quot;,nom,prix,poids,nombre,code);
+mclose(fd)
+</PRE>
+
+
+<!--TOC section Entrée-sortie fortran-->
+
+<H2>4&nbsp;&nbsp; Entr&eacute;e-sortie fortran</H2>
+<!--SEC END -->
+<A NAME="Fortran"></A> L'int&eacute;r&ecirc;t essentiel des fonctions
+d'entr&eacute;e-sortie fortran dans Scilab est de permettre la lecture et la
+g&eacute;n&eacute;ration de fichiers pour communiquer avec d'autres logiciels
+du monde fortran. Elles peuvent aussi &ecirc;tre utiles aux utilisateurs de
+l'ancienne &eacute;cole qui connaissent ce langage. Nous ne ferons ici que
+citer les fonctions correspondantes. &Agrave; la diff&eacute;rence de C, les
+entr&eacute;es-sorties fortran, sont structur&eacute;es en lignes ou en
+&lt;&lt; enregistrements &gt;&gt;. Les unit&eacute;s logiques utilis&eacute;es
+par les fonctions d'entr&eacute;e-sortie fortran ne sont pas les m&ecirc;mes
+que pour les identificateurs C. Pour les fonctions du monde fortran, les
+fichiers doivent &ecirc;tre ouverts par l'instruction
+<EM>file(&quot;open&quot;,...)</EM> et ferm&eacute;s par l'instruction
+<EM>file(&quot;close&quot;,...)</EM>. Les entr&eacute;es sorties
+formatt&eacute;es sont realis&eacute;es respectivement par les fonctions
+<EM>read</EM> et <EM>write</EM> qui utilisent des formats fortran Les fonctions
+d'entr&eacute;e-sortie binaire de type fortran sont <EM>readb</EM> et
+<EM>writeb</EM> pour les donn&eacute;es flottantes double pr&eacute;cision (8
+octets) et <EM>read4b</EM> et <EM>write4b</EM> pour les donn&eacute;es
+flottantes sur 4 octets. <BR>
+<BR>
+Serge Steer <BR> Scilab Group, Scilab@inria.fr
+<!--BEGIN NOTES document--><DL>
+<DT><A NAME="note1" HREF="#text1"><FONT SIZE="5">1</FONT></A></DT>
+<DD> Certaines fonctions de lecture ou &eacute;criture sur les fichiers
+cr&eacute;ent ce lien automatiquement &agrave; partir du nom de fichier </DD>
+<DT><A NAME="note2" HREF="#text2"><FONT SIZE="5">2</FONT></A></DT>
+<DD> Le format <I>little endian</I> correspond au mode de stockage o&ugrave; le
+bit de poids faible est stock&eacute; en premier contrairement au stockage <I>
+big endian</I> o&ugrave; c'est le bit de poids fort. Cette appelation provient
+du &lt;&lt; Voyage de Gulliver &gt;&gt; de Jonathan Swift o&ugrave; les
+Big-Endians et les Little-Endians discutent pour savoir si les oeufs &agrave;
+la coque doivent &ecirc;tre ouverts par le petit ou le gros bout ...! </DD>
+</DL>
+<!--END NOTES-->
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://pauillac.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

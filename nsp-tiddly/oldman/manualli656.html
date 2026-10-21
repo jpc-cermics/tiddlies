@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>qr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli657.html" >next</a>] [<a 
+href="manualli655.html" >prev</a>] [<a 
+href="manualli655.html#tailmanualli655.html" >prev-tail</a>] [<a 
+href="#tailmanualli656.html">tail</a>] [<a 
+href="manualli607.html#manualli656.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x657-3917000"></a>qr</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx657-3917001"></a><a 
+ id="qr"></a><span 
+class="cmtt-10x-x-109">qr </span>&#x2013;                                                                                        QR decomposition<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x657-3918000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-808">
+&#x00A0;&#x00A0;[Q,R]=qr(X&#x00A0;[,&#x0022;e&#x0022;])
+&#x00A0;<br />&#x00A0;&#x00A0;[Q,R,E]=qr(X&#x00A0;[,&#x0022;e&#x0022;])
+&#x00A0;<br />&#x00A0;&#x00A0;[Q,R,rk,E]=qr(X&#x00A0;[,tol])
+</div>
+<!--l. 27--><p class="nopar" >
+</p>
+<!--l. 30--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x657-3919000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">X</span>: real or complex matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol</span>: nonnegative real number
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Q</span>: square orthogonal or unitary matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">R</span>: matrix with same dimensions as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">E</span>: permutation matrix
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">rk</span>: integer (QR-rank of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>)</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x657-3920000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" >
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">[Q,R</span> </span>= qr(X)] produces an upper triangular matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> of the same dimension as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> and an
+     orthogonal (unitary in the complex case) matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q</span></span></span> so that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q*R</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Q,R]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;qr(X,&#x0022;e&#x0022;)</span></span></span>
+     produces an &#x201D;economy size&#x201D;: If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is m-by-n with m <span 
+class="cmmi-10x-x-109">&#x003E; </span>n, then only the first n columns
+     of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q</span></span></span> are computed as well as the first n rows of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>. From <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q*R</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;X</span></span></span> , it follows that the
+     kth column of the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>, is expressed as a linear combination of the k first columns
+     of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q</span></span></span> (with coefficients <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;R(1,k),</span><span 
+class="cmtt-10x-x-109">&#x00A0;...,</span><span 
+class="cmtt-10x-x-109">&#x00A0;R(k,k)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>). The k first columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q</span></span></span> make an
+     orthogonal basis of the subspace spanned by the k first comumns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>. If column <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span></span></span> of
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> (i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X(:,k)</span></span></span> ) is a linear combination of the first <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">p</span></span></span> columns of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>, then the entries
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R(p+1,k),</span><span 
+class="cmtt-10x-x-109">&#x00A0;...,</span><span 
+class="cmtt-10x-x-109">&#x00A0;R(k,k)</span></span></span> are zero. It this situation, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> is upper trapezoidal. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> has rank
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span>, rows <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R(rk+1,:),</span><span 
+class="cmtt-10x-x-109">&#x00A0;R(rk+2,:),</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span></span></span> are zeros.
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">[Q,R,E</span> </span>= qr(X)] produces a (column) permutation matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span>, an upper triangular <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> with
+     decreasing diagonal elements and an orthogonal (or unitary) <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q</span></span></span> so that <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X*E</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Q*R</span></span></span>.
+     If  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span> is  the  rank  of  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>,  the  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span> first  entries  along  the  main  diagonal  of  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>,  i.e.
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R(1,1),</span><span 
+class="cmtt-10x-x-109">&#x00A0;R(2,2),</span><span 
+class="cmtt-10x-x-109">&#x00A0;...,</span><span 
+class="cmtt-10x-x-109">&#x00A0;R(rk,rk)</span></span></span> are all different from zero. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[Q,R,E]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;qr(X,&#x0022;e&#x0022;)</span></span></span>
+     produces an &#x201D;economy size&#x201D;: If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> is m-by-n with m <span 
+class="cmmi-10x-x-109">&#x003E; </span>n, then only the first n columns
+     of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Q</span></span></span> are computed as well as the first n rows of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">[Q,R,rk,E</span> </span>= qr(X ,tol)] returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span> = rank estimate of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span> is the number of diagonal
+     elements in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> which are larger than a given threshold <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tol</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">[Q,R,rk,E</span> </span>= qr(X) ] returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span> = rank estimate of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rk</span></span></span> is the number of diagonal
+     elements in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span> which are larger than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tol=R(1,1)*%eps*max(size(R))</span></span></span>. See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">rankqr</span></span></span> for
+     a rank revealing QR factorization, using the condition number of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">R</span></span></span>.</ul>
+</p>
+<!--l. 73--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x657-3921000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb514"><a 
+ id="x657-3921017r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;QR</span><span 
+class="cmitt-10x-x-109">&#x00A0;factorization,</span><span 
+class="cmitt-10x-x-109">&#x00A0;generic</span><span 
+class="cmitt-10x-x-109">&#x00A0;case</span></span><br class="fancyvrb" /><a 
+ id="x657-3921019r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;X</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;tall</span><span 
+class="cmitt-10x-x-109">&#x00A0;(full</span><span 
+class="cmitt-10x-x-109">&#x00A0;rank)</span></span>
+<br class="fancyvrb" /><a 
+ id="x657-3921021r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Q,R]=qr(X)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">R]</span><br class="fancyvrb" /><a 
+ id="x657-3921023r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//X</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;fat</span><span 
+class="cmitt-10x-x-109">&#x00A0;(full</span><span 
+class="cmitt-10x-x-109">&#x00A0;rank)</span></span><br class="fancyvrb" /><a 
+ id="x657-3921025r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Q,R]=qr(X)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">X</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">R]</span>
+<br class="fancyvrb" /><a 
+ id="x657-3921027r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Column</span><span 
+class="cmitt-10x-x-109">&#x00A0;4</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;X</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;linear</span><span 
+class="cmitt-10x-x-109">&#x00A0;combination</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;columns</span><span 
+class="cmitt-10x-x-109">&#x00A0;1</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;2:</span></span>
+<br class="fancyvrb" /><a 
+ id="x657-3921029r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)=X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">X(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Q,R]=qr(X)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">R</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">R(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x657-3921031r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//X</span><span 
+class="cmitt-10x-x-109">&#x00A0;has</span><span 
+class="cmitt-10x-x-109">&#x00A0;rank</span><span 
+class="cmitt-10x-x-109">&#x00A0;2,</span><span 
+class="cmitt-10x-x-109">&#x00A0;rows</span><span 
+class="cmitt-10x-x-109">&#x00A0;3</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;$</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;R</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;zero:</span></span>
+<br class="fancyvrb" /><a 
+ id="x657-3921033r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;X=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">[Q,R]=qr(X)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">R</span><br class="fancyvrb" /><a 
+ id="x657-3921035r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//Evaluating</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;rank</span><span 
+class="cmitt-10x-x-109">&#x00A0;rk:</span><span 
+class="cmitt-10x-x-109">&#x00A0;column</span><span 
+class="cmitt-10x-x-109">&#x00A0;pivoting</span><span 
+class="cmitt-10x-x-109">&#x00A0;==$&#x003E;$</span><span 
+class="cmitt-10x-x-109">&#x00A0;rk</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span></span>
+<br class="fancyvrb" /><a 
+ id="x657-3921037r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//diagonal</span><span 
+class="cmitt-10x-x-109">&#x00A0;entries</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;R</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;non</span><span 
+class="cmitt-10x-x-109">&#x00A0;zero:</span></span><br class="fancyvrb" /><a 
+ id="x657-3921039r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x657-3921041r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Q,R,rk,E]=qr(A,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.E-10</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x657-3921043r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(Q</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">R)</span><br class="fancyvrb" /><a 
+ id="x657-3921045r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;svd([A</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">Q(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">rk)])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//span(A)</span><span 
+class="cmitt-10x-x-109">&#x00A0;=span(Q(:,1:rk))</span></span></div>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x657-3922000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli660.html#rankqr">rankqr</a>    <a 
+href="manualli661.html#rank">rank</a>    <a 
+href="manualli674.html#svd">svd</a>    <a 
+href="manualli663.html#rowcomp">rowcomp</a>    <a 
+href="manualli616.html#colcomp">colcomp</a>
+qr decomposition is based the Lapack routines DGEQRF, DGEQPF, DORGQR for the real
+matrices and ZGEQRF, ZGEQPF, ZORGQR for the complex case.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli657.html" >next</a>] [<a 
+href="manualli655.html" >prev</a>] [<a 
+href="manualli655.html#tailmanualli655.html" >prev-tail</a>] [<a 
+href="manualli656.html" >front</a>] [<a 
+href="manualli607.html#manualli656.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli656.html"></a>  </p> 
+</body></html> 

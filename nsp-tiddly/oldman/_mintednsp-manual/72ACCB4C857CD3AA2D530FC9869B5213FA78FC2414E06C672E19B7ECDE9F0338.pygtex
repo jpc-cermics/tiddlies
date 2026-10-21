@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+f=[\nspnumber{0}\nspoperator{,}\nspnumber{0.4}\nspoperator{,}\nspnumber{0.4}\nspoperator{,}\nspnumber{0.6}\nspoperator{,}\nspnumber{0.6}\nspoperator{,}\nspnumber{1}]\nspoperator{;}H=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}Hz=yulewalk(\nspnumber{8},f,H)\nspoperator{;}
+fs=\nspnumber{1000}\nspoperator{;}fhz=f\nspoperator{*}fs\nspoperator{/}\nspnumber{2}\nspoperator{;}
+xbasc(\nspnumber{0})\nspoperator{;}xset(\nspstring{'window'},\nspnumber{0})\nspoperator{;}plot2d(fhz\nspoperator{'},H\nspoperator{'})\nspoperator{;}
+xtitle(\nspstring{'Desired Frequency Response (Magnitude)'})
+[frq,repf]=repfreq(Hz,\nspnumber{0}\nspoperator{:}\nspnumber{0.001}\nspoperator{:}\nspnumber{0.5})\nspoperator{;}
+xbasc(\nspnumber{1})\nspoperator{;}xset(\nspstring{'window'},\nspnumber{1})\nspoperator{;}plot2d(fs\nspoperator{*}frq\nspoperator{'},abs(repf\nspoperator{'}))\nspoperator{;}
+xtitle(\nspstring{'Obtained Frequency Response (Magnitude)'})
+\end{Verbatim}

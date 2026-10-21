@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{// Create a simple M-file}
+write(TMPDIR\nspoperator{+}\nspstring{'/rot90.m'}, ...
+      [\nspstring{'function B = rot90(A,k)'}\nspoperator{;}\nspstring{'[m,n] = size(A);'}\nspoperator{;}\nspstring{'if nargin == 1'}\nspoperator{;}\nspstring{'    k = 1;'}\nspoperator{;}\nspstring{'else'}\nspoperator{;}
+       \nspstring{'    k = rem(k,4);'}\nspoperator{;}\nspstring{'    if k $&lt;$ 0'}\nspoperator{;}\nspstring{'        k = k + 4;'}\nspoperator{;}\nspstring{'    end'}\nspoperator{;}\nspstring{'end'}\nspoperator{;}
+       \nspstring{'if k == 1'}\nspoperator{;}\nspstring{'    A = A.'';'}\nspoperator{;}\nspstring{'    B = A(n:-1:1,:);'}\nspoperator{;}\nspstring{'elseif k == 2'}\nspoperator{;}
+       \nspstring{'    B = A(m:-1:1,n:-1:1);'}\nspoperator{;}\nspstring{'elseif k == 3'}\nspoperator{;}\nspstring{'    B = A(m:-1:1,:);'}\nspoperator{;}\nspstring{'    B = B.'';'}\nspoperator{;}
+       \nspstring{'else'}\nspoperator{;}\nspstring{'    B = A;'}\nspoperator{;}\nspstring{'end'}])\nspoperator{;}
+\nspcomment{// Convert it to scilab}
+mfile2sci(TMPDIR\nspoperator{+}\nspstring{'/rot90.m'},TMPDIR)
+\nspcomment{// Show the new code}
+write(%io(\nspnumber{2}),read(TMPDIR\nspoperator{+}\nspstring{'/rot90.sci'},\nspoperator{-}\nspnumber{1},\nspnumber{1},\nspstring{'(a)'}))
+\nspcomment{// get it into scilab}
+getf(TMPDIR\nspoperator{+}\nspstring{'/rot90.sci'})
+\nspcomment{// Execute it}
+m=rand(\nspnumber{4},\nspnumber{2})\nspoperator{;}rot90(m,\nspnumber{1})
+\end{Verbatim}

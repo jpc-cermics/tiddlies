@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>chain_struct</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli687.html" >next</a>] [<a 
+href="manualli685.html" >prev</a>] [<a 
+href="manualli685.html#tailmanualli685.html" >prev-tail</a>] [<a 
+href="#tailmanualli686.html">tail</a>] [<a 
+href="manualli677.html#manualli686.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x687-4096000"></a>chain_struct</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx687-4096001"></a><a 
+ id="chain_struct"></a><span 
+class="cmtt-10x-x-109">chain</span><span 
+class="cmtt-10x-x-109">_struct </span>&#x2013;                                 chained structure from adjacency lists of a graph<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x687-4097000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-843">
+&#x00A0;&#x00A0;[fe,che,fn,chn]&#x00A0;=&#x00A0;chain_struct(g)
+&#x00A0;<br />&#x00A0;&#x00A0;[fe,che,fn,chn]&#x00A0;=&#x00A0;chain_struct(lp,la,ls)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x687-4098000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">g</span>: graph list
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">lp</span>: row vector, pointer array of the adjacency lists description of the graph (its size is
+     the number of nodes of the graph + 1)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">la</span>: row vector, arc array of the adjacency lists description of the graph (its size is the
+     number of edges of the graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ls</span>: row vector, node array of the adjacency lists description of the graph (its size is the
+     number of edges of the graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fe</span>: row vector of the numbers of the first edges starting from nodes (its size is the
+     number of nodes of the graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">che</span>: row vector of the numbers of the chained edges (its size is the number of edges of
+     the graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fn</span>: row vector of the numbers of the first nodes reached by the edges of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fe</span></span></span> (its size is
+     the number of nodes of the graph)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">chn</span>: row vector of the nodes reached by the edges of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">che</span></span></span></li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x687-4099000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 41--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">chain_struct</span></span></span> computes the row vectors of the edge chained structure description of the graph <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>.
+It is also possible to give directly <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">chain_struct</span></span></span> the adjacency lists of the graph. This is more
+efficient if the adjacency lists are already available since <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">chain_struct</span></span></span> uses them to make
+computations. The vectors <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fe</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">che</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fn</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">chn</span></span></span> describe the chained structure in the
+following way:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fe(i))</span></span></span> is the number of the first edge starting from node i<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">che(fe(i))</span></span></span> is the
+number of the second edge starting from node i, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">che(che(fe(i)))</span></span></span> is the number of the
+third edge starting from node i and so on until the value is 0<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fn(i)</span></span></span> is the number of the
+first node reached from node i<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ch(i)</span></span></span> is the number of the node reached by edge <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">che(i)</span></span></span>.
+</p>
+<!--l. 53--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x687-4100000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb540"><a 
+ id="x687-4100009r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ta=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x687-4100011r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;he=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x687-4100013r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g=make_graph(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">,ta,he)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x687-4100015r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">116</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">231</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">192</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">323</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">354</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">454</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">305</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">155</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x687-4100017r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;node_y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">118</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">116</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">212</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">219</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">117</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">185</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">334</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">316</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x687-4100019r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;show_graph(g)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x687-4100021r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[fe,che,fn,chn]=chain_struct(g)</span></div>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x687-4101000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#adj-lists">adj_lists</a>    <a 
+href="#graph-2-mat">graph_2_mat</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli687.html" >next</a>] [<a 
+href="manualli685.html" >prev</a>] [<a 
+href="manualli685.html#tailmanualli685.html" >prev-tail</a>] [<a 
+href="manualli686.html" >front</a>] [<a 
+href="manualli677.html#manualli686.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli686.html"></a>  </p> 
+</body></html> 

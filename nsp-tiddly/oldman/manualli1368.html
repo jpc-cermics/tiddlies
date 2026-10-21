@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>link</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1369.html" >next</a>] [<a 
+href="manualli1367.html" >prev</a>] [<a 
+href="manualli1367.html#tailmanualli1367.html" >prev-tail</a>] [<a 
+href="#tailmanualli1368.html">tail</a>] [<a 
+href="manualli1327.html#manualli1368.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1369-7736000"></a>link</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1369-7736001"></a><a 
+ id="link"></a><span 
+class="cmtt-10x-x-109">link </span>&#x2013;                                                                                            dynamic link<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1369-7737000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1537">
+&#x00A0;&#x00A0;link(files,&#x00A0;sub-name)
+&#x00A0;<br />&#x00A0;&#x00A0;link(files,&#x00A0;sub-name,&#x00A0;flag)
+&#x00A0;<br />&#x00A0;&#x00A0;lst=link(&#x0027;show&#x0027;)
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;Link&#x00A0;extensions&#x00A0;for&#x00A0;machines&#x00A0;using&#x00A0;&#x0060;&#x0060;dlopen&#x0027;&#x0027;
+&#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;(sun-solaris/linux-elf/alpha/hppa)
+&#x00A0;<br />&#x00A0;&#x00A0;x=link(files&#x00A0;[,&#x00A0;sub-names,flag]);
+&#x00A0;<br />&#x00A0;&#x00A0;link(x&#x00A0;,&#x00A0;sub-names&#x00A0;[,&#x00A0;flag]);
+&#x00A0;<br />&#x00A0;&#x00A0;ulink(x)
+</div>
+<!--l. 32--><p class="nopar" >
+</p>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1369-7738000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">files</span>: a character string or a vector of character strings. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ld</span></span></span> files used to define the new
+     entry point (compiled routines, user libraries, system libraries,..)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sub-name</span>: a character string. Name of the entry point in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">files</span></span></span> to be linked.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sub-names</span>: a character string or a vector of character strings . Name of the entry points
+     in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">files</span></span></span> to be linked.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: an integer which gives the id of a shared library linked into Scilab with a previous
+     call to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: character string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;f&#x0027;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;c&#x0027;</span></span></span> for Fortran (default) or C code.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">names</span>: a vector of character string. Names of dynamically linked entry points.</li></ul>
+<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1369-7739000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 45--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span> is a dynamic link facility: this command allows to add new compiled Fortran or C
+routines to Scilab executable code. Linked routines can be called interactively by the
+function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fort</span></span></span>. Linked routines can also be used as &#x201D;external&#x201D; for e.g. non linear
+problem solvers (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ode</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">optim</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">intg</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dassl</span></span></span>...). Here are some examples: The command
+                                                                                    
+
+                                                                                    
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link(&#x0027;foo.o&#x0027;,&#x0027;foo&#x0027;,&#x0027;f&#x0027;)</span></span></span> links the Fortran object file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foo.o</span></span></span> with the entry point <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foo</span></span></span>. The
+command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link(&#x0027;foo.o&#x0027;,&#x0027;foo&#x0027;,&#x0027;c&#x0027;)</span></span></span> links the C object file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foo.o</span></span></span> with the entry point <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foo</span></span></span>. The
+command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link(&#x0027;SCIDIR/libs/calelm.a&#x0027;,&#x0027;dcopy&#x0027;)</span></span></span> links the Fortran routine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dcopy</span></span></span> in the library
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">calelm.a</span></span></span>. A routine can be linked several times and can be unlinked with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ulink</span></span></span>. Note that, on
+some architectures (the ones on which <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ulink</span></span></span> exists) when a routine is linked several times, all the
+version are kept inside Scilab. Used with no arguments, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link()</span></span></span> returns the current linked routines.
+If Scilab is compiled with static link (this is the default for SystemV machines) you
+may have to include the system libraries in the &#x201D;link&#x201D; command. For example, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foo.o</span></span></span>
+defines the object code of a routine named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">foo</span></span></span>, you will use <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span> in one the following
+way:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1538">
+&#x00A0;&#x00A0;link(&#x0027;foo.o&#x0027;,&#x0027;foo&#x0027;).
+&#x00A0;<br />&#x00A0;&#x00A0;link(&#x0027;foo.o&#x00A0;-lm&#x00A0;-lc&#x0027;,&#x0027;foo&#x0027;,&#x0027;c&#x0027;).
+&#x00A0;<br />&#x00A0;&#x00A0;link(&#x0027;foo.o&#x00A0;-lfor&#x00A0;-lm&#x00A0;-lc&#x0027;,&#x0027;foo&#x0027;).
+&#x00A0;<br />&#x00A0;&#x00A0;link(&#x0027;foo.o&#x00A0;-lftn&#x00A0;-lm&#x00A0;-lc&#x0027;,&#x0027;foo&#x0027;).
+&#x00A0;<br />&#x00A0;&#x00A0;link(&#x0027;foo.o&#x00A0;-L/opt/SUNWspro/SC3.0/lib/lib77&#x00A0;-lm&#x00A0;-lc&#x0027;,&#x0027;foo&#x0027;)
+</div>
+<!--l. 74--><p class="nopar" >If Scilab compiled with the &#x201D;shared&#x201D; option, the first example can be used even if a warning for
+unresolved references is issued. (Experienced) users may also <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span> a new Scilab interface routine to
+add a set of new functions. See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Intersci</span></span></span> documentation for interface generation and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">addinter</span></span></span>
+function.
+</p>
+<!--l. 83--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1369-7740000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">IBM:</div> For IBM-RS6000 only one program can be dynamically linked.
+     </li>
+     <li class="itemize"><div class="itemdesc">Demo:</div> When running a demo, you may have some trouble with the link due to slight
+     differences between systems. In this case, you modify the demo by adding the needed
+     libraries in the link command.
+     </li>
+     <li class="itemize"><div class="itemdesc">dlopen:</div> For machines using dlopen functionality extended command can be used. a call to
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span> returns an integer which gives the id of the shared library which is loaded into Scilab.
+     This number can then be used as the first argument of the link function in order to link
+     additional function from the linked shared library. The shared library is removed with the
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ulink</span></span></span> command. for example to link functions <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> form binary file <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">test.o</span></span></span> the two
+     following command can be used:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-1539">
+     &#x00A0;&#x00A0;link(&#x0027;test.o&#x0027;,[&#x0027;f&#x0027;,&#x0027;g&#x0027;])
+</div>
+     <!--l. 90--><p class="nopar" >or
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-1540">
+     &#x00A0;&#x00A0;x=link(&#x0027;test.o&#x0027;,&#x0027;f&#x0027;);
+     &#x00A0;<br />&#x00A0;&#x00A0;link(x,&#x0027;g&#x0027;);
+</div>
+     <!--l. 95--><p class="nopar" >But
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-1541">
+     &#x00A0;&#x00A0;link(&#x0027;test.o&#x0027;,&#x0027;f&#x0027;);
+     &#x00A0;<br />&#x00A0;&#x00A0;link(&#x0027;test.o&#x0027;,&#x0027;g&#x0027;);
+</div>
+     <!--l. 100--><p class="nopar" >will also work but <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> will be loaded from two different shared libraries and won&apos;t be able
+     to share data.
+     </p></li>
+     <li class="itemize"><div class="itemdesc">show:</div> The command <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lst=link(&#x0027;show&#x0027;)</span></span></span> will report information about linked shared libraries and
+     linked functions. The return value of the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lst</span></span></span> is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span>. If the return value is <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span></span></span> then the
+     extended calling sequence described as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Link</span><span 
+class="cmtt-10x-x-109">&#x00A0;extensions</span><span 
+class="cmtt-10x-x-109">&#x00A0;for</span><span 
+class="cmtt-10x-x-109">&#x00A0;machines</span><span 
+class="cmtt-10x-x-109">&#x00A0;using</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x0060;&#x0060;dlopen&#x0027;&#x0027;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>
+     are accepted.
+     </li>
+     <li class="itemize"><div class="itemdesc">unlink:</div> (dlopen version) If the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> is changed and one wants to link the new version, it
+     is necessary to use unlink to get rid of previous loaded versions of the function
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span>
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-1542">
+     &#x00A0;&#x00A0;x=link(&#x0027;test.o&#x0027;,&#x0027;f&#x0027;);
+     &#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;if&#x00A0;I&#x00A0;need&#x00A0;to&#x00A0;reload&#x00A0;a&#x00A0;new&#x00A0;definition&#x00A0;of&#x00A0;f&#x00A0;a&#x00A0;call&#x00A0;to&#x00A0;unlink
+     &#x00A0;<br />&#x00A0;&#x00A0;//&#x00A0;is&#x00A0;necessary.
+     &#x00A0;<br />&#x00A0;&#x00A0;ulink(x);
+     &#x00A0;<br />&#x00A0;&#x00A0;link(&#x0027;test.o&#x0027;,&#x0027;f&#x0027;);
+</div>
+     <!--l. 110--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><div class="itemdesc">scilab symbols:</div> In order to load a symbol from the Scilab code on can use
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-1543">
+     &#x00A0;&#x00A0;link(&#x0022;Scilab&#x0022;,[&#x0027;Scilab-entry-point&#x0027;])
+</div>
+     <!--l. 114--><p class="nopar" >This does not work on all architectures. On some machines, on can link a Scilab internal
+     function after a first call to link ( with a default binary file )
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-1544">
+     &#x00A0;&#x00A0;link(&#x0022;test.o&#x0022;,[&#x0027;Scilab-entry-point&#x0027;])
+</div>
+     <!--l. 118--><p class="nopar" >Note that with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dld</span></span></span> (Linux machine aout) you can use an empty string
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-1545">
+     &#x00A0;&#x00A0;link(&#x0022;&#x00A0;&#x0022;,[&#x0027;Scilab-entry-point&#x0027;])
+</div>
+     <!--l. 122--><p class="nopar" ></p></li></ul>
+<!--l. 125--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1369-7741000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli972.html#fort">fort</a>    <a 
+href="#c-link">c_link</a>    <a 
+href="manualli342.html#addinter">addinter</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1369.html" >next</a>] [<a 
+href="manualli1367.html" >prev</a>] [<a 
+href="manualli1367.html#tailmanualli1367.html" >prev-tail</a>] [<a 
+href="manualli1368.html" >front</a>] [<a 
+href="manualli1327.html#manualli1368.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1368.html"></a>  </p> 
+</body></html> 

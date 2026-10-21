@@ -1,0 +1,736 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>L'&eacute;diteur graphique de Scicos</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"> 
+<META NAME="GENERATOR" CONTENT="hevea 1.05"> 
+</HEAD>
+
+<BODY BGCOLOR="white" TEXT="black">
+<!--HEVEA command line is: hevea article1.tex -->
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+<TABLE WIDTH="526">
+<TR>
+<TD WIDTH="40"></TD>
+<TD WIDTH="482" CLASS="titre-rouge"><A
+HREF="http://www.saphir-control.fr/"><IMG SRC="../../images/textbanierT.jpg"
+ALT="Baniere Saphir Control" BORDER="0" CLASS="sansBord " HEIGHT="100"
+WIDTH="100%" ALIGN="TOP"></A> <BR>
+<FONT><A
+HREF="http://www.saphir-control.fr/">http://www.saphir-control.fr/</A></FONT> 
+<P><IMG SRC="../../images/traitpt.gif" ALT="bar" BORDER="0" HEIGHT="12"
+WIDTH="480" ALIGN="TOP"></P>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<A HREF="../index.htm"><IMG SRC="../../images/bluback.GIF" ALT="BACK"
+WIDTH="33" HEIGHT="35" BORDER="0"></A> <BR>
+<BR>
+Tous ces articles en ligne sur Scilab ont &eacute;t&eacute; &eacute;crits pour
+<A HREF="http://www.linuxmag-france.org/">LINUX MAGAZINE FRANCE</A> par les
+d&eacute;veloppeurs du Scilab Group. Les articles sont sous
+<A HREF="http://www.gnu.org/copyleft/fdl.html">licence FDL (Free Documentation
+Licence) </A><BR>
+<H1 ALIGN="CENTER"><B>L'&eacute;diteur graphique de Scicos</B></H1>
+<BR>
+<BR>
+<B>Dans les articles parus dans les num&eacute;ros 18 et 19 nous avions
+montr&eacute; Scicos d'un point de vue </B><B><EM>utilisateur</EM></B><B>. Dans
+ce num&eacute;ro nous proposons un premier article d'une s&eacute;rie de trois,
+d'un point de vue </B><B><EM>d&eacute;veloppeur</EM></B><B>. Nous
+pr&eacute;sentons ici le fonctionnement interne de l'&eacute;diteur graphique
+de Scicos. Dans les articles suivants nous parlerons des &eacute;tapes de
+compilation, de simulation et de g&eacute;n&eacute;ration automatique de
+code.</B>
+
+
+
+<!--TOC section Introduction-->
+<H2>Introduction</H2>
+<!--SEC END -->
+<EM>Scicos</EM> (Scilab Connected Object Simulator) est une boite &agrave;
+outils du logiciel libre de calcul matriciel <B>Scilab</B> (cf.
+<A HREF="http://www-rocq.inria.fr/scilab">http://www-rocq.inria.fr/scilab</A>
+et <EM>Introduction &agrave; Scilab</EM> : livre paru en Oct. 2001 dans la
+collection IRIS - Springer). <EM> Scicos</EM> permet de mod&eacute;liser et de
+simuler des syst&egrave;mes dynamiques hybrides (continus - discrets). Scicos
+contient un &eacute;diteur graphique de type sch&eacute;ma-blocs (cf.
+figure&nbsp;<A HREF="#edit2">??</A>), qui offre la possibilit&eacute; de
+construire de tels syst&egrave;mes par de simples clics de souris sur des
+boutons (ou des raccourcis-clavier), d&eacute;roulants diff&eacute;rents menus.
+L'utilisateur peut ainsi r&eacute;aliser diff&eacute;rentes actions sur les
+blocs (telles que le d&eacute;placement, la suppression, la copie, la
+modification de param&egrave;tres, l'ajout de liens etc...). <BR>
+<BR>
+<CENTER>
+<IMG SRC="edit2.png" BORDER="0" WIDTH="450" HEIGHT="450"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 1: Un sch&eacute;ma-blocs simple 
+</DIV>
+<BR>
+<A NAME="edit2"></A> Les fonctions qui ex&eacute;cutent les menus (par exemple
+: <TT>do_copy</TT> pour dupliquer un bloc, <TT>do_delete</TT> pour le supprimer
+ou encore <TT>do_move</TT> pour le d&eacute;placer) sont situ&eacute;es dans le
+r&eacute;pertoire <TT>&lt;SCI&gt;/macros/scicos</TT>. La variable <TT>SCI</TT>
+indique l'endroit o&ugrave; Scilab est install&eacute;. Ces fonctions sont
+ger&eacute;es par la fonction <TT>scicos</TT>, contenue dans le fichier <TT>
+&lt;SCI&gt;/macros/auto/scicos.sci</TT>. L'extension <B>.sci</B> indique que 
+<TT> scicos</TT> est &eacute;crite en langage Scilab. Les articles
+pr&eacute;c&eacute;dents ont permis de montrer l'utilisation de Scicos, ici
+nous montrons au lecteur qu'il est possible de modifier et adapter l'interface
+graphique. Pour cela nous devons comprendre comment sont ger&eacute;es les
+fonctionnalit&eacute;s qui utilisent des variables et des fonctions Scilab.
+C'est ce que nous proposons, &agrave; travers un exemple de cr&eacute;ation
+d'une fonction de menu.
+
+<!--TOC section Affichage de la fenêtre Scicos-->
+<H2>1&nbsp;&nbsp; Affichage de la fen&ecirc;tre Scicos</H2>
+<!--SEC END -->
+La fonction <TT>scicos</TT> lance l'affichage d'une fen&ecirc;tre Scicos, en
+tapant la commande suivante : <PRE><TT>--&gt; scicos()</TT></PRE>
+Une fen&ecirc;tre vide est charg&eacute;e, appel&eacute;e par d&eacute;faut 
+<TT> Untitled</TT>. Il est aussi possible de lancer directement l'affichage
+d'un sch&eacute;ma-blocs pr&eacute;-enregistr&eacute; dans un fichier. On
+mettra comme argument le nom de ce fichier avec l'extension <TT>.cos</TT>
+(exemple linuxart1.cos), ce qui signifie qu'il a &eacute;t&eacute;
+enregistr&eacute; sous un format binaire. Ce format est celui d'enregistrement
+par d&eacute;faut dans Scicos. 
+<PRE><TT>--&gt;
+scicos &lt;chemin&gt;/linuxart1.cos</TT></PRE>
+Notons qu'il existe aussi la possibilit&eacute; de faire des enregistrements
+dans le format ASCII (avec l'extension <TT> .cosf</TT>). Les sauvegardes dans
+ce format s'effectuent plus lentement que dans le format binaire et sont plus
+volumineuses.
+
+
+<!--TOC section Bouton de menu-->
+
+<H2>2&nbsp;&nbsp; Bouton de menu</H2>
+<!--SEC END -->
+Pour pouvoir afficher la barre de menus dans la fen&ecirc;tre Scicos, la
+fonction <TT>scicos</TT> utilise la variable Scilab <TT>%scicos_menu</TT> qui
+est (par d&eacute;faut) une liste de 6 listes de cha&icirc;nes de
+caract&egrave;res, correspondant aux 6 boutons de la barre de menus. <TT>
+%scicos_menu</TT> ainsi que les variables <TT>scicos_pal</TT> et <TT>
+%scicos_short</TT> sont initialis&eacute;es (au d&eacute;marrage de Scilab)
+dans le fichier principal d'initialisation <TT>Scilab.star</TT>, par un appel
+&agrave; la fonction <TT>initial_scicos_tables</TT>. Nous verrons par la suite
+comment modifier les variables <TT>%scicos_menu</TT> et <TT> %scicos_short 
+</TT>. <TT>scicos_pal</TT> contient le nom des palettes de blocs existantes. Le
+premier &eacute;l&eacute;ment de chacune des listes contenues dans <TT>
+%scicos_menu</TT>, indique le nom du bouton de menu. En cliquant sur chacun de
+ces boutons, on d&eacute;roule les diff&eacute;rents menus qui r&eacute;alisent
+les fonctionalit&eacute;s de l'&eacute;diteur graphique de Scicos. Notons que
+le bouton <TT>STOP</TT> est un menu sp&eacute;cifique &agrave; la phase de
+simulation, il n'apparait donc pas dans le contenu de la variable 
+<TT>%scicos_menu</TT>. L'utilisateur peut aussi ajouter de nouveaux boutons
+dans la barre principale de menus. Il suffit pour cela de modifier la variable
+Scilab <TT>%scicos_menu</TT>. Par exemple, nous allons ajouter un nouveau
+bouton <TT>Mon_bouton</TT> qui donne acc&egrave;s &agrave; une nouvelle
+fonction <TT>Ma_fonction</TT>. Nous ajoutons un nouvel &eacute;l&eacute;ment
+&agrave; <TT>%scicos_menu</TT> en &eacute;crivant dans la fen&ecirc;tre Scilab
+: <PRE><TT>--&gt; %scicos_menu($+1)=[&quot;Mon_bouton&quot;,
+&quot;Ma_fonction&quot;]</TT></PRE>
+En tapant par exemple la commande 
+<PRE><TT>--&gt;
+scicos()</TT></PRE>
+, on peut ainsi observer le r&eacute;sultat obtenu (cf. figure&nbsp;<A
+HREF="#menu2">??</A>). <BR>
+<BR>
+
+<CENTER>
+<IMG SRC="menu2.png" BORDER="0" WIDTH="400" HEIGHT="90"
+ ALT="{short description of image}"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 2: Ajout d'un nouveau bouton dans le menu Scicos 
+</DIV>
+<BR>
+<A NAME="menu2"></A> 
+
+<!--TOC section Raccourci clavier-->
+<H2>3&nbsp;&nbsp; Raccourci clavier</H2>
+<!--SEC END -->
+Pour pouvoir ex&eacute;cuter directement certaines fonctions tr&egrave;s
+employ&eacute;es, il existe la possibilit&eacute; de taper directement des
+touches sur le clavier : ce sont des <EM>raccourcis clavier</EM>. Pour ce
+faire, la fonction <TT>scicos</TT> utilise la variable Scilab <TT>
+%scicos_short</TT>, qui repr&eacute;sente une matrice de cha&icirc;nes de
+caract&egrave;res contenant la d&eacute;finition des <EM>raccourcis
+clavier</EM>. Ajoutons &agrave; notre nouvelle fonction <TT>Ma_fonction</TT>,
+l'option de <EM>raccourci clavier</EM> en tapant directement la lettre <TT>b 
+</TT> sur le clavier pour l'ex&eacute;cuter. <PRE><TT>--&gt;%scicos_short=[%scicos_short;[&quot;b&quot;,&quot;Ma_fonction&quot;]];
+</TT></PRE>
+Il reste maintenant &agrave; d&eacute;finir les fonctionnalit&eacute;s de <TT>
+Ma_fonction</TT>, mais pour cela nous allons d'abord expliquer le
+fonctionnement de l'&eacute;diteur graphique ...
+
+
+<!--TOC section Le fonctionnement de l'éditeur graphique-->
+
+<H2>4&nbsp;&nbsp; Le fonctionnement de l'&eacute;diteur graphique</H2>
+<!--SEC END -->
+Le sch&eacute;ma de la figure&nbsp;<A HREF="#edit11">??</A> r&eacute;sume les
+grandes &eacute;tapes du fonctionnement de la fonction <TT>scicos</TT>. Deux
+notions dont nous parlerons plus en d&eacute;tail dans un prochain
+num&eacute;ro, sont : <UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la liste <TT>%cpr 
+</TT> (qui contient le r&eacute;sultat de compilation du sch&eacute;ma-blocs) 
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>la fonction 
+<TT>scicosim</TT> (qui appelle le simulateur Scicos). </LI>
+</UL>
+<TT>scs_m</TT> est une structure hi&eacute;rarchique de donn&eacute;es qui
+contient la description compl&egrave;te du sch&eacute;ma-blocs
+&eacute;dit&eacute;. <BR>
+<BR>
+<CENTER>
+<IMG SRC="edit11.png" BORDER="0" ALT="{short description of image}" WIDTH="747"
+ HEIGHT="617"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 3: Le fonctionnement de l'&eacute;diteur graphique de Scicos (S : 
+<TT>scs_m</TT> et <TT>%cpr</TT>) 
+</DIV>
+<BR>
+<A NAME="edit11"></A> L'attente d'une action (de type clic de souris ou
+raccourci clavier) est ger&eacute;e par la fonction Scilab <TT>cosclick</TT>,
+qui fait appel &agrave; la fonction de d&eacute;tection <TT>xclick</TT> (cf.
+num&eacute;ro 20 de Linux Magazine). <TT>xclick</TT> est une fonction
+compil&eacute;e dans une biblioth&egrave;que Scilab (fortran ou C),
+appell&eacute;e aussi <EM>une primitive Scilab</EM> (cf. num&eacute;ro 15 de
+Linux Magazine). <TT>xclick</TT> permet de r&eacute;cuperer soit les
+coordonn&eacute;es de position du pointeur de la souris dans la fen&ecirc;tre,
+soit le nom d'un menu qui vient d'&ecirc;tre s&eacute;lectionn&eacute;. 
+<TT>cosclick</TT> code cette information dans une variable interne (<TT>Cmenu
+</TT>), qui est utilis&eacute;e pour ex&eacute;cuter la fonction correspondante
+au menu, dont le nom est toujours suivi d'un ``<TT>_</TT>``, comme par exemple,
+pour le menu <TT>Move </TT> (qui permet de d&eacute;placer des blocs, des liens
+ou du texte) la fonction correspondante est <TT>SmartMove_</TT>. Bien que
+d&eacute;finie comme une fonction, la fonction correspondante &agrave; un menu
+est en fait ex&eacute;cut&eacute;e comme un script. De cette mani&egrave;re,
+elle peut faire appel &agrave; une autre fonction prot&eacute;gant ainsi les
+variables utilis&eacute;es. En l'occurrence, <TT>SmartMove_</TT> fait appel
+&agrave; la fonction <TT>do_move</TT>. Signalons pour la fonction <TT>do_move
+</TT>, que pour chaque d&eacute;placement effectu&eacute; on ne re-dessine que
+l'&eacute;l&eacute;ment concern&eacute; : c'est pourquoi nous avons, dans le
+sch&eacute;ma de la figure&nbsp;<A HREF="#edit11">??</A>, la notion de
+r&eacute;-affichage partiel. Par d&eacute;faut (si aucun menu n'a
+&eacute;t&eacute; s&eacute;lectionn&eacute; au pr&eacute;alable), le fait de
+cliquer directement sur un bloc (ou de le pointer avec la souris et taper
+ensuite la lettre <TT>o</TT> sur le clavier), revient &agrave; ex&eacute;cuter
+le menu <TT>Open/Set</TT> (li&eacute; &agrave; la fonction <TT>OpenSet_</TT>) :
+<UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>Dans le cas
+o&ugrave; un bloc est cibl&eacute;, on r&eacute;cup&egrave;re ses
+coordonn&eacute;es par la fonction <TT>xclick</TT>, puis avec la fonction <TT>
+getobj</TT> on en d&eacute;termine le nom du bloc afin d'appeler (avec le
+param&egrave;tre <TT>Job='set'</TT>) sa fonction d'interface (cf. num&eacute;ro
+19 de Linux Magazine). Des pr&eacute;cisions sur <TT>Job</TT> sont
+donn&eacute;es par la suite. En g&eacute;n&eacute;ral, la fonction d'interface
+ouvre une fen&ecirc;tre de dialogue qui permet de changer &eacute;ventuellement
+des param&egrave;tres du bloc. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>Dans le cas
+o&ugrave; un super-bloc est cibl&eacute;, la fonction <TT>OpenSet_</TT>
+rappelle (r&eacute;cursivement) la fonction <TT>scicos</TT> avec, en
+entr&eacute;e, la structure de donn&eacute;es du super-bloc <TT> scs_m</TT>
+(cf. ci-dessous). </LI>
+</UL>
+Notons que dans certains cas, en sortie de fonctions de menu telles que 
+<TT>Open/Set</TT>, <TT>Copy</TT> ..., <TT>scicos</TT> g&egrave;re
+automatiquement deux variables : <UL>
+<LI> <TT>needcompile</TT> : qui indique si le sch&eacute;ma doit &ecirc;tre
+re-compil&eacute;, en fonction des modifications effectu&eacute;es. </LI>
+<LI> <TT>edited</TT> : qui permet de signaler &agrave; l'utilisateur la
+n&eacute;cessit&eacute; de faire une sauvegarde, si le sch&eacute;ma a
+&eacute;t&eacute; modifi&eacute;. </LI>
+</UL>
+<!--TOC section <TT>scs_m</TT> : la structure principale de données-->
+<H2>5&nbsp;&nbsp; <TT>scs_m</TT> : la structure principale de donn&eacute;es 
+</H2>
+<!--SEC END -->
+<TT>scs_m</TT> contient aussi bien des informations graphiques (couleurs,
+formes, repr&eacute;sentation d'icones ...), topologiques (position et taille
+des blocs, hi&eacute;rarchie des super-blocs, ...), le nom de la fonction de
+simulation (cf. num&eacute;ro 19 de Linux Magazine) que les param&egrave;tres
+associ&eacute;s &agrave; chaque bloc. <TT>scs_m</TT> est une liste qui contient
+elle-m&ecirc;me d'autres listes. La syntaxe de <TT> scs_m</TT> est 
+<TT>scs_m=list(params,o_1,....,o_n)</TT>, avec <TT> params</TT> la liste
+contenant les informations sur certains param&egrave;tres et <TT>o_i</TT> la
+structure de donn&eacute;es du <TT>i&egrave;me</TT> bloc ou lien. L'indice 
+<TT>i</TT> &eacute;tant donn&eacute; par l'ordre de cr&eacute;ation des blocs
+et des liens. Prenons l'exemple du sch&eacute;ma-blocs de la figure&nbsp;<A
+HREF="#edit2">??</A>, contenant quatre blocs. Pour obtenir des informations sur
+ce sch&eacute;ma, deux possibilit&eacute;s existent : <UL>
+<LI> soit la s&eacute;lection dans le menu <TT>Misc</TT> (Miscellaneous qui se
+traduit par Divers) du bouton <TT>Calc</TT> (Calculateur Scilab), ce qui permet
+de consulter directement dans la fen&ecirc;tre Scilab, les variables et objets
+Scilab ainsi que le contenu de la liste <TT>scs_m</TT>. </LI>
+<LI> soit l'enregistrement du sch&eacute;ma-blocs dans un fichier ASCII (avec
+l'extension <TT>.cosf</TT>), ce qui permet, en utilisant un &eacute;diteur de
+texte (emacs ou autre) d'en &eacute;diter le contenu (correspondant &agrave; la
+liste <TT>scs_m</TT>). </LI>
+</UL>
+Nous avions vu, au d&eacute;but de cet article, comment lancer l'affichage
+d'une fen&ecirc;tre Scicos, notons que nous pouvons aussi le faire si l'on
+poss&egrave;de la structure de donn&eacute;es <TT>scs_m</TT> associ&eacute;e
+&agrave; un sch&eacute;ma-blocs : <PRE><TT>--&gt; scicos(scs_m)</TT></PRE>
+
+
+<!--TOC section <TT>params</TT> : la liste des paramètres-->
+
+<H2>6&nbsp;&nbsp; <TT>params</TT> : la liste des param&egrave;tres</H2>
+<!--SEC END -->
+La syntaxe de la liste <TT>params</TT> est la suivante : <TT>
+params=list(wpar,title,tol,tf,context,void,options,void,void,doc))</TT>. Elle
+se compose de plusieurs listes : <OL TYPE="1">
+<LI> <TT>wpar</TT> pour les param&egrave;tres d'affichage de la fen&ecirc;tre
+Scicos : <TT>[w,h,Xshift,Yshift]</TT> respectivement la largeur, la longueur,
+le positionnement horizontal et vertical. </LI>
+<LI> <TT>title</TT> : c'est un vecteur de cha&icirc;ne de caract&egrave;res qui
+contient &agrave; la fois le nom du sch&eacute;ma-blocs ainsi que le chemin du
+fichier enregistr&eacute;. </LI>
+<LI> <TT>tol</TT> : c'est le vecteur <TT>[atol,rtol,ttol,maxt]</TT>, qui
+contient les valeurs des param&egrave;tres de tol&eacute;rence pour le solveur
+<B>ODE</B> (Ordinary Differential Equations). </LI>
+<LI> <TT>tf</TT> : c'est le temps final de simulation. </LI>
+<LI> <TT>context</TT> : c'est un vecteur de cha&icirc;ne de caract&egrave;res
+qui contient des instructions Scilab d&eacute;finissant des variables pouvant
+&ecirc;tre utilis&eacute;es dans les blocs. Ce sont <TT>les param&egrave;tres
+symboliques</TT>. </LI>
+<LI> <TT>void</TT> : c'est un champ inutilis&eacute; </LI>
+<LI> <TT>options</TT>: c'est une liste qui contient le bool&eacute;en <TT>
+With3D</TT> et le vecteur <TT>Color3D</TT>. <TT>With3D</TT> indique si la
+repr&eacute;sentation des blocs est (ou non) en 3D. <TT>Color3D</TT>
+d&eacute;finit les trois couleurs de base [R,G,B] pour la repr&eacute;sentation
+en 3D. </LI>
+<LI> <TT>doc</TT> : c'est une structure d&eacute;finie par l'utilisateur pour
+la documentation du sch&eacute;ma, elle vaut par d&eacute;faut list(). </LI>
+</OL>
+En prenant le sch&eacute;ma de la figure&nbsp;<A HREF="#edit2">??</A> et en
+utilisant la fonction <TT>Calc</TT>, nous pouvont consulter le contenu de la
+structure <TT>scs_m</TT>, dans la fen&ecirc;tre Scilab. Par exemple, comme le
+montre la figure&nbsp;<A HREF="#edit3">??</A>, le premier &eacute;l&eacute;ment
+de <TT>scs_m</TT> est <TT> params</TT> qui contient le nom et l'emplacement du
+sch&eacute;ma-blocs <TT> title</TT>. <BR>
+<BR>
+<CENTER>
+<IMG SRC="edit3.png" BORDER="0" WIDTH="663" HEIGHT="431"> 
+</CENTER>
+<BR>
+<BR>
+<DIV ALIGN="center">
+Figure 4: Le premier &eacute;l&eacute;ment de <TT>scs_m</TT> 
+</DIV>
+<BR>
+<A NAME="edit3"></A> Lorsque l'on fait une modification dans un
+sch&eacute;ma-blocs le contenu de la structure <TT>scs_m</TT> est
+modifi&eacute;. Ces modifications peuvent concerner non seulement la conception
+du sch&eacute;ma-blocs (ajout ou retrait de bloc) mais aussi bien les
+param&egrave;tres de simulation (bouton <TT>Setup </TT> dans le menu 
+<TT>Simulate</TT>), que les param&egrave;tres symboliques (bouton <TT>Context
+</TT> dans le menu <TT>Edit</TT>).
+
+
+<!--TOC section La structure de données d'un bloc-->
+<H2>7&nbsp;&nbsp; La structure de donn&eacute;es d'un bloc</H2>
+<!--SEC END -->
+Chaque bloc Scicos est d&eacute;fini par une structure de donn&eacute;es Scilab
+contenant toutes les informations graphiques et de simulation : <PRE>
+ list('Block',graphics,model,unused,GUI_function)
+</PRE>
+o&ugrave; <TT>GUI_function</TT> est <TT>la fonction d'interface</TT>
+correspondante, <TT>graphics</TT> est la la liste Scilab des valeurs graphiques
+et <TT>model</TT> est la liste Scilab relative &agrave; la simulation. La
+syntaxe d'appel des fonctions d'interface est standard pour tous les blocs :
+[x,y,typ]=block(job,arg1), le param&egrave;tre <TT>job</TT> selectionne
+l'op&eacute;ration &agrave; r&eacute;aliser. Dans un article paru dans le
+num&eacute;ro 19 de Linux Magazine, une pr&eacute;sentation de <TT>GUI_function
+</TT> avait &eacute;t&eacute; donn&eacute;e, nous ne parlerons donc ici que du
+param&egrave;tre <TT>job</TT>.
+<!--TOC subsection <TT>job</TT> : le paramètre de tâche de <TT>GUI_function</TT>-->
+
+<H3>7.1&nbsp;&nbsp; <TT>job</TT> : le param&egrave;tre de t&acirc;che de 
+<TT>GUI_function</TT></H3>
+<!--SEC END -->
+<A NAME="job"></A> <UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>job=='plot' : la
+fonction dessine le bloc. <UL>
+<LI> <TT>arg1</TT> est la structure de donn&eacute;es du bloc. </LI>
+<LI> <TT> x,y,typ</TT> sont inutilis&eacute;s. </LI>
+</UL>
+En g&eacute;n&eacute;ral, nous utilisons la fonction <TT>standard_draw</TT> qui
+dessine un bloc rectangulaire, ainsi que les ports d'entr&eacute;es et sorties.
+Elle g&egrave;re aussi la taille, l'ic&ocirc;ne et les couleurs du bloc. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>job=='getinputs' :
+la fonction retourne la position et le type des ports d'entr&eacute;es
+(r&eacute;gulier ou d'activation). <UL>
+<LI> <TT>arg1</TT> est la structure de donn&eacute;es du bloc. </LI>
+<LI> <TT>x</TT> est le vecteur de coordonn&eacute;es x des ports
+d'entr&eacute;es. </LI>
+<LI> <TT>y</TT> est le vecteur de coordonn&eacute;es y des ports
+d'entr&eacute;es. </LI>
+<LI> <TT>typ</TT> est le vecteur de type des ports d'entr&eacute;es (1 pour
+r&eacute;gulier et 2 pour activation). </LI>
+</UL>
+En g&eacute;n&eacute;ral, nous utilisons la fonction <TT>standard_input</TT>. 
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>job=='getoutputs' :
+retourne la position et le type des ports de sorties (r&eacute;gulier ou
+d'activation). <UL>
+<LI> <TT>arg1</TT> est la structure de donn&eacute;es du bloc. </LI>
+<LI> <TT>x</TT> est le vecteur de coordonn&eacute;es x des ports de sorties. 
+</LI>
+<LI> <TT>y</TT> est le vecteur de coordonn&eacute;es y des ports de sorties. 
+</LI>
+<LI> <TT>typ</TT> est le vecteur de type des ports de sorties (1 pour
+r&eacute;gulier et 2 pour activation). </LI>
+</UL>
+En g&eacute;n&eacute;ral, nous utilisons la fonction <TT>standard_output</TT>. 
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>job=='getorigin' :
+retourne les coordonn&eacute;es du plus bas point &agrave; gauche du rectangle
+contenant la silhouette du bloc. <UL>
+<LI> <TT>arg1</TT> est la structure de donn&eacute;es du bloc. </LI>
+<LI> <TT>x</TT> est la coordonn&eacute;e x du plus bas point &agrave; gauche du
+bloc. </LI>
+<LI> <TT>y</TT> est le vecteur de coordonn&eacute;es y du plus bas point
+&agrave; gauche du bloc. </LI>
+<LI><TT>typ</TT> est inutilis&eacute; . </LI>
+</UL>
+En g&eacute;n&eacute;ral, nous utilisons la fonction <TT>standard_origin</TT>. 
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>job=='set' :
+fonction d'ouverture d'un dialogue pour l'acquisition des param&egrave;tres du
+bloc, s'ils existent. Ce dialogue se cr&eacute;e lorsque l'on ``clique'' sur le
+bloc consid&eacute;r&eacute;. Le programme doit v&eacute;rifier la
+coh&eacute;rence des param&egrave;tres fournis par l'utilisateur. <UL>
+<LI> <TT>arg1</TT> est la structure de donn&eacute;es du bloc. </LI>
+<LI> <TT>x</TT> est la nouvelle structure de donn&eacute;es du bloc. </LI>
+<LI> <TT>y</TT> est inutilis&eacute;. </LI>
+<LI> <TT>typ</TT> est inutilis&eacute;. </LI>
+</UL>
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>job=='define' :
+initialisation de la structure de donn&eacute;es du bloc (nom de correspondance
+avec la fonction <TT>de calcul</TT>, le type, le nombre et la taille des ports
+d'entr&eacute;es et sorties, etc...). <UL>
+<LI> <TT>arg1</TT> est inutilis&eacute;, </LI>
+<LI> <TT>x</TT> est la structure de donn&eacute;es du bloc. </LI>
+<LI> <TT>y</TT> est inutilis&eacute;. </LI>
+<LI> <TT>typ</TT> est inutilis&eacute;. </LI>
+</UL>
+</LI>
+</UL>
+<!--TOC subsection <TT>graphics</TT> : la structure de données des valeurs graphiques-->
+<H3>7.2&nbsp;&nbsp; <TT>graphics</TT> : la structure de donn&eacute;es des
+valeurs graphiques</H3>
+<!--SEC END -->
+La syntaxe de <TT>graphics</TT> s'&eacute;crit de la mani&egrave;re suivante : <PRE>
+graphics = list([xo,yo],[l,h],orient,dlg,pin,pout,pcin,pcout,gr_i)
+</PRE>
+
+<UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>xo :
+coordonn&eacute;e de l'abscisse de l'origine du bloc </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>yo :
+coordonn&eacute;e de l'ordonn&eacute;e de l'origine du bloc </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>l : largeur du bloc 
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>h : hauteur du bloc 
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>orient :
+bool&eacute;en indiquant si le bloc est retourn&eacute; (flip) : la position
+basique est repr&eacute;sent&eacute;e avec les ports d'entr&eacute;es &agrave;
+gauche et de sorties &agrave; droite. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>dlg : vecteur de
+cha&icirc;ne de caract&egrave;res, contenant les param&egrave;tres symboliques
+du bloc </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>pin : vecteur, <TT>
+pin(i)</TT> est le num&eacute;ro du lien connect&eacute; au port
+d'entr&eacute;e r&eacute;guli&egrave;re num&eacute;ro <TT>(i)</TT>, il vaut 0
+si ce port est non connect&eacute;. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>pout : vecteur, 
+<TT>pout(i)</TT> est le num&eacute;ro du lien connect&eacute; au port de sortie
+r&eacute;guli&egrave;re num&eacute;ro <TT>(i)</TT>, il vaut 0 si ce port est
+non connect&eacute;. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>pcin : vecteur, <TT>
+pcin(i)</TT> est le num&eacute;ro du lien connect&eacute; au port
+d'entr&eacute;e d'activation num&eacute;ro <TT>(i)</TT>, il vaut 0 si ce port
+est non connect&eacute;. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>pcout : vecteur, 
+<TT>pcout(i)</TT> est le num&eacute;ro du lien connect&eacute; au port de
+sortie d'activation num&eacute;ro <TT>(i)</TT>, il vaut 0 si ce port est non
+connect&eacute;. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>gr_i : vecteur de
+cha&icirc;ne de caract&egrave;res des instructions Scilab utilis&eacute;es pour
+dessiner l'ic&ocirc;ne. </LI>
+</UL>
+<!--TOC subsection <TT>model</TT> : la structure de données relatives à la simulation-->
+<H3>7.3&nbsp;&nbsp; <TT>model</TT> : la structure de donn&eacute;es relatives
+&agrave; la simulation</H3>
+<!--SEC END -->
+La syntaxe de <TT>model</TT> s'&eacute;crit de la mani&egrave;re suivante : <PRE>
+model=list(eqns,#input,#output,#clk_input,#clk_output,..
+      state,dstate,rpar,ipar,typ,firing,deps,label,unused)
+</PRE>
+
+<UL>
+<LI> <FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>eqns : liste
+contenant deux &eacute;l&eacute;ments. Le premier est une cha&icirc;ne de
+caract&egrave;res contenant le nom de la <EM>fonction de simulation</EM>, le
+second &eacute;l&eacute;ment est un entier sp&eacute;cifiant son type (cf.
+num&eacute;ro 19 de Linux Magazine). </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT> #input : vecteur
+dont la taille est &eacute;gale au nombre de ports d'entr&eacute;es
+r&eacute;guli&egrave;res. Chaque &eacute;l&eacute;ment du vecteur specifie la
+taille du port d'entr&eacute;e correspondant. Un entier n&eacute;gatif signifie
+que sa valeur ``doit &ecirc;tre d&eacute;termin&eacute;e par le compilateur''.
+La m&ecirc;me valeur d'entier n&eacute;gatif sur plus d'un port d'entr&eacute;e
+ou de sortie indique que ces ports ont une taille identique. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT> #output : vecteur
+dont la taille est &eacute;gale au nombre de ports de sorties
+r&eacute;guli&egrave;res. Chaque &eacute;l&eacute;ment du vecteur specifie la
+taille du port de sortie correspondant. Un entier n&eacute;gatif signifie que
+sa valeur ``doit &ecirc;tre d&eacute;termin&eacute;e par le compilateur''. La
+m&ecirc;me valeur d'entier n&eacute;gatif sur plus d'un port d'entr&eacute;e ou
+de sortie indique que ces ports ont une taille identique. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT> #clk_input :
+vecteur dont la taille est &eacute;gale au nombre de ports d'entr&eacute;es
+d'activation. Tous les &eacute;l&eacute;ments du vecteur doivent avoir leur
+valeur &eacute;gale &agrave; 1. Scicos ne g&egrave;rent pas (pour le moment) la
+vectorisation des liens d'activation. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>#clk_output :
+vecteur dont la taille est &eacute;gale au nombre de ports de sorties
+d'activation. Tous les &eacute;l&eacute;ments du vecteur doivent avoir leur
+valeur &eacute;gale &agrave; 1. Scicos ne g&egrave;rent pas (pour le moment) la
+vectorisation des liens d'activation. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>state : vecteur
+(colonne) de l'&eacute;tat continu initial. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>dstate : vecteur
+(colonne) de l'&eacute;tat discret initial. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>rpar : vecteur
+(colonne) des param&egrave;tres r&eacute;els utilis&eacute;s pour la
+<EM>fonction de simulation</EM>. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>ipar : vecteur
+(colonne) des param&egrave;tres entiers utilis&eacute;s pour la <EM>fonction de
+simulation</EM>. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>typ : cha&icirc;ne
+de caract&egrave;res : 'c' si le type de bloc est continu, 'd' s'il est
+discret, 'z' s'il d&eacute;tecte la travers&eacute;e de z&eacute;ro, 'I' s'il
+est Synchro et 'm' si c'est un bloc <TT>Memo</TT>. </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>firing : vecteur des
+dates des &eacute;v&eacute;nements initiaux, de taille le nombre des sorties
+d'activation (&lt;0 il n'y a pas d'&eacute;v&eacute;nement initial
+programm&eacute;) </LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>deps : [udep
+timedep] <UL>
+<LI> udep : bool&eacute;en, vrai si le syst&egrave;me a une relation directe
+entre l'entr&eacute;e et la sortie, ou au moins une des sorties d&eacute;pend
+explicitement d'une des entr&eacute;es. </LI>
+<LI> timedep : bool&eacute;en, vrai si le bloc est activ&eacute; en permanence.
+</LI>
+</UL>
+</LI>
+<LI><FONT SIZE="4"><FONT FACE="symbol">&#183;</FONT></FONT>label : cha&icirc;ne
+de caract&egrave;res qui contient un identifiant pour le bloc, d&eacute;fini
+avec le menu <TT>Label</TT> du bouton <TT> Object</TT>. </LI>
+</UL>
+<!--TOC section La structure de données d'un lien-->
+<H2>8&nbsp;&nbsp; La structure de donn&eacute;es d'un lien</H2>
+<!--SEC END -->
+Chaque lien dans Scicos est d&eacute;fini par une structure de donn&eacute;es
+Scilab contenant les informations suivantes : <PRE>
+  lnk=list('Link',xx,yy,'drawlink',id,[0,0],ct,from,to)
+</PRE>
+o&ugrave; <TT>Link</TT> est un mot cl&eacute; pour d&eacute;finir une liste
+repr&eacute;sentant un lien Scicos. <TT>xx</TT> est le vecteur des
+coordonn&eacute;es en abscisse du lien. <TT>yy</TT> est un vecteur des
+coordonn&eacute;es en ordonn&eacute;es du lien. <TT>id</TT> est la cha&icirc;ne
+de caract&egrave;res &eacute;ventuelle pour ce lien. <TT>ct</TT>
+repr&eacute;sente le vecteur <TT>[color,typ]</TT>, avec respectivement la
+d&eacute;finition de la couleur du lien et la d&eacute;finition du type de lien
+(0 pour un lien r&eacute;gulier, 1 pour un lien d'activation). <TT>from</TT>
+repr&eacute;sente le vecteur <TT>[block,port]</TT>, avec respectivement
+l'indice du bloc d'origine du lien et le num&eacute;ro de port du bloc. <TT>to 
+</TT> repr&eacute;sente le vecteur <TT>[block,port]</TT>, avec respectivement
+l'indice du bloc receant le lien et le num&eacute;ro de port du bloc.
+<!--TOC section La structure de données d'un texte-->
+
+<H2>9&nbsp;&nbsp; La structure de donn&eacute;es d'un texte</H2>
+<!--SEC END -->
+Un troisi&egrave;me type d'objet existe aussi et concerne la possibilit&eacute;
+d'afficher un texte dans la fen&ecirc;tre Scicos, de le d&eacute;placer, de le
+supprimer etc... . Des explications sur ce type d'objet n'ayant que peu
+d'inter&ecirc;t, nous signalons n&eacute;anmoins son existence.
+
+<!--TOC section Définition de la fonction d'un menu-->
+<H2>10&nbsp;&nbsp; D&eacute;finition de la fonction d'un menu</H2>
+<!--SEC END -->
+Dans un sch&eacute;ma-blocs, les param&egrave;tres peuvent &ecirc;tre
+d&eacute;finis de mani&egrave;re globale par des variables dans le menu 
+<TT>context</TT> du bouton <TT>Edit</TT> (par exemple : A=4). Signalons que
+l'on peut aussi d&eacute;finir des variables dans la fen&ecirc;tre Scilab,
+avant d'ouvrir une fen&ecirc;tre Scicos. Dans chaque bloc on peut aussi
+d&eacute;finir une expression textuelle (par exemple : 'A'), que l'on appelle
+aussi param&egrave;tre symbolique, qui est sauvegard&eacute;e automatiquement
+dans le champ <TT>dlg</TT> de <TT> graphics</TT> par la fonction <TT>do_eval 
+</TT>. Cette fonction &eacute;value les expressions dans <TT>dlg</TT> et
+calcule les valeurs num&eacute;riques correspondantes stock&eacute;es dans le
+vecteur <TT>rpar</TT> du bloc (par exemple : 4, si A=4). La fonction 
+<TT>Context_</TT> (li&eacute;e au menu <TT>context</TT>) appelle
+syst&eacute;matiquement la fonction <TT>do_eval</TT>, il devient ainsi
+ais&eacute; de changer en une seule fois (dans <TT>context</TT>), la valeur
+num&eacute;rique d'un param&egrave;tre dont d&eacute;pendent plusieurs blocs.
+Pour notre exemple de menu <TT>Ma_fonction</TT> du bouton <TT> Mon_bouton</TT>,
+nous proposons de r&eacute;aliser la fonctionnalit&eacute; qui permet de
+d&eacute;tecter les blocs contenant un param&egrave;tre symbolique qu'aura
+indiqu&eacute; l'utilisateur. Nous commen&ccedil;ons donc par cr&eacute;er la
+fonction <TT>Ma_fonction_</TT>, qui doit faire appel &agrave; la fonction 
+<TT>do_mafonction</TT>.
+
+<!--TOC subsection La fonction <TT>Ma_fonction_</TT>-->
+<H3>10.1&nbsp;&nbsp; La fonction <TT>Ma_fonction_</TT></H3>
+<!--SEC END -->
+<PRE>
+function  Ma_fonction_()
+    xinfo('Recherche de blocs contenant un parametre formel')
+    Cmenu='Open/Set'
+    disablemenus()
+    do_mafonction(scs_m) 
+    enablemenus()
+</PRE>
+<TT>Cmenu='Open/Set'</TT> permet en sortie de la fonction de garder la
+fonctionnalit&eacute; (dont nous avons d&eacute;j&agrave; parl&eacute;) qui
+existe par d&eacute;faut. <TT>disablemenus()</TT> rend inaccessible la barre de
+menu pendant l'ex&eacute;cution de la fonction, <TT>enablemenus()</TT> annule
+l'effet de <TT>disablemenus()</TT>.
+<!--TOC subsection La fonction <TT>do_mafonction</TT>-->
+
+<H3>10.2&nbsp;&nbsp; La fonction <TT>do_mafonction</TT></H3>
+<!--SEC END -->
+<PRE>
+function do_mafonction(scs_m) 
+// Recherche de parametre formel dans scs_m 
+//!  
+//scs_m(i)(1)='block' 
+
+//scs_m(i)(2)=graphics
+//scs_m(i)(2)(4)=dlg
+
+  okk=%f; label1='A';
+  [okk,label1]=getvalue('ENTREZ LE PARAMETRE GLOBAL',..
+      ['Expression :'],..
+      list('str',1),label1); 
+  if okk==%f then 
+   return
+  else
+     for i=2:length(scs_m)
+       if scs_m(i)(1)=='Block' then
+         if scs_m(i)(3)(1) ~= 'super' then
+           if  scs_m(i)(3)(1) ~= 'csuper' then
+             if or(scs_m(i)(2)(4)==label1) then
+              hilite_obj(scs_m(i)) // on encadre le bloc
+              evstr(message(['Le bloc encadre contient le parametre ' ..
+                    + string(label1)]));
+              hilite_obj(scs_m(i)) // on annule l'encadrement
+             end   
+           end
+         end
+       end
+     end
+  end
+</PRE>
+Notre fonction ouvre d'abord une fen&ecirc;tre de dialogue (fonction <TT>
+getvalue</TT>) qui invite l'utilisateur &agrave; indiquer le param&egrave;tre
+formel &agrave; d&eacute;tecter (par d&eacute;faut c'est <TT>A</TT>). Lorsqu'un
+bloc (qui contient le param&egrave;tre sp&eacute;cifi&eacute;) est
+d&eacute;tect&eacute;, son contour est surlign&eacute; gr&acirc;ce &agrave; la
+fonction <TT>hilite_obj</TT> et un message est donn&eacute; &agrave;
+l'utilisateur. La fonction <TT>hilite_obj</TT> est appel&eacute;e une
+deuxi&egrave;me fois pour annuler l'effet de la premi&egrave;re : c'est le mode
+<TT>Xor</TT> (cf. num&eacute;ro 28 de Linux Magazine). Pour ne pas compliquer
+notre fonction : 
+<UL>
+<LI> nous ne rentrons pas directement dans les super-blocs <TT> 'super'</TT>
+pour effectuer la d&eacute;tection. Il est cependant possible d'&eacute;diter
+le contenu de chaque super-bloc et d'ex&eacute;cuter notre fonction &agrave;
+l'int&eacute;rieur du super-bloc. </LI>
+<LI> nous ne consid&eacute;rons pas les super-blocs compil&eacute;s <TT>
+'csuper'</TT> (dans lesquels on ne peut pas rentrer), obtenus avec le menu 
+<TT>Save as Interf Func</TT> du bouton <TT>Diagram</TT>. Bien qu'&agrave;
+priori, il serait dans ce cas n&eacute;cessaire d'ex&eacute;cuter notre
+fonction, nous laissons au lecteur le loisir de la modifier en
+cons&eacute;quence. </LI>
+</UL>
+<EM>Nous verrons plus en d&eacute;tails dans le prochain num&eacute;ro les
+&eacute;tapes de compilation et de simulation des sch&eacute;ma-blocs hybrides
+(continu-discret) dans Scicos.</EM>
+
+
+<!--TOC section Erratum :-->
+<H2>11&nbsp;&nbsp; Erratum :</H2>
+<!--SEC END -->
+Dans la version de Scilab-2.6, nous signalons deux bogues avec Scicos : 
+<OL TYPE="1">
+<LI> le bloc int&eacute;grateur <TT>1/s</TT>, qui n'est d&eacute;fini comme
+&eacute;tant activ&eacute; en permanence mais h&eacute;rite de l'activation de
+son signal d'entr&eacute;e. Dans la plupart des cas cela ne pose pas de
+probl&egrave;me si ce bloc est souvent en aval d'un bloc activ&eacute; en
+permanence (comme par exemple sin(t)). Dans le cas particulier o&ugrave; son
+entr&eacute;e est reli&eacute;e par exemple &agrave; un bloc
+g&eacute;n&eacute;rateur de constante (non activ&eacute; en permanence), il
+existe un probl&egrave;me. Actuellement ce probl&egrave;me est corrig&eacute;
+dans la version actuelle de d&eacute;veloppement mais en attendant il est
+possible d'effectuer les modifications en rempla&ccedil;ant dans le fichier 
+<TT> &lt;SCI&gt;/macros/scicos/Linear.cosf</TT>, &agrave; la fin : <PRE>
+list('integr',1,1,[],[],0,[],[],[],'c',[],[%f,%f],' ',list()),' ',..
+          'INTEGRAL_f')}
+</PRE>
+par 
+<PRE>
+list('integr',1,1,[],[],0,[],[],[],'c',[],[%f,%t],' ',list()),' ',..
+          'INTEGRAL_f')
+
+</PRE>
+Cela fixe le bloc <TT>1/s</TT> dans la palette Linear. Ensuite il suffit de
+remplacer tous les blocs <TT>1/s</TT> de vos sch&eacute;ma-blocs
+ant&eacute;rieurs par ce nouveau bloc. 
+</LI>
+<LI> La fonction <TT>&lt;SCI&gt;/macros/scicos/do_eval</TT> qui permet
+d'&eacute;valuer le <TT>context</TT> d'un sch&eacute;ma-blocs en tenant compte
+de celui des super-blocs qu'il contient &agrave; &eacute;t&eacute;
+corrig&eacute;e et peut-&ecirc;tre t&eacute;l&eacute;charg&eacute;e via CVS. 
+</LI>
+</OL>
+Rachid Djenidi <BR>
+Scilab Group <BR>
+<A HREF="mailto:scilab@inria.fr ">scilab@inria.fr </A><BR>
+<A HREF="http://www-rocq.inria.fr/scilab/">http://www-rocq.inria.fr/scilab/</A>
+
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE="2">
+<BLOCKQUOTE><EM>This document was translated from L<SUP>A</SUP>T<SUB>E</SUB>X
+by </EM><A
+HREF="http://pauillac.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>V</EM><EM><FONT
+SIZE="2"><SUP>E</SUP></FONT></EM><EM>A</EM></A><EM>. </EM></BLOCKQUOTE>
+</BODY>
+</HTML>
+

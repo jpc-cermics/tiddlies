@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mscanf</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli302.html" >next</a>] [<a 
+href="manualli300.html" >prev</a>] [<a 
+href="manualli300.html#tailmanualli300.html" >prev-tail</a>] [<a 
+href="#tailmanualli301.html">tail</a>] [<a 
+href="manualli274.html#manualli301.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x302-1791000"></a>mscanf</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx302-1791001"></a><a 
+ id="mscanf"></a><span 
+class="cmtt-10x-x-109">mscanf </span>&#x2013;                                                                interface to the C scanf function<br />
+<a 
+ id="dx302-1791002"></a>
+<a 
+ id="mfscanf"></a><span 
+class="cmtt-10x-x-109">mfscanf </span>&#x2013;                                                               interface to the C fscanf function<br />
+<a 
+ id="dx302-1791003"></a>
+<a 
+ id="msscanf"></a><span 
+class="cmtt-10x-x-109">msscanf </span>&#x2013;                                                               interface to the C sscanf function<br />
+</div></p></div>
+<!--l. 24--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x302-1792000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-437">
+&#x00A0;&#x00A0;[n,v_1,...v_n]=mfscanf([niter,]fd,format)
+&#x00A0;<br />&#x00A0;&#x00A0;L=mfscanf([niter,]&#x00A0;fd,format)
+&#x00A0;<br />&#x00A0;&#x00A0;[n,v_1,...v_n]=mscanf([niter,]&#x00A0;format)
+&#x00A0;<br />&#x00A0;&#x00A0;L=mscanf([niter,]format)
+&#x00A0;<br />&#x00A0;&#x00A0;[n,v_1,...v_m]=msscanf([niter,]str,format)
+&#x00A0;<br />&#x00A0;&#x00A0;L=msscanf([niter,]&#x00A0;str,format)
+</div>
+<!--l. 32--><p class="nopar" >
+</p>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x302-1793000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">format</span>: a Scilab string describing the format to use to write the remaining operands.
+     The format operand follows, as close as possible, the C printf format operand syntax.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fd</span>:The fd parameter returned by the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mopen</span></span></span> is used as a file descriptor (it&apos;s a
+     positive integer). When specifying the fd parameter, the value -1 refers to the default
+     file ( i.e the last opened file).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">str</span>: a Scilab string.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">niter</span>: an integer, the number of times the format as to be used.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">n</span>: an integer, the number of data read or -1 if EOL has been encountered before any
+     datum has been read.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">v</span><span 
+class="cmtt-10x-x-109">_i</span>: Each function reads characters, interprets them according to a format, and stores
+     the results in its output arguments. If more than <span 
+class="cmmi-10x-x-109">n </span>output arguments are provided, the
+     last ones <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v_n+1,...v_m</span></span></span> are set to empty matrices.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">L</span>: if all data are homogeneous they are stored in a unique vector which is returned else
+     subsequences of same date type are stored in matrices and an mlist containing all the
+     built matrices is returned.</li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x302-1794000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 59--><p class="noindent" > The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfscanf</span></span></span> function reads characters from the stream <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mscanf</span></span></span> function reads characters
+from Scilab window. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msscanf</span></span></span> function reads characters from the Scilab string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">str</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">niter</span></span></span>
+optional argument specifies how many time the format has to used. One iteration produces one line
+in the output matrix. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">niter==-1</span></span></span> the function iterates up to the end of file. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">niter</span></span></span> default
+value is 1.
+</p>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x302-1795000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb243"><a 
+ id="x302-1795029r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;1</span><span 
+class="cmtt-10x-x-109">&#x00A0;1.3&#x0027;</span></span><br class="fancyvrb" /><a 
+ id="x302-1795031r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[n,a,b]=msscanf(s,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;%i</span><span 
+class="cmtt-10x-x-109">&#x00A0;%e&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x302-1795033r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;msscanf(s,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;%i</span><span 
+class="cmtt-10x-x-109">&#x00A0;%e&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x302-1795035r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;msscanf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;12&#x005C;n&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%c%c%c%c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//scan</span><span 
+class="cmitt-10x-x-109">&#x00A0;characters</span></span><br class="fancyvrb" /><a 
+ id="x302-1795037r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;msscanf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;0xabc&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%x&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//scan</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;hexadecimal</span><span 
+class="cmitt-10x-x-109">&#x00A0;format</span></span>
+<br class="fancyvrb" /><a 
+ id="x302-1795039r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;msscanf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;012345abczoo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%[0-9abc]%s&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//[]</span><span 
+class="cmitt-10x-x-109">&#x00A0;notation</span></span><br class="fancyvrb" /><a 
+ id="x302-1795041r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//create</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;data</span></span>
+<br class="fancyvrb" /><a 
+ id="x302-1795043r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=mopen(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;w&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x302-1795045r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;t=(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">%pi)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">mfprintf(u,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;%6.3f</span><span 
+class="cmtt-10x-x-109">&#x00A0;%6.3f&#x005C;n&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,t,sin(t))</span>
+<br class="fancyvrb" /><a 
+ id="x302-1795047r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x302-1795049r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//read</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;file</span><span 
+class="cmitt-10x-x-109">&#x00A0;line</span><span 
+class="cmitt-10x-x-109">&#x00A0;by</span><span 
+class="cmitt-10x-x-109">&#x00A0;line</span></span><br class="fancyvrb" /><a 
+ id="x302-1795051r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=mopen(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;r&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x302-1795053r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[n,a,b]=mfscanf(u,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%e</span><span 
+class="cmtt-10x-x-109">&#x00A0;%e&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x302-1795055r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;l=mfscanf(u,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%e</span><span 
+class="cmtt-10x-x-109">&#x00A0;%e&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x302-1795057r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x302-1795059r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//use</span><span 
+class="cmitt-10x-x-109">&#x00A0;niter</span></span>
+<br class="fancyvrb" /><a 
+ id="x302-1795061r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[n,Names,Ages]=msscanf(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Alain</span><span 
+class="cmtt-10x-x-109">&#x00A0;19&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Pierre</span><span 
+class="cmtt-10x-x-109">&#x00A0;15&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Tom</span><span 
+class="cmtt-10x-x-109">&#x00A0;12&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%s</span><span 
+class="cmtt-10x-x-109">&#x00A0;%d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x302-1795063r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;D=msscanf(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Alain</span><span 
+class="cmtt-10x-x-109">&#x00A0;19&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Pierre</span><span 
+class="cmtt-10x-x-109">&#x00A0;15&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Tom</span><span 
+class="cmtt-10x-x-109">&#x00A0;12&#x0022;</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%s</span><span 
+class="cmtt-10x-x-109">&#x00A0;%d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x302-1795065r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;typeof(D)</span>
+<br class="fancyvrb" /><a 
+ id="x302-1795067r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Names=D(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//strings</span></span><br class="fancyvrb" /><a 
+ id="x302-1795069r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Age=D(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//numerical</span><span 
+class="cmitt-10x-x-109">&#x00A0;values</span></span><br class="fancyvrb" /><a 
+ id="x302-1795071r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=mopen(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;w&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x302-1795073r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mfprintf(u,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;%s&#x005C;n&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Alain</span><span 
+class="cmtt-10x-x-109">&#x00A0;19&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Pierre</span><span 
+class="cmtt-10x-x-109">&#x00A0;15&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;Tom</span><span 
+class="cmtt-10x-x-109">&#x00A0;12&#x0022;</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x302-1795075r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x302-1795077r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;u=mopen(TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/foo&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;r&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x302-1795079r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[n,Names,Ages]=mfscanf(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,u,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%s</span><span 
+class="cmtt-10x-x-109">&#x00A0;%d&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x302-1795081r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mclose(u)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 101--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x302-1796000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli297.html#mclose">mclose</a>    <a 
+href="manualli299.html#meof">meof</a>    <a 
+href="manualli306.html#mfprintf">mfprintf</a>    <a 
+href="manualli282.html#fprintfMat">fprintfMat</a>    <a 
+href="#mfscanf">mfscanf</a>    <a 
+href="manualli284.html#fscanfMat">fscanfMat</a>    <a 
+href="manualli304.html#mget">mget</a>    <a 
+href="manualli303.html#mgetstr">mgetstr</a>    <a 
+href="manualli305.html#mopen">mopen</a>
+<a 
+href="manualli306.html#mprintf">mprintf</a>    <a 
+href="manualli309.html#mput">mput</a>    <a 
+href="manualli308.html#mputstr">mputstr</a>    <a 
+href="#mscanf">mscanf</a>    <a 
+href="manualli310.html#mseek">mseek</a>    <a 
+href="manualli311.html#mtell">mtell</a>    <a 
+href="manualli298.html#mdelete">mdelete</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli302.html" >next</a>] [<a 
+href="manualli300.html" >prev</a>] [<a 
+href="manualli300.html#tailmanualli300.html" >prev-tail</a>] [<a 
+href="manualli301.html" >front</a>] [<a 
+href="manualli274.html#manualli301.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli301.html"></a>  </p> 
+</body></html> 

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_bcast</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1060.html" >next</a>] [<a 
+href="manualli1058.html" >prev</a>] [<a 
+href="manualli1058.html#tailmanualli1058.html" >prev-tail</a>] [<a 
+href="#tailmanualli1059.html">tail</a>] [<a 
+href="manualli1054.html#manualli1059.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1060-6005000"></a>pvm_bcast</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1060-6005001"></a><a 
+ id="pvm_bcast"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_bcast </span>&#x2013;                                        broacasts a message to all members of a group<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1060-6006000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1160">
+&#x00A0;&#x00A0;[info]&#x00A0;=&#x00A0;pvm_bcast(group,&#x00A0;buff,&#x00A0;msgtag)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1060-6007000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">group</span>: string, string group name of an existing group.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">buff</span>: data to be send (any Scilab object).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">msgtag</span>: integer, message tag supplied by the user.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info</span>: integer,</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1060-6008000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_bcast</span></span></span> broadcasts a message to all the members of the group named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">group</span></span></span>. In PVM 3.2
+and later the broadcast message is not sent back to the sender. Any PVM task can call
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_bcast()</span></span></span>, it need not be a member of the group. The content of the message can
+be distinguished by its tag <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msgtag</span></span></span> The returned value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info</span></span></span>will be zero if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_bcast</span></span></span>
+is successful and will be will be <span 
+class="cmmi-10x-x-109">&#x003C; </span>0 if some error occurs. pvm_bcast is asynchronous.
+Computation on the sending processor resumes as soon as the message is safely on its way to the
+receiving processors. This is in contrast to synchronous communication, during which
+computation on the sending processor halts until a matching receive is executed by all
+the receiving processors. pvm_bcast first determines the tids of the group members by
+checking a group data base. A multicast is performed to these tids. If the group is changed
+during a broadcast the change will not be reflected in the broadcast. Multicasting is not
+supported by most multiprocessor vendors. Typically their native calls only support
+broadcasting to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">all</span></span></span> the user&apos;s processes on a multiprocessor. Because of this omission,
+pvm_bcast may not be an efficient communication method on some multiprocessors.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 63--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1060-6009000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb725"><a 
+ id="x1060-6009003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;info=pvm_bcast(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;worker&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">%i</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 69--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1060-6010000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-joingroup">pvm_joingroup</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1060.html" >next</a>] [<a 
+href="manualli1058.html" >prev</a>] [<a 
+href="manualli1058.html#tailmanualli1058.html" >prev-tail</a>] [<a 
+href="manualli1059.html" >front</a>] [<a 
+href="manualli1054.html#manualli1059.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1059.html"></a>  </p> 
+</body></html> 

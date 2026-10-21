@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}rand(\nspstring{'seed'},\nspnumber{0})\nspoperator{;}w=ssrand(\nspnumber{1},\nspnumber{1},\nspnumber{3})\nspoperator{;}w(\nspstring{'A'})=w(\nspstring{'A'})\nspoperator{-}\nspnumber{2}\nspoperator{*}eye()\nspoperator{;}
+t=\nspnumber{0}\nspoperator{:}\nspnumber{0.05}\nspoperator{:}\nspnumber{5}\nspoperator{;}
+\nspcomment{//impulse(w) = step (s * w)}
+xbasc(\nspnumber{0})\nspoperator{;}xset(\nspstring{"window"},\nspnumber{0})\nspoperator{;}xselect()\nspoperator{;}
+plot2d([t\nspoperator{'}\nspoperator{,}t\nspoperator{'}],[(csim(\nspstring{'step'},t,tf2ss(s)\nspoperator{*}w))\nspoperator{'}\nspoperator{,}\nspnumber{0}\nspoperator{*}t\nspoperator{'}])
+xbasc(\nspnumber{1})\nspoperator{;}xset(\nspstring{"window"},\nspnumber{1})\nspoperator{;}xselect()\nspoperator{;}
+plot2d([t\nspoperator{'}\nspoperator{,}t\nspoperator{'}],[(csim(\nspstring{'impulse'},t,w))\nspoperator{'}\nspoperator{,}\nspnumber{0}\nspoperator{*}t\nspoperator{'}])
+\nspcomment{//step(w) = impulse (s^-1 * w)}
+xbasc(\nspnumber{3})\nspoperator{;}xset(\nspstring{"window"},\nspnumber{3})\nspoperator{;}xselect()\nspoperator{;}
+plot2d([t\nspoperator{'}\nspoperator{,}t\nspoperator{'}],[(csim(\nspstring{'step'},t,w))\nspoperator{'}\nspoperator{,}\nspnumber{0}\nspoperator{*}t\nspoperator{'}])
+xbasc(\nspnumber{4})\nspoperator{;}xset(\nspstring{"window"},\nspnumber{4})\nspoperator{;}xselect()\nspoperator{;}
+plot2d([t\nspoperator{'}\nspoperator{,}t\nspoperator{'}],[(csim(\nspstring{'impulse'},t,tf2ss(\nspnumber{1}\nspoperator{/}s)\nspoperator{*}w))\nspoperator{'}\nspoperator{,}\nspnumber{0}\nspoperator{*}t\nspoperator{'}])
+\nspcomment{//input defined by a time function}
+deff(\nspstring{'u=input(t)'},\nspstring{'u=abs(sin(t))'})
+xbasc()\nspoperator{;}plot2d([t\nspoperator{'}\nspoperator{,}t\nspoperator{'}],[(csim(input,t,w))\nspoperator{'}\nspoperator{,}\nspnumber{0}\nspoperator{*}t\nspoperator{'}])
+\end{Verbatim}

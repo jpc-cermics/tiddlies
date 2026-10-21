@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_delhosts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1064.html" >next</a>] [<a 
+href="manualli1062.html" >prev</a>] [<a 
+href="manualli1062.html#tailmanualli1062.html" >prev-tail</a>] [<a 
+href="#tailmanualli1063.html">tail</a>] [<a 
+href="manualli1054.html#manualli1063.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1064-6027000"></a>pvm_delhosts</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1064-6027001"></a><a 
+ id="pvm_delhosts"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_delhosts </span>&#x2013;                                             deletes hosts from the virtual machine. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1064-6028000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1170">
+&#x00A0;&#x00A0;infos&#x00A0;=&#x00A0;pvm_delhosts(hosts)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1064-6029000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">hosts</span>: row of strings, containing the names of the machines to be deleted.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">infos</span>: row of integers, contains the status code returned by the routine for the individual
+     hosts.</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1064-6030000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_delhosts</span></span></span> deletes the computers named in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">hosts</span></span></span> from the existing configuration of computers
+making up the virtual machine. All PVM processes and the pvmd running on these computers are
+killed as the computer is deleted. The array <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info</span></span></span> can be checked to determine the status of each
+host. Values less than zero indicate an error, while zero values indicate a success. If a host fails, the
+PVM system will continue to work and will automatically delete the failing host from the virtual
+machine. It is the responsibility of the application developer to make his application tolerant of host
+failure.
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1064-6031000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb727"><a 
+ id="x1064-6031003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;info=pvm_delhosts([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;isostar&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;loop&#x0022;</span></span><span 
+class="cmtt-10x-x-109">])</span></div>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1064-6032000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-addhosts">pvm_addhosts</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1064.html" >next</a>] [<a 
+href="manualli1062.html" >prev</a>] [<a 
+href="manualli1062.html#tailmanualli1062.html" >prev-tail</a>] [<a 
+href="manualli1063.html" >front</a>] [<a 
+href="manualli1054.html#manualli1063.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1063.html"></a>  </p> 
+</body></html> 

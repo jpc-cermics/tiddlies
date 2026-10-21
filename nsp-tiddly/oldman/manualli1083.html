@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_spawn_independent</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1084.html" >next</a>] [<a 
+href="manualli1082.html" >prev</a>] [<a 
+href="manualli1082.html#tailmanualli1082.html" >prev-tail</a>] [<a 
+href="#tailmanualli1083.html">tail</a>] [<a 
+href="manualli1054.html#manualli1083.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1084-6144000"></a>pvm_spawn_independent</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1084-6144001"></a><a 
+ id="pvm_spawn_independent"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_spawn</span><span 
+class="cmtt-10x-x-109">_independent </span>&#x2013;                                              Starts new PVM processes. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1084-6145000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1192">
+&#x00A0;&#x00A0;[tids,&#x00A0;numt]&#x00A0;=&#x00A0;pvm_spawn_independent(task,&#x00A0;&#x00A0;ntask,&#x00A0;[where])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1084-6146000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">task:  </span>string, which is the executable file name of the PVM process to be started. The
+     executable must already reside on the host on which it is to be started. The name may
+     be a file in the PVM search path or an absolute path. The default PVM search path is
+     <span 
+class="cmmi-10x-x-109">HOME&#x2215;pvm</span>3<span 
+class="cmmi-10x-x-109">&#x2215;bin&#x2215;</span>PVM_ARCH/ .
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ntask:  </span>integer, specifying the number of copies of the executable file to start.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">where:  </span>string (optional), can be a host name such as &#x201C;tequila.ens-lyon.fr&#x201D; or a PVM
+     architecture class such as &#x201C;SUN4&#x201D;.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">numt:  </span>integer, the actual number of tasks started. Values less than zero indicate a
+     system error.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tids </span>row  of  integers,  array  of  the  tids  of  the  PVM  processes  started  by  this
+     pvm_spawn_independent call.</li></ul>
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1084-6147000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 37--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn_independent</span></span></span> starts <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ntask</span></span></span> copies of the executable named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">task</span></span></span>. On systems
+that support environment variables, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn_independent</span></span></span> passes selected variables
+from parent environment to children tasks. If set, the envar <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PVM_EXPORT</span></span></span> is passed. If
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">PVM_EXPORT</span></span></span> contains other names (separated by &apos;:&apos;) they will be passed too. This is useful for
+e.g.:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1193">
+&#x00A0;&#x00A0;setenv&#x00A0;DISPLAY&#x00A0;myworkstation:0.0
+&#x00A0;<br />&#x00A0;&#x00A0;setenv&#x00A0;MYSTERYVAR&#x00A0;13
+&#x00A0;<br />&#x00A0;&#x00A0;setenv&#x00A0;PVM_EXPORT&#x00A0;DISPLAY:MYSTERYVAR
+</div>
+<!--l. 50--><p class="nopar" >The hosts on which the PVM processes are started are determined by the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">where</span></span></span> arguments.
+On return the array <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tids</span></span></span> contains the PVM task identifiers for each process started. If
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn_independent</span></span></span> starts one or more tasks, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numt</span></span></span> will be the actual number of tasks started.
+If a system error occurs then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numt</span></span></span> will be <span 
+class="cmmi-10x-x-109">&#x003C; </span>0. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">numt</span></span></span> is les than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ntask</span></span></span> then some executables have
+failed to start. The last locations in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tids</span></span></span> array will contain error codes (see below for meaning).
+Note that the first tids in the array are always valid. When the argument <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">where</span></span></span> is omitted
+an heuristic (round-robin assignment) is used to distribute the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ntask</span></span></span> processes across
+the virtual machine. In the special case where a multiprocessor is specified by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">where</span></span></span>.
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_spawn_independent</span></span></span> will start all copies on this single machine using the vendor&apos;s underlying
+routines.
+</p>
+<!--l. 73--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1084-6148000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb745"><a 
+ id="x1084-6148003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[tids,numt]=pvm_spawn_independent(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;a.out&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 79--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1084-6149000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1087.html#pvm">pvm</a>    <a 
+href="#pvm-spawn">pvm_spawn</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1084.html" >next</a>] [<a 
+href="manualli1082.html" >prev</a>] [<a 
+href="manualli1082.html#tailmanualli1082.html" >prev-tail</a>] [<a 
+href="manualli1083.html" >front</a>] [<a 
+href="manualli1054.html#manualli1083.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1083.html"></a>  </p> 
+</body></html> 

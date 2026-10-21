@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+clf()
+x=\nspnumber{0}\nspoperator{:}\nspnumber{0.01}\nspoperator{:}\nspnumber{6}\nspoperator{*}%pi\nspoperator{;}
+plot2d(x,sin(x\nspoperator{^}\nspnumber{2}))
+zoom_rect([\nspnumber{16}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspnumber{18}\nspoperator{,}\nspnumber{1}])
+\nspcomment{//more zoom}
+zoom_rect([\nspnumber{16}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{16.2}\nspoperator{,}\nspnumber{1}])
+\nspcomment{//back to the original}
+unzoom()
+\nspcomment{// zooming using axes_properties}
+a=gca()\nspoperator{;}
+a.zoom_box=[\nspnumber{16}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{16.2}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+a.zoom_box=[]\nspoperator{;}
+\nspcomment{//zooming subplots accordingly}
+clf()
+x=\nspnumber{0}\nspoperator{:}\nspnumber{0.01}\nspoperator{:}\nspnumber{6}\nspoperator{*}%pi\nspoperator{;}
+subplot(\nspnumber{211})
+plot2d(x,cos(x))
+subplot(\nspnumber{212})
+plot2d(x,cos(\nspnumber{2}\nspoperator{*}x))
+rect=[\nspnumber{3}\nspoperator{,}\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{10}]\nspoperator{;}\nspcomment{//a rectangle specified in the current axes (last one) coordinates}
+zoom_rect(rect)
+unzoom()
+\nspcomment{//set the global underlying axes as current}
+f=gcf()\nspoperator{;}set(\nspstring{'current_axes'},f.children($))
+rect=[\nspnumber{0.4}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0.6}\nspoperator{,}\nspnumber{1}]\nspoperator{,}\nspcomment{//a rectangle specified in ratio of the window size}
+zoom_rect(rect)
+rect=[\nspnumber{0.4}\nspoperator{,}\nspnumber{0.2}\nspoperator{,}\nspnumber{0.6}\nspoperator{,}\nspnumber{0.8}]\nspoperator{;}\nspcomment{//a rectangle specified in ratio of the window size}
+zoom_rect(rect)
+\end{Verbatim}

@@ -1,0 +1,2001 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>leastsq</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli879.html" >next</a>] [<a 
+href="manualli877.html" >prev</a>] [<a 
+href="manualli877.html#tailmanualli877.html" >prev-tail</a>] [<a 
+href="#tailmanualli878.html">tail</a>] [<a 
+href="manualli863.html#manualli878.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x879-5089000"></a>leastsq</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx879-5089001"></a><a 
+ id="leastsq"></a><span 
+class="cmtt-10x-x-109">leastsq </span>&#x2013;                                                   Solves non-linear least squares problems <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x879-5090000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-981">
+&#x00A0;&#x00A0;[fopt,[xopt,[grdopt]]]=leastsq(fun,&#x00A0;x0)
+&#x00A0;<br />&#x00A0;&#x00A0;[fopt,[xopt,[grdopt]]]=leastsq(fun,&#x00A0;dfun,&#x00A0;x0)
+&#x00A0;<br />&#x00A0;&#x00A0;[fopt,[xopt,[grdopt]]]=leastsq(fun,&#x00A0;cstr,&#x00A0;x0)
+&#x00A0;<br />&#x00A0;&#x00A0;[fopt,[xopt,[grdopt]]]=leastsq(fun,&#x00A0;dfun,&#x00A0;cstr,&#x00A0;x0)
+&#x00A0;<br />&#x00A0;&#x00A0;[fopt,[xopt,[grdopt]]]=leastsq(fun,&#x00A0;dfun,&#x00A0;cstr,&#x00A0;x0,&#x00A0;algo)
+&#x00A0;<br />&#x00A0;&#x00A0;[fopt,[xopt,[grdopt]]]=leastsq([imp],&#x00A0;fun&#x00A0;[,dfun]&#x00A0;[,cstr],x0&#x00A0;[,algo],[df0,[mem]],[stop])
+</div>
+<!--l. 30--><p class="nopar" >
+</p>
+<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x879-5091000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fopt</span>: value of the function <span 
+class="cmmi-10x-x-109">f</span>(<span 
+class="cmmi-10x-x-109">x</span>) = <span 
+class="cmsy-10x-x-109">&#x2225;</span><span 
+class="cmmi-10x-x-109">fun</span>(<span 
+class="cmmi-10x-x-109">x</span>)<span 
+class="cmsy-10x-x-109">&#x2225;</span><sup><span 
+class="cmr-8">2</span></sup> at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xopt</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xopt</span>: best value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> found to minimize <span 
+class="cmsy-10x-x-109">&#x2225;</span><span 
+class="cmmi-10x-x-109">fun</span>(<span 
+class="cmmi-10x-x-109">x</span>)<span 
+class="cmsy-10x-x-109">&#x2225;</span><sup><span 
+class="cmr-8">2</span></sup>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">grdopt</span>: gradient of <span 
+class="cmti-10x-x-109">f </span>at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xopt</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fun</span>: a scilab function or a list defining a function from <span 
+class="cmmi-10x-x-109">R</span><sup><span 
+class="cmmi-8">n</span></sup> to <span 
+class="cmmi-10x-x-109">R</span><sup><span 
+class="cmmi-8">m</span></sup> (see more details in
+     DESCRIPTION).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: real vector (initial guess of the variable to be minimized).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">dfun</span>: a scilab function or a string defining the Jacobian matrix of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> (see more details
+     in DESCRIPTION).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">cstr</span>: bound constraints on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. They must be introduced by the string keyword <span 
+class="cmtt-10x-x-109">&apos;b&apos;</span>
+     followed by the lower bound <span 
+class="cmtt-10x-x-109">binf </span>then by the upper bound <span 
+class="cmtt-10x-x-109">bsup </span>(so <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cstr</span></span></span> appears
+     as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;b&#x0027;,binf,bsup</span></span></span> in the calling sequence). Those bounds are real vectors with same
+     dimension than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span> (-%inf and +%inf may be used for dimension which are unrestricted).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">algo</span>: a string with possible values: <span 
+class="cmtt-10x-x-109">&apos;qn&apos; </span>or <span 
+class="cmtt-10x-x-109">&apos;gc&apos; </span>or <span 
+class="cmtt-10x-x-109">&apos;nd&apos;</span>. These strings stand for
+     quasi-Newton (default), conjugate gradient or non-differentiable respectively. Note that
+     <span 
+class="cmtt-10x-x-109">&apos;nd&apos; </span>does not accept bounds on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>.
+                                                                                    
+
+                                                                                    
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">imp</span>: scalar argument used to set the trace mode. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">imp=0</span></span></span> nothing (except errors) is
+     reported, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">imp=1</span></span></span> initial and final reports, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">imp=2</span></span></span> adds a report per iteration, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">imp$&#x003E;$2</span></span></span>
+     add reports on linear search. Warning, most of these reports are written on the Scilab
+     standard output.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">df0</span>: real scalar. Guessed decreasing of <span 
+class="cmsy-10x-x-109">&#x2225;</span><span 
+class="cmmi-10x-x-109">fun</span>(<span 
+class="cmmi-10x-x-109">x</span>)<span 
+class="cmsy-10x-x-109">&#x2225;</span><sup><span 
+class="cmr-8">2</span></sup> at first iteration. (<span 
+class="cmtt-10x-x-109">df0=1 </span>is the default
+     value).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">mem</span>: integer, number of variables used to approximate the Hessean (second derivatives)
+     of <span 
+class="cmti-10x-x-109">f </span>when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">algo</span></span></span><span 
+class="cmtt-10x-x-109">=&apos;qn&apos;</span>. Default value is around 6.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">stop</span>: sequence of optional parameters controlling the convergence of the algorithm.
+     They are introduced by the keyword <span 
+class="cmtt-10x-x-109">&apos;ar&apos;</span>, the sequence being of the form
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ar&#x0027;,nap,</span><span 
+class="cmtt-10x-x-109">&#x00A0;[iter</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,epsg</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,epsf</span><span 
+class="cmtt-10x-x-109">&#x00A0;[,epsx]]]]</span></span></span>
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">nap</span>: maximum number of calls to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> allowed.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">iter</span>: maximum number of iterations allowed.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">epsg</span>: threshold on gradient norm.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">epsf</span>: threshold controlling decreasing of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">epsx</span>: threshold controlling variation of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. This vector (possibly matrix) of same
+          size as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x0</span></span></span> can be used to scale <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>.</li></ul>
+     </li></ul>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x879-5092000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 72--><p class="noindent" > <span 
+class="cmti-10x-x-109">fun </span>being a function from <span 
+class="cmmi-10x-x-109">R</span><sup><span 
+class="cmmi-8">n</span></sup> to <span 
+class="cmmi-10x-x-109">R</span><sup><span 
+class="cmmi-8">m</span></sup> this routine tries to minimize w.r.t. <span 
+class="cmti-10x-x-109">x</span>, the function:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-982">
+&#x00A0;&#x00A0;_m_
+&#x00A0;<br />&#x00A0;&#x00A0;2&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x005C;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;2
+&#x00A0;<br />&#x00A0;&#x00A0;f(x)&#x00A0;=&#x00A0;||fun(x)||&#x00A0;&#x00A0;=&#x00A0;&#x00A0;/&#x00A0;&#x00A0;&#x00A0;fun&#x00A0;(x)
+&#x00A0;<br />&#x00A0;&#x00A0;---&#x00A0;&#x00A0;&#x00A0;&#x00A0;i
+&#x00A0;<br />&#x00A0;&#x00A0;i=1
+</div>
+<!--l. 81--><p class="nopar" >which is the sum of the squares of the components of <span 
+class="cmti-10x-x-109">fun</span>. Bound constraints may be imposed on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>.
+</p>
+<!--l. 86--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x879-5093000"></a><span 
+class="cmbx-10x-x-109">How to provide fun and dfun</span></span>
+   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> can be either a usual scilab function (case 1) or a fortran or a C routine linked to scilab
+(case 2). For most problems the definition of <span 
+class="cmti-10x-x-109">fun </span>will need supplementary parameters and this can
+be done in both cases. </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">case  1:</div>  when  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> is  a  Scilab  function,  its  calling  sequence  must  be:  <span 
+class="cmtt-10x-x-109">y=fun(x</span>
+     <span 
+class="cmtt-10x-x-109">[,opt</span><span 
+class="cmtt-10x-x-109">_par1,opt</span><span 
+class="cmtt-10x-x-109">_par2,...])</span>. When <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> needs optional parameters it must appear as
+     <span 
+class="cmtt-10x-x-109">list(fun,opt</span><span 
+class="cmtt-10x-x-109">_par1,opt</span><span 
+class="cmtt-10x-x-109">_par2,...) </span>in the calling sequence of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">leastsq</span></span></span>.
+     </li>
+     <li class="itemize"><div class="itemdesc">case 2:</div> when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> is defined by a Fortran or C routine it must appear as <span 
+class="cmtt-10x-x-109">list(fun</span><span 
+class="cmtt-10x-x-109">_name,m</span>
+     <span 
+class="cmtt-10x-x-109">[,opt</span><span 
+class="cmtt-10x-x-109">_par1,opt</span><span 
+class="cmtt-10x-x-109">_par2,...]) </span>in the calling sequence of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">leastsq</span></span></span>, <span 
+class="cmtt-10x-x-109">fun</span><span 
+class="cmtt-10x-x-109">_name </span>(a string) being
+     the name of the routine which must be linked to Scilab (see <a 
+href="manualli1368.html#link">link</a>    ). The generic calling
+     sequences for this routine are:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-983">
+     &#x00A0;&#x00A0;In&#x00A0;Fortran:&#x00A0;&#x00A0;&#x00A0;&#x00A0;subroutine&#x00A0;fun(m,&#x00A0;n,&#x00A0;x,&#x00A0;params,&#x00A0;y)
+     &#x00A0;<br />&#x00A0;&#x00A0;integer&#x00A0;m,n
+     &#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;precision&#x00A0;x(n),&#x00A0;params(*),&#x00A0;y(m)
+     &#x00A0;<br />&#x00A0;&#x00A0;In&#x00A0;C:&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;void&#x00A0;fun(int&#x00A0;*m,&#x00A0;int&#x00A0;*n,&#x00A0;double&#x00A0;*x,&#x00A0;double&#x00A0;*params,&#x00A0;double&#x00A0;*y)
+</div>
+     <!--l. 105--><p class="nopar" >where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span></span></span> is the dimension of vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m</span></span></span> the dimension of vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span> (which must store the
+     evaluation of <span 
+class="cmti-10x-x-109">fun </span>at <span 
+class="cmti-10x-x-109">x</span>) and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">params</span></span></span> is a vector which contains the optional parameters
+     <span 
+class="cmti-10x-x-109">opt</span><span 
+class="cmti-10x-x-109">_par1, opt</span><span 
+class="cmti-10x-x-109">_par2, ... </span>(each parameter may be a vector, for instance if <span 
+class="cmti-10x-x-109">opt</span><span 
+class="cmti-10x-x-109">_par1 </span>has 3
+     components, the description of <span 
+class="cmti-10x-x-109">opt</span><span 
+class="cmti-10x-x-109">_par2 </span>begin from <span 
+class="cmtt-10x-x-109">params(4) </span>(fortran case), and from
+     <span 
+class="cmtt-10x-x-109">params[3] </span>(C case), etc... Note that even if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> doesn&apos;t need supplementary parameters you
+     must anyway write the fortran code with a <span 
+class="cmtt-10x-x-109">params </span>argument (which is then unused in the
+     subroutine core).</p></li></ul>
+<!--l. 115--><p class="noindent" >In many cases it is adviced to provide the Jacobian matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dfun</span></span></span> (<span 
+class="cmti-10x-x-109">dfun(i,j)=dfi/dxj</span>) to the optimizer
+(which uses a finite difference approximation otherwise) and as for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span> it may be given as a usual
+scilab function or as a fortran or a C routine linked to scilab. </p>
+     <ul class="itemize1">
+     <li class="itemize"><div class="itemdesc">case  1:</div>  when  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dfun</span></span></span> is  a  scilab  function,  its  calling  sequence  must  be:  <span 
+class="cmtt-10x-x-109">y=dfun(x [,</span>
+     <span 
+class="cmtt-10x-x-109">optional parameters]) </span>(notes that even if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dfun</span></span></span> needs optional parameters it must
+     appear simply as <span 
+class="cmtt-10x-x-109">dfun </span>in the calling sequence of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">leastsq</span></span></span>).
+     </li>
+     <li class="itemize"><div class="itemdesc">case 2:</div> when <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dfun</span></span></span> is defined by a Fortran or C routine it must appear as <span 
+class="cmtt-10x-x-109">dfun</span><span 
+class="cmtt-10x-x-109">_name </span>(a string)
+     in the calling sequence of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">leastsq</span></span></span> (<span 
+class="cmtt-10x-x-109">dfun</span><span 
+class="cmtt-10x-x-109">_name </span>being the name of the routine which must be
+     linked to Scilab). The calling sequences for this routine are nearly the same than for
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fun</span></span></span>:
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-984">
+     &#x00A0;&#x00A0;In&#x00A0;Fortran:&#x00A0;&#x00A0;&#x00A0;&#x00A0;subroutine&#x00A0;dfun(m,&#x00A0;n,&#x00A0;x,&#x00A0;params,&#x00A0;y)
+     &#x00A0;<br />&#x00A0;&#x00A0;integer&#x00A0;m,n
+     &#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;precision&#x00A0;x(n),&#x00A0;params(*),&#x00A0;y(m,n)
+     &#x00A0;<br />&#x00A0;&#x00A0;In&#x00A0;C:&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;void&#x00A0;fun(int&#x00A0;*m,&#x00A0;int&#x00A0;*n,&#x00A0;double&#x00A0;*x,&#x00A0;double&#x00A0;*params,&#x00A0;double&#x00A0;*y)
+</div>
+     <!--l. 132--><p class="nopar" >in the C case <span 
+class="cmti-10x-x-109">dfun(i,j)=dfi/dxj </span>must be stored in <span 
+class="cmtt-10x-x-109">y[m*(j-1)+i-1]</span>.</p></li></ul>
+<!--l. 136--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x879-5094000"></a><span 
+class="cmbx-10x-x-109">Remarks</span></span>
+   Like <a 
+href="manualli867.html#datafit">datafit</a>    , <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">leastsq</span></span></span> is a front end onto the <a 
+href="manualli891.html#optim">optim</a>    function. If you want to try the
+Levenberg-Marquard method instead, use <a 
+href="manualli882.html#lsqrsolve">lsqrsolve</a>    . A least squares problem may be solved
+directly with the <a 
+href="manualli891.html#optim">optim</a>    function ; in this case the function <a 
+href="manualli883.html#NDcost">NDcost</a>    may be useful to compute
+the derivatives (see the <a 
+href="manualli883.html#NDcost">NDcost</a>    help page which provides a simple example for parameters
+identification of a differential equation).
+</p>
+<!--l. 144--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x879-5095000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb614"><a 
+ id="x879-5095127r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;We</span><span 
+class="cmitt-10x-x-109">&#x00A0;will</span><span 
+class="cmitt-10x-x-109">&#x00A0;show</span><span 
+class="cmitt-10x-x-109">&#x00A0;different</span><span 
+class="cmitt-10x-x-109">&#x00A0;calling</span><span 
+class="cmitt-10x-x-109">&#x00A0;possibilities</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;leastsq</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;one</span><span 
+class="cmitt-10x-x-109">&#x00A0;(trivial)</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095129r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;which</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;non</span><span 
+class="cmitt-10x-x-109">&#x00A0;linear</span><span 
+class="cmitt-10x-x-109">&#x00A0;but</span><span 
+class="cmitt-10x-x-109">&#x00A0;doesn&#x0027;t</span><span 
+class="cmitt-10x-x-109">&#x00A0;really</span><span 
+class="cmitt-10x-x-109">&#x00A0;need</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;solved</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;leastsq</span><span 
+class="cmitt-10x-x-109">&#x00A0;(applying</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095131r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;log</span><span 
+class="cmitt-10x-x-109">&#x00A0;linearizes</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;problem</span><span 
+class="cmitt-10x-x-109">&#x00A0;may</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;solved</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;linear</span><span 
+class="cmitt-10x-x-109">&#x00A0;algebra).</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095133r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;In</span><span 
+class="cmitt-10x-x-109">&#x00A0;this</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;look</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;parameters</span><span 
+class="cmitt-10x-x-109">&#x00A0;x(1)</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;x(2)</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;simple</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095135r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;exponential</span><span 
+class="cmitt-10x-x-109">&#x00A0;decay</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span><span 
+class="cmitt-10x-x-109">&#x00A0;(x(1)</span><span 
+class="cmitt-10x-x-109">&#x00A0;being</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;unknow</span><span 
+class="cmitt-10x-x-109">&#x00A0;initial</span><span 
+class="cmitt-10x-x-109">&#x00A0;value</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;x(2)</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095137r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;decay</span><span 
+class="cmitt-10x-x-109">&#x00A0;constant):</span></span><br class="fancyvrb" /><a 
+ id="x879-5095139r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;y=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">yth</span></span><span 
+class="cmtt-10x-x-109">(t,x)</span><br class="fancyvrb" /><a 
+ id="x879-5095141r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;y=x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">exp(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">t)</span><br class="fancyvrb" /><a 
+ id="x879-5095143r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095145r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;have</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;m</span><span 
+class="cmitt-10x-x-109">&#x00A0;measures</span><span 
+class="cmitt-10x-x-109">&#x00A0;(ti,</span><span 
+class="cmitt-10x-x-109">&#x00A0;yi):</span></span><br class="fancyvrb" /><a 
+ id="x879-5095147r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x879-5095149r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tm=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.25</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.75</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.25</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.75</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.25</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2.5</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095151r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ym=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.79</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.59</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.47</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.36</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.29</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.23</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.17</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.15</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.12</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.08</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095153r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;wm=ones(m,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;measure</span><span 
+class="cmitt-10x-x-109">&#x00A0;weights</span><span 
+class="cmitt-10x-x-109">&#x00A0;(here</span><span 
+class="cmitt-10x-x-109">&#x00A0;all</span><span 
+class="cmitt-10x-x-109">&#x00A0;equal</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;1...)</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095155r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;want</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;find</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;parameters</span><span 
+class="cmitt-10x-x-109">&#x00A0;x</span><span 
+class="cmitt-10x-x-109">&#x00A0;such</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;model</span><span 
+class="cmitt-10x-x-109">&#x00A0;fits</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;given</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095157r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;datas</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;least</span><span 
+class="cmitt-10x-x-109">&#x00A0;square</span><span 
+class="cmitt-10x-x-109">&#x00A0;sense:</span></span><br class="fancyvrb" /><a 
+ id="x879-5095159r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span></span><br class="fancyvrb" /><a 
+ id="x879-5095161r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;minimize</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;f(x)</span><span 
+class="cmitt-10x-x-109">&#x00A0;=</span><span 
+class="cmitt-10x-x-109">&#x00A0;sum_i</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;wm(i)^2</span><span 
+class="cmitt-10x-x-109">&#x00A0;(</span><span 
+class="cmitt-10x-x-109">&#x00A0;yth(tm(i),x)</span><span 
+class="cmitt-10x-x-109">&#x00A0;-</span><span 
+class="cmitt-10x-x-109">&#x00A0;ym(i)</span><span 
+class="cmitt-10x-x-109">&#x00A0;)^2</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095163r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;initial</span><span 
+class="cmitt-10x-x-109">&#x00A0;parameters</span><span 
+class="cmitt-10x-x-109">&#x00A0;guess</span></span><br class="fancyvrb" /><a 
+ id="x879-5095165r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;x0=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.5</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.8</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x879-5095167r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;examples,</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;define</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;fun</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;dfun</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095169r22"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab</span><span 
+class="cmitt-10x-x-109">&#x00A0;language</span></span><br class="fancyvrb" /><a 
+ id="x879-5095171r23"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;e=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">myfun</span></span><span 
+class="cmtt-10x-x-109">(x,tm,ym,wm)</span><br class="fancyvrb" /><a 
+ id="x879-5095173r24"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;e=wm</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">(yth(tm,x)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">ym)</span><br class="fancyvrb" /><a 
+ id="x879-5095175r25"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095177r26"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">function</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;g=</span><span class="nspfunction"><span 
+class="cmtt-10x-x-109">mydfun</span></span><span 
+class="cmtt-10x-x-109">(x,tm,ym,wm)</span><br class="fancyvrb" /><a 
+ id="x879-5095179r27"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;v=wm</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">exp(</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">tm)</span><br class="fancyvrb" /><a 
+ id="x879-5095181r28"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g=[v</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">x(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">tm</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;.*</span></span><span 
+class="cmtt-10x-x-109">v]</span><br class="fancyvrb" /><a 
+ id="x879-5095183r29"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">endfunction</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095185r30"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;now</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;could</span><span 
+class="cmitt-10x-x-109">&#x00A0;call</span><span 
+class="cmitt-10x-x-109">&#x00A0;leastsq:</span></span><br class="fancyvrb" /><a 
+ id="x879-5095187r31"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;1-</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;simplest</span><span 
+class="cmitt-10x-x-109">&#x00A0;call</span></span><br class="fancyvrb" /><a 
+ id="x879-5095189r32"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(list(myfun,tm,ym,wm),x0)</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095191r33"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;2-</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;provide</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;Jacobian</span></span><br class="fancyvrb" /><a 
+ id="x879-5095193r34"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(list(myfun,tm,ym,wm),mydfun,x0)</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095195r35"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;small</span><span 
+class="cmitt-10x-x-109">&#x00A0;graphic</span><span 
+class="cmitt-10x-x-109">&#x00A0;(before</span><span 
+class="cmitt-10x-x-109">&#x00A0;showing</span><span 
+class="cmitt-10x-x-109">&#x00A0;other</span><span 
+class="cmitt-10x-x-109">&#x00A0;calling</span><span 
+class="cmitt-10x-x-109">&#x00A0;features)</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095197r36"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;tt=linspace(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">max(tm),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x879-5095199r37"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;yy=yth(tt,xopt)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x879-5095201r38"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xbasc()</span><br class="fancyvrb" /><a 
+ id="x879-5095203r39"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(tm,ym,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095205r40"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(tt,yy,style</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x879-5095207r41"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;legend([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;measure</span><span 
+class="cmtt-10x-x-109">&#x00A0;points&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;fitted</span><span 
+class="cmtt-10x-x-109">&#x00A0;curve&#x0022;</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095209r42"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xtitle(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;a</span><span 
+class="cmtt-10x-x-109">&#x00A0;simple</span><span 
+class="cmtt-10x-x-109">&#x00A0;fit</span><span 
+class="cmtt-10x-x-109">&#x00A0;with</span><span 
+class="cmtt-10x-x-109">&#x00A0;leastsq&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x879-5095211r43"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;3-</span><span 
+class="cmitt-10x-x-109">&#x00A0;how</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;get</span><span 
+class="cmitt-10x-x-109">&#x00A0;some</span><span 
+class="cmitt-10x-x-109">&#x00A0;informations</span><span 
+class="cmitt-10x-x-109">&#x00A0;(we</span><span 
+class="cmitt-10x-x-109">&#x00A0;use</span><span 
+class="cmitt-10x-x-109">&#x00A0;imp=1)</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095213r44"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,list(myfun,tm,ym,wm),mydfun,x0)</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095215r45"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;4-</span><span 
+class="cmitt-10x-x-109">&#x00A0;using</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;conjugate</span><span 
+class="cmitt-10x-x-109">&#x00A0;gradient</span><span 
+class="cmitt-10x-x-109">&#x00A0;(instead</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;quasi</span><span 
+class="cmitt-10x-x-109">&#x00A0;Newton)</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095217r46"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,list(myfun,tm,ym,wm),mydfun,x0,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;gc&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+                                                                                    
+
+                                                                                    
+<br class="fancyvrb" /><a 
+ id="x879-5095219r47"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;5-</span><span 
+class="cmitt-10x-x-109">&#x00A0;how</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;provide</span><span 
+class="cmitt-10x-x-109">&#x00A0;bound</span><span 
+class="cmitt-10x-x-109">&#x00A0;constraints</span><span 
+class="cmitt-10x-x-109">&#x00A0;(not</span><span 
+class="cmitt-10x-x-109">&#x00A0;useful</span><span 
+class="cmitt-10x-x-109">&#x00A0;here</span><span 
+class="cmitt-10x-x-109">&#x00A0;!)</span></span><br class="fancyvrb" /><a 
+ id="x879-5095221r48"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xinf=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%inf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">%inf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">xsup=[%inf</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">%inf]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095223r49"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(list(myfun,tm,ym,wm),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;b&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,xinf,xsup,x0)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;without</span><span 
+class="cmitt-10x-x-109">&#x00A0;Jacobian</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095225r50"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(list(myfun,tm,ym,wm),mydfun,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;b&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,xinf,xsup,x0)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;Jacobian</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095227r51"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;6-</span><span 
+class="cmitt-10x-x-109">&#x00A0;playing</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;some</span><span 
+class="cmitt-10x-x-109">&#x00A0;stopping</span><span 
+class="cmitt-10x-x-109">&#x00A0;parameters</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;algorithm</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095229r52"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;(allows</span><span 
+class="cmitt-10x-x-109">&#x00A0;only</span><span 
+class="cmitt-10x-x-109">&#x00A0;40</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;calls,</span><span 
+class="cmitt-10x-x-109">&#x00A0;8</span><span 
+class="cmitt-10x-x-109">&#x00A0;iterations</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;set</span><span 
+class="cmitt-10x-x-109">&#x00A0;epsg=0.01,</span><span 
+class="cmitt-10x-x-109">&#x00A0;epsf=0.1)</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095231r53"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,list(myfun,tm,ym,wm),mydfun,x0,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;ar&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">40</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.01</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095233r54"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;7</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;8:</span><span 
+class="cmitt-10x-x-109">&#x00A0;now</span><span 
+class="cmitt-10x-x-109">&#x00A0;we</span><span 
+class="cmitt-10x-x-109">&#x00A0;want</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;define</span><span 
+class="cmitt-10x-x-109">&#x00A0;fun</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;dfun</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;then</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095235r55"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;Note</span><span 
+class="cmitt-10x-x-109">&#x00A0;that</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0022;compile</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;link</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab&#x0022;</span><span 
+class="cmitt-10x-x-109">&#x00A0;method</span><span 
+class="cmitt-10x-x-109">&#x00A0;used</span><span 
+class="cmitt-10x-x-109">&#x00A0;here</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095237r56"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;believed</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;OS</span><span 
+class="cmitt-10x-x-109">&#x00A0;independant</span><span 
+class="cmitt-10x-x-109">&#x00A0;(but</span><span 
+class="cmitt-10x-x-109">&#x00A0;there</span><span 
+class="cmitt-10x-x-109">&#x00A0;are</span><span 
+class="cmitt-10x-x-109">&#x00A0;some</span><span 
+class="cmitt-10x-x-109">&#x00A0;requirements,</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095239r57"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;particular</span><span 
+class="cmitt-10x-x-109">&#x00A0;you</span><span 
+class="cmitt-10x-x-109">&#x00A0;need</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;compiler,</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;they</span><span 
+class="cmitt-10x-x-109">&#x00A0;must</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095241r58"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;compatible</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;ones</span><span 
+class="cmitt-10x-x-109">&#x00A0;used</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;build</span><span 
+class="cmitt-10x-x-109">&#x00A0;your</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab</span><span 
+class="cmitt-10x-x-109">&#x00A0;binary).</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095243r59"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;7-</span><span 
+class="cmitt-10x-x-109">&#x00A0;fun</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;dfun</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;fortran</span></span><br class="fancyvrb" /><a 
+ id="x879-5095245r60"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;7-1/</span><span 
+class="cmitt-10x-x-109">&#x00A0;Let</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0027;s</span><span 
+class="cmitt-10x-x-109">&#x00A0;Scilab</span><span 
+class="cmitt-10x-x-109">&#x00A0;write</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;code</span><span 
+class="cmitt-10x-x-109">&#x00A0;(in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;TMPDIR</span><span 
+class="cmitt-10x-x-109">&#x00A0;directory):</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095247r61"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f_code=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subroutine</span><span 
+class="cmtt-10x-x-109">&#x00A0;myfun(m,n,x,param,f)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095249r62"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;*</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;tm(i),</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(m+i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;ym(i),</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(2m+i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;wm(i)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095251r63"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;implicit</span><span 
+class="cmtt-10x-x-109">&#x00A0;none&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;integer</span><span 
+class="cmtt-10x-x-109">&#x00A0;n,m&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095253r64"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;precision</span><span 
+class="cmtt-10x-x-109">&#x00A0;x(n),</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(*),</span><span 
+class="cmtt-10x-x-109">&#x00A0;f(m)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;integer</span><span 
+class="cmtt-10x-x-109">&#x00A0;i&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;do</span><span 
+class="cmtt-10x-x-109">&#x00A0;i</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;1,m&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095255r65"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f(i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(2*m+i)*(</span><span 
+class="cmtt-10x-x-109">&#x00A0;x(1)*exp(-x(2)*param(i))</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(m+i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095257r66"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;enddo&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;end</span><span 
+class="cmtt-10x-x-109">&#x00A0;!</span><span 
+class="cmtt-10x-x-109">&#x00A0;subroutine</span><span 
+class="cmtt-10x-x-109">&#x00A0;fun&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x879-5095259r67"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;subroutine</span><span 
+class="cmtt-10x-x-109">&#x00A0;mydfun(m,n,x,param,df)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095261r68"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;*</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;tm(i),</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(m+i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;ym(i),</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(2m+i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;wm(i)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095263r69"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;implicit</span><span 
+class="cmtt-10x-x-109">&#x00A0;none&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;integer</span><span 
+class="cmtt-10x-x-109">&#x00A0;n,m&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095265r70"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;precision</span><span 
+class="cmtt-10x-x-109">&#x00A0;x(n),</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(*),</span><span 
+class="cmtt-10x-x-109">&#x00A0;df(m,n)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;integer</span><span 
+class="cmtt-10x-x-109">&#x00A0;i&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095267r71"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;do</span><span 
+class="cmtt-10x-x-109">&#x00A0;i</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;1,m&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;df(i,1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;param(2*m+i)*exp(-x(2)*param(i))&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095269r72"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;df(i,2)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;-x(1)*param(i)*df(i,1)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;enddo&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095271r73"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;end</span><span 
+class="cmtt-10x-x-109">&#x00A0;!</span><span 
+class="cmtt-10x-x-109">&#x00A0;subroutine</span><span 
+class="cmtt-10x-x-109">&#x00A0;dfun&#x0022;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x879-5095273r74"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(f_code,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/myfun.f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095275r75"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;7-2/</span><span 
+class="cmitt-10x-x-109">&#x00A0;compiles</span><span 
+class="cmitt-10x-x-109">&#x00A0;it.</span><span 
+class="cmitt-10x-x-109">&#x00A0;You</span><span 
+class="cmitt-10x-x-109">&#x00A0;need</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;fortran</span><span 
+class="cmitt-10x-x-109">&#x00A0;compiler</span><span 
+class="cmitt-10x-x-109">&#x00A0;!</span></span><br class="fancyvrb" /><a 
+ id="x879-5095277r76"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;names=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;myfun&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;mydfun&#x0022;</span></span><span 
+class="cmtt-10x-x-109">]</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095279r77"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;flibname=ilib_for_link(names,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;myfun.o&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,[],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;f&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;/Makefile&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095281r78"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;7-3/</span><span 
+class="cmitt-10x-x-109">&#x00A0;link</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;link</span><span 
+class="cmitt-10x-x-109">&#x00A0;help</span><span 
+class="cmitt-10x-x-109">&#x00A0;page)</span></span><br class="fancyvrb" /><a 
+ id="x879-5095283r79"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;link(flibname,names,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;f&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095285r80"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;7-4/</span><span 
+class="cmitt-10x-x-109">&#x00A0;ready</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;leastsq</span><span 
+class="cmitt-10x-x-109">&#x00A0;call:</span><span 
+class="cmitt-10x-x-109">&#x00A0;be</span><span 
+class="cmitt-10x-x-109">&#x00A0;carreful</span><span 
+class="cmitt-10x-x-109">&#x00A0;don&#x0027;t</span><span 
+class="cmitt-10x-x-109">&#x00A0;forget</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095287r81"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;</span><span 
+class="cmitt-10x-x-109">&#x00A0;give</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;dimension</span><span 
+class="cmitt-10x-x-109">&#x00A0;m</span><span 
+class="cmitt-10x-x-109">&#x00A0;after</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;routine</span><span 
+class="cmitt-10x-x-109">&#x00A0;name</span><span 
+class="cmitt-10x-x-109">&#x00A0;!</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095289r82"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(list(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;myfun&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,m,tm,ym,wm),x0)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;without</span><span 
+class="cmitt-10x-x-109">&#x00A0;Jacobian</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095291r83"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(list(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;myfun&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,m,tm,ym,wm),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;mydfun&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,x0)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;Jacobian</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095293r84"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;8-</span><span 
+class="cmitt-10x-x-109">&#x00A0;last</span><span 
+class="cmitt-10x-x-109">&#x00A0;example:</span><span 
+class="cmitt-10x-x-109">&#x00A0;fun</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;dfun</span><span 
+class="cmitt-10x-x-109">&#x00A0;in</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span></span><br class="fancyvrb" /><a 
+ id="x879-5095295r85"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;8-1/</span><span 
+class="cmitt-10x-x-109">&#x00A0;Let</span><span 
+class="cmitt-10x-x-109">&#x00A0;&#x0027;s</span><span 
+class="cmitt-10x-x-109">&#x00A0;Scilab</span><span 
+class="cmitt-10x-x-109">&#x00A0;write</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span><span 
+class="cmitt-10x-x-109">&#x00A0;code</span><span 
+class="cmitt-10x-x-109">&#x00A0;(in</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;TMPDIR</span><span 
+class="cmitt-10x-x-109">&#x00A0;directory):</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095297r86"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;c_code=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;#include</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x0026;lt;$math.h$&#x0026;gt;$&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095299r87"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;void</span><span 
+class="cmtt-10x-x-109">&#x00A0;myfunc(int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*m,int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*x,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*param,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*f)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;{&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095301r88"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;/*</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;tm[i],</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[m+i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;ym[i],</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[2m+i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;wm[i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;*/&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;i;&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095303r89"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;for</span><span 
+class="cmtt-10x-x-109">&#x00A0;(</span><span 
+class="cmtt-10x-x-109">&#x00A0;i</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span><span 
+class="cmtt-10x-x-109">&#x00A0;;</span><span 
+class="cmtt-10x-x-109">&#x00A0;i</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x0026;lt;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;*m</span><span 
+class="cmtt-10x-x-109">&#x00A0;;</span><span 
+class="cmtt-10x-x-109">&#x00A0;i++</span><span 
+class="cmtt-10x-x-109">&#x00A0;)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095305r90"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;f[i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[2*(*m)+i]*(</span><span 
+class="cmtt-10x-x-109">&#x00A0;x[0]*exp(-x[1]*param[i])</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[(*m)+i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;);&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095307r91"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;return;&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;}&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x879-5095309r92"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;void</span><span 
+class="cmtt-10x-x-109">&#x00A0;mydfunc(int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*m,int</span><span 
+class="cmtt-10x-x-109">&#x00A0;*n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*x,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*param,</span><span 
+class="cmtt-10x-x-109">&#x00A0;double</span><span 
+class="cmtt-10x-x-109">&#x00A0;*df)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;{&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095311r93"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;/*</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;tm[i],</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[m+i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;ym[i],</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[2m+i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;wm[i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;*/&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;int</span><span 
+class="cmtt-10x-x-109">&#x00A0;i;&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095313r94"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;for</span><span 
+class="cmtt-10x-x-109">&#x00A0;(</span><span 
+class="cmtt-10x-x-109">&#x00A0;i</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span><span 
+class="cmtt-10x-x-109">&#x00A0;;</span><span 
+class="cmtt-10x-x-109">&#x00A0;i</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x0026;lt;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;*m</span><span 
+class="cmtt-10x-x-109">&#x00A0;;</span><span 
+class="cmtt-10x-x-109">&#x00A0;i++</span><span 
+class="cmtt-10x-x-109">&#x00A0;)&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;{&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095315r95"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;df[i]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;param[2*(*m)+i]*exp(-x[1]*param[i]);&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095317r96"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;df[i+(*m)]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;-x[0]*param[i]*df[i];&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;}&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;return;&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;}&#x0022;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095319r97"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mputl(c_code,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;/myfunc.c&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x879-5095321r98"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;8-2/</span><span 
+class="cmitt-10x-x-109">&#x00A0;compiles</span><span 
+class="cmitt-10x-x-109">&#x00A0;it.</span><span 
+class="cmitt-10x-x-109">&#x00A0;You</span><span 
+class="cmitt-10x-x-109">&#x00A0;need</span><span 
+class="cmitt-10x-x-109">&#x00A0;a</span><span 
+class="cmitt-10x-x-109">&#x00A0;C</span><span 
+class="cmitt-10x-x-109">&#x00A0;compiler</span><span 
+class="cmitt-10x-x-109">&#x00A0;!</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095323r99"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;names=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;myfunc&#x0022;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;mydfunc&#x0022;</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x879-5095325r100"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;clibname=ilib_for_link(names,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;myfunc.o&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,[],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;c&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,TMPDIR</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;/Makefile&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x879-5095327r101"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;8-3/</span><span 
+class="cmitt-10x-x-109">&#x00A0;link</span><span 
+class="cmitt-10x-x-109">&#x00A0;it</span><span 
+class="cmitt-10x-x-109">&#x00A0;to</span><span 
+class="cmitt-10x-x-109">&#x00A0;scilab</span><span 
+class="cmitt-10x-x-109">&#x00A0;(see</span><span 
+class="cmitt-10x-x-109">&#x00A0;link</span><span 
+class="cmitt-10x-x-109">&#x00A0;help</span><span 
+class="cmitt-10x-x-109">&#x00A0;page)</span></span><br class="fancyvrb" /><a 
+ id="x879-5095329r102"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;link(clibname,names,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;c&#x0022;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x879-5095331r103"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;8-4/</span><span 
+class="cmitt-10x-x-109">&#x00A0;ready</span><span 
+class="cmitt-10x-x-109">&#x00A0;for</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;leastsq</span><span 
+class="cmitt-10x-x-109">&#x00A0;call</span></span><br class="fancyvrb" /><a 
+ id="x879-5095333r104"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[f,xopt,gropt]=leastsq(list(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;myfunc&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,m,tm,ym,wm),</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0022;mydfunc&#x0022;</span></span><span 
+class="cmtt-10x-x-109">,x0)</span></div>
+                                                                                    
+
+                                                                                    
+<!--l. 274--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x879-5096000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli882.html#lsqrsolve">lsqrsolve</a>    <a 
+href="manualli891.html#optim">optim</a>    <a 
+href="manualli883.html#NDcost">NDcost</a>    <a 
+href="manualli867.html#datafit">datafit</a>    <a 
+href="manualli966.html#external">external</a>    <a 
+href="manualli892.html#quapro">quapro</a>    <a 
+href="manualli879.html#linpro">linpro</a>
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli879.html" >next</a>] [<a 
+href="manualli877.html" >prev</a>] [<a 
+href="manualli877.html#tailmanualli877.html" >prev-tail</a>] [<a 
+href="manualli878.html" >front</a>] [<a 
+href="manualli863.html#manualli878.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli878.html"></a>  </p> 
+</body></html> 

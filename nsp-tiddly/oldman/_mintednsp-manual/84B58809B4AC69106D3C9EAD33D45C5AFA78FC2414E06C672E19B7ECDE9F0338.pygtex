@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Build the data}
+x=(\nspnumber{1}\nspoperator{:}\nspnumber{10})\nspoperator{'}\nspoperator{;}
+y1=\nspnumber{3}\nspoperator{*}x\nspoperator{+}\nspnumber{4.5}\nspoperator{+}\nspnumber{3}\nspoperator{*}rand(x,\nspstring{'normal'})\nspoperator{;}
+y2=\nspnumber{1.8}\nspoperator{*}x\nspoperator{+}\nspnumber{0.5}\nspoperator{+}\nspnumber{2}\nspoperator{*}rand(x,\nspstring{'normal'})\nspoperator{;}
+plot2d(x,[y1\nspoperator{,}y2],[\nspoperator{-}\nspnumber{2}\nspoperator{,}\nspoperator{-}\nspnumber{3}])
+\nspcomment{//Find the linear regression}
+A=[x\nspoperator{,}ones(x)]\nspoperator{;}B=[y1\nspoperator{,}y2]\nspoperator{;}
+X=lsq(A,B)\nspoperator{;}
+y1e=X(\nspnumber{1},\nspnumber{1})\nspoperator{*}x\nspoperator{+}X(\nspnumber{2},\nspnumber{1})\nspoperator{;}
+y2e=X(\nspnumber{1},\nspnumber{2})\nspoperator{*}x\nspoperator{+}X(\nspnumber{2},\nspnumber{2})\nspoperator{;}
+plot2d(x,[y1e\nspoperator{,}y2e],[\nspnumber{2}\nspoperator{,}\nspnumber{3}])
+\nspcomment{//Difference between lsq(A,b) and A\nspbs{}b}
+A=rand(\nspnumber{4},\nspnumber{2})\nspoperator{*}rand(\nspnumber{2},\nspnumber{3})\nspoperator{;}\nspcomment{//a rank 2 matrix}
+b=rand(\nspnumber{4},\nspnumber{1})\nspoperator{;}
+X1=lsq(A,b)
+X2=A\nspoperator{\nspbs{}}b
+[A\nspoperator{*}X1\nspoperator{-}b\nspoperator{,}A\nspoperator{*}X2\nspoperator{-}b]\nspoperator{,}\nspcomment{//the residuals are the same}
+\end{Verbatim}

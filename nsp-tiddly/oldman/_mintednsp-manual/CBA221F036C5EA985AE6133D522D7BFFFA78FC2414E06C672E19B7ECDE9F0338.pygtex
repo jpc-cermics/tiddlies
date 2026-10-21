@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+deff(\nspstring{'j=jdrn(n)'},\nspstring{'j=zeros(n,n);for k=1:n-1;j(k,k+1)=1;end'})
+A=sysdiag(jdrn(\nspnumber{3}),jdrn(\nspnumber{2}),rand(\nspnumber{2},\nspnumber{2}))\nspoperator{;}X=rand(\nspnumber{7},\nspnumber{7})\nspoperator{;}
+A=X\nspoperator{*}A\nspoperator{*}inv(X)\nspoperator{;}
+[S,P,D,index]=projspec(A)\nspoperator{;}
+index\nspoperator{,}\nspcomment{//size of J-block}
+trace(P)\nspoperator{,}\nspcomment{//sum of dimensions of J-blocks}
+A\nspoperator{*}S\nspoperator{-}(eye()\nspoperator{-}P)
+norm(D\nspoperator{^}index,\nspnumber{1})
+\end{Verbatim}

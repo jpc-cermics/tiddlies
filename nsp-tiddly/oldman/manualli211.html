@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>norm</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli212.html" >next</a>] [<a 
+href="manualli210.html" >prev</a>] [<a 
+href="manualli210.html#tailmanualli210.html" >prev-tail</a>] [<a 
+href="#tailmanualli211.html">tail</a>] [<a 
+href="manualli104.html#manualli211.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x212-1255000"></a>norm</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx212-1255001"></a><a 
+ id="norm"></a><span 
+class="cmtt-10x-x-109">norm </span>&#x2013;                                                                                            matrix norms<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x212-1256000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-335">
+&#x00A0;&#x00A0;[y]=norm(x&#x00A0;[,flag])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x212-1257000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x</span>: real or complex vector or matrix (full or sparse storage)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag</span>: string (type of norm) (default value =2)</li></ul>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x212-1258000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 34--><p class="noindent" > For matrices
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">norm(x)</span> </span>: or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">norm(x,2)</span></span></span> is the largest singular value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">max(svd(x))</span></span></span>).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">norm(x,1)</span> </span>: The l_1 norm <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> (the largest column sum: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">maxi(sum(abs(x),&#x0027;r&#x0027;))</span></span></span> ).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">norm(x,&apos;inf&apos;),norm(x,%inf)</span> </span>:   The   infinity   norm   of   <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>  (the   largest   row   sum:
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">maxi(sum(abs(x),&#x0027;c&#x0027;))</span></span></span> ).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">norm(x,&apos;fro&apos;)</span> </span>: Frobenius norm i.e. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sqrt(sum(diag(x&#x0027;*x)))</span></span></span></ul>
+</p><!--l. 42--><p class="noindent" >For vectors
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">norm(v,p)</span> </span>: l_p norm (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sum(v(i)^p))^(1/p)</span></span></span> .
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">norm(v)</span> </span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">=norm(v,2)</span></span></span>: l_2 norm
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">norm(v,&apos;inf&apos;)</span> </span>: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">max(abs(v(i)))</span></span></span>.</ul>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x212-1259000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb167"><a 
+ id="x212-1259009r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x212-1259011r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x212-1259013r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;inf&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x212-1259015r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">]</span><br class="fancyvrb" /><a 
+ id="x212-1259017r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;max(svd(A))</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">norm(A)</span>
+<br class="fancyvrb" /><a 
+ id="x212-1259019r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=sparse([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">33</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">])</span><br class="fancyvrb" /><a 
+ id="x212-1259021r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;norm(A)</span></div>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x212-1260000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#h-norm">h_norm</a>    <a 
+href="manualli1098.html#dhnorm">dhnorm</a>    <a 
+href="manualli1107.html#h2norm">h2norm</a>    <a 
+href="manualli105.html#abs">abs</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli212.html" >next</a>] [<a 
+href="manualli210.html" >prev</a>] [<a 
+href="manualli210.html#tailmanualli210.html" >prev-tail</a>] [<a 
+href="manualli211.html" >front</a>] [<a 
+href="manualli104.html#manualli211.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli211.html"></a>  </p> 
+</body></html> 

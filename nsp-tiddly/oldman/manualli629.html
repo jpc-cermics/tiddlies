@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>glever</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli630.html" >next</a>] [<a 
+href="manualli628.html" >prev</a>] [<a 
+href="manualli628.html#tailmanualli628.html" >prev-tail</a>] [<a 
+href="#tailmanualli629.html">tail</a>] [<a 
+href="manualli607.html#manualli629.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x630-3745000"></a>glever</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx630-3745001"></a><a 
+ id="glever"></a><span 
+class="cmtt-10x-x-109">glever </span>&#x2013;                                                                           inverse of matrix pencil<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x630-3746000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-772">
+&#x00A0;&#x00A0;[Bfs,Bis,chis]=glever(E,A&#x00A0;[,s])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x630-3747000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">E, A</span>: two real square matrices of same dimensions
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">s</span>: character string (default value &apos;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span>&apos;)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">Bfs,Bis</span>: two polynomial matrices
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">chis</span>: polynomial</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x630-3748000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Computation of<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(s*E-A)^-1</span></span></span> by generalized Leverrier&apos;s algorithm for a matrix pencil.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-773">
+&#x00A0;&#x00A0;(s*E-A)^-1&#x00A0;=&#x00A0;(Bfs/chis)&#x00A0;-&#x00A0;Bis.
+</div>
+<!--l. 41--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">chis</span></span></span> = characteristic polynomial (up to a multiplicative constant).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Bfs</span></span></span> = numerator polynomial
+matrix.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Bis</span></span></span> = polynomial matrix ( - expansion of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(s*E-A)^-1</span></span></span> at infinity). Note the - sign before
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Bis</span></span></span>.
+</p>
+<!--l. 47--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x630-3749000"></a><span 
+class="cmbx-10x-x-109">Caution</span></span>
+   This function uses <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">cleanp</span></span></span> to simplify <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Bfs,Bis</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">chis</span></span></span>.
+</p>
+<!--l. 50--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x630-3750000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb491"><a 
+ id="x630-3750005r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s=%s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">F=[</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">s</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x630-3750007r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[Bfs,Bis,chis]=glever(F)</span><br class="fancyvrb" /><a 
+ id="x630-3750009r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;inv(F)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">((Bfs</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">/</span></span><span 
+class="cmtt-10x-x-109">chis)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">Bis)</span></div>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x630-3751000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli664.html#rowshuff">rowshuff</a>    <a 
+href="manualli619.html#det">det</a>    <a 
+href="manualli913.html#invr">invr</a>    <a 
+href="manualli899.html#coffg">coffg</a>    <a 
+href="manualli649.html#pencan">pencan</a>    <a 
+href="manualli650.html#penlaur">penlaur</a>
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x630-3752000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   F. D. (1988)
+</p><!--l. 16--><p class="indent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli630.html" >next</a>] [<a 
+href="manualli628.html" >prev</a>] [<a 
+href="manualli628.html#tailmanualli628.html" >prev-tail</a>] [<a 
+href="manualli629.html" >front</a>] [<a 
+href="manualli607.html#manualli629.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli629.html"></a>  </p> 
+</body></html> 

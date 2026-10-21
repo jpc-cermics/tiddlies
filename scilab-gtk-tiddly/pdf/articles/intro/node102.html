@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.3.1.2.1 Messages and Error Messages</TITLE>
+<META NAME="description" CONTENT="6.3.1.2.1 Messages and Error Messages">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="previous" HREF="node101.html">
+<LINK REL="up" HREF="node101.html">
+<LINK REL="next" HREF="node103.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1620"
+ HREF="node103.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1616"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1612"
+ HREF="node101.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1618"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1619"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1621"
+ HREF="node103.html">6.3.1.3 Examples</A>
+<B> Up:</B> <A NAME="tex2html1617"
+ HREF="node101.html">6.3.1.2 Writing compatible code</A>
+<B> Previous:</B> <A NAME="tex2html1613"
+ HREF="node101.html">6.3.1.2 Writing compatible code</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H4><A NAME="SECTION00731210000000000000">
+6.3.1.2.1  Messages and Error Messages</A>
+</H4>
+<P>
+<FONT SIZE="-2">To write messages in the  Scilab main window, user  must call the
+<TT>out</TT> Fortran routine or <TT>cout</TT> C procedure with the
+character string of the desired message as input argument.
+</FONT>
+<P>
+<FONT SIZE="-2">To return an error flag of  an interfaced routine user must call the
+<TT>erro</TT> Fortran routine or <TT>cerro</TT> C procedure with the
+character string of the desired message as input argument. This call
+will produce the edition of the message in the Scilab main window and
+the error exit of Scilab associated function.
+</FONT>
+<P>
+<FONT SIZE="-2"> Input and output
+</FONT>
+<P>
+<FONT SIZE="-2">To open files in Fortran, it is highly recommended to  use the 
+Scilabroutine <TT>clunit</TT>. If the interfaced routine uses the 
+Fortran <TT>open</TT>
+instruction, logical units must in any case be greater than 40.
+</FONT><PRE>
+      call clunit( lunit, file, mode)
+</PRE><FONT SIZE="-2">with:
+</FONT><UL>
+<LI><TT>file</TT> the file name <TT>character string</TT>
+<LI><TT>mode</TT> a two integer vector defining the opening mode
+ <TT>mode(2)</TT> defines the record length for a direct access file if
+ positive. 
+<TT>mode(1)</TT> is an integer formed with three digits <TT>f</TT>, <TT>a </TT>
+and <TT>s</TT>
+<UL>
+<LI><TT>f</TT> defines if file is formatted (<TT>0</TT>) or not (<TT>1</TT>)
+<LI><TT>a</TT> defines if file has sequential (<TT>0</TT>) or direct
+  access (<TT>1</TT>)
+<LI><TT>s</TT> defines if file status must be new (<TT>0</TT>), old (<TT>    1</TT>), scratch (<TT>2</TT>) or unknown (<TT>3</TT>)
+</UL></UL>
+<P>
+<FONT SIZE="-2">Files opened by a call to <TT>clunit</TT> must be close by 
+</FONT><PRE>
+      call clunit( -lunit, file, mode)
+</PRE><FONT SIZE="-2">In this case the <TT>file</TT> and  <TT>mode</TT> arguments are not
+referenced.
+</FONT>
+<P><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1620"
+ HREF="node103.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1616"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1612"
+ HREF="node101.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1618"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1619"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1621"
+ HREF="node103.html">6.3.1.3 Examples</A>
+<B> Up:</B> <A NAME="tex2html1617"
+ HREF="node101.html">6.3.1.2 Writing compatible code</A>
+<B> Previous:</B> <A NAME="tex2html1613"
+ HREF="node101.html">6.3.1.2 Writing compatible code</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

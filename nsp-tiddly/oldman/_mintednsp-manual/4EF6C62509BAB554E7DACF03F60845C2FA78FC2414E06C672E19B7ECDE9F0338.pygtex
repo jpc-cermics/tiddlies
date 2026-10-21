@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//Example of how to use the hank macro for}
+\nspcomment{//building a Hankel matrix from multidimensional}
+\nspcomment{//data (covariance or Markov parameters e.g.)}
+\nspcomment{//}
+\nspcomment{//This is used e.g. in the solution of normal equations}
+\nspcomment{//by classical identification methods (Instrumental Variables e.g.)}
+\nspcomment{//}
+\nspcomment{//1)let's generate the multidimensional data under the form:}
+\nspcomment{//  C=[c_0 c_1 c_2 .... c_n]}
+\nspcomment{//where each bloc c_k is a d-dimensional matrix (e.g. the k-th correlation}
+\nspcomment{//of a d-dimensional stochastic process X(t) [c_k = E(X(t) X'(t+k)], '}
+\nspcomment{//being the transposition in scilab)}
+\nspcomment{//}
+\nspcomment{//we take here d=2 and n=64}
+\nspcomment{//}
+c=rand(\nspnumber{2},\nspnumber{2}\nspoperator{*}\nspnumber{64})
+\nspcomment{//}
+\nspcomment{//generate the hankel matrix H (with 4 bloc-rows and 5 bloc-columns)}
+\nspcomment{//from the data in c}
+\nspcomment{//}
+H=hank(\nspnumber{4},\nspnumber{5},c)\nspoperator{;}
+\nspcomment{//}
+\end{Verbatim}

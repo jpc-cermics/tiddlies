@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+str=\nspstring{'The night has a thousand\nspbs{}tstars'}\nspoperator{;}
+I=strindex(str,[\nspstring{' '}\nspoperator{,}\nspstring{'\nspbs{}t'}])\nspoperator{;}
+kdf=[[\nspnumber{1}\nspoperator{;}I\nspoperator{'}\nspoperator{+}\nspnumber{1}]\nspoperator{,}[I\nspoperator{'}\nspoperator{-}\nspnumber{1}\nspoperator{;}length(str)]]\nspoperator{;}
+
+res=m2s([])\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}size(kdf,\nspnumber{1}) \nspkeyword{do}
+  res=[res\nspoperator{,}part(str,kdf(i,\nspnumber{1})\nspoperator{:}kdf(i,\nspnumber{2}))]\nspoperator{;}
+\nspkeyword{end}
+
+res.equal[[\nspstring{'The'}\nspoperator{,}\nspstring{'night'}\nspoperator{,}\nspstring{'has'}\nspoperator{,}\nspstring{'a'}\nspoperator{,}\nspstring{'thousand'}\nspoperator{,}\nspstring{'stars'}]]
+res.equal[split(str)]
+\end{Verbatim}

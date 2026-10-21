@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>lotest</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1288.html" >next</a>] [<a 
+href="manualli1286.html" >prev</a>] [<a 
+href="manualli1286.html#tailmanualli1286.html" >prev-tail</a>] [<a 
+href="#tailmanualli1287.html">tail</a>] [<a 
+href="manualli1280.html#manualli1287.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1288-7258000"></a>lotest</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1288-7258001"></a><a 
+ id="lotest"></a><span 
+class="cmtt-10x-x-109">lotest </span>&#x2013;                                                                    demo of the Lorenz attractor<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1288-7259000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1436">
+&#x00A0;&#x00A0;[]=lotest([f_l,odem,xdim,npts,pinit])
+&#x00A0;<br />&#x00A0;&#x00A0;[y]=lorenz(t,x)
+&#x00A0;<br />&#x00A0;&#x00A0;[]=ilo(sig,ro,beta)
+&#x00A0;<br />&#x00A0;&#x00A0;[]=ilof(sig,ro,beta)
+</div>
+<!--l. 28--><p class="nopar" >
+</p>
+<!--l. 31--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1288-7260000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">f</span><span 
+class="cmtt-10x-x-109">_l</span>: can be <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;loren&#x0022;</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lorenz</span></span></span>. it is the name of the external for the Lorenz system.
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;loren&#x0022;</span></span></span> will use a Fortran coded version of the lorenz system and arnold will and
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">loren</span></span></span> will use a Scilab coded version.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lorentz</span></span></span> is the Scilab macro which code the lorenz
+     system. This macro is loaded when calling <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lotest</span></span></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ilof, ilo</span>:are used to fix the parameters of the Fortran and Scilab code version of the
+     Lorenz system.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">odem,xdim,npts</span>: are optional arguments. Their meaning and syntax can be found in
+     the portr3d help</li></ul>
+<!--l. 44--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1288-7261000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 44--><p class="noindent" > A call to the function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">lotest()</span></span></span> will interactively display a phase portrait of a the following
+dynamical system
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1437">
+&#x00A0;&#x00A0;y(1)=sig*(x(2)-x(1));
+&#x00A0;<br />&#x00A0;&#x00A0;y(2)=ro*x(1)&#x00A0;-x(2)-x(1)*x(3);
+&#x00A0;<br />&#x00A0;&#x00A0;y(3)=-beta*x(3)+x(1)*x(2);
+</div>
+<!--l. 51--><p class="nopar" >
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1288-7262000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1290.html#portr3d">portr3d</a>    <a 
+href="manualli890.html#ode">ode</a>    <a 
+href="manualli1284.html#chaintest">chaintest</a>    <a 
+href="#lotest">lotest</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1288.html" >next</a>] [<a 
+href="manualli1286.html" >prev</a>] [<a 
+href="manualli1286.html#tailmanualli1286.html" >prev-tail</a>] [<a 
+href="manualli1287.html" >front</a>] [<a 
+href="manualli1280.html#manualli1287.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1287.html"></a>  </p> 
+</body></html> 

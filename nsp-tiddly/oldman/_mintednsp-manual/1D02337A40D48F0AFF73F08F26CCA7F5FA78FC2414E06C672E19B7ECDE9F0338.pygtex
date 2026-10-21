@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+mprintf(\nspstring{'At iteration \nsppc{}i, Result is:\nspbs{}nalpha=\nsppc{}f'},\nspnumber{33},\nspnumber{0.535})
+msprintf(\nspstring{'\nsppc{}5.3f \nsppc{}5.3f'},\nspnumber{123},\nspnumber{0.732})
+msprintf(\nspstring{'\nsppc{}5.3f\nspbs{}n\nsppc{}5.3f'},\nspnumber{123},\nspnumber{0.732})
+A=rand(\nspnumber{5},\nspnumber{2})\nspoperator{;}
+\nspcomment{// vectorized forms: the format directive needs}
+\nspcomment{// two operand, each column of A is used as an operand.}
+\nspcomment{// and the mprintf function is applied on each row of A}
+mprintf(\nspstring{'\nsppc{}5.3f\nspbs{}t\nsppc{}5.3f\nspbs{}n'},A)
+colors=[\nspstring{'red'}\nspoperator{;}\nspstring{'green'}\nspoperator{;}\nspstring{'blue'}\nspoperator{;}\nspstring{'pink'}\nspoperator{;}\nspstring{'black'}]\nspoperator{;}
+RGB=[\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}\nspoperator{;}\nspnumber{1}\nspoperator{,}\nspnumber{0.75}\nspoperator{,}\nspnumber{0.75}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{;}
+mprintf(\nspstring{'\nsppc{}d\nspbs{}t\nsppc{}s\nspbs{}t\nsppc{}f\nspbs{}t\nsppc{}f\nspbs{}t\nsppc{}f\nspbs{}n'},(\nspnumber{1}\nspoperator{:}\nspnumber{5})\nspoperator{'},colors,RGB)
+\end{Verbatim}

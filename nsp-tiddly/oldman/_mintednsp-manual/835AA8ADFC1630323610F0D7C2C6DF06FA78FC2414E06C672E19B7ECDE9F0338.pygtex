@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=rand(\nspnumber{5},\nspnumber{2})\nspoperator{*}rand(\nspnumber{2},\nspnumber{5})\nspoperator{;}
+[Q,M]=fullrf(A)\nspoperator{;}
+norm(Q\nspoperator{*}M\nspoperator{-}A,\nspnumber{1})
+[X,d]=rowcomp(A)\nspoperator{;}Y=X\nspoperator{'}\nspoperator{;}
+svd([A\nspoperator{,}Y(\nspoperator{:},\nspnumber{1}\nspoperator{:}d)\nspoperator{,}Q])\nspoperator{,}\nspcomment{//span(Q) = span(A) = span(Y(:,1:2))}
+\end{Verbatim}

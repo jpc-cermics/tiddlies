@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_min</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli829.html" >next</a>] [<a 
+href="manualli827.html" >prev</a>] [<a 
+href="manualli827.html#tailmanualli827.html" >prev-tail</a>] [<a 
+href="#tailmanualli828.html">tail</a>] [<a 
+href="manualli756.html#manualli828.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x829-4832000"></a>mtlb_min</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx829-4832001"></a><a 
+ id="mtlb_min"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_min </span>&#x2013;                                                              Matlab min emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x829-4833000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Matlab and Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">min</span></span></span> behave differently in some particular cases:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> With complex values: Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">min</span></span></span> can be used with complex values but not Scilab
+          function.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>  When  called  with  one  input:  Matlab  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">min</span></span></span> threats  values  along  the  first
+          non-singleton dimension but Scilab threats all input values.
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with two inputs: if one is an empty matrix, Scilab returns an error
+          message but Matlab returns [].
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>  When  called  with  three  inputs:  if  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> parameter  is  greater  than  number  of
+          dimensions of first input, Scilab returns an error message and Matlab returns the
+          first input.</li></ul>
+     </ul>
+<!--l. 38--><p class="noindent" >The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[r[,k]]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_min(A[,B[,dim]])</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[r[,k]]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;min(A[,B[,dim]])</span></span></span> when it was not possible to know what were the inputs
+while porting Matlab code to Scilab. This function will determine the correct semantic at
+run time. If you want to have a more efficient code it is possible to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_min</span></span></span>
+calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+                                                                                    
+
+                                                                                    
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> When called with one input, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is a vector or a scalar <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[r[,k]]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_min(A)</span></span></span>
+          may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">min(A)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with one input, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> is a matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[r[,k]]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_min(A)</span></span></span> may be
+          replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">min(A,&#x0022;r&#x0022;)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with two inputs, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">B</span></span></span> are real matrices and not empty matrices
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[r[,k]]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_min(A,B)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">min(A,B)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> When called with three inputs, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dim</span></span></span> is lesser than the number of dimensions of
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[r[,k]]</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mtlb_min(A,[],dim)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">min(A,dim)</span></span></span></li></ul>
+     </ul>
+<!--l. 59--><p class="noindent" >Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_min</span></span></span> has not to be used for hand coded functions.
+</p>
+<!--l. 62--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x829-4834000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli762.html#firstnonsingleton">firstnonsingleton</a>
+</p>
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x829-4835000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x829-4836000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli829.html" >next</a>] [<a 
+href="manualli827.html" >prev</a>] [<a 
+href="manualli827.html#tailmanualli827.html" >prev-tail</a>] [<a 
+href="manualli828.html" >front</a>] [<a 
+href="manualli756.html#manualli828.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli828.html"></a>  </p> 
+</body></html> 

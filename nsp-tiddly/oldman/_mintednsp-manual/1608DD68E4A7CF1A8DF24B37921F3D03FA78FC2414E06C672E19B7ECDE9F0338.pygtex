@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\nspcomment{//with one call}
+TK_EvalStr([\nspstring{'toplevel .foo1'}\nspoperator{;}\nspstring{'label .foo1.l -text ""TK married Scilab !!!""'}\nspoperator{;}\nspstring{'pack .foo1.l'}\nspoperator{;}
+            \nspstring{'button .foo1.b -text close -command \nspob{}destroy .foo1\nspcb{}'}\nspoperator{;}\nspstring{'pack .foo1.b'}])
+\nspcomment{//step by step (debugging)}
+TK_EvalStr(\nspstring{'toplevel .foo2'})\nspoperator{;}
+\nspcomment{// creates a toplevel TK window.}
+TK_EvalStr(\nspstring{'label .foo2.l -text ""TK married Scilab !!!""'})\nspoperator{;}
+\nspcomment{// create a static label}
+TK_EvalStr(\nspstring{'pack .foo2.l'})\nspoperator{;}
+\nspcomment{// pack the label widget. It appears on the screen.}
+text=\nspstring{'button .foo2.b -text close -command \nspob{}destroy .foo2\nspcb{}'}\nspoperator{;}
+TK_EvalStr(text)\nspoperator{;}
+TK_EvalStr(\nspstring{'pack .foo2.b'})\nspoperator{;}
+\nspcomment{//kill the windows by program}
+TK_EvalStr(\nspstring{'destroy .foo1'})\nspoperator{;}
+TK_EvalStr(\nspstring{'destroy .foo2'})\nspoperator{;}
+\end{Verbatim}

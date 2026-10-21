@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+w=\nspnumber{0.01}\nspoperator{:}\nspnumber{0.01}\nspoperator{:}\nspnumber{2}\nspoperator{;}s=poly(\nspnumber{0},\nspstring{'s'})\nspoperator{;}
+G=syslin(\nspstring{'c'},\nspnumber{2}\nspoperator{*}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.1}\nspoperator{*}s\nspoperator{+}\nspnumber{2}),(s\nspoperator{^}\nspnumber{2}\nspoperator{+}s\nspoperator{+}\nspnumber{1})\nspoperator{*}(s\nspoperator{^}\nspnumber{2}\nspoperator{+}\nspnumber{0.3}\nspoperator{*}s\nspoperator{+}\nspnumber{1}))\nspoperator{;}\nspcomment{// syslin('c',Num,Den);}
+fresp=repfreq(G,w)\nspoperator{;}
+mag=abs(fresp)\nspoperator{;}
+Gid=mrfit(w,mag,\nspnumber{4})\nspoperator{;}
+frespfit=repfreq(Gid,w)\nspoperator{;}
+plot2d([w\nspoperator{'}\nspoperator{,}w\nspoperator{'}],[mag(\nspoperator{:})\nspoperator{,}abs(frespfit(\nspoperator{:}))])
+\end{Verbatim}

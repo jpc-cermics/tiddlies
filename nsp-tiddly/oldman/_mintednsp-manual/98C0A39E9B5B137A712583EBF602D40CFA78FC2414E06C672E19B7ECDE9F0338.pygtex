@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=[\nspnumber{1}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{4}\nspoperator{;}\nspnumber{5}\nspoperator{,}\nspnumber{6}\nspoperator{,}\nspnumber{7}\nspoperator{,}\nspnumber{8}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{11}\nspoperator{,}\nspnumber{12}\nspoperator{;}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{16}]\nspoperator{;}
+B=[\nspnumber{1}\nspoperator{,}\nspnumber{2}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}]\nspoperator{'}\nspoperator{;}C=[\nspnumber{4}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{,}\nspnumber{1}]\nspoperator{;}
+Sl=ss2ss(syslin(\nspstring{'c'},A,B,C),rand(A))\nspoperator{;}
+[no,X]=contr(Sl(\nspstring{'A'}),Sl(\nspstring{'B'}))\nspoperator{;}CO=X(\nspoperator{:},\nspnumber{1}\nspoperator{:}no)\nspoperator{;}\nspcomment{//Controllable part}
+[uo,Y]=unobs(Sl(\nspstring{'A'}),Sl(\nspstring{'C'}))\nspoperator{;}UO=Y(\nspoperator{:},\nspnumber{1}\nspoperator{:}uo)\nspoperator{;}\nspcomment{//Unobservable part}
+[Xp,dimc,dimu,dim]=spantwo(CO,UO)\nspoperator{;}\nspcomment{//Kalman decomposition}
+Slcan=ss2ss(Sl,inv(Xp))\nspoperator{;}
+\end{Verbatim}

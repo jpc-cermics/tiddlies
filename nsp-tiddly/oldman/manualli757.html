@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>About_M2SCI_tools</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli758.html" >next</a>] [<a 
+href="manualli756.html" >prev</a>] [<a 
+href="manualli756.html#tailmanualli756.html" >prev-tail</a>] [<a 
+href="#tailmanualli757.html">tail</a>] [<a 
+href="manualli756.html#manualli757.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x758-4487000"></a>About_M2SCI_tools</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx758-4487001"></a><a 
+ id="About_M2SCI_tools"></a><span 
+class="cmtt-10x-x-109">About</span><span 
+class="cmtt-10x-x-109">_M2SCI</span><span 
+class="cmtt-10x-x-109">_tools </span>&#x2013;  Generally speaking about tools to convert Matlab files to Scilab...<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x758-4488000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Scilab 3.0 includes a new version of useful tools to convert Matlab M-files to Scilab.
+Taking a Matlab M-file, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> modifies this files so that it can be compiled by Scilab.
+After that this compiled code is converted to a &#x201D;tree&#x201D; of instructions by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">macr2tree</span></span></span>.
+This &#x201D;tree&#x201D; is an imbrication of Scilab lists and tlists and is the basis for conversion.
+Each instruction of this &#x201D;tree&#x201D; is converted to Scilab and inference is done to known
+what are the variables. Once this &#x201D;tree&#x201D; is converted to Scilab, code is generated using
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tree2code</span></span></span>. All tlists used for coding this tree (and we call &#x201D;MSCI tlists&#x201D;) are listed
+below:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">funcall</div>: tlist representing a function call created by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Funcall</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc">operation</div>: tlist representing an operation created by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Operation</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc">variable</div>: tlist representing a variable created by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Variable</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc">cste</div>: tlist representing a constant created by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Cste</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc">equal</div>: tlist representing an instruction created by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Equal</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc">ifthenelse</div>: tlist representing an IF/THEN/ELSE control instruction created inside
+          M2SCI kernel functions
+          </li>
+          <li class="itemize"><div class="itemdesc">while</div>: tlist representing a WHILE control instruction created inside M2SCI kernel
+          functions
+                                                                                    
+
+                                                                                    
+          </li>
+          <li class="itemize"><div class="itemdesc">selectcase</div>: tlist representing a SELECT/CASE control instruction created inside
+          M2SCI kernel functions
+          </li>
+          <li class="itemize"><div class="itemdesc">for</div>:  tlist  representing  a  FOR  control  instruction  created  inside  M2SCI  kernel
+          functions</li></ul>
+     </ul>
+<!--l. 44--><p class="noindent" >The contents of these tlists is described in corresponding help pages. Operations are converted using a
+fonction named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%$&#x003C;$opcode$&#x003E;$2sci</span></span></span> with opcode the Scilab code for this operator. See help page
+for overloading to have these codes. All these functions are already written and are in
+directory SCI/macros/m2sci/percent/. Function calls are converted using a function called
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sci_$&#x003C;$Matlab_function_name$&#x003E;$</span></span></span>. Some of these functions have been written and are in directory
+SCI/macros/m2sci/sci_files/. We are working on increasing the set of Matlab functions converted.
+However, everybody can written such functions using help page sci_files. Inference is done using
+tlists of type &#x201D;infer&#x201D; containing fields:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">dims</div>: list of dimensions
+          </li>
+          <li class="itemize"><div class="itemdesc">type</div>: &#x201D;type&#x201D; tlist
+          </li>
+          <li class="itemize"><div class="itemdesc">contents</div>: &#x201D;contents&#x201D; tlist if a Cell or a Struct</li></ul>
+     </ul>
+<!--l. 61--><p class="noindent" >Type is a tlist of type &#x201D;type&#x201D; containing fields:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc">vtype</div>: data type
+          </li>
+          <li class="itemize"><div class="itemdesc">property</div>: property</li></ul>
+     </ul>
+<!--l. 69--><p class="noindent" >To have more details about inference see help page for m2scideclare.
+</p>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x758-4489000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1321.html#mfile2sci">mfile2sci</a>    <a 
+href="manualli1325.html#translatepaths">translatepaths</a>    <a 
+href="manualli1009.html#overloading">overloading</a>    <a 
+href="#sci-files">sci_files</a>    <a 
+href="manualli763.html#Funcall">Funcall</a>    <a 
+href="manualli859.html#Operation">Operation</a>    <a 
+href="manualli862.html#Variable">Variable</a>    <a 
+href="manualli760.html#Cste">Cste</a>
+<a 
+href="manualli765.html#Infer">Infer</a>    <a 
+href="manualli861.html#Type">Type</a>    <a 
+href="manualli761.html#Equal">Equal</a>    <a 
+href="manualli766.html#m2scideclare">m2scideclare</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x758-4490000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 77--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x758-4491000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli758.html" >next</a>] [<a 
+href="manualli756.html" >prev</a>] [<a 
+href="manualli756.html#tailmanualli756.html" >prev-tail</a>] [<a 
+href="manualli757.html" >front</a>] [<a 
+href="manualli756.html#manualli757.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli757.html"></a>  </p> 
+</body></html> 

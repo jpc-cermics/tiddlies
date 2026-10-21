@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>fsolve</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli871.html" >next</a>] [<a 
+href="manualli869.html" >prev</a>] [<a 
+href="manualli869.html#tailmanualli869.html" >prev-tail</a>] [<a 
+href="#tailmanualli870.html">tail</a>] [<a 
+href="manualli863.html#manualli870.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x871-5036000"></a>fsolve</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx871-5036001"></a><a 
+ id="fsolve"></a><span 
+class="cmtt-10x-x-109">fsolve </span>&#x2013;                                            find a zero of a system of n nonlinear functions<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x871-5037000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-961">
+&#x00A0;&#x00A0;[x&#x00A0;[,v&#x00A0;[,info]]]=fsolve(x0,fct&#x00A0;[,fjac]&#x00A0;[,tol])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x871-5038000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x0</span>: real vector (initial value of function argument).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fct</span>: external (i.e function or list or string).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fjac</span>: external (i.e function or list or string).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol</span>: real scalar. precision tolerance: termination occurs when the algorithm estimates
+     that the relative error between x and the solution is at most tol. (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tol=1.d-10</span></span></span> is the
+     default value).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x:  </span>real vector (final value of function argument, estimated zero).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">v:  </span>real vector (value of function at x).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info</span>: termination indicator
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">0</span>: improper input parameters.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">1</span>: algorithm estimates that the relative error between x and the solution is at most
+          tol.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">2</span>: number of calls to fcn reached
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">3</span>: tol is too small. No further improvement in the approximate solution x is possible.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">4</span>: iteration is not making good progress.</li></ul>
+     </li></ul>
+                                                                                    
+
+                                                                                    
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x871-5039000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 46--><p class="noindent" > find a zero of a system of n nonlinear functions in n variables by a modification of the powell hybrid
+method. Jacobian may be provided.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-962">
+&#x00A0;&#x00A0;0&#x00A0;=&#x00A0;fct(x)&#x00A0;w.r.t&#x00A0;x.
+</div>
+<!--l. 52--><p class="nopar" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fct</span></span></span> is an &#x201D;external&#x201D;. This external returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v=fct(x)</span></span></span> given <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. The simplest calling sequence for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fct</span></span></span>
+is:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-963">
+&#x00A0;&#x00A0;[v]=fct(x).
+</div>
+<!--l. 58--><p class="nopar" >If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fct</span></span></span> is a character string, it refers to a C or Fortran routine which must be linked to Scilab.
+Fortran calling sequence must be
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-964">
+&#x00A0;&#x00A0;fct(n,x,v,iflag)
+&#x00A0;<br />&#x00A0;&#x00A0;integer&#x00A0;n,iflag
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;precision&#x00A0;x(n),v(n)
+</div>
+<!--l. 65--><p class="nopar" >and C Calling sequence must be
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-965">
+&#x00A0;&#x00A0;fct(int&#x00A0;*n,&#x00A0;double&#x00A0;x[],double&#x00A0;v[],int&#x00A0;*iflag)
+</div>
+<!--l. 69--><p class="nopar" >Incremental link is possible (help <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">link</span></span></span>).<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> is an &#x201D;external&#x201D;. This external returns <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v=d(fct)/dx</span><span 
+class="cmtt-10x-x-109">&#x00A0;(x)</span></span></span>
+given <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>. The simplest calling sequence for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> is:
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-966">
+&#x00A0;&#x00A0;[v]=jac(x).
+</div>
+<!--l. 75--><p class="nopar" >If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">jac</span></span></span> is a character string, it refers to a to a C or Fortran routine which must be linked to Scilab
+calling sequences are the same as those for fct. Note however that v must be a nxn array.
+</p>
+<!--l. 81--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x871-5040000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb608"><a 
+ id="x871-5040013r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;A</span><span 
+class="cmitt-10x-x-109">&#x00A0;simple</span><span 
+class="cmitt-10x-x-109">&#x00A0;example</span><span 
+class="cmitt-10x-x-109">&#x00A0;with</span><span 
+class="cmitt-10x-x-109">&#x00A0;fsolve</span></span><br class="fancyvrb" /><a 
+ id="x871-5040015r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">8</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">b=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x871-5040017r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[y]=fsol1(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=a*x+b&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x871-5040019r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[y]=fsolj1(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;y=a&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x871-5040021r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xres=fsolve([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">],fsol1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x871-5040023r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">xres</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">b</span>
+<br class="fancyvrb" /><a 
+ id="x871-5040025r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xres=fsolve([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">],fsol1,fsolj1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x871-5040027r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">xres</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">b</span><br class="fancyvrb" /><a 
+ id="x871-5040029r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;See</span><span 
+class="cmitt-10x-x-109">&#x00A0;routines/default/Ex-fsolve.f</span></span>
+<br class="fancyvrb" /><a 
+ id="x871-5040031r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;xres=fsolve([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">],</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;fsol1&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;fsolj1&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.E-7</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x871-5040033r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">xres</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">b</span></div>
+<!--l. 97--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x871-5041000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli966.html#external">external</a>    <a 
+href="manualli892.html#quapro">quapro</a>    <a 
+href="manualli879.html#linpro">linpro</a>    <a 
+href="manualli891.html#optim">optim</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli871.html" >next</a>] [<a 
+href="manualli869.html" >prev</a>] [<a 
+href="manualli869.html#tailmanualli869.html" >prev-tail</a>] [<a 
+href="manualli870.html" >front</a>] [<a 
+href="manualli863.html#manualli870.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli870.html"></a>  </p> 
+</body></html> 

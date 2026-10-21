@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.4.6 Some Classical Graphics for Automatic Control</TITLE>
+<META NAME="description" CONTENT="5.4.6 Some Classical Graphics for Automatic Control">
+<META NAME="keywords" CONTENT="intro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="intro.css">
+<LINK REL="next" HREF="node70.html">
+<LINK REL="previous" HREF="node68.html">
+<LINK REL="up" HREF="node61.html">
+<LINK REL="next" HREF="node70.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html1155"
+ HREF="node70.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1151"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1145"
+ HREF="node68.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1153"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1154"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1156"
+ HREF="node70.html">5.4.7 Miscellaneous</A>
+<B> Up:</B> <A NAME="tex2html1152"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1146"
+ HREF="node68.html">5.4.5 Writting by Plotting</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00646000000000000000">
+5.4.6 Some Classical Graphics for Automatic Control</A>
+</H2>
+
+<P>
+<UL>
+<P>
+<LI><code>bode</code>	: plot magnitude and phase of the 
+frequency response of a linear system.
+
+<P>
+<LI><code>gainplot</code>	: same as bode but plots only the 
+magnitude of the frequency response.
+
+<P>
+<LI><code>nyquist</code>	: plot of imaginary part versus real 
+part of the frequency response of a linear system.
+
+<P>
+<LI><code>m_circle</code>	: M-circle plot used with nyquist plot.
+
+<P>
+<LI><code>chart</code>	: plot the Nichols'chart 
+
+<P>
+<LI><code>black</code>	: plot the Black's diagram (Nichols'chart)
+for a linear system.  
+
+<P>
+<LI><code>evans</code>	: plot the Evans root locus for a
+linear system.
+
+<P>
+<LI><code>plzr</code>	: pole-zero plot of the linear system
+
+<P>
+</UL>
+<P>
+<PRE>
+s=poly(0,'s');
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225));
+//bode
+xsetech([0.,0.,0.5,0.5],[-1,1,-1,1]);
+gainplot([h1;h],0.01,100);
+//nyquist
+xsetech([0.5,0.,0.5,0.5],[-1,1,-1,1]);
+nyquist([h1;h])
+//chart and black 
+xsetech([0.,0.5,0.5,0.5],[-1,1,-1,1]);
+black([h1;h],0.01,100,['h1';'h'])
+chart([-8 -6 -4],[80 120],list(1,0));
+//evans
+xsetech([0.5,0.5,0.5,0.5],[-1,1,-1,1]);
+H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+evans(H,100)
+</PRE>
+<P>
+  
+  
+Figdirfigures/
+  
+<BR>
+<DIV ALIGN="CENTER"><A NAME="nouv8">&#160;</A><A NAME="4081">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 5.9:</STRONG>
+Some Plots in Automatic Control</CAPTION>
+<TR><TD><IMG
+ WIDTH="978" HEIGHT="1265"
+ SRC="img20.gif"
+ ALT="\begin{figure}
+\begin{center}
+\fbox{\begin{picture}
+(300.0,212.0)
+\special{ps...
+...nouv8.epsf hscale=100.0 vscale=100.0}
+\end{picture}} \end{center}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1155"
+ HREF="node70.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html1151"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html1145"
+ HREF="node68.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html1153"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html1154"
+ HREF="node127.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1156"
+ HREF="node70.html">5.4.7 Miscellaneous</A>
+<B> Up:</B> <A NAME="tex2html1152"
+ HREF="node61.html">5.4 2D Plotting</A>
+<B> Previous:</B> <A NAME="tex2html1146"
+ HREF="node68.html">5.4.5 Writting by Plotting</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

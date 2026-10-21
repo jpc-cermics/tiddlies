@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>contour2di</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli391.html" >next</a>] [<a 
+href="manualli389.html" >prev</a>] [<a 
+href="manualli389.html#tailmanualli389.html" >prev-tail</a>] [<a 
+href="#tailmanualli390.html">tail</a>] [<a 
+href="manualli370.html#manualli390.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x391-2274000"></a>contour2di</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx391-2274001"></a><a 
+ id="contour2di"></a><span 
+class="cmtt-10x-x-109">contour2di </span>&#x2013;                                       compute level curves of a surface on a 2D plot<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x391-2275000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-512">
+&#x00A0;&#x00A0;[xc,yc]=contour2di(x,y,z,nz)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x391-2276000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">x,y</span>: two real row vectors of size n1 and n2: the grid.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">z</span>: real matrix of size (n1,n2), the values of the function.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">nz</span>: the level values or the number of levels.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">-  </span>If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz</span></span></span> is an integer, its value gives the number of level curves equally spaced from zmin
+          to zmax as follows:
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-513">
+          &#x00A0;&#x00A0;z=&#x00A0;zmin&#x00A0;+&#x00A0;(1:nz)*(zmax-zmin)/(nz+1)
+</div>
+          <!--l. 38--><p class="nopar" >Note that the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zmin</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zmax</span></span></span> levels are not drawn (generically they are reduced to
+          points) but they can be added with
+                                                                                    
+
+                                                                                    
+</p>
+          <div class="verbatim" id="verbatim-514">
+          &#x00A0;&#x00A0;[im,jm]&#x00A0;=&#x00A0;find(z&#x00A0;==&#x00A0;zmin);&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;//&#x00A0;or&#x00A0;zmax
+          &#x00A0;<br />&#x00A0;&#x00A0;plot2d(x(im)&#x0027;,y(jm)&#x0027;,-9,&#x0022;000&#x0022;)
+</div>
+          <!--l. 43--><p class="nopar" >- If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz</span></span></span> is a vector, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nz(i)</span></span></span> gives the value of the ith level curve.</p></li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">xc,yc</span>: vectors of identical sizes containing the contours definitions. See below for
+     details.</li></ul>
+<!--l. 49--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x391-2277000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 49--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">contour2di</span></span></span> computes level curves of a surface <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z=f(x,y)</span></span></span> on a 2D plot. The values of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f(x,y)</span></span></span> are
+given by the matrix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z</span></span></span> at the grid points defined by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">y</span></span></span>.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xc(1)</span></span></span> contains the level associated with
+first contour path, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yc(1)</span></span></span> contains the number <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">N1</span></span></span> of points defining this contour path and
+(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xc(1+(1:N1))</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yc(1+(1:N1))</span></span></span> ) contain the coordinates of the paths points. The second path begin
+at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xc(2+N1)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">yc(2+N1)</span></span></span> and so on.
+</p>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x391-2278000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb299"><a 
+ id="x391-2278010r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[xc,yc]=contour2di(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">10</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x391-2278012r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">n=yc(k)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">c=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x391-2278014r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">while</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">yc(k)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span><span 
+class="cmtt-10x-x-109">size(xc,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;*&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span>
+<br class="fancyvrb" /><a 
+ id="x391-2278016r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;n=yc(k)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x391-2278018r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot2d(xc(k</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n)),yc(k</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">n)),c)</span><br class="fancyvrb" /><a 
+ id="x391-2278020r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;c=c</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x391-2278022r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k=k</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">n</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x391-2278024r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span></div>
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x391-2279000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli393.html#contour">contour</a>    <a 
+href="manualli410.html#fcontour">fcontour</a>    <a 
+href="manualli409.html#fcontour2d">fcontour2d</a>    <a 
+href="manualli391.html#contour2d">contour2d</a>    <a 
+href="manualli473.html#plot2d">plot2d</a>    <a 
+href="manualli561.html#xset">xset</a>
+</p>
+<!--l. 76--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x391-2280000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.Ph.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli391.html" >next</a>] [<a 
+href="manualli389.html" >prev</a>] [<a 
+href="manualli389.html#tailmanualli389.html" >prev-tail</a>] [<a 
+href="manualli390.html" >front</a>] [<a 
+href="manualli370.html#manualli390.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli390.html"></a>  </p> 
+</body></html> 

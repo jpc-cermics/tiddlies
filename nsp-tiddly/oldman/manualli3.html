@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>arma</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli4.html" >next</a>] [<a 
+href="manualli2.html" >prev</a>] [<a 
+href="manualli2.html#tailmanualli2.html" >prev-tail</a>] [<a 
+href="#tailmanualli3.html">tail</a>] [<a 
+href="manualli1.html#manualli3.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x4-13000"></a>arma</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx4-13001"></a><a 
+ id="arma"></a><span 
+class="cmtt-10x-x-109">arma </span>&#x2013;                                                                                    Scilab arma library<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x4-14000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Armax processes can be coded with Scilab tlist of type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ar&#x0027;</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">armac</span></span></span> is used to build <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Armax</span></span></span> scilab
+object. An <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0027;ar&#x0027;</span></span></span> tlist contains the fields <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[&#x0027;a&#x0027;,&#x0027;b&#x0027;,&#x0027;d&#x0027;,&#x0027;ny&#x0027;,&#x0027;nu&#x0027;,&#x0027;sig&#x0027;]</span></span></span>.
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">armac</span> </span>: this function creates a Scilab tlist which code an Armax process
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x00A0;A(z^-1)y=</span><span 
+class="cmtt-10x-x-109">&#x00A0;B(z^-1)u</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;D(z^-1)sig*e(t)</span></span></span>
+                                                                                    
+
+                                                                                    
+</p>
+     <div class="verbatim" id="verbatim-4">
+     &#x00A0;&#x00A0;--$&#x003E;$ar=armac([1,2],[3,4],1,1,1,sig);
+     &#x00A0;<br />&#x00A0;&#x00A0;--$&#x003E;$ar(&#x0027;a&#x0027;)
+     &#x00A0;<br />&#x00A0;&#x00A0;ans&#x00A0;&#x00A0;=
+     &#x00A0;<br />&#x00A0;&#x00A0;!&#x00A0;&#x00A0;&#x00A0;1.&#x00A0;&#x00A0;&#x00A0;&#x00A0;2.&#x00A0;!
+     &#x00A0;<br />&#x00A0;&#x00A0;--$&#x003E;$ar(&#x0027;sig&#x0027;)
+     &#x00A0;<br />&#x00A0;&#x00A0;ans&#x00A0;&#x00A0;=
+     &#x00A0;<br />&#x00A0;&#x00A0;1.
+</div>
+     <!--l. 36--><p class="nopar" >
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">armap(ar [,out</span> </span>)]: Display the armax equation associated with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ar</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">armap</span><span 
+class="cmbx-10x-x-109">_p(ar [,out</span> </span>)]: Display the armax equation associated with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ar</span></span></span> using polynomial matrix
+     display.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">[A,B,D</span> </span>=armap2p(ar)]: extract polynomial matrices from ar representation
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">armax</span> </span>: is used to identify the coefficients of a n-dimensional ARX process
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A(z^-1)y=</span><span 
+class="cmtt-10x-x-109">&#x00A0;B(z^-1)u</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;sig*e(t)</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">armax1</span> </span>: armax1 is used to identify the coefficients of a 1-dimensional ARX process
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">A(z^-1)y=</span><span 
+class="cmtt-10x-x-109">&#x00A0;B(z^-1)u</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;D(z^-1)sig*e(t)</span></span></span>
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">arsimul</span> </span>: armax trajectory simulation.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">arspec</span> </span>: Spectral power estimation of armax processes. Test of mese and arsimul
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">exar1</span> </span>: An Example of ARMAX identification ( K.J. Astrom) The armax process is described by:
+     a=[1,-2.851,2.717,-0.865] b=[0,1,1,1] d=[1,0.7,0.2]
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">exar2</span> </span>: ARMAX example ( K.J. Astrom). A simulation of a bi dimensional version of the example
+     of exar1.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">exar3</span> </span>: Spectral power estimation of arma processes from Sawaragi et all where a value of m=18 is
+     used. Test of mese and arsimul
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">gbruit</span> </span>: noise generation
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">narsimul</span> </span>: armax simulation ( using rtitr)
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">odedi</span> </span>: Simple tests of ode and arsimul. Tests the option &apos;discret&apos; of ode
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">prbs</span><span 
+class="cmbx-10x-x-109">_a</span> </span>: pseudo random binary sequences generation
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">reglin</span> </span>: Linear regression</ul>
+</p>
+<!--l. 56--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x4-15000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   J.P.C ; ;
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli4.html" >next</a>] [<a 
+href="manualli2.html" >prev</a>] [<a 
+href="manualli2.html#tailmanualli2.html" >prev-tail</a>] [<a 
+href="manualli3.html" >front</a>] [<a 
+href="manualli1.html#manualli3.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli3.html"></a>   </p> 
+</body></html> 

@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>bvode</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli865.html" >next</a>] [<a 
+href="manualli863.html" >prev</a>] [<a 
+href="manualli863.html#tailmanualli863.html" >prev-tail</a>] [<a 
+href="#tailmanualli864.html">tail</a>] [<a 
+href="manualli863.html#manualli864.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x865-4997000"></a>bvode</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx865-4997001"></a><a 
+ id="bvode"></a><span 
+class="cmtt-10x-x-109">bvode </span>&#x2013;                                                               boundary value problems for ODE<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x865-4998000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-929">
+&#x00A0;&#x00A0;[z]=bvode(points,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+&#x00A0;<br />&#x00A0;&#x00A0;fsub1,dfsub1,gsub1,dgsub1,guess1)
+</div>
+<!--l. 26--><p class="nopar" >
+</p>
+<!--l. 29--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x865-4999000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">z </span>The solution of the ode evaluated on the mesh given by points
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">points </span>an array which gives the points for which we want the solution
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ncomp </span>number of differential equations (ncomp <span 
+class="cmmi-10x-x-109">&#x003C;</span>= 20)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">m </span>a vector of size <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ncomp</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">m(j)</span></span></span> gives the order of the j-th differential equation
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">aleft </span>left end of interval
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">aright </span>right end of interval
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">zeta   </span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zeta(j)</span></span></span>   gives     j-th     side     condition     point     (boundary     point).
+     must have<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">zeta(j)</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;zeta(j+1)</span></span></span> all side condition points must be mesh points in
+     all meshes used, see description of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(11)</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fixpnt</span></span></span> below.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar </span>an integer array dimensioned at least 11. a list of the parameters in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar</span></span></span> and their
+     meaning follows some parameters are renamed in bvode; these new names are given in
+     parentheses.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(1)  </span>0 if the problem is linear, 1 if the problem is nonlinear
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(2)                           </span>=                                         number
+          of collocation points per subinterval (= k ) where<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">max</span><span 
+class="cmtt-10x-x-109">&#x00A0;m(i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;k</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;7</span><span 
+class="cmtt-10x-x-109">&#x00A0;.</span></span></span> if
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(2)=0</span></span></span> then bvode sets <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">k</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;max</span><span 
+class="cmtt-10x-x-109">&#x00A0;(</span><span 
+class="cmtt-10x-x-109">&#x00A0;max</span><span 
+class="cmtt-10x-x-109">&#x00A0;m(i)+1,</span><span 
+class="cmtt-10x-x-109">&#x00A0;5-max</span><span 
+class="cmtt-10x-x-109">&#x00A0;m(i)</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span></span></span>
+                                                                                    
+
+                                                                                    
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(3)  </span>= number of subintervals in the initial mesh ( = n ). if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(3)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0</span></span></span>
+          then bvode arbitrarily sets <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">n</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;5</span></span></span>.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(4) </span>=  number  of  solution  and  derivative  tolerances.  (  =  ntol  )  we
+          require<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;ntol</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mstar.</span></span></span>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(5) </span>= dimension of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fspace</span></span></span> ( = ndimf ) a real work array. its size provides a
+          constraint on nmax. choose ipar(5) according to the formula:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(5)$&#x003E;$=nmax*nsizef</span></span></span>where<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nsizef=4+3*mstar+(5+kd)*kdm+(2*mstar-nrec)*2*mstar</span></span></span>.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(6) </span>= dimension of ispace ( = ndimi )an integer work array. its size provides
+          a  constraint  on  nmax,  the  maximum  number  of  subintervals.  choose  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(6)</span></span></span>
+          according  to  the  formula:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(6)$&#x003E;$=nmax*nsizei</span></span></span>where<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nsizei=3</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;kdm</span></span></span> with
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">kdm=kd+mstar</span></span></span> ; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">kd=k*ncomp</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span>; <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">nrec</span></span></span>=number of right end boundary conditions.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(7)  </span>output control ( = iprint )
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= -1 </span>for full diagnostic printout
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 0 </span>for selected printout
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 1 </span>for no printout</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(8)  </span>( = iread )
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 0 </span>causes bvode to generate a uniform initial mesh.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= xx </span>Other values are not implemented yet in Scilab
+                 <ul class="itemize4">
+                 <li class="itemize"><span 
+class="cmtt-10x-x-109">= 1 </span>if the initial mesh is provided by the user. it is defined in fspace as
+                 follows:                        the                        mesh                        will
+                 occupy <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fspace(1),</span><span 
+class="cmtt-10x-x-109">&#x00A0;...,</span><span 
+class="cmtt-10x-x-109">&#x00A0;fspace(n+1)</span></span></span>. the user needs to supply only the
+                 interior mesh points <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fspace(j)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;x(j),</span><span 
+class="cmtt-10x-x-109">&#x00A0;j</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;2,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...,</span><span 
+class="cmtt-10x-x-109">&#x00A0;n.</span></span></span>
+                 </li>
+                 <li class="itemize"><span 
+class="cmtt-10x-x-109">= 2 if the initial mesh is supplied by the</span>
+                 <span 
+class="cmtt-10x-x-109">user </span>as with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(8)=1</span></span></span>, and in addition no adaptive mesh selection is to
+                 be done.</li></ul>
+              </li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(9)  </span>( = iguess )
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 0 </span>if no initial guess for the solution is provided.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 1 </span>if an initial guess is provided by the user in subroutine <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">guess</span></span></span>.
+                                                                                    
+
+                                                                                    
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 2 </span>if an initial mesh and approximate solution coefficients are provided by
+              the user in fspace. (the former and new mesh are the same).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 3 </span>if a former mesh and approximate solution coefficients are provided by
+              the user in fspace, and the new mesh is to be taken twice as coarse; i.e.,every
+              second point from the former mesh.
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 4 </span>if in addition to a former initial mesh and approximate solution coefficients,
+              a new mesh is provided in fspace as well. (see description of output for further
+              details on iguess = 2, 3, and 4.)</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(10)</span>
+              <ul class="itemize3">
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 0 </span>if the problem is regular
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 1 </span>if the first relax factor is =rstart, and the nonlinear iteration does not rely
+              on past covergence (use for an extra sensitive nonlinear problem only).
+              </li>
+              <li class="itemize"><span 
+class="cmtt-10x-x-109">= 2 </span>if we are to return immediately upon (a) two successive nonconvergences,
+              or (b) after obtaining error estimate for the first time.</li></ul>
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">ipar(11)  </span>= number of fixed points in the mesh other than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aleft</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aright</span></span></span>. ( =
+          nfxpnt , the dimension of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fixpnt</span></span></span>) the code requires that all side condition points other
+          than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aleft</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aright</span></span></span> (see description of zeta ) be included as fixed points in
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fixpnt</span></span></span>.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">ltol </span>an array of dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(4)</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ltol(j)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;l</span></span></span> specifies that the j-th
+     tolerance in tol controls the error in the l-th component of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(u)</span></span></span>. also require
+     that:<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;ltol(1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;ltol(2)</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$</span><span 
+class="cmtt-10x-x-109">&#x00A0;ltol(ntol)</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;mstar</span></span></span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tol </span>an array of dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(4)</span></span></span>. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tol(j)</span></span></span> is the error tolerance on the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ltol(j)</span></span></span>
+     -th component of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(u)</span></span></span>. thus, the code attempts to satisfy for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">j=1:ntol</span></span></span> on each
+     subinterval
+                                                                                    
+
+                                                                                    
+     <div class="verbatim" id="verbatim-930">
+     &#x00A0;&#x00A0;abs(z(v)-z(u))&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;$&#x003C;$=&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;tol(j)*abs(z(u))&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;+tol(j)
+     &#x00A0;<br />&#x00A0;&#x00A0;ltol(j)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;ltol(j)
+</div>
+     <!--l. 106--><p class="nopar" >if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v(x)</span></span></span> is the approximate solution vector.
+     </p></li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fixpnt </span>an array of dimension <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(11)</span></span></span>. it contains the points, other than <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aleft</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aright</span></span></span>,
+     which are to be included in every mesh.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">externals </span>The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fsub,dfsub,gsub,dgsub,guess</span></span></span> are Scilab externals i.e. functions
+     (see syntax below) or the name of a Fortran subroutine (character string) with specified
+     calling sequence or a list. An external as a character string refers to the name of a Fortran
+     subroutine. The Fortran coded function interface to bvode are specified in the file
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fcol.f</span></span></span>.
+          <ul class="itemize2">
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">fsub </span>name of subroutine for evaluating
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-931">
+          &#x00A0;&#x00A0;t
+          &#x00A0;<br />&#x00A0;&#x00A0;f(x,z(u(x)))&#x00A0;=&#x00A0;&#x00A0;&#x00A0;&#x00A0;(f&#x00A0;,...,f&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;)
+          &#x00A0;<br />&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;ncomp
+</div>
+          <!--l. 121--><p class="nopar" >at a point x in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">(aleft,aright)</span></span></span>. it should have the heading <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[f]=fsub(x,z)</span></span></span> where
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> is the vector containing the value of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fi(x,z(u))</span></span></span> in the i-th component
+          and
+                                                                                    
+
+                                                                                    
+</p>
+          <div class="verbatim" id="verbatim-932">
+          &#x00A0;&#x00A0;t
+          &#x00A0;<br />&#x00A0;&#x00A0;z(u(x))=(z(1),...,z(mstar))
+</div>
+          <!--l. 126--><p class="nopar" >is defined as above under purpose .
+          </p></li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">dfsub </span>name of subroutine for evaluating the Jacobian of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f(x,z(u))</span></span></span> at a point x. it
+          should have the heading <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[df]=dfsub</span><span 
+class="cmtt-10x-x-109">&#x00A0;(x</span><span 
+class="cmtt-10x-x-109">&#x00A0;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;z</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(u(x))</span></span></span> is defined as for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fsub</span></span></span> and
+          the (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ncomp</span></span></span>) by (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mstar</span></span></span>) array df should be filled by the partial derivatives of f, viz, for a
+          particular call one calculates
+                                                                                    
+
+                                                                                    
+          <div class="verbatim" id="verbatim-933">
+          &#x00A0;&#x00A0;df(i,j)&#x00A0;=&#x00A0;dfi&#x00A0;/&#x00A0;dzj,&#x00A0;i=1,...,ncomp
+          &#x00A0;<br />&#x00A0;&#x00A0;j=1,...,mstar.
+</div>
+          <!--l. 139--><p class="nopar" >
+          </p></li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">gsub </span>name of subroutine for evaluating the i-th component of
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g(x,z(u(x)))</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;g</span><span 
+class="cmtt-10x-x-109">&#x00A0;(zeta(i),z(u(zeta(i))))</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span></span></span> at a point <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;zeta(i)</span></span></span> where
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1$&#x003C;$=i$&#x003C;$=mstar.</span></span></span> it should have the heading<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[g]=gsub</span><span 
+class="cmtt-10x-x-109">&#x00A0;(i</span><span 
+class="cmtt-10x-x-109">&#x00A0;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;z)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(u)</span></span></span> is as for
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fsub</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g=gi</span></span></span> are as above. Note that in contrast to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fsub</span></span></span> , here only one
+          value per call is returned in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>.
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">dgsub </span>name of subroutine for evaluating the i-th row of the Jacobian of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g(x,u(x))</span></span></span>. it
+          should have the heading <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[dg]=dgsub</span><span 
+class="cmtt-10x-x-109">&#x00A0;(i</span><span 
+class="cmtt-10x-x-109">&#x00A0;,</span><span 
+class="cmtt-10x-x-109">&#x00A0;z</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span></span></span> where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(u)</span></span></span> is as for fsub, i as for gsub
+          and the mstar-vector <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dg</span></span></span> should be filled with the partial derivatives of g, viz, for a
+          particular call one calculates
+          </li>
+          <li class="itemize"><span 
+class="cmtt-10x-x-109">guess </span>name of subroutine to evaluate the initial approximation for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(u(x))</span></span></span> and for
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dmval(u(x))</span></span></span>= vector of the mj-th derivatives of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u(x)</span></span></span>. it should have the heading
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">[z,dmval]=</span><span 
+class="cmtt-10x-x-109">&#x00A0;guess</span><span 
+class="cmtt-10x-x-109">&#x00A0;(x</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span></span></span> note that this subroutine is used only if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ipar(9)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;1</span></span></span>, and then
+          all <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mstar</span></span></span> components of z and ncomp components of dmval should be specified for any
+          x,<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aleft</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;aright</span><span 
+class="cmtt-10x-x-109">&#x00A0;.</span></span></span></li></ul>
+     </li></ul>
+<!--l. 165--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x865-5000000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 165--><p class="noindent" > this package solves a multi-point boundary value problem for a mixed order system of ode-s given
+by
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-934">
+&#x00A0;&#x00A0;(m(i))
+&#x00A0;<br />&#x00A0;&#x00A0;u&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;=&#x00A0;&#x00A0;f&#x00A0;&#x00A0;(&#x00A0;x;&#x00A0;z(u(x))&#x00A0;)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;i&#x00A0;=&#x00A0;1,&#x00A0;...&#x00A0;,ncomp
+&#x00A0;<br />&#x00A0;&#x00A0;i&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;i&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;aleft&#x00A0;$&#x003C;$&#x00A0;x&#x00A0;&#x00A0;$&#x003C;$&#x00A0;aright,
+</div>
+<!--l. 172--><p class="nopar" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-935">
+&#x00A0;&#x00A0;g&#x00A0;&#x00A0;(&#x00A0;zeta(j);&#x00A0;z(u(zeta(j)))&#x00A0;)&#x00A0;=&#x00A0;0&#x00A0;&#x00A0;&#x00A0;j&#x00A0;=&#x00A0;1,&#x00A0;...&#x00A0;,mstar
+&#x00A0;<br />&#x00A0;&#x00A0;j
+&#x00A0;<br />&#x00A0;&#x00A0;mstar&#x00A0;=&#x00A0;m(1)+m(2)+...+m(ncomp),
+</div>
+<!--l. 177--><p class="nopar" >where
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-936">
+&#x00A0;&#x00A0;t
+&#x00A0;<br />&#x00A0;&#x00A0;u&#x00A0;=&#x00A0;(u&#x00A0;,&#x00A0;u&#x00A0;,&#x00A0;...&#x00A0;,u&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;)
+&#x00A0;<br />&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;2&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;ncomp
+</div>
+<!--l. 183--><p class="nopar" >is the exact solution vector
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-937">
+&#x00A0;&#x00A0;(mi)
+&#x00A0;<br />&#x00A0;&#x00A0;u&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;is&#x00A0;the&#x00A0;mi=m(i)&#x00A0;th&#x00A0;&#x00A0;derivative&#x00A0;of&#x00A0;u
+&#x00A0;<br />&#x00A0;&#x00A0;i&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;i
+</div>
+<!--l. 189--><p class="nopar" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-938">
+&#x00A0;&#x00A0;(1)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(m1-1)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(mncomp-1)
+&#x00A0;<br />&#x00A0;&#x00A0;z(u(x))&#x00A0;=&#x00A0;(&#x00A0;u&#x00A0;(x),u&#x00A0;&#x00A0;(x),...,u&#x00A0;&#x00A0;&#x00A0;&#x00A0;(x),...,u&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;(x)&#x00A0;)
+&#x00A0;<br />&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;ncomp
+</div>
+<!--l. 194--><p class="nopar" >
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-939">
+&#x00A0;&#x00A0;f&#x00A0;(x,z(u))
+&#x00A0;<br />&#x00A0;&#x00A0;i
+</div>
+<!--l. 198--><p class="nopar" >is a (generally) nonlinear function of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">z(u)=z(u(x))</span></span></span>.
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-940">
+&#x00A0;&#x00A0;g&#x00A0;(zeta(j);z(u))
+&#x00A0;<br />&#x00A0;&#x00A0;j
+</div>
+<!--l. 203--><p class="nopar" >is a (generally) nonlinear function used to represent a boundary condition. the boundary points
+satisfy<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">aleft</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;zeta(1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;..</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;zeta(mstar)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;$&#x003C;$=</span><span 
+class="cmtt-10x-x-109">&#x00A0;aright</span></span></span>. the orders <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mi</span></span></span> of the
+differential equations satisfy<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">1$&#x003C;$=m(i)$&#x003C;$=4</span></span></span>.
+</p>
+<!--l. 207--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x865-5001000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb602"><a 
+ id="x865-5001025r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;df=dfsub(x,z)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;df=[0,0,-6/x**2,-6/x]&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x865-5001027r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;f=fsub(x,z)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;f=(1</span><span 
+class="cmtt-10x-x-109">&#x00A0;-6*x**2*z(4)-6*x*z(3))/x**3&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x865-5001029r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;g=gsub(i,z)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;g=[z(1),z(3),z(1),z(3)];g=g(i)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x865-5001031r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;dg=dgsub(i,z)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;dg=[1,0,0,0;0,0,1,0;1,0,0,0;0,0,1,0]&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;dg=dg(i,:)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x865-5001033r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[z,mpar]=guess(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;z=0;mpar=0&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;unused</span><span 
+class="cmitt-10x-x-109">&#x00A0;here</span></span>
+<br class="fancyvrb" /><a 
+ id="x865-5001035r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;u=trusol(x)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span 
+class="cmtt-10x-x-109">&#x00A0;...</span><br class="fancyvrb" /><a 
+ id="x865-5001037r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//for</span><span 
+class="cmitt-10x-x-109">&#x00A0;testing</span><span 
+class="cmitt-10x-x-109">&#x00A0;purposes</span></span><br class="fancyvrb" /><a 
+ id="x865-5001039r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;u=0*ones(4,1)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x865-5001041r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;u(1)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.25*(10*log(2)-3)*(1-x)</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.5</span><span 
+class="cmtt-10x-x-109">&#x00A0;*(</span><span 
+class="cmtt-10x-x-109">&#x00A0;1/x</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;(3+x)*log(x)</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;x)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x865-5001043r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;u(2)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;-0.25*(10*log(2)-3)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.5</span><span 
+class="cmtt-10x-x-109">&#x00A0;*(-1/x^2</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;(3+x)/x</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;log(x)</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;1)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x865-5001045r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;u(3)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.5*(</span><span 
+class="cmtt-10x-x-109">&#x00A0;2/x^3</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;1/x</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;3/x^2)&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;u(4)</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;0.5*(-6/x^4</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;1/x/x</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;6/x^3)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span>
+<br class="fancyvrb" /><a 
+ id="x865-5001047r12"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;fixpnt=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">m=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x865-5001049r13"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ncomp=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">aleft=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">aright=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x865-5001051r14"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;zeta=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x865-5001053r15"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ipar=zeros(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">11</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x865-5001055r16"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ipar(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ipar(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">4</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ipar(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2000</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ipar(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">6</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">200</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">ipar(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">7</span></span><span 
+class="cmtt-10x-x-109">)=</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x865-5001057r17"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;ltol=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">3</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span 
+class="cmtt-10x-x-109">tol=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.E-11</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1.E-11</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x865-5001059r18"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;res=aleft</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">aright</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x865-5001061r19"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)</span>
+<br class="fancyvrb" /><a 
+ id="x865-5001063r20"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z1=[]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">for</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;x=res</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">do</span></span><span 
+class="cmtt-10x-x-109">&#x00A0;z1=[z1</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span 
+class="cmtt-10x-x-109">trusol(x)]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspkeyword"><span 
+class="cmtt-10x-x-109">end</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x865-5001065r21"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;z</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">-</span></span><span 
+class="cmtt-10x-x-109">z1</span></div>
+<!--l. 235--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x865-5002000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli972.html#fort">fort</a>    <a 
+href="manualli1368.html#link">link</a>    <a 
+href="manualli966.html#external">external</a>    <a 
+href="manualli890.html#ode">ode</a>    <a 
+href="manualli866.html#dassl">dassl</a>
+</p>
+<!--l. 239--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x865-5003000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+   u. ascher, department of computer science, university of british; columbia, vancouver, b. c.,
+canada v6t 1w5; g. bader, institut f. angewandte mathematik university of heidelberg; im
+neuenheimer feld 294d-6900 heidelberg 1 ; ; Fortran subroutine colnew.f
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli865.html" >next</a>] [<a 
+href="manualli863.html" >prev</a>] [<a 
+href="manualli863.html#tailmanualli863.html" >prev-tail</a>] [<a 
+href="manualli864.html" >front</a>] [<a 
+href="manualli863.html#manualli864.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli864.html"></a>  </p> 
+</body></html> 

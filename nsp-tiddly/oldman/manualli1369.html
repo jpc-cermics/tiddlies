@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>listfiles</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1370.html" >next</a>] [<a 
+href="manualli1368.html" >prev</a>] [<a 
+href="manualli1368.html#tailmanualli1368.html" >prev-tail</a>] [<a 
+href="#tailmanualli1369.html">tail</a>] [<a 
+href="manualli1327.html#manualli1369.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1370-7742000"></a>listfiles</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1370-7742001"></a><a 
+ id="listfiles"></a><span 
+class="cmtt-10x-x-109">listfiles </span>&#x2013;                                                                                            list files<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1370-7743000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1546">
+&#x00A0;&#x00A0;files=&#x00A0;listfiles(paths&#x00A0;[,flag,flagexpand])
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1370-7744000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">paths</span>: a string matrix giving a set of pathnames (eventually ended by a pattern built
+     with <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">*</span></span></span>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">flag,flagexpand</span>: boolean optional parameters. (default value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%t</span></span></span>).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">files</span>: a string matrix.</li></ul>
+<!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1370-7745000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 35--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">listfiles</span></span></span> can be used to list the files which match the patterns given by one of the paths entries.
+Patterns are given to the unix <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ls</span></span></span> or to the windows <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dir</span></span></span> commands in order to get information on
+files. Thus in order to write portable Scilab script valid wildcard patterns for both os are to be
+given. Note that Pathname conversion is performed and for example <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SCI/macros/util/*.sci</span></span></span> is a
+valid pattern for both unix and windows. if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flag</span></span></span> is true the pathnames given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">paths</span></span></span> are
+converted according to the MSDOS value (See <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pathconvert</span></span></span>). Moreover, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">flagexpand</span></span></span>
+is true leading strings like <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">HOME</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">SCI</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">~</span></span></span> are expanded using environment variables.
+</p>
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1370-7746000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb889"><a 
+ id="x1370-7746003r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;files=listfiles([</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/macros/util/*.sci&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/macros/util/*.bin&#x0027;</span></span><span 
+class="cmtt-10x-x-109">])</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 57--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1370-7747000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli1334.html#basename">basename</a>    <a 
+href="manualli1378.html#pathconvert">pathconvert</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1370.html" >next</a>] [<a 
+href="manualli1368.html" >prev</a>] [<a 
+href="manualli1368.html#tailmanualli1368.html" >prev-tail</a>] [<a 
+href="manualli1369.html" >front</a>] [<a 
+href="manualli1327.html#manualli1369.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1369.html"></a>  </p> 
+</body></html> 

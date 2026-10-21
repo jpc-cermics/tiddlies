@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mtlb_conv</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli778.html" >next</a>] [<a 
+href="manualli776.html" >prev</a>] [<a 
+href="manualli776.html#tailmanualli776.html" >prev-tail</a>] [<a 
+href="#tailmanualli777.html">tail</a>] [<a 
+href="manualli756.html#manualli777.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x778-4603000"></a>mtlb_conv</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx778-4603001"></a><a 
+ id="mtlb_conv"></a><span 
+class="cmtt-10x-x-109">mtlb</span><span 
+class="cmtt-10x-x-109">_conv </span>&#x2013;                                                            Matlab conv emulation function<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x778-4604000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">conv</span></span></span> and Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">convol</span></span></span> behave differently in some particular cases:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> With column vector inputs: if at least input is a column vector Matlab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">conv</span></span></span>
+          returns a column vector but Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">convol</span></span></span> always returns a row vector.</li></ul>
+     </ul>
+<!--l. 31--><p class="noindent" >The function <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_conv(u,v)</span></span></span> is used by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfile2sci</span></span></span> to replace <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">conv(u,v)</span></span></span> when it was not possible to
+know what were the inputs while porting Matlab code to Scilab. This function will determine the
+correct semantic at run time. If you want to have a more efficient code it is possible to replace
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_conv</span></span></span> calls:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+ </span></p>
+          <ul class="itemize1">
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v</span></span></span> are row vectors, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_conv(u,v)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">convol(u,v)</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div> If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span></span></span> or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v</span></span></span> is a column vector, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_conv(u,v)</span></span></span> may be replaced by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">convol(u,v).&#x0027;</span></span></span>
+          </li>
+          <li class="itemize"><div class="itemdesc"></div>  If  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span></span></span>  and  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">v</span></span></span>  are  column  vectors,  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_conv(u,v)</span></span></span>  may  be  replaced  by
+          <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">convol(u,v).&#x0027;</span></span></span></li></ul>
+     </ul>
+<!--l. 50--><p class="noindent" >Scilab <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">convol</span></span></span> sometimes returns values that may be rounded using <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">clean</span></span></span> to have a closer
+result from Matlab one.Caution: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mtlb_conv</span></span></span> has not to be used for hand coded functions.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 54--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x778-4605000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli896.html#clean">clean</a>
+</p>
+<!--l. 58--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x778-4606000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x778-4607000"></a></span>
+   V.C.
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli778.html" >next</a>] [<a 
+href="manualli776.html" >prev</a>] [<a 
+href="manualli776.html#tailmanualli776.html" >prev-tail</a>] [<a 
+href="manualli777.html" >front</a>] [<a 
+href="manualli756.html#manualli777.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli777.html"></a>  </p> 
+</body></html> 

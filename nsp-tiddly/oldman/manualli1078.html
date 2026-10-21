@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_recv</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1079.html" >next</a>] [<a 
+href="manualli1077.html" >prev</a>] [<a 
+href="manualli1077.html#tailmanualli1077.html" >prev-tail</a>] [<a 
+href="#tailmanualli1078.html">tail</a>] [<a 
+href="manualli1054.html#manualli1078.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1079-6114000"></a>pvm_recv</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1079-6114001"></a><a 
+ id="pvm_recv"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_recv </span>&#x2013;                                                                              receive a message. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1079-6115000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1187">
+&#x00A0;&#x00A0;[buff,&#x00A0;info,&#x00A0;msgtid,&#x00A0;tag]&#x00A0;=&#x00A0;pvm_recv(tid,&#x00A0;msgtag)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1079-6116000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tid</span>: integer, task identifier of sending process supplied by the user.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">msgtag: integer, message tag supplied by the user. msgtag should be  </span><span 
+class="cmmi-10x-x-109">&#x003E;</span>=
+     0.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">buff</span>: scilab variable, where the received message will be stored.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info</span>: integer, status code returned by the routine. Values less than zero indicate an
+     error.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">msgtid: integer, returning the source of the message. Useful when the</span>
+     message was received with a wildcard tid.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tag</span>: integer, returning the message label. Useful when the message was received with a
+     wildcard msgtag.</li></ul>
+<!--l. 38--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1079-6117000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 38--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_recv</span></span></span> blocks the process until a message with label <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msgtag</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> can be used to match all
+message tags) has arrived from <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tid</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> can be used to match all tids). <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_recv</span></span></span> returns the
+message in <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">buff</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tid=-1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msgtag</span></span></span> is defined by the user, then <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_recv</span></span></span> will accept a message
+from any process which has a matching <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msgtag</span></span></span>. If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msgtag</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;-1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tid</span></span></span> is defined by the user, then
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_recv</span></span></span> will accept any message that is sent from process <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tid</span></span></span> . If <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tid=-1</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msgtag</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;-1</span></span></span> then
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_recv</span></span></span> will accept any message from any process. When wildcard are used, the application is
+able to receive any incoming message. If the action taken depends on the source tid and
+the msgtag associated with the message that comes in first, the information given by
+msgtid and tag can be very usefull. The PVM model guarantees the following about
+message order. If task 1 sends message A to task 2, then task 1 sends message B to task 2,
+                                                                                    
+
+                                                                                    
+message A will arrive at task 2 before message B. Moreover, if both messages arrive before
+task 2 does a receive, then a wildcard receive will always return message A.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">info</span></span></span> will
+be the status code returned by the routine. If some error occurs then it will be <span 
+class="cmmi-10x-x-109">&#x003C; </span>0.
+pvm_recv is blocking which means the routine waits until a message matching the user
+specified tid and msgtag values arrives at the local pvmd. If the message has already
+arrived then pvm_recv returns immediately with the message. Once pvm_recv returns, the
+data in the message can be unpacked into the user&apos;s memory using the unpack routines.
+</p>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1079-6118000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb740"><a 
+ id="x1079-6118004r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;[b,info,msgtid,tag]=pvm_recv(pvm_parent(),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1079-6118006r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;g=pvm_recv(pvm_parent(),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">200</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 81--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1079-6119000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-send">pvm_send</a>    <a 
+href="#pvm-bcast">pvm_bcast</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1079.html" >next</a>] [<a 
+href="manualli1077.html" >prev</a>] [<a 
+href="manualli1077.html#tailmanualli1077.html" >prev-tail</a>] [<a 
+href="manualli1078.html" >front</a>] [<a 
+href="manualli1054.html#manualli1078.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1078.html"></a>  </p> 
+</body></html> 

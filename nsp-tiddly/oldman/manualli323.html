@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>readxls</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli324.html" >next</a>] [<a 
+href="manualli322.html" >prev</a>] [<a 
+href="manualli322.html#tailmanualli322.html" >prev-tail</a>] [<a 
+href="#tailmanualli323.html">tail</a>] [<a 
+href="manualli274.html#manualli323.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x324-1913000"></a>readxls</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx324-1913001"></a><a 
+ id="readxls"></a><span 
+class="cmtt-10x-x-109">readxls </span>&#x2013;                                                                                 reads an Excel file<br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x324-1914000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-459">
+&#x00A0;&#x00A0;sheets&#x00A0;=&#x00A0;readxls(file_path)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x324-1915000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">file</span><span 
+class="cmtt-10x-x-109">_path </span>: a character string: the path of the Excel file.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">sheets </span>: an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mlist</span></span></span> of type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xls</span></span></span>, with one field named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sheets</span></span></span></li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x324-1916000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > Given an Excel file path this function returns an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mlist</span></span></span> data structure of type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xls</span></span></span>,
+with one field named <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sheets</span></span></span>. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sheets</span></span></span> field itself contains a list of sheet data
+structure.<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sheet=mlist([&#x0027;xlssheet&#x0027;,&#x0027;name&#x0027;,&#x0027;text&#x0027;,&#x0027;value&#x0027;],sheetname,Text,Value)</span></span></span> where
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sheetname</span></span></span> is a character string containing the name of the sheet, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Text</span></span></span> is a matrix of
+string which contains the cell&apos;s strings and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">Value</span></span></span> is a matrix of numberswhich contains
+the cell&apos;s values. Warning only BIFF8 Excel files (last Excel file version) are handled
+</p>
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x324-1917000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb256"><a 
+ id="x324-1917012r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;Sheets=readxls(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;SCI/demos/excel/t1.xls&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x324-1917014r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;some</span><span 
+class="cmitt-10x-x-109">&#x00A0;basic</span><span 
+class="cmitt-10x-x-109">&#x00A0;operations</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;Sheets</span></span>
+<br class="fancyvrb" /><a 
+ id="x324-1917016r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;typeof(Sheets)</span><br class="fancyvrb" /><a 
+ id="x324-1917018r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s1=Sheets(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;sheet</span></span><br class="fancyvrb" /><a 
+ id="x324-1917020r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;typeof(s1)</span>
+<br class="fancyvrb" /><a 
+ id="x324-1917022r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s1.value</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;sheet</span><span 
+class="cmitt-10x-x-109">&#x00A0;value</span><span 
+class="cmitt-10x-x-109">&#x00A0;field</span></span><br class="fancyvrb" /><a 
+ id="x324-1917024r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s1.text</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;first</span><span 
+class="cmitt-10x-x-109">&#x00A0;sheet</span><span 
+class="cmitt-10x-x-109">&#x00A0;text</span><span 
+class="cmitt-10x-x-109">&#x00A0;field</span></span>
+<br class="fancyvrb" /><a 
+ id="x324-1917026r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;s1(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//get</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;2</span><span 
+class="cmitt-10x-x-109">&#x00A0;row</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;sheet</span></span><br class="fancyvrb" /><a 
+ id="x324-1917028r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;typeof(s1(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">))</span><br class="fancyvrb" /><a 
+ id="x324-1917030r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;editvar(s1)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span></div>
+<!--l. 61--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x324-1918000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#xls-open">xls_open</a>    <a 
+href="#xls-read">xls_read</a>
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x324-1919000"></a><span 
+class="cmbx-10x-x-109">Authors</span></span>
+</p>
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x324-1920000"></a><span 
+class="cmbx-10x-x-109">Pierrick Mode</span></span>
+   INRIA
+</p>
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x324-1921000"></a><span 
+class="cmbx-10x-x-109">Serge Steer</span></span>
+   INRIA
+This function is based on the Scilab functions <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xls_open</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">xls_read</span></span></span>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli324.html" >next</a>] [<a 
+href="manualli322.html" >prev</a>] [<a 
+href="manualli322.html#tailmanualli322.html" >prev-tail</a>] [<a 
+href="manualli323.html" >front</a>] [<a 
+href="manualli274.html#manualli323.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli323.html"></a>  </p> 
+</body></html> 

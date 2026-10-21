@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>printf_conversion</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli316.html" >next</a>] [<a 
+href="manualli314.html" >prev</a>] [<a 
+href="manualli314.html#tailmanualli314.html" >prev-tail</a>] [<a 
+href="#tailmanualli315.html">tail</a>] [<a 
+href="manualli274.html#manualli315.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x316-1872000"></a>printf_conversion</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx316-1872001"></a><a 
+ id="printf_conversion"></a><span 
+class="cmtt-10x-x-109">printf</span><span 
+class="cmtt-10x-x-109">_conversion </span>&#x2013;                            printf, sprintf, fprintf conversion specifications<br />
+</div></p></div>
+<!--l. 21--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x316-1873000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 21--><p class="noindent" > Each conversion specification in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">printf</span></span></span> , <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sprintf</span></span></span> , <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fprintf</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">format</span></span></span> parameter has the
+following syntax:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>A % (percent) sign.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>Zero or more <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">options</span></span></span>, which modify the meaning of the conversion specification. The
+     following list contains the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">option</span></span></span> characters and their meanings:
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>: Left align, within the field, the result of the conversion.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">+</span> </span>: Begin the result of a signed conversion with a sign (+ or -).
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">&#x201D;space&#x201D;</span> </span>: Prefix a space character to the result if the first character of a signed conversion
+     is not a sign. If both the (space) and + options appear, the (space) option is ignored.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">#</span> </span>: Convert the value to an alternate form. For <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">c</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span></span></span> conversions, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> option
+     has no effect. For <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">o</span></span></span> conversion, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span> increases the precision to force the first digit of the
+     result to be a 0 (zero). For <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> conversions, a nonzero result has 0x or 0X prefixed
+     to it. For <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e,</span><span 
+class="cmtt-10x-x-109">&#x00A0;E,</span><span 
+class="cmtt-10x-x-109">&#x00A0;f,</span><span 
+class="cmtt-10x-x-109">&#x00A0;g,</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> conversions, the result always contains a decimal point,
+     even if no digits follow it. For <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> conversions, trailing zeros are not removed from
+     the result.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">0</span> </span>: Pad to the field width, using leading zeros (following any indication of sign or base) for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d</span></span></span>,
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">o</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> conversions; no space padding is performed. If the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span> and
+     <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x005C;-</span></span></span> (dash) flags both appear, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span> flag is ignored. For <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">i</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">o</span></span></span><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> conversions, if
+     a precision is specified, the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">0</span></span></span> flag is also ignored.</ul>
+                                                                                    
+
+                                                                                    
+</p><!--l. 55--><p class="noindent" >An optional decimal digit string that specifies the minimum field width. If the converted value
+has fewer characters than the field width, the field is padded on the left to the length
+specified by the field width. If the left-adjustment option is specified, the field is padded
+on the right. An optional precision. The precision is a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">.</span></span></span> (dot) followed by a decimal
+digit string. If no precision is given, the parameter is treated as 0 (zero). The precision
+specifies:
+     <ul class="nbitemize"><li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>The minimum number of digits to appear for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">u</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">o</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span>, or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span> conversions
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>The number of digits to appear after the decimal point for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> conversions
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>The maximum number of significant digits for <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">g</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> conversions
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>The maximum number of characters to be printed from a string in an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">s</span></span></span> conversion
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>A character that indicates the type of conversion to be applied:
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">%</span> </span>: Performs no conversion. Displays %.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">d,i</span> </span>:Accepts an integer <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span> and converts it to signed decimal notation. The precision
+     specifies the minimum number of digits to appear. If the value being converted can be
+     represented in fewer digits, it is expanded with leading zeros. The default precision is 1.
+     The result of converting a zero value with a precision of zero is a null string. Specifying
+     a field width with a zero as a leading character causes the field width value to be padded
+     with leading zeros.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">u</span> </span>:Accepts an integer <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span> and converts it to unsigned decimal notation. The precision
+     specifies the minimum number of digits to appear. If the value being converted can be
+     represented in fewer digits, it is expanded with leading zeros. The default precision is 1.
+     The result of converting a zero value with a precision of zero is a null string. Specifying
+     a field width with a zero as the leading character causes the field width value to be
+     padded with leading zeros.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">o</span> </span>:Accepts an integer <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span> and converts it to unsigned octal notation. The precision specifies
+     the minimum number of digits to appear. If the value being converted can be represented
+     in fewer digits, it is expanded with leading zeros. The default precision is 1. The result
+     of converting a zero value with a precision of zero is a null string. Specifying a field
+     width with a zero as the leading character causes the field width value to be padded
+     with leading zeros. An octal value for field width is not implied.
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">x, X</span> </span>:Accepts an integer <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span> and converts it to unsigned hexadecimal notation. The letters
+     &#x201C;abcdef&#x201D;  are  used  for  the  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">x</span></span></span> conversion;  the  letters  &#x201C;ABCDEF&#x201D;  are  used  for  the  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">X</span></span></span>
+     conversion. The precision specifies the minimum number of digits to appear. If the value
+     being converted can be represented in fewer digits, it is expanded with leading zeros.
+     The default precision is 1. The result of converting a zero value with a precision of zero
+     is a null string. Specifying a field width with a zero as the leading character causes the
+     field width value to be padded with leading zeros.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">f</span> </span>:  Accepts  a  float  or  double  <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span> and  converts  it  to  decimal  notation  in  the  format
+     %[]<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">ddd.ddd</span></span></span>. The number of digits after the decimal point is equal to the precision
+     specification.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>If no precision is specified, six digits are output.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>If the precision is zero, no decimal point appears and the system outputs a number rounded
+     to the integer nearest to <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span>.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>If a decimal point is output, at least one digit is output before it.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">e, E</span> </span>:Accepts a real and converts it to the exponential form %[]<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">d.ddde</span></span></span>+/<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">dd</span></span></span>. There is one
+     digit before the decimal point, and the number of digits after the decimal point is equal
+     to the precision specification.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>If no precision is specified, , six digits are output.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>If the precision is zero, , no decimal point appears.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">-</span> </span>The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span> conversion character produces a number with E instead of e before the exponent.
+     The exponent always contains at least two digits. If the value is zero, the exponent is
+     zero.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">g, G</span> </span>: Accepts a real and converts it in the style of the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span>, or <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">f</span></span></span> conversion characters,
+     with the precision specifying the number of significant digits. Trailing zeros are removed
+     from the result. A decimal point appears only if it is followed by a digit. The style used
+     depends on the value converted. Style <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">e</span></span></span> (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">E</span></span></span>, if <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">G</span></span></span> is the flag used) results only if the
+     exponent resulting from the conversion is less than -4, or if it is greater or equal to the
+     precision.
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">c</span> </span>:Accepts and displays an integer value converted to a character.
+                                                                                    
+
+                                                                                    
+     <li class="nbitemize"><span class="bitem">
+<span 
+class="cmbx-10x-x-109">s</span> </span>:Accepts a string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span> and displays characters from the string to the end or the number of
+     characters indicated by the precision is reached. If no precision is specified, all characters
+     up to the end are displayed.</ul>
+</p><!--l. 99--><p class="noindent" >A field width or precision can be indicated by an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">*</span></span></span> (asterisk) instead of a digit string. In this case, an
+integer <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span> parameter supplies the field width or precision. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">value</span></span></span> parameter converted for
+output is not fetched until the conversion letter is reached, so the parameters specifying field width
+or precision must appear before the value to be converted (if any). If the result of a conversion is
+wider than the field width, the field is expanded to contain the converted result. The
+representation of the plus sign depends on whether the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">+</span></span></span> or (space) formatting option is specified.
+</p>
+<!--l. 112--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x316-1874000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli316.html#printf">printf</a>    <a 
+href="manualli283.html#fprintf">fprintf</a>    <a 
+href="manualli328.html#sprintf">sprintf</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli316.html" >next</a>] [<a 
+href="manualli314.html" >prev</a>] [<a 
+href="manualli314.html#tailmanualli314.html" >prev-tail</a>] [<a 
+href="manualli315.html" >front</a>] [<a 
+href="manualli274.html#manualli315.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli315.html"></a>  </p> 
+</body></html> 

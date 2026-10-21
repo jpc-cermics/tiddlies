@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+A=\nspoperator{-}diag(\nspnumber{1}\nspoperator{:}\nspnumber{3})\nspoperator{;}C=rand(\nspnumber{2},\nspnumber{3})\nspoperator{;}
+Go=obs_gram(A,C,\nspstring{'c'})\nspoperator{;}\nspcomment{// $<$=$>$ w=syslin('c',A,[],C); Go=obs_gram(w);}
+norm(Go\nspoperator{*}A\nspoperator{+}A\nspoperator{'}\nspoperator{*}Go\nspoperator{+}C\nspoperator{'}\nspoperator{*}C,\nspnumber{1})
+norm(lyap(A,\nspoperator{-}C\nspoperator{'}\nspoperator{*}C,\nspstring{'c'})\nspoperator{-}Go,\nspnumber{1})
+A=A\nspoperator{/}\nspnumber{4}\nspoperator{;}Go=obs_gram(A,C,\nspstring{'d'})\nspoperator{;}\nspcomment{//discrete time case}
+norm(lyap(A,\nspoperator{-}C\nspoperator{'}\nspoperator{*}C,\nspstring{'d'})\nspoperator{-}Go,\nspnumber{1})
+\end{Verbatim}

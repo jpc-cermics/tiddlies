@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+set(\nspstring{"figure_style"},\nspstring{"new"})\nspoperator{,}\nspcomment{//create a figure}
+m=\nspnumber{5}\nspoperator{;}n=\nspnumber{5}\nspoperator{;}
+M=round(\nspnumber{32}\nspoperator{*}rand(m,n))\nspoperator{;}
+grayplot(\nspnumber{1}\nspoperator{:}m,\nspnumber{1}\nspoperator{:}n,M)
+a=get(\nspstring{"current_axes"})\nspoperator{;}
+a.data_bounds=[\nspoperator{-}\nspnumber{1}\nspoperator{,}\nspoperator{-}\nspnumber{1}\nspoperator{;}\nspnumber{7}\nspoperator{,}\nspnumber{7}]
+h=a.children
+h.data_mapping=\nspstring{"direct"}\nspoperator{;}
+\nspcomment{// A 2D ploting of a matrix using colors}
+xbasc()
+a=get(\nspstring{"current_axes"})\nspoperator{;}
+a.data_bounds=[\nspnumber{0}\nspoperator{,}\nspnumber{0}\nspoperator{;}\nspnumber{4}\nspoperator{,}\nspnumber{4}]\nspoperator{;}
+b=\nspnumber{5}\nspoperator{*}ones(\nspnumber{11},\nspnumber{11})\nspoperator{;}b(\nspnumber{2}\nspoperator{:}\nspnumber{10},\nspnumber{2}\nspoperator{:}\nspnumber{10})=\nspnumber{4}\nspoperator{;}b(\nspnumber{5}\nspoperator{:}\nspnumber{7},\nspnumber{5}\nspoperator{:}\nspnumber{7})=\nspnumber{2}\nspoperator{;}
+Matplot1(b,[\nspnumber{1}\nspoperator{,}\nspnumber{1}\nspoperator{,}\nspnumber{3}\nspoperator{,}\nspnumber{3}])\nspoperator{;}
+h=a.children
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}\nspnumber{7} \nspkeyword{do}
+  xclick()\nspoperator{;}\nspcomment{// click the mouse to sets Matplot data}
+  h.data=h.data\nspoperator{+}\nspnumber{4}\nspoperator{;}
+\nspkeyword{end}
+\end{Verbatim}

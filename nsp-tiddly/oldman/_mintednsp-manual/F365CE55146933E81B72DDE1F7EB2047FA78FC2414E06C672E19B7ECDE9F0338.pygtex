@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+fd=mopen(TMPDIR\nspoperator{+}\nspstring{'/Mat'},\nspstring{'w'})\nspoperator{;}
+mfprintf(fd,\nspstring{'Some text.....\nspbs{}n'})\nspoperator{;}
+mfprintf(fd,\nspstring{'Some text again\nspbs{}n'})\nspoperator{;}
+a=rand(\nspnumber{6},\nspnumber{6})\nspoperator{;}
+\nspkeyword{for} i=\nspnumber{1}\nspoperator{:}\nspnumber{6} \nspkeyword{do}
+  \nspkeyword{for} j=\nspnumber{1}\nspoperator{:}\nspnumber{6} \nspkeyword{do} mfprintf(fd,\nspstring{'\nsppc{}5.2f '},a(i,j))\nspoperator{;}\nspkeyword{end}\nspoperator{;}
+  mfprintf(fd,\nspstring{'\nspbs{}n'})\nspoperator{;}
+\nspkeyword{end}
+mclose(fd)\nspoperator{;}
+a1=fscanfMat(TMPDIR\nspoperator{+}\nspstring{'/Mat'})
+\end{Verbatim}

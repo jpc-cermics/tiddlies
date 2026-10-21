@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>mfprintf</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli307.html" >next</a>] [<a 
+href="manualli305.html" >prev</a>] [<a 
+href="manualli305.html#tailmanualli305.html" >prev-tail</a>] [<a 
+href="#tailmanualli306.html">tail</a>] [<a 
+href="manualli274.html#manualli306.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x307-1820000"></a>mfprintf</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx307-1820001"></a><a 
+ id="mfprintf"></a><span 
+class="cmtt-10x-x-109">mfprintf </span>&#x2013;                                               converts, formats, and writes data to a file<br />
+<a 
+ id="dx307-1820002"></a>
+<a 
+ id="mprintf"></a><span 
+class="cmtt-10x-x-109">mprintf </span>&#x2013;                          converts, formats, and writes data to the main scilab window<br />
+<a 
+ id="dx307-1820003"></a>
+<a 
+ id="msprintf"></a><span 
+class="cmtt-10x-x-109">msprintf </span>&#x2013;                                              converts, formats, and writes data in a string<br />
+</div></p></div>
+<!--l. 24--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x307-1821000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-442">
+&#x00A0;&#x00A0;mfprintf(fd,format,a1,...,an);
+&#x00A0;<br />&#x00A0;&#x00A0;mprintf(format,a1,...,an);
+&#x00A0;<br />&#x00A0;&#x00A0;str=msprintf(format,a1,...,an);
+</div>
+<!--l. 29--><p class="nopar" >
+</p>
+<!--l. 32--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x307-1822000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">fd</span>: scalar, file descriptor given by <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mopen</span></span></span> (it&apos;s a positive integer). The value <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">-1</span></span></span> refers to
+     the default file ( i.e the last opened file).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">format</span>: a Scilab string describing the format to use to write the remaining operands.
+     The format operand follows, as close as possible, the C printf format operand syntax.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">str</span>: a character string, string to be scanned.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">a1,...,an</span>: Specifies the data to be converted and printed according to the format
+     parameter.</li></ul>
+<!--l. 40--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x307-1823000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 40--><p class="noindent" > The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mprintf</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfprintf</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msprintf</span></span></span> functions are interface for C-coded version of <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">printf</span></span></span>,
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fprintf</span></span></span> and <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">sprintf</span></span></span> functions. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mprintf</span></span></span> function writes formatted operands to the standard
+Scilab output (i.e the Scilab window). The argument operands are formatted under control of the
+format operand. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">mfprintf</span></span></span> function writes formatted operands to the file specified by the
+file desciptor <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">fd</span></span></span>. The argument operands are formatted under control of the format
+operand. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msprintf</span></span></span> writes formatted operands in its returned value (a Scilab string).
+The argument operands are formatted under control of the format operand. Note that,
+in this case, the escape sequences (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x0022;&#x005C;n,</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x005C;t,..&#x0022;</span></span></span>) are treated as a normal sequence of
+characters. All these functions may be used to output column vectors of numbers and string
+vectors without an explicit loop on the elements. In that case these functions iterates on
+the rows. The shortest vector gives the number of time the format has to be iterated.
+An homogeneous sequence of identical type parameters can be replaced by a matrix
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x307-1824000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb246"><a 
+ id="x307-1824013r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;At</span><span 
+class="cmtt-10x-x-109">&#x00A0;iteration</span><span 
+class="cmtt-10x-x-109">&#x00A0;%i,</span><span 
+class="cmtt-10x-x-109">&#x00A0;Result</span><span 
+class="cmtt-10x-x-109">&#x00A0;is:&#x005C;nalpha=%f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">33</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.535</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x307-1824015r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;msprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%5.3f</span><span 
+class="cmtt-10x-x-109">&#x00A0;%5.3f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">123</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.732</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x307-1824017r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;msprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%5.3f&#x005C;n%5.3f&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">123</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.732</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x307-1824019r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x307-1824021r5"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;vectorized</span><span 
+class="cmitt-10x-x-109">&#x00A0;forms:</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;format</span><span 
+class="cmitt-10x-x-109">&#x00A0;directive</span><span 
+class="cmitt-10x-x-109">&#x00A0;needs</span></span>
+<br class="fancyvrb" /><a 
+ id="x307-1824023r6"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;two</span><span 
+class="cmitt-10x-x-109">&#x00A0;operand,</span><span 
+class="cmitt-10x-x-109">&#x00A0;each</span><span 
+class="cmitt-10x-x-109">&#x00A0;column</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;A</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;used</span><span 
+class="cmitt-10x-x-109">&#x00A0;as</span><span 
+class="cmitt-10x-x-109">&#x00A0;an</span><span 
+class="cmitt-10x-x-109">&#x00A0;operand.</span></span>
+<br class="fancyvrb" /><a 
+ id="x307-1824025r7"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span class="nspcomment"><span 
+class="cmitt-10x-x-109">//</span><span 
+class="cmitt-10x-x-109">&#x00A0;and</span><span 
+class="cmitt-10x-x-109">&#x00A0;the</span><span 
+class="cmitt-10x-x-109">&#x00A0;mprintf</span><span 
+class="cmitt-10x-x-109">&#x00A0;function</span><span 
+class="cmitt-10x-x-109">&#x00A0;is</span><span 
+class="cmitt-10x-x-109">&#x00A0;applied</span><span 
+class="cmitt-10x-x-109">&#x00A0;on</span><span 
+class="cmitt-10x-x-109">&#x00A0;each</span><span 
+class="cmitt-10x-x-109">&#x00A0;row</span><span 
+class="cmitt-10x-x-109">&#x00A0;of</span><span 
+class="cmitt-10x-x-109">&#x00A0;A</span></span><br class="fancyvrb" /><a 
+ id="x307-1824027r8"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%5.3f&#x005C;t%5.3f&#x005C;n&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,A)</span>
+<br class="fancyvrb" /><a 
+ id="x307-1824029r9"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;colors=[</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;red&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;green&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;blue&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;pink&#x0027;</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;black&#x0027;</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x307-1824031r10"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;RGB=[</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.75</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0.75</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">0</span></span><span 
+class="cmtt-10x-x-109">]</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span>
+<br class="fancyvrb" /><a 
+ id="x307-1824033r11"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;mprintf(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;%d&#x005C;t%s&#x005C;t%f&#x005C;t%f&#x005C;t%f&#x005C;n&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,colors,RGB)</span></div>
+<!--l. 81--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x307-1825000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="manualli297.html#mclose">mclose</a>    <a 
+href="manualli299.html#meof">meof</a>    <a 
+href="#mfprintf">mfprintf</a>    <a 
+href="manualli282.html#fprintfMat">fprintfMat</a>    <a 
+href="manualli301.html#mfscanf">mfscanf</a>    <a 
+href="manualli284.html#fscanfMat">fscanfMat</a>    <a 
+href="manualli304.html#mget">mget</a>    <a 
+href="manualli303.html#mgetstr">mgetstr</a>    <a 
+href="manualli305.html#mopen">mopen</a>
+<a 
+href="#mprintf">mprintf</a>    <a 
+href="manualli309.html#mput">mput</a>    <a 
+href="manualli308.html#mputstr">mputstr</a>    <a 
+href="manualli301.html#mscanf">mscanf</a>    <a 
+href="manualli310.html#mseek">mseek</a>    <a 
+href="manualli311.html#mtell">mtell</a>    <a 
+href="manualli298.html#mdelete">mdelete</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli307.html" >next</a>] [<a 
+href="manualli305.html" >prev</a>] [<a 
+href="manualli305.html#tailmanualli305.html" >prev-tail</a>] [<a 
+href="manualli306.html" >front</a>] [<a 
+href="manualli274.html#manualli306.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli306.html"></a>  </p> 
+</body></html> 

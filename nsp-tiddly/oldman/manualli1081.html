@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>pvm_send</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,3,section+,next,notoc*,html,options,info --> 
+<meta name="src" content="manual.tex" /> 
+<meta name="date" content="2019-02-10 08:09:00" /> 
+<link rel="stylesheet" type="text/css" href="manual.css" /> 
+</head><body 
+>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1082.html" >next</a>] [<a 
+href="manualli1080.html" >prev</a>] [<a 
+href="manualli1080.html#tailmanualli1080.html" >prev-tail</a>] [<a 
+href="#tailmanualli1081.html">tail</a>] [<a 
+href="manualli1054.html#manualli1081.html" >up</a>] </p></div>
+   <h3 class="likesectionHead"><a 
+ id="x1082-6132000"></a>pvm_send</h3>
+<div class="flushleft" 
+>
+<!--l. 17--><p class="noindent" >
+ <div class="manref"> <a 
+ id="dx1082-6132001"></a><a 
+ id="pvm_send"></a><span 
+class="cmtt-10x-x-109">pvm</span><span 
+class="cmtt-10x-x-109">_send </span>&#x2013;                                                   immediately sends (or multicast) data. <br />
+</div></p></div>
+<!--l. 22--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1082-6133000"></a><span 
+class="cmbx-10x-x-109">Calling sequence</span></span>
+                                                                                    
+
+                                                                                    
+</p>
+   <div class="verbatim" id="verbatim-1190">
+&#x00A0;&#x00A0;[info]&#x00A0;=&#x00A0;pvm_send(tids,buff,msgtag)
+</div>
+<!--l. 25--><p class="nopar" >
+</p>
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1082-6134000"></a><span 
+class="cmbx-10x-x-109">Parameters</span></span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">tids</span>: row of integers, contains the task IDs of the tasks to be sent to.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">buff</span>: scilab variable.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">msgtag: integer, message tag supplied by the user.</span>
+     <span 
+class="cmtt-10x-x-109">msgtag should be </span><span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0. It allows the user&apos;s program to distinguish between different
+     kinds of messages .
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10x-x-109">info</span>: integer, status code returned by the routine. Values less than zero indicate an
+     error.</li></ul>
+<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1082-6135000"></a><span 
+class="cmbx-10x-x-109">Description</span></span>
+</p><!--l. 36--><p class="noindent" > <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_send</span></span></span> sends (or multicasts) a message to the PVM process identified in the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">tids</span></span></span> array. Note
+that the message is not sent to the caller even if listed in the array of tids. <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">msgtag</span></span></span> is used to label
+the content of the message. The returned value will be <span 
+class="cmmi-10x-x-109">&#x003E;</span>= 0 if the call is successful and will be will
+be <span 
+class="cmmi-10x-x-109">&#x003C; </span>0 if some error occurs. The <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_send</span></span></span> routine is asynchronous. Computation on the sending
+processor resumes as soon as the message is safely on its way to the receiving processor. This is in
+contrast to synchronous communication, during which computation on the sending processor
+halts until the matching receive is executed by the receiving processor. If a multicast is
+performed, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">pvm_send</span></span></span> first determines which other pvmds contain the specified tasks. Then
+passes the message to these pvmds which in turn distribute the message to their local
+tasks without further network traffic. The PVM model guarantees the following about
+message order. If task 1 sends message A to task 2, then task 1 sends message B to
+task 2, message A will arrive at task 2 before message B. Moreover, if both messages
+arrive before task 2 does a receive, then a wildcard receive will always return message A.
+Terminating a PVM task immediately after sending a message or messages from it may
+result in those messages being lost. To be sure, always call pvm_exit() before stopping.
+                                                                                    
+
+                                                                                    
+</p>
+<!--l. 65--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1082-6136000"></a><span 
+class="cmbx-10x-x-109">Examples</span></span>
+</p>
+   <div class="fancyvrb" id="fancyvrb743"><a 
+ id="x1082-6136006r1"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;A=rand(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">*</span></span><span 
+class="cmtt-10x-x-109">(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">+</span></span><span 
+class="cmtt-10x-x-109">%i)</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">;</span></span><br class="fancyvrb" /><a 
+ id="x1082-6136008r2"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;deff(</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;[x]=f(y)&#x0027;</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspstring"><span 
+class="cmtt-10x-x-109">&#x0027;x</span><span 
+class="cmtt-10x-x-109">&#x00A0;=</span><span 
+class="cmtt-10x-x-109">&#x00A0;1/y&#x0027;</span></span><span 
+class="cmtt-10x-x-109">)</span><br class="fancyvrb" /><a 
+ id="x1082-6136010r3"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;info=pvm_send([</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">262150</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">,</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">262152</span></span><span 
+class="cmtt-10x-x-109">],A(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">1</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">2</span></span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">5</span></span><span 
+class="cmtt-10x-x-109">,</span><span class="nspoperator"><span 
+class="cmtt-10x-x-109">:</span></span><span 
+class="cmtt-10x-x-109">),</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">100</span></span><span 
+class="cmtt-10x-x-109">)</span>
+<br class="fancyvrb" /><a 
+ id="x1082-6136012r4"></a><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;pvm_send(</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">262146</span></span><span 
+class="cmtt-10x-x-109">,f,</span><span class="nspnumber"><span 
+class="cmtt-10x-x-109">200</span></span><span 
+class="cmtt-10x-x-109">)</span></div>
+<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1082-6137000"></a><span 
+class="cmbx-10x-x-109">See also</span></span>
+   <a 
+href="#pvm-recv">pvm_recv</a>    <a 
+href="#pvm-bcast">pvm_bcast</a>
+</p><!--l. 16--><p class="noindent" >
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+</p>
+   <!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="manualli1082.html" >next</a>] [<a 
+href="manualli1080.html" >prev</a>] [<a 
+href="manualli1080.html#tailmanualli1080.html" >prev-tail</a>] [<a 
+href="manualli1081.html" >front</a>] [<a 
+href="manualli1054.html#manualli1081.html" >up</a>] </p></div>
+<!--l. 16--><p class="indent" >   <a 
+ id="tailmanualli1081.html"></a>  </p> 
+</body></html> 
